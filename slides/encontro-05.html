@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 5 — Amostragem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 5 · Unidade II</div>
+  <h1>Amostragem e tamanho da amostra</h1>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>10 min</td><td>Retomada da Unidade I e devolutiva das matrizes</td></tr>
+    <tr><td>55 min</td><td>População, amostra e técnicas probabilísticas</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>40 min</td><td>Técnicas não probabilísticas; tamanho da amostra</td></tr>
+    <tr><td>95 min</td><td><strong>Prática no Colab:</strong> sorteios e simulação do erro amostral</td></tr>
+    <tr><td>25 min</td><td>Síntese, conexão com os projetos e tarefa</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A pergunta que motiva a aula</h2>
+  <div class="pergunta">Como uma pesquisa eleitoral ouve <strong>2 mil pessoas</strong> e
+  acerta o comportamento de <strong>100 milhões</strong> de eleitores?</div>
+  <p>A resposta parece mágica — e é <strong>técnica</strong>. Ao final da aula, você saberá:</p>
+  <ul>
+    <li>por que o <strong>sorteio</strong> é o segredo (e não o tamanho);</li>
+    <li>como sortear de quatro maneiras diferentes;</li>
+    <li>quantos casos são necessários — por fórmula, não por chute.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide divisor">
+  <h2>População e amostra</h2>
+  <p>Os quatro termos que organizam tudo</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Os termos, com precisão</h2>
+  <div class="definicao"><span class="rotulo">População</span>
+  O conjunto <strong>completo</strong> de casos sobre o qual se quer concluir.
+  Ex.: todas as empresas formais de comércio de São Luís.</div>
+  <div class="definicao"><span class="rotulo">Amostra</span>
+  O <strong>subconjunto</strong> efetivamente estudado.</div>
+  <div class="definicao"><span class="rotulo">Censo</span>
+  O estudo da população <strong>inteira</strong> — caro e raro; é o que IBGE faz a cada
+  década com a população brasileira.</div>
+  <div class="definicao"><span class="rotulo">Cadastro (marco amostral)</span>
+  A <strong>lista concreta</strong> de onde a amostra é sorteada.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>População-alvo ≠ cadastro</h2>
+  <p>A população é uma <strong>ideia</strong>; o cadastro é uma <strong>lista real</strong> —
+  e toda lista tem buracos.</p>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  População-alvo: "empresas de comércio de São Luís". Cadastros possíveis: o CEMPRE/IBGE ou
+  os registros da Junta Comercial. <strong>Nenhum contém os informais</strong> — que são
+  parte relevante do comércio real.</div>
+  <p>Consequência: toda conclusão vale, a rigor, para a população <strong>coberta pelo
+  cadastro</strong>. Declarar essa cobertura é dever do relatório.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O princípio que separa os dois mundos</h2>
+  <div class="definicao"><span class="rotulo">Amostra probabilística</span>
+  Todo elemento da população tem <strong>probabilidade conhecida e não nula</strong> de ser
+  sorteado.</div>
+  <p>É essa propriedade — e <strong>apenas ela</strong> — que permite:</p>
+  <ul>
+    <li>calcular a <strong>margem de erro</strong> das estimativas;</li>
+    <li><strong>generalizar</strong> da amostra para a população com fundamento
+        estatístico.</li>
+  </ul>
+  <p>Sem sorteio, não há margem de erro que valha — por maior que seja a amostra.
+  (Um milhão de respostas voluntárias na internet continua sendo um retrato de quem quis
+  responder.)</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Técnica 1 — Aleatória simples (AAS)</h2>
+  <div class="definicao"><span class="rotulo">Como funciona</span>
+  Sorteio <strong>direto</strong> do cadastro: cada elemento com a mesma probabilidade.
+  É o padrão-ouro conceitual — as fórmulas de margem de erro assumem AAS.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  Da lista de 8.000 empresas do cadastro, o computador sorteia 400 — como uma loteria em
+  que cada empresa é uma bolinha.</div>
+  <p><strong>Exige:</strong> cadastro completo e numerável. <strong>Limite:</strong> pode,
+  por azar, sub-representar grupos pequenos (um setor com 1% da população pode nem aparecer
+  numa amostra pequena).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Técnica 2 — Sistemática</h2>
+  <div class="definicao"><span class="rotulo">Como funciona</span>
+  Calcula-se o passo <strong>k = N / n</strong>, sorteia-se o ponto de partida entre 1 e k,
+  e toma-se <strong>1 elemento a cada k posições</strong> da lista.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  8.000 empresas, amostra de 400 → k = 20. Sorteado o início 7: entram as empresas nas
+  posições 7, 27, 47, 67...</div>
+  <p><strong>Vantagem:</strong> simplicidade operacional (linhas de produção, filas,
+  arquivos). <strong>Cuidado:</strong> se a lista tem <strong>periodicidade oculta</strong>
+  (ex.: a cada 20 registros, um é de segunda-feira), o passo pode viciar a amostra.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Técnica 3 — Estratificada</h2>
+  <div class="definicao"><span class="rotulo">Como funciona</span>
+  Divide-se a população em <strong>estratos</strong> (grupos internamente homogêneos:
+  porte, setor, região) e sorteia-se <strong>dentro de cada estrato</strong>.</div>
+  <ul>
+    <li><strong>Alocação proporcional:</strong> cada estrato entra na amostra na proporção
+        que tem na população;</li>
+    <li><strong>Alocação uniforme:</strong> mesmo n por estrato — quando se quer comparar
+        estratos entre si, inclusive os pequenos.</li>
+  </ul>
+  <p><strong>Ganhos:</strong> garante representação de todos os estratos <em>por
+  construção</em> e melhora a precisão. Na prática de hoje, você verá a estratificada
+  acertar em cheio a proporção de um setor pequeno em que a AAS flutua.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Técnica 4 — Por conglomerados</h2>
+  <div class="definicao"><span class="rotulo">Como funciona</span>
+  Sorteiam-se <strong>grupos inteiros</strong> (conglomerados: bairros, escolas, filiais) e
+  estudam-se <strong>todos os elementos</strong> dos grupos sorteados (ou nova amostra
+  dentro deles).</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  Para entrevistar comerciantes do estado, sorteiam-se 10 municípios e visitam-se todos os
+  mercados dos municípios sorteados — em vez de viajar a 100 cidades.</div>
+  <p><strong>Vantagem:</strong> economia de deslocamento e de cadastro.
+  <strong>Custo:</strong> menor precisão para o mesmo n (elementos do mesmo conglomerado
+  tendem a se parecer). É a técnica das grandes pesquisas domiciliares do IBGE.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As quatro probabilísticas, lado a lado</h2>
+  <table>
+    <tr><th>Técnica</th><th>Como sorteia</th><th>Força</th><th>Cuidado</th></tr>
+    <tr><td><strong>Aleatória simples</strong></td><td>Direto do cadastro</td>
+        <td>Padrão-ouro conceitual</td><td>Grupos pequenos podem sumir</td></tr>
+    <tr><td><strong>Sistemática</strong></td><td>1 a cada k, início sorteado</td>
+        <td>Simplicidade operacional</td><td>Periodicidade oculta</td></tr>
+    <tr><td><strong>Estratificada</strong></td><td>Dentro de cada estrato</td>
+        <td>Representação garantida, + precisão</td><td>Exige variável de estrato no cadastro</td></tr>
+    <tr><td><strong>Conglomerados</strong></td><td>Grupos inteiros</td>
+        <td>Economia de campo</td><td>− precisão para o mesmo n</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Sem sorteio</h2>
+  <p>As técnicas não probabilísticas — usos legítimos e limites</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Conveniência, cotas e bola de neve</h2>
+  <div class="definicao"><span class="rotulo">Conveniência</span>
+  Casos de fácil acesso (quem passa no corredor, quem responde ao link). Legítima para
+  <strong>pré-testes e estudos exploratórios</strong>; a mais usada — e a mais abusada —
+  nos TCCs.</div>
+  <div class="definicao"><span class="rotulo">Cotas</span>
+  Reproduz proporções conhecidas da população (tantos por gênero, por faixa etária), mas
+  <strong>sem sorteio dentro das cotas</strong> — parece estratificada, não é.</div>
+  <div class="definicao"><span class="rotulo">Bola de neve</span>
+  Cada participante indica outros. A via de acesso a populações <strong>raras ou
+  ocultas</strong>: empreendedores informais, vítimas de fraude.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que cada mundo autoriza</h2>
+  <table>
+    <tr><th></th><th>Probabilística</th><th>Não probabilística</th></tr>
+    <tr><td><strong>Margem de erro</strong></td><td>Calculável</td><td>Não existe</td></tr>
+    <tr><td><strong>Generalização</strong></td><td>Com fundamento estatístico</td>
+        <td>Não autorizada</td></tr>
+    <tr><td><strong>Usos típicos</strong></td><td>Surveys conclusivos, pesquisas oficiais</td>
+        <td>Pré-teste, exploração, populações ocultas</td></tr>
+    <tr><td><strong>Frase honesta no relatório</strong></td>
+        <td>"estima-se que, com margem de X%..."</td>
+        <td>"entre os respondentes, observou-se..."</td></tr>
+  </table>
+  <div class="pergunta">Regra de comunicação honesta: <strong>sempre declarar a técnica
+  usada e suas limitações.</strong></div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Quantos são necessários?</h2>
+  <p>O tamanho da amostra sai de fórmula — não de percentual mágico</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Dois mitos para derrubar</h2>
+  <div class="afirmacao">Mito 1 — "Amostra boa é amostra grande."</div>
+  <p>O tamanho necessário depende da <strong>margem de erro</strong> e da
+  <strong>confiança</strong> desejadas — e cresce pouco com a população.</p>
+  <div class="afirmacao">Mito 2 — "A amostra deve ser uns 10% da população."</div>
+  <p>Não existe regra de percentual. Para populações grandes, <strong>~384 casos</strong>
+  dão 5% de margem com 95% de confiança — valham eles para 100 mil ou para 100 milhões.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A fórmula (proporção, população finita)</h2>
+  <div class="definicao"><span class="rotulo">Fórmula</span>
+  n₀ = z² · p · (1−p) / e² &nbsp;&nbsp;e depois&nbsp;&nbsp; n = n₀ / (1 + (n₀−1)/N)</div>
+  <table>
+    <tr><th>Termo</th><th>Significado</th><th>Valores usuais</th></tr>
+    <tr><td><strong>z</strong></td><td>Nível de confiança</td>
+        <td>1,645 (90%) · <strong>1,96 (95%)</strong> · 2,576 (99%)</td></tr>
+    <tr><td><strong>p</strong></td><td>Proporção esperada</td>
+        <td><strong>0,5</strong> na dúvida (pior caso — maximiza n)</td></tr>
+    <tr><td><strong>e</strong></td><td>Margem de erro</td><td>0,05 = 5 pontos percentuais</td></tr>
+    <tr><td><strong>N</strong></td><td>Tamanho da população</td><td>correção para população finita</td></tr>
+  </table>
+  <p class="menor">Na prática, a fórmula vira uma função Python — e você verá o n saltar
+  quando a margem aperta.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Os números que derrubam os mitos</h2>
+  <table>
+    <tr><th></th><th>N = 8.000</th><th>N = 800.000</th><th>N = 100 milhões</th></tr>
+    <tr><td><strong>margem 5%</strong></td><td>367</td><td>384</td><td>385</td></tr>
+    <tr><td><strong>margem 3%</strong></td><td>943</td><td>1.066</td><td>1.068</td></tr>
+    <tr><td><strong>margem 2%</strong></td><td>1.786</td><td>2.395</td><td>2.401</td></tr>
+  </table>
+  <ul>
+    <li>Da coluna da esquerda à da direita, a população multiplica por 12.500 — e o n quase
+        não se move (mito 2 derrubado);</li>
+    <li>Da margem 5% à 2%, o n multiplica por ~6: <strong>precisão custa caro</strong>
+        (mito 1 qualificado).</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Cadastro sintético calibrado no CEMPRE — abra o notebook <code>encontro05_aluno.ipynb</code></p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O laboratório de hoje: por que um cadastro sintético?</h2>
+  <div class="definicao"><span class="rotulo">O artifício</span>
+  Geraremos 8.000 empresas com proporções setoriais <strong>reais</strong> (CEMPRE/MA) e
+  receitas simuladas. Por ser sintético, conhecemos a <strong>verdade populacional</strong>
+  — e podemos medir <strong>exatamente</strong> o erro de cada amostra.</div>
+  <p>Nenhum dado real permite isso: na pesquisa de verdade, a verdade populacional é
+  justamente o que não se conhece. O laboratório sintético é onde se aprende a confiar
+  (e a desconfiar) das amostras.</p>
+  <p class="menor">Conceito novo de passagem: a <strong>semente</strong> (seed) torna o
+  sorteio reprodutível — exigência de pesquisa, não paradoxo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A prática de hoje, em 5 seções</h2>
+  <ol>
+    <li><strong>O cadastro e a população</strong> — gerar e conhecer o gabarito;</li>
+    <li><strong>Aleatória simples</strong> — amostras de 50, 200 e 800; o erro cai com
+        retornos decrescentes (o boxplot mais importante da aula);</li>
+    <li><strong>Sistemática e estratificada</strong> — implementar e comparar num setor
+        pequeno;</li>
+    <li><strong>Tamanho da amostra</strong> — completar a fórmula e derrubar os mitos em
+        números;</li>
+    <li><strong>Interpretação por escrito.</strong></li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li><strong>População</strong> é a ideia; <strong>cadastro</strong> é a lista real — e
+        toda lista tem buracos que o relatório declara;</li>
+    <li>Só a amostra <strong>probabilística</strong> (probabilidade conhecida e não nula)
+        autoriza margem de erro e generalização;</li>
+    <li>Quatro técnicas probabilísticas: <strong>AAS</strong> (padrão-ouro),
+        <strong>sistemática</strong> (passo k), <strong>estratificada</strong>
+        (representação garantida, + precisão), <strong>conglomerados</strong> (economia de
+        campo, − precisão);</li>
+    <li>As não probabilísticas (<strong>conveniência, cotas, bola de neve</strong>) têm
+        usos legítimos — e a obrigação da frase honesta;</li>
+    <li>O <strong>n</strong> sai da fórmula: depende de margem e confiança, quase nada da
+        população; precisão custa caro.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>RICHARDSON (2017)</strong> — capítulo sobre questionários e escalas
+        (prepara o próximo encontro);</li>
+    <li><strong>Estes slides</strong> — releia as quatro técnicas e a tabela dos mitos;</li>
+    <li><strong>Tarefa:</strong> responder ao questionário-exemplo enviado por link
+        (~10 min) — as respostas da turma serão o material da próxima aula.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> só o sorteio autoriza generalização com margem de
+  erro; estratificar garante representação; e o tamanho da amostra sai de fórmula, não de
+  percentual mágico.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

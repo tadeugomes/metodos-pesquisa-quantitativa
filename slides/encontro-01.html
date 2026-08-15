@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 1 — Introdução à pesquisa quantitativa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 1 · Unidade I</div>
+  <h1>Introdução à pesquisa quantitativa</h1>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>30 min</td><td>Apresentação do programa, das avaliações e do projeto individual</td></tr>
+    <tr><td>50 min</td><td>Ciência, senso comum e pesquisa quantitativa</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>30 min</td><td>Quantitativo e qualitativo; perguntas de pesquisa em Administração</td></tr>
+    <tr><td>90 min</td><td><strong>Prática no Colab:</strong> primeiro notebook com dados reais do IBGE</td></tr>
+    <tr><td>25 min</td><td>Síntese, discussão e tarefa</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O contrato da disciplina</h2>
+  <ul>
+    <li><strong>Toda aula é no laboratório</strong> e combina conceito + prática em notebook.
+        Não é curso de estatística abstrata, nem curso de programação: é formação em
+        <strong>pesquisa</strong> que usa o computador como instrumento.</li>
+    <li><strong>Três avaliações individuais</strong>, de formatos diferentes: prova com parte
+        prática (encontro 8), análise de dados em laboratório (encontro 12) e projeto
+        individual com relatório e notebook (encontro 14).</li>
+    <li><strong>Um projeto individual atravessa o semestre:</strong> você escolhe um tema
+        empresarial ou econômico e o investiga com dados oficiais (IBGE, Banco Central,
+        IPEA, CVM).</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Duas ansiedades que podemos dispensar</h2>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>"Eu sou ruim de matemática"</h4>
+      <p>A disciplina exige <strong>raciocínio</strong>, não virtuosismo algébrico.
+      Os cálculos, quem faz é o computador.</p>
+      <p>O que se cobra: decidir <em>qual</em> cálculo fazer e <em>interpretar</em> o resultado.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>"Eu nunca programei"</h4>
+      <p>Ninguém precisa saber Python. Os notebooks vêm parcialmente prontos e as lacunas
+      são guiadas.</p>
+      <p>A progressão é gradual: hoje você troca parâmetros; ao final, analisa sua
+      própria base.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Conhecimento e ciência</h2>
+  <p>Como sabemos o que achamos que sabemos sobre o mundo dos negócios</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Três afirmações que todo mundo já ouviu</h2>
+  <div class="afirmacao">"A maioria das empresas fecha no primeiro ano."</div>
+  <div class="afirmacao">"Funcionário feliz produz mais."</div>
+  <div class="afirmacao">"Propaganda em rede social aumenta as vendas."</div>
+  <div class="pergunta">Como saberíamos se cada uma é <strong>verdadeira</strong>?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As formas de conhecer o mundo</h2>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>Experiência pessoal</h4>
+      <p>"Conheço um caso..." — vívida, mas limitada aos casos que <em>nos</em> aconteceram.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Autoridade e tradição</h4>
+      <p>"Fulano disse", "sempre foi assim" — depende de quem fala, não da evidência.</p>
+    </div>
+    <div class="cartao alt-amarelo">
+      <h4>Intuição e repetição</h4>
+      <p>"Todo mundo sabe" — o que se repete muito passa a parecer verdadeiro.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Ciência</h4>
+      <p>Conhecimento produzido por <strong>procedimento</strong>: definição, coleta
+      sistemática, verificação.</p>
+    </div>
+  </div>
+  <p class="menor">As três primeiras formas compõem o <strong>senso comum</strong> — útil no
+  cotidiano, insuficiente para decidir e generalizar.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Por que o senso comum falha (justo quando importa)</h2>
+  <ul>
+    <li><strong>Generalização apressada:</strong> dois ou três casos viram "regra"
+        ("todas as empresas da minha rua fecharam → a maioria fecha");</li>
+    <li><strong>Viés de confirmação:</strong> notamos e lembramos o que confirma o que já
+        acreditávamos, e ignoramos o que contraria;</li>
+    <li><strong>Casos memoráveis pesam mais:</strong> a falência espetacular fica na
+        memória; as milhares de empresas que seguem abertas, não;</li>
+    <li><strong>Sem definição, tudo se encaixa:</strong> o que conta como "fechar"? Mudar de
+        dono? Mudar de CNPJ? Sem definir, qualquer história serve de evidência.</li>
+  </ul>
+  <div class="exemplo"><span class="rotulo">No mundo da gestão</span>
+  Decisões de estoque, contratação e investimento tomadas "por experiência" repetem esses
+  vieses — por isso cresce a <strong>gestão baseada em evidências</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Conhecimento científico</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Conhecimento produzido por <strong>procedimentos sistemáticos e explícitos</strong> de
+  coleta e análise de evidências, que pode ser <strong>verificado por terceiros</strong> e
+  está sempre <strong>sujeito a revisão</strong>.</div>
+  <p>Três marcas o distinguem do senso comum:</p>
+  <ul>
+    <li><strong>Definição precisa dos conceitos</strong> — o que conta como "fechar", o que
+        é "feliz", o que é "aumentar vendas";</li>
+    <li><strong>Coleta sistemática</strong> — os dados são reunidos por um plano definido
+        antes, não pelos casos que vieram à memória;</li>
+    <li><strong>Verificabilidade</strong> — outro pesquisador, seguindo o mesmo
+        procedimento, chega ao mesmo resultado.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Ciência não é certeza — é procedimento</h2>
+  <ul>
+    <li>O conhecimento científico é <strong>falível</strong>: resultados são provisórios e
+        podem ser corrigidos por evidências melhores;</li>
+    <li>É exatamente essa abertura à correção — <strong>replicação</strong>, crítica,
+        revisão por pares — que o torna mais confiável que a opinião;</li>
+    <li>A ciência não se distingue pelo <em>tema</em> (pode-se estudar cientificamente
+        qualquer coisa, de átomos a lanchonetes), e sim pelo <strong>procedimento</strong>.</li>
+  </ul>
+  <div class="definicao"><span class="rotulo">Definição · pesquisa</span>
+  Processo <strong>formal e sistemático</strong> de fazer perguntas e buscar respostas com
+  método científico. Pesquisar = disciplinar perguntas com evidências.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A pesquisa quantitativa</h2>
+  <p>O que ela é, o que a define, o que ela não faz</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pesquisa quantitativa: definição</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Abordagem de pesquisa que traduz conceitos em <strong>variáveis mensuráveis</strong>,
+  coleta dados por <strong>procedimentos padronizados</strong> e os analisa com
+  <strong>técnicas estatísticas</strong>, buscando descrever fenômenos, testar relações e
+  <strong>generalizar</strong> resultados de amostras para populações.</div>
+  <p>Quatro características a definem — cada uma terá um slide (e, no semestre, seus
+  próprios encontros):</p>
+  <p style="text-align:center; font-size:3vh;"><strong>mensuração · sistematização ·
+  generalização · estatística</strong></p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Característica 1 — Mensuração</h2>
+  <div class="definicao"><span class="rotulo">O que é</span>
+  Traduzir conceitos abstratos em <strong>variáveis</strong> numéricas ou categorizáveis,
+  com regras claras de atribuição de valores.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  "Satisfação do cliente" (conceito) vira "nota de 1 a 5 na pergunta X do questionário"
+  (variável). "Porte da empresa" vira "número de pessoas ocupadas".</div>
+  <p>Sem mensuração não há comparação possível: "os clientes estão satisfeitos" não se
+  compara; "a nota média subiu de 3,8 para 4,2" se compara, se acompanha e se questiona.</p>
+  <p class="menor">Aprofundaremos no encontro 3 (variáveis e níveis de mensuração).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Característica 2 — Sistematização</h2>
+  <div class="definicao"><span class="rotulo">O que é</span>
+  Os procedimentos de coleta e análise são <strong>definidos antes</strong> e aplicados
+  <strong>uniformemente</strong> a todos os casos.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  Num survey, todos os respondentes recebem <strong>as mesmas perguntas, na mesma
+  ordem</strong>. Se o entrevistador reformula a pergunta para cada um, as respostas deixam
+  de ser comparáveis.</div>
+  <p>É a sistematização que blinda a pesquisa contra o viés de confirmação: o plano decide
+  o que coletar — não a nossa expectativa sobre o resultado.</p>
+  <p class="menor">Aprofundaremos nos encontros 6 e 7 (instrumentos de coleta).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Característica 3 — Generalização</h2>
+  <div class="definicao"><span class="rotulo">O que é</span>
+  Estudar uma <strong>amostra</strong> (parte) para tirar conclusões sobre uma
+  <strong>população</strong> (todo) — com margem de erro conhecida.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  Ninguém entrevista os 200 mil consumidores de uma rede varejista: entrevistam-se 400,
+  <strong>bem selecionados</strong>, e estima-se a satisfação de todos — informando a
+  margem de erro.</div>
+  <p>O "bem selecionados" é o segredo — e é uma técnica, não um chute. Como selecionar e
+  quantos são necessários é o tema do encontro 5 (amostragem).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Característica 4 — Estatística como linguagem</h2>
+  <div class="definicao"><span class="rotulo">O que é</span>
+  A estatística é a linguagem que <strong>resume</strong> os dados (médias, percentuais,
+  gráficos), <strong>infere</strong> da amostra para a população e <strong>comunica</strong>
+  resultados de forma padronizada e verificável.</div>
+  <ul>
+    <li><strong>Descrever:</strong> "a taxa média de sobrevivência é 54%";</li>
+    <li><strong>Inferir:</strong> "com 95% de confiança, a satisfação está entre 4,0 e 4,4";</li>
+    <li><strong>Testar:</strong> "a diferença entre as filiais é grande demais para ser acaso".</li>
+  </ul>
+  <p class="menor">É o conteúdo dos encontros 9 a 13 — sempre com o computador fazendo as contas.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que a pesquisa quantitativa NÃO faz</h2>
+  <ul>
+    <li>Não capta <strong>significados profundos</strong>: mede <em>quantos</em> gerentes
+        aprovam a fusão, não <em>como</em> a vivenciam;</li>
+    <li>Não é melhor que os seus dados: medida ruim → conclusão ruim, por mais sofisticada
+        que seja a estatística (<em>"entra lixo, sai lixo"</em>);</li>
+    <li>Não dispensa interpretação: números não falam sozinhos — precisam de teoria e de
+        contexto;</li>
+    <li>Não prova causalidade automaticamente — veremos no encontro 2 que isso depende do
+        <strong>delineamento</strong>.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Quantitativa × qualitativa</h2>
+  <table>
+    <tr><th></th><th>Quantitativa</th><th>Qualitativa</th></tr>
+    <tr><td><strong>Objetivo</strong></td><td>Medir, comparar, testar relações</td>
+        <td>Compreender significados, processos, contextos</td></tr>
+    <tr><td><strong>Pergunta típica</strong></td><td>Quantos? Com que frequência? Está associado?</td>
+        <td>Como? Por quê? O que significa?</td></tr>
+    <tr><td><strong>Dados</strong></td><td>Números, categorias padronizadas</td>
+        <td>Falas, textos, observações</td></tr>
+    <tr><td><strong>Amostra</strong></td><td>Maior, selecionada para generalizar</td>
+        <td>Menor, selecionada pela riqueza do caso</td></tr>
+    <tr><td><strong>Análise</strong></td><td>Estatística</td><td>Interpretativa</td></tr>
+    <tr><td><strong>Resultado</strong></td><td>Generalizável, com margem de erro</td>
+        <td>Profundo, ligado ao contexto</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Complementares, não rivais</h2>
+  <div class="colunas">
+    <div>
+      <div class="afirmacao">"Como os gerentes desta empresa vivenciaram a fusão?"</div>
+      <p class="menor">→ qualitativa: aprofunda a experiência</p>
+    </div>
+    <div>
+      <div class="afirmacao">"Empresas que passaram por fusão apresentam rotatividade maior
+      que as demais?"</div>
+      <p class="menor">→ quantitativa: mede e compara</p>
+    </div>
+  </div>
+  <p>A escolha decorre do <strong>problema</strong>, não da preferência do pesquisador.
+  Muitas pesquisas combinam as duas (<strong>métodos mistos</strong>): o quali levanta
+  hipóteses, o quanti as testa em escala — ou o quanti aponta um padrão e o quali o explica.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício oral: quanti ou quali?</h2>
+  <ul>
+    <li>"Qual o perfil dos consumidores de delivery em São Luís?"</li>
+    <li>"Por que consumidores abandonam o carrinho de compras?"</li>
+    <li>"O porte da empresa está associado à adoção de comércio eletrônico?"</li>
+    <li>"Como os feirantes do Mercado Central percebem a concorrência dos aplicativos?"</li>
+    <li>"A satisfação dos clientes difere entre as filiais da rede?"</li>
+  </ul>
+  <div class="pergunta">Justifique: o que na <strong>pergunta</strong> pede medição — e o
+  que pede aprofundamento?</div>
+  <p class="menor">Atenção à segunda: é ambígua — quali para <em>explorar</em> motivos,
+  quanti para <em>medir a frequência</em> de motivos já conhecidos.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Onde o administrador usa isso</h2>
+  <ul>
+    <li>Relatórios gerenciais e <strong>indicadores de desempenho</strong> (KPIs)</li>
+    <li><strong>Pesquisas de satisfação</strong> e de clima organizacional</li>
+    <li><strong>Testes A/B</strong> em marketing digital e precificação</li>
+    <li>Estudos de <strong>viabilidade</strong> e análise de mercado</li>
+    <li>Trabalho de conclusão de curso — e a <strong>gestão baseada em evidências</strong></li>
+  </ul>
+  <p class="menor">A lógica quantitativa é ferramenta de trabalho, não exigência acadêmica.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>E a primeira afirmação do quadro?</h2>
+  <div class="afirmacao">"A maioria das empresas fecha no primeiro ano."</div>
+  <p>Ela <strong>não precisa ficar no terreno da opinião</strong>. O IBGE mantém:</p>
+  <ul>
+    <li>o <strong>CEMPRE</strong> — Cadastro Central de Empresas: todas as empresas formais
+        do país, por atividade, porte e território;</li>
+    <li>a pesquisa <strong>Demografia das Empresas</strong>: aberturas, fechamentos e
+        <strong>taxas de sobrevivência</strong> por porte e setor.</li>
+  </ul>
+  <p>Hoje e na próxima aula usaremos exatamente esses dados. Ao final do semestre, vocês
+     responderão <strong>com dados</strong> o que hoje respondem com impressões.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Google Colab + dados do CEMPRE/IBGE — abra o notebook <code>encontro01_aluno.ipynb</code></p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A ferramenta: notebook no Google Colab</h2>
+  <div class="definicao"><span class="rotulo">O que é um notebook</span>
+  Documento que mistura <strong>células de texto</strong> (o raciocínio) e
+  <strong>células de código</strong> (a análise executável). O Google Colab roda notebooks
+  na nuvem, sem instalar nada no computador.</div>
+  <ul>
+    <li>Executa-se cada célula com <code>Shift+Enter</code>, de cima para baixo;</li>
+    <li>O texto documenta as decisões; o código as executa;</li>
+    <li>Travou tudo? Menu <em>Ambiente de execução → Reiniciar e executar tudo</em>.</li>
+  </ul>
+  <div class="exemplo"><span class="rotulo">Por que importa: reprodutibilidade</span>
+  Ao final do semestre, seu projeto inteiro estará num notebook: qualquer pessoa poderá
+  <strong>reexecutar e verificar</strong> seus resultados — a marca do conhecimento
+  científico aplicada ao seu trabalho.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A prática de hoje, em 5 seções</h2>
+  <ol>
+    <li><strong>O que é um notebook</strong> — células de texto e de código, <code>Shift+Enter</code></li>
+    <li><strong>Python mínimo</strong> — variáveis, operações, listas (só o indispensável)</li>
+    <li><strong>Dados reais</strong> — empresas por atividade no Brasil, direto da API do IBGE</li>
+    <li><strong>Primeiro gráfico</strong> — e a comparação Brasil × Maranhão</li>
+    <li><strong>Interpretação por escrito</strong> — o que os dados mostram e o que não mostram</li>
+  </ol>
+  <div class="pergunta">Regra do dia: <strong>execute muito, digite pouco.</strong> As
+  lacunas pedem troca de parâmetros, nunca código do zero.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li><strong>Senso comum</strong> responde por experiência, autoridade e repetição — e
+        falha por generalização apressada e viés de confirmação;</li>
+    <li><strong>Ciência</strong> é conhecimento por procedimento: conceitos definidos,
+        coleta sistemática, verificação por terceiros — e sempre revisável;</li>
+    <li><strong>Pesquisa quantitativa</strong> = mensuração + sistematização +
+        generalização + estatística;</li>
+    <li>Ela <strong>não substitui</strong> a qualitativa: a pergunta escolhe a abordagem;</li>
+    <li>O <strong>notebook</strong> é o caderno de laboratório que torna a análise
+        registrada e reprodutível.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa</h2>
+  <ul>
+    <li><strong>GIL (2019)</strong>, <em>Métodos e técnicas de pesquisa social</em> —
+        capítulo inicial: ciência, conhecimento e tipos de pesquisa;</li>
+    <li><strong>Estes slides</strong> — foram feitos para releitura: as caixas
+        <span class="destaque-dourado">Definição</span> e Exemplo cobrem a teoria do
+        encontro;</li>
+    <li><strong>O notebook do encontro</strong> — reexecute em casa; é revisão ativa.</li>
+  </ul>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Salve o notebook e <strong>compartilhe o link</strong> com o professor;</li>
+    <li>Sua resposta à pergunta 3 ("o que você gostaria de investigar?") é o
+        <strong>embrião do seu projeto individual</strong>;</li>
+    <li>Problemas com a conta do Colab? Resolva <strong>durante a semana</strong>.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

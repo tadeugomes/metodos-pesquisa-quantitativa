@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 2 — Tipos de pesquisa quantitativa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 2 · Unidade I</div>
+  <h1>Tipos de pesquisa quantitativa</h1>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomando o quadro da aula passada</h2>
+  <div class="afirmacao">"A maioria das empresas fecha no primeiro ano."</div>
+  <p>Hoje esta frase será <strong>testada com dados oficiais</strong>: a pesquisa
+  Demografia das Empresas (IBGE) registra os nascimentos de empresas e suas taxas de
+  sobrevivência após 1, 2 e 3 anos.</p>
+  <p>Antes, porém, precisamos de um <strong>mapa dos tipos de pergunta</strong> que a
+  pesquisa quantitativa responde — porque cada tipo exige um delineamento diferente.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>10 min</td><td>Retomada e perguntas de pesquisa da turma</td></tr>
+    <tr><td>60 min</td><td>Os tipos de pesquisa quantitativa</td></tr>
+    <tr><td>30 min</td><td>Leitura dirigida: dois artigos brasileiros</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>105 min</td><td><strong>Prática no Colab:</strong> pandas e sobrevivência de empresas</td></tr>
+    <tr><td>20 min</td><td>Síntese e tarefa</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Quatro tipos de pesquisa, um survey</h2>
+  <p>Descritiva · Correlacional · Experimental · Quase-experimental</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Antes dos tipos: o que é delineamento</h2>
+  <div class="definicao"><span class="rotulo">Definição · delineamento</span>
+  O <strong>plano geral da pesquisa</strong>: como os dados serão obtidos e comparados para
+  responder à pergunta. É o delineamento que determina <strong>que tipo de conclusão</strong>
+  a pesquisa pode sustentar.</div>
+  <p>A mesma pergunta genérica ("treinamento melhora vendas?") pode virar quatro pesquisas
+  diferentes — e só uma delas autoriza falar em <strong>causa</strong>.</p>
+  <p>Por isso classificamos os tipos: não é taxonomia decorativa, é o mapa do que cada
+  desenho <strong>pode e não pode afirmar</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pesquisa descritiva</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Mede e descreve as <strong>características de uma população ou fenômeno</strong> —
+  frequências, médias, proporções, perfis. Estabelece o retrato; não explica causas.</div>
+  <div class="exemplo"><span class="rotulo">Exemplos empresariais</span>
+  Qual a taxa de sobrevivência das empresas brasileiras após três anos? · Qual o perfil dos
+  consumidores de um shopping? · Quantas empresas cada setor emprega no Maranhão?</div>
+  <ul>
+    <li>Responde: <strong>quantos? qual a proporção? qual o perfil?</strong></li>
+    <li>Boa parte das estatísticas públicas (IBGE, BCB) e das pesquisas de mercado é
+        descritiva;</li>
+    <li><strong>Descrever bem já é contribuição</strong>: sem o retrato, nenhuma explicação
+        se sustenta.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pesquisa correlacional</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Examina se duas ou mais variáveis <strong>variam juntas</strong> (covariação): quando uma
+  sobe, a outra tende a subir (associação positiva) ou a descer (negativa)? <strong>Não
+  manipula</strong> nada — observa o que já existe.</div>
+  <div class="exemplo"><span class="rotulo">Exemplos empresariais</span>
+  Empresas maiores sobrevivem mais? · Escolaridade do gestor está associada à adoção de
+  tecnologia? · Endividamento anda junto com rentabilidade?</div>
+  <ul>
+    <li>Responde: <strong>X está associado a Y? Com que força e direção?</strong></li>
+    <li>É o tipo mais comum em Administração — e o mais mal interpretado.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Correlação não é causalidade — as três razões</h2>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>1. Terceira variável (oculta)</h4>
+      <p>X e Y andam juntos porque <strong>Z causa os dois</strong>.</p>
+      <p class="menor">Nº de funcionários ↔ faturamento: ambos refletem o porte.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>2. Causalidade reversa</h4>
+      <p>Talvez seja <strong>Y que cause X</strong>.</p>
+      <p class="menor">Empresas inovam porque lucram — ou lucram porque inovam?</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>3. Acaso</h4>
+      <p>Com dados suficientes, <strong>alguma</strong> associação aparece por sorte.</p>
+      <p class="menor">Testaremos isso formalmente no encontro 11.</p>
+    </div>
+  </div>
+  <div class="pergunta">Para toda correlação, pergunte: que <strong>explicações
+  alternativas</strong> existem?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pesquisa experimental</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  O pesquisador <strong>manipula</strong> a variável independente, <strong>controla</strong>
+  as demais condições e distribui os participantes <strong>aleatoriamente</strong> entre
+  grupo de tratamento e grupo de controle.</div>
+  <p>Os três pilares:</p>
+  <ul>
+    <li><strong>Manipulação</strong> — o pesquisador decide quem recebe o quê;</li>
+    <li><strong>Controle</strong> — as demais condições são mantidas iguais;</li>
+    <li><strong>Aleatorização</strong> — o sorteio define os grupos.</li>
+  </ul>
+  <div class="exemplo"><span class="rotulo">Por que o sorteio é mágico</span>
+  Com grupos sorteados, eles ficam <strong>equivalentes em tudo</strong> (idade, renda,
+  motivação — inclusive no que não medimos). Se ao final diferem, a única explicação
+  restante é o tratamento. Por isso o experimento é o delineamento mais forte para afirmar
+  <strong>causalidade</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Experimentos no mundo da gestão</h2>
+  <div class="exemplo"><span class="rotulo">Teste A/B</span>
+  Metade dos visitantes do site vê o preço X, metade vê o preço Y — <strong>o sistema
+  sorteia</strong> quem vê o quê. Compara-se a taxa de compra. É um experimento completo, e
+  empresas digitais rodam centenas por mês.</div>
+  <div class="exemplo"><span class="rotulo">Currículos fictícios</span>
+  Currículos idênticos, variando apenas o nome do candidato, enviados a vagas reais para
+  medir discriminação em contratações — experimento clássico em economia do trabalho.</div>
+  <p>Limite prático: nem tudo se pode manipular (não se sorteia quem "recebe" uma crise
+  econômica) — nem tudo se <em>deve</em> manipular (ética, encontro 7).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pesquisa quase-experimental</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Compara grupos "tratado" e "não tratado" <strong>sem aleatorização</strong> — os grupos
+  já estavam formados quando a pesquisa começou. É o delineamento possível quando a
+  intervenção já aconteceu ou não pode ser sorteada.</div>
+  <div class="exemplo"><span class="rotulo">Exemplos</span>
+  Lojas que adotaram o novo sistema × lojas que não adotaram · Empresas que receberam o
+  incentivo fiscal × as que não receberam.</div>
+  <div class="afirmacao">Ameaça central — <strong>viés de seleção</strong>: os grupos podem
+  diferir por razões prévias. Talvez as lojas que adotaram o sistema já fossem as mais
+  organizadas — e a diferença de desempenho venha daí, não do sistema.</div>
+  <p class="menor">Toda conclusão quase-experimental deve declarar essa limitação.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Os quatro tipos, lado a lado</h2>
+  <table>
+    <tr><th>Tipo</th><th>Manipula?</th><th>Aleatoriza?</th><th>Pode afirmar causa?</th><th>Pergunta típica</th></tr>
+    <tr><td><strong>Descritiva</strong></td><td>Não</td><td>—</td><td>Não</td>
+        <td>Quantos? Qual o perfil?</td></tr>
+    <tr><td><strong>Correlacional</strong></td><td>Não</td><td>—</td><td>Não</td>
+        <td>X está associado a Y?</td></tr>
+    <tr><td><strong>Experimental</strong></td><td>Sim</td><td>Sim</td><td><strong>Sim</strong></td>
+        <td>X causa Y?</td></tr>
+    <tr><td><strong>Quase-experimental</strong></td><td>Às vezes</td><td>Não</td>
+        <td>Com ressalvas</td><td>O grupo com X difere do sem X?</td></tr>
+  </table>
+  <p class="menor">Guarde esta tabela: ela volta na prova e no seu projeto.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O survey (levantamento)</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Estratégia de coleta que aplica um <strong>questionário padronizado a uma amostra</strong>
+  de uma população, para descrever características ou examinar associações.</div>
+  <ul>
+    <li><strong>Transversal:</strong> uma única coleta, um retrato no tempo (o mais comum);</li>
+    <li><strong>Longitudinal:</strong> coletas repetidas, acompanhando a mudança.</li>
+  </ul>
+  <p>É a estratégia <strong>dominante</strong> nas pesquisas acadêmicas em Administração e a
+  provável escolha de muitos TCCs. Seus instrumentos (questionários, escalas, validade,
+  confiabilidade) terão dois encontros dedicados: <strong>6 e 7</strong>.</p>
+  <p class="menor">Note: survey é estratégia de <em>coleta</em> — o propósito pode ser
+  descritivo ou correlacional.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A pergunta denuncia o tipo</h2>
+  <table>
+    <tr><th>Pergunta</th><th>Tipo</th></tr>
+    <tr><td>"Qual o perfil...?" · "Quantos...?" · "Qual a taxa...?"</td><td>Descritiva</td></tr>
+    <tr><td>"X está associado a Y?" · "Quem tem mais X tem mais Y?"</td><td>Correlacional</td></tr>
+    <tr><td>"Se eu mudar X (sorteando quem recebe), Y muda?"</td><td>Experimental</td></tr>
+    <tr><td>"O grupo que passou por X difere do que não passou?"</td><td>Quase-experimental</td></tr>
+  </table>
+  <p class="menor">Regra prática para a leitura dirigida e para o seu projeto.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como ler o método de um artigo</h2>
+  <p>Toda pesquisa quantitativa publicada declara, em geral na seção "Metodologia":</p>
+  <ol>
+    <li>A <strong>pergunta</strong> (ou objetivo) — costuma fechar a introdução;</li>
+    <li>O <strong>tipo/delineamento</strong> — às vezes nomeado, às vezes deduzível;</li>
+    <li>As <strong>variáveis</strong> e como foram medidas;</li>
+    <li>A <strong>fonte dos dados</strong> — survey próprio? Base secundária? Quantos casos?</li>
+  </ol>
+  <div class="exemplo"><span class="rotulo">Leitura dirigida (em duplas, 30 min)</span>
+  Dois artigos brasileiros (RAC/RAE/BBR): identifiquem os quatro elementos em cada um.
+  O objetivo não é entender tudo — é <strong>reconhecer a estrutura</strong> que vocês
+  mesmos declararão no projeto individual.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Demografia das Empresas (IBGE) — abra o notebook <code>encontro02_aluno.ipynb</code></p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A base do dia: tabela 9949 do SIDRA</h2>
+  <ul>
+    <li>Nascimentos de empresas empregadoras e <strong>taxas de sobrevivência</strong> de
+        1, 2 e 3 anos;</li>
+    <li>Por <strong>seção CNAE</strong> (atividade) e <strong>faixa de pessoal
+        assalariado</strong> (porte);</li>
+    <li>Coortes de 2017 a 2021.</li>
+  </ul>
+  <div class="definicao"><span class="rotulo">Definição · coorte</span>
+  Conjunto de casos que compartilham um evento inicial no mesmo período — aqui, as empresas
+  <strong>nascidas no mesmo ano</strong>. Uma coorte só tem taxa de 3 anos quando 3 anos se
+  passaram: por isso a coorte mais recente da base não tem todas as taxas.</div>
+  <div class="definicao"><span class="rotulo">Definição · taxa de sobrevivência</span>
+  Percentual das empresas da coorte que <strong>continuavam ativas</strong> após 1, 2 ou 3
+  anos. Taxa de 3 anos = sobreviventes após 3 anos ÷ nascidas na coorte × 100.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As perguntas do dia</h2>
+  <ol>
+    <li>Afinal, <strong>a maioria das empresas fecha no primeiro ano?</strong></li>
+    <li>Qual seção CNAE tem a <strong>maior</strong> e a <strong>menor</strong> taxa de
+        sobrevivência em 3 anos?</li>
+    <li><strong>Empresas empregadoras de maior porte sobrevivem mais</strong> que as de
+        menor porte?</li>
+  </ol>
+  <p>Ferramentas novas do pandas — o que cada uma faz conceitualmente:</p>
+  <ul>
+    <li><code>unique()</code> — que valores esta coluna assume?</li>
+    <li><strong>filtro</strong> — isole as linhas que atendem a uma condição;</li>
+    <li><code>groupby</code> — uma estatística <em>por grupo</em> (a média por faixa de porte);</li>
+    <li><code>sort_values</code> — ordene para ver maiores e menores.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para fechar a prática</h2>
+  <div class="pergunta">O que fizemos foi pesquisa <strong>descritiva</strong> ou
+  <strong>correlacional</strong>?</div>
+  <p>Descrevemos uma <strong>associação</strong> entre porte (ordinal) e sobrevivência
+  (razão) — sem afirmar causa.</p>
+  <p>Explicações alternativas para "maiores sobrevivem mais": capital inicial, setor de
+  atuação, experiência do fundador...</p>
+  <p class="menor">Anote no notebook: essa disciplina de conter a conclusão é o que separa
+  análise de achismo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li>O <strong>delineamento</strong> é o plano da pesquisa — e determina o que ela pode
+        concluir;</li>
+    <li><strong>Descritiva</strong> retrata; <strong>correlacional</strong> mede associação;
+        <strong>experimental</strong> (manipulação + controle + aleatorização) pode afirmar
+        causa; <strong>quase-experimental</strong> compara grupos já formados, sob risco de
+        viés de seleção;</li>
+    <li><strong>Correlação ≠ causalidade</strong> por três razões: terceira variável,
+        causalidade reversa, acaso;</li>
+    <li>O <strong>survey</strong> é a estratégia de coleta dominante em Administração —
+        transversal ou longitudinal;</li>
+    <li><strong>Coorte</strong> e <strong>taxa de sobrevivência</strong>: conceitos-chave
+        das estatísticas de demografia empresarial.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>GIL (2019)</strong> — capítulo sobre formulação de problemas e hipóteses
+        (prepara o próximo encontro);</li>
+    <li><strong>Estes slides</strong> — releia as caixas de definição e a tabela
+        comparativa dos quatro tipos;</li>
+    <li><strong>Reexecute o notebook</strong> em casa — revisão ativa.</li>
+  </ul>
+  <h3>Tarefa obrigatória</h3>
+  <p>Trazer <strong>por escrito</strong> uma pergunta de pesquisa sobre tema empresarial ou
+  econômico do seu interesse — ela será trabalhada na oficina do próximo encontro.</p>
+  <p class="menor"><strong>Síntese do dia:</strong> o tipo de pesquisa decorre da pergunta;
+  a mesma base responde a perguntas descritivas e correlacionais; o pandas transforma
+  pergunta em filtro, agrupamento e gráfico.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

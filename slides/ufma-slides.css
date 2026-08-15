@@ -1,0 +1,339 @@
+/* =========================================================
+   Slides UFMA — Métodos e Técnicas de Pesquisa Quantitativa
+   Padrão: Manual de Identidade Visual UFMA 2024 (SCE)
+   Cores: vinho #8D0333 | dourado #D4B277 | amarelo #FEC84D |
+          verde-azulado #0AB0AB
+   Tipografia: Montserrat (títulos) | Source Sans Pro (corpo)
+   ========================================================= */
+
+:root {
+  --vinho: #8D0333;
+  --dourado: #D4B277;
+  --amarelo: #FEC84D;
+  --verde: #0AB0AB;
+  --cinza-texto: #333333;
+  --cinza-claro: #F5F5F5;
+  --fonte-titulo: "Montserrat", Calibri, sans-serif;
+  --fonte-corpo: "Source Sans Pro", "Source Sans 3", Calibri, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: #1a1a1a;
+  font-family: var(--fonte-corpo);
+  color: var(--cinza-texto);
+}
+
+/* ---------- estrutura dos slides ---------- */
+.slide {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  overflow: hidden;
+  padding: 7.5vh 6vw 9vh 6vw;
+  flex-direction: column;
+}
+.slide.ativo { display: flex; }
+
+/* barra superior vinho com recorte diagonal (elemento do manual) */
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 4.2vh;
+  background: var(--vinho);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 92% 100%, 0 100%);
+}
+
+/* filete inferior: linha vinho + faixa dourada */
+.slide::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 1.6vh;
+  background: linear-gradient(
+    to bottom,
+    var(--vinho) 0 22%,
+    #ffffff 22% 34%,
+    var(--dourado) 34% 100%
+  );
+}
+
+/* ---------- tipografia ---------- */
+.slide h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: var(--vinho);
+  font-size: 4.6vh;
+  line-height: 1.15;
+  margin-bottom: 3.2vh;
+}
+.slide h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  color: var(--vinho);
+  font-size: 3.1vh;
+  margin: 2.2vh 0 1.2vh 0;
+}
+.slide p, .slide li {
+  font-size: 2.9vh;
+  line-height: 1.45;
+  margin-bottom: 1.4vh;
+}
+.slide ul, .slide ol { margin: 0 0 1vh 3.2vw; }
+.slide li { margin-bottom: 1.6vh; }
+.slide strong { color: var(--vinho); }
+.slide em { color: inherit; }
+
+.destaque-dourado { color: #a67c2e; font-weight: 600; }
+.menor { font-size: 2.3vh; color: #666; }
+
+/* citação/afirmação em bloco */
+.afirmacao {
+  border-left: 0.45vw solid var(--dourado);
+  background: var(--cinza-claro);
+  padding: 1.6vh 1.6vw;
+  font-style: italic;
+  font-size: 3vh;
+  margin: 1.6vh 0;
+}
+
+/* caixa de definição formal (teoria autossuficiente) */
+.definicao {
+  background: #faf3f6;
+  border-left: 0.45vw solid var(--vinho);
+  padding: 1.5vh 1.6vw;
+  margin: 1.5vh 0;
+  font-size: 2.7vh;
+  line-height: 1.4;
+}
+.definicao .rotulo,
+.exemplo .rotulo {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.9vh;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.7vh;
+}
+.definicao .rotulo { color: var(--vinho); }
+
+/* caixa de exemplo aplicado */
+.exemplo {
+  background: #f0faf9;
+  border-left: 0.45vw solid var(--verde);
+  padding: 1.5vh 1.6vw;
+  margin: 1.5vh 0;
+  font-size: 2.6vh;
+  line-height: 1.4;
+}
+.exemplo .rotulo { color: #067a76; }
+
+/* slide denso: reduz levemente o corpo para caber teoria completa */
+.slide.compacto p, .slide.compacto li { font-size: 2.55vh; line-height: 1.38; }
+.slide.compacto h2 { font-size: 4.2vh; margin-bottom: 2.4vh; }
+.slide.compacto .definicao, .slide.compacto .exemplo { font-size: 2.45vh; }
+.slide.compacto table { font-size: 2.1vh; }
+
+/* caixa de pergunta provocadora */
+.pergunta {
+  background: var(--vinho);
+  color: #fff;
+  padding: 2vh 2vw;
+  border-radius: 0.6vh;
+  font-size: 3vh;
+  font-weight: 600;
+  margin: 2vh 0;
+}
+.pergunta strong { color: var(--amarelo); }
+
+/* colunas */
+.colunas { display: flex; gap: 3vw; align-items: flex-start; }
+.colunas > div { flex: 1; }
+
+/* cartões (ex.: tipos de pesquisa, características) */
+.cartoes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8vh 1.5vw; margin-top: 1vh; }
+.cartao {
+  background: var(--cinza-claro);
+  border-top: 0.7vh solid var(--vinho);
+  padding: 1.6vh 1.4vw;
+  border-radius: 0 0 0.6vh 0.6vh;
+}
+.cartao h4 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: var(--vinho);
+  font-size: 2.6vh;
+  margin-bottom: 0.8vh;
+}
+.cartao p { font-size: 2.35vh; margin-bottom: 0.5vh; }
+.cartao.alt-dourado  { border-top-color: var(--dourado); }
+.cartao.alt-verde    { border-top-color: var(--verde); }
+.cartao.alt-amarelo  { border-top-color: var(--amarelo); }
+
+/* tabelas */
+.slide table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5vh 0;
+  font-size: 2.3vh;
+}
+.slide th {
+  background: var(--vinho);
+  color: #fff;
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  padding: 1vh 0.8vw;
+  text-align: left;
+}
+.slide td {
+  padding: 0.9vh 0.8vw;
+  border-bottom: 1px solid var(--dourado);
+  vertical-align: top;
+}
+.slide tr:nth-child(even) td { background: var(--cinza-claro); }
+
+/* código */
+.slide code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  background: var(--cinza-claro);
+  padding: 0.2vh 0.4vw;
+  border-radius: 0.4vh;
+  font-size: 0.92em;
+  color: var(--vinho);
+}
+
+/* rodapé: identificação + número */
+.rodape {
+  position: absolute;
+  bottom: 2.6vh;
+  left: 6vw;
+  font-size: 1.8vh;
+  color: #888;
+}
+.numero-slide {
+  position: absolute;
+  bottom: 2.4vh;
+  right: 2.2vw;
+  background: var(--vinho);
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-size: 1.9vh;
+  padding: 0.5vh 0.9vw;
+  border-radius: 0.4vh;
+}
+.logo-slide {
+  position: absolute;
+  top: 5.6vh;
+  right: 3vw;
+  height: 7.5vh;
+}
+
+/* ---------- capa ---------- */
+.slide.capa {
+  background: var(--vinho);
+  color: #fff;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 8vw;
+}
+.slide.capa::before, .slide.capa::after { display: none; }
+.slide.capa .marcador-encontro {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  color: var(--dourado);
+  font-size: 3vh;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5vh;
+}
+.slide.capa h1 {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 7vh;
+  line-height: 1.12;
+  max-width: 70vw;
+  margin-bottom: 2.5vh;
+}
+.slide.capa .subtitulo {
+  font-family: var(--fonte-corpo);
+  font-size: 3vh;
+  color: #f2d9c0;
+  margin-bottom: 0.6vh;
+}
+.slide.capa .bloco-institucional {
+  position: absolute;
+  bottom: 6vh;
+  left: 6vw;
+  display: flex;
+  align-items: center;
+  gap: 1.4vw;
+  text-align: left;
+}
+.slide.capa .bloco-institucional img { height: 12vh; }
+.slide.capa .bloco-institucional .instituicao {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2vh;
+  line-height: 1.4;
+}
+.slide.capa .bloco-institucional .instituicao strong {
+  color: #fff; font-size: 2.5vh;
+}
+.slide.capa .filete-capa {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 1.6vh;
+  background: var(--dourado);
+}
+
+/* ---------- divisor de seção ---------- */
+.slide.divisor {
+  background: var(--vinho);
+  color: #fff;
+  justify-content: center;
+}
+.slide.divisor::before { display: none; }
+.slide.divisor::after {
+  background: var(--dourado);
+  clip-path: none;
+}
+.slide.divisor h2 {
+  color: #fff;
+  font-size: 6vh;
+  max-width: 75vw;
+}
+.slide.divisor p { color: #f2d9c0; font-size: 3.2vh; max-width: 70vw; }
+.slide.divisor .numero-slide { background: var(--dourado); color: var(--vinho); }
+
+/* ---------- navegação/impressão ---------- */
+.dica-navegacao {
+  position: fixed;
+  bottom: 1vh; left: 50%;
+  transform: translateX(-50%);
+  color: #bbb;
+  font-size: 1.6vh;
+  font-family: var(--fonte-corpo);
+  z-index: 10;
+  opacity: 0.85;
+}
+
+@media print {
+  html, body { background: #fff; }
+  .slide {
+    display: flex !important;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100vh;
+    page-break-after: always;
+  }
+  .dica-navegacao { display: none; }
+}

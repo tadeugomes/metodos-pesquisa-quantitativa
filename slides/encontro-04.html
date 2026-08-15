@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 4 — Planejamento da pesquisa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 4 · Unidade I</div>
+  <h1>Etapas do processo e planejamento da pesquisa</h1>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Devolutiva dos rascunhos: três padrões</h2>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>Pergunta ampla demais</h4>
+      <p>Falta delimitar setor, período, território — desça o funil.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Hipótese sem variáveis</h4>
+      <p>"X é importante" não se testa. Que relação, entre que variáveis?</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Base inviável</h4>
+      <p>O dado não existe, não é público ou não está ao alcance das nossas ferramentas.</p>
+    </div>
+  </div>
+  <p class="menor">Casos individuais: na oficina do fim da aula.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>15 min</td><td>Devolutiva geral dos rascunhos de projeto</td></tr>
+    <tr><td>45 min</td><td>As etapas do processo de pesquisa quantitativa</td></tr>
+    <tr><td>30 min</td><td>A matriz de amarração metodológica</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>85 min</td><td><strong>Prática no Colab:</strong> séries do Banco Central e do Ipeadata</td></tr>
+    <tr><td>35 min</td><td><strong>Oficina:</strong> matriz de amarração do seu projeto</td></tr>
+    <tr><td>15 min</td><td>Síntese e fechamento da Unidade I</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide divisor">
+  <h2>O processo de pesquisa</h2>
+  <p>Uma sequência de decisões encadeadas — não uma burocracia de projeto</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As oito etapas — visão geral</h2>
+  <ol>
+    <li>Formulação do <strong>problema e hipóteses</strong></li>
+    <li>Revisão da <strong>literatura</strong></li>
+    <li>Definição do <strong>delineamento</strong></li>
+    <li>População, <strong>amostra</strong> e fontes de dados</li>
+    <li>Escolha ou construção dos <strong>instrumentos de coleta</strong></li>
+    <li><strong>Coleta</strong></li>
+    <li>Preparação e <strong>análise</strong> dos dados</li>
+    <li><strong>Interpretação e comunicação</strong></li>
+  </ol>
+  <p class="menor">Nos próximos slides, o que se decide — e o que dá errado — em cada uma.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Etapas 1 e 2 — Problema e literatura</h2>
+  <div class="definicao"><span class="rotulo">1 · Problema e hipóteses</span>
+  O que vimos no encontro 3: pergunta delimitada, hipóteses falseáveis, variáveis
+  definidas. É a etapa que <strong>governa todas as outras</strong>.</div>
+  <div class="definicao"><span class="rotulo">2 · Revisão da literatura</span>
+  Ler o que já se pesquisou sobre o tema. Serve para: não repetir o que já se sabe,
+  <strong>aproveitar operacionalizações testadas</strong> (por que inventar uma medida de
+  satisfação se há escalas validadas?) e fundamentar as hipóteses.</div>
+  <div class="exemplo"><span class="rotulo">Erro típico</span>
+  Pular a revisão e "descobrir" na defesa que a pergunta já foi respondida — ou que existe
+  uma medida melhor que a improvisada.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Etapas 3 e 4 — Delineamento, população e fontes</h2>
+  <div class="definicao"><span class="rotulo">3 · Delineamento</span>
+  O plano da pesquisa (encontro 2): descritiva, correlacional, experimental ou
+  quase-experimental — decide o que a conclusão poderá afirmar.</div>
+  <div class="definicao"><span class="rotulo">4 · População, amostra e fontes</span>
+  <strong>População:</strong> o conjunto sobre o qual se quer concluir (ex.: todas as MPEs
+  do varejo de São Luís). <strong>Amostra:</strong> a parte que será efetivamente estudada.
+  Quem entra, como se seleciona e <strong>quantos são necessários</strong> — é o tema do
+  encontro 5.</div>
+  <div class="exemplo"><span class="rotulo">Erro típico</span>
+  Concluir sobre "as empresas maranhenses" tendo ouvido só os conhecidos do pesquisador —
+  amostra de conveniência tratada como se representasse a população.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Etapas 5 e 6 — Instrumentos e coleta</h2>
+  <div class="definicao"><span class="rotulo">5 · Instrumentos</span>
+  O questionário, a escala, o roteiro de observação ou a consulta à base secundária.
+  Precisam de <strong>validade</strong> (medem o que dizem medir) e
+  <strong>confiabilidade</strong> (medem de forma consistente) — encontro 6.</div>
+  <div class="definicao"><span class="rotulo">6 · Coleta</span>
+  Aplicação <strong>padronizada</strong> do instrumento: mesmas perguntas, mesmas condições,
+  registro do que fugiu do plano. Na pesquisa com dados secundários, a "coleta" é a
+  extração documentada da base (qual tabela, qual período, qual filtro).</div>
+  <div class="exemplo"><span class="rotulo">Erro típico</span>
+  Mudar o questionário no meio da coleta — as respostas antes e depois deixam de ser
+  comparáveis.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Etapas 7 e 8 — Análise e comunicação</h2>
+  <div class="definicao"><span class="rotulo">7 · Preparação e análise</span>
+  Limpar os dados (valores ausentes, inconsistências), descrever (encontros 9–10) e testar
+  as hipóteses (encontros 11–13). A técnica certa depende do <strong>nível de
+  mensuração</strong> definido lá atrás.</div>
+  <div class="definicao"><span class="rotulo">8 · Interpretação e comunicação</span>
+  Responder à pergunta, declarar as limitações e comunicar em relatório com tabelas e
+  gráficos (encontro 14). Resultado que não se comunica não existe.</div>
+  <div class="exemplo"><span class="rotulo">Erro típico</span>
+  Descobrir na análise que a variável coletada não permite testar a hipótese — o defeito
+  nasceu na etapa 1 e só apareceu na 7. É disso que a matriz de amarração protege.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Decisões encadeadas</h2>
+  <p>O processo é <strong>iterativo na prática</strong> — mas as decisões anteriores
+  restringem as posteriores:</p>
+  <div class="afirmacao">Quem definiu mal as variáveis descobre <strong>na análise</strong>
+  que não consegue testar a hipótese — e o custo de corrigir cresce a cada etapa
+  vencida.</div>
+  <h3>O programa da disciplina é o processo desdobrado no tempo</h3>
+  <table>
+    <tr><th>Etapa</th><th>Encontros</th></tr>
+    <tr><td>Problema, hipóteses, variáveis, planejamento</td><td>1 – 4 (Unidade I)</td></tr>
+    <tr><td>Amostra e instrumentos de coleta</td><td>5 – 8 (Unidade II)</td></tr>
+    <tr><td>Análise dos dados</td><td>9 – 13 (Unidade III)</td></tr>
+    <tr><td>Interpretação e comunicação</td><td>14 – 15 (Unidade IV)</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Dados primários e secundários</h2>
+  <p>De onde vêm os dados — e o que cada origem custa e permite</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Dados primários</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Dados coletados <strong>pelo próprio pesquisador</strong>, para a sua pergunta: survey,
+  experimento, observação sistemática.</div>
+  <ul>
+    <li><strong>Vantagem central:</strong> medem exatamente o conceito de interesse, na
+        população de interesse;</li>
+    <li><strong>Custos:</strong> tempo, dinheiro, acesso aos respondentes, taxa de resposta
+        baixa — e todo o trabalho de validar o instrumento;</li>
+    <li><strong>Risco:</strong> amostra pequena ou enviesada compromete a generalização.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Dados secundários</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Dados produzidos <strong>por terceiros</strong>, para outros fins, e reaproveitados pela
+  pesquisa: estatísticas oficiais, registros administrativos, demonstrações financeiras.</div>
+  <div class="colunas">
+    <div>
+      <h3>Ganhos</h3>
+      <ul>
+        <li>Cobertura ampla (país inteiro)</li>
+        <li>Séries longas</li>
+        <li>Custo zero</li>
+        <li>Reprodutibilidade total</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Limites</h3>
+      <ul>
+        <li>Variáveis definidas por outrem</li>
+        <li>Nem sempre medem exatamente o seu conceito</li>
+        <li>Defasagem temporal</li>
+        <li>Recortes fixos (nem tudo abre por município)</li>
+      </ul>
+    </div>
+  </div>
+  <p>Como enfrentar os limites: <strong>operacionalização justificada</strong> (encontro 3)
+  — declarar o que o indicador disponível captura e o que deixa de fora.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O ecossistema brasileiro de dados abertos</h2>
+  <table>
+    <tr><th>Fonte</th><th>O que oferece</th><th>Acesso na disciplina</th></tr>
+    <tr><td><strong>IBGE / SIDRA</strong></td><td>CEMPRE, Demografia das Empresas, PAS, PMC,
+        PIA, PINTEC</td><td>biblioteca <code>sidrapy</code></td></tr>
+    <tr><td><strong>Banco Central / SGS</strong></td><td>Juros, câmbio, crédito,
+        inadimplência, inflação</td><td>biblioteca <code>python-bcb</code></td></tr>
+    <tr><td><strong>IPEA / Ipeadata</strong></td><td>Séries macroeconômicas, regionais e
+        sociais agregadas</td><td>biblioteca <code>ipeadatapy</code></td></tr>
+    <tr><td><strong>CVM</strong></td><td>Demonstrações financeiras de companhias abertas</td>
+        <td>CSVs de dados abertos</td></tr>
+  </table>
+  <p class="menor">Os projetos individuais da disciplina usam dados secundários dessas
+  fontes — todas públicas, todas acessíveis por código, todas citáveis.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A matriz de amarração</h2>
+  <p>O raio-x da coerência interna do seu projeto</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que é — e para que serve</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Tabela de <strong>verificação de coerência interna</strong> do projeto: cada linha
+  conecta problema → objetivo específico → hipótese → variáveis (e níveis) → base →
+  técnica de análise prevista.</div>
+  <p style="font-size:3vh; text-align:center; margin:2.5vh 0;">
+    <strong>problema</strong> → <strong>objetivo</strong> → <strong>hipótese</strong> →
+    <strong>variáveis</strong> → <strong>base</strong> → <strong>técnica</strong>
+  </p>
+  <p>Se qualquer elo falta ou não combina com o vizinho, o projeto tem um
+  <strong>buraco</strong> — e é melhor descobri-lo agora do que na análise (etapa 7).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exemplo preenchido (construção no quadro)</h2>
+  <table>
+    <tr><th>Problema</th><th>Objetivo específico</th><th>Hipótese</th><th>Variáveis (nível)</th><th>Base</th><th>Técnica</th></tr>
+    <tr>
+      <td>Empresas empregadoras de maior porte sobrevivem mais que as de menor porte?</td>
+      <td>Comparar taxas de sobrevivência em 3 anos por faixa de pessoal</td>
+      <td>Quanto maior a faixa, maior a taxa</td>
+      <td>Faixa de pessoal (ordinal); taxa de sobrevivência (razão)</td>
+      <td>Demografia das Empresas — SIDRA 9949</td>
+      <td>Comparação de grupos</td>
+    </tr>
+  </table>
+  <p class="menor">A coluna "técnica" pode ficar genérica por enquanto — nomearemos os
+  testes na Unidade III.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que a matriz revela</h2>
+  <ul>
+    <li>Objetivo <strong>sem hipótese</strong> correspondente;</li>
+    <li>Hipótese com variável que <strong>a base não tem</strong>;</li>
+    <li>Técnica <strong>incompatível</strong> com o nível de mensuração;</li>
+    <li>Problema que <strong>nenhuma linha</strong> responde por inteiro.</li>
+  </ul>
+  <div class="pergunta">A matriz preenchida do seu projeto integra a <strong>entrega do
+  encontro 8</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Banco Central e Ipeadata — abra o notebook <code>encontro04_aluno.ipynb</code></p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As séries de hoje (SGS / Banco Central)</h2>
+  <table>
+    <tr><th>Série</th><th>Código</th><th>Frequência</th></tr>
+    <tr><td>Meta Selic (% a.a.)</td><td>432</td><td>diária</td></tr>
+    <tr><td>Câmbio R$/US$ (venda)</td><td>1</td><td>diária</td></tr>
+    <tr><td>IPCA — variação mensal (%)</td><td>433</td><td>mensal</td></tr>
+    <tr><td>Saldo de crédito a PJ (R$ mi)</td><td>20543</td><td>mensal</td></tr>
+    <tr><td>Inadimplência da carteira PJ (%)</td><td>21086</td><td>mensal</td></tr>
+  </table>
+  <p class="menor">Cada série do SGS tem um código numérico — descobre-se buscando no
+  portal público do SGS.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Frequência e reamostragem — uma decisão de pesquisa</h2>
+  <div class="definicao"><span class="rotulo">O problema</span>
+  Séries de <strong>frequências diferentes</strong> (Selic diária, IPCA mensal) não se
+  juntam diretamente: é preciso <strong>reamostrar</strong> — converter a série diária para
+  o padrão mensal.</div>
+  <div class="definicao"><span class="rotulo">A decisão</span>
+  Converter como? <strong>Último valor do mês?</strong> <strong>Média do mês?</strong>
+  Cada escolha produz números diferentes — e por isso a escolha se
+  <strong>registra no relatório</strong>, como toda decisão de operacionalização.</div>
+  <div class="exemplo"><span class="rotulo">Operacionalizações concorrentes da "mesma" variável</span>
+  BCB publica a <strong>meta</strong> Selic (% a.a., decisão do Copom); o Ipeadata, a Selic
+  <strong>efetiva overnight</strong> (% a.m.). Fontes distintas definem a "taxa básica" de
+  formas distintas — cabe ao pesquisador escolher, justificar e citar.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Conter a conclusão</h2>
+  <div class="pergunta">"A inadimplência sobe depois que os juros sobem?"</div>
+  <ul>
+    <li>O que sabemos fazer <strong>hoje</strong>: descrever a coincidência visual nos
+        gráficos;</li>
+    <li>O que aprenderemos no <strong>encontro 13</strong>: medir a associação (correlação,
+        regressão);</li>
+    <li>O que exige <strong>ainda mais</strong>: afirmar causalidade.</li>
+  </ul>
+  <p class="menor">Registrar a limitação por escrito é parte do exercício — conter a
+  conclusão é disciplina de pesquisador.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li>O processo de pesquisa tem <strong>oito etapas encadeadas</strong> — e o custo de
+        corrigir um erro cresce a cada etapa vencida;</li>
+    <li><strong>Dados primários</strong> medem exatamente o seu conceito, mas custam;
+        <strong>secundários</strong> dão cobertura e reprodutibilidade, mas herdam
+        definições de terceiros;</li>
+    <li>O limite dos secundários se enfrenta com <strong>operacionalização
+        justificada</strong>;</li>
+    <li>A <strong>matriz de amarração</strong> conecta problema → objetivo → hipótese →
+        variáveis → base → técnica, e revela os buracos antes que custem caro;</li>
+    <li><strong>Reamostragem</strong> de frequências é decisão de pesquisa — escolhida,
+        justificada e registrada.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Fechamento da Unidade I: o que você já tem</h2>
+  <ul>
+    <li>Problema, hipóteses e variáveis classificadas de um <strong>projeto próprio</strong>;</li>
+    <li><strong>Matriz de amarração</strong> rascunhada;</li>
+    <li><strong>Quatro fontes de dados</strong> dominadas no Colab: SIDRA/IBGE, Demografia
+        das Empresas, Banco Central, Ipeadata.</li>
+  </ul>
+  <h3>Próximos passos</h3>
+  <ul>
+    <li><strong>Encontro 5:</strong> amostragem — quem entra na pesquisa e quantos são
+        necessários;</li>
+    <li><strong>Encontros 6 e 7:</strong> questionários, escalas e ética em pesquisa;</li>
+    <li><strong>Encontro 8 — Avaliação 1:</strong> prova com parte prática + entrega da
+        primeira etapa do projeto.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>GIL (2019)</strong> — capítulo sobre amostragem (prepara o encontro 5);</li>
+    <li><strong>Estes slides</strong> — releia as oito etapas com os "erros típicos" e a
+        comparação primários × secundários;</li>
+    <li><strong>Tarefa:</strong> concluir a matriz de amarração do seu projeto.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> pesquisar é encadear decisões — e a matriz de
+  amarração é o instrumento que verifica se as suas decisões formam um projeto coerente.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

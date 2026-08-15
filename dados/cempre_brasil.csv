@@ -1,0 +1,24 @@
+NC,NN,MC,MN,V,D1C,D1N,D2C,D2N,D3C,D3N,D4C,D4N,D5C,D5N,D6C,D6N
+Nível Territorial (Código),Nível Territorial,Unidade de Medida (Código),Unidade de Medida,Valor,Brasil (Código),Brasil,Ano (Código),Ano,Variável (Código),Variável,Classificação Nacional de Atividades Econômicas (CNAE 2.0) (Código),Classificação Nacional de Atividades Econômicas (CNAE 2.0),Faixas de pessoal ocupado (Código),Faixas de pessoal ocupado,Ano de fundação (Código),Ano de fundação
+1,Brasil,1020,Unidades,10607110,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,0,Total,0,Total,0,Total
+1,Brasil,1020,Unidades,592322,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,116830,"A Agricultura, pecuária, produção florestal, pesca e aquicultura",0,Total,0,Total
+1,Brasil,1020,Unidades,19965,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,116880,B Indústrias extrativas,0,Total,0,Total
+1,Brasil,1020,Unidades,619384,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,116910,C Indústrias de transformação,0,Total,0,Total
+1,Brasil,1020,Unidades,12922,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117296,D Eletricidade e gás,0,Total,0,Total
+1,Brasil,1020,Unidades,24576,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117307,"E Água, esgoto, atividades de gestão de resíduos e descontaminação",0,Total,0,Total
+1,Brasil,1020,Unidades,568359,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117329,F Construção,0,Total,0,Total
+1,Brasil,1020,Unidades,2908372,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117363,G Comércio; reparação de veículos automotores e motocicletas,0,Total,0,Total
+1,Brasil,1020,Unidades,365640,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117484,"H Transporte, armazenagem e correio",0,Total,0,Total
+1,Brasil,1020,Unidades,458777,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117543,I Alojamento e alimentação,0,Total,0,Total
+1,Brasil,1020,Unidades,376994,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117555,J Informação e comunicação,0,Total,0,Total
+1,Brasil,1020,Unidades,335273,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117608,"K Atividades financeiras, de seguros e serviços relacionados",0,Total,0,Total
+1,Brasil,1020,Unidades,290070,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117666,L Atividades imobiliárias,0,Total,0,Total
+1,Brasil,1020,Unidades,957541,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117673,"M Atividades profissionais, científicas e técnicas",0,Total,0,Total
+1,Brasil,1020,Unidades,1067934,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117714,N Atividades administrativas e serviços complementares,0,Total,0,Total
+1,Brasil,1020,Unidades,49884,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117774,"O Administração pública, defesa e seguridade social",0,Total,0,Total
+1,Brasil,1020,Unidades,345149,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117788,P Educação,0,Total,0,Total
+1,Brasil,1020,Unidades,708067,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117810,Q Saúde humana e serviços sociais,0,Total,0,Total
+1,Brasil,1020,Unidades,175870,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117838,"R Artes, cultura, esporte e recreação",0,Total,0,Total
+1,Brasil,1020,Unidades,729492,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117861,S Outras atividades de serviços,0,Total,0,Total
+1,Brasil,1020,Unidades,-,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117888,T Serviços domésticos,0,Total,0,Total
+1,Brasil,1020,Unidades,519,1,Brasil,2024,2024,2585,Número de empresas e outras organizações,117892,U Organismos internacionais e outras instituições extraterritoriais,0,Total,0,Total

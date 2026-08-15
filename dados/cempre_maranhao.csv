@@ -1,0 +1,24 @@
+NC,NN,MC,MN,V,D1C,D1N,D2C,D2N,D3C,D3N,D4C,D4N,D5C,D5N,D6C,D6N
+Nível Territorial (Código),Nível Territorial,Unidade de Medida (Código),Unidade de Medida,Valor,Unidade da Federação (Código),Unidade da Federação,Ano (Código),Ano,Variável (Código),Variável,Classificação Nacional de Atividades Econômicas (CNAE 2.0) (Código),Classificação Nacional de Atividades Econômicas (CNAE 2.0),Faixas de pessoal ocupado (Código),Faixas de pessoal ocupado,Ano de fundação (Código),Ano de fundação
+3,Unidade da Federação,1020,Unidades,168098,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,0,Total,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,2012,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,116830,"A Agricultura, pecuária, produção florestal, pesca e aquicultura",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,268,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,116880,B Indústrias extrativas,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,6386,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,116910,C Indústrias de transformação,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,103,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117296,D Eletricidade e gás,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,478,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117307,"E Água, esgoto, atividades de gestão de resíduos e descontaminação",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,8623,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117329,F Construção,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,69518,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117363,G Comércio; reparação de veículos automotores e motocicletas,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,4152,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117484,"H Transporte, armazenagem e correio",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,6056,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117543,I Alojamento e alimentação,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,3041,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117555,J Informação e comunicação,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,2119,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117608,"K Atividades financeiras, de seguros e serviços relacionados",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,2180,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117666,L Atividades imobiliárias,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,11032,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117673,"M Atividades profissionais, científicas e técnicas",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,8825,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117714,N Atividades administrativas e serviços complementares,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,1920,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117774,"O Administração pública, defesa e seguridade social",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,6453,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117788,P Educação,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,10113,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117810,Q Saúde humana e serviços sociais,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,2662,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117838,"R Artes, cultura, esporte e recreação",0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,22156,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117861,S Outras atividades de serviços,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,-,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117888,T Serviços domésticos,0,Total,0,Total
+3,Unidade da Federação,1020,Unidades,1,21,Maranhão,2024,2024,2585,Número de empresas e outras organizações,117892,U Organismos internacionais e outras instituições extraterritoriais,0,Total,0,Total

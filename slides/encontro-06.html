@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 6 — Questionários, escalas, validade e confiabilidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 6 · Unidade II</div>
+  <h1>Questionários e escalas: validade e confiabilidade</h1>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>10 min</td><td>Resultados do questionário que a turma respondeu</td></tr>
+    <tr><td>50 min</td><td>O questionário e a arte de perguntar</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>45 min</td><td>Escalas, validade e confiabilidade</td></tr>
+    <tr><td>60 min</td><td><strong>Prática no Colab:</strong> alfa de Cronbach e diagnóstico de itens</td></tr>
+    <tr><td>45 min</td><td><strong>Exercício:</strong> questionário no Google Formulários + avaliação cruzada</td></tr>
+    <tr><td>15 min</td><td>Síntese e tarefa</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Vocês sentiram, nós vamos nomear</h2>
+  <p>O questionário que vocês responderam tinha <strong>defeitos plantados de
+  propósito</strong>:</p>
+  <ul>
+    <li>uma pergunta que misturava duas coisas ao mesmo tempo;</li>
+    <li>uma pergunta que empurrava a resposta;</li>
+    <li>opções de resposta que se sobrepunham.</li>
+  </ul>
+  <div class="pergunta">Os incômodos que vocês sentiram ao responder são exatamente o
+  <strong>conteúdo desta aula</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A arte de perguntar</h2>
+  <p>Qualquer um redige perguntas; poucos redigem perguntas que medem</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Anatomia de um questionário</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Instrumento de coleta composto por perguntas <strong>padronizadas</strong>, aplicadas
+  igualmente a todos os respondentes, cujas respostas viram as variáveis da pesquisa.</div>
+  <ol>
+    <li><strong>Apresentação + consentimento</strong> — quem pesquisa, para quê, garantias
+        (o TCLE do encontro 7);</li>
+    <li><strong>Instruções</strong> — como responder;</li>
+    <li><strong>Blocos temáticos</strong> — do geral ao específico;</li>
+    <li><strong>Caracterização ao final</strong> — idade, cargo, porte da empresa
+        (no fim, para não cansar nem enviesar).</li>
+  </ol>
+  <div class="pergunta">Regra de ouro: cada pergunta corresponde a uma <strong>variável da
+  matriz de amarração</strong>. Pergunta que não será analisada é custo sem retorno.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Tipos de pergunta e regras das opções</h2>
+  <div class="colunas">
+    <div>
+      <h3>Tipos</h3>
+      <ul>
+        <li><strong>Fechada</strong> — escolha única ou múltipla; padrão para análise
+            quantitativa;</li>
+        <li><strong>Aberta</strong> — texto livre; rica e cara de analisar;</li>
+        <li><strong>Mista</strong> — fechada + "outro: ___".</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Opções de resposta</h3>
+      <ul>
+        <li><strong>Exaustivas</strong> — cobrem todos os casos possíveis;</li>
+        <li><strong>Mutuamente excludentes</strong> — sem sobreposição.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="exemplo"><span class="rotulo">O erro clássico</span>
+  Faixas "1 a 5 funcionários" e "5 a 10 funcionários": quem tem exatamente 5 marca qual?
+  O correto: "1 a 5" e "6 a 10".</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O repertório dos defeitos — parte 1</h2>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>Pergunta dupla</h4>
+      <p>"O atendimento foi rápido <strong>e</strong> cordial?"</p>
+      <p class="menor">Rápido e grosseiro responde o quê? Uma pergunta, uma coisa.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Pergunta indutora</h4>
+      <p>"Você <strong>concorda</strong> que o serviço melhorou?"</p>
+      <p class="menor">Já empurra a resposta. Neutro: "Como você avalia a evolução do
+      serviço?"</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Vocabulário não compartilhado</h4>
+      <p>"Qual seu <strong>churn</strong> mensal?"</p>
+      <p class="menor">O respondente não é obrigado a falar o seu jargão.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O repertório dos defeitos — parte 2</h2>
+  <div class="cartoes">
+    <div class="cartao alt-amarelo">
+      <h4>Sem período de referência</h4>
+      <p>"Com que frequência você compra online?"</p>
+      <p class="menor">Por semana? Por ano? Defina a janela: "nos últimos 30 dias..."</p>
+    </div>
+    <div class="cartao">
+      <h4>Dupla negação</h4>
+      <p>"Você <strong>não</strong> discorda da política de trocas?"</p>
+      <p class="menor">Nem o autor sabe o que "sim" significa aqui.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Hipotética vaga</h4>
+      <p>"Você pagaria mais por um produto sustentável?"</p>
+      <p class="menor">Quanto a mais? Que produto? Intenção declarada ≠ comportamento.</p>
+    </div>
+  </div>
+  <div class="definicao"><span class="rotulo">Pré-teste</span>
+  Aplicar o instrumento a um pequeno grupo semelhante à população-alvo <strong>antes</strong>
+  da coleta, para capturar as ambiguidades que o autor não enxerga. Etapa obrigatória —
+  faremos no encontro 7.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Escalas</h2>
+  <p>A tecnologia de medir atitudes e percepções</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Escala Likert</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Mede o <strong>grau de concordância</strong> com afirmações, tipicamente em 5 ou 7
+  pontos ("discordo totalmente" ... "concordo totalmente"). A escala dominante em
+  Administração.</div>
+  <p>Decisões de desenho que o pesquisador declara:</p>
+  <ul>
+    <li><strong>Número de pontos</strong> — 5 é o mais comum; 7 dá mais granularidade;</li>
+    <li><strong>Ponto neutro</strong> — com ou sem "nem concordo nem discordo";</li>
+    <li><strong>Âncoras rotuladas</strong> — só os extremos ou todos os pontos.</li>
+  </ul>
+  <p class="menor">Nível de mensuração: a rigor <strong>ordinal</strong>; tratada como
+  intervalar quando se somam múltiplos itens — convenção que se declara (encontro 3).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Construto: por que vários itens?</h2>
+  <div class="definicao"><span class="rotulo">Definição · construto</span>
+  Conceito abstrato que não se observa diretamente — "satisfação", "engajamento",
+  "confiança na marca" — e que se mede por um <strong>conjunto de itens</strong> cuja soma
+  (ou média) forma o escore da escala.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  "Satisfação com o fornecedor" medida por 6 itens: prazos, qualidade, atendimento,
+  flexibilidade, preço, recomendação. Nenhum item sozinho captura o construto; juntos,
+  eles o cercam.</div>
+  <p>É essa lógica que justifica os indicadores de <strong>consistência interna</strong>:
+  se os itens medem o mesmo construto, devem "andar juntos" nas respostas.</p>
+  <p class="menor">O <strong>diferencial semântico</strong> é a alternativa: pares de
+  adjetivos opostos ("caro ___ ___ ___ barato").</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Validade e confiabilidade</h2>
+  <p>As duas exigências de qualquer medida — e por que uma não garante a outra</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As duas exigências</h2>
+  <div class="definicao"><span class="rotulo">Validade</span>
+  O instrumento mede <strong>o que diz medir</strong>. Uma balança é válida para peso —
+  não para altura.</div>
+  <div class="definicao"><span class="rotulo">Confiabilidade</span>
+  O instrumento mede de forma <strong>consistente</strong>: a mesma balança dá o mesmo
+  valor em pesagens repetidas.</div>
+  <div class="exemplo"><span class="rotulo">A imagem do alvo</span>
+  Tiros agrupados <strong>longe do centro</strong>: confiável e inválido (a balança
+  descalibrada que sempre erra 3 kg). Tiros <strong>espalhados em torno do centro</strong>:
+  válido na média, não confiável. O bom instrumento agrupa no centro.</div>
+  <div class="pergunta">Assimetria fundamental: confiabilidade é condição
+  <strong>necessária, mas não suficiente</strong>, de validade.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Alfa de Cronbach</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Indicador padrão de <strong>consistência interna</strong>: mede o quanto os itens da
+  escala "andam juntos". Varia de 0 a 1.
+  <br>α = [k/(k−1)] · [1 − Σvar(itens) / var(escore total)]</div>
+  <table>
+    <tr><th>Valor</th><th>Leitura usual</th></tr>
+    <tr><td>α ≥ 0,8</td><td>Bom</td></tr>
+    <tr><td>0,7 ≤ α &lt; 0,8</td><td>Aceitável</td></tr>
+    <tr><td>α &lt; 0,7</td><td>Diagnosticar os itens antes de usar</td></tr>
+  </table>
+  <p><strong>Limites que o pesquisador honesto declara:</strong> alfa alto não prova
+  validade (mede consistência, não conteúdo); e o alfa sobe mecanicamente com o número de
+  itens — inflar a escala não é melhoria.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Diagnóstico de itens: as duas ferramentas</h2>
+  <div class="definicao"><span class="rotulo">Correlação item-total</span>
+  Correlação de cada item com o escore da escala. <strong>Negativa</strong> → provável item
+  de escala invertida não recodificado (conserta-se: novo valor = 6 − antigo).
+  <strong>Próxima de zero</strong> → item que não pertence ao construto (sai da escala).</div>
+  <div class="definicao"><span class="rotulo">"Alfa se excluído"</span>
+  Recalcular o alfa sem cada item. Se sobe muito ao remover um item, ele está
+  atrapalhando a escala.</div>
+  <p>O método em quatro passos — que você executará na prática:
+  <strong>calcular → diagnosticar → corrigir → documentar</strong>. Correções silenciosas
+  não existem em pesquisa: recodificação e exclusão se declaram no relatório.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Alfa de Cronbach na prática — abra o notebook <code>encontro06_aluno.ipynb</code></p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A prática de hoje</h2>
+  <ol>
+    <li>Escala de <strong>satisfação com fornecedores</strong> (8 itens Likert, 200
+        gestores simulados);</li>
+    <li>Implementar o <strong>alfa de Cronbach</strong> — o valor inicial sai baixo, e a
+        pergunta é "por quê?";</li>
+    <li><strong>Diagnóstico</strong>: há dois itens defeituosos escondidos na escala —
+        encontre-os, trate cada um do jeito certo e veja o alfa subir;</li>
+    <li>Registrar as decisões por escrito.</li>
+  </ol>
+  <div class="pergunta">Spoiler de método (não de resposta): um defeito se
+  <strong>conserta</strong>, o outro se <strong>exclui</strong>. Saber qual é qual é o
+  aprendizado da aula.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: seu questionário no Formulários (45 min)</h2>
+  <p><strong>Individual</strong>, a partir do cenário sorteado. Requisitos:</p>
+  <ul>
+    <li>8 a 12 perguntas; bloco Likert de 5 pontos com <strong>4+ itens do mesmo
+        construto</strong>;</li>
+    <li>Opções exaustivas e excludentes; período de referência definido;</li>
+    <li>Caracterização ao final; tela inicial com consentimento;</li>
+    <li>Estrutura pensada para exportação (prefira fechadas).</li>
+  </ul>
+  <div class="exemplo"><span class="rotulo">Avaliação cruzada (15 min finais)</span>
+  Troque o link com um colega e critique por escrito com o checklist: dupla · indutora ·
+  vocabulário técnico · opções sobrepostas · sem período de referência · dupla negação.</div>
+  <p class="menor">Seu questionário será pré-testado no encontro 7, com as respostas
+  importadas para o Colab — inclusive o cálculo do alfa do seu bloco Likert.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li>Perguntar é <strong>projetar medida</strong>: cada pergunta corresponde a uma
+        variável da matriz de amarração;</li>
+    <li>Opções de resposta: <strong>exaustivas e mutuamente excludentes</strong>;</li>
+    <li>Defeitos a caçar: dupla, indutora, jargão, sem período de referência, dupla
+        negação, hipotética vaga;</li>
+    <li><strong>Construto</strong> se mede com múltiplos itens — daí a consistência
+        interna;</li>
+    <li><strong>Validade</strong> (mede o que diz) ≠ <strong>confiabilidade</strong> (mede
+        consistentemente); a segunda é necessária, não suficiente, para a primeira;</li>
+    <li><strong>Alfa de Cronbach</strong>: calcular → diagnosticar → corrigir →
+        documentar — nunca um selo automático.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>Resoluções CNS nº 466/2012 e nº 510/2016</strong> — leitura para o
+        encontro 7 (ética), com atenção ao TCLE;</li>
+    <li><strong>Estes slides</strong> — releia os defeitos de redação e o par
+        validade/confiabilidade;</li>
+    <li><strong>Tarefa:</strong> incorporar as críticas recebidas ao questionário e trazer
+        o link revisado — ele será pré-testado na próxima aula.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> perguntar é projetar medida; validade e
+  confiabilidade são exigências distintas e cumulativas; o alfa é ferramenta de
+  diagnóstico, não selo de qualidade.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>
