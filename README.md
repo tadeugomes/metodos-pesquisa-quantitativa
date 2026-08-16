@@ -19,7 +19,7 @@ traço (—) indica material ainda não produzido.
 
 | # | Tema | Roteiro | Slides | Notebook |
 |---|---|---|---|---|
-| 0 | O que é um projeto de pesquisa quantitativo e suas especificidades | [md](roteiros/encontro-00.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-00.html) | — | — |
+| 0 | O que é um projeto de pesquisa quantitativo e suas especificidades | [md](roteiros/encontro-00.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-00.html) | — |
 
 ### Unidade I — Fundamentos da pesquisa quantitativa
 
@@ -43,22 +43,22 @@ traço (—) indica material ainda não produzido.
 
 | # | Tema | Roteiro | Slides | Notebook |
 |---|---|---|---|---|
-| 9 | Estatística descritiva: tendência central, dispersão e frequências | [md](roteiros/encontro-09.md) | — | — | — |
-| 10 | Apresentação de dados: tabelas, gráficos e visualização | [md](roteiros/encontro-10.md) | — | — | — |
-| 11 | Inferência estatística: intervalos de confiança e testes de hipóteses | — | — | — | — |
-| 12 | **Atividade Avaliativa 2** — análise de dados no Colab | — | — | — | — |
-| 13 | Correlação de Pearson e regressão linear simples | — | — | — | — |
+| 9 | Estatística descritiva: tendência central, dispersão e frequências | [md](roteiros/encontro-09.md) | — | — |
+| 10 | Apresentação de dados: tabelas, gráficos e visualização | [md](roteiros/encontro-10.md) | — | — |
+| 11 | Inferência estatística: intervalos de confiança e testes de hipóteses | — | — | — |
+| 12 | **Atividade Avaliativa 2** — análise de dados no Colab | — | — | — |
+| 13 | Correlação de Pearson e regressão linear simples | — | — | — |
 
 ### Unidade IV — Interpretação e comunicação dos resultados
 
 | # | Tema | Roteiro | Slides | Notebook |
 |---|---|---|---|---|
-| 14 | Comunicação de resultados; **Atividade Avaliativa 3** — relatório final | — | — | — | — |
-| 15 | Prova final | — | — | — | — |
+| 14 | Comunicação de resultados; **Atividade Avaliativa 3** — relatório final | — | — | — |
+| 15 | Prova final | — | — | — |
 
 ## Estado atual do material
 
-Atualizado em 15/08/2026.
+Atualizado em 16/08/2026.
 
 | Unidade | Roteiros | Slides | Notebooks |
 |---|---|---|---|
