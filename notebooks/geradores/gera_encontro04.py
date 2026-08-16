@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 4."""
+"""Gera o notebook único e autossuficiente do Encontro 4."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -105,10 +105,11 @@ painel = mensais.join(diarias_mensalizadas)
 painel.tail()"""})
 
 C.append({"tipo": "nota", "texto": (
-    "~30 min na Seção 1. Mostre no navegador o portal do SGS e como achar um código de "
-    "série. Na lacuna, erros esperados: esquecer as aspas na data e trocar o formato "
-    "(YYYY-MM-DD). Na reamostragem, não exija domínio de resample — o ponto pedagógico é "
-    "que juntar frequências diferentes exige uma decisão explícita do pesquisador.")})
+    "~30 min na Seção 1. Visite no navegador o portal do SGS e veja como descobrir o código "
+    "de uma série. Erros comuns ao escrever: esquecer as aspas na data e trocar o formato "
+    "(deve ser YYYY-MM-DD). Na reamostragem, não precisa dominar `resample` — o ponto "
+    "pedagógico é que juntar frequências diferentes exige uma decisão explícita do "
+    "pesquisador (aqui, o último valor do mês).")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 2 — Ipeadata
@@ -191,11 +192,10 @@ plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Discussão em plenária (~10 min): 'a inadimplência sobe depois que os juros sobem?'. "
-    "Resposta honesta da disciplina neste ponto: hoje sabemos descrever a coincidência "
-    "visual; medir a associação é o assunto do encontro 13, e causalidade exige ainda mais. "
-    "Peça que registrem essa limitação por escrito na Seção 4 — conter a conclusão é "
-    "disciplina de pesquisador.")})
+    "Leia os gráficos e pergunte-se: 'a inadimplência sobe depois que os juros sobem?'. "
+    "Resposta honesta neste ponto: sabemos descrever a coincidência visual; medir a "
+    "associação é o assunto do encontro 13, e causalidade exige ainda mais. Registre essa "
+    "limitação por escrito na Seção 4 — conter a conclusão é disciplina de pesquisador.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 4 — Perguntas de interpretação
@@ -241,10 +241,10 @@ incorporando os comentários que você recebeu sobre o rascunho do encontro 3.
 "associação entre variáveis") — vamos nomeá-la com precisão na Unidade III.*"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Oficina final (~35 min): circule priorizando quem recebeu apontamento de inviabilidade "
-    "no rascunho. Buracos típicos que a matriz revela: objetivo sem hipótese, hipótese com "
-    "variável que a base não tem, técnica incompatível com o nível de mensuração. A matriz "
-    "preenchida integra a entrega do encontro 8 — deixe isso explícito no fechamento.")})
+    "Oficina final (~35 min). A matriz revela buracos típicos: objetivo sem hipótese, "
+    "hipótese com variável que a base não tem, técnica incompatível com o nível de "
+    "mensuração. A matriz preenchida integra a entrega do encontro 8 — capriche e guarde "
+    "uma cópia.")})
 
 C.append({"tipo": "md", "texto": """\
 ---

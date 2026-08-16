@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 7."""
+"""Gera o notebook único e autossuficiente do Encontro 7."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -121,10 +121,10 @@ if "base" not in dir():
             break"""})
 
 C.append({"tipo": "nota", "texto": (
-    "~20 min até aqui (o download consome parte). Enfatize a lição metodológica: dado "
-    "documental exige conhecer a gramática do documento (plano de contas, chaves de "
-    "junção, escala em milhares) — e é essa gramática que garante comparabilidade entre "
-    "empresas. Se a internet do laboratório estiver lenta, vá direto à contingência.")})
+    "~20 min até aqui (o download consome parte). A lição metodológica: dado documental "
+    "exige conhecer a gramática do documento (plano de contas, chaves de junção, escala em "
+    "milhares) — é essa gramática que garante comparabilidade entre empresas. Se o download "
+    "estiver lento, use direto a célula de contingência.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 2 — Da conta contábil à variável de pesquisa
@@ -169,7 +169,8 @@ plt.show()"""})
 C.append({"tipo": "nota", "texto": (
     "Dois pontos de leitura: usamos a MEDIANA (não a média) porque margens têm valores "
     "extremos — gancho para o encontro 9; e margens negativas (prejuízo) são dado, não "
-    "erro. Pergunte por que filtrar setores com n >= 8 antes de comparar medianas.")})
+    "erro. Pergunte-se por que o código filtra setores com n >= 8 antes de comparar "
+    "medianas.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 3 — Limites do registro documental

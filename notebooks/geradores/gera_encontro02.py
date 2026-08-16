@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 2."""
+"""Gera o notebook único e autossuficiente do Encontro 2."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -100,9 +100,10 @@ print()
 print("Faixas de pessoal:", demografia["faixa_pessoal"].unique())"""})
 
 C.append({"tipo": "nota", "texto": (
-    "~20 min até aqui. Percorra no projetor o significado de cada parâmetro da chamada e de "
-    "cada coluna. A lacuna do unique() é proposital e fácil: serve para todos digitarem algo "
-    "cedo na aula. Erros esperados: aspas esquecidas no nome da coluna e = em vez de ==.")})
+    "Esta seção leva ~20 min. Percorra mentalmente o significado de cada parâmetro da chamada "
+    "e de cada coluna antes de executar — essa 'gramática' do SIDRA se repete o semestre "
+    "inteiro. Erros comuns ao escrever: aspas esquecidas no nome da coluna e `=` no lugar "
+    "de `==`.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 2 — Filtros: isolando o que interessa
@@ -167,11 +168,11 @@ total_geral[["variavel", "Valor"]]"""})
 
 C.append({"tipo": "nota", "texto": (
     "Momento-chave da aula: confronte o resultado com a frase 'a maioria fecha no primeiro "
-    "ano'. A taxa de sobrevivência de 1 ano fica bem acima de 50% — a frase, dita assim, é "
-    "falsa; a mortalidade é alta, mas "
-    "acumulada em horizonte maior e concentrada em perfis específicos. É o exemplo perfeito "
-    "de senso comum corrigido por dado oficial. Se aparecer NaN em taxas de horizonte longo, "
-    "aproveite: é a coorte que ainda não completou o tempo — mesmo fenômeno discutido acima.")})
+    "ano'. A taxa de sobrevivência de 1 ano fica bem acima de 50% — dita assim, a frase é "
+    "falsa; a mortalidade é alta, mas acumulada em horizonte maior e concentrada em perfis "
+    "específicos. É o exemplo perfeito de senso comum corrigido por dado oficial. Se aparecer "
+    "NaN em taxas de horizonte longo, não se assuste: é a coorte que ainda não completou o "
+    "tempo.")})
 
 C.append({"tipo": "md", "texto": """\
 Agora a associação com o **porte**. O método `groupby` agrupa as linhas por uma coluna e
@@ -238,10 +239,11 @@ print("Maior sobrevivência:", sob3_por_secao.iloc[0]["secao_cnae"])
 print("Menor sobrevivência:", sob3_por_secao.iloc[-1]["secao_cnae"])"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Pergunta de amarração com a exposição: 'o que fizemos aqui é pesquisa descritiva ou "
-    "correlacional?'. Resposta esperada: descrevemos uma associação entre porte (ordinal) e "
-    "sobrevivência (razão) sem afirmar causa — e há explicações alternativas (capital "
-    "inicial, setor, experiência do fundador). Reserve ~10 min para essa discussão.")})
+    "Pergunta de amarração: 'o que fizemos aqui é pesquisa descritiva ou correlacional?' "
+    "Resposta: descrevemos uma associação entre porte (ordinal) e sobrevivência (razão) sem "
+    "afirmar causa — e há explicações alternativas (capital inicial, setor, experiência do "
+    "fundador). Quanto mais dessas explicações você conseguir listar na pergunta 2, melhor "
+    "você entendeu o limite de uma análise descritiva.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 4 — Perguntas de interpretação

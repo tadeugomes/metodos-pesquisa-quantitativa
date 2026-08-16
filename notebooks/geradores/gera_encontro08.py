@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 8 — parte prática da Avaliação 1."""
+"""Gera o notebook único do Encontro 8 (Avaliação 1) — modo prova, com lacunas para o
+aluno responder. O gabarito (células professor + notas) permanece apenas neste gerador e
+não vai para o arquivo .ipynb."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -214,4 +216,4 @@ C.append({"tipo": "md", "texto": """\
 4. Não esqueça o segundo artefato da avaliação: o **notebook do seu projeto individual**
 (primeira etapa) também deve ser compartilhado hoje."""})
 
-gera_notebooks(8, C)
+gera_notebooks(8, C, versao="aluno")

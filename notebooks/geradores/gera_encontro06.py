@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 6."""
+"""Gera o notebook único e autossuficiente do Encontro 6."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -69,9 +69,10 @@ print("Respostas:", dados.shape)
 dados.describe().round(2)"""})
 
 C.append({"tipo": "nota", "texto": (
-    "~10 min. Os defeitos plantados: q5 é item negativo NÃO recodificado (correlaciona "
+    "Os defeitos plantados na escala: q5 é item negativo NÃO recodificado (correlaciona "
     "negativamente com os demais) e q8 não pertence ao construto (distância da sede não é "
-    "satisfação). Não revele — a graça é a turma descobrir pelo diagnóstico das Seções 2 e 3.")})
+    "satisfação). A graça é descobrir isso pelo diagnóstico das Seções 2 e 3 — execute os "
+    "códigos na ordem e anote a sua suspeita antes de seguir.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 2 — O alfa de Cronbach
@@ -166,10 +167,10 @@ print(f"Alfa inicial : {alfa_inicial:.3f}")
 print(f"Alfa final   : {alfa_final:.3f}  (após recodificar q5 e excluir q8)")"""})
 
 C.append({"tipo": "nota", "texto": (
-    "O arco da seção é o método em miniatura: calcular → diagnosticar → corrigir → "
-    "documentar. Com os dados simulados desta semente, o alfa parte de 0,49 e termina "
-    "em 0,84. Frise o registro: num relatório real, a recodificação de q5 e a "
-    "exclusão de q8 seriam declaradas com justificativa — nunca feitas em silêncio.")})
+    "O arco desta seção é o método em miniatura: calcular → diagnosticar → corrigir → "
+    "documentar. Com os dados desta semente, o alfa parte de 0,49 e termina em 0,84. E "
+    "registre: num relatório real, a recodificação de q5 e a exclusão de q8 seriam "
+    "declaradas com justificativa — nunca feitas em silêncio.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 4 — Perguntas de interpretação

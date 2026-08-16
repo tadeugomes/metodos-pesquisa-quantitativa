@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 5."""
+"""Gera o notebook único e autossuficiente do Encontro 5."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -102,10 +102,10 @@ print("\\nProporção por setor (5 maiores):")
 print(prop_setores_pop.head().round(3))"""})
 
 C.append({"tipo": "nota", "texto": (
-    "~15 min na Seção 1. Explique o artifício didático com transparência: o cadastro é "
-    "sintético porque nenhum dado real nos deixa conhecer a verdade populacional — e sem "
-    "ela não dá para MEDIR o erro amostral. Destaque o conceito de semente (seed): sorteio "
-    "reprodutível é exigência de pesquisa, não paradoxo.")})
+    "~15 min na Seção 1. Entenda o artifício didático: o cadastro é sintético porque nenhum "
+    "dado real nos deixa conhecer a verdade populacional — e sem ela não dá para MEDIR o "
+    "erro amostral. Repare também na semente (seed): um sorteio reprodutível é exigência de "
+    "pesquisa, não paradoxo.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 2 — Amostra aleatória simples (AAS)
@@ -162,8 +162,8 @@ for n in tamanhos:
 C.append({"tipo": "nota", "texto": (
     "Este boxplot é a imagem mais importante da aula: quadruplicar a amostra não divide o "
     "erro por quatro (cai com a raiz de n). Conecte com a fórmula da Seção 4. Se o boxplot "
-    "for novidade para a turma, leia-o informalmente (caixa = metade central dos erros) — "
-    "a definição formal vem no encontro 10.")})
+    "for novidade para você, leia-o informalmente (caixa = metade central dos erros) — a "
+    "definição formal vem no encontro 10.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 3 — Sistemática e estratificada
@@ -225,9 +225,8 @@ comparacao.round(4)"""})
 C.append({"tipo": "nota", "texto": (
     "A estratificada acerta a proporção do setor pequeno POR CONSTRUÇÃO (é o que "
     "estratificar significa), enquanto AAS e sistemática flutuam — em setores minúsculos, "
-    "podem até zerar. Esse é o argumento prático da estratificação. ~25 min na Seção 3; a "
-    "lógica do passo sistemático costuma travar: desenhe uma lista de 20 elementos no "
-    "quadro e percorra com k=4.")})
+    "podem até zerar. Esse é o argumento prático da estratificação. Se a lógica do passo "
+    "sistemático travar, desenhe uma lista de 20 elementos e percorra com k=4.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 4 — Quantos são necessários? A fórmula do tamanho da amostra
@@ -288,10 +287,10 @@ plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Leia a tabela com a turma: (1) 'amostra deve ser 10% da população' é mito — para "
-    "populações grandes o n mal se move (384 vale para 800 mil e para 100 milhões); (2) "
-    "'quanto maior melhor' tem custo: apertar a margem de 5% para 2% multiplica o n por ~6. "
-    "É a mesma lição do boxplot da Seção 2, agora em fórmula.")})
+    "Leia a tabela e fixe as duas lições: (1) 'amostra deve ser 10% da população' é mito — "
+    "para populações grandes o n mal se move (384 vale para 800 mil e para 100 milhões); "
+    "(2) 'quanto maior melhor' tem custo: apertar a margem de 5% para 2% multiplica o n por "
+    "~6. É a mesma lição do boxplot da Seção 2, agora em fórmula.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 5 — Perguntas de interpretação

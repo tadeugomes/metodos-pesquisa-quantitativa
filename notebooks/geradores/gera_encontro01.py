@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 1."""
+"""Gera o notebook único e autossuficiente do Encontro 1."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -16,14 +16,15 @@ Neste notebook você vai:
 3. Carregar dados **reais** do IBGE sobre as empresas brasileiras;
 4. Produzir seu primeiro gráfico e interpretá-lo.
 
-**Como usar:** execute as células na ordem, com `Shift+Enter`. As lacunas para você completar
-estão marcadas com `# === COMPLETE AQUI ===`."""})
+**Como usar:** execute as células na ordem, com `Shift+Enter`. Todo o código já vem pronto;
+seu papel é rodar, **ler** os resultados e responder às perguntas de interpretação. Ao final
+de cada seção há uma **Dica de estudo** para consolidar o aprendizado."""})
 
 C.append({"tipo": "nota", "texto": (
-    "Reserve ~15 min para esta seção inicial. Peça que todos executem a célula de "
-    "identificação antes de avançar; quem ficar travado no acesso ao Colab resolve com o "
-    "colega ao lado enquanto você circula. Mostre desde já o menu 'Ambiente de execução > "
-    "Reiniciar e executar tudo'.")})
+    "~15 min aqui. Execute a célula de identificação em primeiro lugar; se o acesso ao "
+    "Colab travar, chame o professor enquanto você resolve com o colega ao lado. Grave já o "
+    "caminho 'Ambiente de execução > Reiniciar e executar tudo' — vai salvar o seu notebook "
+    "várias vezes neste semestre.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 1 — O que é um notebook
@@ -84,9 +85,9 @@ variacao = (faturamento_2025 - faturamento_2024) / faturamento_2024 * 100
 print(f"O faturamento variou {variacao:.1f}% entre 2024 e 2025")"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Erro esperado: aluno esquece os parênteses do numerador e obtém valor absurdo. Mostre o "
-    "erro no projetor e corrija coletivamente — ler resultados com desconfiança é hábito de "
-    "pesquisador. Resultado correto: 10,6%.")})
+    "Erro comum: esquecer os parênteses do numerador e obter um valor absurdo. Resultado "
+    "esperado: 10,6%. Se você tirou outro número, desconfie antes de seguir — todo "
+    "pesquisador confere resultados com os quais não esperava se deparar.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 3 — Dados reais: quantas empresas existem no Brasil e no Maranhão?
@@ -150,9 +151,9 @@ brasil = brasil.rename(
 brasil[["secao_cnae", "Valor"]]"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Antes de exibir a tabela, pergunte: qual seção CNAE vocês acham que tem mais empresas no "
-    "Brasil? Anote os palpites no quadro e só então execute. O contraste palpite × dado retoma "
-    "o argumento da aula sobre senso comum e evidência.")})
+    "Antes de exibir a tabela, anote no papel: qual seção CNAE você acha que concentra mais "
+    "empresas no Brasil? Só depois execute e compare o palpite com o dado — esse contraste "
+    "retoma o argumento da aula sobre senso comum e evidência.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 4 — Primeiro gráfico
@@ -228,10 +229,10 @@ plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Se a API falhar em aula, o CSV de contingência é dados/cempre_maranhao.csv (mesmo fluxo "
-    "da célula de contingência do Brasil). Na discussão, conduza a comparação: a estrutura "
+    "Se a API falhar, execute a célula de contingência (upload de dados/cempre_maranhao.csv, "
+    "mesmo fluxo do Brasil). Na comparação dos dois gráficos: a estrutura empresarial "
     "maranhense é mais concentrada em comércio que a nacional? Essa é a primeira 'análise' da "
-    "turma — peça que dois ou três estudantes verbalizem a leitura antes de seguir.")})
+    "turma — verbalize a sua leitura antes de seguir.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 5 — Perguntas de interpretação
@@ -253,9 +254,9 @@ neste semestre?** (Esta resposta será o ponto de partida do seu projeto individ
 *Sua resposta:*"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Recolha os links dos notebooks ao final e leia as respostas da pergunta 3 antes do "
-    "encontro 3: elas orientam a apresentação do cardápio de temas do projeto individual. "
-    "Resposta esperada na pergunta 2: os dados são um retrato (estoque) — não mostram "
+    "Compartilhe o link do notebook ao final. Sua resposta à pergunta 3 será lida pelo "
+    "professor antes do encontro 3 e orientará o cardápio de temas do projeto individual. "
+    "Pista para a pergunta 2: os dados são um retrato (estoque) — não mostram "
     "abertura/fechamento, faturamento nem informalidade.")})
 
 C.append({"tipo": "md", "texto": """\

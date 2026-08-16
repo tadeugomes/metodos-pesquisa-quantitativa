@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks (aluno e professor) do Encontro 3."""
+"""Gera o notebook único e autossuficiente do Encontro 3."""
 from nb_helper import gera_notebooks
 
 C = []
@@ -80,9 +80,9 @@ diferença entre a variável (o que se mede) e a **unidade** em que é expressa.
 
 C.append({"tipo": "nota", "texto": (
     "~25 min na Seção 1. As cinco variáveis da tabela (nº de empresas, pessoal ocupado, "
-    "salários, receita etc.) são todas de razão — o que é proposital: o contraste virá na "
-    "PMC (índice, intervalar) e nas classificações (nominal/ordinal). Erro esperado: "
-    "confundir 'receita' com 'mil reais' (variável × unidade). Trate no projetor.")})
+    "salários, receita etc.) são todas de razão — o que é proposital: o contraste virá na PMC "
+    "(índice, intervalar) e nas classificações (nominal/ordinal). Erro comum: confundir "
+    "'receita' com 'mil reais' — a unidade não é a variável.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 2 — PMC: série temporal e número-índice
@@ -184,7 +184,7 @@ C.append({"tipo": "nota", "texto": (
     "Discussão conceitual fina: o índice preserva razões dentro da mesma série (110/55 = 2 "
     "de fato indica o dobro do volume), mas o zero é convencional em relação à base. O "
     "objetivo é menos acertar o rótulo e mais perceber que a pergunta 'que operações fazem "
-    "sentido com este número?' é a pergunta certa. ~25 min na Seção 2.")})
+    "sentido com este número?' é a pergunta certa.")})
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 3 — Do conceito à variável (operacionalização)
@@ -243,10 +243,10 @@ formal do encontro 8.
 | | | | |"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Reserve ~50 min para a oficina. Circule priorizando: (a) temas sem base viável — "
-    "renegocie usando o cardápio; (b) perguntas de intervenção ('como melhorar X') — "
-    "converta em perguntas de investigação; (c) hipóteses-tautologia. Recolha os links ao "
-    "final: os comentários escritos devem ser devolvidos antes do encontro 4.")})
+    "A oficina do projeto leva ~50 min. O professor circulará perguntando a cada estudante: "
+    "(a) o tema tem base viável? (b) a pergunta é de investigação, não de intervenção "
+    "('como melhorar X')? (c) a hipótese não é tautologia? Compartilhe o link ao final: "
+    "você receberá comentários por escrito antes do encontro 4.")})
 
 C.append({"tipo": "md", "texto": """\
 ---
