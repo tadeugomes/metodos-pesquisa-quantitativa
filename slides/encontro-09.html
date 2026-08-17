@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 9 — Estatística descritiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 9 · Unidade III</div>
+  <h1>Estatística descritiva</h1>
+  <p class="subtitulo">Tendência central, dispersão e frequências</p>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>30 min</td><td>Devolutiva da Avaliação 1: notas e resolução comentada</td></tr>
+    <tr><td>50 min</td><td>Tendência central e o problema dos extremos</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>40 min</td><td>Dispersão e distribuições de frequência</td></tr>
+    <tr><td>75 min</td><td><strong>Prática no Colab:</strong> descritivas sobre a base CVM</td></tr>
+    <tr><td>20 min</td><td><strong>Oficina:</strong> descritivas da base do seu projeto</td></tr>
+    <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
+  </table>
+  <p class="menor">A virada da disciplina: até aqui planejar e coletar; dos encontros 9 a 13,
+  <strong>analisar</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Devolutiva da Avaliação 1</h2>
+  <p>Fechar as Unidades I e II com o gabarito público e preparar a Unidade III</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As notas e a resolução comentada</h2>
+  <ul>
+    <li>Notas devolvidas <strong>individualmente</strong> (Colab ou impresso);</li>
+    <li>Resolução <strong>questão a questão</strong>, concentrando nas dificuldades reais
+        da turma;</li>
+    <li>Padrões esperados de erro: confusão entre <strong>ordinal e intervalar</strong> na
+        classificação de variáveis e a <strong>justificativa</strong> do plano amostral;</li>
+    <li>As tarefas da prova (classificar variáveis, sortear amostra) são exatamente o que
+        <strong>antecede a análise</strong> que começa hoje.</li>
+  </ul>
+  <div class="pergunta">O gabarito fecha duas unidades — mas também monta a sala para a
+  Unidade III.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Medidas de tendência central</h2>
+  <p>Como resumir mil números em um só — sem mentir</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A pergunta que organiza o bloco</h2>
+  <div class="pergunta">Como resumir mil números em <strong>um só valor</strong> — sem
+  mentir?</div>
+  <p>Cada medida de tendência central é uma resposta diferente, com forças e fraquezas
+  próprias:</p>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>Média</h4>
+      <p>Centro de <strong>gravidade</strong>: soma dividida pela contagem. Usa toda a
+      informação — e sofre com todo valor extremo.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Mediana</h4>
+      <p>Valor que divide os dados <strong>ordenados ao meio</strong>: 50% abaixo, 50%
+      acima. Depende só da posição — resiste a extremos.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Moda</h4>
+      <p>Valor <strong>mais frequente</strong>. Única medida possível para variáveis
+      nominais.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A média é a mais usada — e a mais frágil</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Média aritmética = soma dos valores ÷ número de observações.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo-âncora — uma rua com dez empresas</span>
+  Nove empresas com receita modesta; a décima é uma gigante. A receita <strong>média</strong>
+  sobe para um valor que não descreve <strong>nenhuma das dez</strong>. A
+  <strong>mediana</strong> permanece onde a vida acontece.</div>
+  <p class="menor">Cada valor participa do cálculo da média — um único extremo a arrasta.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O critério de escolha, eixo 1 — nível de mensuração</h2>
+  <table>
+    <tr><th>Nível (encontro 3)</th><th>Medida disponível</th></tr>
+    <tr><td>Nominal</td><td>só <strong>moda</strong> (a seção CNAE mais comum)</td></tr>
+    <tr><td>Ordinal</td><td>moda e <strong>mediana</strong></td></tr>
+    <tr><td>Intervalar e razão</td><td>as <strong>três</strong></td></tr>
+  </table>
+  <div class="pergunta">Não existe "melhor medida" no abstrato — existe a medida
+  <strong>compatível</strong> com o seu tipo de dado.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O critério de escolha, eixo 2 — a forma da distribuição</h2>
+  <div class="definicao"><span class="rotulo">Simétrica</span>
+  Média e mediana <strong>coincidem</strong>; a média aproveita toda a informação.</div>
+  <div class="definicao"><span class="rotulo">Assimétrica</span>
+  A média <strong>desloca-se na direção da cauda</strong> e deixa de representar o caso
+  típico; a mediana resiste.</div>
+  <div class="exemplo"><span class="rotulo">Dados empresariais = o reino da assimetria</span>
+  Receitas, salários e tamanhos de empresa: muitos pequenos, poucos gigantes. Reportar
+  <strong>média e mediana juntas</strong> é mais honesto que escolher uma.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos ver nos dados reais da CVM</h2>
+  <div class="afirmacao">A margem líquida das companhias abertas tem extremos tão severos
+  que a <strong>média setorial pode trocar de sinal</strong> por causa de uma única
+  empresa.</div>
+  <p class="menor">Regra prática a fixar: média e mediana divergindo muito → distribuição
+  assimétrica ou outliers → reportar as duas.</p>
+  <div class="pergunta">Relembrando o objetivo 2 do encontro: reconhecer quando a
+  <strong>mediana é a medida honesta</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Medidas de dispersão</h2>
+  <p>Tendência central sozinha esconde o espalhamento</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Por que centro não basta</h2>
+  <div class="definicao"><span class="rotulo">O exemplo das duas cidades</span>
+  Mesma temperatura média — uma com clima estável, outra alternando calor e frio.</div>
+  <div class="definicao"><span class="rotulo">O exemplo dos dois setores</span>
+  Mesma margem mediana — um homogêneo, outro com empresas excelentes e empresas à beira da
+  falência.</div>
+  <p class="menor">A tendência central diz <em>onde</em> os dados estão; a dispersão diz
+  <em>quão espalhados</em> estão em torno desse centro.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Amplitude e variância</h2>
+  <div class="definicao"><span class="rotulo">Amplitude</span>
+  Máximo − mínimo. A medida mais simples e a mais frágil: depende só dos dois extremos.</div>
+  <div class="definicao"><span class="rotulo">Variância</span>
+  A distância média (ao quadrado) de cada valor em relação à média. O quadrado resolve o
+  cancelamento dos desvios — mas devolve a resposta em unidade sem sentido prático (reais
+  ao quadrado).</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Desvio padrão e coeficiente de variação</h2>
+  <div class="definicao"><span class="rotulo">Desvio padrão</span>
+  Raiz quadrada da variância — devolve a dispersão à <strong>unidade original</strong> da
+  variável. A medida de referência: "o desvio típico em relação à média".</div>
+  <div class="definicao"><span class="rotulo">Coeficiente de variação (CV)</span>
+  Desvio padrão ÷ média, em %. Responde: <strong>qual grupo é mais disperso quando as
+  escalas diferem?</strong> Um desvio de R$ 1 mi é enorme entre padarias e irrisório entre
+  petroleiras.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O cuidado técnico do CV</h2>
+  <div class="pergunta">CV só faz sentido para variáveis de <strong>razão com valores
+  positivos</strong> e média longe de zero.</div>
+  <ul>
+    <li>Aplicado à <strong>margem líquida</strong> — médias perto de zero e valores
+        negativos — o CV produz <strong>números absurdos</strong>;</li>
+    <li>A prática de hoje mostrará isso <strong>deliberadamente</strong>;</li>
+    <li>Lógica: dividir por um denominador que flerta com o zero explode o resultado.</li>
+  </ul>
+  <div class="afirmacao">Toda medida tem <strong>pressupostos de uso</strong> — fórmula sem
+  julgamento produz absurdo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Distribuições de frequência</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Tabela que conta <strong>quantas observações caem em cada categoria</strong> (variável
+  qualitativa) ou em cada <strong>classe de valores</strong> (quantitativa agrupada).</div>
+  <h3>Três colunas básicas</h3>
+  <table>
+    <tr><th>Frequência</th><th>O que conta</th></tr>
+    <tr><td>Absoluta</td><td>quantas observações na classe</td></tr>
+    <tr><td>Relativa (%)</td><td>a participação de cada classe no total</td></tr>
+    <tr><td>Acumulada</td><td>o total até a classe atual</td></tr>
+  </table>
+  <p class="menor">O papel das classes: transformar uma lista ilegível de números numa
+  <strong>estrutura que revela a forma da distribuição</strong> — onde se concentra, onde
+  rareia, se há caudas.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Descritivas sobre as demonstrações financeiras da CVM — abra o notebook do encontro</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seções 1 e 2 — construir a base e achar a assimetria</h2>
+  <table>
+    <tr><th>Seção</th><th>O que faz</th><th>Resultado central</th></tr>
+    <tr><td>1 · Base CVM (15 min)</td><td>Baixa a DFP 2024 (receita 3.01, lucro 3.11),
+        junta o setor e cria a margem líquida</td><td>Cada linha = uma companhia; receita em
+        milhares</td></tr>
+    <tr><td>2 · Tendência central (20 min)</td><td>Média, mediana e moda da receita e da
+        margem; identifica extremos com <code>nlargest</code>/<code>nsmallest</code></td>
+        <td>Receita média ≫ mediana — a assinatura da assimetria</td></tr>
+  </table>
+  <p class="menor">Encontre os extremos, recalcule a média sem eles e compare com a mediana,
+  que <strong>quase não se move</strong>. Registre qual medida você reportaria — e por quê.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seções 3 e 4 — dispersão por setor e tabela de frequências</h2>
+  <table>
+    <tr><th>Seção</th><th>O que faz</th><th>Resultado central</th></tr>
+    <tr><td>3 · Dispersão (20 min)</td><td>Desvio padrão e CV da receita por setor
+        (<code>groupby</code> + <code>agg</code>); CV da margem de propósito</td>
+        <td>O setor de maior desvio não é o mais heterogêneo — o CV reordena; e o CV da
+        margem "explode"</td></tr>
+    <tr><td>4 · Frequências (10 min)</td><td>Tabela da margem com <code>pd.cut</code>
+        (classes) + <code>value_counts</code>, com relativa e acumulada</td><td>Onde a
+        margem se concentra? Que fração opera no prejuízo?</td></tr>
+  </table>
+  <p class="menor">A forma que a tabela insinua será <strong>desenhada</strong> no encontro
+  10.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5 — extensão: endividamento (opcional)</h2>
+  <ul>
+    <li>Baixa, do mesmo zip da DFP, os balanços <strong>BPA e BPP</strong> consolidados;</li>
+    <li>Extrai <strong>ativo total</strong> (conta 1) e <strong>passivo exigível</strong>
+        (2.01 + 2.02);</li>
+    <li>Cria <strong>endividamento = exigível ÷ ativo</strong>;</li>
+    <li>Descritivas por setor: intensivos em capital (bens de capital, utilidades) vs.
+        bancos como caso à parte.</li>
+  </ul>
+  <p class="menor">Marcada como opcional — se a internet do laboratório falhar, a
+  contingência local cobre receita e margem.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Oficina do projeto individual</h2>
+  <p>Agora é a sua base</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Primeiro bloco descritivo do seu projeto (20 min)</h2>
+  <ol>
+    <li>Carregue a <strong>base do próprio projeto</strong> (definida na etapa entregue no
+        encontro 8);</li>
+    <li>Produza medidas de <strong>tendência central e dispersão</strong> das variáveis
+        quantitativas;</li>
+    <li>Monte a <strong>tabela de frequências</strong> da variável categórica principal;</li>
+    <li>Registre por escrito <strong>duas observações substantivas</strong>: "o que estes
+        números dizem sobre meu problema de pesquisa?"</li>
+  </ol>
+  <p class="menor">O professor circula orientando a escolha da medida conforme o
+  <strong>nível de mensuração</strong> de cada variável — o elo direto entre a classificação
+  da Unidade I e a análise que começa agora.</p>
+  <div class="pergunta">Não conseguiu carregar a base? Leve a tarefa para casa e traga o
+  bloco pronto no <strong>encontro 10</strong>, que terá tempo dedicado ao projeto.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese do encontro</h2>
+  <ol>
+    <li><strong>Resumir é escolher</strong> — e a escolha entre média e mediana é
+        metodológica, não estética;</li>
+    <li><strong>Dispersão é informação, não ruído</strong> — dois grupos com o mesmo centro
+        podem ser mundos diferentes;</li>
+    <li><strong>Toda medida tem pressupostos</strong> — o CV com média perto de zero é o
+        lembrete de que fórmula sem julgamento produz absurdo;</li>
+    <li>A <strong>tabela de frequências</strong> revela a forma da distribuição — e é o
+        histograma em forma de tabela (encontro 10).</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>Tarefa:</strong> garantir que a base do projeto <strong>carrega no
+        Colab</strong> — quem teve problema resolve antes do próximo encontro (roteiro de
+        contingência do notebook);</li>
+    <li><strong>Encontro 10:</strong> a segunda metade da aula será dedicada às descritivas
+        e ao primeiro gráfico do <strong>seu</strong> projeto;</li>
+    <li><strong>Próxima leitura:</strong> nenhuma obrigatória — revisar medidas descritivas
+        de estatística básica ajuda.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> descrever bem é a metade de analisar — medidas certas,
+  pressupostos respeitados e leitura registrada por escrito sobre a sua própria base.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

@@ -11,9 +11,10 @@ Material didático da disciplina **Métodos e Técnicas de Pesquisa Quantitativa
 ## Encontros
 
 Legenda das colunas: **Roteiro** = plano de aula do professor; **Slides** = apresentação
-aberta direto no navegador (GitHub Pages); **Notebook** = notebook do encontro, único e
-autossuficiente (todo o código já preenchido), aberto no Google Colab com um clique. Um
-traço (—) indica material ainda não produzido.
+aberta direto no navegador (GitHub Pages); **Notebook** = notebook do encontro (único e
+autossuficiente nos encontros regulares; com lacunas de resposta nos encontros de prova — 8 e
+12), aberto no Google Colab com um clique. Um traço (—) indica material ainda não produzido —
+é o caso apenas do notebook da prova final (encontro 15), elaborado na aplicação.
 
 ### Aula inaugural
 
@@ -43,36 +44,36 @@ traço (—) indica material ainda não produzido.
 
 | # | Tema | Roteiro | Slides | Notebook |
 |---|---|---|---|---|
-| 9 | Estatística descritiva: tendência central, dispersão e frequências | [md](roteiros/encontro-09.md) | — | — |
-| 10 | Apresentação de dados: tabelas, gráficos e visualização | [md](roteiros/encontro-10.md) | — | — |
-| 11 | Inferência estatística: intervalos de confiança e testes de hipóteses | — | — | — |
-| 12 | **Atividade Avaliativa 2** — análise de dados no Colab | — | — | — |
-| 13 | Correlação de Pearson e regressão linear simples | — | — | — |
+| 9 | Estatística descritiva: tendência central, dispersão e frequências | [md](roteiros/encontro-09.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-09.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-09/encontro09.ipynb) |
+| 10 | Apresentação de dados: tabelas, gráficos e visualização | [md](roteiros/encontro-10.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-10.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-10/encontro10.ipynb) |
+| 11 | Inferência estatística: intervalos de confiança e testes de hipóteses | [md](roteiros/encontro-11.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-11.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-11/encontro11.ipynb) |
+| 12 | **Atividade Avaliativa 2** — análise de dados no Colab | [md](roteiros/encontro-12.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-12.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-12/encontro12.ipynb) |
+| 13 | Correlação de Pearson e regressão linear simples | [md](roteiros/encontro-13.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-13.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-13/encontro13.ipynb) |
 
 ### Unidade IV — Interpretação e comunicação dos resultados
 
 | # | Tema | Roteiro | Slides | Notebook |
 |---|---|---|---|---|
-| 14 | Comunicação de resultados; **Atividade Avaliativa 3** — relatório final | — | — | — |
-| 15 | Prova final | — | — | — |
+| 14 | Comunicação de resultados; **Atividade Avaliativa 3** — relatório final | [md](roteiros/encontro-14.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-14.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-14/encontro14.ipynb) |
+| 15 | Prova final | — | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-15.html) | — (elaborada no momento da aplicação) |
 
 ## Estado atual do material
 
-Atualizado em 16/08/2026.
+Atualizado em 17/08/2026.
 
 | Unidade | Roteiros | Slides | Notebooks |
 |---|---|---|---|
 | Aula inaugural (0) | ✅ completa | ✅ completa | — (aula conceitual) |
 | I (1–4) | ✅ completa | ✅ completa | ✅ completa |
 | II (5–8) | ✅ completa | ✅ completa | ✅ completa |
-| III (9–13) | 🟡 encontros 9 e 10 | ⬜ pendente | ⬜ pendente |
-| IV (14–15) | ⬜ pendente | ⬜ pendente | ⬜ pendente |
+| III (9–13) | ✅ completa | ✅ completa | ✅ completa (12 é prova, com lacunas) |
+| IV (14–15) | ✅ completa (14) | ✅ completa | ✅ 14 completo (guia de redação) |
 
-Em resumo: **aula inaugural (encontro 0) e encontros 1 a 8 estão completos** (roteiro, slides e
-notebook autossuficiente — exceto o encontro 0, conceitual, sem notebook; o encontro 8, prova,
-tem lacunas de resposta). Dos encontros 9 a 15
-existem apenas os **roteiros dos encontros 9 e 10**; faltam os slides e notebooks desses dois e
-todo o material dos encontros 11 a 15.
+Em resumo: **aula inaugural (encontro 0) e encontros 1 a 14 estão completos** (roteiro, slides e
+notebook autossuficiente — exceto o encontro 0, conceitual, sem notebook; os encontros 8 e 12,
+provas, têm lacunas de resposta e gabarito apenas nos geradores). O **encontro 15** (prova final)
+tem apenas slides de orientação: o notebook de prova é elaborado pelo professor no momento da
+aplicação.
 
 ## Organização do material
 
@@ -100,9 +101,9 @@ conceitual e tem apenas slides e roteiro):
 3. **Notebook** (`notebooks/encontro-NN/encontroNN.ipynb`): um arquivo único por encontro,
    **autossuficiente** — todo o código já vem preenchido e pronto para executar, com
    *Dicas de estudo* ao longo das seções (substituíram as antigas notas de condução do
-   professor). As únicas exceções são os notebooks de **prova** (encontro 8), que preservam
-   lacunas de resposta e omitem as dicas, e a **aula inaugural (encontro 0)**, conceitual,
-   que tem apenas slides e roteiro.
+   professor). As exceções são os notebooks de **prova** (encontros 8 e 12), que preservam
+   lacunas de resposta e omitem as dicas e o gabarito (presentes apenas nos geradores),
+   e a **aula inaugural (encontro 0)**, conceitual, com apenas slides e roteiro.
 
 Os notebooks são gerados por scripts (`notebooks/geradores/gera_encontroNN.py`, com utilidades
 comuns em `nb_helper.py`): para alterar um notebook, edite o gerador e execute-o novamente,

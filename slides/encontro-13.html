@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 13 — Correlação e regressão linear simples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 13 · Unidade III</div>
+  <h1>Correlação e regressão</h1>
+  <p class="subtitulo">O par de variáveis quantitativas, da associação à previsão</p>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>15 min</td><td>Retomada: da inferência (encontro 11) à relação entre duas variáveis</td></tr>
+    <tr><td>85 min</td><td>Correlação de Pearson · defasagem temporal · regressão linear simples</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>85 min</td><td><strong>Prática no Colab:</strong> correlação e heatmap no SGS; regressão na CVM; pressupostos</td></tr>
+    <tr><td>30 min</td><td><strong>Oficina:</strong> o par de variáveis quantitativas do seu projeto</td></tr>
+    <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
+  </table>
+  <p class="menor">Fecha a Unidade III: sabemos descrever, inferir e agora <strong>relacionar</strong>
+  variáveis — com os limites declarados.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A correlação de Pearson</h2>
+  <p>A associação responde ao alinhamento — não à causa</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O coeficiente r</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  O coeficiente de correlação de Pearson (r) mede <strong>quão alinhadas</strong> duas
+  variáveis quantitativas estão: quando X cresce, Y tende a crescer (r &gt; 0), decrescer
+  (r &lt; 0) ou flutuar sem direção (r ≈ 0).</div>
+  <div class="cartoes">
+    <div class="cartao alt-dourado">
+      <h4>Varia de −1 a +1</h4>
+      <p>Adimensional, independe da escala das variáveis.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Mede associação linear</h4>
+      <p>Uma relação curvilínea forte pode ter r próximo de zero.</p>
+    </div>
+    <div class="cartao alt-amarelo">
+      <h4>É simétrico</h4>
+      <p>r(X,Y) = r(Y,X) — não diz qual causa qual.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O caso Selic × inadimplência</h2>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  Na base mensal do SGS, a correlação contemporânea é <strong>r ≈ 0,43</strong> com p &lt;
+  0,001: associação moderada e significativa entre juros e inadimplência no mesmo mês.</div>
+  <p class="menor">Mas olhe o gráfico de dispersão: uma nuvem crescente, não uma reta
+  perfeita. E o sinal nada diz sobre direção:</p>
+  <ul>
+    <li>"Selic alta causa inadimplência alta" é uma leitura;</li>
+    <li>"inadimplência alta pressiona o Banco Central a manter juros altos" é outra.</li>
+  </ul>
+  <div class="pergunta">Qual direção vale? Não é o r que responde — é o <strong>desenho da
+  pesquisa</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O extremo fabrica — e sabota — associação</h2>
+  <p>Um único ponto gigante pode inventar ou esconder um r alto. No mundo empresarial os
+  extremos são a regra:</p>
+  <div class="afirmacao">Dados de receita e lucro têm distribuição assimétrica — o r precisa
+  ser olhado junto com o gráfico de dispersão, nunca sozinho.</div>
+  <p>Encaminhamento prático (encontros 9 e 11): <strong>transformar a variável</strong> —
+  log-receita, log-margem — estabiliza a análise e ainda muda a interpretação (elasticidade).
+  Veremos isso na regressão.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A defasagem: o tempo entre causa e efeito</h2>
+  <p>O desenho temporal quase dobrou a força da associação</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Defasagem de 6 meses</h2>
+  <p>A política monetária não age no mesmo mês: juros mais altos hoje pressionam custos
+  financeiros e inadimplência <strong>daqui a alguns meses</strong>. A comparação justa
+  usa a Selic de hoje contra a inadimplência de seis meses à frente:</p>
+  <table>
+    <tr><th>Comparação</th><th>r</th><th>Leitura</th></tr>
+    <tr><td>Contemporânea (mesmo mês)</td><td>≈ 0,43</td>
+        <td>associação moderada</td></tr>
+    <tr><td>Defasada (inad +6 meses)</td><td>≈ 0,77</td>
+        <td>associação forte</td></tr>
+  </table>
+  <p class="menor">Defasagens, recortes e critérios fazem parte de um <strong>modelo</strong> —
+  e a regra de ouro: modelos são decisões do pesquisador, declaradas no relatório.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A matriz de correlação</h2>
+  <p>Várias associações de uma só vez — cada célula guarda um r. Treinar a leitura de
+  sinais com a teoria:</p>
+  <table>
+    <tr><th>Célula da matriz</th><th>Sinal esperado</th><th>Por quê</th></tr>
+    <tr><td>Selic × crescimento do crédito</td><td><strong>negativo</strong> (≈ −0,7)</td>
+        <td>juro caro comprime o crédito</td></tr>
+    <tr><td>Selic × inadimplência (+6m)</td><td><strong>positivo</strong> (≈ 0,8)</td>
+        <td>juros pressionam o tomador</td></tr>
+    <tr><td>IPCA × Selic</td><td>≈ 0</td>
+        <td>efeito defasado — não é "sem relação"</td></tr>
+  </table>
+  <p class="menor">A matriz é o passo inicial de qualquer análise correlacional: antes de
+  qualquer teste, olhar todas as relações ao mesmo tempo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Regressão linear simples</h2>
+  <p>Da medida de alinhamento à reta que prediz</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O modelo</h2>
+  <p style="text-align:center; font-size:3.4vh; margin:1vh 0;">
+    <strong>Y = b₀ + b₁·X + erro</strong>
+  </p>
+  <ul>
+    <li><strong>b₀ (intercepto):</strong> valor previsto de Y quando X = 0;</li>
+    <li><strong>b₁ (inclinação):</strong> variação esperada em Y para cada aumento de uma
+        unidade em X;</li>
+    <li><strong>erro (resíduo):</strong> a parte de Y que a reta não explica.</li>
+  </ul>
+  <p class="menor">A correlação diz <em>quão juntos</em>; a regressão diz <em>quanto</em>.
+  Ela permite prever Y a partir de X — sempre dentro do intervalo observado.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O exemplo CVM: lucro × receita</h2>
+  <p>DRE 2024 (companhias com valores positivos), log nos dois lados —
+  <code>sm.OLS(log_lucro ~ log_receita)</code>:</p>
+  <table>
+    <tr><th>Saída</th><th>Valor</th><th>Interpretação</th></tr>
+    <tr><td>Inclinação b₁</td><td>≈ 0,84</td>
+        <td><strong>elasticidade:</strong> receita 1% maior acompanha lucro ~0,84% maior</td></tr>
+    <tr><td>R²</td><td>≈ 0,57</td>
+        <td>escala explica pouco mais da metade da variação do lucro</td></tr>
+    <tr><td>p(F)</td><td>&lt; 0,001</td>
+        <td>relação estatisticamente significativa</td></tr>
+  </table>
+  <p class="menor">O que falta no R² é tudo o que a reta não captura: eficiência, setor,
+  alavancagem, ciclo — o erro do modelo, que estudaremos em profundidade adiante.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pressupostos e limites</h2>
+  <div class="definicao"><span class="rotulo">Pressupostos a checar</span>
+  Linearidade (no gráfico) e resíduos sem padrão sistemático — o histograma e o teste de
+  <strong>Jarque–Bera</strong> avaliam a normalidade dos resíduos.</div>
+  <div class="exemplo"><span class="rotulo">O que esperar em dados empresariais</span>
+  O JB costuma <strong>rejeitar</strong> a normalidade: lucros e prejuízos extremos nunca
+  entram no sino. É alerta a registrar — não o fim da análise.</div>
+  <ul>
+    <li><strong>R² alto não é causalidade</strong> — e não é explicação;</li>
+    <li><strong>Não extrapolar</strong> a reta para fora do intervalo observado;</li>
+    <li><strong>Correlação não é a mesma coisa que</strong> regressão: a primeira é
+        simétrica, a segunda é preditiva e exige pressupostos.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Correlação e heatmap no SGS · regressão na CVM · o par do seu projeto</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seções 1 e 2 — SGS: do r à matriz (40 min)</h2>
+  <ul>
+    <li>Carregar as séries mensais do SGS (célula de contingência local);</li>
+    <li><code>scipy.stats.pearsonr</code> em Selic × inadimplência + dispersão
+        (r ≈ 0,43);</li>
+    <li>Criar a defasagem <code>inad.shift(-6)</code> e repetir (r ≈ 0,77) — perceba o
+        quase dobro;</li>
+    <li>Montar a <strong>matriz de correlação</strong> e exibi-la como heatmap, lendo
+        cada célula com a teoria.</li>
+  </ul>
+  <div class="pergunta">Anote em uma frase o que cada célula diz — sem a palavra
+  "causa".</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3 — Regressão na CVM (30 min)</h2>
+  <ul>
+    <li>Carregar a DRE 2024 (download ou <code>dados/cvm_dre_2024.csv</code>);</li>
+    <li>Log em receita e lucro (somente companhias positivas);</li>
+    <li>Ajustar <code>sm.OLS(log_lucro ~ log_receita)</code> e ler o <code>summary()</code>;</li>
+    <li>Interpretar b₁ (elasticidade), R² e p(F);</li>
+    <li>Dispersão com a reta ajustada — o desenho que o encontro 10 treinou.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 — Pressupostos (10 min)</h2>
+  <ul>
+    <li>Histograma dos resíduos + teste de <strong>Jarque–Bera</strong>;</li>
+    <li>Resultado esperado: rejeição da normalidade — caudas com lucros/prejuízos extremos;</li>
+    <li>Registrar como <strong>alerta e limitação declarada</strong>, não como fim da
+        análise;</li>
+    <li>Pensar as respostas defensivas possíveis (filtros, transformações, robustez).</li>
+  </ul>
+  <p class="menor">A disciplina que fica: pressuposto avaliado se declara no relatório —
+  "o JB rejeitou a normalidade; utilizado X como medida defensiva".</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Oficina do projeto individual</h2>
+  <p>Duas variáveis quantitativas — e o par que sua hipótese pede</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5 — O par de variáveis do seu projeto (30 min)</h2>
+  <ol>
+    <li>Na base escolhida, identificar um par de variáveis <strong>quantitativas</strong>
+        compatível com a hipótese do projeto;</li>
+    <li>Calcular <strong>r de Pearson</strong> com significância;</li>
+    <li>Se a hipótese pedir previsão, ajustar a regressão e interpretar b₁ e R²;</li>
+    <li>Declarar por escrito: tratamento de extremos (log, recorte), r, coeficientes,
+        R² e limites.</li>
+  </ol>
+  <p class="menor">Quem trabalha com variáveis categóricas (qui-quadrado do encontro 11)
+  também apresenta a média/mediana do indicador por grupo — na prática quase toda base
+  permite.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese do encontro</h2>
+  <ol>
+    <li><strong>Correlação diz alinhamento, não causa:</strong> a direção vem do desenho da
+        pesquisa;</li>
+    <li><strong>A escala importa:</strong> log muda a interpretação para elasticidade e
+        estabiliza a análise de dados empresariais;</li>
+    <li><strong>R² alto não é explicação:</strong> correlacionar é o passo inicial; o erro
+        do modelo é o que a pesquisa segue investigando;</li>
+    <li><strong>Modelo se declara:</strong> defasagem, recorte, transformação e pressupostos
+        avaliados são parte do resultado.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>Revisar:</strong> encontros 9 a 13 — descritivas, gráficos, inferência,
+        correlação e regressão fecham a Unidade III;</li>
+    <li><strong>Próximo encontro (14):</strong> comunicação de resultados e a Avaliação 3 —
+        relatório final + notebook completo + slide único sintético;</li>
+    <li><strong>Projeto:</strong> escrever já o parágrafo de análise correlacional/regressiva
+        com os resultados da aula, se a hipótese envolver relação quantitativa.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> a estatística liga variáveis; o pesquisador declara
+  os critérios dessa ligação — e os limites do que ela pode afirmar.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 | Unidade | III – Análise de dados |
 | Tema | Princípios de construção de tabelas e gráficos; integridade visual; tipos de gráfico e as perguntas que cada um responde; oficina de descritivas e primeiro gráfico do projeto individual |
 | Duração | 4 horas (240 min) |
-| Notebook | `notebooks/encontro-10/encontro10_aluno.ipynb` |
+| Notebook | `notebooks/encontro-10/encontro10.ipynb` |
 | Dados | Séries do SGS/Banco Central (crédito PJ 20543, inadimplência PJ 21086, meta Selic 432); base do projeto individual de cada estudante |
 
 ## 2. Objetivos de aprendizagem

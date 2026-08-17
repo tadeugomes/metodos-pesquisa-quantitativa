@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 10 — Apresentação de dados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 10 · Unidade III</div>
+  <h1>Apresentação de dados</h1>
+  <p class="subtitulo">Tabelas, gráficos e boas práticas de visualização</p>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>15 min</td><td>Retomada: o que as medidas resumem, o que só o gráfico mostra</td></tr>
+    <tr><td>50 min</td><td>O gráfico como argumento; tipos de gráfico; integridade visual</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>70 min</td><td><strong>Prática no Colab:</strong> matplotlib sobre séries do
+        Banco Central</td></tr>
+    <tr><td>75 min</td><td><strong>Oficina do projeto:</strong> limpeza, descritivas e
+        primeiro gráfico da base própria</td></tr>
+    <tr><td>15 min</td><td>Síntese e tarefa</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomada — o quarteto de Anscombe</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Quatro conjuntos de pontos com as <strong>mesmas estatísticas</strong> (média, variância,
+  correlação e reta de regressão coincidentes) e <strong>desenhos radicalmente distintos</strong>.</div>
+  <p>Recupera o que vimos no encontro 9 com um exemplo extremo:</p>
+  <ul>
+    <li><strong>As medidas resumem;</strong></li>
+    <li>A <strong>forma da distribuição</strong> — e a forma da relação — <strong>só o
+        gráfico mostra</strong>.</li>
+  </ul>
+  <div class="pergunta">Um gráfico não é enfeite de relatório — é um <strong>argumento</strong>,
+  e argumentos podem ser honestos ou desonestos.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide divisor">
+  <h2>O gráfico como argumento</h2>
+  <p>A pergunta é quem escolhe o tipo de gráfico</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A pergunta chave</h2>
+  <div class="pergunta">O que você quer que o <strong>leitor veja</strong>?</div>
+  <p>O tipo de gráfico não é gosto — é resposta à pergunta analítica:</p>
+  <table>
+    <tr><th>Pergunta</th><th>Gráfico</th></tr>
+    <tr><td>Comparar categorias</td><td><strong>Barras</strong> (ordenadas pelo valor; horizontais para rótulos longos)</td></tr>
+    <tr><td>Examinar uma distribuição</td><td><strong>Histograma</strong></td></tr>
+    <tr><td>Comparar distribuições entre grupos</td><td><strong>Boxplot</strong></td></tr>
+    <tr><td>Evolução no tempo</td><td><strong>Linhas</strong></td></tr>
+    <tr><td>Relação entre duas quantitativas</td><td><strong>Dispersão</strong></td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Comparar categorias — barras</h2>
+  <ul>
+    <li>Ordenar as barras <strong>pelo valor</strong>, não pela ordem alfabética — o olho lê
+        a ordem;</li>
+    <li><strong>Horizontais</strong> quando os rótulos são longos (nome de setores CNAE,
+        empresas);</li>
+    <li>Eixo y <strong>começa no zero</strong> — o detalhe vira assunto no próximo slide.</li>
+  </ul>
+  <div class="exemplo"><span class="rotulo">No curso</span>
+  Foi seu primeiro gráfico no encontro 1: as dez seções CNAE com mais empresas no Maranhão.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Histograma e boxplot</h2>
+  <div class="definicao"><span class="rotulo">Histograma</span>
+  Examina a <strong>forma da distribuição</strong>. A escolha do número de classes muda o
+  desenho — mostrar o mesmo dado com 5 e com 50 classes revela escolhas, não fatos.</div>
+  <div class="definicao"><span class="rotulo">Boxplot</span>
+  Compara distribuições entre grupos e traduz em desenho as medidas do encontro 9:
+  <strong>mediana, quartis, amplitude interquartílica e pontos atípicos</strong>.</div>
+  <p class="menor">Boxplot saiu no encontro 5 (distribuição do erro amostral) — agora ele
+  vira instrumento da análise.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Linhas e dispersão</h2>
+  <div class="definicao"><span class="rotulo">Linhas</span>
+  Mostra a <strong>evolução no tempo</strong> — com eixos, unidades e a escala avisada
+  quando o recorte for necessário.</div>
+  <div class="definicao"><span class="rotulo">Dispersão</span>
+  Cada ponto é uma <strong>unidade de observação</strong>; a nuvem insinua a pergunta que o
+  encontro 13 responderá com a correlação.</div>
+  <div class="exemplo"><span class="rotulo">No curso</span>
+  Dispersão entre meta Selic e inadimplência PJ — fica a pergunta armada: <em>como medir essa
+  relação?</em></div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A pizza, o contraexemplo</h2>
+  <div class="definicao"><span class="rotulo">Quando funciona</span>
+  No limite: <strong>duas ou três categorias</strong> que somam um todo (uma fatia = 25%, o
+  resto = 75%).</div>
+  <div class="definicao"><span class="rotulo">Quando falha</span>
+  No uso corrente: o olho <strong>compara mal ângulos</strong> — qualquer pizza com muitas
+  fatias ou em 3D vira <strong>ilustração, não evidência</strong>.</div>
+  <p class="menor">Regra prática: se precisa comparar, use barras; se quer um todo, use
+  barras empilhadas ou uma % simples.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Integridade visual — honestidade com o leitor</h2>
+  <div class="definicao"><span class="rotulo">Princípio da proporcionalidade</span>
+  A <strong>área de tinta</strong> deve ser proporcional ao número representado.</div>
+  <ul>
+    <li><strong>Eixo y truncado</strong> infla diferenças pequenas — a manipulação mais
+        comum em relatórios gerenciais e na imprensa;</li>
+    <li>Regra profissional: barras <strong>começam no zero</strong>;</li>
+    <li>Quando o recorte de escala for necessário (séries de linhas, variação pequena),
+        <strong>avisar no próprio gráfico</strong>.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Razão tinta/informação e o gráfico que se sustenta</h2>
+  <div class="definicao"><span class="rotulo">Razão tinta/informação</span>
+  Tudo que não carrega dado — grades pesadas, sombras, 3D, cores decorativas —
+  <strong>compete com o dado</strong>. Simplificar é aumentar a legibilidade.</div>
+  <div class="definicao"><span class="rotulo">O gráfico se sustenta sozinho</span>
+  <strong>Título</strong> que afirma o que se vê, <strong>eixos com unidades</strong>,
+  <strong>fonte</strong> dos dados.</div>
+  <div class="exemplo"><span class="rotulo">Teste rápido</span>
+  Um gráfico colado fora do texto continua sendo compreensível? Se não, ele não é um
+  gráfico — é um enfeite.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Normas de tabelas — e a decisão tabela × gráfico</h2>
+  <table>
+    <tr><th>Item</th><th>Regra</th></tr>
+    <tr><td>Título</td><td>Completo: <strong>o quê, onde, quando</strong></td></tr>
+    <tr><td>Unidades</td><td>No cabeçalho das colunas</td></tr>
+    <tr><td>Fonte</td><td>No rodapé da tabela</td></tr>
+    <tr><td>Números</td><td>Alinhados à direita, <strong>mesmo número de decimais</strong></td></tr>
+    <tr><td>Decisão</td><td>Tabela quando o leitor precisa dos <strong>valores exatos</strong>;
+        gráfico quando precisa da <strong>comparação</strong></td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Gráficos com matplotlib sobre séries do Banco Central — abra o notebook do encontro</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As séries de hoje (Já conhecidas do encontro 4)</h2>
+  <table>
+    <tr><th>Série</th><th>Código SGS</th><th>Gráfico</th></tr>
+    <tr><td>Saldo de crédito a PJ (R$ mi)</td><td>20543</td><td>linhas</td></tr>
+    <tr><td>Inadimplência da carteira PJ (%)</td><td>21086</td><td>histograma · boxplot · barras</td></tr>
+    <tr><td>Meta Selic (% a.a.)</td><td>432</td><td>dispersão (× inadimplência)</td></tr>
+  </table>
+  <ul>
+    <li>Baixadas com <code>python-bcb</code>, <strong>desde 2018</strong>, reamostradas para
+        mensal;</li>
+    <li>Contingência local: <code>dados/bcb_series_contexto.csv</code>.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seções 1 a 3 — o repertório na prática</h2>
+  <table>
+    <tr><th>Seção</th><th>O que faz</th><th>Ponto de discussão</th></tr>
+    <tr><td>1 · Linhas (15 min)</td><td>Gráfico do crédito PJ com os quatro elementos
+        obrigatórios</td><td>Juntar escalas diferentes no mesmo eixo <strong>engana</strong></td></tr>
+    <tr><td>2 · Formas (25 min)</td><td>Histograma, boxplot por ano e barras da inadimplência</td>
+        <td>Classes mudam o desenho; o boxplot esconde o que a barra mostra</td></tr>
+    <tr><td>3 · Dispersão (10 min)</td><td>Selic × inadimplência no mês</td>
+        <td>Defasagem conceitual: juros de hoje afetam inadimplência de amanhã</td></tr>
+  </table>
+  <p class="menor">Na Seção 1, a célula do professor mostra a segunda série em
+  <strong>eixo secundário</strong> — precisamente para discutir por que isso engana.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 — Conserte este gráfico (20 min)</h2>
+  <p>O notebook entrega <strong>dois gráficos deliberadamente ruins</strong> sobre os mesmos
+  dados:</p>
+  <ol>
+    <li><strong>Barras da inadimplência anual com eixo y truncado em 3,4%</strong> —
+        diferenças infladas;</li>
+    <li><strong>Pizza de participação setorial com dez fatias</strong> — ilegível.</li>
+  </ol>
+  <p>Seu trabalho: refazer <strong>corrigidos</strong> e responder por escrito <strong>o que
+  cada versão ruim induzia o leitor a concluir</strong>.</p>
+  <p class="menor">Erros esperados e produtivos: esquecer <code>plt.ylim(0, ...)</code> ou
+  não reordenar as barras — ambos viram discussão de revisão.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Oficina do projeto individual</h2>
+  <p>Limpeza, descritivas e o primeiro gráfico da base própria</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O roteiro-checklist da oficina (75 min)</h2>
+  <ol>
+    <li>Carregar a <strong>base do projeto</strong> (API ou CSV de contingência);</li>
+    <li>Verificar <strong>tipos, dimensões e valores ausentes</strong>;</li>
+    <li>Produzir a <strong>tabela de descritivas</strong> das variáveis centrais (encontro 9);</li>
+    <li>Construir <strong>um gráfico</strong> que responda à pergunta descritiva mais
+        importante do projeto — com título, unidades e fonte;</li>
+    <li>Registrar por escrito <strong>o que o gráfico mostra e o que ainda não permite
+        afirmar</strong>.</li>
+  </ol>
+  <p class="menor">Base atrasada? Use a oficina para resolver a carga; o professor prioriza
+  quem travou no acesso a dados. Ao final, dois ou três estudantes projetam o gráfico para
+  <strong>comentário coletivo de integridade visual</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese do encontro</h2>
+  <ol>
+    <li>O tipo de gráfico <strong>se escolhe pela pergunta</strong>, não pelo gosto;</li>
+    <li><strong>Integridade visual é honestidade</strong> com o leitor: barras do zero,
+        escala avisada, tinta a serviço do dado;</li>
+    <li><strong>Tabela</strong> para valores exatos; <strong>gráfico</strong> para
+        comparação;</li>
+    <li>Todo gráfico se sustenta sozinho: <strong>título, unidades, fonte</strong>.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>Revisar:</strong> média e desvio padrão (encontro 9) — a inferência
+        estatística se constrói sobre eles;</li>
+    <li><strong>Encontro 11:</strong> distribuição normal, intervalos de confiança e testes
+        de hipóteses;</li>
+    <li><strong>Projeto:</strong> avançar descritivas e gráficos da base — insumo direto do
+        relatório final.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> um bom gráfico responde a uma pergunta honestamente —
+  e esse é o padrão que o seu relatório final vai cobrar.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

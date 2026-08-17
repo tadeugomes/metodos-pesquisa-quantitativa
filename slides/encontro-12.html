@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 12 — Avaliação 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 12 · Unidade III</div>
+  <h1>Avaliação 2</h1>
+  <p class="subtitulo">Prática individual no Colab — descritivas, gráficos e inferência</p>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A avaliação de hoje</h2>
+  <div class="afirmacao">Uma atividade prática individual, no Colab, com um banco de dados
+  empresarial preparado pelo professor (CVM e IBGE) e um roteiro de questões de pesquisa.</div>
+  <ul>
+    <li><strong>O que cobre:</strong> encontros 9, 10 e 11 — descritivas, gráficos,
+        intervalo de confiança, teste t e qui-quadrado;</li>
+    <li><strong>O que você entrega:</strong> o notebook <strong>com as respostas escritas</strong>
+        dentro das células de texto — comentar é parte da nota;</li>
+    <li><strong>Como é corrigida:</strong> 100 pontos em quatro tarefas.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Regras da prova</h2>
+  <table>
+    <tr><th>Item</th><th>Regra</th></tr>
+    <tr><td>Duração</td><td>150 minutos, iniciados agora</td></tr>
+    <tr><td>Consulta</td><td>ao material da disciplina — permitida</td></tr>
+    <tr><td>Colegas</td><td>comunicação — não permitida</td></tr>
+    <tr><td>Entrega</td><td>link do Colab compartilhado (edição), ainda em aula</td></tr>
+    <tr><td>Verificação</td><td>todas as células executadas com resultado visível</td></tr>
+  </table>
+  <p class="menor">Antes de começar: preencha <strong>nome e matrícula</strong> na célula
+  indicada e execute as células de preparação.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O roteiro da prova</h2>
+  <table>
+    <tr><th>Tarefa</th><th>Conteúdo</th><th>Pontos</th></tr>
+    <tr><td>1</td><td>Estatística descritiva da receita por setor; média × mediana; CV</td>
+        <td>20</td></tr>
+    <tr><td>2</td><td>Gráficos: boxplot da margem, histograma do log-receita</td>
+        <td>25</td></tr>
+    <tr><td>3</td><td>Inferência: IC 95% da margem (Energia); teste t Comércio × Construção</td>
+        <td>30</td></tr>
+    <tr><td>4</td><td>Qui-quadrado: porte × sobrevivência de empresas (CEMPRE)</td>
+        <td>25</td></tr>
+  </table>
+  <p class="menor">As respostas finais de cada tarefa <strong>devem estar escritas no
+  notebook</strong> — interpretar o resultado é metade dos pontos.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Tarefa 1 — Descritivas (20)</h2>
+  <p>Resumir a receita por setor e decidir com critério</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Tarefa 1 — o que é avaliado</h2>
+  <ol>
+    <li>Complete a função <code>descritivas</code>: média, mediana, desvio (ddof=1) e CV;</li>
+    <li>Monte a tabela por setor na escala de R$ milhões;</li>
+    <li>Responda: onde média e mediana divergem mais? Usa média ou mediana para a receita
+        "típica"? Qual setor tem o CV maior?</li>
+  </ol>
+  <div class="pergunta">Lembrete do encontro 9: com gigantes na amostra, a média viaja — a
+  mediana fica. Justifique cada escolha.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Tarefa 2 — Gráficos (25)</h2>
+  <p>Boxplot da margem e histograma do log</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Tarefa 2 — o que é avaliado</h2>
+  <ol>
+    <li>Boxplot da margem por setor (título, rótulos, ylim [−1,5; 1,5]);</li>
+    <li>Histograma do log-receita do escopo (bins, títulos, rótulos);</li>
+    <li>Responda: o que o boxplot mostra sobre os extremos? Por que o log "normaliza" a
+        receita? Que escala apresentar no relatório?</li>
+  </ol>
+  <p class="menor">Boas práticas do encontro 10 valem ponto: título descritivo, eixos
+  rotulados, escolha consciente de escala.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Tarefa 3 — Inferência (30)</h2>
+  <p>IC de 95% e teste t de Student</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Tarefa 3 — o que é avaliado</h2>
+  <ol>
+    <li><strong>IC 95% (a):</strong> passo a passo e via <code>scipy.stats.t.interval</code>
+        para a margem de Energia Elétrica;</li>
+    <li><strong>Interpretação (b):</strong> o intervalo contém o zero? O que "95% de
+        confiança" <em>realmente</em> significa;</li>
+    <li><strong>Teste t (c):</strong> Comércio × Construção no log-receita — H0/H1, p-valor
+        e decisão com α = 0,05;</li>
+    <li><strong>Réguas (d):</strong> por que o teste bruto enganaria; e "não rejeitar H0" ≠
+        "provar H0".</li>
+  </ol>
+  <p class="menor">Esta é a tarefa que testa o vocabulário do encontro 11 — escreva as
+  conclusões completas.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Tarefa 4 — Qui-quadrado (25)</h2>
+  <p>Porte × sobrevivência de empresas no CEMPRE</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Tarefa 4 — o que é avaliado</h2>
+  <ol>
+    <li>Monte a tabela de contingência sobreviventes × não sobreviventes por faixa de
+        pessoal (ano mais recente);</li>
+    <li>Rode <code>scipy.stats.chi2_contingency</code>;</li>
+    <li>Responda: χ², graus de liberdade, p-valor; conclusão com α = 0,05;</li>
+    <li>Declare a <strong>limitação</strong>: dados agregados por faixa — o teste fala de
+        associação, não de causalidade.</li>
+  </ol>
+  <p class="menor">Desconto grande para quem escrever "porte causa sobrevivência" sem a
+  ressalva de dados agregados.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Antes de entregar</h2>
+  <ol>
+    <li><strong>Ambiente de execução → Reiniciar e executar tudo</strong> — nada pode
+        quebrar;</li>
+    <li>Conferir as quatro tarefas: células completadas <strong>e</strong> respostas de
+        texto escritas;</li>
+    <li>Salvar e compartilhar o link com permissão de edição;</li>
+    <li>Levantar: cada resposta interpretada vale metade dos pontos.</li>
+  </ol>
+  <p><strong>Boa avaliação.</strong> O método está nos encontros — execute, comente,
+  releia os gabaritos conceituais antes de declarar cada conclusão.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Depois da prova</h2>
+  <ul>
+    <li><strong>Entrega:</strong> valor da Avaliação 2 entra na composição da nota
+        semestral, junto das Atividades 1 e 3 e da prova final;</li>
+    <li><strong>Próximo encontro (13):</strong> correlação de Pearson e regressão linear
+        simples — dados de SGS e CVM;</li>
+    <li><strong>Projeto:</strong> quem não aplicou ainda inferência sobre a base própria
+        pode usar os resultados de hoje como repertório.</li>
+  </ul>
+  <p class="menor">Avaliação 2 encerra o ciclo prático da Unidade III — do dado bruto à
+  decisão inferencial com medida de incerteza.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

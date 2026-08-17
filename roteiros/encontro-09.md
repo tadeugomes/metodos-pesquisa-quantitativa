@@ -7,7 +7,7 @@
 | Unidade | III – Análise de dados |
 | Tema | Medidas de tendência central (média, mediana, moda), medidas de dispersão (amplitude, variância, desvio padrão, coeficiente de variação) e distribuições de frequência |
 | Duração | 4 horas (240 min) |
-| Notebook | `notebooks/encontro-09/encontro09_aluno.ipynb` |
+| Notebook | `notebooks/encontro-09/encontro09.ipynb` |
 | Dados | Demonstrações financeiras de companhias abertas (CVM, DFP 2024): receita, margem líquida e endividamento por setor |
 
 ## 2. Objetivos de aprendizagem

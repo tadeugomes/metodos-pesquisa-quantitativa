@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 14 — Interpretação e comunicação de resultados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 14 · Unidade IV</div>
+  <h1>Comunicação de resultados</h1>
+  <p class="subtitulo">Estrutura do relatório, escrita científica e notebook reprodutível</p>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>15 min</td><td>Retomada: do problema à análise — hoje fechamos com a comunicação</td></tr>
+    <tr><td>70 min</td><td>Estrutura do relatório · escrita científica · notebook reprodutível · slide único</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>60 min</td><td><strong>Oficina de redação:</strong> aplicar a estrutura ao seu projeto</td></tr>
+    <tr><td>60 min</td><td><strong>Apresentações sintéticas</strong> (3–5 min cada)</td></tr>
+    <tr><td>20 min</td><td>Síntese e encerramento da Avaliação 3</td></tr>
+  </table>
+  <p class="menor">Avaliação 3 se entrega hoje: relatório final + notebook completo + slide único.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A estrutura do relatório</h2>
+  <p>Cada seção responde a uma etapa do método</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A anatomia do relatório</h2>
+  <table>
+    <tr><th>Seção</th><th>O que responde</th><th>Encontro base</th></tr>
+    <tr><td>Introdução</td><td>contexto, problema, justificativa, objetivos</td><td>3</td></tr>
+    <tr><td>Problema e hipóteses</td><td>o que nomeia o estudo, H1 testável</td><td>3, 11</td></tr>
+    <tr><td>Método</td><td>delineamento, amostra, instrumentos, fontes, matriz de amarração</td><td>4, 5, 6, 7, 8</td></tr>
+    <tr><td>Resultados</td><td>descritivas, gráficos e testes em ordem de hipóteses</td><td>9–13</td></tr>
+    <tr><td>Discussão</td><td>o que os resultados respondem, conexões e contexto</td><td>4</td></tr>
+    <tr><td>Conclusão</td><td>síntese, limitações, agenda</td><td>—</td></tr>
+  </table>
+  <p class="menor">Nenhuma tabela ou gráfico entra sem referência no texto — e toda afirmação de resultado aponta para uma etapa do método.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A escrita científica</h2>
+  <p>Precisão sobre adjetivação</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Do dado à frase</h2>
+  <div class="exemplo"><span class="rotulo">Afirmação estatística</span>
+  "Observamos associação significativa entre Selic e inadimplência defasada (r = 0,77; p &lt;
+  0,001)."</div>
+  <div class="afirmacao">Inferência causal não sustentada pelo teste</div>
+  <div class="exemplo"><span class="rotulo">Frágil</span>
+  "A inadimplência aumenta porque os juros sobem." <span class="rotulo">Precisa</span>
+  "Há associação temporal entre a Selic e a inadimplência seis meses à frente; a direção
+  causal não é testada neste delineamento."</div>
+  <p class="menor">Vocabulário herdado dos encontros 11 e 13: IC de 95%, rejeita/não rejeita
+  H0, elasticidade, associação ≠ causalidade.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Erros clássicos a desmontar</h2>
+  <ol>
+    <li><strong>Reportar r sem p</strong> (ou o teste sem a hipótese);</li>
+    <li>Dizer que "a média é diferente" <strong>sem teste</strong> — diferente estatisticamente, ou só diferente na amostra?</li>
+    <li><strong>Extrapolar</strong> para fora do suporte dos dados;</li>
+    <li><strong>Esconder decisões de tratamento:</strong> extremos, transformações, recortes —
+        decisões se declaram;</li>
+    <li>Números com <strong>unidades e casas inconsistentes</strong>; gráfico ilegível no
+        preto e branco.</li>
+  </ol>
+  <div class="pergunta">Onde você, neste semestre, cometeu ou viu algum desses? Esse é o
+  tipo de item que separa o relatório do achismo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide divisor">
+  <h2>O notebook reprodutível</h2>
+  <p>Método e produto ao mesmo tempo</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Regras de ouro da entrega</h2>
+  <ul>
+    <li><strong>Reiniciar e executar tudo</strong> — nada pode quebrar;</li>
+    <li><strong>Células de markdown numeradas</strong> que narram: pergunta → dados →
+        análise → conclusão;</li>
+    <li><strong>Comentários que explicam o "porquê"</strong>, não o "o quê";</li>
+    <li><strong>Tabelas e gráficos numerados</strong> com título;</li>
+    <li>Todo passo reproduzível por outro pesquisador — <strong>reprodutibilidade é
+        método</strong>.</li>
+  </ul>
+  <div class="exemplo"><span class="rotulo">Padrão de célula</span>
+  Texto com a pergunta → código comentado dos passos → prosa final com a resposta.
+  Quem lê o notebook entende <strong>o que foi decidido e por quê</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O slide único (3–5 min)</h2>
+  <ol>
+    <li><strong>Problema</strong> em uma linha;</li>
+    <li><strong>Método</strong> em três marcadores (delineamento, dados, técnicas);</li>
+    <li><strong>Achados</strong> em dois ou três números;</li>
+    <li><strong>Limitação</strong> em uma linha.</li>
+  </ol>
+  <p class="menor">O slide é apoiador da fala, não a fala inteira. Critérios: hierarquia
+  visual, números grandes, um gráfico apenas se for o mais importante, fonte legível à
+  distância.</p>
+  <div class="pergunta">Quem lê o slide não está apresentando — o slide organiza, a fala
+  comunica.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>Oficina de redação e apresentações</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Oficina de redação (60 min)</h2>
+  <ol>
+    <li>Pegue o checklist do notebook do encontro — uma célula por seção do relatório;</li>
+    <li>Preencha com a <strong>sua</strong> base: problema, hipóteses, método, resultados,
+        discussão;</li>
+    <li>Confira a <strong>amarração</strong>: cada hipótese da introdução tem um resultado
+        correspondente?</li>
+    <li>Revise a <strong>linguagem</strong>: onde escrevi "causa" ou "diferente" sem teste,
+        reformulo com o vocabulário dos encontros 11 e 13;</li>
+    <li>Monte o <strong>slide único</strong> e ensaie a fala de 3–5 minutos.</li>
+  </ol>
+  <p class="menor">O professor circula validando coerência de método e precisão estatística
+  da redação.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Apresentações (60 min)</h2>
+  <ul>
+    <li>3–5 minutos por estudante, um slide, cronometrado;</li>
+    <li><strong>Feedback do público:</strong> o que cada um entendeu como problema, método e
+        achado?</li>
+    <li><strong>Feedback do professor:</strong> o slide comunica em uma passada, ou exige a
+        fala para compensar?</li>
+    <li>Objetividade e tempo contam — ensaiar fora da sala vale nota.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese do encontro</h2>
+  <ol>
+    <li><strong>Comunicar é decisão metodológica:</strong> estrutura, vocabulário e
+        reprodutibilidade valem nota;</li>
+    <li><strong>Afirmação estatística ≠ inferência causal:</strong> o relatório diz o que
+        os dados permitem — e declara o que não permitem;</li>
+    <li><strong>O notebook é método e produto:</strong> cada célula documenta uma decisão;</li>
+    <li><strong>Slide único = disciplina de síntese:</strong> problema, método, achados,
+        limitação.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para a prova final (encontro 15)</h2>
+  <ul>
+    <li><strong>Revisar encontros 1 a 13</strong> — em especial Unidade I (tipos de pesquisa,
+        variáveis, hipóteses) e Unidade II (amostragem, instrumentos, ética);</li>
+    <li><strong>Refazer as atividades práticas</strong> dos encontros 5, 8, 11 e 12 como
+        simulado — são o padrão do componente prático;</li>
+    <li><strong>Prova final:</strong> todo o conteúdo, componentes conceitual e prático em
+        notebook.</li>
+  </ul>
+  <p><strong>Entrega de hoje:</strong> notebook completo, relatório e slide único,
+  compartilhados ou entregues conforme o meio definido pela coordenação.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>

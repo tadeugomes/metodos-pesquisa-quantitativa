@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 11 — Inferência estatística</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ufma-slides.css">
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="marcador-encontro">Encontro 11 · Unidade III</div>
+  <h1>Inferência estatística</h1>
+  <p class="subtitulo">Intervalo de confiança e testes de hipóteses</p>
+  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
+  <div class="bloco-institucional">
+    <img src="assets/logo-ufma.png" alt="UFMA">
+    <div class="instituicao">
+      <strong>UNIVERSIDADE FEDERAL DO MARANHÃO</strong><br>
+      Centro de Ciências Sociais · Curso de Administração<br>
+      SEMPRE+ QUALIDADE · INOVAÇÃO · INCLUSÃO
+    </div>
+  </div>
+  <div class="filete-capa"></div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que vamos fazer hoje</h2>
+  <table>
+    <tr><th>Bloco</th><th>Atividade</th></tr>
+    <tr><td>15 min</td><td>Retomada: do desvio padrão (encontro 9) à incerteza da estimativa</td></tr>
+    <tr><td>85 min</td><td>Normal e TCL · intervalos de confiança · lógica dos testes de hipóteses</td></tr>
+    <tr><td>15 min</td><td>Intervalo</td></tr>
+    <tr><td>85 min</td><td><strong>Prática no Colab:</strong> TCL simulado; IC e teste t na CVM; qui-quadrado no CEMPRE</td></tr>
+    <tr><td>30 min</td><td><strong>Oficina:</strong> a hipótese do seu projeto em forma de teste</td></tr>
+    <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
+  </table>
+  <p class="menor">A passagem que completa a Unidade III: de <em>descrever</em> o que temos
+  para <strong>inferir</strong> sobre o que não observamos — com medida explícita de
+  incerteza.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomada — o encontro 5 tinha nome de inferência</h2>
+  <div class="afirmacao">No encontro 5 usamos o <strong>z de 95%</strong> para calcular o
+  tamanho da amostra. Aquilo era inferência estatística — sem o nome.</div>
+  <ul>
+    <li><strong>Encontro 9:</strong> aprendemos a resumir uma amostra com medidas;</li>
+    <li><strong>Pergunta de hoje:</strong> quanto essas medidas se aproximam do valor
+        verdadeiro da população?</li>
+    <li><strong>A resposta:</strong> a inferência vem com medida explícita de incerteza —
+        o intervalo de confiança e o teste de hipóteses.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A distribuição normal e o TCL</h2>
+  <p>O sino não é propriedade dos dados — é propriedade das médias amostrais</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A distribuição normal</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  O ideal simétrico em forma de sino: cerca de <strong>68%</strong> dos valores a um desvio
+  padrão da média, <strong>95%</strong> a dois, praticamente tudo a três.</div>
+  <div class="cartoes">
+    <div class="cartao alt-dourado">
+      <h4>Os dados não precisam ser normais</h4>
+      <p>Dados empresariais costumam ser tudo menos normais: receitas assimétricas, margens
+      com extremos.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>O TCL resolve o paradoxo</h4>
+      <p>A normal aparece nas <strong>médias das amostras</strong>, não nos dados
+      brutos.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O teorema central do limite (TCL)</h2>
+  <div class="definicao"><span class="rotulo">Definição</span>
+  As <strong>médias de amostras repetidas</strong> retiradas de uma população qualquer
+  tendem à distribuição normal à medida que o <strong>tamanho da amostra cresce</strong> —
+  mesmo que a população seja assimétrica.</div>
+  <p>É o resultado mais importante de toda a inferência. Três ideias se encontram:</p>
+  <p style="font-size:3vh; text-align:center; margin:2vh 0;">
+    <strong>amostra sorteada</strong> (enc. 5) → <strong>medidas resumidas</strong> (enc. 9)
+    → <strong>flutuação conhecida</strong> (TCL)
+  </p>
+  <p class="menor">É ele que justifica o z de 95% do encontro 5: a margem de erro vem da
+  distribuição das médias.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Estimação por ponto e por intervalo</h2>
+  <p>Um número só é um chute sem régua — o intervalo dá a régua</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Estimador por ponto × intervalo de confiança</h2>
+  <div class="definicao"><span class="rotulo">Estimador por ponto</span>
+  Um único número que chuta o parâmetro populacional (ex.: a média da amostra). O problema:
+  não sabemos <strong>quão perto</strong> acertamos.</div>
+  <div class="definicao"><span class="rotulo">Intervalo de confiança</span>
+  A estimativa ± uma <strong>margem de erro</strong>, que combina a variabilidade dos dados
+  (desvio padrão), o tamanho da amostra e o nível de confiança.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A leitura correta do 95%</h2>
+  <div class="definicao"><span class="rotulo">Certo</span>
+  Repetindo o experimento em muitas amostras, o intervalo construído assim captura o
+  parâmetro verdadeiro em <strong>95% dos casos</strong> — a propriedade é do método.</div>
+  <div class="exemplo"><span class="rotulo">Errado (e muito comum)</span>
+  "Há 95% de chance de o parâmetro estar <em>neste</em> intervalo específico." O intervalo
+  sorteado <strong>ou contém</strong> o parâmetro <strong>ou não contém</strong> — a
+  probabilidade não é do intervalo particular.</div>
+  <p class="menor">Conexão com o encontro 5: o n que a tabela pedia é o que controla a
+  largura do intervalo — apertar a margem de 5% para 2% multiplica o n por ~6.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide divisor">
+  <h2>A lógica dos testes de hipóteses</h2>
+  <p>Quão surpreendente seriam os dados, se H0 fosse verdadeira?</p>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>H0, H1 e a pergunta do valor-p</h2>
+  <div class="definicao"><span class="rotulo">Hipótese nula (H0)</span>
+  A posição conservadora: geralmente "não há diferença" ou "não há associação".</div>
+  <div class="definicao"><span class="rotulo">Hipótese alternativa (H1)</span>
+  O que a pesquisa suspeita — a hipótese do seu projeto vira H1.</div>
+  <div class="definicao"><span class="rotulo">Valor-p</span>
+  A probabilidade de obter, por acaso, um resultado <strong>tão extremo quanto o observado
+  (ou mais)</strong>, supondo H0 verdadeira.</div>
+  <p class="menor">O valor-p é uma pergunta <strong>sobre os dados sob H0</strong> — não
+  sobre "a verdade do mundo".</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A regra de decisão</h2>
+  <table>
+    <tr><th>Se o valor-p…</th><th>Decisão</th></tr>
+    <tr><td>&lt; α (nível de significância, convencionalmente <strong>5%</strong>)</td>
+        <td><strong>Rejeita H0</strong> — os dados falam contra a posição conservadora</td></tr>
+    <tr><td>≥ α</td><td><strong>Não rejeita H0</strong> — não há evidência contra</td></tr>
+  </table>
+  <h3>Três armadilhas a desmontar</h3>
+  <ol>
+    <li><strong>p pequeno ≠ efeito grande:</strong> significância estatística ≠ importância
+        gerencial;</li>
+    <li><strong>"Não rejeitar" ≠ "provar" H0:</strong> é não ter evidência contra;</li>
+    <li><strong>p depende de n:</strong> amostras enormes rejeitam diferenças minúsculas e
+        irrelevantes.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O teste é o elo com o seu projeto</h2>
+  <div class="afirmacao">A hipótese de pesquisa do seu projeto (encontro 3) vira a
+  <strong>H1</strong> — e é testada contra a H0 de "não há efeito".</div>
+  <table>
+    <tr><th>Se a H1 envolve…</th><th>O teste é…</th></tr>
+    <tr><td>Comparar dois grupos (média)</td><td>t de Student</td></tr>
+    <tr><td>Associação entre categóricas</td><td>qui-quadrado</td></tr>
+    <tr><td>Associação entre quantitativas</td><td>correlação / regressão (encontro 13)</td></tr>
+    <tr><td>Uma proporção</td><td>IC de proporção</td></tr>
+  </table>
+  <p class="menor">Toda inferência descansa em três pressupostos encadeados: amostra
+  sorteada ao acaso, medidas honestas e dados compatíveis com o teste.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Mão na massa</h2>
+  <p>TCL simulado · IC e teste t na CVM · qui-quadrado no CEMPRE — abra o notebook do encontro</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 1 — Ver o TCL acontecer (15 min)</h2>
+  <ul>
+    <li>Gerar uma população lognormal de 200 mil valores — <strong>assimetria severa</strong>,
+        como receitas;</li>
+    <li>Sortear milhares de amostras de tamanhos <strong>5, 30 e 100</strong> e guardar a
+        média de cada uma;</li>
+    <li>Sobrepor os histogramas das médias: com n = 5 ainda enviesadas; com n = 30 o sino;
+        com n = 100, nítido.</li>
+  </ul>
+  <div class="pergunta">A assimetria que desaparece é a mesma que o encontro 5 operava:
+  sortear empresas, estimar proporções, usar o z de 95%.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 2 — IC na base CVM (25 min)</h2>
+  <ul>
+    <li>Carregar a DRE 2024 e construir <strong>margem líquida</strong> e
+        <strong>log-receita</strong>;</li>
+    <li>IC de 95% para a média da margem de <strong>Energia Elétrica</strong> com
+        <code>scipy.stats.t.interval</code>;</li>
+    <li>O passo a passo mostra de onde sai cada termo: <code>estimativa ± t × desvio /
+        √n</code>;</li>
+    <li>O intervalo sai <strong>largo</strong> — a assinatura dos extremos da margem. A
+        resposta prática é a do encontro 9: mediana e transformação.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3 — Teste t: o par que ensina (25 min)</h2>
+  <p><strong>Pergunta:</strong> a receita de <strong>Comércio</strong> difere da de
+  <strong>Construção Civil</strong>?</p>
+  <table>
+    <tr><th>Variável</th><th>Resultado</th><th>Lição</th></tr>
+    <tr><td>Receita bruta</td><td>p &gt; 0,05 — <strong>não rejeita H0</strong></td>
+        <td>Gigantes arrastam médias e variância</td></tr>
+    <tr><td>Log-receita</td><td>p &lt; 0,001 — <strong>rejeita H0</strong></td>
+        <td>A escala devolve ao teste o que ele precisa</td></tr>
+  </table>
+  <p class="menor">Mesmos dados, duas conclusões opostas — e o notebook mostra por quê:
+  transformar a variável é ofício do pesquisador de dados de negócios.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 — Qui-quadrado: porte × sobrevivência (20 min)</h2>
+  <ul>
+    <li>Dados da demografia empresarial (SIDRA 9949): nascimentos e taxa de sobrevivência de
+        1 ano por <strong>faixa de pessoal</strong>;</li>
+    <li>Tabela de contingência: sobreviveram × não sobreviveram por faixa;</li>
+    <li><code>scipy.stats.chi2_contingency</code> — associação fortemente significativa
+        (p &lt; 0,001);</li>
+    <li>É o teste formal do que o encontro 2 mostrou em tabelas: empresas maiores
+        sobrevivem mais.</li>
+  </ul>
+  <p class="menor">Cuidados: dados agregados por faixa (não é o rastro de cada empresa) —
+  e significância não é magnitude, nem causalidade.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide divisor">
+  <h2>Oficina do projeto individual</h2>
+  <p>A sua hipótese em forma de teste</p>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5 — A hipótese do seu projeto (30 min)</h2>
+  <ol>
+    <li>Escreva a <strong>hipótese de pesquisa</strong> (vira H1);</li>
+    <li>Formule a <strong>H0</strong> correspondente;</li>
+    <li>Identifique <strong>qual teste</strong> da disciplina o par exigiria (t, qui-quadrado,
+        correlação);</li>
+    <li>Confira: a <strong>base escolhida</strong> tem as variáveis para executá-lo?</li>
+  </ol>
+  <p class="menor">O professor circula verificando se a H1 anunciada no semestre é
+  testável — variáveis certas, níveis compatíveis, base suficiente.</p>
+  <div class="pergunta">Se a base ainda não permite o teste, registrar por escrito "o que
+  seria necessário" é disciplina de pesquisador.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese do encontro</h2>
+  <ol>
+    <li><strong>Inferir é apostar com cinto de segurança:</strong> a estimativa pontual vem
+        sempre acompanhada da medida de incerteza;</li>
+    <li><strong>O valor-p é uma pergunta sobre os dados, não sobre o mundo:</strong>
+        "quão surpreendente seria, se H0 fosse verdadeira?";</li>
+    <li><strong>Pressupostos não são detalhe:</strong> extremos destroem o teste t — e a
+        resposta prática em dados de negócios é transformar a variável e reportar
+        medianas;</li>
+    <li><strong>Toda decisão se declara:</strong> H0, H1, teste, valor-p, α, limitações.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Para estudar em casa · antes de sair</h2>
+  <ul>
+    <li><strong>Revisar:</strong> encontros 9, 10 e 11 — descritivas, gráficos e testes são
+        exatamente o que a Avaliação 2 vai cobrar;</li>
+    <li><strong>Próximo encontro (12):</strong> Avaliação 2 — atividade prática no Colab
+        sobre um banco preparado pelo professor (CVM ou IBGE);</li>
+    <li><strong>Projeto:</strong> definir no papel o teste que a sua hipótese exigirá — e
+        anotar as variáveis da base que o permitem.</li>
+  </ul>
+  <p><strong>Síntese do dia:</strong> descrever é necessário, inferir é decidir — e decidir
+  com incerteza medida é o que separa o relatório do achismo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<script src="ufma-slides.js"></script>
+</body>
+</html>
