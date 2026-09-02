@@ -41,6 +41,20 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, vocês deverão ser capazes de:</p>
+  <ol>
+    <li><strong>Distinguir</strong> conhecimento científico de senso comum em afirmações sobre gestão e negócios;</li>
+    <li><strong>Enunciar</strong> as características definidoras da pesquisa quantitativa (mensuração, sistematização, generalização, estatística);</li>
+    <li><strong>Reconhecer</strong> perguntas de pesquisa que pedem abordagem quantitativa;</li>
+    <li><strong>Criar, editar e executar</strong> células de texto e de código em um notebook no Google Colab;</li>
+    <li><strong>Executar</strong> um primeiro script de leitura e visualização de dados reais do CEMPRE/IBGE.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O contrato da disciplina</h2>
@@ -91,6 +105,10 @@
   <div class="afirmacao">"Funcionário feliz produz mais."</div>
   <div class="afirmacao">"Propaganda em rede social aumenta as vendas."</div>
   <div class="pergunta">Como saberíamos se cada uma é <strong>verdadeira</strong>?</div>
+  <div class="instrucao"><span class="rotulo">Discussão · 10 min</span>
+  Em duplas, escolham uma afirmação e respondam: vocês acreditam nela? Por quê? O que
+  precisaria acontecer para vocês mudarem de ideia? Depois, cada dupla apresenta em voz alta e
+  registramos no quadro <strong>de onde veio</strong> cada resposta (experiência, autoridade, repetição, dados).</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
 
@@ -317,17 +335,33 @@
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exercício oral: quanti ou quali?</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer · 10 min</span>
+  Vou ler oito perguntas de pesquisa, uma a uma. A turma responde <strong>em coro</strong>:
+  quanti ou quali? Em seguida, alguém justifica: o que na pergunta pede medição, e o que pede
+  aprofundamento? Algumas são ambíguas de propósito.</div>
   <ul>
     <li>"Qual o perfil dos consumidores de delivery em São Luís?"</li>
     <li>"Por que consumidores abandonam o carrinho de compras?"</li>
     <li>"O porte da empresa está associado à adoção de comércio eletrônico?"</li>
     <li>"Como os feirantes do Mercado Central percebem a concorrência dos aplicativos?"</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício oral: quanti ou quali? (continuação)</h2>
+  <ul>
     <li>"A satisfação dos clientes difere entre as filiais da rede?"</li>
+    <li>"Qual a taxa de sobrevivência das empresas maranhenses após cinco anos?"</li>
+    <li>"Como os funcionários interpretam a nova política de trabalho remoto?"</li>
+    <li>"Clientes que recebem cupom voltam a comprar com mais frequência?"</li>
   </ul>
   <div class="pergunta">Justifique: o que na <strong>pergunta</strong> pede medição — e o
   que pede aprofundamento?</div>
-  <p class="menor">Atenção à segunda: é ambígua — quali para <em>explorar</em> motivos,
-  quanti para <em>medir a frequência</em> de motivos já conhecidos.</p>
+  <p class="menor">Atenção à pergunta do carrinho de compras: é ambígua — quali para <em>explorar</em> motivos,
+  quanti para <em>medir a frequência</em> de motivos já conhecidos. A do perfil dos consumidores é quanti descritiva;
+  a do porte da empresa é quanti correlacional.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
 
@@ -402,6 +436,89 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 1 — O que é um notebook (15 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <ol>
+    <li>Acesse o Google Colab com sua conta Google e abra o notebook <code>encontro01_aluno.ipynb</code>;</li>
+    <li>Identifique o que é célula de <strong>texto</strong> e o que é célula de <strong>código</strong>;</li>
+    <li>Edite a célula de identificação com seu <strong>nome e curso</strong>;</li>
+    <li>Execute a célula <code>print("Olá, ...")</code> com <code>Shift+Enter</code>.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Executar células fora de ordem: uma célula pode depender do que a anterior criou. Se algo
+  "sumir" ou der erro estranho, use <em>Ambiente de execução → Reiniciar e executar tudo</em>
+  e siga de cima para baixo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 2 — Python mínimo (20 min)</h2>
+  <p>Variáveis, números, texto, listas e a função <code>print</code>, sempre com exemplos
+  de gestão: faturamento de uma empresa, lista de filiais.</p>
+  <div class="instrucao"><span class="rotulo">Lacuna a preencher</span>
+  Crie uma variável com o faturamento de uma empresa fictícia em dois anos e calcule a
+  <strong>variação percentual</strong> entre eles. Só é preciso trocar os números e
+  repetir o padrão da célula anterior.</div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  Não vamos além disso hoje: nada de laços ou condicionais. O pandas, que veremos nos próximos
+  encontros, dispensa essas estruturas para o que a disciplina precisa. Dois tropeços
+  frequentes: texto sem aspas e número decimal com vírgula (Python usa ponto: <code>1250.5</code>).</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3 — Primeiro contato com dados reais (25 min)</h2>
+  <p>O código de leitura já está pronto: ele baixa do SIDRA/IBGE o número de empresas por
+  seção CNAE no Brasil e no Maranhão (CEMPRE).</p>
+  <div class="pergunta">Antes de executar, escreva seu palpite: qual seção CNAE
+  <strong>concentra mais empresas no Maranhão</strong>?</div>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  Execute a célula de leitura e acompanhe no projetor: <code>head()</code> mostra as primeiras
+  linhas; veremos quantas linhas a tabela tem e o que significa cada coluna. Depois compare
+  a resposta dos dados com o seu palpite.</div>
+  <div class="alerta"><span class="rotulo">Se a API falhar</span>
+  Há uma célula de contingência que lê o mesmo arquivo CSV da pasta <code>dados/</code>.
+  Execute-a e siga em frente; o resultado é idêntico.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 — Primeiro gráfico (20 min)</h2>
+  <p>Gráfico de barras das <strong>dez seções CNAE</strong> com mais empresas, com o código pronto.</p>
+  <div class="instrucao"><span class="rotulo">Lacunas a preencher</span>
+  <ol>
+    <li>Troque o recorte de <strong>Brasil</strong> para <strong>Maranhão</strong> e execute de novo;</li>
+    <li>Altere o <strong>título</strong> do gráfico para refletir o novo recorte.</li>
+  </ol></div>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
+  Com os dois gráficos lado a lado: a estrutura empresarial maranhense é
+  <strong>mais concentrada em comércio</strong> que a nacional? Esta é a primeira análise
+  da turma; vamos verbalizá-la em voz alta antes de escrever.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5 — Interpretação por escrito (10 min)</h2>
+  <p>Responda às três perguntas na célula de texto do notebook, com suas palavras:</p>
+  <ol>
+    <li>O que os dados <strong>mostram</strong>?</li>
+    <li>O que eles <strong>não permitem afirmar</strong>?</li>
+    <li>Que pergunta de pesquisa <strong>você gostaria de responder com dados</strong> ao longo do semestre?</li>
+  </ol>
+  <div class="instrucao"><span class="rotulo">Gancho com o projeto individual</span>
+  A resposta 3 é o embrião do seu projeto. Escreva uma pergunta concreta, ligada a um tema
+  empresarial ou econômico que lhe interesse. Ao final, <strong>compartilhe o link do
+  notebook</strong>: suas perguntas serão lidas antes do encontro 3, quando será apresentado
+  o cardápio de temas.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
   <ul>
     <li><strong>Senso comum</strong> responde por experiência, autoridade e repetição — e
@@ -432,7 +549,7 @@
   <ul>
     <li>Salve o notebook e <strong>compartilhe o link</strong> com o professor;</li>
     <li>Sua resposta à pergunta 3 ("o que você gostaria de investigar?") é o
-        <strong>embrião do seu projeto individual</strong>;</li>
+        <strong>embrião do seu projeto individual</strong>; o cardápio de temas vem no encontro 3;</li>
     <li>Problemas com a conta do Colab? Resolva <strong>durante a semana</strong>.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>

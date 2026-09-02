@@ -44,6 +44,45 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p class="menor">Ao final do encontro, vocês deverão ser capazes de:</p>
+  <ol>
+    <li><strong>Resumir</strong> uma variável quantitativa por grupo com média, mediana, desvio
+        padrão e CV, <strong>decidindo</strong> entre média e mediana diante de valores extremos;</li>
+    <li><strong>Produzir e interpretar</strong> boxplots e histogramas, <strong>explicando</strong>
+        o efeito da transformação logarítmica;</li>
+    <li><strong>Construir e interpretar</strong> um intervalo de confiança de 95%, com a leitura
+        correta do que "95% de confiança" significa;</li>
+    <li><strong>Formular</strong> H0/H1, <strong>executar</strong> o teste t para dois grupos e
+        <strong>decidir</strong> com base no valor-p e em α = 0,05;</li>
+    <li><strong>Montar</strong> uma tabela de contingência e <strong>aplicar</strong> o teste
+        qui-quadrado de independência, <strong>declarando</strong> suas limitações;</li>
+    <li><strong>Registrar</strong> interpretações completas e justificadas no próprio notebook.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como o encontro se organiza</h2>
+  <table>
+    <tr><th>Bloco</th><th>Duração</th><th>Atividade</th></tr>
+    <tr><td>1</td><td>15 min</td><td>Instruções, regras, abertura do notebook e identificação</td></tr>
+    <tr><td>2</td><td>150 min</td><td>Realização da prova (Tarefas 1 a 4), professor em circulação</td></tr>
+    <tr><td>3</td><td>15 min</td><td>Intervalo, no meio do bloco 2 (aos 75 min de prova)</td></tr>
+    <tr><td>4</td><td>75 min</td><td>Devolutiva parcial coletiva: correção comentada das quatro tarefas</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+    Notebook <code>encontro12.ipynb</code> em modo prova, com lacunas para completar.
+    Dados: DRE 2024 da CVM (<code>dados/cvm_dre_2024.csv</code>) e demografia de empresas do
+    CEMPRE (<code>dados/demografia_sobrevivencia_empresas.csv</code>). Nada de exposição formal
+    hoje: a aula é a prova e a devolutiva.
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Regras da prova</h2>
   <table>
     <tr><th>Item</th><th>Regra</th></tr>
@@ -74,6 +113,44 @@
   </table>
   <p class="menor">As respostas finais de cada tarefa <strong>devem estar escritas no
   notebook</strong> — interpretar o resultado é metade dos pontos.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como o tempo será marcado</h2>
+  <table>
+    <tr><th>Momento</th><th>O que acontece</th></tr>
+    <tr><td>0 min</td><td>Nome, matrícula e células de preparação executadas</td></tr>
+    <tr><td>75 min</td><td>Intervalo anunciado</td></tr>
+    <tr><td>135 min</td><td>Aviso: faltam 15 minutos</td></tr>
+    <tr><td>150 min</td><td>Encerramento e entrega dos links</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">Estratégia sugerida</span>
+  Cerca de 30 minutos por tarefa deixa 30 de folga para revisar e escrever as
+  interpretações. Se travar em uma tarefa, <strong>siga para a próxima</strong> e volte
+  depois: uma tarefa em branco custa mais do que uma resposta parcial.</div>
+  <p class="menor">Dúvidas de <strong>processo</strong> (como executar, onde preencher) são
+  respondidas durante a prova. Dúvidas de conteúdo, não: consulte o material.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Onde a turma costuma perder pontos</h2>
+  <div class="alerta"><span class="rotulo">Executar sem interpretar</span>
+  O erro mais caro da prova. Toda tarefa tem célula de texto para a resposta em prosa, e ela
+  vale <strong>metade dos pontos</strong>. Código correto com campo de resposta vazio perde
+  metade.</div>
+  <div class="alerta"><span class="rotulo">Concluir antes de checar os pressupostos</span>
+  Antes de declarar o resultado de um teste, verifique se tratou os extremos como o encontro
+  11 ensinou. Resultado instável costuma ser sintoma de variável não transformada.</div>
+  <div class="alerta"><span class="rotulo">Filtro errado na base</span>
+  Confira sempre o <strong>ano</strong> e o <strong>recorte</strong> que a tarefa pede antes
+  de calcular. Misturar anos ou categorias invalida a conta inteira, mesmo com o código
+  certo.</div>
+  <p class="menor">A consulta ao material é permitida: os encontros 9, 10 e 11 têm todas as
+  funções e o vocabulário de que você precisa.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
 
@@ -170,8 +247,8 @@
     <li>Salvar e compartilhar o link com permissão de edição;</li>
     <li>Levantar: cada resposta interpretada vale metade dos pontos.</li>
   </ol>
-  <p><strong>Boa avaliação.</strong> O método está nos encontros — execute, comente,
-  releia os gabaritos conceituais antes de declarar cada conclusão.</p>
+  <p><strong>Boa avaliação.</strong> O método está nos encontros: execute, comente e
+  releia as sínteses teóricas antes de declarar cada conclusão.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
 

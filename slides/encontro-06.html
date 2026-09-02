@@ -42,6 +42,26 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, vocês deverão ser capazes de:</p>
+  <ol>
+    <li><strong>Distinguir</strong> os tipos de pergunta (fechada, aberta, mista) e
+        <strong>reconhecer</strong> os defeitos clássicos de redação de itens;</li>
+    <li><strong>Caracterizar</strong> as escalas Likert e de diferencial semântico e o debate
+        sobre seu nível de mensuração;</li>
+    <li><strong>Definir</strong> validade e confiabilidade e <strong>explicar</strong> por que
+        uma não garante a outra;</li>
+    <li><strong>Calcular e interpretar</strong> o alfa de Cronbach, incluindo o diagnóstico de
+        itens problemáticos;</li>
+    <li><strong>Construir</strong> um questionário no Google Formulários estruturado para
+        exportação e análise;</li>
+    <li><strong>Criticar</strong> tecnicamente o instrumento de um colega.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Vocês sentiram, nós vamos nomear</h2>
@@ -54,6 +74,10 @@
   </ul>
   <div class="pergunta">Os incômodos que vocês sentiram ao responder são exatamente o
   <strong>conteúdo desta aula</strong>.</div>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer (10 min)</span>
+  Vamos projetar os resultados agregados das respostas de vocês. Olhem cada pergunta e
+  digam em voz alta: onde vocês travaram? Qual opção não servia? Que resposta vocês deram
+  "por falta de outra"? Guardem essas sensações: daqui a pouco cada uma ganha nome.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
 
@@ -129,6 +153,10 @@
       <p class="menor">O respondente não é obrigado a falar o seu jargão.</p>
     </div>
   </div>
+  <div class="instrucao"><span class="rotulo">Exercício oral</span>
+  Para cada cartão desta e da próxima tela, proponham em voz alta a versão
+  <strong>corrigida</strong> da pergunta antes de vermos a solução. Nomeiem o defeito e
+  digam o que muda na redação.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
 
@@ -179,6 +207,10 @@
   </ul>
   <p class="menor">Nível de mensuração: a rigor <strong>ordinal</strong>; tratada como
   intervalar quando se somam múltiplos itens — convenção que se declara (encontro 3).</p>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
+  Retomem o encontro 3: a distância entre "discordo" e "neutro" é a mesma que entre
+  "neutro" e "concordo"? Se não é, por que a área calcula médias de Likert? Qual é a
+  convenção e onde ela deve ser declarada no seu relatório?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
 
@@ -283,6 +315,101 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 1: conhecendo a escala (10 min)</h2>
+  <div class="instrucao"><span class="rotulo">O que fazer</span>
+  <ol>
+    <li>Execute as células prontas que geram os dados (semente fixa: todos terão a mesma
+        base) e <strong>leia os 8 itens</strong> da escala;</li>
+    <li>Rode <code>describe()</code> e observe, item a item: média, desvio-padrão, mínimo e
+        máximo;</li>
+    <li>Anote: algum item tem média muito diferente dos demais? Algum valor fora da faixa
+        1 a 5?</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  Ler os itens antes de calcular qualquer coisa não é perda de tempo: um dos defeitos da
+  escala só se percebe lendo a redação (há um item escrito "ao contrário" dos outros).</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 2: o alfa de Cronbach (20 min)</h2>
+  <div class="instrucao"><span class="rotulo">O que fazer</span>
+  Complete o esqueleto da função <code>alfa_cronbach</code>. As lacunas são três:
+  <ol>
+    <li>a <strong>variância de cada item</strong> (uma por coluna);</li>
+    <li>a <strong>variância do escore total</strong> (soma dos itens por respondente);</li>
+    <li>a fórmula: <code>k/(k-1) * (1 - soma_var_itens/var_total)</code>.</li>
+  </ol>
+  Calcule o alfa da escala completa e escreva o valor no notebook.</div>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Confundir a variância <strong>por item</strong> (<code>.var(axis=0)</code>, uma por coluna)
+  com a variância do <strong>escore total</strong> (primeiro some as colunas com
+  <code>.sum(axis=1)</code>, depois calcule a variância desse vetor). Se o alfa sair negativo
+  ou maior que 1, o problema está aqui.</div>
+  <div class="pergunta">O alfa sai baixo (perto de 0,5). <strong>Por quê?</strong> Essa
+  pergunta move a próxima seção.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 3: diagnóstico de itens (20 min)</h2>
+  <div class="instrucao"><span class="rotulo">O que fazer</span>
+  <ol>
+    <li>Complete o código guiado da <strong>correlação item-total</strong> e do
+        <strong>"alfa se o item for excluído"</strong>;</li>
+    <li>Item com correlação <strong>negativa</strong>: é escala invertida. Recodifique
+        (<code>6 - valor</code>) e recalcule o alfa;</li>
+    <li>Item com correlação <strong>próxima de zero</strong>: não pertence ao construto.
+        Exclua-o e recalcule;</li>
+    <li>Registre, em texto, cada decisão e o alfa antes e depois.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  Não trate os dois casos do mesmo jeito: excluir o item invertido joga fora informação
+  válida; "recodificar" o item estranho não o faz pertencer ao construto. O alfa final deve
+  passar de 0,8.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 4: interpretação por escrito (10 min)</h2>
+  <p>Responda às três perguntas na célula de texto do notebook, com suas palavras:</p>
+  <ol>
+    <li>Por que um alfa alto <strong>não garante</strong> que a escala mede satisfação com
+        fornecedores?</li>
+    <li>O que fazer ao encontrar um item com correlação item-total
+        <strong>negativa</strong>? E por que essa é a resposta certa?</li>
+    <li>Por que <strong>não basta acrescentar itens</strong> para "inflar" o alfa?</li>
+  </ol>
+  <div class="instrucao"><span class="rotulo">Método</span>
+  Ao terminar, sua seção 3 deve ler como um relato de pesquisa:
+  <strong>calcular → diagnosticar → corrigir → documentar</strong>. É esse trecho que você
+  vai reutilizar no relatório do projeto individual.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: cenários e etapas (45 min)</h2>
+  <p>Cada um recebe, por sorteio, um destes cenários empresariais:</p>
+  <table>
+    <tr><th>Cenário</th><th>Construto central sugerido</th></tr>
+    <tr><td>Satisfação de clientes de restaurante</td><td>Satisfação com o serviço</td></tr>
+    <tr><td>Clima organizacional de loja</td><td>Percepção do ambiente de trabalho</td></tr>
+    <tr><td>Intenção de compra de produto novo</td><td>Intenção de compra</td></tr>
+    <tr><td>Avaliação de food truck pelo campus</td><td>Satisfação com a oferta</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <strong>30 min</strong>: construa o questionário no Google Formulários (requisitos na
+  próxima tela). <strong>15 min finais</strong>: troque o link com um colega, receba o dele e
+  escreva sua crítica com o checklist de defeitos. Devolva a crítica ao autor antes de sair.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exercício: seu questionário no Formulários (45 min)</h2>
   <p><strong>Individual</strong>, a partir do cenário sorteado. Requisitos:</p>
   <ul>
@@ -316,6 +443,10 @@
     <li><strong>Alfa de Cronbach</strong>: calcular → diagnosticar → corrigir →
         documentar — nunca um selo automático.</li>
   </ul>
+  <div class="instrucao"><span class="rotulo">Para o seu projeto individual</span>
+  Antes de sair, escreva no seu caderno de projeto: (1) o construto central que seu
+  questionário mede e os 4+ itens Likert que o cercam; (2) a que variável da matriz de
+  amarração cada pergunta corresponde. Pergunta sem variável sai do instrumento.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
 

@@ -45,6 +45,28 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, você deverá ser capaz de:</p>
+  <ol>
+    <li><strong>explicar</strong> por que as médias de amostras repetidas se distribuem de
+        forma aproximadamente normal mesmo quando a população é assimétrica (teorema
+        central do limite);</li>
+    <li><strong>distinguir</strong> estimação por ponto de estimação por intervalo e
+        <strong>interpretar</strong> corretamente um intervalo de confiança;</li>
+    <li><strong>formular</strong> hipótese nula e alternativa e <strong>decidir</strong>
+        pelo valor-p, sem confundir "não rejeitar H0" com "provar H0";</li>
+    <li><strong>aplicar</strong> o teste t de Student para comparar dois grupos, checando
+        o efeito dos extremos sobre a validade do teste;</li>
+    <li><strong>aplicar</strong> o teste qui-quadrado de independência em tabelas de
+        contingência;</li>
+    <li><strong>executar</strong> as análises com <code>scipy.stats</code> e
+        <strong>relacionar</strong> os testes à hipótese do seu projeto individual.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Retomada — o encontro 5 tinha nome de inferência</h2>
@@ -57,6 +79,10 @@
     <li><strong>A resposta:</strong> a inferência vem com medida explícita de incerteza —
         o intervalo de confiança e o teste de hipóteses.</li>
   </ul>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer (15 min)</span>
+  Hoje damos o salto conceitual do semestre: de <strong>descrever</strong> o que temos para
+  <strong>inferir</strong> sobre o que não observamos. Tenha à mão a hipótese do seu
+  projeto: no fim da aula ela vira um par H0/H1 testável.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
 
@@ -226,6 +252,11 @@
     <li>O intervalo sai <strong>largo</strong> — a assinatura dos extremos da margem. A
         resposta prática é a do encontro 9: mediana e transformação.</li>
   </ul>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Ao escrever a interpretação, não diga "há 95% de chance de a média verdadeira estar neste
+  intervalo". Este intervalo <strong>contém ou não contém</strong> o parâmetro. Os 95% são
+  propriedade do <strong>método</strong>: repetido em muitas amostras, ele acerta em 95%
+  dos casos.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
 
@@ -243,6 +274,10 @@
   </table>
   <p class="menor">Mesmos dados, duas conclusões opostas — e o notebook mostra por quê:
   transformar a variável é ofício do pesquisador de dados de negócios.</p>
+  <div class="instrucao"><span class="rotulo">Escreva no notebook</span>
+  Redija a conclusão com o vocabulário completo: <strong>H0, H1, valor-p, nível de
+  significância, decisão</strong> e a limitação declarada. É o parágrafo que você repetirá
+  no relatório final.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
 
@@ -258,8 +293,10 @@
     <li>É o teste formal do que o encontro 2 mostrou em tabelas: empresas maiores
         sobrevivem mais.</li>
   </ul>
-  <p class="menor">Cuidados: dados agregados por faixa (não é o rastro de cada empresa) —
-  e significância não é magnitude, nem causalidade.</p>
+  <div class="alerta"><span class="rotulo">Atenção ao interpretar</span>
+  São dados <strong>agregados por faixa</strong> de pessoal, não o rastro individual de cada
+  empresa. E significância não é magnitude nem causalidade: o teste diz que a associação
+  dificilmente é acaso, não que o porte <em>causa</em> a sobrevivência.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
 
@@ -282,6 +319,34 @@
   testável — variáveis certas, níveis compatíveis, base suficiente.</p>
   <div class="pergunta">Se a base ainda não permite o teste, registrar por escrito "o que
   seria necessário" é disciplina de pesquisador.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Agora na sua base: o teste que a sua hipótese pede</h2>
+  <div class="instrucao"><span class="rotulo">Roteiro da oficina</span>
+  <ol>
+    <li>Carregue a <strong>sua base</strong> no notebook;</li>
+    <li>Identifique uma <strong>comparação entre dois grupos</strong> (porte, setor, região)
+        ou uma <strong>associação entre variáveis categóricas</strong> compatível com a sua
+        hipótese;</li>
+    <li>Execute o teste correspondente, quando a base e o tamanho permitirem;</li>
+    <li>Registre por escrito a decisão completa: variáveis, teste, H0/H1, resultado e
+        limitação.</li>
+  </ol></div>
+  <table>
+    <tr><th>Se a sua hipótese é...</th><th>O teste natural é...</th></tr>
+    <tr><td>Comparar um indicador entre dois grupos</td><td>t de Student, sobre a
+        transformação adequada</td></tr>
+    <tr><td>Verificar associação entre duas categóricas</td><td>Qui-quadrado de
+        independência</td></tr>
+    <tr><td>Medir relação entre duas quantitativas</td><td>Correlação e regressão
+        (encontro 13)</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">Base pequena?</span>
+  Descreva o teste que você faria com mais dados e diga por que não é possível agora.
+  <strong>Declarar o que não dá para fazer é parte do rigor</strong>, não uma falha.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
 

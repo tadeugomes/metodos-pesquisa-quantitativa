@@ -41,6 +41,48 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>A Avaliação 1 verifica o que vocês construíram nas Unidades I e II. Ao final, você deve
+  ser capaz de:</p>
+  <ol>
+    <li><strong>Distinguir</strong> tipos de pesquisa (descritiva, correlacional, experimental,
+        quase-experimental) a partir de situações concretas;</li>
+    <li><strong>Formular</strong> problema de pesquisa em forma de pergunta e hipóteses
+        testáveis (com H0);</li>
+    <li><strong>Classificar</strong> variáveis por papel e por nível de mensuração;</li>
+    <li><strong>Caracterizar</strong> técnicas de amostragem e <strong>calcular</strong>
+        tamanho de amostra;</li>
+    <li><strong>Reconhecer</strong> exigências de validade, confiabilidade e ética;</li>
+    <li><strong>Aplicar</strong> esses conceitos à sua própria investigação (1ª etapa do projeto).</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Antes de começar (15 min)</h2>
+  <div class="instrucao">
+    <span class="rotulo">Como vamos fazer</span>
+    <ol>
+      <li>Confirme que você consegue entrar no Google Colab com a sua conta;</li>
+      <li>Abra <code>notebooks/encontro-08/encontro08_aluno.ipynb</code> e deixe-o pronto
+          (ainda sem executar a prova);</li>
+      <li>Os dados são o extrato do CEMPRE (tabela 9582), os mesmos dos encontros 1 e 5.
+          Se a API do SIDRA estiver fora do ar, a célula de contingência carrega a base
+          localmente: execute-a e siga em frente;</li>
+      <li>Receba a Parte A (papel ou formulário fechado) e aguarde o sinal para iniciar.</li>
+    </ol>
+  </div>
+  <div class="alerta">
+    <span class="rotulo">Atenção</span>
+    Durante toda a Parte B, mantenha abertos <strong>apenas</strong> o Colab e o material da
+    disciplina. Outras abas ou aplicativos de mensagem abertos invalidam a prova.
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Composição da nota da Avaliação 1</h2>
@@ -69,6 +111,25 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte A — o que cada questão pede</h2>
+  <table>
+    <tr><th>Questão</th><th>Tema</th><th>O que se espera</th></tr>
+    <tr><td>1</td><td>Tipos de pesquisa</td><td>Identificar o tipo em quatro situações e justificar cada uma em uma frase</td></tr>
+    <tr><td>2</td><td>Problema e hipóteses</td><td>Redigir problema delimitado, hipótese direcional com H0 e apontar um defeito de testabilidade</td></tr>
+    <tr><td>3</td><td>Variáveis</td><td>Classificar cinco variáveis por nível de mensuração e indicar estatísticas adequadas e inadequadas</td></tr>
+    <tr><td>4</td><td>Amostragem</td><td>Explicar limites da conveniência, desenhar uma estratificação e raciocinar sobre margem de erro</td></tr>
+    <tr><td>5</td><td>Instrumentos e ética</td><td>Validade versus confiabilidade, defeitos de redação de item e exigências éticas com dados agregados</td></tr>
+  </table>
+  <div class="instrucao">
+    <span class="rotulo">Regras</span>
+    Toda resposta precisa de <strong>justificativa</strong>: classificar sem explicar vale
+    metade. Leia a questão inteira antes de escrever e responda a cada subitem (a, b, c).
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Parte B — regras (75 min)</h2>
@@ -83,6 +144,80 @@
     <li>Antes de entregar: <em>Ambiente de execução → Reiniciar e executar tudo</em> —
         célula quebrada não pontua.</li>
   </ul>
+  <div class="instrucao">
+    <span class="rotulo">Como vamos fazer</span>
+    Trabalhe na ordem das tarefas; o tempo sugerido é de <strong>20 min</strong> para a
+    Tarefa 1, <strong>30 min</strong> para a Tarefa 2 e <strong>25 min</strong> para a
+    Tarefa 3. Só o Colab e o material da disciplina podem estar abertos na tela.
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte B — Tarefa 1: classificação de variáveis (10 pts)</h2>
+  <div class="instrucao">
+    <span class="rotulo">O que fazer (cerca de 20 min)</span>
+    <ol>
+      <li>Execute as células de carga e inspecione a base: nomes das colunas, tipos, primeiras
+          linhas e valores distintos;</li>
+      <li>Preencha a célula de texto estruturada com, para cada variável: <strong>o que
+          mede</strong>, <strong>papel possível</strong> (independente, dependente, controle)
+          e <strong>nível de mensuração</strong>.</li>
+    </ol>
+  </div>
+  <div class="alerta">
+    <span class="rotulo">Atenção</span>
+    Código numérico não é, por si só, variável numérica: pergunte-se o que o número
+    representa e se operações aritméticas com ele fazem sentido. Não deixe nenhuma
+    variável sem justificativa.
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte B — Tarefa 2: plano amostral e sorteio (15 pts)</h2>
+  <div class="instrucao">
+    <span class="rotulo">O que fazer (cerca de 30 min)</span>
+    <ol>
+      <li>Cenário: um survey com as empresas do extrato. Escreva o plano na célula de texto:
+          <strong>técnica</strong> escolhida e justificativa, <strong>cadastro</strong>
+          (de onde vem a lista) e <strong>estratos</strong>, se houver;</li>
+      <li>Execute o sorteio de uma <strong>amostra aleatória simples de 100 empresas</strong>
+          com semente fixa (sua matrícula);</li>
+      <li>Compare a distribuição setorial da amostra com a da população e comente o resultado.</li>
+    </ol>
+  </div>
+  <div class="alerta">
+    <span class="rotulo">Atenção</span>
+    Sem semente fixa, o sorteio muda a cada execução e a correção não reproduz o seu
+    resultado. Na comparação, use proporções (não contagens) e diga se as diferenças
+    são compatíveis com o acaso.
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte B — Tarefa 3: tamanho da amostra (15 pts)</h2>
+  <div class="instrucao">
+    <span class="rotulo">O que fazer (cerca de 25 min)</span>
+    <ol>
+      <li>Complete a função de tamanho de amostra (fórmula de proporção com
+          <strong>correção para população finita</strong>);</li>
+      <li>Calcule o n para margens de erro de <strong>5%</strong> e <strong>3%</strong>,
+          com 95% de confiança, usando o N do extrato;</li>
+      <li>Responda por escrito: <strong>qual margem você adotaria neste cenário e por
+          quê?</strong> Considere custo, prazo e o uso que se fará dos resultados.</li>
+    </ol>
+  </div>
+  <div class="alerta">
+    <span class="rotulo">Atenção</span>
+    Margem de erro entra na fórmula como proporção (0,05), não como 5. Se a função
+    devolver n maior que N, algo está errado na correção finita. A justificativa da
+    escolha vale tanto quanto o cálculo.
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
 
@@ -101,6 +236,47 @@
   <p class="menor">Critérios: coerência interna da matriz, viabilidade da base e correção
   técnica das classificações. O plantão do bloco 5 tira dúvidas de <em>entrega</em>, não de
   conteúdo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>1ª etapa do projeto — critérios de avaliação</h2>
+  <table>
+    <tr><th>Critério</th><th>O que será observado</th></tr>
+    <tr><td><strong>Coerência interna da matriz</strong></td><td>Elos completos e compatíveis: tema, problema, hipótese, variáveis e base apontam para a mesma pergunta</td></tr>
+    <tr><td><strong>Viabilidade da base</strong></td><td>Tabela ou série identificada, acessível e com as variáveis necessárias para testar a hipótese</td></tr>
+    <tr><td><strong>Correção técnica das classificações</strong></td><td>Papel (independente, dependente, controle) e nível de mensuração corretos para cada variável</td></tr>
+  </table>
+  <div class="instrucao">
+    <span class="rotulo">Entrega</span>
+    Compartilhe o link do notebook do projeto com permissão de leitura e confira se todas as
+    seis seções estão preenchidas, inclusive a <strong>matriz de amarração</strong>. Item
+    ausente não pontua; item inconsistente pontua parcialmente.
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Bloco 5 — finalização e plantão (75 min)</h2>
+  <div class="instrucao">
+    <span class="rotulo">Como vamos fazer</span>
+    <ol>
+      <li>Use o tempo para <strong>finalizar</strong> o notebook do projeto: revise a matriz
+          de amarração linha a linha e confirme que a base escolhida realmente contém as
+          variáveis anunciadas;</li>
+      <li>O professor circula pelo laboratório: chame para dúvidas <strong>pontuais de
+          entrega</strong> (formato, compartilhamento, item obrigatório);</li>
+      <li>Orientação de conteúdo já aconteceu nos encontros 3 e 4 e não será dada agora;</li>
+      <li>Ao terminar, verifique o checklist dos três artefatos antes de sair.</li>
+    </ol>
+  </div>
+  <div class="alerta">
+    <span class="rotulo">Atenção</span>
+    O plantão não é hora de trocar de tema ou refazer o projeto do zero. Ajuste o que
+    está incompleto e entregue o que você já construiu.
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
 

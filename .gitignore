@@ -13,3 +13,6 @@ venv/
 # Editores
 .vscode/
 .idea/
+
+# Bibliografia (material protegido por direitos autorais)
+*.pdf

@@ -44,6 +44,38 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, vocês devem ser capazes de:</p>
+  <ol>
+    <li><strong>Escolher</strong> o tipo de gráfico adequado à pergunta analítica: barras,
+        histograma, boxplot, linhas ou dispersão;</li>
+    <li><strong>Construir</strong> esses gráficos com matplotlib sobre séries econômicas
+        reais, com título, eixos, unidades e fonte;</li>
+    <li><strong>Identificar e corrigir</strong> violações de integridade visual: eixo
+        truncado sem aviso, desproporção, pizza ilegível, excesso de tinta;</li>
+    <li><strong>Apresentar</strong> tabelas conforme as normas de comunicação científica
+        (título completo, fonte, unidades);</li>
+    <li><strong>Aplicar</strong> limpeza básica, descritivas e um primeiro gráfico à base do
+        próprio projeto individual.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomada — o que as medidas não mostram (15 min)</h2>
+  <div class="exemplo"><span class="rotulo">Exemplo da base CVM</span>
+  Dois setores podem ter a <strong>mesma margem mediana</strong> e distribuições completamente
+  diferentes: um concentrado em torno da mediana, outro espalhado, com caudas longas.</div>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
+  Respondam antes de ver o próximo slide: se vocês só tivessem a tabela de descritivas do
+  encontro 9 (média, mediana, desvio padrão, quartis), conseguiriam distinguir esses dois
+  setores? Que medida denunciaria a diferença e que aspecto da forma escaparia mesmo assim?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Retomada — o quarteto de Anscombe</h2>
@@ -79,6 +111,11 @@
     <tr><td>Evolução no tempo</td><td><strong>Linhas</strong></td></tr>
     <tr><td>Relação entre duas quantitativas</td><td><strong>Dispersão</strong></td></tr>
   </table>
+  <div class="instrucao"><span class="rotulo">Exercício oral</span>
+  Para cada pergunta abaixo, digam em coro o gráfico: (a) qual setor CNAE tem mais empresas
+  no Maranhão? (b) como se distribui a margem líquida das empresas da CVM? (c) a margem varia
+  entre setores? (d) como evoluiu a Selic desde 2018? (e) juros mais altos andam junto com
+  mais inadimplência?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 
@@ -108,6 +145,10 @@
   <strong>mediana, quartis, amplitude interquartílica e pontos atípicos</strong>.</div>
   <p class="menor">Boxplot saiu no encontro 5 (distribuição do erro amostral) — agora ele
   vira instrumento da análise.</p>
+  <div class="instrucao"><span class="rotulo">No quadro</span>
+  Vamos ver o mesmo conjunto de dados com 5 e com 50 classes. Antes de cada desenho,
+  apostem: a distribuição vai parecer mais "lisa" ou mais "picotada"? Qual das duas versões
+  vocês escolheriam para um relatório, e por quê?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 
@@ -152,6 +193,9 @@
     <li>Quando o recorte de escala for necessário (séries de linhas, variação pequena),
         <strong>avisar no próprio gráfico</strong>.</li>
   </ul>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
+  Onde vocês já viram um eixo truncado? Pensem em um relatório gerencial, um telejornal ou
+  uma apresentação de resultados. O que a versão truncada fazia o leitor concluir?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 
@@ -215,12 +259,66 @@
     <tr><td>1 · Linhas (15 min)</td><td>Gráfico do crédito PJ com os quatro elementos
         obrigatórios</td><td>Juntar escalas diferentes no mesmo eixo <strong>engana</strong></td></tr>
     <tr><td>2 · Formas (25 min)</td><td>Histograma, boxplot por ano e barras da inadimplência</td>
-        <td>Classes mudam o desenho; o boxplot esconde o que a barra mostra</td></tr>
+        <td>Classes mudam o desenho; o boxplot mostra o que a barra esconde</td></tr>
     <tr><td>3 · Dispersão (10 min)</td><td>Selic × inadimplência no mês</td>
         <td>Defasagem conceitual: juros de hoje afetam inadimplência de amanhã</td></tr>
   </table>
   <p class="menor">Na Seção 1, a célula do professor mostra a segunda série em
   <strong>eixo secundário</strong> — precisamente para discutir por que isso engana.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 1 — As séries e o gráfico de linhas (15 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <ol>
+    <li>Baixe as três séries desde 2018; inspecione a <strong>frequência</strong> de cada uma
+        (a Selic é diária) e reamostre as diárias para <strong>mensal</strong>;</li>
+    <li>Construa o gráfico de linhas do crédito PJ com os quatro elementos obrigatórios:
+        <strong>título afirmativo, eixos com unidade, fonte</strong>;</li>
+    <li><strong>Sua lacuna:</strong> acrescente a inadimplência como segunda série em
+        <strong>eixo secundário</strong> (R$ milhões de um lado, % do outro).</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  Antes de rodar a célula, escreva em uma linha: por que colocar as duas séries em um
+  <strong>mesmo</strong> eixo enganaria o leitor? Vamos comparar as respostas.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 2 — Histograma, boxplot e barras (25 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <ol>
+    <li><strong>Histograma</strong> da inadimplência PJ. Lacuna: varie o número de classes
+        (5, 10, 30, 50) e anote o que muda no desenho;</li>
+    <li><strong>Boxplot</strong> da inadimplência por ano. Leia em voz alta, com o vocabulário
+        do encontro 9: onde está a mediana, o que a caixa representa, quais anos têm pontos
+        atípicos;</li>
+    <li><strong>Barras</strong> da inadimplência média por ano, <strong>ordenadas pelo
+        valor</strong>. Compare com o boxplot: o que a barra esconde?</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Deixar as barras na ordem cronológica quando a pergunta é "qual ano teve mais
+  inadimplência". Ordem do tempo pede linhas; comparação de categorias pede barras
+  ordenadas.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3 — Dispersão: Selic × inadimplência (10 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <ol>
+    <li>Construa o diagrama de dispersão entre a <strong>meta Selic</strong> e a
+        <strong>inadimplência PJ</strong> no mesmo mês (cada ponto = um mês);</li>
+    <li>Descreva a nuvem em uma frase: sobe, desce, não tem forma?</li>
+    <li>Compare com a versão da célula do professor, <strong>defasada em 6 meses</strong>:
+        juros de hoje afetam a inadimplência de amanhã. A nuvem mudou?</li>
+  </ol></div>
+  <div class="pergunta">A nuvem sugere uma relação. <strong>Como medi-la?</strong> Esta pergunta
+  fica armada para o encontro 13.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 
@@ -236,8 +334,11 @@
   </ol>
   <p>Seu trabalho: refazer <strong>corrigidos</strong> e responder por escrito <strong>o que
   cada versão ruim induzia o leitor a concluir</strong>.</p>
-  <p class="menor">Erros esperados e produtivos: esquecer <code>plt.ylim(0, ...)</code> ou
-  não reordenar as barras — ambos viram discussão de revisão.</p>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Esquecer <code>plt.ylim(0, ...)</code> e entregar a barra ainda truncada, ou corrigir o
+  eixo e deixar as barras fora de ordem. Antes de dizer "pronto", confira: eixo no zero,
+  barras ordenadas, título, unidades e fonte. Quem cair no erro traz para a discussão de
+  revisão.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 
@@ -258,9 +359,44 @@
     <li>Registrar por escrito <strong>o que o gráfico mostra e o que ainda não permite
         afirmar</strong>.</li>
   </ol>
-  <p class="menor">Base atrasada? Use a oficina para resolver a carga; o professor prioriza
-  quem travou no acesso a dados. Ao final, dois ou três estudantes projetam o gráfico para
-  <strong>comentário coletivo de integridade visual</strong>.</p>
+  <p class="menor">Base atrasada? Use a oficina para resolver a carga e chame o professor:
+  quem travou no acesso a dados tem prioridade. Ao final, dois ou três de vocês projetam o
+  gráfico para <strong>comentário coletivo de integridade visual</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que você leva do projeto hoje</h2>
+  <div class="instrucao"><span class="rotulo">Escreva no notebook do projeto</span>
+  <ol>
+    <li>A <strong>pergunta descritiva mais importante</strong> do seu projeto, em uma frase
+        (é ela que escolhe o tipo de gráfico);</li>
+    <li>A <strong>tabela de descritivas</strong> das variáveis centrais, com título completo,
+        unidades e fonte;</li>
+    <li><strong>Um gráfico</strong> que responda à pergunta, com título afirmativo, eixos com
+        unidade e fonte;</li>
+    <li>Dois parágrafos curtos: <strong>o que o gráfico mostra</strong> e <strong>o que ele
+        ainda não permite afirmar</strong>.</li>
+  </ol></div>
+  <p class="menor">Tabela e gráfico entram direto no relatório final; compartilhe o link do
+  notebook ao final da oficina.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Comentário coletivo — o gráfico do colega</h2>
+  <div class="instrucao"><span class="rotulo">Dinâmica</span>
+  Dois ou três gráficos projetados na tela. A turma responde, em ordem, sem olhar para quem
+  fez:</div>
+  <ol>
+    <li>Qual <strong>pergunta</strong> este gráfico responde? O tipo escolhido é o certo?</li>
+    <li>O gráfico <strong>se sustenta sozinho</strong>: título afirmativo, unidades, fonte?</li>
+    <li>Há <strong>eixo truncado</strong> sem aviso, barras fora de ordem, tinta sem dado?</li>
+    <li>O que ele <strong>induz</strong> o leitor a concluir? Essa conclusão é honesta?</li>
+  </ol>
+  <p class="menor">O autor anota as sugestões e corrige antes de fechar o notebook.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
 

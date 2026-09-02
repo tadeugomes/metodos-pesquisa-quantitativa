@@ -43,7 +43,10 @@
       <p>O dado não existe, não é público ou não está ao alcance das nossas ferramentas.</p>
     </div>
   </div>
-  <p class="menor">Casos individuais: na oficina do fim da aula.</p>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer · 15 min</span>
+  Comentário em plenária, sem identificar autores. Enquanto ouve, localize o seu rascunho:
+  ele cai em algum dos três padrões? Anote o que precisa mudar. Os casos individuais ficam
+  para a oficina do fim da aula.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 
@@ -60,6 +63,20 @@
     <tr><td>35 min</td><td><strong>Oficina:</strong> matriz de amarração do seu projeto</td></tr>
     <tr><td>15 min</td><td>Síntese e fechamento da Unidade I</td></tr>
   </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, vocês deverão ser capazes de:</p>
+  <ol>
+    <li><strong>Descrever</strong> as etapas do processo de pesquisa quantitativa e as decisões tomadas em cada uma;</li>
+    <li><strong>Construir</strong> a matriz de amarração metodológica de um projeto, verificando a coerência entre problema, objetivos, hipóteses, variáveis, base e técnica de análise;</li>
+    <li><strong>Consumir</strong> séries temporais das APIs do Banco Central (<code>python-bcb</code>) e do Ipeadata (<code>ipeadatapy</code>);</li>
+    <li><strong>Juntar</strong> séries de fontes diferentes em um único DataFrame e produzir gráficos de linha comparados;</li>
+    <li><strong>Delimitar</strong> a base de dados e as variáveis do seu projeto individual.</li>
+  </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 
@@ -276,8 +293,10 @@
       <td>Comparação de grupos</td>
     </tr>
   </table>
-  <p class="menor">A coluna "técnica" pode ficar genérica por enquanto — nomearemos os
-  testes na Unidade III.</p>
+  <div class="instrucao"><span class="rotulo">No quadro · 30 min</span>
+  Vamos preencher esta matriz juntos, coluna a coluna: a turma propõe cada elo e verificamos
+  se ele combina com o vizinho. A coluna "técnica" pode ficar genérica por enquanto
+  (comparação de grupos, associação entre variáveis): nomearemos os testes nos encontros 9 a 11.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 
@@ -318,6 +337,54 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 1 — Banco Central com <code>python-bcb</code></h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer · 30 min</span>
+  Carregue com <code>sgs.get</code> as cinco séries da tabela anterior, desde 2018. Observe a
+  gramática da chamada: um dicionário nome → código e uma data inicial. Depois, preencha as lacunas:
+  <ol>
+    <li>Altere a <strong>data inicial</strong> da consulta;</li>
+    <li>Acrescente <strong>uma série nova</strong> ao dicionário (descubra o código no portal do SGS).</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
+  Selic e câmbio são diários; IPCA, crédito e inadimplência são mensais. Juntar tudo direto
+  produz uma tabela cheia de vazios. O notebook resolve com reamostragem mensal,
+  <code>resample("MS").last()</code>: basta entender o que ela faz, não dominar a sintaxe.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 2 — Ipeadata com <code>ipeadatapy</code></h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer · 20 min</span>
+  <ol>
+    <li>Use <code>list_series("Taxa de câmbio")</code> como ferramenta de busca e veja como o catálogo responde;</li>
+    <li>Carregue <code>BM12_TJOVER12</code> (Selic overnight mensal);</li>
+    <li>Compare com a Selic do BCB: mesma variável? Mesma definição? Mesma frequência?</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  Fontes diferentes publicam a "mesma" variável com definições e frequências distintas. Qual
+  delas usar é uma decisão de operacionalização, e ela precisa ficar registrada por escrito.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 3 — Juntando e visualizando</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer · 25 min</span>
+  Concatene as séries mensais em um único DataFrame e produza dois gráficos de linha:
+  <ol>
+    <li><strong>Juros e inflação</strong> (já montado no notebook);</li>
+    <li>Um segundo gráfico em que <strong>você escolhe o par de séries</strong> (sugestão: crédito PJ e inadimplência) e <strong>escreve o título</strong>.</li>
+  </ol>
+  Ao final, leitura dos gráficos em plenária: o que os dois traçados sugerem?</div>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Concluir que uma série "causa" a outra porque sobem juntas no gráfico. Hoje só sabemos
+  descrever a coincidência visual; escreva essa limitação em uma célula de texto.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Frequência e reamostragem — uma decisão de pesquisa</h2>
   <div class="definicao"><span class="rotulo">O problema</span>
   Séries de <strong>frequências diferentes</strong> (Selic diária, IPCA mensal) não se
@@ -347,6 +414,36 @@
   </ul>
   <p class="menor">Registrar a limitação por escrito é parte do exercício — conter a
   conclusão é disciplina de pesquisador.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Prática · Seção 4 — Perguntas de interpretação</h2>
+  <div class="instrucao"><span class="rotulo">Escreva no notebook · 10 min</span>
+  Responda em célula de texto, com frases completas:
+  <ol>
+    <li>Que série do BCB ou do Ipeadata serviria de <strong>variável de contexto</strong> para o seu projeto? Por quê?</li>
+    <li>Que cuidado a <strong>diferença de frequências</strong> exigiria no seu caso (série mensal, trimestral, anual)?</li>
+  </ol></div>
+  <p class="menor">Compartilhe o link do notebook ao final da aula.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Oficina · A matriz de amarração do seu projeto</h2>
+  <table>
+    <tr><th>Problema</th><th>Objetivo específico</th><th>Hipótese</th><th>Variáveis e níveis</th><th>Base</th><th>Técnica prevista</th></tr>
+    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer · 35 min</span>
+  O template está em célula de texto do notebook (tabela markdown). Preencha a matriz do
+  <strong>seu projeto</strong>, incorporando os comentários que recebeu sobre o rascunho do
+  encontro 3. Quem recebeu apontamento de inviabilidade da base começa por essa coluna.
+  A técnica prevista pode ficar genérica ("comparação de grupos", "associação entre variáveis"):
+  vamos revisitá-la ao final da Unidade III.</div>
+  <p class="menor">A matriz preenchida integra a entrega do encontro 8.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 
@@ -396,7 +493,8 @@
     <li><strong>GIL (2019)</strong> — capítulo sobre amostragem (prepara o encontro 5);</li>
     <li><strong>Estes slides</strong> — releia as oito etapas com os "erros típicos" e a
         comparação primários × secundários;</li>
-    <li><strong>Tarefa:</strong> concluir a matriz de amarração do seu projeto.</li>
+    <li><strong>Tarefa:</strong> concluir a matriz de amarração do seu projeto (ela integra a
+        entrega da primeira etapa no encontro 8: problema, hipóteses, variáveis, base e matriz).</li>
   </ul>
   <p><strong>Síntese do dia:</strong> pesquisar é encadear decisões — e a matriz de
   amarração é o instrumento que verifica se as suas decisões formam um projeto coerente.</p>

@@ -45,6 +45,27 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p class="menor">Ao final do encontro, vocês deverão ser capazes de:</p>
+  <ol>
+    <li><strong>Calcular e interpretar</strong> média, mediana e moda, escolhendo a medida
+        conforme o nível de mensuração e a forma da distribuição;</li>
+    <li><strong>Explicar</strong> por que valores extremos deslocam a média e não a mediana,
+        e reconhecer quando a mediana é a medida honesta;</li>
+    <li><strong>Calcular e interpretar</strong> amplitude, variância, desvio padrão e
+        coeficiente de variação, usando o CV para comparar grupos de escalas diferentes;</li>
+    <li><strong>Construir e ler</strong> distribuições de frequência (absoluta, relativa e
+        acumulada) com classes;</li>
+    <li><strong>Produzir</strong> essas medidas em pandas (<code>mean</code>,
+        <code>median</code>, <code>mode</code>, <code>std</code>, <code>describe</code>,
+        <code>groupby</code>, <code>pd.cut</code>) e registrar a interpretação por escrito;</li>
+    <li><strong>Aplicar</strong> o repertório descritivo à base do próprio projeto.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
 <section class="slide divisor">
   <h2>Devolutiva da Avaliação 1</h2>
   <p>Fechar as Unidades I e II com o gabarito público e preparar a Unidade III</p>
@@ -62,6 +83,10 @@
     <li>As tarefas da prova (classificar variáveis, sortear amostra) são exatamente o que
         <strong>antecede a análise</strong> que começa hoje.</li>
   </ul>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer (30 min)</span>
+  Acompanhe a resolução com a sua prova em mãos. Em cada questão, anote onde errou e
+  <strong>por quê</strong>: foi conceito (ordinal ou intervalar?), leitura do enunciado ou
+  justificativa incompleta? Dúvidas sobre a correção são discutidas agora, em aula.</div>
   <div class="pergunta">O gabarito fecha duas unidades — mas também monta a sala para a
   Unidade III.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
@@ -109,6 +134,10 @@
   sobe para um valor que não descreve <strong>nenhuma das dez</strong>. A
   <strong>mediana</strong> permanece onde a vida acontece.</div>
   <p class="menor">Cada valor participa do cálculo da média — um único extremo a arrasta.</p>
+  <div class="instrucao"><span class="rotulo">No quadro</span>
+  Vamos montar a rua juntos: nove receitas modestas e uma gigante. Calculem a
+  <strong>média</strong> e a <strong>mediana</strong> antes e depois da chegada da gigante e
+  respondam em coro: qual das duas ainda descreve a empresa típica da rua?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
@@ -148,6 +177,10 @@
   empresa.</div>
   <p class="menor">Regra prática a fixar: média e mediana divergindo muito → distribuição
   assimétrica ou outliers → reportar as duas.</p>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
+  Em duplas, um minuto: citem uma variável do <strong>seu projeto</strong> em que vocês
+  esperam média muito diferente da mediana, e uma em que esperam que coincidam. Justifiquem
+  pela forma da distribuição.</div>
   <div class="pergunta">Relembrando o objetivo 2 do encontro: reconhecer quando a
   <strong>mediana é a medida honesta</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
@@ -207,6 +240,10 @@
     <li>A prática de hoje mostrará isso <strong>deliberadamente</strong>;</li>
     <li>Lógica: dividir por um denominador que flerta com o zero explode o resultado.</li>
   </ul>
+  <div class="instrucao"><span class="rotulo">Exercício oral</span>
+  Para cada variável, digam se o CV faz sentido: (a) receita das companhias; (b) margem
+  líquida; (c) número de funcionários; (d) nota de satisfação de 1 a 5. Justifiquem pelo
+  nível de mensuração e pela posição da média.</div>
   <div class="afirmacao">Toda medida tem <strong>pressupostos de uso</strong> — fórmula sem
   julgamento produz absurdo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
@@ -228,6 +265,24 @@
   <p class="menor">O papel das classes: transformar uma lista ilegível de números numa
   <strong>estrutura que revela a forma da distribuição</strong> — onde se concentra, onde
   rareia, se há caudas.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Lendo uma tabela de frequências</h2>
+  <div class="instrucao"><span class="rotulo">No quadro</span>
+  Vamos montar juntos a tabela da margem líquida em cinco classes (prejuízo, 0 a 5%, 5 a
+  10%, 10 a 20%, acima de 20%). Para cada classe, preencham: contagem, % do total e %
+  acumulado.</div>
+  <div class="instrucao"><span class="rotulo">Perguntas para a turma</span>
+  <ul>
+    <li>Em que classe está a <strong>maior concentração</strong> de companhias?</li>
+    <li>Que proporção opera no <strong>prejuízo</strong>? Onde a acumulada responde isso?</li>
+    <li>A tabela sugere uma distribuição simétrica ou com cauda? Para que lado?</li>
+  </ul></div>
+  <p class="menor">A tabela de frequências é o histograma em forma de tabela; o gráfico
+  fica para o encontro 10.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
@@ -253,6 +308,38 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 1 — reconstruir a base CVM (15 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  O código de download e filtragem é o do encontro 7 e vem <strong>pronto</strong>: execute
+  as células em ordem e confira o resultado. A habilidade em treino hoje é outra: ler e
+  resumir, não baixar. Antes de seguir, verifique: quantas linhas tem a base? O que é cada
+  linha? Em que unidade está a receita?</div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  Se o download da DFP falhar (internet do laboratório), rode a célula de contingência que
+  carrega <code>dados/cvm_dre_2024.csv</code>: 451 companhias com receita, lucro, margem e
+  setor. Cada linha é uma companhia; a receita está em <strong>milhares de reais</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 2 — tendência central na prática (20 min)</h2>
+  <div class="instrucao"><span class="rotulo">Lacunas a preencher</span>
+  <ol>
+    <li>Média, mediana e moda da <strong>receita</strong> e da <strong>margem</strong>;</li>
+    <li>As 5 maiores e 5 menores com <code>nlargest</code>/<code>nsmallest</code>;</li>
+    <li>Média recalculada <strong>sem os extremos</strong>, comparada à mediana;</li>
+    <li>Em uma célula de texto: <strong>qual medida você reportaria e por quê</strong>.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
+  A margem média sai distorcida por companhias com margens absurdas: receita minúscula no
+  denominador. Não é erro de código; é o dado. Olhe os extremos antes de concluir que
+  "o setor é lucrativo".</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Seções 3 e 4 — dispersão por setor e tabela de frequências</h2>
@@ -268,6 +355,44 @@
   </table>
   <p class="menor">A forma que a tabela insinua será <strong>desenhada</strong> no encontro
   10.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3 — dispersão e comparação entre setores (20 min)</h2>
+  <div class="instrucao"><span class="rotulo">Lacunas a preencher</span>
+  <ol>
+    <li>Desvio padrão da receita <strong>por setor</strong> com <code>groupby</code> +
+        <code>agg</code>;</li>
+    <li>A lacuna do CV: <code>desvio / média</code> (em %), também por setor;</li>
+    <li>Ordene os setores pelo desvio e depois pelo CV e compare os dois rankings;</li>
+    <li>Agora aplique o CV à <strong>margem líquida</strong>, de propósito.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Concluir que o setor com maior desvio absoluto é "o mais heterogêneo". O desvio carrega
+  a escala; o CV reordena a comparação. E o CV da margem <strong>explode</strong> porque as
+  médias ficam perto de zero: o número está certo, a aplicação é que não faz sentido.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 — distribuição de frequências (10 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <ol>
+    <li>Crie as classes da margem com <code>pd.cut</code> (limites já definidos no
+        notebook);</li>
+    <li>Conte com <code>value_counts</code> e acrescente as colunas de frequência
+        <strong>relativa</strong> e <strong>acumulada</strong>;</li>
+    <li>Responda por escrito: onde se concentram as companhias? Que proporção opera no
+        prejuízo?</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  <code>value_counts</code> ordena pela contagem, não pela classe: use
+  <code>sort_index()</code> antes de acumular, senão a frequência acumulada perde o
+  sentido. Valores fora dos limites do <code>pd.cut</code> viram <code>NaN</code> e somem
+  da contagem; confira se o total bate com o número de companhias.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
@@ -304,9 +429,11 @@
     <li>Registre por escrito <strong>duas observações substantivas</strong>: "o que estes
         números dizem sobre meu problema de pesquisa?"</li>
   </ol>
-  <p class="menor">O professor circula orientando a escolha da medida conforme o
-  <strong>nível de mensuração</strong> de cada variável — o elo direto entre a classificação
-  da Unidade I e a análise que começa agora.</p>
+  <div class="instrucao"><span class="rotulo">Como escolher a medida</span>
+  Retome a classificação das suas variáveis (Unidade I): nominal pede moda e tabela de
+  frequências; ordinal, mediana; intervalar e razão, média <strong>e</strong> mediana, com
+  desvio padrão. Em dúvida, chame o professor durante a oficina: esse é o elo direto entre a
+  classificação que vocês fizeram e a análise que começa agora.</div>
   <div class="pergunta">Não conseguiu carregar a base? Leve a tarefa para casa e traga o
   bloco pronto no <strong>encontro 10</strong>, que terá tempo dedicado ao projeto.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
@@ -337,6 +464,8 @@
         contingência do notebook);</li>
     <li><strong>Encontro 10:</strong> a segunda metade da aula será dedicada às descritivas
         e ao primeiro gráfico do <strong>seu</strong> projeto;</li>
+    <li><strong>Projeto:</strong> quem não terminou o bloco descritivo em aula traz pronto
+        no encontro 10 (medidas, tabela de frequências e as duas observações escritas);</li>
     <li><strong>Próxima leitura:</strong> nenhuma obrigatória — revisar medidas descritivas
         de estatística básica ajuda.</li>
   </ul>

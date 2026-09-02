@@ -42,6 +42,42 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, vocês deverão ser capazes de:</p>
+  <ol>
+    <li><strong>Caracterizar</strong> as técnicas de coleta além do questionário autoaplicado
+        (entrevista estruturada, testes, observação sistemática e registros documentais) e as
+        condições de uso de cada uma;</li>
+    <li><strong>Reconhecer</strong> os registros documentais como fonte de dado quantitativo
+        sistemático e <strong>importar</strong> demonstrações financeiras da CVM;</li>
+    <li><strong>Explicar</strong> os princípios éticos da pesquisa com seres humanos no Brasil e
+        o papel do TCLE, dos CEPs e da Plataforma Brasil;</li>
+    <li><strong>Distinguir</strong> as situações que exigem submissão a comitê de ética das que
+        não exigem;</li>
+    <li><strong>Executar e documentar</strong> o pré-teste de um questionário, importando as
+        respostas para análise.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomada: seus questionários revisados</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer (10 min)</span>
+  Rodada rápida pela turma. Cada um responde em uma frase:
+  <ol>
+    <li>Em que estado está o questionário revisado no encontro 6 (pronto no Google Formulários,
+        em revisão, sem tela de TCLE)?</li>
+    <li>Qual foi a mudança mais importante que você fez depois da revisão em duplas?</li>
+  </ol>
+  Tenha o <strong>link do formulário</strong> à mão: ele será usado no pré-teste ao final da aula.</div>
+  <p class="menor">Esse questionário é apenas um ponto num repertório maior de técnicas. A pergunta
+  que organiza o próximo bloco: <strong>quando cada técnica é a escolha certa?</strong></p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
 <section class="slide divisor">
   <h2>Além do questionário</h2>
   <p>Quando cada técnica de coleta é a escolha certa</p>
@@ -129,6 +165,10 @@
     <tr><td>Registros documentais</td><td>O que a organização registra</td>
         <td>O dado já existe, padronizado</td></tr>
   </table>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
+  Para o seu projeto individual: qual técnica você de fato usará (registros documentais,
+  questionário ou outra) e o que a pergunta e o <strong>acesso</strong> ao dado decidem nessa
+  escolha? Duas ou três respostas em voz alta antes de seguirmos.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
 </section>
 
@@ -237,9 +277,29 @@
   Dado documental exige conhecer a gramática do documento (plano de contas, chaves de
   junção, escala em milhares) — e é essa gramática que garante a
   <strong>comparabilidade</strong> entre empresas.</div>
-  <p class="menor">Na prática: baixar a DFP 2024, filtrar 3.01 e 3.11, juntar o setor do
-  cadastro CVM e criar a <strong>margem líquida</strong> (lucro ÷ receita) — uma
-  operacionalização de "desempenho" sobre registro documental.</p>
+  <div class="instrucao"><span class="rotulo">Seção 1 – A fonte e o download (20 min)</span>
+  Abra o portal de dados abertos da CVM e execute a célula que baixa o arquivo DFP 2024
+  (zip de ~13 MB) e lê a DRE consolidada. Se o download falhar, use a célula de contingência
+  com o CSV <code>dados/cvm_dre_2024.csv</code> já preparado.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 2 – Da conta contábil à variável de pesquisa (30 min)</h2>
+  <div class="instrucao"><span class="rotulo">O que fazer</span>
+  Complete as lacunas dos filtros no código guiado para construir a base analítica:
+  <ol>
+    <li>Filtrar o <strong>último exercício</strong>;</li>
+    <li>Pivotar receita (3.01) e lucro (3.11) por companhia;</li>
+    <li>Juntar o <strong>setor de atividade</strong> do cadastro da CVM;</li>
+    <li>Criar a variável <strong>margem líquida</strong> = lucro ÷ receita;</li>
+    <li>Explorar com <code>groupby</code>: quantas companhias, quais setores, margens medianas por setor.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
+  Os valores estão em <strong>milhares de reais</strong> e o lucro pode ser
+  <strong>negativo</strong> (prejuízo): uma margem de -0,35 não é erro de código, é leitura de
+  dado contábil. Confira a escala antes de interpretar qualquer número.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
 </section>
 
@@ -252,11 +312,51 @@
         brasileiras (milhões no CEMPRE);</li>
     <li>Comparar setores exige cuidado: bancos têm DRE de estrutura própria; margens
         extremas pedem <strong>mediana</strong>, não média (gancho para o encontro 9).</li>
+    <li>Viés de <strong>sobrevivência</strong> e de <strong>seleção</strong>: só quem chegou a
+        abrir capital (e continua aberto) aparece na base.</li>
   </ul>
-  <div class="exemplo"><span class="rotulo">Pré-teste dos questionários (30 min)</span>
-  Compartilhe seu link com 3–5 colegas e responda aos deles; exporte as respostas (CSV) e
-  importe no notebook; registre <strong>duas mudanças</strong> que fará no instrumento.
-  De quebra, o TCLE da sua tela inicial também foi testado.</div>
+  <div class="instrucao"><span class="rotulo">Seção 3 – Escreva no notebook (15 min)</span>
+  Nas células de texto, responda: para que perguntas esta base é <strong>adequada</strong>, e
+  para quais seria <strong>enganosa</strong>? Justifique com a cobertura da base.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 – Perguntas de interpretação (10 min)</h2>
+  <div class="instrucao"><span class="rotulo">Escreva no notebook</span>
+  <ol>
+    <li>Por que o seu projeto individual (dados públicos agregados) <strong>não exige</strong>
+        submissão a CEP? Que deveres éticos <strong>permanecem</strong> mesmo assim?</li>
+    <li>Que registro documental existe na organização onde você trabalha (ou conhece) que
+        permitiria uma pesquisa quantitativa? O que ele registra, com que padronização?</li>
+  </ol></div>
+  <div class="exemplo"><span class="rotulo">Gancho com o projeto individual</span>
+  A resposta à pergunta 1 é o parágrafo de <strong>aspectos éticos</strong> da primeira etapa
+  do projeto: cite a Res. 510/2016, a fonte dos dados e o compromisso de uso honesto e citação.
+  Leve-a para a entrega do encontro 8. Ao final, compartilhe o link do notebook.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Pré-teste dos questionários (30 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <ol>
+    <li>Compartilhe o link do seu questionário revisado com <strong>3 a 5 colegas</strong> e
+        responda aos deles como pré-teste;</li>
+    <li>Exporte as respostas em CSV pelo Google Formulários (roteiro de exportação no notebook)
+        e importe com a célula de leitura pronta;</li>
+    <li>Análise deliberadamente simples: contagem de respostas, tempo estimado, itens marcados
+        com "não entendi";</li>
+    <li>Registre por escrito <strong>duas mudanças</strong> que fará no questionário depois de
+        ver as respostas.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  O objetivo é <strong>diagnóstico do instrumento</strong>, não análise substantiva: com cinco
+  respostas nenhuma conclusão sobre a população é possível.</div>
+  <p class="menor">De quebra, o <strong>TCLE</strong> da sua tela inicial também foi testado:
+  seus colegas entenderam a que estavam consentindo?</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
 </section>
 
@@ -294,6 +394,23 @@
     <li>As <strong>sínteses teóricas</strong> ao final de cada deck de slides são o mapa;</li>
     <li><strong>Reexecutar os notebooks</strong> é a revisão ativa da parte prática.</li>
   </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Tarefa para o encontro 8</h2>
+  <ol>
+    <li><strong>Revisar</strong> os slides e notebooks dos encontros 1 a 7, usando a síntese
+        teórica de cada deck como mapa de revisão;</li>
+    <li><strong>Concluir a primeira etapa do projeto individual</strong>, que será entregue ao
+        final da prova: problema, hipóteses, variáveis com níveis de mensuração, base escolhida
+        e matriz de amarração;</li>
+    <li>Incorporar ao questionário as <strong>duas mudanças</strong> registradas hoje no pré-teste
+        e conferir a tela de TCLE.</li>
+  </ol>
+  <div class="afirmacao">A técnica de coleta se escolhe pela pergunta e pelo acesso; registros
+  documentais são dados quantitativos plenos; e a ética não é etapa, é condição.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
 </section>
 

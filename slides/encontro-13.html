@@ -44,6 +44,43 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, você deverá ser capaz de:</p>
+  <ol>
+    <li><strong>calcular</strong> e <strong>interpretar</strong> o coeficiente de correlação
+        de Pearson, distinguindo alinhamento de causalidade;</li>
+    <li><strong>explicar</strong> por que a escolha da defasagem temporal é uma decisão de
+        pesquisa que altera a força da associação;</li>
+    <li><strong>ler</strong> uma matriz de correlação e seus sinais à luz da teoria do
+        fenômeno;</li>
+    <li><strong>ajustar</strong> uma regressão linear simples com <code>statsmodels</code> e
+        interpretar intercepto, inclinação, R², estatística F e valor-p;</li>
+    <li><strong>usar</strong> transformação logarítmica e interpretar a inclinação como
+        elasticidade;</li>
+    <li><strong>avaliar</strong> os pressupostos (linearidade, resíduos, Jarque–Bera) e
+        <strong>declarar</strong> os limites da análise;</li>
+    <li><strong>aplicar</strong> correlação e regressão a um par de variáveis da base do seu
+        projeto.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomada — de uma variável para duas</h2>
+  <div class="afirmacao">No encontro 11 aprendemos a inferir sobre <strong>uma</strong>
+  variável: intervalo de confiança e teste de hipóteses. A pergunta de hoje é relacional.</div>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer (15 min)</span>
+  Hoje o objetivo não é apenas a conta do r e da reta, mas as <strong>leituras e os limites
+  que o relatório exige</strong>. Três frases para guardar desde já: correlação não é
+  causalidade; defasagem é decisão de pesquisa; R² alto não é explicação.</div>
+  <div class="pergunta">Duas variáveis quantitativas <strong>andam juntas</strong>? E o que
+  isso autoriza você a afirmar?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
 <section class="slide divisor">
   <h2>A correlação de Pearson</h2>
   <p>A associação responde ao alinhamento — não à causa</p>
@@ -223,6 +260,10 @@
   </ul>
   <div class="pergunta">Anote em uma frase o que cada célula diz — sem a palavra
   "causa".</div>
+  <div class="alerta"><span class="rotulo">Atenção</span>
+  A defasagem quase dobra o r, mas isso <strong>não prova</strong> que a Selic causa
+  inadimplência: você escolheu o intervalo de 6 meses. Escolha diferente, resultado
+  diferente. Por isso a defasagem precisa ser <strong>justificada e declarada</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
@@ -236,6 +277,10 @@
     <li>Interpretar b₁ (elasticidade), R² e p(F);</li>
     <li>Dispersão com a reta ajustada — o desenho que o encontro 10 treinou.</li>
   </ul>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  O log só aceita valores <strong>positivos</strong>: companhias com prejuízo saem da
+  amostra, e isso é uma decisão a declarar. E não extrapole a reta para fora do intervalo
+  observado: ela não foi ajustada lá.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
@@ -273,6 +318,10 @@
   <p class="menor">Quem trabalha com variáveis categóricas (qui-quadrado do encontro 11)
   também apresenta a média/mediana do indicador por grupo — na prática quase toda base
   permite.</p>
+  <div class="instrucao"><span class="rotulo">Use a função pronta</span>
+  O notebook traz <code>correlacao_regressao(df, x, y)</code>: aplique-a ao seu par de
+  variáveis (ou à base CVM de exemplo) e anote a interpretação completa. Compartilhe o link
+  do notebook ao final da oficina.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 

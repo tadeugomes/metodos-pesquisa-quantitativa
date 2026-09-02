@@ -35,6 +35,9 @@
   sobrevivência após 1, 2 e 3 anos.</p>
   <p>Antes, porém, precisamos de um <strong>mapa dos tipos de pergunta</strong> que a
   pesquisa quantitativa responde — porque cada tipo exige um delineamento diferente.</p>
+  <div class="instrucao"><span class="rotulo">Retomada (10 min)</span>
+  Quem trouxe a pergunta de pesquisa esboçada no encontro 1 lê em voz alta. Vamos
+  registrá-las no quadro: ao final da manhã, cada uma receberá um tipo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -50,6 +53,26 @@
     <tr><td>105 min</td><td><strong>Prática no Colab:</strong> pandas e sobrevivência de empresas</td></tr>
     <tr><td>20 min</td><td>Síntese e tarefa</td></tr>
   </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Objetivos de aprendizagem</h2>
+  <p>Ao final do encontro, você deverá ser capaz de:</p>
+  <ol>
+    <li><strong>Caracterizar</strong> os quatro tipos de pesquisa quantitativa (descritiva,
+        correlacional, experimental e quase-experimental) e o survey como estratégia;</li>
+    <li><strong>Identificar</strong> o tipo de pesquisa a partir da pergunta e do
+        delineamento de estudos publicados;</li>
+    <li><strong>Carregar</strong> dados do SIDRA com <code>sidrapy</code> e
+        <strong>inspecionar</strong> um DataFrame com <code>head()</code>,
+        <code>info()</code> e <code>shape</code>;</li>
+    <li><strong>Filtrar</strong> linhas e <strong>selecionar</strong> colunas de um
+        DataFrame;</li>
+    <li><strong>Agrupar</strong> dados com <code>groupby</code> para responder a uma
+        pergunta descritiva sobre a sobrevivência de empresas.</li>
+  </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -69,6 +92,34 @@
   diferentes — e só uma delas autoriza falar em <strong>causa</strong>.</p>
   <p>Por isso classificamos os tipos: não é taxonomia decorativa, é o mapa do que cada
   desenho <strong>pode e não pode afirmar</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O mapa de Gil: quinze delineamentos, sete que nos interessam</h2>
+  <p>Gil (2022, cap. 4) classifica as pesquisas pelo <strong>ambiente, pela abordagem
+  teórica e pelas técnicas de coleta e análise</strong>, e lista quinze delineamentos.
+  Sete deles produzem ou usam números e são o nosso território:</p>
+  <table>
+    <tr><th>Delineamento (Gil)</th><th>De onde vêm os dados</th><th>Onde entra nesta disciplina</th></tr>
+    <tr><td>Bibliográfica · Documental</td><td>Material já publicado · registros
+        internos e estatísticos</td><td>Bases IBGE, BCB e CVM (pesquisa documental
+        com registros estatísticos)</td></tr>
+    <tr><td><strong>Experimental</strong> · Ensaio clínico</td><td>O pesquisador aplica a
+        intervenção e sorteia grupos</td><td>Teste A/B, pilotos de RH</td></tr>
+    <tr><td><strong>Estudo de coorte</strong></td><td>Grupos expostos e não expostos,
+        seguidos no tempo</td><td>Demografia das Empresas (prática de hoje!),
+        rotatividade de admitidos</td></tr>
+    <tr><td><strong>Estudo caso-controle</strong></td><td>Parte do desfecho e olha para
+        trás</td><td>Quem pediu demissão × quem ficou</td></tr>
+    <tr><td><strong>Levantamento (survey)</strong></td><td>Interrogação direta de uma
+        amostra</td><td>Encontros 5 a 7</td></tr>
+  </table>
+  <p class="menor">Os demais (estudo de caso, etnografia, fenomenologia, grounded theory,
+  pesquisa-ação, participante, narrativa, métodos mistos) são majoritariamente
+  qualitativos. Coorte, caso-controle e ensaio clínico nasceram nas ciências da saúde e
+  foram importados pela gestão, sobretudo por <em>people analytics</em>.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -128,8 +179,9 @@
       <p class="menor">Testaremos isso formalmente no encontro 11.</p>
     </div>
   </div>
-  <div class="pergunta">Para toda correlação, pergunte: que <strong>explicações
-  alternativas</strong> existem?</div>
+  <div class="pergunta">Exercício oral: "empresas que investem em marketing faturam mais".
+  Proponham, em coro, <strong>explicações alternativas</strong> para essa correlação.
+  Para toda correlação, pergunte: que outras explicações existem?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -139,7 +191,9 @@
   <div class="definicao"><span class="rotulo">Definição</span>
   O pesquisador <strong>manipula</strong> a variável independente, <strong>controla</strong>
   as demais condições e distribui os participantes <strong>aleatoriamente</strong> entre
-  grupo de tratamento e grupo de controle.</div>
+  grupo de tratamento e grupo de controle. Para Gil (2022, seção 4.4), é a pesquisa em
+  que o pesquisador é "um <strong>agente ativo</strong>, e não um observador passivo": o
+  delineamento mais prestigiado nos meios científicos.</div>
   <p>Os três pilares:</p>
   <ul>
     <li><strong>Manipulação</strong> — o pesquisador decide quem recebe o quê;</li>
@@ -171,6 +225,29 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Planos experimentais (Gil, cap. 7): uma variável ou fatorial</h2>
+  <div class="definicao"><span class="rotulo">Plano de uma única variável ("mão única")</span>
+  Manipula-se <strong>uma</strong> variável independente, em duas ou mais condições.
+  Ex.: sorteiam-se vendedores para <em>com treinamento</em> (A1) e <em>sem treinamento</em>
+  (A2); compara-se a venda média por vendedor.</div>
+  <div class="definicao"><span class="rotulo">Plano fatorial</span>
+  Duas ou mais variáveis independentes <strong>ao mesmo tempo</strong>, para estudar
+  efeitos separados e <strong>conjuntos</strong> (interação). Três testes num só
+  experimento.</div>
+  <table>
+    <tr><th>Vendas médias (fictícias)</th><th>Presencial (B1)</th><th>On-line (B2)</th></tr>
+    <tr><td><strong>Com treinamento (A1)</strong></td><td>7</td><td>3</td></tr>
+    <tr><td><strong>Sem treinamento (A2)</strong></td><td>5</td><td>5</td></tr>
+  </table>
+  <p class="menor">Leitura: o treinamento <strong>ajuda no presencial e atrapalha no
+  on-line</strong>. Se só tivéssemos testado "treinou × não treinou", a média (5 × 5)
+  esconderia tudo. É a <strong>interação</strong> que o plano fatorial revela, e é o
+  achado mais comum em people analytics: o efeito depende do contexto.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Pesquisa quase-experimental</h2>
   <div class="definicao"><span class="rotulo">Definição</span>
   Compara grupos "tratado" e "não tratado" <strong>sem aleatorização</strong> — os grupos
@@ -182,13 +259,177 @@
   <div class="afirmacao">Ameaça central — <strong>viés de seleção</strong>: os grupos podem
   diferir por razões prévias. Talvez as lojas que adotaram o sistema já fossem as mais
   organizadas — e a diferença de desempenho venha daí, não do sistema.</div>
-  <p class="menor">Toda conclusão quase-experimental deve declarar essa limitação.</p>
+  <p class="menor">Toda conclusão quase-experimental deve declarar essa limitação. Gil
+  (2022), com Campbell e Stanley, resume: são delineamentos "substancialmente mais
+  fracos", mas "não destituídos de valor", desde que o pesquisador
+  <strong>esclareça o que deixou de controlar</strong>.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Os quatro tipos, lado a lado</h2>
+  <h2>A escada do rigor: o mesmo treinamento, três desenhos</h2>
+  <p class="menor">Pergunta de people analytics: "o treinamento de vendas aumentou o
+  desempenho?" Gil (seções 4.4 e 8.4 a 8.6) distingue três degraus.</p>
+  <table>
+    <tr><th>Degrau</th><th>Desenho</th><th>O que compara</th><th>Ameaça principal</th></tr>
+    <tr><td><strong>Pré-experimental</strong></td><td><strong>Antes e depois</strong>, um
+        único grupo, sem controle (série temporal simples)</td><td>Vendas dos treinados
+        antes × depois</td><td>Tudo o que mudou junto: sazonalidade, maturação, efeito de
+        aprendizado no teste, campanha promocional</td></tr>
+    <tr><td><strong>Quase-experimental</strong></td><td><strong>Grupo de controle não
+        equivalente</strong>: treinados × não treinados, com pré-teste</td><td>Variação
+        dos treinados × variação dos não treinados</td><td>Viés de seleção: quem foi
+        treinado talvez já fosse melhor</td></tr>
+    <tr><td><strong>Experimental</strong></td><td><strong>Sorteio</strong> de quem treina
+        agora e quem treina depois (lista de espera ou delineamento cruzado)</td>
+        <td>Grupos equivalentes por construção</td><td>Só o acaso, mensurável
+        (encontro 11)</td></tr>
+  </table>
+  <div class="afirmacao">O "antes e depois" tão usado em RH é, para Gil, um delineamento
+  <strong>pré-experimental</strong>: cada participante é o seu próprio controle, o que
+  elimina diferenças inatas, mas <strong>não elimina o tempo</strong>. Vale como
+  evidência inicial, não como prova de impacto.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Estudo de coorte</h2>
+  <div class="definicao"><span class="rotulo">Definição (Gil, 2022, seção 4.6 e cap. 9)</span>
+  Grupo de indivíduos com uma <strong>característica comum</strong>, acompanhado por um
+  período para observar o que lhes acontece. Compara-se uma amostra de
+  <strong>expostos</strong> a um fator com uma amostra equivalente de <strong>não
+  expostos</strong>, e ao final verifica-se quanto o desfecho foi mais frequente entre os
+  expostos. A exposição <strong>não é sorteada</strong>: é o que separa a coorte do
+  experimento.</div>
+  <div class="exemplo"><span class="rotulo">People analytics</span>
+  Coorte: todos os <strong>admitidos em 2023</strong>. Expostos: passaram por onboarding
+  estruturado; não expostos: não passaram. Seguimento: 24 meses. Desfecho: desligamento
+  voluntário. Resultado: <strong>risco relativo</strong> (quantas vezes o risco é maior
+  num grupo) e <strong>risco atribuível</strong> (diferença de incidências atribuída à
+  exposição).</div>
+  <div class="exemplo"><span class="rotulo">A prática de hoje é uma coorte</span>
+  A Demografia das Empresas segue as empresas <strong>nascidas em cada ano</strong> e
+  mede quantas sobrevivem após 1, 2 e 3 anos, por porte e setor. É um estudo de coorte
+  <strong>retrospectivo</strong>, montado a partir de registros administrativos.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Coorte prospectiva ou retrospectiva; etapas e limites</h2>
+  <div class="colunas">
+    <div>
+      <h3>Prospectiva</h3>
+      <p>Grupos formados <strong>hoje</strong>, seguidos para o futuro. Planejamento
+      rigoroso, próximo do experimento; cara e demorada.</p>
+      <p class="menor">Ex.: acompanhar por dois anos as MPEs que aderiram ao Pix
+      versus as que não aderiram.</p>
+    </div>
+    <div>
+      <h3>Retrospectiva</h3>
+      <p>Exposição e desfecho <strong>já ocorreram</strong>; reconstrói-se a coorte a
+      partir de <strong>arquivos</strong>. Rápida; depende de registros completos e
+      padronizados.</p>
+      <p class="menor">Ex.: base do RH ou do SIDRA, como na prática de hoje.</p>
+    </div>
+  </div>
+  <p><strong>Etapas (Gil, cap. 9):</strong> definir objetivos como hipóteses → selecionar
+  expostos e não expostos <em>na mesma fonte e pelo mesmo procedimento</em> → medir o
+  nível de exposição (de preferência em graus, não só sim/não) → acompanhar até o
+  desfecho, a saída ou o fim do estudo → calcular as taxas de ocorrência.</p>
+  <div class="afirmacao">Limites que Gil destaca: <strong>sem aleatorização</strong> os
+  grupos podem diferir desde o início; amostras precisam ser <strong>grandes</strong>; e a
+  <strong>perda de participantes</strong> ao longo do seguimento (quem sai da empresa,
+  quem some da base) pode enviesar tudo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Estudo caso-controle</h2>
+  <div class="definicao"><span class="rotulo">Definição (Gil, 2022, seção 4.7 e cap. 10)</span>
+  Estudo <strong>retrospectivo</strong>, <em>ex post facto</em>: parte do
+  <strong>desfecho</strong> e volta ao <strong>antecedente</strong>. Seleciona-se um
+  grupo que apresenta o desfecho (<strong>casos</strong>) e outro, semelhante em tudo
+  exceto no desfecho (<strong>controles</strong>), e verifica-se em qual deles a
+  exposição ao fator foi mais frequente.</div>
+  <div class="exemplo"><span class="rotulo">People analytics</span>
+  Casos: os 60 analistas que <strong>pediram demissão</strong> nos últimos 12 meses.
+  Controles: 60 analistas que ficaram, <strong>pareados</strong> por área, cargo e tempo
+  de casa. Olhando para trás nos registros: que proporção de cada grupo teve troca de
+  gestor, ficou sem promoção, não recebeu treinamento? A medida é a
+  <strong>razão de chances (odds ratio)</strong>: quantas vezes é maior a chance de os
+  casos terem estado expostos.</div>
+  <div class="exemplo"><span class="rotulo">Empresas</span>
+  Casos: empresas que <strong>fecharam</strong> em três anos. Controles: sobreviventes do
+  mesmo setor, porte e município. Exposição: tomaram crédito caro? tinham um único
+  cliente?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Caso-controle: por que usar, e onde ele engana</h2>
+  <div class="colunas">
+    <div>
+      <h3>Vantagens (Gil)</h3>
+      <ul>
+        <li><strong>Rápido e barato</strong>: não há seguimento;</li>
+        <li>Único desenho viável para <strong>desfechos raros</strong> (fraude, acidente
+            grave, falência em setor pequeno);</li>
+        <li>Bom para <strong>gerar hipóteses</strong> que uma coorte ou um experimento
+            testará depois.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Cuidados (Gil, cap. 10)</h3>
+      <ul>
+        <li>Escolher os controles é a parte <strong>mais difícil</strong>: mesma fonte,
+            mesma chance de exposição, <strong>pareamento</strong>;</li>
+        <li><strong>Viés de memória</strong>: casos lembram das exposições de forma
+            diferente dos controles; prefira registros anteriores à pesquisa;</li>
+        <li>Não se estima incidência: os grupos foram escolhidos pelo desfecho, não pela
+            exposição.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pergunta">Teste de sanidade: se você começou a pesquisa <strong>listando quem
+  saiu</strong>, é caso-controle; se começou listando <strong>quem entrou</strong> e
+  esperou para ver quem sairia, é coorte.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Experimento, coorte e caso-controle, lado a lado</h2>
+  <table>
+    <tr><th></th><th>Experimento / ensaio</th><th>Coorte</th><th>Caso-controle</th></tr>
+    <tr><td><strong>Quem forma os grupos</strong></td><td>O pesquisador, por sorteio</td>
+        <td>Fatores naturais e sociais (a exposição já é dada)</td><td>O pesquisador, a
+        partir do desfecho</td></tr>
+    <tr><td><strong>Direção no tempo</strong></td><td>Intervenção → desfecho</td>
+        <td>Exposição → desfecho</td><td>Desfecho → exposição (para trás)</td></tr>
+    <tr><td><strong>O que se quer conhecer</strong></td><td>Efeito da intervenção</td>
+        <td>Efeitos da exposição</td><td>Causas do desfecho</td></tr>
+    <tr><td><strong>Medida típica</strong></td><td>Diferença entre grupos</td>
+        <td>Risco relativo, risco atribuível</td><td>Razão de chances (odds ratio)</td></tr>
+    <tr><td><strong>Exemplo em RH</strong></td><td>Sorteio de quem recebe o treinamento</td>
+        <td>Admitidos com × sem onboarding, seguidos 24 meses</td><td>Quem saiu × quem
+        ficou: quem teve treinamento?</td></tr>
+    <tr><td><strong>Força causal</strong></td><td>Alta</td><td>Média</td><td>Baixa a
+        média</td></tr>
+  </table>
+  <p class="menor">Gil: "a estrutura de um estudo de coorte é a inversa da de um estudo
+  caso-controle". Ambos são <strong>observacionais</strong> e, no nosso vocabulário,
+  correlacionais com desenho reforçado. Nenhum substitui o sorteio.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Os tipos, lado a lado</h2>
   <table>
     <tr><th>Tipo</th><th>Manipula?</th><th>Aleatoriza?</th><th>Pode afirmar causa?</th><th>Pergunta típica</th></tr>
     <tr><td><strong>Descritiva</strong></td><td>Não</td><td>—</td><td>Não</td>
@@ -199,8 +440,14 @@
         <td>X causa Y?</td></tr>
     <tr><td><strong>Quase-experimental</strong></td><td>Às vezes</td><td>Não</td>
         <td>Com ressalvas</td><td>O grupo com X difere do sem X?</td></tr>
+    <tr><td><strong>Coorte</strong> (observacional)</td><td>Não</td><td>Não</td>
+        <td>Com ressalvas</td><td>Expostos a X têm mais Y ao longo do tempo?</td></tr>
+    <tr><td><strong>Caso-controle</strong> (observacional)</td><td>Não</td><td>Não</td>
+        <td>Com ressalvas</td><td>Quem tem Y esteve mais exposto a X?</td></tr>
   </table>
-  <p class="menor">Guarde esta tabela: ela volta na prova e no seu projeto.</p>
+  <p class="menor">Guarde esta tabela: ela volta na prova e no seu projeto. Coorte e
+  caso-controle são delineamentos <strong>correlacionais reforçados</strong> pelo tempo e
+  pelo pareamento (Gil, 2022).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -218,7 +465,10 @@
   provável escolha de muitos TCCs. Seus instrumentos (questionários, escalas, validade,
   confiabilidade) terão dois encontros dedicados: <strong>6 e 7</strong>.</p>
   <p class="menor">Note: survey é estratégia de <em>coleta</em> — o propósito pode ser
-  descritivo ou correlacional.</p>
+  descritivo ou correlacional. Gil (2022, seção 4.8): quando abrange todo o universo é
+  <strong>censo</strong>; sua limitação maior é registrar a <strong>percepção</strong> que
+  as pessoas têm de si, o que o torna mais adequado a estudos descritivos do que
+  explicativos.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -231,6 +481,9 @@
     <tr><td>"X está associado a Y?" · "Quem tem mais X tem mais Y?"</td><td>Correlacional</td></tr>
     <tr><td>"Se eu mudar X (sorteando quem recebe), Y muda?"</td><td>Experimental</td></tr>
     <tr><td>"O grupo que passou por X difere do que não passou?"</td><td>Quase-experimental</td></tr>
+    <tr><td>"Quem começou com X teve mais Y depois de N anos?"</td><td>Coorte</td></tr>
+    <tr><td>"Entre os que tiveram Y, quantos haviam passado por X?"</td><td>Caso-controle</td></tr>
+    <tr><td>"O grupo melhorou depois de X?" (um grupo só)</td><td>Pré-experimental: cuidado</td></tr>
   </table>
   <p class="menor">Regra prática para a leitura dirigida e para o seu projeto.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
@@ -250,6 +503,26 @@
   Dois artigos brasileiros (RAC/RAE/BBR): identifiquem os quatro elementos em cada um.
   O objetivo não é entender tudo — é <strong>reconhecer a estrutura</strong> que vocês
   mesmos declararão no projeto individual.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Leitura dirigida: como vamos fazer</h2>
+  <div class="instrucao"><span class="rotulo">Exercício em duplas (20 min + 10 min de plenária)</span>
+  Vocês recebem o resumo e o trecho metodológico de <strong>dois artigos</strong>: um
+  descritivo ou correlacional com survey, outro quase-experimental ou com dados
+  secundários. Preencham a ficha abaixo para cada artigo; depois comparamos as respostas
+  em plenária.</div>
+  <table>
+    <tr><th>Elemento</th><th>Artigo 1</th><th>Artigo 2</th></tr>
+    <tr><td><strong>Pergunta de pesquisa</strong></td><td></td><td></td></tr>
+    <tr><td><strong>Tipo de pesquisa</strong> (use a tabela "a pergunta denuncia o tipo")</td><td></td><td></td></tr>
+    <tr><td><strong>Variáveis principais</strong></td><td></td><td></td></tr>
+    <tr><td><strong>Fonte dos dados</strong> (survey próprio? base secundária? quantos casos?)</td><td></td><td></td></tr>
+  </table>
+  <p class="menor">Na plenária, cada dupla defende a classificação de um artigo: se
+  discordarem, voltem à pergunta e ao modo como os grupos foram formados.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
@@ -298,6 +571,86 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 1 · Carregando os dados (20 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  A célula com <code>sidrapy.get_table(table_code="9949", ...)</code> vem pronta. Vamos ler
+  no projetor o que cada parâmetro significa (tabela, nível territorial, variáveis,
+  classificações, período): essa gramática se repete o semestre inteiro. Se o SIDRA estiver
+  fora do ar, rode a célula de contingência, que lê
+  <code>dados/demografia_sobrevivencia_empresas.csv</code>.</div>
+  <p>Primeira inspeção, nesta ordem: <code>head()</code>, <code>shape</code>,
+  <code>info()</code>. Anote quantas linhas e colunas a base tem e qual o tipo de cada
+  coluna.</p>
+  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
+  A tabela do SIDRA chega com a primeira linha de cabeçalho duplicada e os valores como
+  texto. A célula de limpeza (renomear colunas, converter <code>V</code> para numérico) já
+  está escrita e comentada linha a linha: leia-a, execute-a e confira com <code>info()</code>
+  que a coluna virou numérica. Você não precisa escrevê-la hoje.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 2 · Filtros e seleção (25 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  Selecione as colunas relevantes e filtre: só o ano mais recente, só a taxa de
+  sobrevivência de 3 anos, só o total das seções. As lacunas vêm em dificuldade crescente:
+  <ol>
+    <li>Completar o nome de uma coluna;</li>
+    <li>Escrever a condição de filtro para outra variável;</li>
+    <li>Combinar duas condições.</li>
+  </ol></div>
+  <div class="alerta"><span class="rotulo">Erro comum</span>
+  Confundir <code>=</code> (atribuição) com <code>==</code> (comparação) e esquecer as aspas
+  em texto (<code>df["ano"] == 2021</code>, mas <code>df["secao"] == "Total"</code>). Vamos
+  provocar esses dois erros de propósito no projetor e ler as mensagens juntos: errar e ler
+  a mensagem de erro é parte normal do trabalho, não sinal de que você não sabe.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3 · A pergunta do dia (35 min)</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  Responda com <code>groupby</code> e <code>sort_values</code>, e produza um gráfico de
+  barras horizontal:
+  <ol>
+    <li>Qual seção CNAE tem a <strong>maior</strong> e a <strong>menor</strong> taxa de
+        sobrevivência em 3 anos?</li>
+    <li>Empresas empregadoras de <strong>maior porte</strong> sobrevivem mais que as de
+        menor porte?</li>
+  </ol></div>
+  <div class="pergunta">A segunda pergunta é a mais importante da aula. Quando o gráfico
+  aparecer, responda: isso é pesquisa <strong>descritiva</strong> ou
+  <strong>correlacional</strong>?</div>
+  <div class="instrucao"><span class="rotulo">Para o seu projeto (ao final da seção)</span>
+  Anote no notebook <strong>uma pergunta que você gostaria de investigar</strong> e
+  classifique-a como descritiva ou correlacional. No encontro 3, ela será confrontada com o
+  cardápio de temas e bases do projeto individual.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4 · Perguntas de interpretação (15 min)</h2>
+  <div class="instrucao"><span class="rotulo">Por escrito, no notebook</span>
+  <ol>
+    <li>O que os dados mostram sobre a afirmação <em>"a maioria das empresas fecha no
+        primeiro ano"</em>? Cite o número que sustenta sua resposta.</li>
+    <li>Que <strong>explicações alternativas</strong> existem para a associação entre porte
+        e sobrevivência?</li>
+    <li>Que <strong>outra pergunta</strong> essa base permitiria responder? Classifique-a
+        como descritiva ou correlacional.</li>
+  </ol></div>
+  <p>Ao terminar, <strong>compartilhe o link do seu notebook no Colab</strong> (permissão
+  de leitura para qualquer pessoa com o link): é assim que a prática será recolhida.</p>
+  <p class="menor">Se sobrar tempo, use-o para revisar as Seções 2 e 3: os dez minutos
+  finais do bloco são folga deliberada, para que ninguém fique sem responder.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para fechar a prática</h2>
@@ -326,6 +679,13 @@
         causalidade reversa, acaso;</li>
     <li>O <strong>survey</strong> é a estratégia de coleta dominante em Administração —
         transversal ou longitudinal;</li>
+    <li><strong>Estudo de coorte</strong> (expostos × não expostos seguidos no tempo;
+        risco relativo) e <strong>caso-controle</strong> (parte do desfecho e olha para
+        trás; razão de chances): desenhos observacionais que a gestão importou da saúde
+        (Gil, 2022);</li>
+    <li><strong>Antes e depois de um grupo só</strong> é pré-experimental: evidência
+        inicial, não prova de impacto; o plano <strong>fatorial</strong> revela
+        interações;</li>
     <li><strong>Coorte</strong> e <strong>taxa de sobrevivência</strong>: conceitos-chave
         das estatísticas de demografia empresarial.</li>
   </ul>
@@ -336,8 +696,12 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para estudar em casa · antes de sair</h2>
   <ul>
-    <li><strong>GIL (2019)</strong> — capítulo sobre formulação de problemas e hipóteses
-        (prepara o próximo encontro);</li>
+    <li><strong>GIL (2022)</strong>, <em>Como elaborar projetos de pesquisa</em> —
+        capítulo 4 (seções 4.4 a 4.8: experimental, ensaio clínico, coorte, caso-controle,
+        levantamento) e, para quem quiser aprofundar, capítulos 7, 9 e 10 (como delinear
+        cada um);</li>
+    <li><strong>GIL (2022)</strong> — capítulos 2 e 3, sobre problema e hipóteses
+        (preparam o próximo encontro);</li>
     <li><strong>Estes slides</strong> — releia as caixas de definição e a tabela
         comparativa dos quatro tipos;</li>
     <li><strong>Reexecute o notebook</strong> em casa — revisão ativa.</li>
