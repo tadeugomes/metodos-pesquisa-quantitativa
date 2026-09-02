@@ -50,9 +50,9 @@ A prática usa respostas simuladas de 200 gestores a uma escala de 8 itens sobre
 
 **Seção 1 – Conhecendo a escala (10 min).** Executar a geração dos dados e ler os 8 itens (células prontas). Estatísticas básicas por item com `describe()`: médias, dispersão, valores fora do esperado.
 
-**Seção 2 – O alfa de Cronbach (20 min).** Implementar a função `alfa_cronbach` a partir do esqueleto dado (lacunas: variância dos itens, variância do escore total, fórmula k/(k-1)·(1 − Σvar/var_total)). Calcular o alfa da escala completa: o valor sai baixo (~0,5), e a pergunta "por quê?" move a seção seguinte. Dificuldade esperada: confusão entre variância por item (axis=0) e do escore total; resolver no projetor.
+**Seção 2 – O alfa de Cronbach (20 min).** Percorrer a função `alfa_cronbach`, que vem pronta, parte a parte (variância dos itens, variância do escore total, fórmula k/(k-1)·(1 − Σvar/var_total)), pedindo que o estudante explique com as próprias palavras o que cada termo faz. Calcular o alfa da escala completa: o valor sai baixo (~0,5), e a pergunta "por quê?" move a seção seguinte. Dificuldade esperada: confusão entre variância por item (axis=0) e do escore total; resolver no projetor.
 
-**Seção 3 – Diagnóstico de itens (20 min).** Calcular a correlação item-total e o "alfa se o item for excluído" (código guiado com lacunas). O item invertido aparece com correlação negativa: recodificá-lo (6 − valor) e recalcular. O item estranho ao construto aparece com correlação baixa: excluí-lo e recalcular. O alfa final supera 0,8, e a narrativa da seção vira método: calcular, diagnosticar, corrigir, documentar.
+**Seção 3 – Diagnóstico de itens (20 min).** Calcular a correlação item-total e o "alfa se o item for excluído" (código pronto e comentado). O item invertido aparece com correlação negativa: recodificá-lo (6 − valor) e recalcular. O item estranho ao construto aparece com correlação baixa: excluí-lo e recalcular. O alfa final supera 0,8, e a narrativa da seção vira método: calcular, diagnosticar, corrigir, documentar.
 
 **Seção 4 – Perguntas de interpretação (10 min).** Três perguntas por escrito: por que alfa alto não garante que a escala mede satisfação (confiabilidade ≠ validade); o que fazer ao encontrar item com correlação negativa; por que não basta acrescentar itens para "inflar" o alfa.
 

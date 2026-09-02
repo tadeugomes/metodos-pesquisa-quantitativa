@@ -335,13 +335,14 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Prática · Seção 2: o alfa de Cronbach (20 min)</h2>
   <div class="instrucao"><span class="rotulo">O que fazer</span>
-  Complete o esqueleto da função <code>alfa_cronbach</code>. As lacunas são três:
+  A função <code>alfa_cronbach</code> vem pronta. Percorra as três partes que ela combina:
   <ol>
     <li>a <strong>variância de cada item</strong> (uma por coluna);</li>
     <li>a <strong>variância do escore total</strong> (soma dos itens por respondente);</li>
     <li>a fórmula: <code>k/(k-1) * (1 - soma_var_itens/var_total)</code>.</li>
   </ol>
-  Calcule o alfa da escala completa e escreva o valor no notebook.</div>
+  Execute, escreva o alfa no notebook e explique com suas palavras o que cada termo faz. Se
+  algum passo não ficar claro, peça à IA que explique aquela linha.</div>
   <div class="alerta"><span class="rotulo">Erro comum</span>
   Confundir a variância <strong>por item</strong> (<code>.var(axis=0)</code>, uma por coluna)
   com a variância do <strong>escore total</strong> (primeiro some as colunas com

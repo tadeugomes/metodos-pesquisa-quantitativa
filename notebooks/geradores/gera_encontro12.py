@@ -12,8 +12,10 @@ C.append({"tipo": "md", "texto": """\
 **Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
 
 **Instruções — leia antes de começar:**
-- Duração: **150 minutos**. Consulta ao material da disciplina **permitida**; comunicação
-com colegas, **não**;
+- Duração: **150 minutos**. Consulta ao material da disciplina e à **IA generativa**
+(ChatGPT, Claude, Gemini, Copilot) **permitida**; comunicação com colegas, **não**;
+- **Usou IA? Registre o prompt** na célula "Registro de uso de IA", ao final, e diga como
+conferiu a resposta. Usar sem registrar é falta de honestidade acadêmica;
 - Preencha seu nome e matrícula abaixo e execute as células de preparação;
 - Esta avaliação cobre os encontros **9, 10 e 11** (descritivas, gráficos, inferência);
 - As três tarefas valem **100 pontos** (20 + 25 + 30 + 25);
@@ -436,5 +438,19 @@ C.append({"tipo": "md", "texto": """\
 2. Confira as **três tarefas** (células completadas, gabaritos de resposta escritos);
 3. Salve e **compartilhe o link** com o professor com permissão de edição;
 4. Revise a interpretação de cada resultado — ela vale metade dos pontos."""})
+
+C.append({"tipo": "md", "texto": """\
+## Registro de uso de IA
+
+Se você usou IA generativa em qualquer tarefa, preencha abaixo. O uso é permitido; a
+omissão, não. Este registro **não desconta pontos** — ele faz parte do método.
+
+| Tarefa | O que você pediu (prompt, resumido) | Como conferiu a resposta |
+|---|---|---|
+|  |  |  |
+|  |  |  |
+
+*Conferir* significa: o código executou? O resultado faz sentido no tamanho e no sinal?
+Bate com o que a base já mostrou nas células anteriores?"""})
 
 gera_notebooks(12, C, versao="aluno")

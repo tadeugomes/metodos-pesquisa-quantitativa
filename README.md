@@ -128,6 +128,27 @@ As práticas usam dados empresariais e econômicos de fontes oficiais brasileira
 
 Quando alguma API estiver indisponível em aula, os notebooks têm células de contingência que carregam os CSVs equivalentes do diretório [`dados/`](dados/). As chamadas validadas de cada fonte estão documentadas em [`dados/FONTES.md`](dados/FONTES.md).
 
+## Uso de IA generativa
+
+A disciplina **permite e incentiva** o uso de IA generativa (ChatGPT, Claude, Gemini,
+Copilot), inclusive nas avaliações práticas. A exigência é de **transparência**: quem usar
+registra o prompt e a checagem que fez da resposta.
+
+| Contexto | Regra |
+|---|---|
+| Aulas e projeto individual | Permitida, sobretudo para adaptar o código dos notebooks à base do próprio projeto |
+| Avaliação 1 — Parte A (encontro 8, conceitual) | **Não permitida**: material fechado, telas fechadas |
+| Avaliação 1 — Parte B (encontro 8, prática) | Permitida, com registro do prompt na célula própria do notebook |
+| Avaliação 2 (encontro 12) | Permitida, com registro do prompt na célula própria do notebook |
+| Prova final (encontro 15) | Permitida no componente prático, com registro do prompt |
+
+Os notebooks de prova trazem uma célula **Registro de uso de IA**, com uma tabela para o
+prompt e a forma de conferência. O registro não desconta pontos; a omissão é falta de
+honestidade acadêmica. A parte que a IA não faz — decidir qual análise cabe no problema e
+interpretar o resultado — é justamente onde está metade da pontuação. Os dois primeiros
+encontros tratam disso em slides próprios: o que a IA faz bem, o que continua sendo tarefa
+do pesquisador e como formular um pedido útil.
+
 ## Bibliografia
 
 ### Básica

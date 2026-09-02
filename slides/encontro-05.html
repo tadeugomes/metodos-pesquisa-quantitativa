@@ -378,7 +378,7 @@
         retornos decrescentes (o boxplot mais importante da aula);</li>
     <li><strong>Sistemática e estratificada</strong> — implementar e comparar num setor
         pequeno;</li>
-    <li><strong>Tamanho da amostra</strong> — completar a fórmula e derrubar os mitos em
+    <li><strong>Tamanho da amostra</strong> — aplicar a fórmula e derrubar os mitos em
         números;</li>
     <li><strong>Interpretação por escrito.</strong></li>
   </ol>
@@ -409,9 +409,9 @@
   <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
   <ol>
     <li>Sorteiem com <code>df.sample(n=..., random_state=...)</code> amostras de
-        <strong>50, 200 e 800</strong> empresas (lacunas: os tamanhos);</li>
+        <strong>50, 200 e 800</strong> empresas, trocando o tamanho a cada rodada;</li>
     <li>Calculem a receita média de cada amostra e o <strong>erro absoluto</strong> em
-        relação à média populacional (lacuna: a subtração);</li>
+        relação à média populacional;</li>
     <li>Executem a célula pronta que repete o sorteio muitas vezes e mostra a distribuição
         dos erros por tamanho de amostra.</li>
   </ol></div>
@@ -447,8 +447,8 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Seção 4: tamanho da amostra (25 min)</h2>
   <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Completem a função <code>tamanho_amostra(N, margem, confianca)</code> (esqueleto dado;
-  lacunas nos termos da fórmula) e respondam, preenchendo a tabela do notebook:
+  Executem a função <code>tamanho_amostra(N, margem, confianca)</code>, que já vem pronta,
+  e respondam, preenchendo a tabela do notebook:
   <ol>
     <li>Quantas empresas ouvir no cadastro de 8.000 para 5% de margem e 95% de confiança?</li>
     <li>E para 2% de margem?</li>

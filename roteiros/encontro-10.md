@@ -41,13 +41,13 @@ O segundo movimento é a integridade visual. Princípio da proporcionalidade: a 
 
 A prática usa três séries do SGS já conhecidas do encontro 4 — saldo de crédito a PJ (20543), inadimplência da carteira PJ (21086) e meta Selic (432) —, baixadas com `python-bcb`; célula de contingência carrega `dados/bcb_series_contexto.csv`.
 
-**Seção 1 – As séries e o gráfico de linhas (15 min).** Baixar as séries desde 2018, inspecionar frequências e reamostrar as diárias para mensal. Construir o gráfico de linhas do crédito PJ com os quatro elementos obrigatórios (título afirmativo, eixos com unidade, fonte); a lacuna do estudante acrescenta a segunda série em eixo secundário conceitualmente distinto — discutir por que juntar escalas diferentes num mesmo eixo engana.
+**Seção 1 – As séries e o gráfico de linhas (15 min).** Baixar as séries desde 2018, inspecionar frequências e reamostrar as diárias para mensal. Construir o gráfico de linhas do crédito PJ com os quatro elementos obrigatórios (título afirmativo, eixos com unidade, fonte); o estudante adapta o código para acrescentar a segunda série em eixo secundário conceitualmente distinto — discutir por que juntar escalas diferentes num mesmo eixo engana.
 
-**Seção 2 – Histograma, boxplot e barras (25 min).** Histograma da inadimplência PJ (lacuna: variar o número de classes e observar o efeito); boxplot da inadimplência por ano, lendo mediana, caixa e pontos atípicos com o vocabulário do encontro 9; barras da inadimplência média por ano, ordenadas, para contrastar o que o boxplot mostra e a barra esconde.
+**Seção 2 – Histograma, boxplot e barras (25 min).** Histograma da inadimplência PJ (variar o número de classes e observar o efeito); boxplot da inadimplência por ano, lendo mediana, caixa e pontos atípicos com o vocabulário do encontro 9; barras da inadimplência média por ano, ordenadas, para contrastar o que o boxplot mostra e a barra esconde.
 
 **Seção 3 – Dispersão: Selic × inadimplência (10 min).** Diagrama de dispersão entre meta Selic e inadimplência PJ no mês, com a defasagem discutida conceitualmente (juros de hoje afetam inadimplência de amanhã; a célula do professor mostra a versão defasada em 6 meses). Deixar a pergunta armada para o encontro 13: a nuvem sugere relação — como medi-la?
 
-**Seção 4 – Conserte este gráfico (20 min).** O notebook produz dois gráficos deliberadamente ruins sobre os mesmos dados: barras da inadimplência anual com eixo y truncado em 3,4% (diferenças infladas) e uma pizza de participação setorial com dez fatias. O estudante os refaz corrigidos (lacunas guiadas) e responde por escrito o que cada versão ruim induzia o leitor a concluir. Erro esperado e produtivo: esquecer `plt.ylim(0, ...)` ou reordenar as barras — ambos viram discussão de revisão.
+**Seção 4 – Conserte este gráfico (20 min).** O notebook produz dois gráficos deliberadamente ruins sobre os mesmos dados: barras da inadimplência anual com eixo y truncado em 3,4% (diferenças infladas) e uma pizza de participação setorial com dez fatias. O estudante os refaz corrigidos, adaptando o código pronto e responde por escrito o que cada versão ruim induzia o leitor a concluir. Erro esperado e produtivo: esquecer `plt.ylim(0, ...)` ou reordenar as barras — ambos viram discussão de revisão.
 
 ## 6. Oficina do projeto individual (75 min)
 
