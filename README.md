@@ -59,7 +59,7 @@ autossuficiente nos encontros regulares; com lacunas de resposta nos encontros d
 
 ## Estado atual do material
 
-Atualizado em 17/08/2026.
+Atualizado em 02/09/2026.
 
 | Unidade | Roteiros | Slides | Notebooks |
 |---|---|---|---|
@@ -74,6 +74,12 @@ notebook autossuficiente — exceto o encontro 0, conceitual, sem notebook; os e
 provas, têm lacunas de resposta e gabarito apenas nos geradores). O **encontro 15** (prova final)
 tem apenas slides de orientação: o notebook de prova é elaborado pelo professor no momento da
 aplicação.
+
+Desde setembro de 2026, os slides incorporam também as **instruções de condução** que antes só
+existiam nos roteiros: objetivos de aprendizagem, dinâmicas de aula, condução de cada seção da
+prática, erros comuns, ganchos com o projeto individual e critérios das avaliações. Os roteiros
+seguem sendo o plano de aula do professor; os slides passam a bastar ao estudante que revisa em
+casa.
 
 ## Organização do material
 
@@ -121,6 +127,43 @@ As práticas usam dados empresariais e econômicos de fontes oficiais brasileira
 | CVM (demonstrações financeiras) | CSVs de dados abertos | `pandas` |
 
 Quando alguma API estiver indisponível em aula, os notebooks têm células de contingência que carregam os CSVs equivalentes do diretório [`dados/`](dados/). As chamadas validadas de cada fonte estão documentadas em [`dados/FONTES.md`](dados/FONTES.md).
+
+## Bibliografia
+
+### Básica
+
+- GIL, Antonio Carlos. **Como elaborar projetos de pesquisa**. 7. ed. Barueri: Atlas, 2022.
+- GIL, Antonio Carlos. **Métodos e técnicas de pesquisa social**. 7. ed. São Paulo: Atlas, 2019.
+- HAIR JR., Joseph F. et al. **Fundamentos de métodos de pesquisa em administração**. Porto Alegre: Bookman, 2005.
+- RICHARDSON, Roberto Jarry. **Pesquisa social**: métodos e técnicas. 4. ed. São Paulo: Atlas, 2017.
+
+### Complementar
+
+- ANDERSON, David R.; SWEENEY, Dennis J.; WILLIAMS, Thomas A. **Estatística aplicada à administração e economia**. 3. ed. São Paulo: Cengage Learning, 2013.
+- BABBIE, Earl. **Métodos de pesquisa de survey**. Belo Horizonte: Editora UFMG, 1999.
+- COOPER, Donald R.; SCHINDLER, Pamela S. **Métodos de pesquisa em administração**. 12. ed. Porto Alegre: AMGH, 2016.
+- FÁVERO, Luiz Paulo; BELFIORE, Patrícia. **Manual de análise de dados**: estatística e modelagem multivariada com Excel, SPSS e Stata. Rio de Janeiro: Elsevier, 2017.
+- GRUS, Joel. **Data science do zero**: noções fundamentais com Python. 2. ed. Rio de Janeiro: Alta Books, 2021.
+- LAVILLE, Christian; DIONNE, Jean. **A construção do saber**: manual de metodologia da pesquisa em ciências humanas. Porto Alegre: Artmed; Belo Horizonte: Editora UFMG, 1999.
+- MCKINNEY, Wes. **Python para análise de dados**: tratamento de dados com pandas, NumPy e Jupyter. 3. ed. São Paulo: Novatec, 2023.
+
+### Leituras indicadas nos roteiros
+
+| Encontro | Obra | Capítulos e temas |
+|---|---|---|
+| 0 | LAVILLE; DIONNE (1999) | Referência central da aula inaugural: a construção do saber, do problema à hipótese |
+| 1 | GIL (2019) | Capítulo inicial sobre pesquisa social |
+| 2 | GIL (2022) | Cap. 4 (§4.4 a 4.8) — pesquisa experimental, ensaio clínico, estudo de coorte, estudo caso-controle e levantamento; caps. 7, 9 e 10 para aprofundar cada delineamento |
+| 3 | GIL (2022) | Cap. 2 — como formular um problema de pesquisa (as seis regras, definição operacional, enunciado e objetivos); cap. 3 — como construir hipóteses (níveis, relações entre variáveis, fontes e os seis requisitos da hipótese aplicável) |
+| 4 | GIL (2019); RICHARDSON (2017) | Planejamento da pesquisa e amostragem |
+| 6 | RICHARDSON (2017) | Questionários e escalas |
+| 7 | Resoluções CNS 466/2012 e 510/2016 | Ética em pesquisa e Termo de Consentimento Livre e Esclarecido |
+
+Os encontros da Unidade III (9 a 13) não indicam leitura nova: a teoria necessária está nos
+próprios slides, e as obras de estatística e de Python da lista complementar servem como apoio.
+
+> Os arquivos das obras não são versionados neste repositório: a bibliografia é protegida por
+> direitos autorais e deve ser obtida pelos canais da biblioteca da UFMA ou pelas editoras.
 
 ## Como usar no Google Colab
 
