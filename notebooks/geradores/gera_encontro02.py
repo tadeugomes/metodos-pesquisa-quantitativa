@@ -238,12 +238,89 @@ plt.show()
 print("Maior sobrevivência:", sob3_por_secao.iloc[0]["secao_cnae"])
 print("Menor sobrevivência:", sob3_por_secao.iloc[-1]["secao_cnae"])"""})
 
+C.append({"tipo": "md", "texto": """\
+### Laboratório de prompts — melhorar a visualização
+
+O gráfico acima funciona, mas é bruto. Use um assistente de IA (o painel do Colab, ou outra
+aba com Claude ou ChatGPT) para refiná-lo. Um bom prompt tem quatro partes: **contexto** (onde
+você está e quais dados tem), **objetivo** (o que quer obter), **formato da resposta** (código
+comentado) e **restrição** (o que não pode mudar).
+
+**Comece colando este contexto:**
+
+> Estou em um notebook Colab com pandas e matplotlib. Tenho o DataFrame `sob3_por_secao` com
+> as colunas `secao_cnae` (texto, nome da atividade econômica) e `Valor` (float, taxa de
+> sobrevivência em 3 anos, em %). Já fiz um gráfico de barras horizontais com `plt.barh(...)`.
+> Responda com código Python comentado e explique cada alteração que fizer.
+
+**Depois escolha um destes pedidos e cole em seguida:**
+
+1. "Acrescente o valor numérico ao final de cada barra, com uma casa decimal e o sinal de
+   porcentagem, sem deixar o texto sair da área do gráfico."
+2. "Destaque em cor diferente a barra de maior e a de menor taxa, mantendo as demais em cinza,
+   e explique por que esse destaque ajuda a leitura."
+3. "Os nomes das seções CNAE estão cortados em 45 caracteres, às vezes no meio da palavra.
+   Reescreva o corte para quebrar em duas linhas respeitando os espaços."
+4. "Acrescente uma linha vertical tracejada na média nacional, com legenda identificando-a."
+5. "Substitua as barras por um gráfico de pontos (dot plot) e me diga em que situações ele
+   comunica melhor que barras."
+6. "Prepare a figura para um relatório: título em duas linhas, nota de rodapé com a fonte
+   (IBGE, Demografia das Empresas, tabela 9949), fonte de texto maior e salvamento em PNG com
+   300 dpi."
+
+**Regra da disciplina:** todo código sugerido por IA é executado e conferido. Depois de rodar,
+compare os valores do gráfico novo com a tabela `sob3_por_secao` e confirme que nada mudou além
+da aparência."""})
+
+C.append({"tipo": "code", "texto": """\
+# Cole aqui o código que a IA sugeriu, execute e confira os valores contra sob3_por_secao
+"""})
+
+
 C.append({"tipo": "nota", "texto": (
     "Pergunta de amarração: 'o que fizemos aqui é pesquisa descritiva ou correlacional?' "
     "Resposta: descrevemos uma associação entre porte (ordinal) e sobrevivência (razão) sem "
     "afirmar causa — e há explicações alternativas (capital inicial, setor, experiência do "
     "fundador). Quanto mais dessas explicações você conseguir listar na pergunta 2, melhor "
     "você entendeu o limite de uma análise descritiva.")})
+
+C.append({"tipo": "md", "texto": """\
+### Laboratório de prompts — explorar mais a base
+
+A tabela 9949 responde a muito mais perguntas do que as três que fizemos. **Contexto para colar
+antes de qualquer pedido:**
+
+> Tenho o DataFrame `demografia` em pandas, vindo da tabela 9949 do SIDRA (IBGE, Demografia das
+> Empresas). Colunas: `ano` (texto), `variavel` (texto, com os valores "Empresas nascidas",
+> "Taxa de 1 ano de sobrevivência", "Taxa de 2 anos de sobrevivência" e "Taxa de 3 anos de
+> sobrevivência"), `secao_cnae` (texto, inclui a categoria "Total"), `faixa_pessoal` (texto,
+> faixas de pessoal assalariado, inclui a categoria "Total") e `Valor` (float). Responda com
+> código pandas comentado, explique linha a linha e diga ao final o que a análise **não**
+> permite concluir.
+
+**Pedidos sugeridos:**
+
+1. "Monte um gráfico de linhas com a taxa de 1 ano de sobrevivência ao longo dos anos
+   disponíveis, usando só as linhas de Total. Cada ponto é uma coorte diferente: escreva no
+   título uma frase que deixe isso claro."
+2. "Faça uma tabela cruzada (pivot) de seção CNAE por faixa de pessoal, com a taxa de 3 anos, e
+   destaque as células acima e abaixo da média geral."
+3. "Para cada seção CNAE, calcule a diferença entre a taxa de 3 anos da maior e da menor faixa
+   de pessoal e ordene do maior para o menor. Em que setores o porte pesa mais?"
+4. "Verifique a consistência da base: para cada combinação de ano, seção e faixa, a taxa de 1
+   ano deveria ser maior ou igual à de 2 anos, e esta maior ou igual à de 3. Liste as exceções,
+   se houver, e sugira explicações."
+5. "Compare o número de empresas nascidas com a taxa de sobrevivência de 3 anos por seção CNAE,
+   em um gráfico de dispersão. Os setores que mais geram empresas são os que menos sobrevivem?"
+
+**Antes de aceitar a resposta**, pergunte: *"que delineamento de pesquisa essa análise
+representa, e que conclusão ela não autoriza?"* Confronte o que a IA responder com o fluxograma
+de decisão dos slides do encontro."""})
+
+C.append({"tipo": "code", "texto": """\
+# Cole aqui a análise que você pediu à IA, execute e confira o resultado
+"""})
+
 
 C.append({"tipo": "md", "texto": """\
 ## Seção 4 — Perguntas de interpretação

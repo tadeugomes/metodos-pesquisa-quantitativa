@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 13 — Correlação e regressão linear simples</title>
+<title>Encontro 13: Correlação e regressão linear simples</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
@@ -40,7 +40,7 @@
     <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
   </table>
   <p class="menor">Fecha a Unidade III: sabemos descrever, inferir e agora <strong>relacionar</strong>
-  variáveis — com os limites declarados.</p>
+  variáveis, com os limites declarados.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
@@ -69,7 +69,7 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Retomada — de uma variável para duas</h2>
+  <h2>Retomada: de uma variável para duas</h2>
   <div class="afirmacao">No encontro 11 aprendemos a inferir sobre <strong>uma</strong>
   variável: intervalo de confiança e teste de hipóteses. A pergunta de hoje é relacional.</div>
   <div class="instrucao"><span class="rotulo">Como vamos fazer (15 min)</span>
@@ -83,7 +83,7 @@
 
 <section class="slide divisor">
   <h2>A correlação de Pearson</h2>
-  <p>A associação responde ao alinhamento — não à causa</p>
+  <p>A associação responde ao alinhamento, não à causa</p>
 </section>
 
 <section class="slide">
@@ -104,7 +104,7 @@
     </div>
     <div class="cartao alt-amarelo">
       <h4>É simétrico</h4>
-      <p>r(X,Y) = r(Y,X) — não diz qual causa qual.</p>
+      <p>r(X,Y) = r(Y,X), não diz qual causa qual.</p>
     </div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
@@ -122,20 +122,19 @@
     <li>"Selic alta causa inadimplência alta" é uma leitura;</li>
     <li>"inadimplência alta pressiona o Banco Central a manter juros altos" é outra.</li>
   </ul>
-  <div class="pergunta">Qual direção vale? Não é o r que responde — é o <strong>desenho da
+  <div class="pergunta">Qual direção vale? Não é o r que responde, é o <strong>desenho da
   pesquisa</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O extremo fabrica — e sabota — associação</h2>
+  <h2>O extremo fabrica (e sabota) associação</h2>
   <p>Um único ponto gigante pode inventar ou esconder um r alto. No mundo empresarial os
   extremos são a regra:</p>
-  <div class="afirmacao">Dados de receita e lucro têm distribuição assimétrica — o r precisa
+  <div class="afirmacao">Dados de receita e lucro têm distribuição assimétrica, o r precisa
   ser olhado junto com o gráfico de dispersão, nunca sozinho.</div>
-  <p>Encaminhamento prático (encontros 9 e 11): <strong>transformar a variável</strong> —
-  log-receita, log-margem — estabiliza a análise e ainda muda a interpretação (elasticidade).
+  <p>Encaminhamento prático (encontros 9 e 11): <strong>transformar a variável</strong> (log-receita, log-margem) estabiliza a análise e ainda muda a interpretação (elasticidade).
   Veremos isso na regressão.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
@@ -158,7 +157,7 @@
     <tr><td>Defasada (inad +6 meses)</td><td>≈ 0,77</td>
         <td>associação forte</td></tr>
   </table>
-  <p class="menor">Defasagens, recortes e critérios fazem parte de um <strong>modelo</strong> —
+  <p class="menor">Defasagens, recortes e critérios fazem parte de um <strong>modelo</strong>,
   e a regra de ouro: modelos são decisões do pesquisador, declaradas no relatório.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
@@ -166,7 +165,7 @@
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>A matriz de correlação</h2>
-  <p>Várias associações de uma só vez — cada célula guarda um r. Treinar a leitura de
+  <p>Várias associações de uma só vez, cada célula guarda um r. Treinar a leitura de
   sinais com a teoria:</p>
   <table>
     <tr><th>Célula da matriz</th><th>Sinal esperado</th><th>Por quê</th></tr>
@@ -175,7 +174,7 @@
     <tr><td>Selic × inadimplência (+6m)</td><td><strong>positivo</strong> (≈ 0,8)</td>
         <td>juros pressionam o tomador</td></tr>
     <tr><td>IPCA × Selic</td><td>≈ 0</td>
-        <td>efeito defasado — não é "sem relação"</td></tr>
+        <td>efeito defasado, não é "sem relação"</td></tr>
   </table>
   <p class="menor">A matriz é o passo inicial de qualquer análise correlacional: antes de
   qualquer teste, olhar todas as relações ao mesmo tempo.</p>
@@ -200,14 +199,14 @@
     <li><strong>erro (resíduo):</strong> a parte de Y que a reta não explica.</li>
   </ul>
   <p class="menor">A correlação diz <em>quão juntos</em>; a regressão diz <em>quanto</em>.
-  Ela permite prever Y a partir de X — sempre dentro do intervalo observado.</p>
+  Ela permite prever Y a partir de X, sempre dentro do intervalo observado.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O exemplo CVM: lucro × receita</h2>
-  <p>DRE 2024 (companhias com valores positivos), log nos dois lados —
+  <p>DRE 2024 (companhias com valores positivos), log nos dois lados,
   <code>sm.OLS(log_lucro ~ log_receita)</code>:</p>
   <table>
     <tr><th>Saída</th><th>Valor</th><th>Interpretação</th></tr>
@@ -219,7 +218,7 @@
         <td>relação estatisticamente significativa</td></tr>
   </table>
   <p class="menor">O que falta no R² é tudo o que a reta não captura: eficiência, setor,
-  alavancagem, ciclo — o erro do modelo, que estudaremos em profundidade adiante.</p>
+  alavancagem, ciclo, o erro do modelo, que estudaremos em profundidade adiante.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
@@ -227,13 +226,13 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Pressupostos e limites</h2>
   <div class="definicao"><span class="rotulo">Pressupostos a checar</span>
-  Linearidade (no gráfico) e resíduos sem padrão sistemático — o histograma e o teste de
+  Linearidade (no gráfico) e resíduos sem padrão sistemático, o histograma e o teste de
   <strong>Jarque–Bera</strong> avaliam a normalidade dos resíduos.</div>
   <div class="exemplo"><span class="rotulo">O que esperar em dados empresariais</span>
   O JB costuma <strong>rejeitar</strong> a normalidade: lucros e prejuízos extremos nunca
-  entram no sino. É alerta a registrar — não o fim da análise.</div>
+  entram no sino. É alerta a registrar, não o fim da análise.</div>
   <ul>
-    <li><strong>R² alto não é causalidade</strong> — e não é explicação;</li>
+    <li><strong>R² alto não é causalidade</strong>, e não é explicação;</li>
     <li><strong>Não extrapolar</strong> a reta para fora do intervalo observado;</li>
     <li><strong>Correlação não é a mesma coisa que</strong> regressão: a primeira é
         simétrica, a segunda é preditiva e exige pressupostos.</li>
@@ -248,17 +247,17 @@
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seções 1 e 2 — SGS: do r à matriz (40 min)</h2>
+  <h2>Seções 1 e 2: SGS: do r à matriz (40 min)</h2>
   <ul>
     <li>Carregar as séries mensais do SGS (célula de contingência local);</li>
     <li><code>scipy.stats.pearsonr</code> em Selic × inadimplência + dispersão
         (r ≈ 0,43);</li>
-    <li>Criar a defasagem <code>inad.shift(-6)</code> e repetir (r ≈ 0,77) — perceba o
+    <li>Criar a defasagem <code>inad.shift(-6)</code> e repetir (r ≈ 0,77), perceba o
         quase dobro;</li>
     <li>Montar a <strong>matriz de correlação</strong> e exibi-la como heatmap, lendo
         cada célula com a teoria.</li>
   </ul>
-  <div class="pergunta">Anote em uma frase o que cada célula diz — sem a palavra
+  <div class="pergunta">Anote em uma frase o que cada célula diz, sem a palavra
   "causa".</div>
   <div class="alerta"><span class="rotulo">Atenção</span>
   A defasagem quase dobra o r, mas isso <strong>não prova</strong> que a Selic causa
@@ -269,13 +268,13 @@
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3 — Regressão na CVM (30 min)</h2>
+  <h2>Seção 3: Regressão na CVM (30 min)</h2>
   <ul>
     <li>Carregar a DRE 2024 (download ou <code>dados/cvm_dre_2024.csv</code>);</li>
     <li>Log em receita e lucro (somente companhias positivas);</li>
     <li>Ajustar <code>sm.OLS(log_lucro ~ log_receita)</code> e ler o <code>summary()</code>;</li>
     <li>Interpretar b₁ (elasticidade), R² e p(F);</li>
-    <li>Dispersão com a reta ajustada — o desenho que o encontro 10 treinou.</li>
+    <li>Dispersão com a reta ajustada, o desenho que o encontro 10 treinou.</li>
   </ul>
   <div class="alerta"><span class="rotulo">Erro comum</span>
   O log só aceita valores <strong>positivos</strong>: companhias com prejuízo saem da
@@ -286,27 +285,27 @@
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4 — Pressupostos (10 min)</h2>
+  <h2>Seção 4: Pressupostos (10 min)</h2>
   <ul>
     <li>Histograma dos resíduos + teste de <strong>Jarque–Bera</strong>;</li>
-    <li>Resultado esperado: rejeição da normalidade — caudas com lucros/prejuízos extremos;</li>
+    <li>Resultado esperado: rejeição da normalidade, caudas com lucros/prejuízos extremos;</li>
     <li>Registrar como <strong>alerta e limitação declarada</strong>, não como fim da
         análise;</li>
     <li>Pensar as respostas defensivas possíveis (filtros, transformações, robustez).</li>
   </ul>
-  <p class="menor">A disciplina que fica: pressuposto avaliado se declara no relatório —
+  <p class="menor">A disciplina que fica: pressuposto avaliado se declara no relatório,
   "o JB rejeitou a normalidade; utilizado X como medida defensiva".</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
 <section class="slide divisor">
   <h2>Oficina do projeto individual</h2>
-  <p>Duas variáveis quantitativas — e o par que sua hipótese pede</p>
+  <p>Duas variáveis quantitativas, e o par que sua hipótese pede</p>
 </section>
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5 — O par de variáveis do seu projeto (30 min)</h2>
+  <h2>Seção 5: O par de variáveis do seu projeto (30 min)</h2>
   <ol>
     <li>Na base escolhida, identificar um par de variáveis <strong>quantitativas</strong>
         compatível com a hipótese do projeto;</li>
@@ -316,7 +315,7 @@
         R² e limites.</li>
   </ol>
   <p class="menor">Quem trabalha com variáveis categóricas (qui-quadrado do encontro 11)
-  também apresenta a média/mediana do indicador por grupo — na prática quase toda base
+  também apresenta a média/mediana do indicador por grupo, na prática quase toda base
   permite.</p>
   <div class="instrucao"><span class="rotulo">Use a função pronta</span>
   O notebook traz <code>correlacao_regressao(df, x, y)</code>: aplique-a ao seu par de
@@ -345,15 +344,15 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para estudar em casa · antes de sair</h2>
   <ul>
-    <li><strong>Revisar:</strong> encontros 9 a 13 — descritivas, gráficos, inferência,
+    <li><strong>Revisar:</strong> encontros 9 a 13, descritivas, gráficos, inferência,
         correlação e regressão fecham a Unidade III;</li>
-    <li><strong>Próximo encontro (14):</strong> comunicação de resultados e a Avaliação 3 —
+    <li><strong>Próximo encontro (14):</strong> comunicação de resultados e a Avaliação 3,
         relatório final + notebook completo + slide único sintético;</li>
     <li><strong>Projeto:</strong> escrever já o parágrafo de análise correlacional/regressiva
         com os resultados da aula, se a hipótese envolver relação quantitativa.</li>
   </ul>
   <p><strong>Síntese do dia:</strong> a estatística liga variáveis; o pesquisador declara
-  os critérios dessa ligação — e os limites do que ela pode afirmar.</p>
+  os critérios dessa ligação, e os limites do que ela pode afirmar.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 
