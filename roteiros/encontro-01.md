@@ -1,4 +1,4 @@
-# Encontro 1 — Introdução à pesquisa quantitativa e ambientação ao Google Colab
+# Encontro 1. Introdução à pesquisa quantitativa e ambientação ao Google Colab
 
 ## 1. Identificação
 
@@ -18,22 +18,23 @@ Ao final do encontro, o estudante deverá ser capaz de: (i) distinguir conhecime
 
 | Bloco | Duração | Atividade |
 |---|---|---|
-| 1 | 30 min | Apresentação do programa, das avaliações e do projeto individual |
-| 2 | 50 min | Exposição dialogada: ciência, senso comum e pesquisa quantitativa |
+| 1 | 20 min | Apresentação do programa, das avaliações e do projeto individual |
+| 2 | 40 min | Exposição dialogada: ciência, senso comum e pesquisa quantitativa |
 | 3 | 15 min | Intervalo |
-| 4 | 30 min | Exposição: quantitativo e qualitativo; perguntas de pesquisa em Administração |
-| 5 | 90 min | Prática no Colab: ambientação e primeiro notebook com dados do CEMPRE |
-| 6 | 25 min | Síntese, discussão dos resultados e tarefa |
+| 4 | 25 min | Exposição: quantitativo e qualitativo; perguntas de pesquisa em Administração |
+| 5 | **45 min** | **Bloco de estatística: frequência e porcentagem** (seção 4.E) |
+| 6 | 75 min | Prática no Colab: ambientação e primeiro notebook com dados do CEMPRE |
+| 7 | 20 min | Síntese, discussão dos resultados e tarefa |
 
 ## 4. Conteúdo expositivo desenvolvido
 
-### Bloco 1 – Apresentação da disciplina (30 min)
+### Bloco 1 – Apresentação da disciplina (20 min)
 
 Apresentar o programa completo, com ênfase em três pontos que definem o contrato didático do semestre. Primeiro, todas as aulas ocorrem no laboratório e combinam exposição conceitual com prática em notebook: a disciplina não é um curso de estatística abstrata nem um curso de programação, mas uma formação em pesquisa que usa o computador como instrumento. Segundo, as três avaliações são individuais e têm formatos distintos (prova com componente prático, análise de dados em laboratório, projeto individual com relatório e notebook), de modo que nenhuma habilidade isolada decide a nota. Terceiro, o projeto individual atravessa o semestre: cada estudante escolherá um tema empresarial ou econômico, formulará um problema e hipóteses e o analisará com dados secundários de fontes oficiais (IBGE, Banco Central, IPEA, CVM), com entregas parciais nos encontros 8 e 14.
 
 Convém dedicar alguns minutos a desarmar duas ansiedades recorrentes. A primeira é a da matemática: a disciplina exige raciocínio, não virtuosismo algébrico, e os cálculos serão executados pelo computador; o que se cobra é a decisão sobre qual cálculo fazer e a interpretação do resultado. A segunda é a da programação: os notebooks vêm com o código pronto e comentado, a progressão é gradual e a IA generativa está disponível para adaptar o código; ninguém precisa saber Python previamente.
 
-### Bloco 2 – Ciência, senso comum e pesquisa quantitativa (50 min)
+### Bloco 2 – Ciência, senso comum e pesquisa quantitativa (40 min)
 
 Abrir com uma provocação: escrever no quadro três afirmações correntes no mundo dos negócios, como "a maioria das empresas fecha no primeiro ano", "funcionário feliz produz mais" e "propaganda em rede social aumenta as vendas". Perguntar à turma: como saberíamos se cada uma é verdadeira? A discussão costuma revelar que os estudantes aceitam ou rejeitam essas afirmações por experiência pessoal, autoridade de quem as disse ou repetição, que são exatamente os mecanismos do senso comum. A pesquisa científica se distingue não pelo tema, mas pelo procedimento: definição precisa dos conceitos (o que conta como "fechar"? o que é "feliz"?), coleta sistemática de evidências e possibilidade de verificação por terceiros.
 
@@ -41,13 +42,41 @@ Nesse ponto, apresentar as características da pesquisa quantitativa: (a) mensur
 
 A primeira afirmação do quadro rende um fechamento empírico convincente: a "mortalidade das empresas" não precisa ficar no terreno da opinião, pois o IBGE mantém o Cadastro Central de Empresas (CEMPRE) e a pesquisa de Demografia das Empresas, que registram aberturas, fechamentos e taxas de sobrevivência por porte e setor. Anunciar que a prática desta aula e da próxima usará exatamente esses dados, e que ao final da disciplina os estudantes saberão responder com dados perguntas que hoje respondem com impressões.
 
-### Bloco 4 – Quantitativo e qualitativo; perguntas de pesquisa em Administração (30 min)
+### Bloco 4 – Quantitativo e qualitativo; perguntas de pesquisa em Administração (25 min)
 
-Apresentar a distinção entre as abordagens pelo tipo de pergunta que cada uma responde melhor, evitando a hierarquização. A pesquisa qualitativa aprofunda significados, processos e contextos ("como os gerentes desta empresa vivenciaram a fusão?"); a quantitativa mede, compara e testa relações ("empresas que passaram por fusão apresentam rotatividade maior que as demais?"). São lógicas complementares, e a escolha decorre do problema, não da preferência do pesquisador. Diante disso, propor um exercício oral rápido: o professor lê oito perguntas de pesquisa e a turma classifica cada uma como quanti ou quali, justificando. Exemplos: "qual o perfil dos consumidores de delivery em São Luís?" (quanti, descritiva); "por que consumidores abandonam o carrinho de compras?" (ambígua: quali para explorar motivos, quanti para medir a frequência de motivos já conhecidos); "o porte da empresa está associado à adoção de comércio eletrônico?" (quanti, correlacional).
+Apresentar a distinção entre as abordagens pelo tipo de pergunta que cada uma responde melhor, evitando a hierarquização. A pesquisa qualitativa aprofunda significados, processos e contextos ("como os gerentes desta empresa vivenciaram a fusão?"); a quantitativa mede, compara e testa relações ("empresas que passaram por fusão apresentam rotatividade maior que as demais?"). São lógicas complementares, e a escolha decorre do problema, não da preferência do pesquisador. Diante disso, propor um exercício rápido: o professor apresenta oito perguntas de pesquisa e a turma classifica cada uma como quanti ou quali, justificando. Exemplos: "qual o perfil dos consumidores de delivery em São Luís?" (quanti, descritiva); "por que consumidores abandonam o carrinho de compras?" (ambígua: quali para explorar motivos, quanti para medir a frequência de motivos já conhecidos); "o porte da empresa está associado à adoção de comércio eletrônico?" (quanti, correlacional).
 
 Encerrar o bloco conectando com a realidade profissional do administrador: relatórios gerenciais, pesquisas de satisfação, indicadores de desempenho, testes A/B de marketing e estudos de viabilidade são todos aplicações da lógica quantitativa. A disciplina, nesse sentido, forma tanto para o trabalho de conclusão de curso quanto para a prática de gestão baseada em evidências.
 
-## 5. Condução da prática no notebook (90 min)
+
+### 4.E Bloco de estatística: frequência e porcentagem (45 min)
+
+**Referência:** Pinto e Silva (2020), *Estatística*, volume I, seções 2.1 e 2.2.
+**Slides:** bloco "Estatística", sete telas, antes do divisor "Mão na massa".
+
+O bloco parece elementar e não é: o diagnóstico mostrou que a turma erra porcentagem. Convém
+tratar o assunto sem ironia e com vagar, porque é a operação mais usada em pesquisa aplicada.
+
+Apresentar a **fórmula da frequência relativa** e insistir em uma única ideia: tudo depende de
+qual número foi para o denominador. Em seguida, o exemplo resolvido das vinte empresas, lido
+linha a linha, com a conferência da soma em 100%.
+
+O terceiro slide traz as **três variações de `value_counts()`**. Mostrar no projetor, com a base
+do CEMPRE já aberta, que `normalize=True` é literalmente a divisão da fórmula.
+
+O slide da **frase de leitura** é o que mais interessa ao projeto: percentual, contagem entre
+parênteses e denominador explícito. Pedir que reescrevam uma frase mal formulada é um bom uso
+dos últimos minutos.
+
+Fechar com a **tabela de dois denominadores** (30%, 60% e 67% a partir dos mesmos 60 casos). Esse
+slide costuma provocar a reação mais forte da aula, porque as três leituras parecem iguais e não
+são. A regra prática a registrar: antes de dividir, pergunte "entre quem?".
+
+**Gancho com a prática:** a seção 3 do notebook produz exatamente a tabela de frequências das
+seções CNAE. O bloco termina anunciando isso, e a prática passa a exigir a frase de leitura por
+escrito.
+
+## 5. Condução da prática no notebook (75 min)
 
 O notebook do encontro 1 tem cinco seções, pensadas para uma turma que nunca viu Python. A regra didática do dia é: o estudante executa muito e digita pouco; as adaptações pedem apenas troca de parâmetros, nunca código novo. A seção 4 traz o primeiro uso guiado de IA generativa, com registro do prompt e checagem do resultado.
 
@@ -57,7 +86,7 @@ O notebook do encontro 1 tem cinco seções, pensadas para uma turma que nunca v
 
 **Seção 3 – Primeiro contato com dados reais (25 min).** O notebook carrega uma tabela do CEMPRE (número de empresas por seção CNAE, Brasil e Maranhão) com o código de leitura já pronto, primeiro pela API do SIDRA e, em célula de contingência, pelo CSV do diretório `dados/`. Demonstrar no projetor: `head()`, número de linhas, o que é cada coluna. Perguntar à turma antes de executar: qual seção CNAE vocês acham que concentra mais empresas no Maranhão? A resposta (comércio) sai do próprio dado, e o contraste entre palpite e evidência retoma o argumento do bloco expositivo.
 
-**Seção 4 – Primeiro gráfico (20 min).** Gráfico de barras das dez seções CNAE com mais empresas, código pronto. O estudante adapta: troca o recorte de Brasil para Maranhão e altera o título do gráfico. É também a primeira ocasião de usar IA generativa em aula — pedir uma variação do gráfico, colar o código e conferir o resultado, registrando o prompt. A comparação entre os dois recortes (a estrutura empresarial maranhense é mais concentrada em comércio que a nacional?) é a primeira "análise" da turma e deve ser verbalizada em discussão.
+**Seção 4 – Primeiro gráfico (20 min).** Gráfico de barras das dez seções CNAE com mais empresas, código pronto. O estudante adapta: troca o recorte de Brasil para Maranhão e altera o título do gráfico. É também a primeira ocasião de usar IA generativa em aula, pedir uma variação do gráfico, colar o código e conferir o resultado, registrando o prompt. A comparação entre os dois recortes (a estrutura empresarial maranhense é mais concentrada em comércio que a nacional?) é a primeira "análise" da turma e deve ser verbalizada em discussão.
 
 **Seção 5 – Perguntas de interpretação (10 min).** Três perguntas em célula de texto para o estudante responder por escrito no próprio notebook: o que os dados mostram, o que eles não permitem afirmar, e uma pergunta de pesquisa que o estudante gostaria de responder com dados ao longo do semestre. Essa última resposta é o embrião do projeto individual.
 

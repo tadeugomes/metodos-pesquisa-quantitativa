@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 9 · Unidade III</div>
   <h1>Estatística descritiva</h1>
@@ -285,6 +292,183 @@
   fica para o encontro 10.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 9</h2>
+  <p>Quartis, o esquema dos cinco números e a forma da distribuição</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: quartis e amplitude interquartil</h2>
+
+  <div class="definicao"><span class="rotulo">Definição</span>
+  Os <strong>quartis</strong> dividem os dados ordenados em quatro partes iguais.
+  <strong>Q1</strong> deixa 25% dos casos abaixo, <strong>Q2</strong> é a mediana e deixa 50%, e
+  <strong>Q3</strong> deixa 75%. A <strong>amplitude interquartil</strong> é a distância entre
+  Q3 e Q1, e é a dispersão dos 50% do meio.</div>
+  <div class="formula">
+    <span class="expr">IQR<span class="op">=</span>Q3<span class="op">−</span>Q1<span class="op">           </span>extremos<span class="op">:</span>&lt; Q1 − 1,5·IQR<span class="op">  ou  </span>&gt; Q3 + 1,5·IQR</span>
+    <span class="legenda-formula">Em linguagem corrente: descarte o quarto mais baixo e o quarto
+    mais alto, e veja o quanto o miolo se espalha. Quem cai a mais de uma vez e meia o IQR das
+    bordas da caixa é tratado como valor extremo.</span>
+  </div>
+  <p>Por que isso importa: média e desvio padrão são arrastados por um único valor extremo.
+  Mediana e quartis não são. Em dados empresariais, que quase sempre têm cauda longa, o segundo
+  par descreve melhor.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: os cinco números e o boxplot</h2>
+
+  <p>Margem líquida, em porcentagem, de 11 companhias ordenadas: 2, 4, 5, 7, 8,
+  <strong>9</strong>, 11, 12, 14, 18, 40.</p>
+  <div class="figura">
+    <svg viewBox="0 0 1000 190" role="img" aria-label="Boxplot das onze margens, com a caixa entre Q1 e Q3 e um valor extremo isolado">
+      <line x1="60" y1="150" x2="940" y2="150" stroke="#bbb" stroke-width="1.6"/>
+      <line x1="99" y1="60" x2="99" y2="110" stroke="#05635f" stroke-width="2.4"/>
+      <line x1="99" y1="85" x2="158" y2="85" stroke="#05635f" stroke-width="2.4"/>
+      <rect x="158" y="58" width="176" height="54" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.6"/>
+      <line x1="236" y1="58" x2="236" y2="112" stroke="#8D0333" stroke-width="3.4"/>
+      <line x1="334" y1="85" x2="412" y2="85" stroke="#05635f" stroke-width="2.4"/>
+      <line x1="412" y1="60" x2="412" y2="110" stroke="#05635f" stroke-width="2.4"/>
+      <circle cx="842" cy="85" r="8" fill="#c0392b"/>
+      <text x="99" y="172" text-anchor="middle" font-size="16" fill="#555">mín = 2</text>
+      <text x="158" y="46" text-anchor="middle" font-size="16" fill="#05635f">Q1 = 5</text>
+      <text x="236" y="34" text-anchor="middle" font-size="17" fill="#8D0333" font-weight="700">mediana = 9</text>
+      <text x="334" y="46" text-anchor="middle" font-size="16" fill="#05635f">Q3 = 14</text>
+      <text x="412" y="172" text-anchor="middle" font-size="16" fill="#555">18</text>
+      <text x="842" y="172" text-anchor="middle" font-size="16" fill="#c0392b">40, extremo</text>
+      <text x="246" y="130" text-anchor="middle" font-size="15" fill="#777">a caixa contém 50% das empresas</text>
+    </svg>
+  </div>
+  <div class="colunas">
+    <div>
+      <p><strong>IQR</strong> = 14 − 5 = 9. O limite superior é 14 + 1,5 × 9 = 27,5, e por isso a
+      companhia com margem de 40% aparece como ponto isolado.</p>
+    </div>
+    <div>
+      <p>O boxplot é o <strong>esquema dos cinco números desenhado</strong>: mínimo, Q1, mediana,
+      Q3 e máximo. Ele mostra, de uma vez, centro, dispersão, assimetria e extremos. Nenhuma
+      medida isolada faz isso.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <pre class="codigo"><span class="cmt"># os cinco números, de uma vez</span>
+base[<span class="str">"margem"</span>].<span class="fn">describe</span>()          <span class="cmt"># traz count, mean, std, min, 25%, 50%, 75%, max</span>
+
+<span class="cmt"># quartis isolados, quando você quer só eles</span>
+base[<span class="str">"margem"</span>].<span class="fn">quantile</span>([0.25, 0.5, 0.75])
+
+<span class="cmt"># amplitude interquartil e os limites de extremo</span>
+q1, q3 = base[<span class="str">"margem"</span>].<span class="fn">quantile</span>([0.25, 0.75])
+iqr = q3 - q1
+<span class="fn">print</span>(<span class="str">"IQR:"</span>, <span class="fn">round</span>(iqr, 2), <span class="str">"| limites:"</span>, <span class="fn">round</span>(q1 - 1.5*iqr, 2), <span class="str">"a"</span>, <span class="fn">round</span>(q3 + 1.5*iqr, 2))
+
+<span class="cmt"># a forma: assimetria positiva = cauda à direita</span>
+base[<span class="str">"margem"</span>].<span class="fn">skew</span>().<span class="fn">round</span>(2)
+
+<span class="cmt"># tudo por grupo, que é o formato da tabela de resultados</span>
+base.<span class="fn">groupby</span>(<span class="str">"setor"</span>)[<span class="str">"margem"</span>].<span class="fn">describe</span>().<span class="fn">round</span>(2)</pre>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê: a tabela 1 do relatório</h2>
+
+  <p>Toda seção de resultados começa por uma tabela de descritivas. Ela tem colunas fixas, e é
+  ela que justifica todas as escolhas que vêm depois.</p>
+  <table>
+    <tr><th>Setor</th><th>n</th><th>Média</th><th>Mediana</th><th>DP</th><th>Q1</th><th>Q3</th><th>Assimetria</th></tr>
+    <tr><td>Indústria</td><td>142</td><td>11,4</td><td>8,2</td><td>13,6</td><td>4,1</td><td>14,9</td><td>2,8</td></tr>
+    <tr><td>Serviços</td><td>98</td><td>9,1</td><td>8,7</td><td>5,2</td><td>5,6</td><td>12,3</td><td>0,4</td></tr>
+  </table>
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "A margem líquida mediana da indústria é de <strong>8,2%</strong>, com metade das companhias
+  entre 4,1% e 14,9%. A média, de 11,4%, é puxada pela cauda à direita (assimetria de 2,8), e por
+  isso as comparações entre setores usam a mediana."</div>
+  <p class="menor">Repare no que a tabela permite decidir: em serviços, média e mediana quase
+  coincidem e a assimetria é baixa, então a média serve. Na indústria, não. A tabela não é
+  enfeite: é o argumento que autoriza a escolha da medida no restante do trabalho.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O erro comum: descrever cauda longa com média e desvio</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Errado</span>
+      "A margem líquida da indústria é de 11,4%, com desvio padrão de 13,6." O desvio padrão maior
+      que a própria média já denuncia que a distribuição é torta, e a frase descreve uma empresa
+      típica que não existe.</div>
+      <div class="exemplo"><span class="rotulo">Certo</span>
+      "Mediana de 8,2%, com metade das companhias entre 4,1% e 14,9% (Q1 e Q3)." O par mediana e
+      quartis descreve o que existe.</div>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">Confundir amplitude com IQR</span>
+      Amplitude é máximo menos mínimo, e depende só dos dois valores mais atípicos da base. IQR é
+      Q3 menos Q1, e depende do miolo. São medidas de dispersão muito diferentes, e a primeira
+      quase nunca é informativa.</div>
+      <div class="alerta"><span class="rotulo">Apagar o extremo sem dizer</span>
+      Valor extremo não é erro por definição. Antes de excluir, verifique se é erro de registro ou
+      se é uma empresa real e diferente. Se excluir, registre no método quantos casos saíram e
+      por quê.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: quartis e forma</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">IQR = Q3 − Q1</span></p>
+      <p>Extremo: abaixo de Q1 − 1,5·IQR ou acima de Q3 + 1,5·IQR.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">base["v"].describe()
+base["v"].quantile([.25,.5,.75])
+base["v"].skew()</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"Mediana de <em>x</em>, com metade dos casos entre <em>Q1</em> e <em>Q3</em>;
+      assimetria de <em>a</em>."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Descrever distribuição assimétrica por média e desvio padrão, e excluir extremo sem
+      registrar.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, seções 3.2.6 (quartis e percentis), 3.2.6.1 (gráfico de caixa), 3.3 (assimetria) e
+  3.4 (curtose); capítulo 4 para dados agrupados.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

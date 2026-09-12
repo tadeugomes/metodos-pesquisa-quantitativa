@@ -5,13 +5,13 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 9 — Estatística descritiva: tendência central, dispersão e frequências
+# Encontro 9. Estatística descritiva: tendência central, dispersão e frequências
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
 1. Reconstruir a base CVM (DFP 2024) do encontro 7;
-2. Calcular e interpretar **média, mediana e moda** — e ver por que os extremos deslocam a
+2. Calcular e interpretar **média, mediana e moda**: e ver por que os extremos deslocam a
 média e não a mediana;
 3. Medir a **dispersão** (desvio padrão e coeficiente de variação) e comparar setores em
 escalas diferentes;
@@ -20,10 +20,10 @@ escalas diferentes;
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — Reconstruindo a base CVM
+## Seção 1: Reconstruindo a base CVM
 
 A base é a mesma do encontro 7: receita e lucro líquido das companhias abertas (DFP 2024),
-com o setor do cadastro CVM. A maceteira de hoje não é baixar dado — é **resumir** a base.
+com o setor do cadastro CVM. A maceteira de hoje não é baixar dado, é **resumir** a base.
 Execute (se o download falhar, a célula de contingência carrega o arquivo local):"""})
 
 C.append({"tipo": "code", "texto": """\
@@ -55,7 +55,7 @@ try:
     base = base.rename(columns={"SETOR_ATIV": "setor"}).drop(columns="chave")
     print("Base CVM baixada:", base.shape)
 except Exception as e:
-    print("Download falhou — use a célula de contingência abaixo.")
+    print("Download falhou, use a célula de contingência abaixo.")
     raise
 
 base = base[base["receita"].notna() & (base["receita"] != 0)]
@@ -86,7 +86,7 @@ C.append({"tipo": "nota", "texto": (
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Tendência central: média, mediana e moda
+## Seção 2. Tendência central: média, mediana e moda
 
 Começamos com as três medidas de centro e a pergunta de fundo do encontro: **como resumir
 mil números em um só sem mentir?**"""})
@@ -106,16 +106,16 @@ except IndexError:
 
 # Margem líquida
 margem = base["margem"]
-print(f"\\nmargem — média   = {margem.mean():.4f}")
-print(f"margem — mediana = {margem.median():.4f}")
+print(f"\\nmargem, média   = {margem.mean():.4f}")
+print(f"margem, mediana = {margem.median():.4f}")
 
-# Distribuição por setor (moda para variável nominal — setor)
+# Distribuição por setor (moda para variável nominal: setor)
 print("\\nSetor mais frequente:", base["setor"].mode().iloc[0])"""})
 
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: a receita média (≈ R$ 21 milhões) é quase 10 vezes a mediana "
-    "(≈ R$ 2 milhões) — a assinatura da assimetria. E a margem média pode até trocar de "
+    "(≈ R$ 2 milhões), a assinatura da assimetria. E a margem média pode até trocar de "
     "sinal (-23) enquanto a mediana é positiva: basta uma companhia com prejuízo gigante "
     "ou margem absurda para arrastar a média. A moda vale para o nominal (o setor mais "
     "comum), não para a receita contínua.")})
@@ -141,15 +141,15 @@ print(f"mediana (quase não se move): {sem_extremos['receita_milhoes'].median():
 
 
 C.append({"tipo": "nota", "texto": (
-    "Dica de estudo: ao cortar 1% dos gigantes, a média cai de ~21 para ~11 milhões — a "
+    "Dica de estudo: ao cortar 1% dos gigantes, a média cai de ~21 para ~11 milhões, a "
     "mediana mal se altera (2,2 → 2,1). Esse é o gesto que distingue as duas medidas: a "
     "média soma todos os valores e obedece aos extremos; a mediana depende só da posição. "
-    "Em dados empresariais, reportar as duas é mais honesto que escolher uma — e, diante "
+    "Em dados empresariais, reportar as duas é mais honesto que escolher uma, e, diante "
     "de assimetria, a mediana é a medida do caso 'típico'.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Dispersão: desvio padrão e coeficiente de variação
+## Seção 3. Dispersão: desvio padrão e coeficiente de variação
 
 Centro informa, dispersão completa: dois setores podem ter a mesma mediana e mundos
 diferentes de espalhamento. Calcule o desvio padrão e o CV da receita por setor:"""})
@@ -167,14 +167,14 @@ por_setor.round(1).head(8)"""})
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: o setor com MAIOR desvio absoluto não é necessariamente o mais "
-    "heterogêneo — a comparação justa usa o CV (desvio ÷ média), que neutraliza a escala. "
+    "heterogêneo, a comparação justa usa o CV (desvio ÷ média), que neutraliza a escala. "
     "Um desvio de R$ 100 milhões é enorme entre padarias e irrisório entre grandes "
     "companhias de varejo. O CV reordena a comparação exatamente nesse sentido.")})
 
 
 C.append({"tipo": "md", "texto": """\
 Agora a arapuca deliberada: calcular o **CV da margem líquida**, cuja média é próxima de
-zero e cujos valores são negativos. O que acontece? (A resposta: absurdos — e essa é a
+zero e cujos valores são negativos. O que acontece? (A resposta: absurdos, e essa é a
 lição.)"""})
 
 
@@ -187,12 +187,52 @@ print(por_setor["cv_margem"].round(2).head(8))"""})
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: o CV só faz sentido para variáveis de razão com valores positivos e "
     "média longe de zero. Dividir desvio por uma média perto de zero (ou negativa) produz "
-    "números incompreensíveis — e ensina uma lição geral: estatística tem pressupostos de "
+    "números incompreensíveis, e ensina uma lição geral: estatística tem pressupostos de "
     "uso, não é receita cega aplicada a qualquer coluna.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Distribuição de frequências com classes
+## Estatística do encontro: quartis e o esquema dos cinco números
+
+**As fórmulas.** Q1, mediana e Q3 dividem os dados ordenados em quatro partes iguais. A amplitude
+interquartil é `IQR = Q3 − Q1`, e é a dispersão dos 50% do meio. Um caso é tratado como extremo
+quando fica abaixo de `Q1 − 1,5·IQR` ou acima de `Q3 + 1,5·IQR`.
+
+**Por que isso importa aqui.** Média e desvio padrão são arrastados por um único valor extremo;
+mediana e quartis não são. Em margens e receitas, que têm cauda longa, o segundo par descreve
+melhor o que existe."""})
+
+C.append({"tipo": "code", "texto": """\
+# os cinco números, e a assimetria
+resumo = base.groupby("setor")["margem"].describe().round(2)
+resumo["assimetria"] = base.groupby("setor")["margem"].skew().round(2)
+resumo[["count", "mean", "50%", "std", "25%", "75%", "assimetria"]].head(10)"""})
+
+C.append({"tipo": "code", "texto": """\
+# amplitude interquartil e os limites de valor extremo, na base inteira
+q1, q3 = base["margem"].quantile([0.25, 0.75])
+iqr = q3 - q1
+lim_inf, lim_sup = q1 - 1.5 * iqr, q3 + 1.5 * iqr
+
+print(f"Q1 = {q1:.2f} | mediana = {base['margem'].median():.2f} | Q3 = {q3:.2f}")
+print(f"IQR = {iqr:.2f} | limites de extremo: {lim_inf:.2f} a {lim_sup:.2f}")
+
+extremos = base[(base["margem"] < lim_inf) | (base["margem"] > lim_sup)]
+print(f"Companhias fora dos limites: {len(extremos)} de {len(base)}")"""})
+
+C.append({"tipo": "md", "texto": """\
+**A decisão que este número exige.** Valor extremo não é erro por definição. Antes de qualquer
+exclusão, verifique se é erro de registro ou empresa real e diferente. Se excluir, registre no
+método quantos casos saíram e por quê.
+
+**Escreva a sua leitura, no formato da tabela 1 do relatório.**
+
+*A margem líquida mediana das companhias é de ______, com metade delas entre ______ (Q1) e ______
+(Q3). A média, de ______, é ______________ (maior ou menor?) que a mediana, o que indica
+______________. Por isso, as comparações entre setores usarão ______________.*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 4: Distribuição de frequências com classes
 
 Transformar a lista de margens numa tabela que revela a forma da distribuição: onde a
 margem se concentra, onde rareia, quantas companhias operam no prejuízo."""})
@@ -209,18 +249,18 @@ freq"""})
 
 
 C.append({"tipo": "nota", "texto": (
-    "Dica de estudo: leia a tabela — quantas companhias estão abaixo de -10%? Que proporção "
+    "Dica de estudo: leia a tabela, quantas companhias estão abaixo de -10%? Que proporção "
     "opera no prejuízo? Para onde a cauda vai? A forma que a tabela insinua é a que o "
     "encontro 10 vai desenhar com histograma. A frequência acumulada mostra, classe a "
     "classe, quantos por cento das companhias ficaram para trás daquele limite.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — (Opcional) Endividamento por setor
+## Seção 5: (Opcional) Endividamento por setor
 
 Do mesmo pacote da DFP, extraímos ativo total e passivo exigível para criar
 **endividamento = exigível ÷ ativo**. Marcada como opcional caso a internet do laboratório
-não coopere — a contingência local cobre apenas receita e margem."""})
+não coopere, a contingência local cobre apenas receita e margem."""})
 
 C.append({"tipo": "code", "texto": """\
 try:
@@ -255,7 +295,7 @@ primeiro bloco descritivo: medidas de centro e dispersão das variáveis quantit
 tabela de frequências da variável categórica e duas observações substantivas."""})
 
 C.append({"tipo": "code", "texto": """\
-# Adapte ao SEU projeto — exemplo com a base CVM:
+# Adapte ao SEU projeto. exemplo com a base CVM:
 descritivas = base[["receita_milhoes", "margem"]].describe().round(2)
 print(descritivas)
 
@@ -264,10 +304,10 @@ print(base["setor"].value_counts().head(8))"""})
 
 
 C.append({"tipo": "nota", "texto": (
-    "Dica de estudo — duas observações para o seu relatório: (1) para a sua variável "
+    "Dica de estudo, duas observações para o seu relatório: (1) para a sua variável "
     "quantitativa central, a média difere muito da mediana? Se sim, há assimetria/extremos "
     "e a mediana é a medida honesta; (2) para a variável categórica, qual a categoria "
-    "dominante — e isso ajuda a responder o problema de pesquisa? Escreva ambas as frases "
+    "dominante, e isso ajuda a responder o problema de pesquisa? Escreva ambas as frases "
     "no seu rascunho do relatório.")})
 
 

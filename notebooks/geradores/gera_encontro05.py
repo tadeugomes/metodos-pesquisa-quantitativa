@@ -5,26 +5,26 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 5 — Amostragem e tamanho da amostra
+# Encontro 5: Amostragem e tamanho da amostra
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
 1. Construir um **cadastro sintético** de 8.000 empresas maranhenses, calibrado com os
 totais reais do CEMPRE;
 2. Sortear amostras **aleatórias simples**, **sistemáticas** e **estratificadas** e medir o
 erro de cada uma (a "verdade" populacional é conhecida!);
-3. Ver o erro amostral diminuir com o tamanho da amostra — com retornos decrescentes;
+3. Ver o erro amostral diminuir com o tamanho da amostra, com retornos decrescentes;
 4. Implementar a **fórmula do tamanho da amostra** e desmontar dois mitos."""})
 
 C.append({"tipo": "code", "texto": "%pip install sidrapy -q"})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — O cadastro e a população
+## Seção 1: O cadastro e a população
 
 Vamos gerar um cadastro de 8.000 empresas com proporções setoriais **reais** (CEMPRE,
 tabela 9582, Maranhão) e porte/receita **simulados**. Por que sintético? Porque assim
-conhecemos a *verdade populacional* — e podemos medir exatamente o erro de cada amostra.
+conhecemos a *verdade populacional*, e podemos medir exatamente o erro de cada amostra.
 É o laboratório perfeito para entender amostragem.
 
 Primeiro, as proporções reais do CEMPRE:"""})
@@ -53,7 +53,7 @@ cempre_ma = cempre_ma[cempre_ma["Valor"].notna()]   # descarta seções sem valo
 cempre_ma.head()"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se a anterior falhar (upload de
+**Célula de contingência**: execute apenas se a anterior falhar (upload de
 `dados/cempre_maranhao.csv` no Colab)."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -70,7 +70,7 @@ if "cempre_ma" not in dir():
             break"""})
 
 C.append({"tipo": "code", "texto": """\
-# Gera o cadastro sintético — a SEMENTE (seed) fixa torna o sorteio reprodutível:
+# Gera o cadastro sintético. a SEMENTE (seed) fixa torna o sorteio reprodutível:
 # quem executar este código obterá exatamente as mesmas 8.000 empresas.
 rng = np.random.default_rng(42)
 N_POP = 8000
@@ -93,7 +93,7 @@ print("Cadastro:", cadastro.shape)
 cadastro.head()"""})
 
 C.append({"tipo": "code", "texto": """\
-# A "verdade" populacional — nosso gabarito para medir o erro das amostras
+# A "verdade" populacional: nosso gabarito para medir o erro das amostras
 media_pop = cadastro["receita_milhoes"].mean()
 prop_setores_pop = cadastro["setor"].value_counts(normalize=True)
 
@@ -103,12 +103,12 @@ print(prop_setores_pop.head().round(3))"""})
 
 C.append({"tipo": "nota", "texto": (
     "~15 min na Seção 1. Entenda o artifício didático: o cadastro é sintético porque nenhum "
-    "dado real nos deixa conhecer a verdade populacional — e sem ela não dá para MEDIR o "
+    "dado real nos deixa conhecer a verdade populacional, e sem ela não dá para MEDIR o "
     "erro amostral. Repare também na semente (seed): um sorteio reprodutível é exigência de "
     "pesquisa, não paradoxo.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Amostra aleatória simples (AAS)
+## Seção 2: Amostra aleatória simples (AAS)
 
 Na AAS, cada empresa tem a **mesma probabilidade** de ser sorteada. No pandas:
 `cadastro.sample(n=tamanho, random_state=semente)`.
@@ -136,7 +136,7 @@ print(f"\\nMédia populacional (gabarito): {media_pop:.3f}")"""})
 C.append({"tipo": "md", "texto": """\
 Uma amostra só não conta a história toda: o erro é **aleatório**. O experimento abaixo
 (código pronto) repete o sorteio **200 vezes** para cada tamanho e mostra a distribuição
-dos erros. Execute e observe: o erro cai com o tamanho — mas com **retornos
+dos erros. Execute e observe: o erro cai com o tamanho, mas com **retornos
 decrescentes**."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -162,11 +162,11 @@ for n in tamanhos:
 C.append({"tipo": "nota", "texto": (
     "Este boxplot é a imagem mais importante da aula: quadruplicar a amostra não divide o "
     "erro por quatro (cai com a raiz de n). Conecte com a fórmula da Seção 4. Se o boxplot "
-    "for novidade para você, leia-o informalmente (caixa = metade central dos erros) — a "
+    "for novidade para você, leia-o informalmente (caixa = metade central dos erros), a "
     "definição formal vem no encontro 10.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Sistemática e estratificada
+## Seção 3: Sistemática e estratificada
 
 **Sistemática:** sorteia-se o ponto de partida e toma-se 1 empresa a cada *k* posições
 (k = N/n). Complete o cálculo do passo:"""})
@@ -200,7 +200,7 @@ print(f"média sistemática = {amostra_sist['receita_milhoes'].mean():.3f} "
 
 C.append({"tipo": "md", "texto": """\
 **Estratificada proporcional:** sorteia-se *dentro de cada setor*, na proporção do setor na
-população — nenhum setor fica sub-representado por azar. O pandas resolve com
+população, nenhum setor fica sub-representado por azar. O pandas resolve com
 `groupby(...).sample(frac=...)`. Compare as duas técnicas na estimativa da proporção de um
 setor **pequeno**:"""})
 
@@ -224,12 +224,90 @@ comparacao.round(4)"""})
 
 C.append({"tipo": "nota", "texto": (
     "A estratificada acerta a proporção do setor pequeno POR CONSTRUÇÃO (é o que "
-    "estratificar significa), enquanto AAS e sistemática flutuam — em setores minúsculos, "
+    "estratificar significa), enquanto AAS e sistemática flutuam, em setores minúsculos, "
     "podem até zerar. Esse é o argumento prático da estratificação. Se a lógica do passo "
     "sistemático travar, desenhe uma lista de 20 elementos e percorra com k=4.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Quantos são necessários? A fórmula do tamanho da amostra
+## Estatística do encontro: erro padrão e intervalo de confiança
+
+**A fórmula.** O erro padrão mede o quanto a média muda de uma amostra para outra:
+`EP = s / √n`. O intervalo de confiança de 95% é `x̄ ± 1,96 · EP`.
+
+**O que vamos ver.** Como este cadastro é sintético, conhecemos a verdade populacional
+(`media_pop`). Isso permite fazer o que nenhuma pesquisa real permite: sortear mil amostras e
+observar como as médias se comportam."""})
+
+C.append({"tipo": "code", "texto": """\
+# mil amostras de 100 empresas, guardando a média de cada uma
+medias = [cadastro["receita_milhoes"].sample(100, random_state=i).mean()
+          for i in range(1000)]
+medias = pd.Series(medias)
+
+print(f"Média da população:          {media_pop:.3f}")
+print(f"Média das 1.000 médias:      {medias.mean():.3f}")
+print(f"Desvio padrão das médias:    {medias.std():.3f}   <- é o erro padrão")"""})
+
+C.append({"tipo": "code", "texto": """\
+import matplotlib.pyplot as plt
+
+fig, eixos = plt.subplots(1, 2, figsize=(11, 4))
+
+eixos[0].hist(cadastro["receita_milhoes"], bins=60)
+eixos[0].set_title("A população: assimétrica")
+
+eixos[1].hist(medias, bins=30)
+eixos[1].axvline(media_pop, linestyle="--")
+eixos[1].set_title("As médias de 1.000 amostras: simétricas")
+
+plt.tight_layout()
+plt.show()"""})
+
+C.append({"tipo": "md", "texto": """\
+A população é torta e as médias amostrais são simétricas: é o **teorema central do limite**. É ele
+que permite usar uma amostra para falar da população.
+
+Agora o caminho real, em que só existe **uma** amostra e a verdade é desconhecida."""})
+
+C.append({"tipo": "code", "texto": """\
+amostra = cadastro["receita_milhoes"].sample(100, random_state=42)
+
+media = amostra.mean()
+ep    = amostra.std() / len(amostra) ** 0.5
+ic    = (media - 1.96 * ep, media + 1.96 * ep)
+
+print(f"Média da amostra: {media:.3f}")
+print(f"Erro padrão:      {ep:.3f}")
+print(f"IC 95%:           [{ic[0]:.3f} ; {ic[1]:.3f}]")
+print(f"A média da população ({media_pop:.3f}) está dentro do intervalo?",
+      ic[0] <= media_pop <= ic[1])"""})
+
+C.append({"tipo": "code", "texto": """\
+# quantos dos 1.000 intervalos contêm a média verdadeira? (deve dar perto de 95%)
+acertos = 0
+for i in range(1000):
+    a = cadastro["receita_milhoes"].sample(100, random_state=i)
+    e = a.std() / 10
+    if a.mean() - 1.96 * e <= media_pop <= a.mean() + 1.96 * e:
+        acertos += 1
+
+print(f"Intervalos que contiveram a média populacional: {acertos} de 1.000")"""})
+
+C.append({"tipo": "md", "texto": """\
+**É isso que "95% de confiança" significa:** o procedimento acerta em cerca de 95% das amostras.
+Não significa que haja 95% de probabilidade de a média estar neste intervalo específico.
+
+**Escreva a sua leitura.**
+
+*A receita média estimada é de ______ milhões, com margem de erro de ______ milhões a 95% de
+confiança (n = 100, amostra aleatória simples). Dos 1.000 intervalos simulados, ______
+continham a média verdadeira.*
+
+A seção seguinte inverte a fórmula: em vez de calcular a margem a partir de n, calcula o n
+necessário para a margem que se deseja."""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 4: Quantos são necessários? A fórmula do tamanho da amostra
 
 Para estimar uma **proporção** com margem de erro *e* e nível de confiança dado, em
 população de tamanho *N*:
@@ -237,7 +315,7 @@ população de tamanho *N*:
 $$n_0 = \\frac{z^2 \\, p\\,(1-p)}{e^2} \\qquad n = \\frac{n_0}{1 + \\frac{n_0 - 1}{N}}$$
 
 - *z*: 1,645 (90%), **1,96 (95%)**, 2,576 (99%);
-- *p*: proporção esperada — na dúvida, **0,5** (o pior caso, que maximiza n);
+- *p*: proporção esperada, na dúvida, **0,5** (o pior caso, que maximiza n);
 - *e*: margem de erro (0,05 = 5 pontos percentuais);
 - a segunda fórmula é a **correção para população finita**.
 
@@ -287,18 +365,18 @@ plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "nota", "texto": (
-    "Leia a tabela e fixe as duas lições: (1) 'amostra deve ser 10% da população' é mito — "
+    "Leia a tabela e fixe as duas lições: (1) 'amostra deve ser 10% da população' é mito, "
     "para populações grandes o n mal se move (384 vale para 800 mil e para 100 milhões); "
     "(2) 'quanto maior melhor' tem custo: apertar a margem de 5% para 2% multiplica o n por "
     "~6. É a mesma lição do boxplot da Seção 2, agora em fórmula.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Perguntas de interpretação
+## Seção 5: Perguntas de interpretação
 
 Responda por escrito, editando esta célula:
 
 **1.** Um estudante entrevista 50 pessoas na cantina e conclui sobre "os estudantes da
-UFMA". Por que essa amostra de conveniência não autoriza a generalização — e que frase
+UFMA". Por que essa amostra de conveniência não autoriza a generalização, e que frase
 honesta ele poderia usar no lugar?
 
 *Sua resposta:*
@@ -321,6 +399,6 @@ C.append({"tipo": "md", "texto": """\
 1. Salve e compartilhe o link do notebook;
 2. **Tarefa 1:** ler o capítulo de RICHARDSON (2017) sobre questionários e escalas;
 3. **Tarefa 2:** responder ao questionário-exemplo que o professor enviará por link
-(~10 min) — as respostas da turma serão o material da próxima aula."""})
+(~10 min), as respostas da turma serão o material da próxima aula."""})
 
 gera_notebooks(5, C)

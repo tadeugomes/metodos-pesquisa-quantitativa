@@ -5,26 +5,26 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 11 — Inferência estatística: IC e testes de hipóteses
+# Encontro 11. Inferência estatística: IC e testes de hipóteses
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
-1. **Simular o teorema central do limite** — e ver a assimetria dos dados empresariais
+1. **Simular o teorema central do limite**: e ver a assimetria dos dados empresariais
 impor-se ou ceder conforme o tamanho da amostra;
 2. Construir um **intervalo de confiança** de 95% para a margem líquida na base CVM;
-3. Aplicar o **teste t de Student** para comparar setores — e ver por que os extremos
+3. Aplicar o **teste t de Student** para comparar setores, e ver por que os extremos
 sabotam o teste bruto e a transformação o recupera;
 4. Aplicar o **teste qui-quadrado** para testar associação entre porte e sobrevivência de
 empresas no CEMPRE;
 5. Reformular a hipótese do seu projeto como par H0/H1."""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — O teorema central do limite (TCL)
+## Seção 1: O teorema central do limite (TCL)
 
 As médias de amostras repetidas de **qualquer** população se aproximam da distribuição
 normal à medida que o tamanho da amostra cresce. Vamos ver isso com uma população
-deliberadamente assimétrica: a distribuição **lognormal** — o formato típico de receitas,
+deliberadamente assimétrica: a distribuição **lognormal**: o formato típico de receitas,
 em que há muitos valores pequenos e poucos gigantes."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -52,7 +52,7 @@ print(f"População: média = {populacao.mean():.2f} | mediana = {np.median(popu
 
 
 C.append({"tipo": "md", "texto": """\
-Repare: a média é muito maior que a mediana — a assinatura da assimetria que vimos no
+Repare: a média é muito maior que a mediana, a assinatura da assimetria que vimos no
 encontro 9. Agora sorteamos **amostras repetidas** e guardamos a **média** de cada uma.
 O TCL afirma que essas médias se aproximam de uma normal. Execute e observe o que muda
 com n."""})
@@ -73,16 +73,16 @@ plt.show()"""})
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: com n = 5 as médias ainda são assimétricas (o desenho pende para a "
     "direita); com n = 30 já se aproximam do sino; com n = 100 o sino é nítido. O importante "
-    "para a inferência é que o formato da população quase não importa — importa o quão grande "
+    "para a inferência é que o formato da população quase não importa, importa o quão grande "
     "é a amostra. É por isso que o encontro 5 usava o z de 95% para calcular o n: ele é o "
     "valor da normal que o TCL garante.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Intervalo de confiança na base CVM
+## Seção 2: Intervalo de confiança na base CVM
 
 O intervalo de confiança combina a estimativa da amostra com uma **margem de erro**:
-`estimativa ± t × desvio_padrão / raiz(n)`. Primeiro, carregue a base — reconstruindo a
+`estimativa ± t × desvio_padrão / raiz(n)`. Primeiro, carregue a base, reconstruindo a
 DRE do encontro 7 (se o download falhar, a célula de contingência carrega o CSV local)."""})
 
 
@@ -114,7 +114,7 @@ try:
     base = base.rename(columns={"SETOR_ATIV": "setor"}).drop(columns="chave")
     print("Base CVM baixada:", base.shape)
 except Exception as e:
-    print("Download falhou — use a célula de contingência abaixo.")
+    print("Download falhou, use a célula de contingência abaixo.")
     raise
 
 base = base[base["receita"].notna() & (base["receita"] != 0)]
@@ -140,7 +140,7 @@ print("Base:", base.shape)"""})
 C.append({"tipo": "md", "texto": """\
 **O estudo de caso:** qual o intervalo de confiança de 95% para a **média da margem
 líquida** das companhias de Energia Elétrica da base? A célula faz o cálculo de duas
-formas — o passo a passo (com `t` da tabela de Student) e a função pronta do `scipy`."""})
+formas, o passo a passo (com `t` da tabela de Student) e a função pronta do `scipy`."""})
 
 
 C.append({"tipo": "code", "texto": """\
@@ -153,7 +153,7 @@ desvio = setor_ee.std(ddof=1)
 t_critico = stats.t.ppf(0.975, df=n - 1)      # t para 95%, duas caudas
 margem_erro = t_critico * desvio / np.sqrt(n)
 
-print(f"Energia Elétrica — n = {n}")
+print(f"Energia Elétrica, n = {n}")
 print(f"média amostral   = {media:.4f}")
 print(f"desvio padrão    = {desvio:.4f}")
 print(f"t crítico (95%)  = {t_critico:.3f}")
@@ -166,14 +166,49 @@ print(f"IC (scipy)       = [{ic[0]:.4f} ; {ic[1]:.4f}]")"""})
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: a mediana do setor não está dentro do intervalo quando a margem tem "
-    "extremos — não se assuste. O intervalo é largo justamente porque a margem dos dados "
+    "extremos, não se assuste. O intervalo é largo justamente porque a margem dos dados "
     "brutos é volátil. Este é o momento de lembrar a lição do encontro 9: nos dados "
-    "empresariais, reportar mediana e transformar a variável são respostas práticas — e é "
+    "empresariais, reportar mediana e transformar a variável são respostas práticas, e é "
     "exatamente o que faremos no teste t a seguir.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Teste t de Student: comparando dois setores
+## Estatística do encontro: a lógica do teste
+
+**A fórmula.** A estatística de teste é a diferença observada medida em unidades de erro padrão:
+`t = (x̄₁ − x̄₂) / EP da diferença`. Quanto maior o t em valor absoluto, mais improvável a diferença
+sob a hipótese nula.
+
+**O valor-p** é a probabilidade de observar uma diferença tão grande quanto a observada, ou maior,
+**supondo H0 verdadeira**. Não é a probabilidade de H0 ser verdadeira, nem o tamanho do efeito.
+
+**Qual teste usar** depende do nível de mensuração das variáveis, que é o conteúdo do encontro 3:
+
+| A pergunta | As variáveis | O teste |
+|---|---|---|
+| Dois grupos têm médias diferentes? | uma categórica de 2 níveis, uma quantitativa | `ttest_ind` |
+| A média mudou entre antes e depois? | quantitativa medida duas vezes | `ttest_rel` |
+| Duas categóricas estão associadas? | duas categóricas | `chi2_contingency` |
+| Duas quantitativas andam juntas? | duas quantitativas | correlação, encontro 13 |"""})
+
+C.append({"tipo": "code", "texto": """\
+# antes de testar: a distribuição dos grupos justifica o teste de médias?
+base.groupby("setor")["margem"].describe()[["count", "mean", "50%", "std"]].round(2).head(8)"""})
+
+C.append({"tipo": "md", "texto": """\
+Se média e mediana estiverem muito distantes em algum grupo, o teste de médias fica frágil: a
+média que ele compara não descreve bem o grupo. Nesse caso, o caminho usual é transformar a
+variável com logaritmo, o que a Seção 3 vai fazer.
+
+**Escreva a sua leitura antes de rodar o teste.**
+
+*Comparando ______________ e ______________, a diferença observada entre as medianas é de ______.
+Minha hipótese nula é que ______________. Se o valor-p ficar abaixo de 0,05, concluirei que
+______________; se ficar acima, concluirei que ______________ (cuidado: não é "os grupos são
+iguais").*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 3. Teste t de Student: comparando dois setores
 
 **Pergunta de pesquisa:** a receita das companhias de **Comércio (atacado e varejo)**
 difere da das de **Construção Civil**?
@@ -209,11 +244,11 @@ print(f"\\nDecisão (α = 0,05): receita bruta {'rejeita H0' if t_bruto.pvalue <
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: na receita bruta o teste **não** rejeita H0 (p acima de 0,05); no "
-    "log-receita **rejeita** (p < 0,001). Mesmos dados, duas conclusões — e a explicação é "
+    "log-receita **rejeita** (p < 0,001). Mesmos dados, duas conclusões, e a explicação é "
     "a mesma da Seção 1: um punhado de companhias enormes arrasta médias e variância na "
     "escala bruta, roubando do teste a capacidade de ver a diferença que existe. A "
     "transformação logarítmica devolve ao teste o pressuposto de que ele precisa. Moral da "
-    "história: o teste não é uma receita — é uma ferramenta que exige dados compatíveis "
+    "história: o teste não é uma receita, é uma ferramenta que exige dados compatíveis "
     "com os pressupostos dela, e transformar a variável (reportando medianas) é o ofício "
     "do pesquisador quantitativo em dados de negócios.")})
 
@@ -233,7 +268,7 @@ diferença"?
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Qui-quadrado: porte e sobrevivência no CEMPRE
+## Seção 4. Qui-quadrado: porte e sobrevivência no CEMPRE
 
 A demografia empresarial do IBGE informa, para cada faixa de pessoal, quantas empresas
 nasceram e qual a taxa de sobrevivência após 1 ano. Com essas contagens podemos testar se
@@ -305,7 +340,7 @@ chi2, p, dof, esperado = stats.chi2_contingency(contingencia)
 print(f"qui-quadrado = {chi2:.1f}")
 print(f"graus de liberdade = {dof}")
 print(f"valor-p = {p:.2e}")
-print(f"Decisão (α = 0,05): {'rejeita H0 — há associação entre porte e sobrevivência' if p < 0.05 else 'não rejeita H0'}")
+print(f"Decisão (α = 0,05): {'rejeita H0, há associação entre porte e sobrevivência' if p < 0.05 else 'não rejeita H0'}")
 
 # Em quantas vezes a sobrevivência de 1 ano da faixa maior supera a da menor?
 tabela["razão"] = (tabela["taxa_porcento"] / tabela["taxa_porcento"].min()).round(2)
@@ -314,15 +349,15 @@ tabela[["D5N", "taxa_porcento", "razão"]]"""})
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: o resultado é o teste formal (qui-quadrado altíssimo, p < 0,001) do "
-    "fenômeno que o encontro 2 mostrou por tabelas — empresas maiores sobrevivem mais. Dois "
+    "fenômeno que o encontro 2 mostrou por tabelas, empresas maiores sobrevivem mais. Dois "
     "cuidados de interpretação: (1) significância estatística aqui é trivialmente garantida "
-    "pelo volume de dados — o que importa gerencialmente é a MAGNITUDE (a razão entre as "
-    "taxas); (2) os dados são agregados por faixa — não é o acompanhamento individualizado "
+    "pelo volume de dados, o que importa gerencialmente é a MAGNITUDE (a razão entre as "
+    "taxas); (2) os dados são agregados por faixa, não é o acompanhamento individualizado "
     "de cada empresa, então 'associação' não é 'causalidade'.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — A hipótese do seu projeto como teste
+## Seção 5: A hipótese do seu projeto como teste
 
 Edite esta célula. Escreva a hipótese do seu projeto (ou a que você deseja formular) em
 forma de teste:
@@ -352,9 +387,9 @@ C.append({"tipo": "md", "texto": """\
 ### Antes de sair
 
 1. Salve e compartilhe o link do notebook;
-2. **Próximo encontro é a Avaliação 2** — atividade prática no Colab: descritivas, gráficos
+2. **Próximo encontro é a Avaliação 2**: atividade prática no Colab: descritivas, gráficos
 e testes sobre um banco preparado pelo professor. Revisar encontros 9, 10 e 11;
-3. **Projeto:** definir no papel o teste que a sua hipótese exigirá (Seção 5) — e anotar
+3. **Projeto:** definir no papel o teste que a sua hipótese exigirá (Seção 5), e anotar
 que variáveis da base permitem executá-lo."""})
 
 

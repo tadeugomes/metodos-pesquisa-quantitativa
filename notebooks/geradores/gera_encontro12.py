@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook único do Encontro 12 (Avaliação 2) — modo prova, com lacunas para o
+"""Gera o notebook único do Encontro 12 (Avaliação 2), modo prova, com lacunas para o
 aluno responder. O gabarito (células professor + notas) permanece apenas neste gerador e
 não vai para o arquivo .ipynb."""
 from nb_helper import gera_notebooks
@@ -7,11 +7,11 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Avaliação 2 — Prática individual · Encontro 12
+# Avaliação 2: Prática individual · Encontro 12
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
-**Instruções — leia antes de começar:**
+**Instruções: leia antes de começar**
 - Duração: **150 minutos**. Consulta ao material da disciplina e à **IA generativa**
 (ChatGPT, Claude, Gemini, Copilot) **permitida**; comunicação com colegas, **não**;
 - **Usou IA? Registre o prompt** na célula "Registro de uso de IA", ao final, e diga como
@@ -19,8 +19,12 @@ conferiu a resposta. Usar sem registrar é falta de honestidade acadêmica;
 - Preencha seu nome e matrícula abaixo e execute as células de preparação;
 - Esta avaliação cobre os encontros **9, 10 e 11** (descritivas, gráficos, inferência);
 - As três tarefas valem **100 pontos** (20 + 25 + 30 + 25);
-- Cada resposta final deve estar **escrita no notebook**, junto dos resultados — comentar
-o que o resultado significa vale pontos;
+- **Exigência desta prova:** cada número calculado vem acompanhado de uma **frase de leitura**
+em linguagem corrente, que um leitor leigo entenda. Tarefa com o código certo e sem a frase
+perde metade dos pontos;
+- Modelo de frase de leitura: *"A margem líquida mediana do setor X é de Y%, com metade das
+companhias entre Q1% e Q3%"*; *"a diferença entre os grupos é de Z pontos e o teste t indica que
+ela não se explica pelo acaso (t = _; gl = _; p = _)"*;
 - Ao final: salve, compartilhe o link com o professor e verifique se **todas as células
 executadas** aparecem com resultado."""})
 
@@ -30,13 +34,13 @@ nome = ""
 matricula = ""
 
 print("Estudante:", nome, "| Matrícula:", matricula)""", "professor": """\
-nome = "GABARITO — Prof. Tadeu"
+nome = "GABARITO (Prof. Tadeu)"
 matricula = "2026"
 
 print("Estudante:", nome, "| Matrícula:", matricula)"""})
 
 C.append({"tipo": "md", "texto": """\
-## Preparação — base CVM (execute, não altere)
+## Preparação: base CVM (execute, não altere)
 
 As células abaixo constroem a base com a qual você trabalhará: receita, lucro líquido,
 margem e log-receita das companhias abertas (DFP 2024). Se o download falhar, a célula de
@@ -73,7 +77,7 @@ try:
     base = base.rename(columns={"SETOR_ATIV": "setor"}).drop(columns="chave")
     print("Base CVM baixada:", base.shape)
 except Exception as e:
-    print("Download falhou — use a célula de contingência abaixo.")
+    print("Download falhou, use a célula de contingência abaixo.")
     raise
 
 base = base[base["receita"].notna() & (base["receita"] != 0)]
@@ -112,13 +116,16 @@ trab["setor_curto"].value_counts()"""})
 
 C.append({"tipo": "md", "texto": """\
 ---
-## Tarefa 1 — Estatística descritiva (20 pontos)
+## Tarefa 1: Estatística descritiva (20 pontos)
+
+> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
+> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
 
 **Objetivo:** resumir a **receita** (em milhões de reais) dos três setores e decidir, com
 justificativa, entre média e mediana.
 
 **(a)** Complete a função `descritivas` (média, mediana, desvio padrão e coeficiente de
-variação) e monte a tabela por setor — na escala de **R$ milhões**."""})
+variação) e monte a tabela por setor, na escala de **R$ milhões**."""})
 
 C.append({"tipo": "code", "aluno": """\
 def descritivas(serie):
@@ -157,24 +164,27 @@ C.append({"tipo": "md", "texto": """\
 presença de valores extremos?
 2. Para **comparar a receita típica** das companhias entre setores, você usaria média ou
 mediana? Justifique.
-3. O **coeficiente de variação** de qual setor é o maior? O que um CV entre 8 e 16 vezes
-a média sugere sobre a confiabilidade da média como resumo desse setor?
+3. O **coeficiente de variação** de qual setor é o maior? O que um CV acima de 5, ou seja,
+um desvio padrão cinco vezes maior que a média, sugere sobre a confiabilidade da média como
+resumo desse setor?
 
 *Sua resposta:*"""})
 
 C.append({"tipo": "nota", "texto": (
-    "GABARITO T1 (20 pts = 8 código + 12 texto): receita no escopo (R$ mi): Construção — "
-    "média 2,3 / mediana 1,1 / CV 1,9; Comércio — média 55,3 / mediana 2,8 / CV 6,0; "
-    "Energia — média 9,1 / mediana 3,7 / CV 1,5. (1) Comércio tem a maior distância: a "
-    "média 55 M é ~20× a mediana 2,8 M — sinal de gigantes puxando a média (o CV baixinho "
-    "no texto da pergunta é do ANDAR: Ceifar 8–16; ali o CV do andar, não da receita). "
+    "GABARITO T1 (20 pts = 8 código + 12 texto): receita no escopo (R$ mi): Construção, "
+    "média 2,3 / mediana 1,1 / CV 1,9; Comércio, média 55,3 / mediana 2,8 / CV 6,0; "
+    "Energia, média 9,1 / mediana 3,7 / CV 1,5. (1) Comércio tem a maior distância: a "
+    "média 55 M é ~20× a mediana 2,8 M, sinal de gigantes puxando a média. "
     "(2) Para 'típica', a MEDIANA (robusta a extremos); a média é sensível aos gigantes. "
-    "(3) CV maior também no Comércio (≈ 6,0) — o desvio é ~6× a média, então a média é um "
+    "(3) CV maior também no Comércio (≈ 6,0), o desvio é ~6× a média, então a média é um "
     "resumo instável. Aceitar variações de arredondamento e DQ bem justificadas.")})
 
 C.append({"tipo": "md", "texto": """\
 ---
-## Tarefa 2 — Gráficos (25 pontos)
+## Tarefa 2: Gráficos (25 pontos)
+
+> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
+> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
 
 **(a)** Produza um **boxplot** da margem líquida por setor (com título, rótulos de eixos e
 limite de y em [−1,5; 1,5] para a leitura dos extremos):"""})
@@ -208,7 +218,7 @@ fig, ax = plt.subplots(figsize=(8, 5))
 ax.hist(trab["log_receita"], bins=40)
 ax.set_xlabel("log(receita)")
 ax.set_ylabel("Frequência")
-ax.set_title("Distribuição do log-receita — escopo CVM 2024")
+ax.set_title("Distribuição do log-receita, escopo CVM 2024")
 plt.show()"""})
 
 
@@ -224,7 +234,7 @@ C.append({"tipo": "md", "texto": """\
 
 C.append({"tipo": "nota", "texto": (
     "GABARITO T2 (25 pts = 8+6 código + 11 texto): (1) boxplot mostra margens estendendo-se "
-    "além de ±1 (extremas fora da caixa) nos três setores — coerente com o CV enorme da "
+    "além de ±1 (extremas fora da caixa) nos três setores, coerente com o CV enorme da "
     "Tarefa 1 e com a distância média/mediana. (2) log transforma assimetria à direita em "
     "distribuição aproximadamente simétrica (verificável no histograma); a normalidade "
     "empírica aproxima os dados de uma condição útil para inferência (encontro 11). "
@@ -234,12 +244,15 @@ C.append({"tipo": "nota", "texto": (
 
 C.append({"tipo": "md", "texto": """\
 ---
-## Tarefa 3 — Inferência estatística (30 pontos)
+## Tarefa 3: Inferência estatística (30 pontos)
+
+> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
+> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
 
 **Questão de pesquisa:** a **margem líquida média** das companhias de **Energia Elétrica** é
 diferente de zero? E a **receita** do **Comércio** difere da da **Construção Civil**?
 
-**(a) Intervalo de confiança** — calcule (passo a passo e via `scipy`) o IC de 95% para a
+**(a) Intervalo de confiança**: calcule (passo a passo e via `scipy`) o IC de 95% para a
 média da margem de Energia Elétrica:"""})
 
 C.append({"tipo": "code", "aluno": """\
@@ -274,20 +287,20 @@ C.append({"tipo": "md", "texto": """\
 
 1. O intervalo contém o zero? O que isso permite concluir sobre a margem média
 (positiva/negativa/não é possível afirmar)?
-2. Escreva a **interpretação correta** do que "95% de confiança" significa — sem o erro
+2. Escreva a **interpretação correta** do que "95% de confiança" significa, sem o erro
 comum de dizer que a probabilidade é do parâmetro estar *neste* intervalo.
 
 *Sua resposta:*"""})
 
 C.append({"tipo": "nota", "texto": (
-    "GABARITO T3a/T3b (8 pts código + 6 pts texto): IC = [−0,175 ; 0,329] contém o zero — "
+    "GABARITO T3a/T3b (8 pts código + 6 pts texto): IC = [−0,175 ; 0,329] contém o zero, "
     "não é possível afirmar, ao nível de 95%, que a margem média da Energia seja diferente "
     "de zero (a variabilidade da margem é enorme). Interpretação correta: em repetidas "
     "amostras do mesmo processo, ~95% dos intervalos construídos assim contêm o parâmetro "
-    "verdadeiro — a confiança é do método, não de este intervalo particular.")})
+    "verdadeiro, a confiança é do método, não de este intervalo particular.")})
 
 C.append({"tipo": "md", "texto": """\
-**(c) Teste t de Student** — compare a **receita** (na escala log, o motivo é o da Tarefa 2)
+**(c) Teste t de Student**: compare a **receita** (na escala log, o motivo é o da Tarefa 2)
 das companhias de **Comércio** e **Construção Civil**. Formule H0 e H1, rode o teste com
 `scipy.stats.ttest_ind`, decida usando α = 0,05 e **interprete o resultado**."""})
 
@@ -306,7 +319,7 @@ print(f"t = {t_stat:.3f} | p = {p_valor:.4f}")"""})
 
 
 C.append({"tipo": "code", "aluno": """\
-# COMPLETE o texto: decida com α = 0,05 — a diferença é significativa?
+# COMPLETE o texto: decida com α = 0,05: a diferença é significativa?
 decisao = "..."   # 'rejeita H0' ou 'não rejeita H0'
 print("Decisão:", decisao)""", "professor": """\
 # t = −4,38 | p = 0,000034 → p < 0,05 → rejeita H0
@@ -329,15 +342,18 @@ C.append({"tipo": "nota", "texto": (
     "GABARITO T3c/T3d (12 pts código + 4 pts texto): H0: média do log-receita igual nos dois "
     "setores (diferença 0); H1: diferente. t = −4,38, p = 0,000034 < 0,05 → rejeita H0: "
     "evidência forte de que a receita típica difere (Comércio com log-receita maior). Na "
-    "escala bruta o teste seria inutilizado pelos gigantes — uma companhia de varejo gigante "
+    "escala bruta o teste seria inutilizado pelos gigantes, uma companhia de varejo gigante "
     "domina a média (Tarefa 1) e a variância, inflando o desvio e apagando a diferença; na "
     "log, extremos são amortecidos. Não rejeitar H0 ≠ provar H0: é não ter evidência contra "
-    "— o teste não demonstra igualdade, apenas falta de evidência de diferença.")})
+    ", o teste não demonstra igualdade, apenas falta de evidência de diferença.")})
 
 
 C.append({"tipo": "md", "texto": """\
 ---
-## Tarefa 4 — Qui-quadrado de independência (25 pontos)
+## Tarefa 4: Qui-quadrado de independência (25 pontos)
+
+> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
+> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
 
 **Questão de pesquisa:** a **sobrevivência de empresas** de 1 ano (CEMPRE/IBGE, tabela 9949)
 é associada ao **porte** (faixa de pessoal ocupado)? Execute a preparação dos dados:"""})
@@ -407,7 +423,7 @@ sobre a tabela de contingência e responda no texto:
 
 1. Qual a estatística (χ²), quantos graus de liberdade e o p-valor?
 2. Qual a conclusão, com α = 0,05, sobre a associação entre porte e sobrevivência?
-3. Que **limitação** esse teste carrega aqui? (O que os dados permitem afirmar — e o que
+3. Que **limitação** esse teste carrega aqui? (O que os dados permitem afirmar, e o que
 não permitem?)"""})
 
 
@@ -422,10 +438,10 @@ print(f"χ² = {chi2:.1f} | dof = {dof} | p = {p:.2e}")"""})
 
 
 C.append({"tipo": "nota", "texto": (
-    "GABARITO T4 (25 pts = 12 código + 13 texto): ano 2021, χ² ≈ 2178, dof = 2, p ≈ 0 — "
+    "GABARITO T4 (25 pts = 12 código + 13 texto): ano 2021, χ² ≈ 2178, dof = 2, p ≈ 0, "
     "rejeita H0: sobrevivência e porte são fortemente associadas (1 a 9 pessoas ≈ 78,7%; "
     "10–49 ≈ 91,3%; 50 ou mais ≈ 92,4%). Limitação central: os dados são AGREGADOS por "
-    "faixa (nascimentos × taxa) — não é o rastro individual de cada empresa; o teste fala "
+    "faixa (nascimentos × taxa), não é o rastro individual de cada empresa; o teste fala "
     "de associação entre faixa e sobrevivência na tabela, não de causalidade (porte não "
     "'prova' sobrevivência), e taxas são o resultado líquido de nascimentos no ano, sem "
     "controlar setor ou região.")})
@@ -434,16 +450,16 @@ C.append({"tipo": "md", "texto": """\
 ---
 ## Antes de entregar
 
-1. **Ambiente de execução → Reiniciar e executar tudo** — confirme que nada quebra;
+1. **Ambiente de execução → Reiniciar e executar tudo**: confirme que nada quebra;
 2. Confira as **três tarefas** (células completadas, gabaritos de resposta escritos);
 3. Salve e **compartilhe o link** com o professor com permissão de edição;
-4. Revise a interpretação de cada resultado — ela vale metade dos pontos."""})
+4. Revise a interpretação de cada resultado, ela vale metade dos pontos."""})
 
 C.append({"tipo": "md", "texto": """\
 ## Registro de uso de IA
 
 Se você usou IA generativa em qualquer tarefa, preencha abaixo. O uso é permitido; a
-omissão, não. Este registro **não desconta pontos** — ele faz parte do método.
+omissão, não. Este registro **não desconta pontos**: ele faz parte do método.
 
 | Tarefa | O que você pediu (prompt, resumido) | Como conferiu a resposta |
 |---|---|---|

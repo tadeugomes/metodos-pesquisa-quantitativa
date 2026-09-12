@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 0 · Aula inaugural</div>
   <h1>O que é um projeto de pesquisa quantitativo</h1>
@@ -452,6 +459,181 @@
   resultado.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 0</h2>
+  <p>O vocabulário: população e amostra, parâmetro e estatística, tipos de variável</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Os três trabalhos da estatística</h2>
+
+  <p>A estatística não é um assunto único. São três trabalhos diferentes, que respondem a
+  perguntas diferentes e aparecem em momentos diferentes do semestre.</p>
+  <div class="figura">
+    <svg viewBox="0 0 1000 168" role="img" aria-label="Os três trabalhos da estatística: descrever, inferir e relacionar">
+      <rect x="0" y="6" width="318" height="120" rx="10" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.4"/>
+      <text x="159" y="42" text-anchor="middle" font-size="24" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">1. Descrever</text>
+      <text x="159" y="72" text-anchor="middle" font-size="17" fill="#444">Resumir o que foi medido</text>
+      <text x="159" y="96" text-anchor="middle" font-size="17" fill="#444">em poucos números</text>
+      <text x="159" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 1 a 4, 9 e 10</text>
+      <rect x="341" y="6" width="318" height="120" rx="10" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.4"/>
+      <text x="500" y="42" text-anchor="middle" font-size="24" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">2. Inferir</text>
+      <text x="500" y="72" text-anchor="middle" font-size="17" fill="#444">Dizer algo sobre a população</text>
+      <text x="500" y="96" text-anchor="middle" font-size="17" fill="#444">a partir de uma amostra</text>
+      <text x="500" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 5, 7 e 11</text>
+      <rect x="682" y="6" width="318" height="120" rx="10" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.4"/>
+      <text x="841" y="42" text-anchor="middle" font-size="24" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">3. Relacionar</text>
+      <text x="841" y="72" text-anchor="middle" font-size="17" fill="#444">Verificar se duas variáveis</text>
+      <text x="841" y="96" text-anchor="middle" font-size="17" fill="#444">andam juntas</text>
+      <text x="841" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 6 e 13</text>
+      <text x="500" y="152" text-anchor="middle" font-size="17" fill="#777">A pergunta de pesquisa decide qual dos três o seu projeto precisa.</text>
+    </svg>
+  </div>
+  <p>Nenhum deles exige que você faça contas no papel. O que se exige é escolher o certo,
+  saber o que a fórmula faz e ler o resultado em uma frase que outra pessoa entenda.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>População e amostra, parâmetro e estatística</h2>
+
+  <div class="definicao"><span class="rotulo">As quatro palavras</span>
+  <strong>População</strong> é o conjunto de todos os casos que a pergunta abrange.
+  <strong>Amostra</strong> é a parte da população que foi efetivamente medida.
+  <strong>Parâmetro</strong> é o número que descreve a população, quase sempre desconhecido.
+  <strong>Estatística</strong> é o número que descreve a amostra, e que se calcula.</div>
+  <table>
+    <tr><th>O que se quer conhecer</th><th>Na população (parâmetro)</th><th>Na amostra (estatística)</th></tr>
+    <tr><td>Média</td><td>μ (mi)</td><td>x̄ (xis barra)</td></tr>
+    <tr><td>Desvio padrão</td><td>σ (sigma)</td><td>s</td></tr>
+    <tr><td>Proporção</td><td>p</td><td>p̂ (pê chapéu)</td></tr>
+    <tr><td>Quantidade de casos</td><td>N</td><td>n</td></tr>
+  </table>
+  <p>Toda a estatística inferencial, dos encontros 5 e 11, existe por causa de uma única
+  dificuldade: você calcula x̄ e quer falar sobre μ. A distância entre os dois é o erro amostral,
+  e ele só é calculável quando a amostra foi sorteada.</p>
+  <div class="frase-resultado"><span class="rotulo">Como isso aparece no seu projeto</span>
+  "A população são as 1.240 micro e pequenas empresas de comércio de São Luís registradas no
+  CEMPRE; a amostra são as 300 que responderam ao questionário."</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Tipos de variável: o que decide tudo o que vem depois</h2>
+
+  <p>Antes de escolher qualquer medida, é preciso saber de que tipo é a variável. A classificação
+  tem dois níveis, e o segundo é o que aparece nas provas.</p>
+  <table>
+    <tr><th>Tipo</th><th>Subtipo</th><th>O que é</th><th>Exemplo em dados de empresas</th></tr>
+    <tr><td rowspan="2"><strong>Qualitativa</strong><br>(categoria)</td><td>Nominal</td>
+        <td>Categorias sem ordem entre si</td><td>Seção CNAE, unidade da federação, natureza jurídica</td></tr>
+    <tr><td>Ordinal</td><td>Categorias com ordem, mas sem distância definida</td>
+        <td>Faixa de pessoal ocupado, grau de satisfação em escala de 1 a 5</td></tr>
+    <tr><td rowspan="2"><strong>Quantitativa</strong><br>(número)</td><td>Discreta</td>
+        <td>Contagem, só assume valores inteiros</td><td>Número de empregados, número de filiais</td></tr>
+    <tr><td>Contínua</td><td>Medida, assume qualquer valor de um intervalo</td>
+        <td>Faturamento, margem líquida, taxa de sobrevivência</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">A armadilha mais comum</span>
+  Número na tela não é variável quantitativa. O código 47 da seção CNAE é um rótulo, não uma
+  quantidade: não existe "CNAE médio". O critério é outro: a diferença entre dois valores
+  significa alguma coisa? Se não significa, a variável é qualitativa, por mais que esteja escrita
+  com algarismos.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Onde cada palavra aparece no Colab</h2>
+
+  <p>Toda base de dados que veremos tem a mesma anatomia. Um DataFrame é uma tabela em que
+  <strong>cada linha é um caso</strong> (uma empresa, um município, um mês) e
+  <strong>cada coluna é uma variável</strong>.</p>
+  <pre class="codigo">dados.shape      <span class="cmt"># (linhas, colunas): quantos casos e quantas variáveis</span>
+dados.head()     <span class="cmt"># as cinco primeiras linhas, para ver a cara da tabela</span>
+dados.info()     <span class="cmt"># o tipo de cada coluna: object = texto, int64/float64 = número</span>
+dados.columns    <span class="cmt"># o nome de cada variável</span></pre>
+  <p>O <code>info()</code> é o que liga a teoria ao código: quando ele mostra
+  <code>object</code>, o pandas está tratando aquela coluna como texto, isto é, como variável
+  qualitativa. Quando mostra <code>int64</code> ou <code>float64</code>, está tratando como
+  número. Se o tipo estiver errado, toda medida calculada depois estará errada.</p>
+  <div class="frase-resultado"><span class="rotulo">O primeiro reflexo, sempre</span>
+  Abriu uma base nova, roda <code>shape</code>, <code>head()</code> e <code>info()</code> antes
+  de qualquer outra coisa. São trinta segundos que evitam uma aula inteira de análise errada.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Dois erros que custam caro desde o primeiro dia</h2>
+
+  <div class="colunas">
+    <div>
+      <h3>Erro 1: confundir amostra com população</h3>
+      <div class="alerta"><span class="rotulo">Errado</span>
+      "Analisei as 500 empresas da base e concluo que as empresas brasileiras faturam em média
+      R$ 2 milhões."</div>
+      <div class="exemplo"><span class="rotulo">Certo</span>
+      "As 500 empresas da base faturam em média R$ 2 milhões. Como não houve sorteio, o número
+      descreve essas 500 e não autoriza falar sobre as empresas brasileiras."</div>
+    </div>
+    <div>
+      <h3>Erro 2: calcular a medida errada para o tipo de variável</h3>
+      <div class="alerta"><span class="rotulo">Errado</span>
+      "A média das seções CNAE é 38,4." A seção é categoria; média de categoria não significa
+      nada.</div>
+      <div class="exemplo"><span class="rotulo">Certo</span>
+      "A seção CNAE mais frequente é o comércio, com 42% das empresas." Variável qualitativa se
+      resume por contagem e porcentagem, não por média.</div>
+    </div>
+  </div>
+  <p class="menor">Os dois erros aparecem em trabalhos de conclusão todos os anos. Nenhum deles é
+  erro de conta: os dois são erro de escolha, que é justamente o que esta disciplina cobra.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: o vocabulário</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>As quatro palavras</h4>
+      <p>População (todos) e amostra (os medidos); parâmetro (μ, σ, p, na população) e estatística
+      (x̄, s, p̂, na amostra).</p>
+    </div>
+    <div>
+      <h4>Tipos de variável</h4>
+      <p>Qualitativa nominal e ordinal; quantitativa discreta e contínua. O teste: a diferença
+      entre dois valores significa alguma coisa?</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">dados.shape
+dados.head()
+dados.info()</pre>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Tratar código numérico como quantidade, e falar da população a partir de uma amostra que
+      não foi sorteada.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, capítulo 1, seções 1.1, 1.2 e 1.4. Acesso aberto pela Editora da FURG.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
+</section>
+
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">

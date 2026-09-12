@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 4 · Unidade I</div>
   <h1>Etapas do processo e planejamento da pesquisa</h1>
@@ -313,6 +320,199 @@
   encontro 8</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 4</h2>
+  <p>Dispersão: desvio padrão e coeficiente de variação</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: variância, desvio padrão e CV</h2>
+
+  <div class="formula">
+    <span class="expr">s²<span class="op">=</span><span class="frac"><span class="cima">Σ(x<sub>i</sub> − x̄)²</span><span class="baixo">n − 1</span></span><span class="op">        </span>s<span class="op">=</span><span class="raiz">√s²</span><span class="op">        </span>CV<span class="op">=</span><span class="frac"><span class="cima">s</span><span class="baixo">x̄</span></span><span class="op">×</span>100</span>
+    <span class="simbolos">
+      <span><b>x<sub>i</sub> − x̄</b>o quanto cada caso se afasta da média</span>
+      <span><b>s²</b>variância</span>
+      <span><b>s</b>desvio padrão</span>
+    </span>
+    <span class="legenda-formula">Em linguagem corrente: veja o quanto cada valor se afasta da
+    média, tire a média desses afastamentos e volte à unidade original.</span>
+  </div>
+  <div class="colunas">
+    <div>
+      <h3>Por que elevar ao quadrado</h3>
+      <p>Os afastamentos acima e abaixo da média se cancelam: a soma de (x<sub>i</sub> − x̄) é
+      sempre zero. Elevar ao quadrado elimina o sinal e ainda pesa mais os afastamentos grandes.</p>
+    </div>
+    <div>
+      <h3>Por que tirar a raiz</h3>
+      <p>A variância está em unidade ao quadrado, "reais ao quadrado", que não significa nada. A
+      raiz devolve a medida à unidade original, e por isso o desvio padrão é o número que se
+      relata.</p>
+    </div>
+  </div>
+  <p class="menor">O denominador n − 1, e não n, corrige o fato de que a média usada já veio da
+  própria amostra. Em bases grandes a diferença é irrelevante; a convenção existe porque o
+  resultado estima melhor a dispersão da população.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: duas amostras com a mesma média</h2>
+
+  <p>Margem líquida, em porcentagem, de cinco empresas de cada setor. A média dos dois setores é
+  exatamente a mesma: 100.</p>
+  <div class="figura">
+    <svg viewBox="0 0 1000 196" role="img" aria-label="Dois setores com a mesma média e dispersões muito diferentes">
+      <line x1="80" y1="56" x2="940" y2="56" stroke="#ddd" stroke-width="2"/>
+      <g fill="#0AB0AB">
+        <circle cx="591" cy="56" r="9"/><circle cx="607" cy="56" r="9"/><circle cx="617" cy="56" r="9"/>
+        <circle cx="628" cy="56" r="9"/><circle cx="644" cy="56" r="9"/>
+      </g>
+      <text x="80" y="48" font-size="18" fill="#05635f" font-weight="700">Setor A</text>
+      <text x="80" y="70" font-size="15" fill="#777">s = 3,8 · CV = 3,8%</text>
+      <line x1="80" y1="136" x2="940" y2="136" stroke="#ddd" stroke-width="2"/>
+      <g fill="#8D0333">
+        <circle cx="402" cy="136" r="9"/><circle cx="510" cy="136" r="9"/><circle cx="617" cy="136" r="9"/>
+        <circle cx="725" cy="136" r="9"/><circle cx="832" cy="136" r="9"/>
+      </g>
+      <text x="80" y="128" font-size="18" fill="#8D0333" font-weight="700">Setor B</text>
+      <text x="80" y="150" font-size="15" fill="#777">s = 31,6 · CV = 31,6%</text>
+      <line x1="617" y1="20" x2="617" y2="170" stroke="#a67c2e" stroke-width="2.4" stroke-dasharray="7 5"/>
+      <text x="617" y="14" text-anchor="middle" font-size="16" fill="#a67c2e" font-weight="700">média = 100 nos dois</text>
+      <text x="402" y="176" text-anchor="middle" font-size="14" fill="#999">60</text>
+      <text x="832" y="176" text-anchor="middle" font-size="14" fill="#999">140</text>
+      <text x="500" y="193" text-anchor="middle" font-size="15" fill="#999">margem líquida (%)</text>
+    </svg>
+  </div>
+  <p>Setor A: 95, 98, 100, 102, 105. Setor B: 60, 80, 100, 120, 140. A média não distingue os dois
+  conjuntos; o desvio padrão distingue. Relatar apenas a média seria esconder que, no setor B,
+  qualquer empresa individual pode estar muito longe do valor típico.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <pre class="codigo"><span class="cmt"># dispersão em uma variável</span>
+dados[<span class="str">"margem"</span>].<span class="fn">std</span>()      <span class="cmt"># desvio padrão (já usa n-1)</span>
+dados[<span class="str">"margem"</span>].<span class="fn">var</span>()      <span class="cmt"># variância</span>
+
+<span class="cmt"># coeficiente de variação: não existe função pronta, escreve-se a fórmula</span>
+cv = dados[<span class="str">"margem"</span>].<span class="fn">std</span>() / dados[<span class="str">"margem"</span>].<span class="fn">mean</span>() * 100
+
+<span class="cmt"># média e desvio por grupo, que é a tabela de resultados do relatório</span>
+dados.<span class="fn">groupby</span>(<span class="str">"setor"</span>)[<span class="str">"margem"</span>].<span class="fn">agg</span>([<span class="str">"mean"</span>, <span class="str">"median"</span>, <span class="str">"std"</span>])
+
+<span class="cmt"># em série temporal, a variação percentual de um período para o outro</span>
+serie.<span class="fn">pct_change</span>() * 100</pre>
+  <p class="menor">O <code>describe()</code> do encontro 3 já traz o desvio padrão na linha
+  <code>std</code>. O CV é o único que precisa ser escrito, porque depende de duas medidas.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê, e por que o CV existe</h2>
+
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "A margem líquida média do setor B é de 100%, com desvio padrão de 31,6 pontos, o que
+  corresponde a um <strong>coeficiente de variação de 31,6%</strong>. A dispersão é oito vezes
+  maior que a do setor A, cuja média é a mesma."</div>
+  <div class="colunas">
+    <div>
+      <h3>O que o CV resolve</h3>
+      <p>Desvio padrão tem unidade. Um desvio de R$ 50 mil é enorme em faturamento de padaria e
+      irrelevante em faturamento de rede de supermercados. Dividir o desvio pela média elimina a
+      unidade e permite comparar dispersões de variáveis diferentes.</p>
+      <p>Regra de leitura usual: até 15% a dispersão é baixa, entre 15% e 30% é média, acima de
+      30% é alta. É convenção, não lei.</p>
+    </div>
+    <div>
+      <h3>A ponte com a matriz de amarração</h3>
+      <p>A matriz que vocês montaram hoje ganha uma coluna: <strong>que estatística responde a
+      cada objetivo específico</strong>.</p>
+      <table>
+        <tr><th>Objetivo específico</th><th>Estatística</th></tr>
+        <tr><td>Caracterizar o perfil das empresas</td><td>Frequência e porcentagem</td></tr>
+        <tr><td>Descrever o faturamento típico</td><td>Mediana e quartis</td></tr>
+        <tr><td>Comparar a regularidade entre setores</td><td>Desvio padrão e CV</td></tr>
+      </table>
+      <p class="menor">Objetivo sem estatística prevista é objetivo que não se sabe como
+      responder.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O erro comum: comparar desvios sem o CV</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Errado</span>
+      "O desvio padrão do faturamento das grandes empresas é de R$ 4 milhões, contra R$ 30 mil
+      das microempresas; logo, as grandes são muito mais instáveis."</div>
+      <p>A comparação não se sustenta: as escalas são incomparáveis. Se a média das grandes é
+      R$ 80 milhões, o CV é 5%. Se a média das micro é R$ 100 mil, o CV é 30%. São as
+      microempresas que variam mais, em termos relativos.</p>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">O limite do CV</span>
+      Quando a média está próxima de zero, o CV explode. Margem líquida média de 0,5% com desvio
+      de 8 pontos dá CV de 1.600%, um número sem sentido prático. Em variáveis que assumem valores
+      negativos e positivos, como lucro, o CV não deve ser usado.</div>
+      <div class="exemplo"><span class="rotulo">A regra prática</span>
+      Relate sempre média (ou mediana), desvio padrão e o número de casos. As três juntas
+      descrevem; qualquer uma sozinha engana.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: dispersão</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">s = √[Σ(x<sub>i</sub>−x̄)² ÷ (n−1)]</span></p>
+      <p>CV = (s ÷ x̄) × 100, sem unidade, para comparar escalas diferentes.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">dados["v"].std()
+cv = (dados["v"].std() /
+      dados["v"].mean() * 100)</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"Média de <em>x</em>, com desvio padrão de <em>s</em> (CV de <em>c</em>%), em <em>n</em>
+      casos."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Comparar desvios padrão de escalas diferentes sem o CV, e usar o CV quando a média está
+      perto de zero.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, seção 3.2, itens 3.2.1 a 3.2.5.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

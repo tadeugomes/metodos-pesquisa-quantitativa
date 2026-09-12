@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook único do Encontro 14 — guia de redação do relatório (checklist
+"""Gera o notebook único do Encontro 14, guia de redação do relatório (checklist
 interativo de seções) + bloco de reprodutibilidade e slide único."""
 from nb_helper import gera_notebooks
 
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 14 — Guia de redação do relatório de pesquisa quantitativa
+# Encontro 14: Guia de redação do relatório de pesquisa quantitativa
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Este notebook é um **checklist interativo** para estruturar o relatório (Avaliação 3).
 Ele não roda nenhuma análise nova: organiza o que você já produziu nos encontros 9 a 13 e
@@ -19,7 +19,7 @@ contagem de amostra) para conferir os números antes de escrever.
 projeto**. As células marcadas com ✍️ são para escrever no próprio notebook."""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — Problema e hipóteses (✍️)
+## Seção 1: Problema e hipóteses (✍️)
 
 Rescreva o enunciado do seu trabalho em três linhas, e preencha a tabela:
 
@@ -37,9 +37,9 @@ Rescreva o enunciado do seu trabalho em três linhas, e preencha a tabela:
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Método (✍️)
+## Seção 2: Método (✍️)
 
-Preencha a **matriz de amarração** — a tabela que cruza objetivos, resultados esperados,
+Preencha a **matriz de amarração**: a tabela que cruza objetivos, resultados esperados,
 variáveis, técnicas e base:
 
 | Objetivo específico | Resultado esperado | Variável(is) | Nível | Técnica | Fonte de dados |
@@ -57,9 +57,9 @@ Complete também, de forma objetiva:
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Código de apoio: fechamento dos números
+## Seção 3. Código de apoio: fechamento dos números
 
-As células abaixo não são obrigatórias — ajudam a conferir as estatísticas que você citará
+As células abaixo não são obrigatórias, ajudam a conferir as estatísticas que você citará
 no texto. **Ajuste para a sua base** se quiser usá-las; as que dependem do arquivo do seu
 projeto ficam comentadas.
 
@@ -74,7 +74,7 @@ import numpy as np
 # import io
 # df = pd.read_csv(io.BytesIO(files.upload()['sua_base.csv']))
 #
-# Exemplo (base CVM do semestre — troque pelo seu projeto):
+# Exemplo (base CVM do semestre. troque pelo seu projeto):
 import os
 carregado = None
 for caminho in ("dados/cvm_dre_2024.csv", "../../dados/cvm_dre_2024.csv",
@@ -94,7 +94,48 @@ df.head()"""})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Resultados: o mapa da análise (✍️)
+## Estatística do encontro: a tabela de correspondência
+
+Antes de escrever os resultados, localize a linha que corresponde à sua pergunta. A terceira coluna
+é o formato da frase que o relatório espera.
+
+| A pergunta de pesquisa | A estatística | O formato da frase |
+|---|---|---|
+| Qual o perfil? Quantos de cada tipo? | frequência e porcentagem | "Entre os *n* casos, *x*% (*k*) pertencem a *categoria*." |
+| Qual a taxa dentro de cada grupo? | proporção por linha | "*x*% no grupo A contra *y*% no grupo B: *x−y* pontos percentuais." |
+| Qual o valor típico? | média ou mediana | "Mediana de *m*, com metade dos casos entre *Q1* e *Q3*." |
+| O quanto os casos variam? | desvio padrão e CV | "Média de *x*, desvio padrão de *s* (CV de *c*%), em *n* casos." |
+| Quanto vale para a população? | intervalo de confiança | "Estimativa de *x*, margem de erro de *m* a 95% (amostra aleatória)." |
+| Os itens da escala medem o mesmo? | alfa de Cronbach | "Escala de *k* itens, alfa de *a*." |
+| Qual a chance disso, dado aquilo? | probabilidade condicional | "Entre os casos de *B*, *p* apresentaram *A*, contra *q* no conjunto." |
+| Como se distribui? É atípico? | histograma e escore z | "Concentra-se entre *a* e *b*; o caso *c* está a *z* desvios da média." |
+| A diferença é maior que o acaso? | teste t ou qui-quadrado | "*t* = _; gl = _; p = _. A diferença é de *d* em unidade original." |
+| As duas variáveis andam juntas? | correlação e regressão | "r = _; cada unidade de x corresponde a *b* de y; o modelo explica _%." |
+
+**Preencha, para o seu projeto:**
+
+| Objetivo específico | Estatística usada | Frase de resultado (escreva aqui) |
+|---|---|---|
+| | | |
+| | | |
+| | | |
+
+Se algum objetivo ficar sem linha na tabela acima, o problema é de delineamento, não de redação:
+volte ao encontro 2 e verifique que tipo de pesquisa a sua pergunta pede."""})
+
+C.append({"tipo": "md", "texto": """\
+**As quatro perguntas que toda frase de resultado precisa responder.** Use como checklist ao
+revisar a Seção 4:
+
+1. **Quanto?** o número, com a unidade e a escala;
+2. **Em quem?** o grupo e o n;
+3. **Com que incerteza?** margem de erro, intervalo, valor-p ou a declaração de que a amostra não
+permite generalizar;
+4. **O que não autoriza concluir?** sobretudo: associação não é causa, e amostra não sorteada não
+fala da população."""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 4. Resultados: o mapa da análise (✍️)
 
 Organize os **resultados na ordem das hipóteses**, não na ordem em que foram calculados.
 Para cada resultado, registre três coisas: o **número** (estatística), o **teste** (qual,
@@ -112,7 +153,7 @@ com a sua análise:
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Discussão e conclusão (✍️)
+## Seção 5: Discussão e conclusão (✍️)
 
 Responda, em parágrafos curtos:
 
@@ -129,9 +170,9 @@ Responda, em parágrafos curtos:
 
 C.append({"tipo": "md", "texto": """\
 ---
-## Checklist final (✍️) — antes de compartilhar
+## Checklist final (✍️): antes de compartilhar
 
-- [ ] **Reiniciar e executar tudo** — o notebook roda do início ao fim sem erro;
+- [ ] **Reiniciar e executar tudo**: o notebook roda do início ao fim sem erro;
 - [ ] Cada tabela/gráfico citado no texto existe no notebook e está numerado;
 - [ ] Vocabulário revisado: sem "causa" sem teste, sem "significativo" sem p-valor;
 - [ ] Decisões de tratamento declaradas (filtros, transformações, recortes);
@@ -139,7 +180,7 @@ C.append({"tipo": "md", "texto": """\
 - [ ] A apresentação em **slide único** está pronta (problema, método, achados, limitação);
 - [ ] Link do notebook e do slide compartilhados com o professor.
 
-Última dica: **uma frase por conclusão** — leia em voz alta. Se a frase emitir mais que
-uma afirmação, divida-a."""})
+Última dica: **uma frase por conclusão**. Se a frase afirmar mais de uma coisa,
+divida-a."""})
 
 gera_notebooks(14, C)

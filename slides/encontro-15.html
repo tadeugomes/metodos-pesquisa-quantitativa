@@ -31,16 +31,21 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>A prova final de hoje</h2>
   <div class="afirmacao">Destinada aos estudantes que não obtiveram a média necessária para
-  aprovação direta, abrange <strong>todo o conteúdo da disciplina</strong>, com componentes
-  conceitual e prático em notebook.</div>
-  <ul>
-    <li><strong>Estrutura:</strong> parte conceitual (questões objetivas e dissertativas) +
-        parte prática no Colab;</li>
-    <li><strong>O que cobre:</strong> Unidades I a IV, do paradigma quantitativo à
-        comunicação de resultados;</li>
-    <li><strong>Como se preparar:</strong> refazer as atividades dos encontros 5, 8, 11 e 12,
-        elas são o padrão do componente prático.</li>
-  </ul>
+  aprovação direta, abrange <strong>todo o conteúdo da disciplina</strong> e é respondida
+  inteiramente no notebook <code>encontro15.ipynb</code>.</div>
+  <table>
+    <tr><th>Parte</th><th>Duração</th><th>Consulta e IA</th><th>Pontos</th></tr>
+    <tr><td><strong>A</strong>: conceitual e estatística, 6 questões</td><td>60 min</td>
+        <td>proibidas</td><td>40</td></tr>
+    <tr><td><strong>B</strong>: prática, 4 tarefas</td><td>135 min</td>
+        <td>permitidas, com registro do prompt</td><td>60</td></tr>
+  </table>
+  <p class="menor">A Parte A é respondida em células de texto do próprio notebook. Ao terminá-la,
+  cada estudante executa a célula que carimba o horário, e só então a consulta é liberada.</p>
+  <div class="alerta"><span class="rotulo">O critério que decide a nota</span>
+  Todo número calculado vem acompanhado da <strong>frase de leitura</strong> em linguagem corrente,
+  no formato da tabela de correspondência do encontro 14. Tarefa com o código certo e sem a frase
+  vale metade.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 15</div>
 </section>
 
@@ -58,8 +63,16 @@
     <tr><td>IV</td><td>Comunicação</td>
         <td>estrutura do relatório; escrita precisa; notebook reprodutível</td></tr>
   </table>
-  <p class="menor">No Colab: classificar variáveis, plano amostral, descritivas, gráficos e
-  testes, o repertório dos encontros práticos.</p>
+  <p class="menor">As quatro tarefas da Parte B seguem as quatro operações da disciplina, sobre a
+  base da CVM já conhecida: <strong>descrever</strong> (descritivas por setor),
+  <strong>apresentar</strong> (o gráfico adequado, com eixos, título e fonte),
+  <strong>inferir</strong> (intervalo de confiança e teste t) e <strong>relacionar</strong>
+  (correlação, reta e R²). Quinze pontos cada.</p>
+  <div class="frase-resultado"><span class="rotulo">Como estudar</span>
+  As <strong>treze fichas de revisão de estatística</strong>, uma por bloco, estão nos slides dos
+  encontros 0 a 13, e o mapa completo está no encontro 14. Releia as treze e execute a seção
+  "Estatística do encontro" de cada notebook: cerca de duas horas, e cobre o que a prova cobra.
+  Cada resultado da prova exige a <strong>frase de leitura</strong> em linguagem corrente.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 15</div>
 </section>
 
@@ -68,13 +81,17 @@
   <h2>Regras da prova</h2>
   <table>
     <tr><th>Item</th><th>Regra</th></tr>
-    <tr><td>Duração</td><td>definida no momento, conforme normas acadêmicas da UFMA</td></tr>
-    <tr><td>Material</td><td>consulta ao material da disciplina, conforme orientação do professor</td></tr>
-    <tr><td>Colegas</td><td>comunicação, não permitida</td></tr>
-    <tr><td>Prática</td><td>notebook individual, com células para completar e responder;
-        IA permitida, com registro do prompt</td></tr>
-    <tr><td>Entrega</td><td>link do Colab compartilhado ao final</td></tr>
+    <tr><td>Duração</td><td>240 min: instruções (15), Parte A (60), intervalo (15),
+        Parte B (135), encerramento (15)</td></tr>
+    <tr><td>Parte A</td><td>sem consulta e sem outra aba aberta; respondida em células de texto</td></tr>
+    <tr><td>Parte B</td><td>consulta ao material e à IA liberada após o carimbo de encerramento da
+        Parte A, com o prompt registrado na célula própria</td></tr>
+    <tr><td>Colegas</td><td>comunicação, não permitida nas duas partes</td></tr>
+    <tr><td>Entrega</td><td>reiniciar e executar tudo, salvar e compartilhar o link do Colab com
+        permissão de edição, ainda em aula</td></tr>
   </table>
+  <p class="menor">Se a API da CVM estiver fora do ar, o notebook carrega o arquivo local
+  <code>dados/cvm_dre_2024.csv</code>, com as mesmas 451 companhias.</p>
   <p class="menor">Boa revisão: o método estudado é exatamente o método cobrado.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 15</div>
 </section>

@@ -5,9 +5,9 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 3 — Variáveis na prática; oficina do projeto individual
+# Encontro 3: Variáveis na prática; oficina do projeto individual
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Na exposição de hoje você aprendeu a transformar tema em problema, redigir objetivos e
 hipóteses e classificar variáveis. Neste notebook você vai:
@@ -19,11 +19,11 @@ hipóteses e classificar variáveis. Neste notebook você vai:
 C.append({"tipo": "code", "texto": "%pip install sidrapy -q"})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — PAS: dados gerais das empresas de serviços
+## Seção 1. PAS: dados gerais das empresas de serviços
 
 A **Pesquisa Anual de Serviços** (PAS/IBGE) levanta dados econômicos das empresas de
 serviços. Vamos carregar os dados gerais do segmento de **alojamento e alimentação**
-(hotéis, pousadas, restaurantes, lanchonetes) — tabela 2325."""})
+(hotéis, pousadas, restaurantes, lanchonetes), tabela 2325."""})
 
 C.append({"tipo": "code", "texto": """\
 import sidrapy
@@ -50,7 +50,7 @@ pas = limpa_sidra(bruto_pas).rename(columns={"Variável": "variavel",
 pas[["variavel", "unidade", "Valor"]]"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se a anterior falhar (upload de
+**Célula de contingência**: execute apenas se a anterior falhar (upload de
 `dados/pas_dados_gerais_alojamento_alimentacao.csv` no Colab)."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -80,12 +80,12 @@ diferença entre a variável (o que se mede) e a **unidade** em que é expressa.
 
 C.append({"tipo": "nota", "texto": (
     "~25 min na Seção 1. As cinco variáveis da tabela (nº de empresas, pessoal ocupado, "
-    "salários, receita etc.) são todas de razão — o que é proposital: o contraste virá na PMC "
+    "salários, receita etc.) são todas de razão, o que é proposital: o contraste virá na PMC "
     "(índice, intervalar) e nas classificações (nominal/ordinal). Erro comum: confundir "
-    "'receita' com 'mil reais' — a unidade não é a variável.")})
+    "'receita' com 'mil reais', a unidade não é a variável.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — PMC: série temporal e número-índice
+## Seção 2. PMC: série temporal e número-índice
 
 A **Pesquisa Mensal de Comércio** (PMC/IBGE) acompanha o volume de vendas do varejo **mês a
 mês**. Duas novidades em relação às bases anteriores:
@@ -110,7 +110,7 @@ for a in pmc["atividade"].unique():
     print(" -", a)"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se a anterior falhar (upload de
+**Célula de contingência**: execute apenas se a anterior falhar (upload de
 `dados/pmc_volume_vendas_atividades.csv` no Colab)."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -158,7 +158,7 @@ print(f"Índice no primeiro mês: {primeiro:.1f} | no último mês: {ultimo:.1f}
 print(f"Variação no período: {variacao:.1f}%")"""})
 
 C.append({"tipo": "md", "texto": """\
-Toda série temporal pede um **gráfico de linha** — é ele que revela tendência e
+Toda série temporal pede um **gráfico de linha**: é ele que revela tendência e
 sazonalidade. O código abaixo está pronto: execute e observe o comportamento da atividade
 que você escolheu (repare, por exemplo, no que acontece nos meses de dezembro)."""})
 
@@ -168,7 +168,7 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(10, 4))
 plt.plot(serie["mes"], serie["Valor"], marker="o")
 plt.xticks(rotation=60, fontsize=8)
-plt.title(f"Volume de vendas — {minha_atividade} (2022 = 100)")
+plt.title(f"Volume de vendas, {minha_atividade} (2022 = 100)")
 plt.ylabel("Número-índice")
 plt.tight_layout()
 plt.show()"""})
@@ -187,7 +187,52 @@ C.append({"tipo": "nota", "texto": (
     "sentido com este número?' é a pergunta certa.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Do conceito à variável (operacionalização)
+## Estatística do encontro: média, mediana e moda
+
+**As fórmulas.** A média é a soma dividida pela quantidade: `x̄ = Σx / n`. A mediana é o valor
+central dos dados ordenados. A moda é o valor mais frequente, e é a única das três que funciona em
+variável nominal.
+
+**O que decide qual usar** são duas coisas: o nível de mensuração da variável, que você acabou de
+classificar, e a distância entre média e mediana. Vamos aplicar as três à série da PMC, em que
+cada linha é um mês de uma atividade do varejo."""})
+
+C.append({"tipo": "code", "texto": """\
+# média, mediana e desvio de cada atividade do varejo nos 24 meses
+resumo = (pmc.groupby("atividade")["Valor"]
+             .agg(["count", "mean", "median", "std"])
+             .round(1)
+             .sort_values("median", ascending=False))
+resumo"""})
+
+C.append({"tipo": "code", "texto": """\
+# o diagnóstico de uma linha: média e mediana estão próximas?
+resumo["dif_media_mediana"] = (resumo["mean"] - resumo["median"]).round(1)
+resumo[["mean", "median", "dif_media_mediana"]]"""})
+
+C.append({"tipo": "md", "texto": """\
+**Como ler.** Diferença próxima de zero significa distribuição razoavelmente simétrica, e aí a
+média descreve bem. Diferença grande e positiva significa valores extremos altos puxando a média,
+e aí a mediana é a medida honesta. Em séries de índice como esta, as diferenças costumam ser
+pequenas; em faturamento e receita, são enormes.
+
+**A moda e as variáveis qualitativas.** Índice é variável de razão, então as três medidas existem.
+Para uma variável nominal, só a moda faz sentido:
+
+```python
+pmc["atividade"].mode()        # a categoria mais frequente
+```
+
+**Escreva a sua leitura, e transforme-a em hipótese.**
+
+*A atividade com maior índice mediano de volume de vendas é ______________, com mediana de
+______. A média é de ______, e a diferença entre as duas indica que ______________.*
+
+*Hipótese testável construída a partir desta descrição: "a mediana de ______________ da atividade
+______________ é maior que a de ______________".*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 3: Do conceito à variável (operacionalização)
 
 Conceitos da gestão não são observáveis diretamente: é preciso escolher **indicadores**.
 Edite esta célula e proponha **duas operacionalizações diferentes** para o conceito
@@ -200,7 +245,7 @@ e aponte **uma limitação de cada**.
 | 2. | | |"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Oficina do projeto individual
+## Seção 4: Oficina do projeto individual
 
 ### Cardápio de temas e bases
 
@@ -218,7 +263,7 @@ C.append({"tipo": "md", "texto": """\
 | Demografia empresarial municipal | CEMPRE (9582, por município) | Como São Luís se compara às demais capitais do NE? |
 
 Você pode propor tema **fora do cardápio**, desde que exista base pública acessível com as
-ferramentas da disciplina — converse com o professor."""})
+ferramentas da disciplina, converse com o professor."""})
 
 C.append({"tipo": "md", "texto": """\
 ### Rascunho do seu projeto

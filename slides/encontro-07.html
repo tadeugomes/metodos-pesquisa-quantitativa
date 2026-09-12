@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 7 · Unidade II</div>
   <h1>Demais técnicas de coleta e ética em pesquisa</h1>
@@ -257,6 +264,191 @@
   funcionários).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 7</h2>
+  <p>Probabilidade: a ponte entre a frequência observada e a inferência</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: três definições de probabilidade</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="definicao"><span class="rotulo">Clássica</span>
+      Quando todos os resultados são igualmente possíveis, a probabilidade é a razão entre casos
+      favoráveis e casos possíveis. É a do dado e da moeda, e é a que fundamenta o sorteio da
+      amostra do encontro 5.</div>
+      <div class="definicao"><span class="rotulo">Frequentista</span>
+      Quando não se pode supor equiprobabilidade, a probabilidade é estimada pela
+      <strong>frequência relativa observada</strong> em muitos casos. É a probabilidade que sai
+      de uma base de dados.</div>
+    </div>
+    <div>
+      <div class="formula">
+        <span class="expr">P(A)<span class="op">=</span><span class="frac"><span class="cima">casos favoráveis</span><span class="baixo">casos possíveis</span></span></span>
+        <span class="legenda-formula">clássica</span>
+      </div>
+      <div class="formula">
+        <span class="expr">P(A|B)<span class="op">=</span><span class="frac"><span class="cima">P(A e B)</span><span class="baixo">P(B)</span></span></span>
+        <span class="legenda-formula">condicional: a probabilidade de A <strong>entre</strong> os
+        casos em que B ocorreu. Note que é a mesma ideia do denominador da tabela cruzada do
+        encontro 2.</span>
+      </div>
+    </div>
+  </div>
+  <p class="menor">A frequência relativa que você calculou no encontro 1 é, portanto, uma
+  estimativa de probabilidade. É essa ponte que autoriza tudo o que vem na Unidade III.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: a tabela de contingência como probabilidades</h2>
+
+  <p>500 empresas da base da CVM, cruzando setor e resultado do exercício. Dividindo cada célula
+  pelo total geral, a tabela de contagens vira tabela de probabilidades.</p>
+  <div class="colunas">
+    <div>
+      <table>
+        <tr><th>Contagens</th><th>Prejuízo</th><th>Lucro</th><th>Total</th></tr>
+        <tr><td>Indústria</td><td>60</td><td>140</td><td>200</td></tr>
+        <tr><td>Serviços</td><td>45</td><td>255</td><td>300</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>105</strong></td><td><strong>395</strong></td><td><strong>500</strong></td></tr>
+      </table>
+      <p><strong>P(prejuízo)</strong> = 105 ÷ 500 = 0,21<br>
+      <strong>P(indústria e prejuízo)</strong> = 60 ÷ 500 = 0,12<br>
+      <strong>P(prejuízo | indústria)</strong> = 0,12 ÷ 0,40 = <strong>0,30</strong></p>
+    </div>
+    <div>
+      <div class="exemplo"><span class="rotulo">O atalho que sempre funciona</span>
+      A condicional é a célula dividida pelo total da linha do condicionante: 60 ÷ 200 = 0,30.
+      Chegar pelos dois caminhos é uma boa conferência.</div>
+      <div class="definicao"><span class="rotulo">Independência</span>
+      Dois eventos são independentes quando P(A|B) = P(A). Aqui, P(prejuízo | indústria) = 0,30 e
+      P(prejuízo) = 0,21: <strong>não são independentes</strong>. Essa diferença é exatamente o
+      que o teste qui-quadrado do encontro 11 vai avaliar formalmente.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <pre class="codigo"><span class="cmt"># tabela de probabilidades: cada célula dividida pelo total geral</span>
+pd.<span class="fn">crosstab</span>(cvm[<span class="str">"setor"</span>], cvm[<span class="str">"resultado"</span>], normalize=<span class="str">"all"</span>).<span class="fn">round</span>(3)
+
+<span class="cmt"># probabilidades condicionais: cada célula dividida pelo total da LINHA</span>
+<span class="cmt"># isto é P(resultado | setor)</span>
+pd.<span class="fn">crosstab</span>(cvm[<span class="str">"setor"</span>], cvm[<span class="str">"resultado"</span>], normalize=<span class="str">"index"</span>).<span class="fn">round</span>(3)
+
+<span class="cmt"># a marginal: P(resultado), ignorando o setor</span>
+cvm[<span class="str">"resultado"</span>].<span class="fn">value_counts</span>(normalize=<span class="fn">True</span>).<span class="fn">round</span>(3)</pre>
+  <p>São as mesmas três chamadas do encontro 2. O que muda é o nome que damos ao resultado:
+  lá era proporção, aqui é probabilidade estimada. A conta é idêntica; o uso é diferente,
+  porque agora o número serve para <strong>prever</strong>, e não apenas para descrever.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê, e a aplicação à ética</h2>
+
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "Entre as empresas industriais da amostra, a probabilidade estimada de prejuízo no exercício é
+  de <strong>0,30</strong>, contra 0,15 entre as de serviços e 0,21 no conjunto."</div>
+  <div class="colunas">
+    <div>
+      <h3>A ponte com a ética do encontro de hoje</h3>
+      <p>Anonimizar não é apagar o nome. Se a base tem poucos casos em cada cruzamento, a
+      combinação de variáveis identifica a pessoa ou a empresa.</p>
+      <p>Numa base de 500 empresas, se apenas duas são do setor X no município Y, a probabilidade
+      de identificar corretamente uma delas a partir dessas duas variáveis é de 0,5. Com uma
+      terceira variável, chega a 1.</p>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">A regra prática da anonimização</span>
+      Antes de divulgar qualquer tabela cruzada, olhe as contagens das células. Célula com menos
+      de cinco casos costuma ser suprimida ou agregada justamente por isso. É probabilidade
+      aplicada a uma decisão ética, e é exigência de comitês de ética no Brasil e fora dele.</div>
+      <div class="exemplo"><span class="rotulo">Registro de decisão</span>
+      "As categorias com menos de cinco observações foram agregadas na categoria Outros, para
+      evitar identificação indireta dos participantes."</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O erro comum: inverter a condicional</h2>
+
+  <p>P(A|B) e P(B|A) são números diferentes, e trocá-los é o erro de raciocínio probabilístico
+  mais comum, dentro e fora da academia.</p>
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">O exemplo que não se esquece</span>
+      Entre as empresas que faliram, 90% tinham dívida bancária. Isso não significa que 90% das
+      empresas com dívida bancária faliram. A primeira frase é P(dívida | falência); a segunda é
+      P(falência | dívida), e pode ser 2%.</div>
+      <p>A diferença está no denominador: no primeiro caso, o conjunto das que faliram; no
+      segundo, o conjunto muito maior das que têm dívida.</p>
+    </div>
+    <div>
+      <div class="exemplo"><span class="rotulo">Onde isso reaparece</span>
+      É exatamente a diferença entre o estudo de coorte e o estudo caso-controle do encontro 2.
+      A coorte parte da exposição e estima P(desfecho | exposição). O caso-controle parte do
+      desfecho e observa P(exposição | desfecho). São perguntas diferentes, e por isso o
+      caso-controle não estima incidência.</div>
+      <p class="menor">Ao ler qualquer estatística condicional, identifique primeiro o
+      denominador. A pergunta de sempre: entre quem?</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: probabilidade</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">P(A|B) = P(A e B) ÷ P(B)</span></p>
+      <p>Na tabela: a célula dividida pelo total da linha do condicionante.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">pd.crosstab(a, b,
+   normalize="all")    # conjunta
+pd.crosstab(a, b,
+   normalize="index")  # condicional</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"Entre os casos de <em>B</em>, a probabilidade estimada de <em>A</em> é <em>p</em>,
+      contra <em>q</em> no conjunto."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Inverter a condicional. Antes de interpretar, identifique o denominador: entre quem?</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, capítulo 5, seções 5.6 (tipos de probabilidade), 5.9 (condicional) e 5.12 (tabela de
+  contingência).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 7</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

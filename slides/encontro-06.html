@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 6 · Unidade II</div>
   <h1>Questionários e escalas: validade e confiabilidade</h1>
@@ -289,6 +296,197 @@
   não existem em pesquisa: recodificação e exclusão se declaram no relatório.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 6</h2>
+  <p>Itens que medem a mesma coisa: correlação entre itens e alfa de Cronbach</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: o alfa de Cronbach</h2>
+
+  <p>Um construto como satisfação não se observa. Mede-se por vários itens, e a pergunta é se
+  esses itens estão medindo a mesma coisa. O alfa responde comparando a variância dos itens
+  isolados com a variância da soma deles.</p>
+  <div class="formula">
+    <span class="expr">α<span class="op">=</span><span class="frac"><span class="cima">k</span><span class="baixo">k − 1</span></span><span class="op">·</span>(1<span class="op">−</span><span class="frac"><span class="cima">Σ s²<sub>i</sub></span><span class="baixo">s²<sub>t</sub></span></span>)</span>
+    <span class="simbolos">
+      <span><b>k</b>número de itens da escala</span>
+      <span><b>s²<sub>i</sub></b>variância de cada item</span>
+      <span><b>s²<sub>t</sub></b>variância da soma dos itens</span>
+    </span>
+    <span class="legenda-formula">Em linguagem corrente: se os itens andam juntos, a variância da
+    soma é bem maior que a soma das variâncias, a fração fica pequena e o alfa sobe.</span>
+  </div>
+  <p>Repare em <strong>k ÷ (k−1)</strong>: o alfa cresce só por haver mais itens. Isso será
+  importante no slide do erro comum.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: um exemplo resolvido</h2>
+
+  <p>Escala de quatro itens sobre suporte da chefia, respondida em Likert de 1 a 5 por 120
+  pessoas.</p>
+  <div class="colunas">
+    <div>
+      <table>
+        <tr><th>Item</th><th>Variância s²<sub>i</sub></th></tr>
+        <tr><td>i1: "Meu gestor me dá retorno"</td><td>1,2</td></tr>
+        <tr><td>i2: "Tenho apoio quando erro"</td><td>1,0</td></tr>
+        <tr><td>i3: "Sou ouvido nas decisões"</td><td>1,4</td></tr>
+        <tr><td>i4: "Recebo o que preciso"</td><td>1,1</td></tr>
+        <tr><td><strong>Soma Σ s²<sub>i</sub></strong></td><td><strong>4,7</strong></td></tr>
+        <tr><td><strong>Variância da soma s²<sub>t</sub></strong></td><td><strong>12,5</strong></td></tr>
+      </table>
+      <p>4,7 ÷ 12,5 = 0,376. Um menos isso dá 0,624. Multiplicado por 4 ÷ 3 = 1,333, resulta
+      <strong>α = 0,83</strong>.</p>
+    </div>
+    <div>
+      <div class="figura">
+        <svg viewBox="0 0 420 250" role="img" aria-label="Dois itens que andam juntos e dois que não andam">
+          <text x="105" y="18" text-anchor="middle" font-size="16" fill="#05635f" font-weight="700">i1 × i2: andam juntos</text>
+          <line x1="30" y1="110" x2="190" y2="110" stroke="#bbb" stroke-width="1.4"/>
+          <line x1="30" y1="34" x2="30" y2="110" stroke="#bbb" stroke-width="1.4"/>
+          <g fill="#0AB0AB"><circle cx="48" cy="100" r="5"/><circle cx="66" cy="94" r="5"/><circle cx="80" cy="84" r="5"/><circle cx="98" cy="80" r="5"/><circle cx="116" cy="68" r="5"/><circle cx="134" cy="62" r="5"/><circle cx="152" cy="52" r="5"/><circle cx="170" cy="44" r="5"/></g>
+          <text x="105" y="130" text-anchor="middle" font-size="14" fill="#777">r = 0,68</text>
+          <text x="315" y="18" text-anchor="middle" font-size="16" fill="#8D0333" font-weight="700">i1 × i5: não andam</text>
+          <line x1="240" y1="110" x2="400" y2="110" stroke="#bbb" stroke-width="1.4"/>
+          <line x1="240" y1="34" x2="240" y2="110" stroke="#bbb" stroke-width="1.4"/>
+          <g fill="#8D0333"><circle cx="258" cy="60" r="5"/><circle cx="276" cy="96" r="5"/><circle cx="290" cy="48" r="5"/><circle cx="308" cy="88" r="5"/><circle cx="326" cy="56" r="5"/><circle cx="344" cy="98" r="5"/><circle cx="362" cy="70" r="5"/><circle cx="380" cy="44" r="5"/></g>
+          <text x="315" y="130" text-anchor="middle" font-size="14" fill="#777">r = 0,04</text>
+          <text x="210" y="164" text-anchor="middle" font-size="15" fill="#555">O alfa é, no fundo, a média dessas correlações,</text>
+          <text x="210" y="186" text-anchor="middle" font-size="15" fill="#555">ajustada pelo número de itens.</text>
+          <text x="210" y="216" text-anchor="middle" font-size="15" fill="#8D0333">Um item como i5 derruba o alfa</text>
+          <text x="210" y="236" text-anchor="middle" font-size="15" fill="#8D0333">e deve ser examinado.</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <pre class="codigo"><span class="cmt"># os quatro itens da escala, cada coluna um item</span>
+itens = respostas[[<span class="str">"i1"</span>, <span class="str">"i2"</span>, <span class="str">"i3"</span>, <span class="str">"i4"</span>]]
+
+<span class="cmt"># 1. a matriz de correlação: quem anda com quem</span>
+itens.<span class="fn">corr</span>().<span class="fn">round</span>(2)
+
+<span class="cmt"># 2. o alfa, escrito exatamente como a fórmula</span>
+k   = itens.<span class="fn">shape</span>[1]
+soma_var = itens.<span class="fn">var</span>().<span class="fn">sum</span>()        <span class="cmt"># Σ das variâncias dos itens</span>
+var_total = itens.<span class="fn">sum</span>(axis=1).<span class="fn">var</span>()  <span class="cmt"># variância da soma</span>
+alfa = (k / (k - 1)) * (1 - soma_var / var_total)
+<span class="fn">print</span>(<span class="str">"alfa de Cronbach:"</span>, <span class="fn">round</span>(alfa, 3))</pre>
+  <p>Leia a matriz de correlação <strong>antes</strong> do alfa. O alfa é um número só, e um
+  número só não mostra qual item está fora do lugar. A matriz mostra.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê o alfa</h2>
+
+  <div class="colunas">
+    <div>
+      <table>
+        <tr><th>Alfa</th><th>Leitura usual</th></tr>
+        <tr><td>abaixo de 0,60</td><td>insuficiente: os itens não medem a mesma coisa</td></tr>
+        <tr><td>0,60 a 0,69</td><td>aceitável em pesquisa exploratória</td></tr>
+        <tr><td>0,70 a 0,89</td><td>bom, a faixa usual em Administração</td></tr>
+        <tr><td>0,90 ou mais</td><td>alto, e possivelmente redundante: itens que dizem a mesma frase com outras palavras</td></tr>
+      </table>
+      <p class="menor">As faixas são convenção da área, não teorema. O que não é convenção: alfa
+      baixo é problema, e alfa altíssimo também.</p>
+    </div>
+    <div>
+      <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+      "A escala de suporte da chefia, com quatro itens, apresentou <strong>alfa de Cronbach de
+      0,83</strong>, considerado adequado. A menor correlação entre itens foi de 0,41, e nenhum
+      item foi excluído."</div>
+      <div class="alerta"><span class="rotulo">A ponte com o encontro de hoje</span>
+      Alfa alto significa que os itens são <strong>consistentes entre si</strong>. Não significa
+      que eles medem o construto certo. Quatro perguntas sobre o salário podem ter alfa de 0,92 e
+      não medir suporte da chefia. Confiabilidade é estatística; validade é argumento teórico, e
+      nenhuma fórmula a produz.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Os erros comuns com escalas</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Erro 1: inflar o alfa com itens</span>
+      Como o alfa cresce com k, acrescentar itens parecidos sobe o número sem melhorar a medida.
+      Escala de 20 itens redundantes tem alfa alto e é pior instrumento que uma de 5 itens bem
+      construídos.</div>
+      <div class="alerta"><span class="rotulo">Erro 2: não recodificar item invertido</span>
+      Se um item é negativo ("meu gestor ignora o que eu digo"), ele se correlaciona
+      <strong>negativamente</strong> com os demais e derruba o alfa. A correção é inverter a
+      escala antes: 1 vira 5, 2 vira 4, e assim por diante.</div>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">Erro 3: excluir item só porque sobe o alfa</span>
+      Retirar itens até o alfa ficar bonito é maquiagem. A exclusão precisa de justificativa: o
+      item está mal redigido, é ambíguo, ou mede outra coisa. Isso se argumenta, e se registra.</div>
+      <div class="exemplo"><span class="rotulo">Sobre a média de itens Likert</span>
+      Item Likert é, a rigor, variável ordinal, e ordinal pede mediana. A prática consolidada em
+      Administração é somar ou promediar os itens da escala e tratar o escore resultante como
+      quantitativo. Faça o que a área faz, mas saiba que é uma convenção, e registre-a no método.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: consistência interna</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">α = [k ÷ (k−1)] · (1 − Σs²<sub>i</sub> ÷ s²<sub>t</sub>)</span></p>
+      <p>Cresce quando os itens andam juntos, e também só por haver mais itens.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">itens.corr().round(2)
+k = itens.shape[1]
+a = (k/(k-1))*(1 - itens.var().sum()
+      / itens.sum(axis=1).var())</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"A escala de <em>k</em> itens apresentou alfa de <em>a</em>, considerado
+      <em>faixa</em>. Nenhum item foi excluído."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Inflar o alfa com itens redundantes, esquecer de recodificar item invertido e confundir
+      confiabilidade com validade.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, seção 3.2 (variância); Silva e Samá (2021), volume II, seção 9.3 (correlação).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

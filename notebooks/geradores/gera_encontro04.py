@@ -5,9 +5,9 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 4 — Planejamento da pesquisa; séries do Banco Central e do Ipeadata
+# Encontro 4: Planejamento da pesquisa; séries do Banco Central e do Ipeadata
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
 1. Consumir séries econômicas da API do **Banco Central** (`python-bcb`);
@@ -19,17 +19,17 @@ Neste notebook você vai:
 C.append({"tipo": "code", "texto": "%pip install python-bcb ipeadatapy -q"})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — Banco Central: o SGS
+## Seção 1. Banco Central: o SGS
 
 O **SGS** (Sistema Gerenciador de Séries Temporais) do Banco Central publica milhares de
-séries: juros, câmbio, crédito, inflação. Cada série tem um **código numérico** — você os
+séries: juros, câmbio, crédito, inflação. Cada série tem um **código numérico**: você os
 descobre buscando no portal do SGS (https://www3.bcb.gov.br/sgspub). Os que usaremos hoje:
 
 | Série | Código | Frequência |
 |---|---|---|
 | Meta Selic (% a.a.) | 432 | diária |
 | Câmbio R$/US$ (venda) | 1 | diária |
-| IPCA — variação mensal (%) | 433 | mensal |
+| IPCA: variação mensal (%) | 433 | mensal |
 | Saldo de crédito a pessoas jurídicas (R$ mi) | 20543 | mensal |
 | Inadimplência da carteira PJ (%) | 21086 | mensal |
 
@@ -71,7 +71,7 @@ print("Mensais:", mensais.shape, "| Diárias:", diarias.shape)
 mensais.tail()"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se a anterior falhar (upload de
+**Célula de contingência**: execute apenas se a anterior falhar (upload de
 `dados/bcb_series_contexto.csv` no Colab)."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -93,7 +93,7 @@ C.append({"tipo": "md", "texto": """\
 ### O problema das frequências
 
 Repare: as séries diárias têm muito mais linhas que as mensais. Para juntá-las em uma
-tabela única, é preciso **reamostrar** as diárias para o padrão mensal — aqui, tomando o
+tabela única, é preciso **reamostrar** as diárias para o padrão mensal, aqui, tomando o
 último valor de cada mês (`resample("MS").last()`, onde MS = *month start*). Essa é uma
 decisão de pesquisa: poderíamos ter usado a média do mês, e o resultado seria outro.
 Decisões assim devem sempre ser registradas no relatório."""})
@@ -107,15 +107,15 @@ painel.tail()"""})
 C.append({"tipo": "nota", "texto": (
     "~30 min na Seção 1. Visite no navegador o portal do SGS e veja como descobrir o código "
     "de uma série. Erros comuns ao escrever: esquecer as aspas na data e trocar o formato "
-    "(deve ser YYYY-MM-DD). Na reamostragem, não precisa dominar `resample` — o ponto "
+    "(deve ser YYYY-MM-DD). Na reamostragem, não precisa dominar `resample`, o ponto "
     "pedagógico é que juntar frequências diferentes exige uma decisão explícita do "
     "pesquisador (aqui, o último valor do mês).")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Ipeadata
+## Seção 2: Ipeadata
 
 O **Ipeadata** (IPEA) agrega séries macroeconômicas, regionais e sociais de várias fontes.
-A biblioteca `ipeadatapy` tem uma função de **busca** por nome — útil quando você não sabe
+A biblioteca `ipeadatapy` tem uma função de **busca** por nome, útil quando você não sabe
 o código da série."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -131,7 +131,7 @@ selic_ipea.tail()"""})
 C.append({"tipo": "md", "texto": """\
 **Para comparar fontes:** o Banco Central nos deu a **meta** da Selic (% ao ano, definida
 pelo Copom); o Ipeadata nos dá a Selic **overnight efetiva** (% ao mês). São
-operacionalizações diferentes de "taxa básica de juros" — fontes distintas publicam a
+operacionalizações diferentes de "taxa básica de juros", fontes distintas publicam a
 "mesma" variável com definições e frequências distintas, e cabe ao pesquisador escolher e
 **registrar** qual usou.
 
@@ -144,7 +144,7 @@ ipeadatapy.list_series("").head(15)""", "professor": """\
 ipeadatapy.list_series("comércio").head(15)"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Juntando e visualizando o contexto econômico
+## Seção 3: Juntando e visualizando o contexto econômico
 
 Dois gráficos de linha para ler a conjuntura. O primeiro está pronto: juros e inflação."""})
 
@@ -157,14 +157,14 @@ eixos[0].plot(painel.index, painel["meta_selic"])
 eixos[0].set_title("Meta Selic (% a.a.)")
 
 eixos[1].plot(painel.index, painel["ipca"])
-eixos[1].set_title("IPCA — variação mensal (%)")
+eixos[1].set_title("IPCA, variação mensal (%)")
 eixos[1].axhline(0, linewidth=0.8)
 
 plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "md", "texto": """\
-**Sua vez.** Monte o segundo painel com **crédito a PJ** e **inadimplência PJ** — as duas
+**Sua vez.** Monte o segundo painel com **crédito a PJ** e **inadimplência PJ**: as duas
 séries que mais interessam a quem estuda empresas."""})
 
 C.append({"tipo": "code", "aluno": """\
@@ -195,10 +195,61 @@ C.append({"tipo": "nota", "texto": (
     "Leia os gráficos e pergunte-se: 'a inadimplência sobe depois que os juros sobem?'. "
     "Resposta honesta neste ponto: sabemos descrever a coincidência visual; medir a "
     "associação é o assunto do encontro 13, e causalidade exige ainda mais. Registre essa "
-    "limitação por escrito na Seção 4 — conter a conclusão é disciplina de pesquisador.")})
+    "limitação por escrito na Seção 4, conter a conclusão é disciplina de pesquisador.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Perguntas de interpretação
+## Estatística do encontro: dispersão
+
+**As fórmulas.** A variância é a média dos afastamentos em relação à média, elevados ao quadrado:
+`s² = Σ(x − x̄)² / (n − 1)`. O quadrado existe para que afastamentos para cima e para baixo não se
+cancelem. O **desvio padrão** é a raiz da variância, e só ele é interpretável, porque volta à
+unidade original da variável.
+
+**O coeficiente de variação** divide o desvio padrão pela média e multiplica por 100. Ele não tem
+unidade, e por isso é o único jeito honesto de comparar a dispersão de séries em escalas
+diferentes, como Selic (em % ao ano) e crédito (em R$ milhões)."""})
+
+C.append({"tipo": "code", "texto": """\
+# média, desvio padrão e coeficiente de variação de cada série do painel
+descritivas = painel.agg(["mean", "std"]).T
+descritivas["cv_%"] = (descritivas["std"] / descritivas["mean"] * 100).round(1)
+descritivas = descritivas.round(2)
+descritivas"""})
+
+C.append({"tipo": "md", "texto": """\
+Compare a coluna `std` com a coluna `cv_%`. O desvio padrão do crédito é gigantesco e o da Selic é
+pequeno, mas isso só reflete a escala de cada um. O CV corrige a escala e muda a ordem: veja qual
+série é, de fato, a mais instável em termos relativos."""})
+
+C.append({"tipo": "code", "texto": """\
+# variação percentual de um período para o outro, e a dispersão dessas variações
+variacoes = painel.pct_change() * 100
+
+print("Variação percentual média de cada série (%):")
+print(variacoes.mean().round(2))
+print()
+print("Desvio padrão das variações mensais (%):")
+print(variacoes.std().round(2))"""})
+
+C.append({"tipo": "md", "texto": """\
+**Escreva a sua leitura.**
+
+*A série ______________ tem média de ______ e desvio padrão de ______, o que dá um coeficiente de
+variação de ______%. Comparada à série ______________, cujo CV é ______%, ela é
+______________ (mais ou menos dispersa).*
+
+**Complete a matriz de amarração do seu projeto** acrescentando a coluna que falta:
+
+| Objetivo específico | Variável | Estatística prevista |
+|---|---|---|
+| | | |
+| | | |
+| | | |
+
+Objetivo sem estatística prevista é objetivo que ainda não se sabe como responder."""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 4: Perguntas de interpretação
 
 Responda editando esta célula:
 
@@ -218,7 +269,7 @@ que **ainda não pode**?
 *Sua resposta:*"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Matriz de amarração do seu projeto
+## Seção 5: Matriz de amarração do seu projeto
 
 A matriz de amarração verifica a coerência do projeto: cada linha conecta problema →
 objetivo → hipótese → variáveis → base → técnica. Preencha com o **seu** projeto,
@@ -228,7 +279,7 @@ incorporando os comentários que você recebeu sobre o rascunho do encontro 3.
 
 | Problema | Objetivo específico | Hipótese | Variáveis (nível) | Base | Técnica prevista |
 |---|---|---|---|---|---|
-| Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? | Comparar taxas de sobrevivência em 3 anos por faixa de pessoal | Quanto maior a faixa, maior a taxa | Faixa de pessoal (ordinal); taxa de sobrevivência (razão) | Demografia das Empresas — SIDRA 9949 | Comparação de grupos |
+| Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? | Comparar taxas de sobrevivência em 3 anos por faixa de pessoal | Quanto maior a faixa, maior a taxa | Faixa de pessoal (ordinal); taxa de sobrevivência (razão) | Demografia das Empresas, SIDRA 9949 | Comparação de grupos |
 
 **Sua matriz:**
 
@@ -238,17 +289,17 @@ incorporando os comentários que você recebeu sobre o rascunho do encontro 3.
 | | | | | | |
 
 *A coluna "técnica prevista" pode ficar genérica por enquanto ("comparação de grupos",
-"associação entre variáveis") — vamos nomeá-la com precisão na Unidade III.*"""})
+"associação entre variáveis"), vamos nomeá-la com precisão na Unidade III.*"""})
 
 C.append({"tipo": "nota", "texto": (
     "Oficina final (~35 min). A matriz revela buracos típicos: objetivo sem hipótese, "
     "hipótese com variável que a base não tem, técnica incompatível com o nível de "
-    "mensuração. A matriz preenchida integra a entrega do encontro 8 — capriche e guarde "
+    "mensuração. A matriz preenchida integra a entrega do encontro 8, capriche e guarde "
     "uma cópia.")})
 
 C.append({"tipo": "md", "texto": """\
 ---
-### Antes de sair — fechamento da Unidade I
+### Antes de sair: fechamento da Unidade I
 
 Você encerra a unidade com: problema, hipóteses e variáveis classificadas de um projeto
 próprio, matriz de amarração rascunhada e **quatro fontes de dados** dominadas no Colab

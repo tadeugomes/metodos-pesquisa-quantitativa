@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 5 · Unidade II</div>
   <h1>Amostragem e tamanho da amostra</h1>
@@ -348,6 +355,207 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 5</h2>
+  <p>Da amostra para a população: erro padrão, teorema central do limite e intervalo de confiança</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: erro padrão e intervalo de confiança</h2>
+
+  <p>Você sorteia uma amostra e calcula x̄. Outra pessoa sorteia outra amostra da mesma população e
+  encontra um número diferente. O <strong>erro padrão</strong> mede o tamanho dessa variação.</p>
+  <div class="formula">
+    <span class="expr">EP<span class="op">=</span><span class="frac"><span class="cima">s</span><span class="baixo"><span class="raiz">√n</span></span></span><span class="op">           </span>IC<span class="op">=</span>x̄<span class="op">±</span>z<span class="op">·</span>EP</span>
+    <span class="simbolos">
+      <span><b>s</b>desvio padrão da amostra</span>
+      <span><b>n</b>tamanho da amostra</span>
+      <span><b>z</b>1,96 para 95% de confiança</span>
+    </span>
+    <span class="legenda-formula">Em linguagem corrente: quanto mais dispersos os dados, maior a
+    incerteza; quanto maior a amostra, menor a incerteza. E n está sob uma raiz, o que tem
+    consequência prática séria.</span>
+  </div>
+  <p>Para proporção, o desvio padrão sai da própria proporção, e o erro padrão fica
+  <span class="expr" style="font-size:2.6vh">EP = <span class="raiz">√[p̂(1−p̂) ÷ n]</span></span>.
+  É a versão que a fórmula do tamanho da amostra usa.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: o teorema central do limite</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 236" role="img" aria-label="Distribuição assimétrica da população e distribuição simétrica das médias de mil amostras">
+      <text x="200" y="20" text-anchor="middle" font-size="19" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">A população</text>
+      <text x="200" y="42" text-anchor="middle" font-size="16" fill="#666">faturamento das 5.000 empresas</text>
+      <rect x="40.0" y="84.0" width="30.0" height="96.0" fill="#8D0333"/><rect x="73.0" y="106.0" width="30.0" height="74.0" fill="#8D0333"/><rect x="106.0" y="124.0" width="30.0" height="56.0" fill="#8D0333"/><rect x="139.0" y="138.0" width="30.0" height="42.0" fill="#8D0333"/><rect x="172.0" y="149.0" width="30.0" height="31.0" fill="#8D0333"/><rect x="205.0" y="157.0" width="30.0" height="23.0" fill="#8D0333"/><rect x="238.0" y="163.0" width="30.0" height="17.0" fill="#8D0333"/><rect x="271.0" y="168.0" width="30.0" height="12.0" fill="#8D0333"/><rect x="304.0" y="172.0" width="30.0" height="8.0" fill="#8D0333"/><rect x="337.0" y="175.0" width="30.0" height="5.0" fill="#8D0333"/><rect x="370.0" y="177.0" width="30.0" height="3.0" fill="#8D0333"/>
+      <line x1="40" y1="180" x2="400" y2="180" stroke="#bbb" stroke-width="1.6"/>
+      <text x="200" y="202" text-anchor="middle" font-size="15" fill="#999">muito assimétrica</text>
+      <path d="M424 96 H556" stroke="#0AB0AB" stroke-width="3" marker-end="url(#sg)"/>
+      <text x="490" y="126" text-anchor="middle" font-size="15" fill="#05635f">sorteia 1.000</text>
+      <text x="490" y="146" text-anchor="middle" font-size="15" fill="#05635f">amostras de</text>
+      <text x="490" y="166" text-anchor="middle" font-size="15" fill="#05635f">n = 100 cada</text>
+      <text x="790" y="20" text-anchor="middle" font-size="19" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">As médias das amostras</text>
+      <text x="790" y="42" text-anchor="middle" font-size="16" fill="#666">uma média por amostra</text>
+      <rect x="610.0" y="176.0" width="30.0" height="4.0" fill="#0AB0AB"/><rect x="643.0" y="170.0" width="30.0" height="10.0" fill="#0AB0AB"/><rect x="676.0" y="156.0" width="30.0" height="24.0" fill="#0AB0AB"/><rect x="709.0" y="134.0" width="30.0" height="46.0" fill="#0AB0AB"/><rect x="742.0" y="108.0" width="30.0" height="72.0" fill="#0AB0AB"/><rect x="775.0" y="88.0" width="30.0" height="92.0" fill="#0AB0AB"/><rect x="808.0" y="108.0" width="30.0" height="72.0" fill="#0AB0AB"/><rect x="841.0" y="134.0" width="30.0" height="46.0" fill="#0AB0AB"/><rect x="874.0" y="156.0" width="30.0" height="24.0" fill="#0AB0AB"/><rect x="907.0" y="170.0" width="30.0" height="10.0" fill="#0AB0AB"/><rect x="940.0" y="176.0" width="30.0" height="4.0" fill="#0AB0AB"/>
+      <line x1="610" y1="180" x2="970" y2="180" stroke="#bbb" stroke-width="1.6"/>
+      <line x1="790" y1="58" x2="790" y2="188" stroke="#a67c2e" stroke-width="2.4" stroke-dasharray="7 5"/>
+      <text x="790" y="202" text-anchor="middle" font-size="15" fill="#a67c2e">centradas em μ, e simétricas</text>
+      <text x="500" y="228" text-anchor="middle" font-size="16" fill="#777">É por isso que uma amostra sorteada permite falar da população, mesmo quando a população é torta.</text>
+    </svg>
+  </div>
+
+  <div class="colunas">
+    <div>
+      <p>Faturamento de empresas é uma distribuição torta: muitas pequenas e poucas gigantes.
+      Ainda assim, se você sortear mil amostras e anotar a média de cada uma, essas
+      <strong>médias</strong> se distribuem de forma quase simétrica em torno da média da
+      população. É o teorema central do limite, e ele é o que sustenta toda a inferência.</p>
+    </div>
+    <div>
+      <h3>A raiz de n, na prática</h3>
+      <table>
+        <tr><th>n</th><th>Erro padrão</th><th>Para reduzir pela metade</th></tr>
+        <tr><td>100</td><td>s ÷ 10</td><td>quadruplicar n</td></tr>
+        <tr><td>400</td><td>s ÷ 20</td><td>quadruplicar n</td></tr>
+        <tr><td>1.600</td><td>s ÷ 40</td><td>quadruplicar n</td></tr>
+      </table>
+      <p class="menor">Dobrar a amostra não dobra a precisão. É isso que derruba o mito de que
+      "amostra boa é amostra grande": a partir de certo ponto, cada ponto de precisão custa
+      caríssimo.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <p>Primeiro, ver o teorema acontecer. Depois, calcular o intervalo.</p>
+  <pre class="codigo"><span class="cmt"># 1. mil amostras de 100 empresas, guardando a média de cada uma</span>
+medias = [cadastro[<span class="str">"faturamento"</span>].<span class="fn">sample</span>(100).<span class="fn">mean</span>() <span class="fn">for</span> _ <span class="fn">in</span> <span class="fn">range</span>(1000)]
+pd.<span class="fn">Series</span>(medias).<span class="fn">hist</span>(bins=30)   <span class="cmt"># o histograma fica simétrico</span>
+
+<span class="cmt"># 2. erro padrão e intervalo de confiança de UMA amostra</span>
+amostra = cadastro[<span class="str">"faturamento"</span>].<span class="fn">sample</span>(100)
+media = amostra.<span class="fn">mean</span>()
+ep    = amostra.<span class="fn">std</span>() / <span class="fn">len</span>(amostra) ** 0.5
+ic    = (media - 1.96 * ep, media + 1.96 * ep)
+<span class="fn">print</span>(<span class="str">"média:"</span>, <span class="fn">round</span>(media, 1), <span class="str">"| IC 95%:"</span>, [<span class="fn">round</span>(v, 1) <span class="fn">for</span> v <span class="fn">in</span> ic])</pre>
+  <div class="exemplo"><span class="rotulo">O que conferir</span>
+  Compare a média da sua amostra com a média verdadeira do cadastro, que nesta simulação você
+  conhece. Repita o sorteio algumas vezes: em torno de 95 de cada 100 intervalos vão conter a
+  média verdadeira. É esse o significado de 95% de confiança.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê, e de onde vem a fórmula do n</h2>
+
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "A proporção estimada de empresas que adotaram o Pix é de <strong>62%</strong>, com margem de
+  erro de <strong>4,4 pontos percentuais</strong> para mais ou para menos, a 95% de confiança
+  (n = 480, amostra aleatória simples)."</div>
+  <div class="colunas">
+    <div>
+      <h3>A margem de erro é metade do intervalo</h3>
+      <p>O que se chama de margem de erro nas pesquisas eleitorais é exatamente o
+      <strong>z · EP</strong> da fórmula. O intervalo é a estimativa mais ou menos essa margem.</p>
+      <p>Invertendo a fórmula para isolar n, chega-se à expressão do tamanho da amostra que você
+      viu antes do intervalo:</p>
+      <div class="formula">
+        <span class="expr" style="font-size:3vh">n<span class="op">=</span><span class="frac"><span class="cima">z² · p(1−p)</span><span class="baixo">e²</span></span></span>
+      </div>
+      <p class="menor">Ou seja: a fórmula do n não é uma receita solta. Ela é o intervalo de
+      confiança resolvido para n, com e no lugar da margem desejada.</p>
+    </div>
+    <div>
+      <h3>A ponte com o encontro de hoje</h3>
+      <p>Tudo isso vale sob uma condição: <strong>a amostra foi sorteada</strong>. O erro padrão
+      é o desvio padrão das médias de amostras sorteadas; sem sorteio, ele não existe e não há
+      margem de erro a calcular.</p>
+      <div class="alerta"><span class="rotulo">A frase honesta da amostra por conveniência</span>
+      "Os 210 respondentes foram obtidos por conveniência. Os resultados descrevem esse grupo e
+      não permitem estimativa com margem de erro para a população."</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O erro comum: o que 95% de confiança não significa</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Errado</span>
+      "Há 95% de probabilidade de a média da população estar entre 58% e 66%."</div>
+      <p>A média da população é um número fixo: ou está no intervalo ou não está. Não há
+      probabilidade envolvida depois que o intervalo foi calculado.</p>
+      <div class="exemplo"><span class="rotulo">Certo</span>
+      "O procedimento que gerou este intervalo acerta em 95% das amostras. Aplicado a esta
+      amostra, produziu o intervalo de 58% a 66%."</div>
+      <p class="menor">A confiança é uma propriedade do método, não deste intervalo em
+      particular. Parece filigrana e não é: é a diferença entre entender e decorar.</p>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">O erro que mais aparece em TCC</span>
+      Calcular margem de erro sobre uma amostra por conveniência, em geral um formulário
+      divulgado em rede social. A fórmula devolve um número, o número vai para o texto, e o
+      texto afirma algo que o desenho não sustenta.</div>
+      <div class="alerta"><span class="rotulo">O segundo erro mais comum</span>
+      Achar que o tamanho da população importa muito. Para populações grandes, o n necessário
+      quase não muda: 384 serve tanto para 100 mil quanto para 10 milhões de pessoas, a 95% e 5
+      pontos de margem. O que manda é a margem, não o tamanho do país.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: erro padrão e intervalo</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">EP = s ÷ √n</span></p>
+      <p>IC = x̄ ± 1,96 · EP, a 95%. O n necessário é essa expressão resolvida para n.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">ep = x.std()/len(x)**0.5
+ic = (x.mean() - 1.96*ep,
+      x.mean() + 1.96*ep)</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"Estimativa de <em>x</em>, com margem de erro de <em>m</em> a 95% de confiança
+      (n = <em>n</em>, amostra aleatória)."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Ler a confiança como probabilidade do parâmetro, e calcular margem de erro sem
+      sorteio.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Silva e Samá (2021), <em>Estatística</em>,
+  volume II, capítulos 3 (distribuição amostral e teorema central do limite) e 4 (intervalos de
+  confiança, com as seções 4.5 a 4.7 sobre proporção).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

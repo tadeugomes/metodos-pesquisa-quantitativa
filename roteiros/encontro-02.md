@@ -1,4 +1,4 @@
-# Encontro 2 — Tipos de pesquisa quantitativa; pandas e demografia empresarial
+# Encontro 2. Tipos de pesquisa quantitativa; pandas e demografia empresarial
 
 ## 1. Identificação
 
@@ -19,15 +19,16 @@ Ao final do encontro, o estudante deverá ser capaz de: (i) caracterizar os quat
 | Bloco | Duração | Atividade |
 |---|---|---|
 | 1 | 10 min | Retomada do encontro 1 e das perguntas de pesquisa da turma |
-| 2 | 60 min | Exposição dialogada: os tipos de pesquisa quantitativa |
-| 3 | 30 min | Leitura dirigida: classificação de dois artigos brasileiros |
+| 2 | 45 min | Exposição dialogada: os tipos de pesquisa quantitativa |
+| 3 | 20 min | Leitura dirigida: classificação de artigos brasileiros |
 | 4 | 15 min | Intervalo |
-| 5 | 105 min | Prática no Colab: pandas com dados de sobrevivência de empresas |
-| 6 | 20 min | Síntese e tarefa |
+| 5 | **45 min** | **Bloco de estatística: proporção, taxa e tabela cruzada** (seção 4.E) |
+| 6 | 90 min | Prática no Colab: pandas com dados de sobrevivência de empresas |
+| 7 | 15 min | Síntese e tarefa |
 
 ## 4. Conteúdo expositivo desenvolvido
 
-### Bloco 2 – Os tipos de pesquisa quantitativa (60 min)
+### Bloco 2 – Os tipos de pesquisa quantitativa (45 min)
 
 Abrir retomando a afirmação do quadro do encontro anterior ("a maioria das empresas fecha no primeiro ano") e anunciar que hoje a turma vai respondê-la com dados oficiais. Antes, porém, é preciso um mapa dos tipos de pergunta que a pesquisa quantitativa responde, porque cada tipo exige um delineamento diferente.
 
@@ -45,11 +46,39 @@ Introduzir então os dois desenhos observacionais que a gestão importou das ci�
 
 Fechar o bloco com o **survey (levantamento)**: estratégia de coleta por questionário aplicado a uma amostra, que pode servir a propósitos descritivos ou correlacionais. Por ser a estratégia dominante nas pesquisas acadêmicas em Administração e a provável escolha de muitos TCCs, o survey terá dois encontros dedicados aos seus instrumentos (encontros 6 e 7).
 
-### Bloco 3 – Leitura dirigida (30 min)
+### Bloco 3 – Leitura dirigida (20 min)
 
 Distribuir (impresso ou no ambiente virtual) o resumo e os trechos metodológicos de dois artigos brasileiros previamente selecionados pelo professor em periódicos como RAC, RAE ou BBR, um descritivo/correlacional com survey e um quase-experimental ou com dados secundários. Em duplas, os estudantes identificam: a pergunta de pesquisa, o tipo de pesquisa, as variáveis principais e a fonte dos dados. Discussão em plenária de dez minutos ao final. O objetivo não é a compreensão integral dos artigos, e sim o reconhecimento da estrutura: toda pesquisa quantitativa publicada declara pergunta, tipo, variáveis e dados, exatamente os elementos que os estudantes terão de definir no projeto individual.
 
-## 5. Condução da prática no notebook (105 min)
+
+### 4.E Bloco de estatística: proporção, taxa e tabela cruzada (45 min)
+
+**Referência:** Pinto e Silva (2020), *Estatística*, volume I, seção 2.3.2 e seção 5.12.
+**Slides:** bloco "Estatística", sete telas, antes do divisor "Mão na massa".
+
+Este é o bloco que transforma o conteúdo conceitual da manhã em número. A sequência importa:
+descritiva é uma distribuição de uma variável; correlacional é uma tabela de duas variáveis. É a
+segunda variável que muda o tipo de pesquisa, e a tabela cruzada é a forma mais simples dessa
+mudança.
+
+Começar por **proporção e taxa**, mostrando que a taxa de sobrevivência de três anos, que a
+prática vai calcular, é uma proporção com denominador definido no tempo.
+
+Dedicar tempo ao slide de **ponto percentual contra por cento**. A turma escreve "19% a mais"
+quando quer dizer "19 pontos percentuais", e o erro aparece em todos os relatórios. Fazer a conta
+no projetor: 19% de 62 são 11,8, o que levaria a taxa a 73,8, e não a 81.
+
+A **tabela cruzada resolvida** deve ser percorrida devagar, comparando a leitura por linha e por
+coluna. Em seguida, a tabela de `normalize` mostra que a escolha do argumento é exatamente a
+escolha do denominador.
+
+Fechar com a **ponte**: a tabela mostra que porte e sobrevivência andam juntos, e não mostra que
+crescer protege a empresa. Retomar o fluxograma de decisão do bloco conceitual.
+
+**Dificuldade esperada:** ler a proporção da coluna quando a pergunta é da linha. O antídoto é o
+mesmo do encontro 1: enunciar a pergunta antes de dividir.
+
+## 5. Condução da prática no notebook (90 min)
 
 A prática usa a tabela 9949 da pesquisa Demografia das Empresas (IBGE): nascimentos de empresas empregadoras e taxas de sobrevivência de um, dois e três anos, por seção CNAE e faixa de pessoal assalariado, de 2017 a 2021. A base é pequena o suficiente para inspeção visual e rica o suficiente para perguntas reais, e responde diretamente à provocação da aula 1.
 
@@ -57,7 +86,7 @@ A prática usa a tabela 9949 da pesquisa Demografia das Empresas (IBGE): nascime
 
 **Seção 2 – Filtros e seleção (25 min).** Selecionar colunas relevantes e filtrar: só o ano mais recente, só a taxa de sobrevivência de 3 anos, só o total das seções. Adaptações em dificuldade crescente: trocar a coluna selecionada; mudar a condição de filtro para outra variável; combinar duas condições. Dificuldade esperada: confusão entre `=` e `==` e esquecimento das aspas em texto; vale exibir esses dois erros de propósito no projetor e ler as mensagens de erro com a turma, normalizando o erro como parte do trabalho.
 
-**Seção 3 – A pergunta do dia (35 min).** Responder com `groupby`: qual seção CNAE tem a maior e a menor taxa de sobrevivência em três anos? Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? Ordenar com `sort_values` e produzir um gráfico de barras horizontal. A segunda pergunta é a mais importante da aula: a diferença de sobrevivência entre faixas de porte é grande e visível, e permite ao professor perguntar "isso é uma pesquisa descritiva ou correlacional?" — a resposta (estamos descrevendo uma associação entre porte e sobrevivência, sem afirmar causa) amarra a exposição da manhã com a prática.
+**Seção 3 – A pergunta do dia (35 min).** Responder com `groupby`: qual seção CNAE tem a maior e a menor taxa de sobrevivência em três anos? Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? Ordenar com `sort_values` e produzir um gráfico de barras horizontal. A segunda pergunta é a mais importante da aula: a diferença de sobrevivência entre faixas de porte é grande e visível, e permite ao professor perguntar "isso é uma pesquisa descritiva ou correlacional?", a resposta (estamos descrevendo uma associação entre porte e sobrevivência, sem afirmar causa) amarra a exposição da manhã com a prática.
 
 **Seção 4 – Perguntas de interpretação (15 min).** Três perguntas por escrito no notebook: o que os dados mostram sobre a afirmação "a maioria das empresas fecha no primeiro ano"? Que explicações alternativas existem para a associação entre porte e sobrevivência? Que outra pergunta essa base permitiria responder? Recolher via link do Colab.
 

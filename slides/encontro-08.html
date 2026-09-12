@@ -32,10 +32,11 @@
   <table>
     <tr><th>Bloco</th><th>Atividade</th></tr>
     <tr><td>15 min</td><td>Orientações e abertura do notebook</td></tr>
-    <tr><td>45 min</td><td><strong>Prova, Parte A</strong> (conceitual, sem consulta)</td></tr>
-    <tr><td>75 min</td><td><strong>Prova, Parte B</strong> (prática em notebook, com consulta)</td></tr>
+    <tr><td>20 min</td><td><strong>Revisão</strong> pelas fichas de estatística dos encontros 0 a 7</td></tr>
+    <tr><td>55 min</td><td><strong>Prova, Parte A</strong> (conceitual e estatística, sem consulta)</td></tr>
+    <tr><td>75 min</td><td><strong>Prova, Parte B</strong> (prática, com consulta)</td></tr>
     <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>75 min</td><td>Entrega da 1ª etapa do projeto + plantão de dúvidas</td></tr>
+    <tr><td>45 min</td><td>Entrega da 1ª etapa do projeto + plantão de dúvidas</td></tr>
     <tr><td>15 min</td><td>Encerramento e panorama da Unidade III</td></tr>
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
@@ -88,7 +89,7 @@
   <h2>Composição da nota da Avaliação 1</h2>
   <table>
     <tr><th>Componente</th><th>Peso</th></tr>
-    <tr><td>Parte A, conceitual (5 questões)</td><td><strong>40%</strong></td></tr>
+    <tr><td>Parte A, conceitual e estatística (8 questões)</td><td><strong>40%</strong></td></tr>
     <tr><td>Parte B, prática em notebook (3 tarefas)</td><td><strong>40%</strong></td></tr>
     <tr><td>Primeira etapa do projeto individual</td><td><strong>20%</strong></td></tr>
   </table>
@@ -97,17 +98,48 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
 
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Revisão pelas fichas (20 min)</h2>
+  <p>Antes da prova, percorremos as fichas de revisão dos blocos de estatística dos encontros 0 a
+  7. Cada ficha tem quatro quadros: a fórmula, o código do Colab, a frase de leitura e o erro a
+  evitar. É esse o formato que as questões 6 a 8 cobram.</p>
+  <table>
+    <tr><th>Encontro</th><th>Ficha</th><th>O que a prova pode pedir</th></tr>
+    <tr><td>0</td><td>O vocabulário</td><td>Distinguir população e amostra, parâmetro e estatística; classificar o tipo de variável</td></tr>
+    <tr><td>1</td><td>Frequência e porcentagem</td><td>Calcular percentual identificando o denominador correto</td></tr>
+    <tr><td>2</td><td>Proporção e tabela cruzada</td><td>Ler proporção por linha e escrever a diferença em pontos percentuais</td></tr>
+    <tr><td>3</td><td>Medidas de posição</td><td>Escolher entre média e mediana à vista de valores extremos, e justificar</td></tr>
+    <tr><td>4</td><td>Dispersão</td><td>Interpretar desvio padrão e usar o coeficiente de variação para comparar escalas</td></tr>
+    <tr><td>5</td><td>Erro padrão e intervalo</td><td>Dizer o que a margem de erro exige do desenho amostral, e o que 95% de confiança significa</td></tr>
+    <tr><td>6</td><td>Consistência interna</td><td>Ler um alfa de Cronbach e separar confiabilidade de validade</td></tr>
+    <tr><td>7</td><td>Probabilidade</td><td>Ler uma probabilidade condicional sem inverter o denominador</td></tr>
+  </table>
+  <div class="frase-resultado"><span class="rotulo">O que se cobra, em uma frase</span>
+  Não se cobra conta de cabeça. Cobra-se <strong>escolher a medida certa</strong>, saber
+  <strong>que função do pandas a produz</strong> e <strong>escrever a leitura</strong> do número
+  em uma frase que outra pessoa entenda.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+
+
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte A: regras (45 min)</h2>
+  <h2>Parte A: regras (55 min)</h2>
   <ul>
-    <li><strong>Sem consulta</strong>: material fechado, telas fechadas, e
-        <strong>sem IA</strong>. Esta parte mede o que você sabe explicar sozinho;</li>
-    <li>5 questões discursivas sobre os encontros 1 a 7: tipos de pesquisa, problema e
-        hipóteses, variáveis, amostragem, instrumentos e ética;</li>
-    <li>Respostas <strong>objetivas e justificadas</strong>: frase que responde vale mais
-        que página que enrola;</li>
-    <li>Quem terminar antes pode iniciar a Parte B (o contrário, não).</li>
+    <li>A prova inteira é no <strong>Colab</strong>. A Parte A é respondida nas células de
+        texto do próprio notebook, e as três questões de estatística têm também uma célula de
+        código;</li>
+    <li><strong>Sem consulta</strong> durante a Parte A: nenhuma outra aba aberta, nenhum
+        material, e <strong>sem IA</strong>. Esta parte mede o que você sabe sozinho;</li>
+    <li>São <strong>8 questões</strong>: cinco conceituais sobre os encontros 1 a 7 e três de
+        estatística, que pedem a escolha da medida, o código que a produz e a leitura do
+        resultado em uma frase;</li>
+    <li>Ao terminar, execute a célula <strong>"Encerramento da Parte A"</strong>, que registra o
+        horário. Só depois dela a consulta e a IA ficam liberadas, para a Parte B;</li>
+    <li>Respostas <strong>objetivas e justificadas</strong>: frase que responde vale mais que
+        página que enrola.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
@@ -122,6 +154,9 @@
     <tr><td>3</td><td>Variáveis</td><td>Classificar cinco variáveis por nível de mensuração e indicar estatísticas adequadas e inadequadas</td></tr>
     <tr><td>4</td><td>Amostragem</td><td>Explicar limites da conveniência, desenhar uma estratificação e raciocinar sobre margem de erro</td></tr>
     <tr><td>5</td><td>Instrumentos e ética</td><td>Validade versus confiabilidade, defeitos de redação de item e exigências éticas com dados agregados</td></tr>
+    <tr><td><strong>6</strong></td><td><strong>Descrição</strong></td><td>Diante de uma tabela com média e mediana distantes, escolher a medida de posição, escrever o código que a produz e justificar a escolha</td></tr>
+    <tr><td><strong>7</strong></td><td><strong>Proporção</strong></td><td>Ler uma tabela cruzada, calcular a proporção pedida identificando o denominador correto e escrever a diferença em pontos percentuais</td></tr>
+    <tr><td><strong>8</strong></td><td><strong>Dispersão e inferência</strong></td><td>Comparar dispersões de escalas diferentes com o coeficiente de variação, e dizer o que a margem de erro exige do desenho amostral</td></tr>
   </table>
   <div class="instrucao">
     <span class="rotulo">Regras</span>
@@ -263,7 +298,7 @@
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Bloco 5: finalização e plantão (75 min)</h2>
+  <h2>Finalização e plantão (45 min)</h2>
   <div class="instrucao">
     <span class="rotulo">Como vamos fazer</span>
     <ol>

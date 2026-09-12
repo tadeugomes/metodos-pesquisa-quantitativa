@@ -5,9 +5,9 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 1 — Introdução à pesquisa quantitativa e ao Google Colab
+# Encontro 1: Introdução à pesquisa quantitativa e ao Google Colab
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 Neste notebook você vai:
@@ -23,11 +23,11 @@ de cada seção há uma **Dica de estudo** para consolidar o aprendizado."""})
 C.append({"tipo": "nota", "texto": (
     "~15 min aqui. Execute a célula de identificação em primeiro lugar; se o acesso ao "
     "Colab travar, chame o professor enquanto você resolve com o colega ao lado. Grave já o "
-    "caminho 'Ambiente de execução > Reiniciar e executar tudo' — vai salvar o seu notebook "
+    "caminho 'Ambiente de execução > Reiniciar e executar tudo', vai salvar o seu notebook "
     "várias vezes neste semestre.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — O que é um notebook
+## Seção 1: O que é um notebook
 
 Um notebook mistura **células de texto** (como esta) e **células de código** (como a próxima).
 O texto documenta o raciocínio; o código executa a análise. Ao final da disciplina, seu projeto
@@ -42,14 +42,14 @@ periodo = ""
 
 print("Estudante:", nome)
 print("Período:", periodo)""", "professor": """\
-nome = "Gabarito — Prof. Tadeu"
+nome = "Gabarito, Prof. Tadeu"
 periodo = "2026.2"
 
 print("Estudante:", nome)
 print("Período:", periodo)"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Python mínimo
+## Seção 2: Python mínimo
 
 Você **não** precisa saber programar para esta disciplina. Precisa apenas de três ideias:
 
@@ -86,11 +86,11 @@ print(f"O faturamento variou {variacao:.1f}% entre 2024 e 2025")"""})
 
 C.append({"tipo": "nota", "texto": (
     "Erro comum: esquecer os parênteses do numerador e obter um valor absurdo. Resultado "
-    "esperado: 10,6%. Se você tirou outro número, desconfie antes de seguir — todo "
+    "esperado: 10,6%. Se você tirou outro número, desconfie antes de seguir, todo "
     "pesquisador confere resultados com os quais não esperava se deparar.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Dados reais: quantas empresas existem no Brasil e no Maranhão?
+## Seção 3. Dados reais: quantas empresas existem no Brasil e no Maranhão?
 
 Na aula discutimos a afirmação *"a maioria das empresas fecha no primeiro ano"*. Para sair do
 palpite, vamos aos dados oficiais: o **CEMPRE** (Cadastro Central de Empresas) do IBGE registra
@@ -119,7 +119,7 @@ dados_brasil = sidrapy.get_table(
 dados_brasil.head()"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se a célula anterior falhar (API fora do ar).
+**Célula de contingência**: execute apenas se a célula anterior falhar (API fora do ar).
 No Colab, faça antes o upload do arquivo `dados/cempre_brasil.csv` (ícone de pasta, à esquerda)."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -133,7 +133,7 @@ if "dados_brasil" not in dir():
 
 C.append({"tipo": "md", "texto": """\
 A tabela veio "crua": a primeira linha traz os nomes das colunas e os valores vêm como texto.
-A **limpeza** abaixo resolve isso — você não precisa escrevê-la, apenas entendê-la e executá-la.
+A **limpeza** abaixo resolve isso, você não precisa escrevê-la, apenas entendê-la e executá-la.
 Vamos reutilizá-la o semestre inteiro."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -152,11 +152,50 @@ brasil[["secao_cnae", "Valor"]]"""})
 
 C.append({"tipo": "nota", "texto": (
     "Antes de exibir a tabela, anote no papel: qual seção CNAE você acha que concentra mais "
-    "empresas no Brasil? Só depois execute e compare o palpite com o dado — esse contraste "
+    "empresas no Brasil? Só depois execute e compare o palpite com o dado, esse contraste "
     "retoma o argumento da aula sobre senso comum e evidência.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Primeiro gráfico
+## Estatística do encontro: frequência e porcentagem
+
+**A fórmula.** A frequência relativa de uma categoria é a contagem dessa categoria dividida pelo
+total: `f = n_i / n`. Multiplicada por 100, vira porcentagem. A soma de todas fecha em 100%.
+
+**Um detalhe desta base.** A tabela do CEMPRE já vem **agregada**: cada linha é uma seção CNAE e a
+coluna `Valor` já é a contagem de empresas, ou seja, já é o `n_i`. O total `n` é a soma da coluna.
+Quando a base for de registros individuais (uma linha por empresa), quem faz a contagem é a função
+`value_counts()`, como no slide."""})
+
+C.append({"tipo": "code", "texto": """\
+# n_i já está na coluna Valor; n é a soma dela
+total = brasil["Valor"].sum()
+
+freq = brasil[["secao_cnae", "Valor"]].copy()
+freq["frequencia_relativa"] = freq["Valor"] / total          # entre 0 e 1
+freq["porcentagem"] = (freq["frequencia_relativa"] * 100).round(1)
+
+freq = freq.sort_values("Valor", ascending=False)
+print("Total de empresas:", f"{total:,.0f}".replace(",", "."))
+print("Soma das porcentagens:", freq["porcentagem"].sum().round(1))
+freq.head(10)"""})
+
+C.append({"tipo": "md", "texto": """\
+**Se a base fosse de registros individuais**, a mesma tabela sairia em uma linha. Guarde este
+padrão: ele aparece em quase todos os encontros seguintes.
+
+```python
+dados["secao_cnae"].value_counts()                    # frequência absoluta
+dados["secao_cnae"].value_counts(normalize=True)      # frequência relativa
+```
+
+**Escreva a sua leitura.** Complete a frase abaixo com os números que você obteve. A frase precisa
+ter o percentual, a contagem entre parênteses e o total que serviu de denominador.
+
+*Entre as ______ empresas formais do Brasil, ______% (______ empresas) pertencem à seção
+______________, que é a atividade mais frequente. As três maiores seções somam ______%.*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 4: Primeiro gráfico
 
 Vamos visualizar as 10 seções CNAE com mais empresas no **Brasil**. O código está pronto:
 execute e leia o gráfico."""})
@@ -170,14 +209,14 @@ top10 = sem_total.sort_values("Valor", ascending=False).head(10)
 plt.figure(figsize=(10, 5))
 plt.barh(top10["secao_cnae"].str.slice(0, 45), top10["Valor"])
 plt.gca().invert_yaxis()
-plt.title("As 10 seções CNAE com mais empresas — Brasil")
+plt.title("As 10 seções CNAE com mais empresas, Brasil")
 plt.xlabel("Número de empresas")
 plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "md", "texto": """\
 **Sua vez.** Repita a análise para o **Maranhão**. Na chamada da API, o nível territorial
-`"3"` significa Unidade da Federação, e cada estado tem um código do IBGE — o do Maranhão
+`"3"` significa Unidade da Federação, e cada estado tem um código do IBGE, o do Maranhão
 é **21**. Complete a célula:"""})
 
 C.append({"tipo": "code", "aluno": """\
@@ -223,7 +262,7 @@ top10_ma = sem_total_ma.sort_values("Valor", ascending=False).head(10)
 plt.figure(figsize=(10, 5))
 plt.barh(top10_ma["secao_cnae"].str.slice(0, 45), top10_ma["Valor"])
 plt.gca().invert_yaxis()
-plt.title("As 10 seções CNAE com mais empresas — Maranhão")
+plt.title("As 10 seções CNAE com mais empresas, Maranhão")
 plt.xlabel("Número de empresas")
 plt.tight_layout()
 plt.show()"""})
@@ -232,10 +271,10 @@ C.append({"tipo": "nota", "texto": (
     "Se a API falhar, execute a célula de contingência (upload de dados/cempre_maranhao.csv, "
     "mesmo fluxo do Brasil). Na comparação dos dois gráficos: a estrutura empresarial "
     "maranhense é mais concentrada em comércio que a nacional? Essa é a primeira 'análise' da "
-    "turma — verbalize a sua leitura antes de seguir.")})
+    "turma, verbalize a sua leitura antes de seguir.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Perguntas de interpretação
+## Seção 5: Perguntas de interpretação
 
 Responda **por escrito**, editando esta célula (clique duas vezes sobre ela):
 
@@ -256,7 +295,7 @@ neste semestre?** (Esta resposta será o ponto de partida do seu projeto individ
 C.append({"tipo": "nota", "texto": (
     "Compartilhe o link do notebook ao final. Sua resposta à pergunta 3 será lida pelo "
     "professor antes do encontro 3 e orientará o cardápio de temas do projeto individual. "
-    "Pista para a pergunta 2: os dados são um retrato (estoque) — não mostram "
+    "Pista para a pergunta 2: os dados são um retrato (estoque), não mostram "
     "abertura/fechamento, faturamento nem informalidade.")})
 
 C.append({"tipo": "md", "texto": """\
@@ -266,7 +305,7 @@ C.append({"tipo": "md", "texto": """\
 1. Salve o notebook (`Ctrl+S`) e compartilhe o link com o professor;
 2. **Tarefa para o próximo encontro:** ler o capítulo indicado de GIL (2019) sobre pesquisa
 social e seus tipos;
-3. Se o Colab não funcionou na sua conta, resolva durante a semana — não deixe para a
+3. Se o Colab não funcionou na sua conta, resolva durante a semana, não deixe para a
 próxima aula."""})
 
 gera_notebooks(1, C)

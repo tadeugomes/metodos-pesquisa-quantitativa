@@ -12,74 +12,97 @@ Material didático da disciplina **Métodos e Técnicas de Pesquisa Quantitativa
 
 Legenda das colunas: **Roteiro** = plano de aula do professor; **Slides** = apresentação
 aberta direto no navegador (GitHub Pages); **Notebook** = notebook do encontro (único e
-autossuficiente nos encontros regulares; com lacunas de resposta nos encontros de prova — 8 e
-12), aberto no Google Colab com um clique. Um traço (—) indica material ainda não produzido —
-é o caso apenas do notebook da prova final (encontro 15), elaborado na aplicação.
+autossuficiente nos encontros regulares; com lacunas de resposta nos encontros de prova, 8,
+12 e 15), aberto no Google Colab com um clique. Todos os encontros têm os três artefatos,
+exceto a aula inaugural (encontro 0), que é conceitual e não tem notebook.
 
 ### Aula inaugural
 
-| # | Tema | Roteiro | Slides | Notebook |
-|---|---|---|---|---|
-| 0 | O que é um projeto de pesquisa quantitativo e suas especificidades | [md](roteiros/encontro-00.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-00.html) | — |
+| # | Tema | Estatística | Roteiro | Slides | Notebook |
+|---|---|---|---|---|---|
+| 0 | O que é um projeto de pesquisa quantitativo e suas especificidades | O vocabulário: população, amostra, tipos de variável | [md](roteiros/encontro-00.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-00.html) | – |
 
-### Unidade I — Fundamentos da pesquisa quantitativa
+### Unidade I: Fundamentos da pesquisa quantitativa
 
-| # | Tema | Roteiro | Slides | Notebook |
-|---|---|---|---|---|
-| 1 | Introdução à pesquisa quantitativa e ambientação ao Colab | [md](roteiros/encontro-01.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-01.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-01/encontro01.ipynb) |
-| 2 | Tipos de pesquisa quantitativa; pandas e demografia empresarial | [md](roteiros/encontro-02.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-02.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-02/encontro02.ipynb) |
-| 3 | Problema, objetivos, hipóteses e variáveis (PAS e PMC) | [md](roteiros/encontro-03.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-03.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-03/encontro03.ipynb) |
-| 4 | Etapas do processo de pesquisa; séries do Ipeadata e do BCB | [md](roteiros/encontro-04.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-04.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-04/encontro04.ipynb) |
+| # | Tema | Estatística | Roteiro | Slides | Notebook |
+|---|---|---|---|---|---|
+| 1 | Introdução à pesquisa quantitativa e ambientação ao Colab | Frequência, porcentagem e o denominador | [md](roteiros/encontro-01.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-01.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-01/encontro01.ipynb) |
+| 2 | Tipos de pesquisa quantitativa; pandas e demografia empresarial | Proporção, taxa e tabela cruzada | [md](roteiros/encontro-02.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-02.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-02/encontro02.ipynb) |
+| 3 | Problema, objetivos, hipóteses e variáveis (PAS e PMC) | Média, mediana e moda | [md](roteiros/encontro-03.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-03.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-03/encontro03.ipynb) |
+| 4 | Etapas do processo de pesquisa; séries do Ipeadata e do BCB | Variância, desvio padrão e CV | [md](roteiros/encontro-04.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-04.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-04/encontro04.ipynb) |
 
-### Unidade II — Amostragem, instrumentos e coleta de dados
+### Unidade II: Amostragem, instrumentos e coleta de dados
 
-| # | Tema | Roteiro | Slides | Notebook |
-|---|---|---|---|---|
-| 5 | Amostragem e cálculo do tamanho da amostra | [md](roteiros/encontro-05.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-05.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-05/encontro05.ipynb) |
-| 6 | Questionários e escalas; validade e confiabilidade | [md](roteiros/encontro-06.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-06.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-06/encontro06.ipynb) |
-| 7 | Demais técnicas de coleta; ética na pesquisa quantitativa | [md](roteiros/encontro-07.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-07.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-07/encontro07.ipynb) |
-| 8 | **Atividade Avaliativa 1** — prova e 1ª etapa do projeto | [md](roteiros/encontro-08.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-08.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-08/encontro08.ipynb) |
+| # | Tema | Estatística | Roteiro | Slides | Notebook |
+|---|---|---|---|---|---|
+| 5 | Amostragem e cálculo do tamanho da amostra | Erro padrão, TCL e intervalo de confiança | [md](roteiros/encontro-05.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-05.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-05/encontro05.ipynb) |
+| 6 | Questionários e escalas; validade e confiabilidade | Correlação entre itens e alfa de Cronbach | [md](roteiros/encontro-06.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-06.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-06/encontro06.ipynb) |
+| 7 | Demais técnicas de coleta; ética na pesquisa quantitativa | Probabilidade e probabilidade condicional | [md](roteiros/encontro-07.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-07.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-07/encontro07.ipynb) |
+| 8 | **Atividade Avaliativa 1**: prova e 1ª etapa do projeto | Revisão pelas fichas (encontros 0 a 7) | [md](roteiros/encontro-08.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-08.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-08/encontro08.ipynb) |
 
-### Unidade III — Análise de dados
+### Unidade III: Análise de dados
 
-| # | Tema | Roteiro | Slides | Notebook |
-|---|---|---|---|---|
-| 9 | Estatística descritiva: tendência central, dispersão e frequências | [md](roteiros/encontro-09.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-09.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-09/encontro09.ipynb) |
-| 10 | Apresentação de dados: tabelas, gráficos e visualização | [md](roteiros/encontro-10.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-10.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-10/encontro10.ipynb) |
-| 11 | Inferência estatística: intervalos de confiança e testes de hipóteses | [md](roteiros/encontro-11.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-11.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-11/encontro11.ipynb) |
-| 12 | **Atividade Avaliativa 2** — análise de dados no Colab | [md](roteiros/encontro-12.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-12.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-12/encontro12.ipynb) |
-| 13 | Correlação de Pearson e regressão linear simples | [md](roteiros/encontro-13.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-13.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-13/encontro13.ipynb) |
+| # | Tema | Estatística | Roteiro | Slides | Notebook |
+|---|---|---|---|---|---|
+| 9 | Estatística descritiva: tendência central, dispersão e frequências | Quartis, cinco números e assimetria | [md](roteiros/encontro-09.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-09.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-09/encontro09.ipynb) |
+| 10 | Apresentação de dados: tabelas, gráficos e visualização | Classes, histograma e escore z | [md](roteiros/encontro-10.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-10.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-10/encontro10.ipynb) |
+| 11 | Inferência estatística: intervalos de confiança e testes de hipóteses | Hipóteses, valor-p e escolha do teste | [md](roteiros/encontro-11.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-11.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-11/encontro11.ipynb) |
+| 12 | **Atividade Avaliativa 2**: análise de dados no Colab | Revisão pelas fichas (Unidade III) | [md](roteiros/encontro-12.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-12.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-12/encontro12.ipynb) |
+| 13 | Correlação de Pearson e regressão linear simples | Covariância, r, mínimos quadrados e R² | [md](roteiros/encontro-13.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-13.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-13/encontro13.ipynb) |
 
-### Unidade IV — Interpretação e comunicação dos resultados
+### Unidade IV: Interpretação e comunicação dos resultados
 
-| # | Tema | Roteiro | Slides | Notebook |
-|---|---|---|---|---|
-| 14 | Comunicação de resultados; **Atividade Avaliativa 3** — relatório final | [md](roteiros/encontro-14.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-14.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-14/encontro14.ipynb) |
-| 15 | Prova final | — | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-15.html) | — (elaborada no momento da aplicação) |
+| # | Tema | Estatística | Roteiro | Slides | Notebook |
+|---|---|---|---|---|---|
+| 14 | Comunicação de resultados; **Atividade Avaliativa 3**: relatório final | Tabela de correspondência e leitura crítica | [md](roteiros/encontro-14.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-14.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-14/encontro14.ipynb) |
+| 15 | Prova final | Tabela de correspondência aplicada às quatro operações | [md](roteiros/encontro-15.md) | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-15.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-15/encontro15.ipynb) |
 
 ## Estado atual do material
 
-Atualizado em 02/09/2026.
+Atualizado em 12/09/2026.
 
 | Unidade | Roteiros | Slides | Notebooks |
 |---|---|---|---|
-| Aula inaugural (0) | ✅ completa | ✅ completa | — (aula conceitual) |
+| Aula inaugural (0) | ✅ completa | ✅ completa | – (aula conceitual) |
 | I (1–4) | ✅ completa | ✅ completa | ✅ completa |
 | II (5–8) | ✅ completa | ✅ completa | ✅ completa |
 | III (9–13) | ✅ completa | ✅ completa | ✅ completa (12 é prova, com lacunas) |
-| IV (14–15) | ✅ completa (14) | ✅ completa | ✅ 14 completo (guia de redação) |
+| IV (14–15) | ✅ completa | ✅ completa | ✅ completa (15 é prova, com lacunas) |
 
-Em resumo: **aula inaugural (encontro 0) e encontros 1 a 14 estão completos** (roteiro, slides e
-notebook autossuficiente — exceto o encontro 0, conceitual, sem notebook; os encontros 8 e 12,
-provas, têm lacunas de resposta e gabarito apenas nos geradores). O **encontro 15** (prova final)
-tem apenas slides de orientação: o notebook de prova é elaborado pelo professor no momento da
-aplicação.
+Em resumo: **a aula inaugural (encontro 0) e os encontros 1 a 15 estão completos** (roteiro,
+slides e notebook autossuficiente, exceto o encontro 0, conceitual, sem notebook). Os encontros 8,
+12 e 15 são provas: o notebook vai para a turma com lacunas de resposta, e o gabarito fica apenas
+no gerador, em células do tipo `nota`, que não são escritas no arquivo `.ipynb`.
 
 Desde setembro de 2026, os slides incorporam também as **instruções de condução** que antes só
 existiam nos roteiros: objetivos de aprendizagem, dinâmicas de aula, condução de cada seção da
 prática, erros comuns, ganchos com o projeto individual e critérios das avaliações. Os roteiros
 seguem sendo o plano de aula do professor; os slides passam a bastar ao estudante que revisa em
 casa.
+
+## O bloco de estatística em cada encontro
+
+Desde setembro de 2026, **todo encontro tem um bloco de estatística de 45 minutos**, na mesma
+posição: depois da exposição do conceito de pesquisa e antes da prática no Colab. O bloco tem
+sempre sete telas, marcadas com a etiqueta **Estatística** e acentuadas em verde-azulado:
+
+| Tela | Conteúdo |
+|---|---|
+| 1 | Abertura: a pergunta que a estatística do dia responde |
+| 2 | Definição e fórmula em notação, com cada símbolo nomeado |
+| 3 | O que a fórmula faz, com um exemplo já resolvido e comentado |
+| 4 | Como se faz no Colab: a função, os argumentos, o código mínimo |
+| 5 | Como se lê o resultado: a frase que vai para o relatório |
+| 6 | O erro comum, com o caso errado e o caso certo lado a lado |
+| 7 | **Ficha de revisão**: fórmula, código, frase de leitura e erro em um quadro só |
+
+O princípio é que **nenhuma conta é feita à mão**: a fórmula é explicada para que se entenda de
+onde vem o número, e a operacionalização é no Colab. Os notebooks dos encontros 1 a 13 têm a seção
+correspondente, "Estatística do encontro", entre a carga dos dados e a prática.
+
+As treze fichas de revisão são o material de estudo para as avaliações, que são **inteiramente no
+Colab**, incluindo a parte conceitual da Avaliação 1. O mapa completo das fichas está nos slides do
+encontro 14.
 
 ## Organização do material
 
@@ -93,11 +116,11 @@ disciplina_pesquisa/
 └── dados/               # CSVs de fallback baixados das APIs oficiais
 ```
 
-Cada encontro possui três artefatos complementares (a **aula inaugural — encontro 0** é
+Cada encontro possui três artefatos complementares (a **aula inaugural, encontro 0** é
 conceitual e tem apenas slides e roteiro):
 
 1. **Slides** (`slides/encontro-NN.html`): apresentação **teoricamente autossuficiente** no
-   padrão de identidade visual da UFMA (Manual 2024) — cada conceito tem caixa de
+   padrão de identidade visual da UFMA (Manual 2024), cada conceito tem caixa de
    definição formal e exemplo aplicado, e o deck fecha com síntese teórica e guia de
    estudo, de modo que o estudante possa revisar a teoria pelos próprios slides. Abra pelo
    link da tabela acima (ou o arquivo local no navegador); navegue com as setas ou clique;
@@ -105,7 +128,7 @@ conceitual e tem apenas slides e roteiro):
    Montserrat/Source Sans Pro (com fallback para Calibri quando offline).
 2. **Roteiro de aula** (`roteiros/encontro-NN.md`): objetivos de aprendizagem, estrutura da aula com minutagem, conteúdo expositivo desenvolvido, condução da prática no notebook, gancho com o projeto individual e tarefa para o encontro seguinte.
 3. **Notebook** (`notebooks/encontro-NN/encontroNN.ipynb`): um arquivo único por encontro,
-   **autossuficiente** — todo o código já vem preenchido e pronto para executar, com
+   **autossuficiente**: todo o código já vem preenchido e pronto para executar, com
    *Dicas de estudo* ao longo das seções (substituíram as antigas notas de condução do
    professor). As exceções são os notebooks de **prova** (encontros 8 e 12), que preservam
    lacunas de resposta e omitem as dicas e o gabarito (presentes apenas nos geradores),
@@ -137,15 +160,16 @@ registra o prompt e a checagem que fez da resposta.
 | Contexto | Regra |
 |---|---|
 | Aulas e projeto individual | Permitida, sobretudo para adaptar o código dos notebooks à base do próprio projeto |
-| Avaliação 1 — Parte A (encontro 8, conceitual) | **Não permitida**: material fechado, telas fechadas |
-| Avaliação 1 — Parte B (encontro 8, prática) | Permitida, com registro do prompt na célula própria do notebook |
+| Avaliação 1: Parte A (encontro 8, conceitual) | **Não permitida**: material fechado, telas fechadas |
+| Avaliação 1: Parte B (encontro 8, prática) | Permitida, com registro do prompt na célula própria do notebook |
 | Avaliação 2 (encontro 12) | Permitida, com registro do prompt na célula própria do notebook |
-| Prova final (encontro 15) | Permitida no componente prático, com registro do prompt |
+| Prova final: Parte A (encontro 15, conceitual) | **Não permitida**: material fechado, telas fechadas |
+| Prova final: Parte B (encontro 15, prática) | Permitida, com registro do prompt na célula própria do notebook |
 
 Os notebooks de prova trazem uma célula **Registro de uso de IA**, com uma tabela para o
 prompt e a forma de conferência. O registro não desconta pontos; a omissão é falta de
-honestidade acadêmica. A parte que a IA não faz — decidir qual análise cabe no problema e
-interpretar o resultado — é justamente onde está metade da pontuação. Os dois primeiros
+honestidade acadêmica. A parte que a IA não faz, decidir qual análise cabe no problema e
+interpretar o resultado, é justamente onde está metade da pontuação. Os dois primeiros
 encontros tratam disso em slides próprios: o que a IA faz bem, o que continua sendo tarefa
 do pesquisador e como formular um pedido útil.
 
@@ -161,6 +185,8 @@ do pesquisador e como formular um pedido útil.
 ### Complementar
 
 - ANDERSON, David R.; SWEENEY, Dennis J.; WILLIAMS, Thomas A. **Estatística aplicada à administração e economia**. 3. ed. São Paulo: Cengage Learning, 2013.
+- PINTO, Suzi Samá; SILVA, Carla Silva da. **Estatística**: volume I. Rio Grande: Editora da FURG, 2020. Acesso aberto. *Referência dos blocos de estatística dos encontros 0 a 4, 6, 7, 9 e 10.*
+- SILVA, Carla Silva da; SAMÁ, Suzi. **Estatística**: volume II. Rio Grande: Editora da FURG, 2021. Acesso aberto. *Referência dos blocos de estatística dos encontros 5, 11 e 13.*
 - BABBIE, Earl. **Métodos de pesquisa de survey**. Belo Horizonte: Editora UFMG, 1999.
 - COOPER, Donald R.; SCHINDLER, Pamela S. **Métodos de pesquisa em administração**. 12. ed. Porto Alegre: AMGH, 2016.
 - FÁVERO, Luiz Paulo; BELFIORE, Patrícia. **Manual de análise de dados**: estatística e modelagem multivariada com Excel, SPSS e Stata. Rio de Janeiro: Elsevier, 2017.
@@ -174,8 +200,8 @@ do pesquisador e como formular um pedido útil.
 |---|---|---|
 | 0 | LAVILLE; DIONNE (1999) | Referência central da aula inaugural: a construção do saber, do problema à hipótese |
 | 1 | GIL (2019) | Capítulo inicial sobre pesquisa social |
-| 2 | GIL (2022) | Cap. 4 (§4.4 a 4.8) — pesquisa experimental, ensaio clínico, estudo de coorte, estudo caso-controle e levantamento; caps. 7, 9 e 10 para aprofundar cada delineamento |
-| 3 | GIL (2022) | Cap. 2 — como formular um problema de pesquisa (as seis regras, definição operacional, enunciado e objetivos); cap. 3 — como construir hipóteses (níveis, relações entre variáveis, fontes e os seis requisitos da hipótese aplicável) |
+| 2 | GIL (2022) | Cap. 4 (§4.4 a 4.8): pesquisa experimental, ensaio clínico, estudo de coorte, estudo caso-controle e levantamento; caps. 7, 9 e 10 para aprofundar cada delineamento |
+| 3 | GIL (2022) | Cap. 2: como formular um problema de pesquisa (as seis regras, definição operacional, enunciado e objetivos); cap. 3: como construir hipóteses (níveis, relações entre variáveis, fontes e os seis requisitos da hipótese aplicável) |
 | 4 | GIL (2019); RICHARDSON (2017) | Planejamento da pesquisa e amostragem |
 | 6 | RICHARDSON (2017) | Questionários e escalas |
 | 7 | Resoluções CNS 466/2012 e 510/2016 | Ética em pesquisa e Termo de Consentimento Livre e Esclarecido |

@@ -11,9 +11,9 @@ Cada gerador define uma lista de células como dicionários:
 
 Cada encontro gera **um único notebook**:
 - Modo padrão (`versao="autossuficiente"`): notebook completo e autossuficiente para o
-  aluno — todas as células vêm preenchidas (usa o gabarito), as notas de condução viram
+  aluno, todas as células vêm preenchidas (usa o gabarito), as notas de condução viram
   "Dica de estudo" e o arquivo é `encontroNN.ipynb`.
-- Modo prova (`versao="aluno"`): usado na avaliação — mantém as lacunas para o aluno
+- Modo prova (`versao="aluno"`): usado na avaliação, mantém as lacunas para o aluno
   responder, omite notas/gabarito e o arquivo também é `encontroNN.ipynb`.
 """
 import os
@@ -25,7 +25,7 @@ RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 def _celula(cel, versao):
     if cel["tipo"] == "nota":
         if versao == "autossuficiente":
-            return nbf.v4.new_markdown_cell("> **Dica de estudo** — " + cel["texto"])
+            return nbf.v4.new_markdown_cell("> **Dica de estudo**: " + cel["texto"])
         return None  # em modo prova, notas/gabarito ficam fora do notebook do aluno
     if cel["tipo"] == "md":
         return nbf.v4.new_markdown_cell(cel["texto"])

@@ -1,4 +1,4 @@
-# Encontro 3 — Problema, objetivos, hipóteses e variáveis; classificação de variáveis com PAS e PMC
+# Encontro 3. Problema, objetivos, hipóteses e variáveis; classificação de variáveis com PAS e PMC
 
 ## 1. Identificação
 
@@ -19,16 +19,17 @@ Ao final do encontro, o estudante deverá ser capaz de: (i) transformar um tema 
 | Bloco | Duração | Atividade |
 |---|---|---|
 | 1 | 10 min | Retomada e coleta das perguntas trazidas como tarefa |
-| 2 | 50 min | Exposição dialogada: do tema ao problema; objetivos e hipóteses |
-| 3 | 40 min | Exposição e exercício oral: variáveis e níveis de mensuração |
+| 2 | 40 min | Exposição dialogada: do tema ao problema; objetivos e hipóteses |
+| 3 | 25 min | Exposição e exercício: variáveis e níveis de mensuração |
 | 4 | 15 min | Intervalo |
-| 5 | 60 min | Prática no Colab: classificação de variáveis com PAS e PMC |
-| 6 | 50 min | Oficina do projeto individual: cardápio de temas, problema e hipóteses |
-| 7 | 15 min | Síntese e tarefa |
+| 5 | **45 min** | **Bloco de estatística: média, mediana e moda** (seção 4.E) |
+| 6 | 50 min | Prática no Colab: classificação de variáveis com PAS e PMC |
+| 7 | 45 min | Oficina do projeto individual: cardápio de temas, problema e hipóteses |
+| 8 | 10 min | Síntese e tarefa |
 
 ## 4. Conteúdo expositivo desenvolvido
 
-### Bloco 2 – Do tema ao problema; objetivos e hipóteses (50 min)
+### Bloco 2 – Do tema ao problema; objetivos e hipóteses (40 min)
 
 Partir das perguntas que os estudantes trouxeram como tarefa, transcrevendo três ou quatro no quadro sem identificar os autores. Em geral, elas chegam como temas ("marketing digital", "empreendedorismo feminino") ou como perguntas amplas demais ("o marketing digital funciona?"). O movimento da aula é mostrar o afunilamento: tema → delimitação (setor, período, território, população) → problema formulado como pergunta respondível com dados. Exemplo desenvolvido no quadro: "empreendedorismo" → "sobrevivência de empresas no Maranhão" → "empresas comerciais maranhenses de menor porte apresentam taxa de sobrevivência em três anos inferior à das de maior porte?". Os critérios de um bom problema devem ser explicitados: é uma pergunta, é delimitado, é respondível com dados acessíveis, é relevante (teórica ou gerencialmente) e é ético.
 
@@ -40,13 +41,40 @@ Das perguntas derivam as hipóteses: respostas provisórias que a pesquisa vai t
 
 O tópico das hipóteses apoia-se em GIL (2022), capítulo 3 ("Como construir hipóteses?"). Adotar a definição de Kerlinger reproduzida por Gil, hipótese como enunciado conjectural das relações entre duas ou mais variáveis, e distinguir os três níveis (casuística, descritiva e relacional), com a regra prática de que frase com uma única variável é objetivo descritivo, não hipótese. Apresentar as formas de relação entre variáveis (simétrica, assimétrica e recíproca), a notação x → y para a relação assimétrica e, sem exigir memorização, a tipologia de Rosenberg (estímulo-resposta, disposição-resposta, propriedade-disposição, pré-requisito-efeito, relação imanente, meios-fins), usada apenas para obrigar o estudante a explicitar o mecanismo pelo qual x afetaria y. Mencionar as quatro fontes de hipóteses (observação, resultados de outras pesquisas, teorias e intuição) e apresentar como lista de verificação os seis requisitos da hipótese aplicável (clara, específica, com referências empíricas, parcimoniosa, relacionada às técnicas disponíveis e a uma teoria), que os estudantes usarão como filtro na oficina. Responder à pergunta de Gil sobre a necessidade de hipóteses em toda pesquisa: elas estão sempre presentes, ainda que implícitas nos instrumentos; em estudos descritivos, ficam melhor enunciadas como objetivos, mas na disciplina a hipótese deve ser escrita em todos os projetos.
 
-### Bloco 3 – Variáveis e níveis de mensuração (40 min)
+### Bloco 3 – Variáveis e níveis de mensuração (25 min)
 
 Definir variável como característica observável que assume valores diferentes entre os casos, e apresentar as duas classificações que estruturam todo o restante da disciplina. Primeiro, o papel na hipótese: variável independente (o suposto fator) e dependente (o suposto efeito), ilustrando com as hipóteses já escritas no quadro. Segundo, o nível de mensuração: nominal (categorias sem ordem: seção CNAE, unidade da federação), ordinal (categorias ordenadas: faixa de pessoal ocupado, escolaridade), intervalar (números sem zero absoluto: temperatura, escala de satisfação tratada como intervalar) e de razão (números com zero absoluto: receita, número de empregados, taxa de sobrevivência).
 
-O ponto de ancoragem, a ser repetido nos encontros de estatística, é que o nível de mensuração determina a análise possível: não se calcula média de seção CNAE, e reduzir receita a faixas joga informação fora. Exercício oral rápido com dez variáveis ditas pelo professor para a turma classificar em coro, incluindo casos propositalmente traiçoeiros: CEP (nominal, apesar de numérico), ano de fundação (intervalar), "porte" medido em faixas (ordinal) versus medido em número de empregados (razão). Fechar com operacionalização: conceitos da gestão como "desempenho", "inovação" ou "satisfação" não são observáveis diretamente; operacionalizar é escolher indicadores mensuráveis que os representem, e essa escolha é uma decisão do pesquisador que precisa ser justificada e explicitada no relatório.
+O ponto de ancoragem, a ser repetido nos encontros de estatística, é que o nível de mensuração determina a análise possível: não se calcula média de seção CNAE, e reduzir receita a faixas joga informação fora. Exercício rápido com dez variáveis apresentadas pelo professor para a turma classificar, incluindo casos propositalmente traiçoeiros: CEP (nominal, apesar de numérico), ano de fundação (intervalar), "porte" medido em faixas (ordinal) versus medido em número de empregados (razão). Fechar com operacionalização: conceitos da gestão como "desempenho", "inovação" ou "satisfação" não são observáveis diretamente; operacionalizar é escolher indicadores mensuráveis que os representem, e essa escolha é uma decisão do pesquisador que precisa ser justificada e explicitada no relatório.
 
-## 5. Condução da prática no notebook (60 min)
+
+### 4.E Bloco de estatística: média, mediana e moda (45 min)
+
+**Referência:** Pinto e Silva (2020), *Estatística*, volume I, seção 3.1.
+**Slides:** bloco "Estatística", sete telas, antes do divisor "Mão na massa".
+
+O bloco fecha o conteúdo conceitual do dia, porque uma hipótese testável é uma frase sobre uma
+medida, e a medida depende do nível de mensuração que acabou de ser ensinado.
+
+Apresentar as **três medidas** juntas, com a fórmula da média em notação e em linguagem corrente,
+e a mediana definida pela posição, não por fórmula.
+
+O **exemplo das sete empresas** é o centro do bloco. A figura mostra os seis valores agrupados e o
+extremo isolado, com a mediana dentro do agrupamento e a média deslocada para a direita. Vale
+perguntar à turma qual dos dois números eles usariam para descrever a rua, antes de mostrar a
+resposta. Registrar que o IBGE publica rendimento mediano por essa razão.
+
+No **Colab**, o diagnóstico de uma linha: rodar `mean()` e `median()` na mesma variável e comparar.
+Essa comparação vira hábito e reaparece no encontro 9.
+
+O slide da **ponte com a hipótese** conecta o bloco ao que foi feito antes do intervalo: reescrever
+"empresas de serviços vão melhor" como "a mediana do faturamento das empresas de serviços é maior
+que a das de comércio". Usar as hipóteses que a própria turma escreveu.
+
+Fechar com os **três erros** (média de nominal, média com extremos, média de médias). O terceiro
+costuma ser novidade até para quem já viu estatística.
+
+## 5. Condução da prática no notebook (50 min)
 
 A prática expõe os estudantes a duas bases de natureza diferente para exercitar a classificação de variáveis em material real.
 
@@ -56,7 +84,7 @@ A prática expõe os estudantes a duas bases de natureza diferente para exercita
 
 **Seção 3 – Do conceito à variável (10 min).** Exercício invertido em célula de texto: dado o conceito "desempenho do varejo maranhense", propor duas operacionalizações diferentes com as bases já conhecidas (CEMPRE, PMC) e indicar uma limitação de cada. Esse exercício antecipa a decisão que cada estudante tomará no projeto.
 
-## 6. Oficina do projeto individual (50 min)
+## 6. Oficina do projeto individual (45 min)
 
 Apresentar o **cardápio de temas e bases** (tabela incluída ao final deste roteiro e no notebook), com cerca de dez combinações viáveis de tema, fonte e pergunta exemplo. O cardápio orienta sem engessar: o estudante pode propor tema fora dele, desde que a base seja pública e acessível pelas ferramentas da disciplina. Cada estudante então redige, em células dedicadas do próprio notebook: tema delimitado, problema (em forma de pergunta), uma hipótese e as variáveis envolvidas com seus níveis de mensuração. O professor circula pelo laboratório orientando individualmente; os casos mais difíceis (temas sem base viável, perguntas de intervenção) merecem conversa direta. Ao final, os notebooks são compartilhados: esse rascunho é o embrião da entrega formal do encontro 8 e será comentado por escrito pelo professor até o encontro 4.
 

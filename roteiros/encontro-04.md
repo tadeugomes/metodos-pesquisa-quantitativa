@@ -1,4 +1,4 @@
-# Encontro 4 — Etapas do processo de pesquisa e planejamento; séries do Ipeadata e do Banco Central
+# Encontro 4. Etapas do processo de pesquisa e planejamento; séries do Ipeadata e do Banco Central
 
 ## 1. Identificação
 
@@ -18,31 +18,59 @@ Ao final do encontro, o estudante deverá ser capaz de: (i) descrever as etapas 
 
 | Bloco | Duração | Atividade |
 |---|---|---|
-| 1 | 15 min | Retomada e devolutiva geral dos rascunhos de projeto |
-| 2 | 45 min | Exposição dialogada: as etapas do processo de pesquisa |
-| 3 | 30 min | Exposição com exemplo: a matriz de amarração metodológica |
+| 1 | 10 min | Retomada e devolutiva geral dos rascunhos de projeto |
+| 2 | 35 min | Exposição dialogada: as etapas do processo de pesquisa |
+| 3 | 25 min | Exposição com exemplo: a matriz de amarração metodológica |
 | 4 | 15 min | Intervalo |
-| 5 | 85 min | Prática no Colab: séries do BCB e do Ipeadata |
-| 6 | 35 min | Oficina do projeto: matriz de amarração individual |
-| 7 | 15 min | Síntese e fechamento da Unidade I |
+| 5 | **45 min** | **Bloco de estatística: dispersão** (seção 4.E) |
+| 6 | 70 min | Prática no Colab: séries do BCB e do Ipeadata |
+| 7 | 30 min | Oficina do projeto: matriz de amarração individual |
+| 8 | 10 min | Síntese e fechamento da Unidade I |
 
 ## 4. Conteúdo expositivo desenvolvido
 
-### Bloco 1 – Devolutiva dos rascunhos (15 min)
+### Bloco 1 – Devolutiva dos rascunhos (10 min)
 
 Comentar em plenária, sem identificar autores, os padrões observados nos rascunhos entregues no encontro 3: os acertos frequentes e os três problemas típicos (pergunta ampla demais, hipótese sem variáveis, base inviável). Reservar os casos individuais para a oficina do Bloco 6.
 
-### Bloco 2 – As etapas do processo de pesquisa quantitativa (45 min)
+### Bloco 2 – As etapas do processo de pesquisa quantitativa (35 min)
 
 Apresentar o processo como uma sequência de decisões encadeadas, e não como burocracia de projeto: formulação do problema e hipóteses; revisão da literatura; definição do delineamento; definição de população, amostra e fontes de dados; escolha ou construção dos instrumentos de coleta; coleta; preparação e análise dos dados; interpretação e comunicação. Duas observações estruturam a exposição. A primeira é que o processo é iterativo na prática, mas as decisões anteriores restringem as posteriores: quem definiu mal as variáveis descobre na análise que não consegue testar a hipótese, e o custo de corrigir cresce a cada etapa vencida. A segunda é o mapa da disciplina: cada etapa corresponde a encontros específicos do semestre, e vale mostrar essa correspondência explicitamente para que a turma veja o programa como o próprio processo de pesquisa desdobrado no tempo.
 
 Distinguir, dentro do delineamento, as pesquisas com dados primários (coletados pelo pesquisador: survey, experimento) das pesquisas com dados secundários (produzidos por terceiros: IBGE, Banco Central, CVM), modalidade dos projetos individuais da disciplina. Discutir os ganhos dos dados secundários (cobertura, séries longas, custo zero, reprodutibilidade) e seus limites (as variáveis foram definidas por outrem, para outros fins; nem sempre medem exatamente o conceito de interesse), retomando a noção de operacionalização do encontro 3.
 
-### Bloco 3 – A matriz de amarração metodológica (30 min)
+### Bloco 3 – A matriz de amarração metodológica (25 min)
 
-Apresentar a matriz de amarração como instrumento de verificação de coerência interna do projeto: uma tabela em que cada linha conecta problema → objetivo específico → hipótese → variáveis → fonte/base → técnica de análise prevista. Construir no quadro, com participação da turma, a matriz completa de um exemplo: "empresas empregadoras de maior porte sobrevivem mais que as de menor porte?" — objetivo específico de comparar taxas de sobrevivência por faixa; hipótese direcional; variáveis (faixa de pessoal, ordinal; taxa de sobrevivência em 3 anos, razão); base (Demografia das Empresas, tabela 9949); técnica (comparação de médias e teste de associação, a aprender nos encontros 9 a 11). O efeito pedagógico da matriz é revelar buracos: objetivo sem hipótese correspondente, hipótese com variável que a base não tem, técnica incompatível com o nível de mensuração. Avisar que a matriz preenchida integrará a entrega do encontro 8.
+Apresentar a matriz de amarração como instrumento de verificação de coerência interna do projeto: uma tabela em que cada linha conecta problema → objetivo específico → hipótese → variáveis → fonte/base → técnica de análise prevista. Construir no quadro, com participação da turma, a matriz completa de um exemplo: "empresas empregadoras de maior porte sobrevivem mais que as de menor porte?", objetivo específico de comparar taxas de sobrevivência por faixa; hipótese direcional; variáveis (faixa de pessoal, ordinal; taxa de sobrevivência em 3 anos, razão); base (Demografia das Empresas, tabela 9949); técnica (comparação de médias e teste de associação, a aprender nos encontros 9 a 11). O efeito pedagógico da matriz é revelar buracos: objetivo sem hipótese correspondente, hipótese com variável que a base não tem, técnica incompatível com o nível de mensuração. Avisar que a matriz preenchida integrará a entrega do encontro 8.
 
-## 5. Condução da prática no notebook (85 min)
+
+### 4.E Bloco de estatística: dispersão (45 min)
+
+**Referência:** Pinto e Silva (2020), *Estatística*, volume I, seção 3.2, itens 3.2.1 a 3.2.5.
+**Slides:** bloco "Estatística", sete telas, antes do divisor "Mão na massa".
+
+O bloco fecha a Unidade I com a segunda metade da descrição: onde o encontro 3 respondeu "qual é o
+valor típico", este responde "o quanto os casos se afastam dele".
+
+Explicar a **fórmula em três movimentos**: afastamento de cada caso em relação à média, quadrado
+para eliminar o sinal, raiz para voltar à unidade original. A turma não precisa executar a conta,
+mas precisa saber por que há um quadrado e por que há uma raiz, porque é isso que torna o desvio
+padrão interpretável.
+
+O **exemplo dos dois setores** com a mesma média e dispersões muito diferentes é o argumento
+central: relatar apenas a média esconde metade da informação. A figura mostra os dois conjuntos na
+mesma escala.
+
+No **Colab**, `std()` já vem pronto; o coeficiente de variação precisa ser escrito, e é uma boa
+ocasião para mostrar que uma fórmula vira uma linha de código.
+
+O slide da **ponte com a matriz de amarração** é o que fecha a unidade: cada objetivo específico
+ganha uma estatística prevista. Pedir que acrescentem a coluna na matriz que montaram na oficina.
+
+Fechar com o **erro de comparar desvios de escalas diferentes** e com o limite do CV quando a média
+se aproxima de zero. Esse limite volta no encontro 9, com a margem líquida da CVM.
+
+## 5. Condução da prática no notebook (70 min)
 
 A prática introduz as duas últimas fontes da caixa de ferramentas da Unidade I, com dados macroeconômicos que servem de contexto a praticamente qualquer projeto empresarial.
 
@@ -54,7 +82,7 @@ A prática introduz as duas últimas fontes da caixa de ferramentas da Unidade I
 
 **Seção 4 – Perguntas de interpretação (10 min).** Duas perguntas em célula de texto: que série do BCB ou do Ipeadata serviria de variável de contexto para o seu projeto, e por quê; que cuidado a diferença de frequências exigiria no seu caso.
 
-## 6. Oficina do projeto: matriz de amarração individual (35 min)
+## 6. Oficina do projeto: matriz de amarração individual (30 min)
 
 O notebook traz o template da matriz de amarração em célula de texto (tabela markdown com as colunas problema, objetivo específico, hipótese, variáveis e níveis, base, técnica prevista). Cada estudante preenche a matriz do seu projeto, incorporando os comentários recebidos sobre o rascunho do encontro 3. O professor circula priorizando quem recebeu apontamentos de inviabilidade. A coluna "técnica prevista" pode ficar genérica ("comparação de grupos", "associação entre variáveis"): o compromisso é revisitá-la ao final da Unidade III, quando a turma souber nomear os testes.
 

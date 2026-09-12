@@ -1344,6 +1344,166 @@
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 2</h2>
+  <p>Proporção, taxa e tabela cruzada: como um delineamento vira número</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: proporção e taxa</h2>
+
+  <div class="definicao"><span class="rotulo">Definição</span>
+  <strong>Proporção</strong> é a parte dividida pelo todo. <strong>Taxa</strong> é uma proporção
+  em que o todo é um grupo acompanhado no tempo. A taxa de sobrevivência de três anos é o número
+  de empresas que sobreviveram dividido pelo número de empresas nascidas naquele ano.</div>
+  <div class="formula">
+    <span class="expr">p<span class="op">=</span><span class="frac"><span class="cima">casos com o atributo</span><span class="baixo">total de casos do grupo</span></span></span>
+    <span class="legenda-formula">A proporção vive entre 0 e 1; multiplicada por 100 vira
+    porcentagem. O que muda de uma pergunta para outra não é a conta, é o que entra no
+    denominador.</span>
+  </div>
+  <div class="alerta"><span class="rotulo">Por cento e ponto percentual não são a mesma coisa</span>
+  Se a taxa passa de 62% para 81%, a diferença é de <strong>19 pontos percentuais</strong>. Dizer
+  "19% a mais" seria outra conta: 19% de 62 são 11,8, e a taxa teria ido a 73,8%. Em relatório,
+  a diferença entre duas porcentagens se escreve sempre em pontos percentuais (p.p.).</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: a tabela cruzada resolvida</h2>
+
+  <p>A tabela cruzada é a ferramenta da pesquisa correlacional com variáveis categóricas: ela
+  mostra se a distribuição de uma variável muda conforme a categoria da outra.</p>
+  <div class="colunas">
+    <div>
+      <table>
+        <tr><th>Porte</th><th>Sobreviveu</th><th>Fechou</th><th>Total</th></tr>
+        <tr><td>Até 9 empregados</td><td>620</td><td>380</td><td>1.000</td></tr>
+        <tr><td>10 ou mais</td><td>405</td><td>95</td><td>500</td></tr>
+      </table>
+      <p><strong>Proporções por linha</strong>, que é o que a pergunta pede:</p>
+      <p>Menor porte: 620 ÷ 1.000 = 0,62, ou <strong>62%</strong>.<br>
+      Maior porte: 405 ÷ 500 = 0,81, ou <strong>81%</strong>.<br>
+      Diferença: 81 − 62 = <strong>19 pontos percentuais</strong>.</p>
+    </div>
+    <div>
+      <div class="figura">
+        <svg viewBox="0 0 440 210" role="img" aria-label="Taxa de sobrevivência por porte: 62% e 81%">
+          <line x1="120" y1="170" x2="410" y2="170" stroke="#bbb" stroke-width="1.6"/>
+          <rect x="150" y="88" width="70" height="82" fill="#8D0333" opacity="0.75"/>
+          <text x="185" y="78" text-anchor="middle" font-size="22" fill="#8D0333" font-weight="700">62%</text>
+          <text x="185" y="190" text-anchor="middle" font-size="15" fill="#555">até 9</text>
+          <rect x="280" y="62" width="70" height="108" fill="#0AB0AB"/>
+          <text x="315" y="52" text-anchor="middle" font-size="22" fill="#05635f" font-weight="700">81%</text>
+          <text x="315" y="190" text-anchor="middle" font-size="15" fill="#555">10 ou mais</text>
+          <path d="M236 88 H264" stroke="#a67c2e" stroke-width="2"/>
+          <path d="M236 62 H264" stroke="#a67c2e" stroke-width="2"/>
+          <path d="M250 88 V 62" stroke="#a67c2e" stroke-width="2.6"/>
+          <text x="250" y="32" text-anchor="middle" font-size="15" fill="#a67c2e" font-weight="700">19 p.p.</text>
+          <text x="110" y="120" text-anchor="end" font-size="15" fill="#777" transform="rotate(-90 110 120)">taxa de 3 anos</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <p>A função é <code>pd.crosstab</code>. Sem argumento, ela conta; com
+  <code>normalize</code>, transforma em proporção. O valor de <code>normalize</code> é
+  exatamente a escolha do denominador do slide anterior.</p>
+  <pre class="codigo"><span class="cmt"># contagem bruta: quantas empresas em cada cruzamento</span>
+pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dados[<span class="str">"situacao"</span>])
+
+<span class="cmt"># proporção dentro de cada linha: "entre as empresas de cada porte, quantas..."</span>
+pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dados[<span class="str">"situacao"</span>], normalize=<span class="str">"index"</span>)
+
+<span class="cmt"># em porcentagem, com uma casa decimal</span>
+(pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dados[<span class="str">"situacao"</span>],
+             normalize=<span class="str">"index"</span>) * 100).<span class="fn">round</span>(1)</pre>
+  <table>
+    <tr><th>normalize</th><th>Divide por</th><th>Responde</th></tr>
+    <tr><td><code>"index"</code></td><td>total de cada linha</td><td>Entre as empresas de cada porte, que proporção sobreviveu?</td></tr>
+    <tr><td><code>"columns"</code></td><td>total de cada coluna</td><td>Entre as que sobreviveram, que proporção era de cada porte?</td></tr>
+    <tr><td><code>"all"</code></td><td>total geral</td><td>Que proporção do total é de cada cruzamento?</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê o resultado, e o que ele não diz</h2>
+
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "A taxa de sobrevivência em três anos foi de <strong>62%</strong> entre as empresas de até 9
+  empregados (620 de 1.000) e de <strong>81%</strong> entre as de 10 ou mais (405 de 500), uma
+  diferença de <strong>19 pontos percentuais</strong>."</div>
+  <div class="colunas">
+    <div>
+      <h3>A ponte com o encontro de hoje</h3>
+      <p>Repare no que a tabela cruzada é, nos termos da aula: <strong>duas variáveis observadas
+      nos mesmos casos</strong>, sem sorteio e sem intervenção. Isso é, exatamente, pesquisa
+      correlacional. A tabela mostra que porte e sobrevivência andam juntos; ela não mostra que
+      crescer protege a empresa.</p>
+      <p>Uma tabela de frequência simples, com uma variável só, seria pesquisa descritiva. É a
+      segunda variável que muda o tipo de pesquisa.</p>
+    </div>
+    <div>
+      <h3>O erro comum: ler a proporção da coluna errada</h3>
+      <div class="alerta"><span class="rotulo">Errado</span>
+      "Entre as empresas que sobreviveram, 60% eram de pequeno porte, logo o pequeno porte
+      sobrevive mais." Essa proporção reflete apenas que há mais empresas pequenas na base.</div>
+      <div class="exemplo"><span class="rotulo">Certo</span>
+      A pergunta é sobre o desfecho dentro de cada grupo de exposição, então o denominador é a
+      linha: 62% contra 81%.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: proporção e tabela cruzada</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">p = parte ÷ todo</span></p>
+      <p>Diferença entre duas porcentagens se escreve em pontos percentuais.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">pd.crosstab(dados["a"],
+            dados["b"],
+            normalize="index")</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"Entre os casos de <em>grupo</em>, <em>x</em>% apresentaram <em>desfecho</em>, contra
+      <em>y</em>% em <em>outro grupo</em>: <em>x−y</em> p.p."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Normalizar pela coluna quando a pergunta é sobre a linha, e confundir ponto percentual
+      com por cento.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, seção 2.3.2 (tipos de frequência) e seção 5.12 (tabela de contingência).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

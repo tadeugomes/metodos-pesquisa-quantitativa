@@ -5,25 +5,25 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 13 — Correlação de Pearson e regressão linear simples
+# Encontro 13: Correlação de Pearson e regressão linear simples
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
 1. Calcular e interpretar o **coeficiente de correlação de Pearson** (r) entre séries
    macroeconômicas do Banco Central (SGS);
-2. Comparar a correlação **contemporânea** com a **defasada** — e entender por que o tempo
+2. Comparar a correlação **contemporânea** com a **defasada**: e entender por que o tempo
    que separa causa e efeito importa;
 3. Construir uma **matriz de correlação** (mapa de calor) entre indicadores;
 4. Ajustar e interpretar uma **regressão linear simples** com `statsmodels` sobre dados da
-   CVM — receita e lucro das companhias abertas;
+   CVM, receita e lucro das companhias abertas;
 5. Interpretar **inclinação, significância, R²**, pressupostos e limites da análise;
 6. Levar o método ao **seu projeto**: o par de variáveis quantitativas da sua base."""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — A correlação de Pearson: o alinhamento entre duas séries
+## Seção 1. A correlação de Pearson: o alinhamento entre duas séries
 
-A correlação de Pearson mede **quão alinhada** uma variável está com a outra — se, quando
+A correlação de Pearson mede **quão alinhada** uma variável está com a outra, se, quando
 uma cresce, a outra tende a crescer (r > 0), decrescer (r < 0) ou não se move junto (r ≈ 0).
 O coeficiente varia de **−1 a +1** e é adimensional.
 
@@ -76,25 +76,25 @@ fig, ax = plt.subplots(figsize=(7, 5))
 ax.scatter(macro["selic"], macro["inad"], alpha=0.6)
 ax.set_xlabel("Meta Selic (% a.a.)")
 ax.set_ylabel("Inadimplência PJ (%)")
-ax.set_title("Selic × inadimplência — mesmo mês")
+ax.set_title("Selic × inadimplência, mesmo mês")
 plt.show()"""})
 
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: r ≈ 0,43 com p bem pequeno significa associação moderada e "
     "estatisticamente significativa. Mas olhe a dispersão: pontos espalhados em volta de um "
-    "padrão crescente — não uma reta perfeita. Correlação mede alinhamento, e alinhamento "
+    "padrão crescente, não uma reta perfeita. Correlação mede alinhamento, e alinhamento "
     "não é causa: reverter a pergunta (inadimplência alta causaria Selic alta?) também daria "
     "r positivo, porque Banco Central reage a inflação e crédito. O desenho da pesquisa é "
-    "quem decide a direção — dedução não sai do r.")})
+    "quem decide a direção, dedução não sai do r.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — A defasagem: o tempo entre causa e efeito
+## Seção 2. A defasagem: o tempo entre causa e efeito
 
 A política monetária não age no mesmo mês: **juros mais altos hoje pressionam custos
 financeiros e inadimplência daqui a alguns meses**. Por isso o pesquisador não compara só o
-mesmo mês — pode adiantar a variável de resposta no tempo (defasagem). Aqui testamos a Selic
+mesmo mês, pode adiantar a variável de resposta no tempo (defasagem). Aqui testamos a Selic
 de hoje contra a inadimplência **seis meses à frente**."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -144,16 +144,66 @@ print(matriz.round(2))"""})
 
 C.append({"tipo": "nota", "texto": (
     "Dica de estudo: a defasagem de 6 meses quase dobrou a força da associação (r ≈ 0,43 → "
-    "r ≈ 0,77) — o desenho temporal importa tanto quanto a estatística. Na matriz, veja o "
+    "r ≈ 0,77), o desenho temporal importa tanto quanto a estatística. Na matriz, veja o "
     "r ≈ −0,67 entre Selic e crescimento do crédito: sinal negativo e forte, como o manual "
     "de macro previa. E o r entre IPCA e Selic perto de zero deve ser lido com cuidado: "
     "efeitos da política monetária sobre a inflação levam mais de um mês para aparecer. "
-    "Correlação só compara o que foi medido — defasagens, recortes e critérios fazem parte "
+    "Correlação só compara o que foi medido, defasagens, recortes e critérios fazem parte "
     "de um modelo, e modelos são decisões do pesquisador a serem declaradas no relatório.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Regressão linear simples: prevendo o lucro pela receita (CVM)
+## Estatística do encontro: da covariância ao R²
+
+**As fórmulas.** A covariância multiplica os dois afastamentos de cada caso:
+`cov = Σ(x − x̄)(y − ȳ) / (n − 1)`. Quando os dois afastamentos têm o mesmo sinal, o produto é
+positivo, e a soma diz para que lado a nuvem se inclina. Dividindo pelo produto dos desvios
+padrão, chega-se a `r = cov / (s_x · s_y)`, que fica entre −1 e +1 e não depende da unidade.
+
+**Na regressão**, a reta `ŷ = a + b·x` é escolhida de modo a tornar a soma dos resíduos ao
+quadrado a menor possível, e `b = r · (s_y / s_x)`. O coeficiente de determinação é `R² = r²` em
+regressão simples: a proporção da variação de y que a reta explica."""})
+
+C.append({"tipo": "code", "texto": """\
+# a covariância e o r, calculados como a fórmula diz e pela função pronta
+x = macro["selic"].dropna()
+y = macro["inad"].dropna()
+x, y = x.align(y, join="inner")
+
+cov = ((x - x.mean()) * (y - y.mean())).sum() / (len(x) - 1)
+r_formula = cov / (x.std() * y.std())
+
+print(f"covariância:      {cov:.4f}")
+print(f"r pela fórmula:   {r_formula:.4f}")
+print(f"r pelo pandas:    {x.corr(y):.4f}")
+print(f"R² (r ao quadrado): {r_formula**2:.4f}")"""})
+
+C.append({"tipo": "md", "texto": """\
+Os dois valores de r coincidem: a função pronta faz exatamente a conta da fórmula. Guarde o R²: com
+r = 0,4, o modelo explicaria só 16% da variação. Correlação moderada explica pouco."""})
+
+C.append({"tipo": "code", "texto": """\
+# o efeito de um único valor extremo sobre o r
+import numpy as np
+
+x2 = pd.concat([x, pd.Series([x.max() * 3])], ignore_index=True)
+y2 = pd.concat([y, pd.Series([y.max() * 3])], ignore_index=True)
+
+print(f"r sem o ponto extremo: {x.corr(y):.3f}")
+print(f"r com um ponto extremo acrescentado: {x2.corr(y2):.3f}")"""})
+
+C.append({"tipo": "md", "texto": """\
+**Escreva a sua leitura.**
+
+*A correlação entre ______________ e ______________ é de ______, o que indica associação
+______________ (direção) e ______________ (força). O R² de ______ significa que ______% da
+variação de ______________ acompanha a variação de ______________.*
+
+*Acrescentar um único ponto extremo levou o r de ______ para ______, o que mostra que
+______________.*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 3. Regressão linear simples: prevendo o lucro pela receita (CVM)
 
 A correlação quantifica **quão alinhadas** duas variáveis estão; a **regressão linear**
 vai além e ajusta uma reta que **prediz Y a partir de X**:
@@ -165,7 +215,7 @@ $$Y = b_0 + b_1 \\cdot X + \\text{erro}$$
 * **erro (resíduo):** a parte de Y que a reta não explica.
 
 Carregue a base CVM do encontro 7 e use **transformação logarítmica** em receita e lucro
-(escala típica de dados empresariais — encontros 9 e 11):"""})
+(escala típica de dados empresariais, encontros 9 e 11):"""})
 
 C.append({"tipo": "code", "texto": """\
 def carrega_cvm():
@@ -184,7 +234,7 @@ print("Companhias analisadas:", len(cvm))"""})
 
 
 C.append({"tipo": "md", "texto": """\
-Ajuste a reta com `sm.OLS`. O `summary()` traz tudo — mas domine o essencial:
+Ajuste a reta com `sm.OLS`. O `summary()` traz tudo, mas domine o essencial:
 `coef`, `R-squared`, `F-statistic` e o `p-value`."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -209,18 +259,18 @@ C.append({"tipo": "nota", "texto": (
     "Dica de estudo: com log nos dois lados, a inclinação deixa de ser 'reais por real' e "
     "vira **elasticidade**: b₁ ≈ 0,84 significa que receita 1% maior acompanha, em média, "
     "lucro ~0,84% maior. R² ≈ 0,57 diz que a escala (tamanho) explica pouco mais da metade "
-    "da variação do lucro — o resto é modelagem? Não: é tudo aquilo que a reta não captura "
+    "da variação do lucro, o resto é modelagem? Não: é tudo aquilo que a reta não captura "
     "(eficiência, setor, alavancagem, ciclo). E lembre-se do encontro 11: R² alto não é "
     "causalidade, e extrapolar a reta para fora do intervalo observado é arriscado.")})
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Pressupostos e limites da análise
+## Seção 4: Pressupostos e limites da análise
 
 A regressão linear simples tem pressupostos. Dois deles são fáceis de checar aqui:
 
 1. **Linearidade** (observável no gráfico da Seção 3);
-2. **Resíduos com comportamento aleatório** — sem padrão sistemático.
+2. **Resíduos com comportamento aleatório**: sem padrão sistemático.
 
 Aqui vamos avaliar os resíduos com o teste de normalidade de **Jarque–Bera**. O resultado
 costuma rejeitar a normalidade em dados empresariais: há companhias com lucros (e prejuízos)
@@ -240,7 +290,7 @@ plt.show()"""})
 
 
 C.append({"tipo": "nota", "texto": (
-    "Dica de estudo: p < 0,05 no Jarque–Bera indica que os resíduos **não** são normais — "
+    "Dica de estudo: p < 0,05 no Jarque–Bera indica que os resíduos **não** são normais, "
     "nas caudas o lucro real foge muito do esperado. Em aulas introdutórias isso é um alerta "
     "a registrar, não o fim da análise: para o pesquisador quantitativo, o passo a seguir "
     "costuma ser robustez (amostras filtradas, transformações, regressões robustas). O que "
@@ -249,7 +299,7 @@ C.append({"tipo": "nota", "texto": (
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Levando ao seu projeto
+## Seção 5: Levando ao seu projeto
 
 A função abaixo condensa tudo em um par de linhas: chame-a com as **duas variáveis
 quantitativas** da base escolhida no seu projeto e interprete com o vocabulário da aula."""})
@@ -265,7 +315,7 @@ def correlacao_regressao(df, x, y):
     print(f"Regressão    : {y} = {reg.params[0]:.4f} + {reg.params[1]:.4f} × {x}")
     print(f"R²           : {reg.rsquared:.3f} | p(F) = {reg.f_pvalue:.2e}")
 
-# Adapte ao SEU projeto — exemplo com a base CVM:
+# Adapte ao SEU projeto. exemplo com a base CVM:
 correlacao_regressao(cvm, "log_receita", "log_lucro")
 
 # E com dados do seu projeto? Troque base, x e y:
@@ -275,7 +325,7 @@ correlacao_regressao(cvm, "log_receita", "log_lucro")
 
 
 C.append({"tipo": "nota", "texto": (
-    "Dica de estudo — relatório do projeto: 'Há associação significativa entre X e Y? "
+    "Dica de estudo, relatório do projeto: 'Há associação significativa entre X e Y? "
     "r = 0,77 (p < 0,001); na regressão, cada unidade de X se associa a b₁ de Y, e a reta "
     "explica R² da variação de Y. Limites: correlação não implica causalidade; pressupostos "
     "de normalidade dos resíduos foram avaliados; resultados não são extrapolados fora do "

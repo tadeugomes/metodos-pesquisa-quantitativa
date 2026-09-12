@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 13 · Unidade III</div>
   <h1>Correlação e regressão</h1>
@@ -239,6 +246,206 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 13</h2>
+  <p>Covariância, coeficiente de correlação, reta de mínimos quadrados e R²</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: da covariância ao coeficiente r</h2>
+
+  <p>Duas variáveis andam juntas quando os casos acima da média em uma tendem a estar acima da
+  média na outra. A <strong>covariância</strong> mede isso; o <strong>coeficiente r</strong> é a
+  covariância padronizada, para ficar entre −1 e +1.</p>
+  <div class="formula">
+    <span class="expr">cov<span class="op">=</span><span class="frac"><span class="cima">Σ(x − x̄)(y − ȳ)</span><span class="baixo">n − 1</span></span><span class="op">          </span>r<span class="op">=</span><span class="frac"><span class="cima">cov</span><span class="baixo">s<sub>x</sub> · s<sub>y</sub></span></span></span>
+    <span class="legenda-formula">Em linguagem corrente: multiplique os dois afastamentos de cada
+    caso. Quando os dois afastamentos têm o mesmo sinal, o produto é positivo; quando têm sinais
+    opostos, é negativo. A soma diz para que lado a nuvem se inclina.</span>
+  </div>
+  <p>Dividir pelo produto dos desvios padrão elimina as unidades. Por isso r não muda se você
+  trocar reais por milhares de reais, e por isso r é comparável entre estudos.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: a reta de mínimos quadrados</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 240" role="img" aria-label="Cinco pontos, a reta de mínimos quadrados e os resíduos de cada ponto">
+      <line x1="100" y1="205" x2="900" y2="205" stroke="#bbb" stroke-width="1.6"/>
+      <line x1="100" y1="26" x2="100" y2="205" stroke="#bbb" stroke-width="1.6"/>
+      <line x1="150.0" y1="170.1" x2="840.0" y2="32.7" stroke="#0AB0AB" stroke-width="3.2"/>
+      <line x1="195.0" y1="177.0" x2="195.0" y2="161.2" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
+      <circle cx="195.0" cy="177.0" r="8" fill="#8D0333"/>
+      <circle cx="195.0" cy="161.2" r="3.5" fill="#0AB0AB"/>
+      <line x1="345.0" y1="108.6" x2="345.0" y2="131.3" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
+      <circle cx="345.0" cy="108.6" r="8" fill="#8D0333"/>
+      <circle cx="345.0" cy="131.3" r="3.5" fill="#0AB0AB"/>
+      <line x1="495.0" y1="115.8" x2="495.0" y2="101.4" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
+      <circle cx="495.0" cy="115.8" r="8" fill="#8D0333"/>
+      <circle cx="495.0" cy="101.4" r="3.5" fill="#0AB0AB"/>
+      <line x1="645.0" y1="47.4" x2="645.0" y2="71.5" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
+      <circle cx="645.0" cy="47.4" r="8" fill="#8D0333"/>
+      <circle cx="645.0" cy="71.5" r="3.5" fill="#0AB0AB"/>
+      <line x1="795.0" y1="58.2" x2="795.0" y2="41.6" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
+      <circle cx="795.0" cy="58.2" r="8" fill="#8D0333"/>
+      <circle cx="795.0" cy="41.6" r="3.5" fill="#0AB0AB"/>
+      <text x="150" y="52" font-size="17" fill="#05635f" font-weight="700">A reta de mínimos quadrados</text>
+      <text x="150" y="74" font-size="15" fill="#555">é a que torna a soma dos resíduos</text>
+      <text x="150" y="94" font-size="15" fill="#555">ao quadrado a menor possível.</text>
+      <text x="410" y="150" font-size="15" fill="#c0392b">tracejado vermelho: o resíduo,</text>
+      <text x="410" y="170" font-size="15" fill="#c0392b">a distância entre o valor observado</text>
+      <text x="410" y="190" font-size="15" fill="#c0392b">e o previsto pela reta</text>
+      <text x="500" y="232" text-anchor="middle" font-size="16" fill="#777">x: gasto com propaganda    ·    y: faturamento</text>
+    </svg>
+  </div>
+
+  <div class="colunas">
+    <div>
+      <div class="formula">
+        <span class="expr" style="font-size:3.2vh">ŷ<span class="op">=</span>a<span class="op">+</span>b·x<span class="op">          </span>b<span class="op">=</span>r<span class="op">·</span><span class="frac"><span class="cima">s<sub>y</sub></span><span class="baixo">s<sub>x</sub></span></span></span>
+      </div>
+      <p><strong>Resíduo</strong> é a distância vertical entre o ponto observado e a reta: o que o
+      modelo errou naquele caso. O método dos mínimos quadrados escolhe a reta que torna a soma
+      desses erros, elevados ao quadrado, a menor possível.</p>
+    </div>
+    <div>
+      <div class="definicao"><span class="rotulo">Coeficiente de determinação</span>
+      <strong>R² = r²</strong> é a proporção da variação de y que a reta explica. R² de 0,64 quer
+      dizer que 64% da variação do faturamento acompanha a variação do gasto com propaganda, e que
+      36% vêm de outras coisas.</div>
+      <p class="menor">Em regressão simples, R² é literalmente o r ao quadrado. Com r = 0,8, R² é
+      0,64; com r = 0,4, R² cai para 0,16. Correlação moderada explica pouco.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <pre class="codigo"><span class="cmt"># 1. correlação entre duas variáveis, e a matriz de todas</span>
+painel[<span class="str">"selic"</span>].<span class="fn">corr</span>(painel[<span class="str">"inadimplencia_pj"</span>]).<span class="fn">round</span>(3)
+painel.<span class="fn">corr</span>().<span class="fn">round</span>(2)
+
+<span class="cmt"># 2. a regressão, com statsmodels (traz o relatório completo)</span>
+<span class="fn">import</span> statsmodels.formula.api <span class="fn">as</span> smf
+
+modelo = smf.<span class="fn">ols</span>(<span class="str">"lucro ~ receita"</span>, data=base).<span class="fn">fit</span>()
+<span class="fn">print</span>(modelo.<span class="fn">summary</span>())
+
+<span class="cmt"># 3. os pedaços que interessam, isolados</span>
+<span class="fn">print</span>(<span class="str">"intercepto:"</span>, modelo.params[<span class="str">"Intercept"</span>].<span class="fn">round</span>(3))
+<span class="fn">print</span>(<span class="str">"inclinação:"</span>, modelo.params[<span class="str">"receita"</span>].<span class="fn">round</span>(3))
+<span class="fn">print</span>(<span class="str">"R²:"</span>, <span class="fn">round</span>(modelo.rsquared, 3), <span class="str">"| p da inclinação:"</span>, <span class="fn">round</span>(modelo.pvalues[<span class="str">"receita"</span>], 4))</pre>
+  <div class="exemplo"><span class="rotulo">A transformação que salva dados empresariais</span>
+  Receita e lucro têm cauda longa. Com <code>"np.log(lucro) ~ np.log(receita)"</code>, a
+  inclinação passa a ser lida como <strong>elasticidade</strong>: 1% a mais de receita associa-se
+  a b% a mais de lucro. É a forma usual de relatar em economia e finanças.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê o resultado</h2>
+
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "Há associação positiva e forte entre receita e lucro líquido (<strong>r = 0,81</strong>). A
+  regressão estima que cada R$ 1 milhão a mais de receita corresponde a
+  <strong>R$ 92 mil</strong> a mais de lucro (b = 0,092; p &lt; 0,001), e o modelo explica
+  <strong>66% da variação</strong> do lucro (R² = 0,66)."</div>
+  <div class="colunas">
+    <div>
+      <h3>Os quatro números que se relatam</h3>
+      <ul>
+        <li><strong>r</strong>: direção e força da associação;</li>
+        <li><strong>b</strong>: o quanto y muda quando x aumenta uma unidade, na unidade original;</li>
+        <li><strong>p</strong> da inclinação: se b é distinguível de zero;</li>
+        <li><strong>R²</strong>: quanto da variação o modelo explica.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>A frase que nunca aparece</h3>
+      <div class="alerta"><span class="rotulo">Proibido</span>
+      "A regressão mostra que o gasto com propaganda <strong>causa</strong> aumento de
+      faturamento."</div>
+      <p>Regressão é uma reta ajustada a dados observacionais. Ela descreve como as duas variáveis
+      se movem juntas. Causa exige delineamento, que é o conteúdo do encontro 2: sorteio,
+      intervenção ou controle explícito das alternativas.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Os erros comuns com correlação e regressão</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Erro 1: r alto com relação não linear</span>
+      O coeficiente r mede alinhamento <strong>reto</strong>. Uma relação em U forte pode dar r
+      próximo de zero. Sempre olhe o gráfico de dispersão antes de acreditar no número.</div>
+      <div class="alerta"><span class="rotulo">Erro 2: um extremo fabrica a correlação</span>
+      Um único ponto muito afastado pode levar r de 0,1 a 0,8. Rode a correlação com e sem o
+      ponto e relate os dois valores.</div>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">Erro 3: extrapolar fora do intervalo</span>
+      A reta foi ajustada a receitas entre R$ 1 milhão e R$ 5 bilhões. Usá-la para prever o lucro
+      de uma empresa de R$ 50 bilhões é aplicar o modelo onde não há dado.</div>
+      <div class="alerta"><span class="rotulo">Erro 4: R² alto como prova</span>
+      R² mede ajuste, não verdade. Duas séries temporais que só crescem no tempo dão R² altíssimo
+      sem qualquer relação entre elas. É a correlação espúria, e o remédio é teoria, não
+      estatística.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: correlação e regressão</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">r = cov ÷ (s<sub>x</sub> · s<sub>y</sub>)</span></p>
+      <p>ŷ = a + b·x, com b = r·(s<sub>y</sub>÷s<sub>x</sub>); R² = r² em regressão simples.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">painel.corr().round(2)
+import statsmodels.formula.api as smf
+smf.ols("y ~ x", data=d).fit()</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"r = _; cada unidade a mais de x corresponde a <em>b</em> a mais de y (p = _); o modelo
+      explica _% da variação."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Confiar em r sem olhar o gráfico, extrapolar fora do intervalo e ler R² alto como prova
+      de causa.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Silva e Samá (2021), <em>Estatística</em>,
+  volume II, capítulo 9: regressão linear simples, método dos mínimos quadrados, análise de
+  correlação e coeficiente de determinação.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

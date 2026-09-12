@@ -5,12 +5,12 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 7 — Registros documentais e ética em pesquisa
+# Encontro 7: Registros documentais e ética em pesquisa
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
-1. Importar as **demonstrações financeiras** que as companhias abertas depositam na CVM —
+1. Importar as **demonstrações financeiras** que as companhias abertas depositam na CVM,
 o exemplo perfeito de **registro documental** como dado quantitativo;
 2. Transformar contas contábeis em **variáveis de pesquisa** (receita, lucro, margem);
 3. Discutir os **limites** dessa fonte documental;
@@ -18,13 +18,13 @@ o exemplo perfeito de **registro documental** como dado quantitativo;
 5. Registrar as implicações **éticas** do seu projeto."""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — A fonte: dados abertos da CVM
+## Seção 1. A fonte: dados abertos da CVM
 
 Companhias abertas são obrigadas a publicar suas **Demonstrações Financeiras Padronizadas
 (DFP)**, e a CVM as disponibiliza em dados abertos. Vamos baixar o pacote de 2024 e ler a
 **DRE consolidada** (Demonstração do Resultado do Exercício).
 
-Repare na natureza do dado: ninguém respondeu questionário — as empresas **produziram
+Repare na natureza do dado: ninguém respondeu questionário, as empresas **produziram
 esses registros** no seu funcionamento, sob norma contábil que os padroniza. É isso que
 faz do documento um dado de pesquisa: **padronização + acesso + documentação**.
 
@@ -48,7 +48,7 @@ dre[["DENOM_CIA", "CD_CONTA", "DS_CONTA", "VL_CONTA"]].head(8)"""})
 
 C.append({"tipo": "md", "texto": """\
 Cada linha é **uma conta contábil de uma companhia**. As contas seguem um plano
-padronizado — e é pelo **código da conta**, não pelo nome, que filtramos:
+padronizado, e é pelo **código da conta**, não pelo nome, que filtramos:
 
 | Código | Conta |
 |---|---|
@@ -89,7 +89,7 @@ print("Companhias com receita e lucro:", len(base))
 base.head()"""})
 
 C.append({"tipo": "md", "texto": """\
-Falta o **setor** — que está em outro documento: o cadastro de companhias da CVM. Juntar
+Falta o **setor**: que está em outro documento: o cadastro de companhias da CVM. Juntar
 dois registros documentais por uma chave comum (o código CVM) é operação típica dessa
 técnica de coleta."""})
 
@@ -98,7 +98,7 @@ url_cad = "https://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.cs
 cadastro_cvm = pd.read_csv(url_cad, sep=";", encoding="latin-1", dtype=str)
 cadastro_cvm = cadastro_cvm[cadastro_cvm["SIT"] == "ATIVO"][["CD_CVM", "SETOR_ATIV"]]
 
-# O código CVM aparece com formatações diferentes nos dois arquivos — padronizamos:
+# O código CVM aparece com formatações diferentes nos dois arquivos. padronizamos:
 base["chave"] = base["CD_CVM"].astype(float).astype(int)
 cadastro_cvm["chave"] = cadastro_cvm["CD_CVM"].astype(float).astype(int)
 
@@ -108,7 +108,7 @@ print("Com setor:", base.shape)
 base.head()"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se as células de download falharem (upload de
+**Célula de contingência**: execute apenas se as células de download falharem (upload de
 `dados/cvm_dre_2024.csv` no Colab). Ela entrega a mesma base final já construída."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -123,11 +123,11 @@ if "base" not in dir():
 C.append({"tipo": "nota", "texto": (
     "~20 min até aqui (o download consome parte). A lição metodológica: dado documental "
     "exige conhecer a gramática do documento (plano de contas, chaves de junção, escala em "
-    "milhares) — é essa gramática que garante comparabilidade entre empresas. Se o download "
+    "milhares), é essa gramática que garante comparabilidade entre empresas. Se o download "
     "estiver lento, use direto a célula de contingência.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Da conta contábil à variável de pesquisa
+## Seção 2: Da conta contábil à variável de pesquisa
 
 A **margem líquida** (lucro ÷ receita) é uma operacionalização clássica de "desempenho"
 sobre registro documental. Crie a variável e explore por setor:"""})
@@ -161,19 +161,76 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(9, 5))
 plt.barh(margens_setor.index[::-1], margens_setor["margem_mediana"][::-1] * 100)
 plt.xlabel("Margem líquida mediana (%)")
-plt.title("Margem líquida mediana por setor — companhias abertas, DFP 2024")
+plt.title("Margem líquida mediana por setor, companhias abertas, DFP 2024")
 plt.axvline(0, linewidth=0.8, color="black")
 plt.tight_layout()
 plt.show()"""})
 
 C.append({"tipo": "nota", "texto": (
     "Dois pontos de leitura: usamos a MEDIANA (não a média) porque margens têm valores "
-    "extremos — gancho para o encontro 9; e margens negativas (prejuízo) são dado, não "
+    "extremos, gancho para o encontro 9; e margens negativas (prejuízo) são dado, não "
     "erro. Pergunte-se por que o código filtra setores com n >= 8 antes de comparar "
     "medianas.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Limites do registro documental
+## Estatística do encontro: probabilidade
+
+**As fórmulas.** A probabilidade estimada a partir de dados é a frequência relativa observada:
+`P(A) = n_A / n`. A probabilidade condicional é `P(A|B) = P(A e B) / P(B)`, ou, na tabela, a célula
+dividida pelo total da linha do condicionante.
+
+**Por que isso importa aqui.** A frequência relativa que você calcula numa base é uma estimativa de
+probabilidade. É essa ponte que autoriza a inferência da Unidade III. E, no encontro de hoje, é
+também o que mede o risco de reidentificação numa base que se pretende anônima."""})
+
+C.append({"tipo": "code", "texto": """\
+# a variável de interesse: a empresa teve prejuízo no exercício?
+base["resultado"] = (base["lucro_liquido"] < 0).map({True: "prejuizo", False: "lucro"})
+
+# P(resultado): a probabilidade marginal, ignorando o setor
+base["resultado"].value_counts(normalize=True).round(3)"""})
+
+C.append({"tipo": "code", "texto": """\
+# P(setor e resultado): a tabela de probabilidades conjuntas
+pd.crosstab(base["setor"], base["resultado"], normalize="all").round(3).head(10)"""})
+
+C.append({"tipo": "code", "texto": """\
+# P(resultado | setor): a condicional, dividindo pelo total da LINHA
+condicional = pd.crosstab(base["setor"], base["resultado"], normalize="index").round(3)
+condicional = condicional.sort_values("prejuizo", ascending=False)
+condicional.head(10)"""})
+
+C.append({"tipo": "md", "texto": """\
+Compare a primeira coluna da tabela acima com a probabilidade marginal de prejuízo. Onde a
+condicional se afasta bastante da marginal, setor e resultado **não são independentes**. O teste
+qui-quadrado, no encontro 11, avalia formalmente se esse afastamento é maior do que o acaso
+produziria.
+
+**Agora a aplicação ética.** Uma base é reidentificável quando poucas linhas compartilham a mesma
+combinação de características."""})
+
+C.append({"tipo": "code", "texto": """\
+# quantas empresas há em cada setor? células pequenas são o risco
+tamanho = base["setor"].value_counts()
+
+print("Setores com menos de 5 empresas na base:")
+print(tamanho[tamanho < 5])
+print()
+print("Se um setor tem k empresas, a chance de identificar a certa é 1/k.")
+print("Com k = 2, a probabilidade é 0,5; com k = 1, é 1.")"""})
+
+C.append({"tipo": "md", "texto": """\
+**Escreva a sua leitura, e a decisão ética.**
+
+*A probabilidade estimada de prejuízo no conjunto é de ______. Entre as empresas do setor
+______________, é de ______, a maior da base.*
+
+*Há ______ setores com menos de cinco empresas. Antes de divulgar a tabela por setor, a decisão
+seria ______________ (agregar em "Outros"? suprimir? divulgar assim mesmo?), porque
+______________.*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 3: Limites do registro documental
 
 Responda por escrito, editando esta célula:
 
@@ -182,7 +239,7 @@ empresas brasileiras do CEMPRE, quantas são companhias abertas?)
 
 *Sua resposta:*
 
-**2.** Para quais perguntas de pesquisa esta base é **adequada** — e para quais seria
+**2.** Para quais perguntas de pesquisa esta base é **adequada**: e para quais seria
 **enganosa**? Dê um exemplo de cada.
 
 *Sua resposta:*
@@ -193,7 +250,7 @@ ao comparar setores com dados contábeis?
 *Sua resposta:*"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Pré-teste do seu questionário
+## Seção 4: Pré-teste do seu questionário
 
 Compartilhe o link do seu questionário revisado com 3 a 5 colegas e responda aos deles.
 Depois, importe as respostas:
@@ -214,7 +271,7 @@ if os.path.exists(arquivo_respostas):
     for c in respostas.columns:
         print(" -", c[:80])
 else:
-    print("Arquivo não encontrado — faça o upload do CSV e reexecute esta célula.")"""})
+    print("Arquivo não encontrado, faça o upload do CSV e reexecute esta célula.")"""})
 
 C.append({"tipo": "code", "texto": """\
 # Diagnóstico simples do pré-teste: distribuição de respostas por pergunta fechada
@@ -239,13 +296,13 @@ C.append({"tipo": "md", "texto": """\
 *Sua resposta:*"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Ética: o registro do seu projeto
+## Seção 5. Ética: o registro do seu projeto
 
 Responda por escrito, editando esta célula:
 
 **1.** Seu projeto individual usa dados públicos e agregados (IBGE, BCB, CVM). Explique
 por que ele se enquadra nas situações que a Resolução CNS nº 510/2016 dispensa de registro
-em CEP — e cite **dois deveres éticos** que permanecem mesmo assim.
+em CEP, e cite **dois deveres éticos** que permanecem mesmo assim.
 
 *Sua resposta:*
 
@@ -269,6 +326,6 @@ notebook) e entrega da primeira etapa do projeto;
 3. **Revisão:** as sínteses teóricas ao final dos slides dos encontros 1 a 7 são o mapa;
 reexecutar os notebooks é a revisão ativa;
 4. **Projeto:** conclua problema, hipóteses, variáveis (com níveis), base escolhida e
-matriz de amarração — entrega ao final da prova."""})
+matriz de amarração, entrega ao final da prova."""})
 
 gera_notebooks(7, C)

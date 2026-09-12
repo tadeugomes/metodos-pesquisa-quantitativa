@@ -5,9 +5,9 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 6 — Escalas, validade e confiabilidade
+# Encontro 6: Escalas, validade e confiabilidade
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Neste notebook você vai:
 1. Explorar as respostas de 200 gestores a uma escala Likert de **satisfação com
@@ -16,11 +16,11 @@ fornecedores** (8 itens);
 3. Diagnosticar e corrigir **dois itens defeituosos** escondidos na escala;
 4. Levar o método para o seu questionário do Google Formulários.
 
-Os dados são **simulados com semente fixa** — como no encontro 5, isso nos permite saber
+Os dados são **simulados com semente fixa**: como no encontro 5, isso nos permite saber
 onde estão os defeitos e verificar se o diagnóstico os encontra."""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — Conhecendo a escala
+## Seção 1: Conhecendo a escala
 
 Um construto ("satisfação com o fornecedor") não se mede com uma pergunta: mede-se com um
 **conjunto de itens** que, somados, formam o escore da escala. Os 8 itens abaixo foram
@@ -71,11 +71,50 @@ dados.describe().round(2)"""})
 C.append({"tipo": "nota", "texto": (
     "Os defeitos plantados na escala: q5 é item negativo NÃO recodificado (correlaciona "
     "negativamente com os demais) e q8 não pertence ao construto (distância da sede não é "
-    "satisfação). A graça é descobrir isso pelo diagnóstico das Seções 2 e 3 — execute os "
+    "satisfação). A graça é descobrir isso pelo diagnóstico das Seções 2 e 3, execute os "
     "códigos na ordem e anote a sua suspeita antes de seguir.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — O alfa de Cronbach
+## Estatística do encontro: a correlação entre itens
+
+**A ideia.** O alfa é, no fundo, a média das correlações entre os itens, ajustada pelo número de
+itens. Antes de calcular o alfa, que é um número só, vale olhar a **matriz de correlação**, que
+mostra qual item está fora do lugar.
+
+**Como se lê uma matriz de correlação.** Cada célula é a correlação entre dois itens, de -1 a +1.
+A diagonal é sempre 1 (todo item é perfeitamente correlacionado consigo mesmo). Itens do mesmo
+construto costumam ficar entre 0,3 e 0,7 entre si."""})
+
+C.append({"tipo": "code", "texto": """\
+correlacoes = dados.corr().round(2)
+correlacoes"""})
+
+C.append({"tipo": "code", "texto": """\
+# a correlação média de cada item com os demais: o diagnóstico em uma coluna
+import numpy as np
+
+sem_diagonal = correlacoes.where(~np.eye(len(correlacoes), dtype=bool))
+media_corr = sem_diagonal.mean().sort_values()
+
+print("Correlação média de cada item com os demais:")
+print(media_corr.round(2))"""})
+
+C.append({"tipo": "md", "texto": """\
+**O que procurar.** Item com correlação média **próxima de zero** não pertence ao construto. Item
+com correlação média **negativa** está invertido: é uma pergunta formulada no negativo que não foi
+recodificada.
+
+Os dois itens problemáticos desta escala aparecem no fim da lista acima. Guarde quais são: a
+Seção 3 vai tratá-los.
+
+**Escreva a sua leitura.**
+
+*O item ______________ tem correlação média de ______ com os demais, o que indica
+______________. O item ______________ tem correlação ______________, o que indica
+______________.*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 2: O alfa de Cronbach
 
 O alfa mede a **consistência interna**: o quanto os itens "andam juntos". A fórmula:
 
@@ -109,7 +148,7 @@ O alfa saiu **abaixo do aceitável**. Escala ruim? Calma: antes de descartar, um
 pesquisador **diagnostica os itens**. É o que faremos agora."""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — Diagnóstico de itens
+## Seção 3: Diagnóstico de itens
 
 Duas ferramentas:
 1. **Correlação item-total**: quanto cada item se correlaciona com o escore da escala.
@@ -139,10 +178,10 @@ C.append({"tipo": "md", "texto": """\
 Leia a tabela e identifique os dois suspeitos. Depois, os dois tratamentos:
 
 - **q5_atrasos** tem correlação **negativa**: é o item negativo que ninguém recodificou.
-Quem está satisfeito **discorda** de "atrasa com frequência". O conteúdo é válido — basta
+Quem está satisfeito **discorda** de "atrasa com frequência". O conteúdo é válido, basta
 **recodificar**: valor novo = 6 − valor antigo;
 - **q8_distancia_sede** tem correlação **próxima de zero**: distância não é satisfação.
-Aqui não há conserto — o item **sai da escala**."""})
+Aqui não há conserto, o item **sai da escala**."""})
 
 C.append({"tipo": "code", "aluno": """\
 dados_corrigidos = dados.copy()
@@ -170,10 +209,10 @@ C.append({"tipo": "nota", "texto": (
     "O arco desta seção é o método em miniatura: calcular → diagnosticar → corrigir → "
     "documentar. Com os dados desta semente, o alfa parte de 0,49 e termina em 0,84. E "
     "registre: num relatório real, a recodificação de q5 e a exclusão de q8 seriam "
-    "declaradas com justificativa — nunca feitas em silêncio.")})
+    "declaradas com justificativa, nunca feitas em silêncio.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Perguntas de interpretação
+## Seção 4: Perguntas de interpretação
 
 Responda por escrito, editando esta célula:
 
@@ -194,7 +233,7 @@ com itens redundantes é má prática, mesmo melhorando o alfa?
 *Sua resposta:*"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 5 — Seu questionário no Google Formulários
+## Seção 5: Seu questionário no Google Formulários
 
 Agora aplique a teoria: construa **individualmente** um questionário (8 a 12 perguntas)
 para o cenário que o professor sortear.
@@ -226,7 +265,7 @@ C.append({"tipo": "md", "texto": """\
 1. Salve e compartilhe o link do notebook **e** o link do seu questionário;
 2. **Tarefa 1:** incorporar as críticas recebidas ao questionário (ele será pré-testado no
 próximo encontro, com as respostas importadas para o Colab);
-3. **Tarefa 2:** ler o material indicado sobre ética em pesquisa — Resoluções CNS
+3. **Tarefa 2:** ler o material indicado sobre ética em pesquisa, Resoluções CNS
 nº 466/2012 e nº 510/2016, com atenção ao TCLE."""})
 
 gera_notebooks(6, C)

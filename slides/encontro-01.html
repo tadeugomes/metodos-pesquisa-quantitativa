@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 1 · Unidade I</div>
   <h1>Introdução à pesquisa quantitativa</h1>
@@ -394,6 +401,199 @@
      responderão <strong>com dados</strong> o que hoje respondem com impressões.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 1</h2>
+  <p>Contar e transformar contagem em porcentagem: a tabela de frequência</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: frequência absoluta, relativa e porcentagem</h2>
+
+  <div class="definicao"><span class="rotulo">Definição</span>
+  A <strong>tabela de frequência</strong> resume uma variável qualitativa contando quantos casos
+  caem em cada categoria. A contagem bruta é a frequência absoluta; dividida pelo total, vira
+  frequência relativa; multiplicada por 100, vira porcentagem.</div>
+  <div class="formula">
+    <span class="expr">f<sub>i</sub><span class="op">=</span><span class="frac"><span class="cima">n<sub>i</sub></span><span class="baixo">n</span></span><span class="op">        </span>%<sub>i</sub><span class="op">=</span>f<sub>i</sub><span class="op">×</span>100</span>
+    <span class="simbolos">
+      <span><b>n<sub>i</sub></b>casos na categoria i</span>
+      <span><b>n</b>total de casos</span>
+      <span><b>f<sub>i</sub></b>frequência relativa (entre 0 e 1)</span>
+    </span>
+    <span class="legenda-formula">Em linguagem corrente: conte quantos são de cada tipo e divida
+    pelo total. A soma de todas as frequências relativas é sempre 1, e a das porcentagens é
+    sempre 100.</span>
+  </div>
+  <p>Parece elementar, e é. Mas é a operação mais usada em pesquisa aplicada, e a que mais
+  produz erro, porque tudo depende de <strong>qual número foi para o denominador</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: um exemplo resolvido</h2>
+
+  <p>Vinte empresas de um município, classificadas por seção CNAE. A coluna n<sub>i</sub> é a
+  contagem; as demais saem dela.</p>
+  <div class="colunas">
+    <div>
+      <table>
+        <tr><th>Seção CNAE</th><th>n<sub>i</sub></th><th>f<sub>i</sub></th><th>%</th></tr>
+        <tr><td>Comércio</td><td>9</td><td>9 ÷ 20 = 0,45</td><td>45%</td></tr>
+        <tr><td>Serviços</td><td>6</td><td>6 ÷ 20 = 0,30</td><td>30%</td></tr>
+        <tr><td>Indústria</td><td>3</td><td>3 ÷ 20 = 0,15</td><td>15%</td></tr>
+        <tr><td>Construção</td><td>2</td><td>2 ÷ 20 = 0,10</td><td>10%</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>20</strong></td><td><strong>1,00</strong></td><td><strong>100%</strong></td></tr>
+      </table>
+      <p class="menor">Confira sempre a linha do total: se a soma não fecha em 100%, ou há
+      categoria faltando, ou o denominador está errado, ou é arredondamento (e aí a diferença é
+      de 0,1 ponto, não de 5).</p>
+    </div>
+    <div>
+      <div class="figura">
+        <svg viewBox="0 0 420 250" role="img" aria-label="Gráfico de barras das quatro seções CNAE">
+          <line x1="150" y1="16" x2="150" y2="216" stroke="#bbb" stroke-width="1.6"/>
+          <rect x="152" y="24" width="234" height="34" fill="#8D0333"/>
+          <text x="144" y="47" text-anchor="end" font-size="16" fill="#333">Comércio</text>
+          <text x="394" y="47" font-size="16" fill="#8D0333" font-weight="700">45%</text>
+          <rect x="152" y="74" width="156" height="34" fill="#8D0333" opacity="0.82"/>
+          <text x="144" y="97" text-anchor="end" font-size="16" fill="#333">Serviços</text>
+          <text x="316" y="97" font-size="16" fill="#8D0333" font-weight="700">30%</text>
+          <rect x="152" y="124" width="78" height="34" fill="#8D0333" opacity="0.64"/>
+          <text x="144" y="147" text-anchor="end" font-size="16" fill="#333">Indústria</text>
+          <text x="238" y="147" font-size="16" fill="#8D0333" font-weight="700">15%</text>
+          <rect x="152" y="174" width="52" height="34" fill="#8D0333" opacity="0.46"/>
+          <text x="144" y="197" text-anchor="end" font-size="16" fill="#333">Construção</text>
+          <text x="212" y="197" font-size="16" fill="#8D0333" font-weight="700">10%</text>
+          <text x="270" y="240" text-anchor="middle" font-size="15" fill="#777">O gráfico de barras é a tabela desenhada.</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <p>Uma única função do pandas faz a tabela inteira: <code>value_counts()</code>. O argumento
+  <code>normalize</code> é o que troca contagem por proporção.</p>
+  <pre class="codigo"><span class="cmt"># 1. frequência absoluta: quantas empresas em cada seção</span>
+dados[<span class="str">"secao_cnae"</span>].<span class="fn">value_counts</span>()
+
+<span class="cmt"># 2. frequência relativa: a mesma contagem dividida pelo total</span>
+dados[<span class="str">"secao_cnae"</span>].<span class="fn">value_counts</span>(normalize=<span class="fn">True</span>)
+
+<span class="cmt"># 3. porcentagem com uma casa decimal, pronta para a tabela do relatório</span>
+(dados[<span class="str">"secao_cnae"</span>].<span class="fn">value_counts</span>(normalize=<span class="fn">True</span>) * 100).<span class="fn">round</span>(1)</pre>
+  <table>
+    <tr><th>Argumento</th><th>O que faz</th><th>Quando usar</th></tr>
+    <tr><td><code>normalize=True</code></td><td>Divide cada contagem pelo total</td><td>Sempre que a resposta for um percentual</td></tr>
+    <tr><td><code>dropna=False</code></td><td>Conta também os valores ausentes</td><td>Para saber quantos casos estão sem informação</td></tr>
+    <tr><td><code>sort=False</code></td><td>Mantém a ordem original das categorias</td><td>Em variável ordinal, onde a ordem tem significado</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê o resultado</h2>
+
+  <p>O número sozinho não é resultado de pesquisa. O resultado é a frase, e a frase tem sempre
+  três partes: <strong>quanto</strong>, <strong>de quê</strong> e <strong>entre quem</strong>.</p>
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "Entre as 20 empresas do município, <strong>45%</strong> (9 empresas) pertencem ao
+  <strong>comércio</strong>, que é a seção mais frequente. Indústria e construção somam 25%."</div>
+  <div class="colunas">
+    <div>
+      <h3>O que a frase precisa ter</h3>
+      <ul>
+        <li>O percentual <strong>e</strong> a contagem entre parênteses, porque 45% de 20 e 45%
+        de 20 mil são coisas muito diferentes;</li>
+        <li>O total que serviu de denominador, explícito;</li>
+        <li>A categoria nomeada, não o código.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>A ponte com o encontro de hoje</h3>
+      <p>Sistematização, a segunda característica da pesquisa quantitativa, é exatamente isto: a
+      tabela de frequência substitui a impressão pessoal. "Tem muita loja nesta cidade" vira "45%
+      das empresas formais são do comércio", e a segunda frase pode ser conferida por qualquer
+      pessoa que abra a mesma base.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O erro comum: trocar o denominador</h2>
+
+  <p>O mesmo conjunto de dados produz percentuais diferentes conforme o total escolhido. Isso não
+  é erro de conta, é erro de pergunta.</p>
+  <table>
+    <tr><th></th><th>Comércio</th><th>Serviços</th><th>Total da linha</th></tr>
+    <tr><td><strong>Microempresas</strong></td><td>60</td><td>40</td><td>100</td></tr>
+    <tr><td><strong>Pequenas</strong></td><td>30</td><td>70</td><td>100</td></tr>
+    <tr><td><strong>Total da coluna</strong></td><td>90</td><td>110</td><td>200</td></tr>
+  </table>
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Três frases, três denominadores</span>
+      "60 das 200 empresas são microempresas de comércio" usa o total geral: 30%.<br>
+      "60 das 100 microempresas são de comércio" usa o total da linha: 60%.<br>
+      "60 das 90 empresas de comércio são microempresas" usa o total da coluna: 67%.</div>
+    </div>
+    <div>
+      <p>As três estão certas, e respondem a perguntas diferentes. O erro é escrever uma e
+      pensar na outra, o que acontece o tempo todo em relatórios de gestão.</p>
+      <p><strong>A regra prática:</strong> antes de dividir, diga em voz de pergunta qual é o
+      grupo de referência. "Entre quem?" A resposta é o denominador.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: frequência e porcentagem</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">f<sub>i</sub> = n<sub>i</sub> ÷ n</span></p>
+      <p>Porcentagem é a mesma coisa multiplicada por 100. A soma fecha em 100%.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">dados["col"].value_counts()
+dados["col"].value_counts(
+    normalize=True)</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"Entre as <em>n</em> empresas, <em>x</em>% (<em>n<sub>i</sub></em> casos) pertencem
+      a <em>categoria</em>."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Trocar o denominador. Antes de dividir, pergunte "entre quem?" e use esse total.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, seções 2.1 e 2.2.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

@@ -1,4 +1,4 @@
-# Encontro 13 — Correlação de Pearson e regressão linear simples
+# Encontro 13. Correlação de Pearson e regressão linear simples
 
 ## 1. Identificação
 
@@ -19,33 +19,61 @@ Ao final do encontro, o estudante deverá ser capaz de: (i) calcular e interpret
 | Bloco | Duração | Atividade |
 |---|---|---|
 | 1 | 15 min | Retomada: da inferência (encontro 11) à relação entre duas variáveis |
-| 2 | 85 min | Exposição dialogada: correlação de Pearson; defasagem e decisões temporais; regressão linear simples |
+| 2 | 60 min | Exposição dialogada: correlação de Pearson; defasagem e decisões temporais; regressão linear simples |
 | 3 | 15 min | Intervalo |
-| 4 | 85 min | Prática no Colab: correlação e matriz/heatmap no SGS; regressão na base CVM; pressupostos e limites |
-| 5 | 30 min | Aplicação à base do projeto individual |
-| 6 | 10 min | Síntese e tarefa |
+| 4 | **45 min** | **Bloco de estatística: covariância, r, mínimos quadrados e R²** (seção 4.E) |
+| 5 | 75 min | Prática no Colab: correlação e matriz no SGS; regressão na base CVM; pressupostos |
+| 6 | 25 min | Aplicação à base do projeto individual |
+| 7 | 5 min | Síntese e tarefa |
 
 ## 4. Conteúdo expositivo desenvolvido
 
 ### Bloco 1 – Retomada (15 min)
 
-Recuperar o vocabulário do encontro 11: sabemos inferir sobre uma variável (IC e testes de hipóteses). A pergunta de hoje é relacional: **duas variáveis quantitativas andam juntas?** Anunciar o objetivo — dominar não apenas a conta do r e da reta, mas as leituras e limites que o relatório de pesquisa exige: correlação não é causalidade; defasagem é decisão de pesquisa; R² alto não é explicação.
+Recuperar o vocabulário do encontro 11: sabemos inferir sobre uma variável (IC e testes de hipóteses). A pergunta de hoje é relacional: **duas variáveis quantitativas andam juntas?** Anunciar o objetivo, dominar não apenas a conta do r e da reta, mas as leituras e limites que o relatório de pesquisa exige: correlação não é causalidade; defasagem é decisão de pesquisa; R² alto não é explicação.
 
-### Bloco 2 – A correlação de Pearson (30 min)
+### Bloco 2 – A correlação de Pearson (25 min)
 
-O coeficiente de correlação de Pearson (r) mede **quão alinhadas** duas variáveis quantitativas estão: se, quando X cresce, Y tende a crescer (r > 0), decrescer (r < 0) ou flutuar sem direção (r ≈ 0). Varia de −1 a +1, é adimensional e independe da escala das variáveis. Apresentar a fórmula de forma qualitativa (covariância padronizada: como X e Y variam juntas, dividido pelo produto dos desvios) e enfatizar quatro limites: (1) r é sensível a extremos — um ponto gigante pode fabricar ou esconder associação; (2) r mede associação **linear**; (3) r é **simétrico** (r(X,Y) = r(Y,X)) — não diz qual variável causa qual; (4) r próximo de zero não significa independência — a relação pode ser não linear. Ilustrar com a dispersão contemporânea Selic × inadimplência (r ≈ 0,43, significativo): associação moderada, mas o desenho da pesquisa é quem decide a direção — se o Banco Central reage a inflação e juros e inadimplência se movem juntos, não é a estatística que diz o que causa o quê.
+O coeficiente de correlação de Pearson (r) mede **quão alinhadas** duas variáveis quantitativas estão: se, quando X cresce, Y tende a crescer (r > 0), decrescer (r < 0) ou flutuar sem direção (r ≈ 0). Varia de −1 a +1, é adimensional e independe da escala das variáveis. Apresentar a fórmula de forma qualitativa (covariância padronizada: como X e Y variam juntas, dividido pelo produto dos desvios) e enfatizar quatro limites: (1) r é sensível a extremos, um ponto gigante pode fabricar ou esconder associação; (2) r mede associação **linear**; (3) r é **simétrico** (r(X,Y) = r(Y,X)), não diz qual variável causa qual; (4) r próximo de zero não significa independência, a relação pode ser não linear. Ilustrar com a dispersão contemporânea Selic × inadimplência (r ≈ 0,43, significativo): associação moderada, mas o desenho da pesquisa é quem decide a direção, se o Banco Central reage a inflação e juros e inadimplência se movem juntos, não é a estatística que diz o que causa o quê.
 
-### Bloco 2 – A defasagem: o tempo entre causa e efeito (20 min)
+### Bloco 2 – A defasagem: o tempo entre causa e efeito (15 min)
 
-Política monetária não age no mesmo mês: juros mais altos hoje pressionam custos financeiros e inadimplência daqui a alguns meses. Mostrar o contraste: associação contemporânea r ≈ 0,43 versus **defasada de 6 meses** r ≈ 0,77 na mesma base — o desenho temporal quase dobrar a força observada. Concluir: defasagens, recortes e critérios fazem parte de um modelo, e modelos são decisões do pesquisador que devem ser declaradas no relatório. Apresentar também a **matriz de correlação** como leitura compacta de várias relações de uma vez, e treinar a leitura de sinais: r ≈ −0,67 entre Selic e crescimento do crédito (sinal negativo previsto pela teoria) e r ≈ 0 entre IPCA e Selic (efeito defasado, não é "sem relação").
+Política monetária não age no mesmo mês: juros mais altos hoje pressionam custos financeiros e inadimplência daqui a alguns meses. Mostrar o contraste: associação contemporânea r ≈ 0,43 versus **defasada de 6 meses** r ≈ 0,77 na mesma base, o desenho temporal quase dobrar a força observada. Concluir: defasagens, recortes e critérios fazem parte de um modelo, e modelos são decisões do pesquisador que devem ser declaradas no relatório. Apresentar também a **matriz de correlação** como leitura compacta de várias relações de uma vez, e treinar a leitura de sinais: r ≈ −0,67 entre Selic e crescimento do crédito (sinal negativo previsto pela teoria) e r ≈ 0 entre IPCA e Selic (efeito defasado, não é "sem relação").
 
-### Bloco 2 – Regressão linear simples (35 min)
+### Bloco 2 – Regressão linear simples (20 min)
 
-A correlação quantifica o alinhamento; a **regressão linear** ajusta uma reta que **prediz Y a partir de X**: Y = b₀ + b₁·X + erro. Definir cada termo: intercepto b₀ (valor previsto de Y quando X = 0), inclinação b₁ (variação esperada em Y para cada aumento de 1 unidade em X) e erro ou resíduo (a parte de Y que a reta não explica). Enfatizar a interpretação dos três números-chave do `summary()`: o coeficiente b₁, o **R²** (proporção da variação de Y explicada pela reta) e o **valor-p** (F-statistic) para a significância da relação. Demonstrar o hábito da **transformação logarítmica** em dados empresariais: com log nos dois lados, b₁ vira **elasticidade** — receita 1% maior acompanha lucro ~0,84% maior. E os limites: R² não é causalidade; não extrapolar a reta para fora do intervalo observado; pressupostos de regressão (linearidade e comportamento aleatório dos resíduos) precisam ser avaliados.
+A correlação quantifica o alinhamento; a **regressão linear** ajusta uma reta que **prediz Y a partir de X**: Y = b₀ + b₁·X + erro. Definir cada termo: intercepto b₀ (valor previsto de Y quando X = 0), inclinação b₁ (variação esperada em Y para cada aumento de 1 unidade em X) e erro ou resíduo (a parte de Y que a reta não explica). Enfatizar a interpretação dos três números-chave do `summary()`: o coeficiente b₁, o **R²** (proporção da variação de Y explicada pela reta) e o **valor-p** (F-statistic) para a significância da relação. Demonstrar o hábito da **transformação logarítmica** em dados empresariais: com log nos dois lados, b₁ vira **elasticidade**: receita 1% maior acompanha lucro ~0,84% maior. E os limites: R² não é causalidade; não extrapolar a reta para fora do intervalo observado; pressupostos de regressão (linearidade e comportamento aleatório dos resíduos) precisam ser avaliados.
 
-## 5. Condução da prática no notebook (85 min)
 
-**Seção 1 – Correlação contemporânea (15 min).** Carregar as séries mensais do SGS com a célula de contingência (`dados/bcb_series_contexto.csv`), reamostrando para fim de mês. Calcular `scipy.stats.pearsonr` para Selic × inadimplência e produzir o gráfico de dispersão. Discutir: r ≈ 0,43 com p pequeno significa associação estatisticamente significativa, mas a nuvem de pontos mostra dispersão — alinhamento moderado, não uma reta perfeita, e não uma direção causal.
+### 4.E Bloco de estatística: covariância, r, mínimos quadrados e R² (45 min)
+
+**Referência:** Silva e Samá (2021), *Estatística*, volume II, capítulo 9.
+**Slides:** bloco "Estatística", sete telas, antes do divisor "Mão na massa".
+
+O bloco fecha a trilha de estatística da disciplina, e é o único em que a fórmula tem valor
+explicativo direto: a covariância mostra, no próprio desenho da soma, por que a nuvem se inclina.
+
+Apresentar a **covariância** pelo produto dos dois afastamentos: quando os dois têm o mesmo sinal,
+o produto é positivo. Depois, a padronização que produz **r**, e a consequência prática: r não
+depende da unidade, e por isso é comparável entre estudos.
+
+A **figura da reta** mostra os resíduos como segmentos verticais. É a imagem que explica o nome
+do método: a reta escolhida é a que torna a soma dos quadrados desses segmentos a menor possível.
+Vale desenhar no quadro uma reta pior e perguntar o que acontece com os resíduos.
+
+**R² = r²** costuma surpreender: com r = 0,4, o modelo explica só 16% da variação. Esse número
+desinfla entusiasmo com correlações moderadas, o que é pedagogicamente útil antes do relatório
+final.
+
+No **Colab**, o `summary()` do statsmodels traz muita informação; o slide isola os quatro números
+que se relatam, e é por eles que a turma deve começar.
+
+**Dificuldade esperada:** ler a inclinação como efeito causal. Retomar o fluxograma do encontro 2:
+regressão sobre dados observacionais descreve associação, e causa exige delineamento.
+
+## 5. Condução da prática no notebook (75 min)
+
+**Seção 1 – Correlação contemporânea (15 min).** Carregar as séries mensais do SGS com a célula de contingência (`dados/bcb_series_contexto.csv`), reamostrando para fim de mês. Calcular `scipy.stats.pearsonr` para Selic × inadimplência e produzir o gráfico de dispersão. Discutir: r ≈ 0,43 com p pequeno significa associação estatisticamente significativa, mas a nuvem de pontos mostra dispersão, alinhamento moderado, não uma reta perfeita, e não uma direção causal.
 
 **Seção 2 – Defasagem e matriz de correlação (25 min).** Criar a coluna `inad_6m = inad.shift(-6)` e repetir o r (esperado ≈ 0,77, contra 0,43 do contemporâneo). Construir a matriz de correlação com Selic, IPCA, inadimplência e crescimento do crédito em 12 meses e exibi-la como **mapa de calor** (heatmap), com cada célula mostrando o r. Ler celadas: o sinal negativo forte entre Selic e crescimento do crédito, a indefinição IPCA × Selic e a conversa com a teoria. Para a turma: anotar em uma frase o que cada célula diz, sem usar "causa".
 
@@ -55,10 +83,10 @@ A correlação quantifica o alinhamento; a **regressão linear** ajusta uma reta
 
 **Seção 5 – Levando ao projeto (5 min).** Usar a função `correlacao_regressao(df, x, y)` sobre o par de variáveis quantitativas da base do projeto (ou na base CVM de exemplo) e anotar a interpretação completa.
 
-## 6. Aplicação à base do projeto individual (30 min)
+## 6. Aplicação à base do projeto individual (25 min)
 
-O bloco 5 estende o repertório à base de cada estudante: identificar um par de variáveis **quantitativas** compatível com a hipótese do projeto e calcular r de Pearson (com significância). Quando a hipótese pedir previsão ou intensidade da relação, ajustar a regressão simples e interpretar b₁ e R². Registrar por escrito a decisão completa: variáveis escolhidas, tratamento de valores extremos (transformação logarítmica, recorte), r com p, coefientes da reta, R² e os limites declarados (correlação não é causa; resíduos não normais; sem extrapolação). Estudantes cuja hipótese é categórica (quem usa qui-quadrado do encontro 11) são orientados a encontrar também as variáveis quantitativas que descrevem os grupos — na prática, quase toda base do semestre permite apresentar a média/mediana de um indicador por grupo. O professor circula priorizando quem ainda não rodou nenhuma técnica inferencial sobre a base própria.
+O bloco 5 estende o repertório à base de cada estudante: identificar um par de variáveis **quantitativas** compatível com a hipótese do projeto e calcular r de Pearson (com significância). Quando a hipótese pedir previsão ou intensidade da relação, ajustar a regressão simples e interpretar b₁ e R². Registrar por escrito a decisão completa: variáveis escolhidas, tratamento de valores extremos (transformação logarítmica, recorte), r com p, coefientes da reta, R² e os limites declarados (correlação não é causa; resíduos não normais; sem extrapolação). Estudantes cuja hipótese é categórica (quem usa qui-quadrado do encontro 11) são orientados a encontrar também as variáveis quantitativas que descrevem os grupos, na prática, quase toda base do semestre permite apresentar a média/mediana de um indicador por grupo. O professor circula priorizando quem ainda não rodou nenhuma técnica inferencial sobre a base própria.
 
 ## 7. Encerramento e tarefa
 
-Sintetizar em três afirmações: correlação diz *alinhamento*, não *causa* — a direção vem do desenho da pesquisa; no mundo empresarial, a escala importa — transformar a variável (log) muda a interpretação para elasticidade e estabiliza a análise; e modelo se declara — defasagem, recorte, transformação e pressupostos avaliados são parte do resultado, não detalhe. Tarefa para o encontro 14 (Avaliação 3 e comunicação): revisar a estrutura do relatório e preparar a apresentação resumida (problema, método, resultados) em formato de slide único. Adiantar no projeto: caso a hipótese envolva relação quantitativa, escrever já o parágrafo de análise correlacional/regressiva com os resultados da aula.
+Sintetizar em três afirmações: correlação diz *alinhamento*, não *causa*, a direção vem do desenho da pesquisa; no mundo empresarial, a escala importa, transformar a variável (log) muda a interpretação para elasticidade e estabiliza a análise; e modelo se declara, defasagem, recorte, transformação e pressupostos avaliados são parte do resultado, não detalhe. Tarefa para o encontro 14 (Avaliação 3 e comunicação): revisar a estrutura do relatório e preparar a apresentação resumida (problema, método, resultados) em formato de slide único. Adiantar no projeto: caso a hipótese envolva relação quantitativa, escrever já o parágrafo de análise correlacional/regressiva com os resultados da aula.

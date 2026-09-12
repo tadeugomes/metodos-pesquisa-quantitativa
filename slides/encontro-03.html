@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 3 · Unidade I</div>
   <h1>Problema, objetivos, hipóteses e variáveis</h1>
@@ -679,6 +686,205 @@
   resultado, e por isso precisa ser justificada e registrada no relatório.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
+
+<section class="slide divisor estat">
+  <h2>Estatística do encontro 3</h2>
+  <p>Média, mediana e moda: qual medida cabe em cada nível de mensuração</p>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>A fórmula: as três medidas de posição</h2>
+
+  <div class="formula">
+    <span class="expr">x̄<span class="op">=</span><span class="frac"><span class="cima">Σx<sub>i</sub></span><span class="baixo">n</span></span></span>
+    <span class="simbolos">
+      <span><b>Σ</b>somatório: some todos</span>
+      <span><b>x<sub>i</sub></b>cada valor observado</span>
+      <span><b>n</b>quantos valores há</span>
+    </span>
+    <span class="legenda-formula">Média: some tudo e divida pela quantidade.</span>
+  </div>
+  <div class="colunas">
+    <div>
+      <div class="definicao"><span class="rotulo">Mediana</span>
+      O valor que fica no meio quando os dados são <strong>ordenados</strong>. Com n ímpar, é o
+      valor da posição (n+1)÷2. Com n par, é a média dos dois centrais. Metade dos casos está
+      abaixo dela, metade acima.</div>
+    </div>
+    <div>
+      <div class="definicao"><span class="rotulo">Moda</span>
+      O valor que <strong>mais se repete</strong>. É a única das três que funciona em variável
+      nominal, e pode não existir ou haver mais de uma.</div>
+    </div>
+  </div>
+  <p>As três respondem à mesma pergunta, "qual é o valor típico?", e dão respostas diferentes
+  quando a distribuição não é simétrica. Escolher entre elas é decisão de pesquisa, não de conta.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O que a fórmula faz: um exemplo resolvido</h2>
+
+  <p>Faturamento mensal, em R$ mil, de sete empresas de uma mesma rua. Seis são pequenas; uma é
+  um atacadista.</p>
+  <div class="figura">
+    <svg viewBox="0 0 1000 168" role="img" aria-label="Sete faturamentos numa reta, com a mediana no agrupamento e a média puxada pelo valor extremo">
+      <line x1="60" y1="112" x2="960" y2="112" stroke="#bbb" stroke-width="2"/>
+      <g fill="#8D0333">
+        <circle cx="134" cy="112" r="8"/><circle cx="148" cy="112" r="8"/><circle cx="153" cy="112" r="8"/>
+        <circle cx="162" cy="112" r="8"/><circle cx="171" cy="112" r="8"/><circle cx="180" cy="112" r="8"/>
+      </g>
+      <circle cx="894" cy="112" r="8" fill="#c0392b"/>
+      <text x="894" y="140" text-anchor="middle" font-size="16" fill="#c0392b">900</text>
+      <text x="157" y="140" text-anchor="middle" font-size="16" fill="#777">80 a 130</text>
+      <line x1="162" y1="52" x2="162" y2="124" stroke="#0AB0AB" stroke-width="3" stroke-dasharray="7 5"/>
+      <text x="154" y="44" text-anchor="end" font-size="19" fill="#05635f" font-weight="700">mediana = 110</text>
+      <line x1="263" y1="52" x2="263" y2="124" stroke="#8D0333" stroke-width="3"/>
+      <text x="273" y="44" font-size="19" fill="#8D0333" font-weight="700">média = 219,3</text>
+      <text x="620" y="90" text-anchor="middle" font-size="16" fill="#777">um único valor extremo puxa a média para cá</text>
+      <path d="M760 96 H880" stroke="#c0392b" stroke-width="2" marker-end="url(#sv)"/>
+      <text x="500" y="164" text-anchor="middle" font-size="15" fill="#999">faturamento mensal, em R$ mil</text>
+    </svg>
+  </div>
+  <div class="colunas">
+    <div>
+      <p><strong>Os dados ordenados:</strong> 80, 95, 100, <strong>110</strong>, 120, 130, 900.</p>
+      <p><strong>Média:</strong> a soma é 1.535; dividida por 7, dá 219,3.</p>
+      <p><strong>Mediana:</strong> n = 7, então a posição central é (7+1)÷2 = 4ª, que é 110.</p>
+    </div>
+    <div>
+      <p>Seis das sete empresas faturam menos que a média. Nenhuma empresa da rua fatura
+      "em torno de 219". A média existe, está corretamente calculada, e descreve mal o conjunto.</p>
+      <p>Esse é o padrão de quase toda variável econômica: faturamento, receita, patrimônio,
+      salário. Por isso o IBGE publica rendimento <strong>mediano</strong>.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se faz no Colab</h2>
+
+  <pre class="codigo"><span class="cmt"># uma medida de cada vez</span>
+dados[<span class="str">"faturamento"</span>].<span class="fn">mean</span>()      <span class="cmt"># média</span>
+dados[<span class="str">"faturamento"</span>].<span class="fn">median</span>()    <span class="cmt"># mediana</span>
+dados[<span class="str">"secao_cnae"</span>].<span class="fn">mode</span>()       <span class="cmt"># moda (serve para variável qualitativa)</span>
+
+<span class="cmt"># tudo de uma vez: contagem, média, desvio, mínimo, quartis e máximo</span>
+dados[<span class="str">"faturamento"</span>].<span class="fn">describe</span>()
+
+<span class="cmt"># a medida por grupo, que é o formato da tabela de resultados</span>
+dados.<span class="fn">groupby</span>(<span class="str">"secao_cnae"</span>)[<span class="str">"faturamento"</span>].<span class="fn">median</span>()</pre>
+  <div class="exemplo"><span class="rotulo">O diagnóstico em uma linha</span>
+  Rode <code>mean()</code> e <code>median()</code> na mesma variável. Se os dois números forem
+  próximos, a distribuição é razoavelmente simétrica e a média descreve bem. Se a média for
+  muito maior que a mediana, há valores extremos à direita, e a mediana é a medida honesta.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Como se lê, e a ponte com a hipótese</h2>
+
+  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
+  "O faturamento mensal mediano das empresas da amostra é de <strong>R$ 110 mil</strong>. A média,
+  de R$ 219 mil, é puxada por uma única empresa de grande porte, e por isso a mediana foi adotada
+  como medida de posição."</p>
+  <p class="menor">Note que a frase declara a escolha e a justifica. Isso é método, não
+  preciosismo: outro pesquisador precisa poder repetir a decisão.</p></div>
+  <div class="colunas">
+    <div>
+      <h3>Que medida cabe em cada nível</h3>
+      <table>
+        <tr><th>Nível</th><th>Moda</th><th>Mediana</th><th>Média</th></tr>
+        <tr><td>Nominal</td><td>sim</td><td>não</td><td>não</td></tr>
+        <tr><td>Ordinal</td><td>sim</td><td>sim</td><td>com ressalva</td></tr>
+        <tr><td>Intervalar</td><td>sim</td><td>sim</td><td>sim</td></tr>
+        <tr><td>Razão</td><td>sim</td><td>sim</td><td>sim</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>A hipótese é uma frase sobre uma medida</h3>
+      <p>Hoje vocês escreveram hipóteses. Uma hipótese testável nomeia a medida que será
+      comparada:</p>
+      <div class="exemplo"><span class="rotulo">Vago</span>
+      "Empresas de serviços vão melhor que as de comércio."</div>
+      <div class="exemplo"><span class="rotulo">Testável</span>
+      "A <strong>mediana</strong> do faturamento das empresas de serviços é maior que a das
+      empresas de comércio."</div>
+      <p class="menor">A segunda diz o que medir, em quem e como comparar. É ela que o encontro
+      11 vai testar.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>O erro comum: a média de tudo</h2>
+
+  <div class="colunas">
+    <div>
+      <div class="alerta"><span class="rotulo">Erro 1: média de variável nominal</span>
+      "A média do código CNAE é 38,4." Categoria não tem média. Para variável nominal, a medida de
+      posição é a moda, e o resumo é a tabela de frequência do encontro 1.</div>
+      <div class="alerta"><span class="rotulo">Erro 2: média com extremos, sem avisar</span>
+      "O faturamento médio é de R$ 219 mil" descreve uma rua em que seis das sete empresas
+      faturam menos de R$ 130 mil. Não é mentira; é descrição ruim.</div>
+    </div>
+    <div>
+      <div class="alerta"><span class="rotulo">Erro 3: média de médias</span>
+      Se um setor tem 1.000 empresas com média 50 e outro tem 10 empresas com média 500, a média
+      geral não é (50+500)÷2 = 275. É a soma de todos dividida por 1.010, que dá 54,5. Só se pode
+      tirar média de médias com pesos.</div>
+      <div class="exemplo"><span class="rotulo">A regra de bolso</span>
+      Antes de escolher a medida, olhe duas coisas: o nível de mensuração da variável e a
+      distância entre média e mediana. Essas duas informações resolvem quase todos os casos.</div>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Estatística</span>
+  <h2>Ficha de revisão: medidas de posição</h2>
+
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <p><span class="expr">x̄ = Σx<sub>i</sub> ÷ n</span></p>
+      <p>Mediana: valor da posição (n+1)÷2 nos dados ordenados. Moda: o mais frequente.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">dados["v"].mean()
+dados["v"].median()
+dados["v"].describe()</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>"O valor mediano é <em>x</em>; a média, <em>y</em>, é puxada por <em>motivo</em>, e por
+      isso adotou-se a mediana."</p>
+    </div>
+    <div>
+      <h4>O erro a evitar</h4>
+      <p>Média de variável nominal, média com extremos sem aviso, e média de médias sem peso.</p>
+    </div>
+  </div>
+  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
+  volume I, seção 3.1.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+
 
 <section class="slide divisor">
   <h2>Mão na massa</h2>

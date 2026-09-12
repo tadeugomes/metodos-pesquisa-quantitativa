@@ -5,9 +5,9 @@ from nb_helper import gera_notebooks
 C = []
 
 C.append({"tipo": "md", "texto": """\
-# Encontro 2 — Tipos de pesquisa e demografia das empresas
+# Encontro 2: Tipos de pesquisa e demografia das empresas
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 
 Na aula 1 discutimos a afirmação *"a maioria das empresas fecha no primeiro ano"*. Hoje vamos
 respondê-la com a pesquisa **Demografia das Empresas** (IBGE), que registra nascimentos de
@@ -22,7 +22,7 @@ Neste notebook você vai:
 C.append({"tipo": "code", "texto": "%pip install sidrapy -q"})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 1 — Carregando os dados
+## Seção 1: Carregando os dados
 
 Releia os parâmetros com atenção: essa "gramática" do SIDRA se repetirá o semestre inteiro.
 - `table_code`: qual tabela;
@@ -48,7 +48,7 @@ print("Linhas e colunas:", bruto.shape)
 bruto.head()"""})
 
 C.append({"tipo": "md", "texto": """\
-**Célula de contingência** — execute apenas se a anterior falhar. No Colab, faça upload de
+**Célula de contingência**: execute apenas se a anterior falhar. No Colab, faça upload de
 `dados/demografia_sobrevivencia_empresas.csv` antes."""})
 
 C.append({"tipo": "code", "texto": """\
@@ -101,12 +101,12 @@ print("Faixas de pessoal:", demografia["faixa_pessoal"].unique())"""})
 
 C.append({"tipo": "nota", "texto": (
     "Esta seção leva ~20 min. Percorra mentalmente o significado de cada parâmetro da chamada "
-    "e de cada coluna antes de executar — essa 'gramática' do SIDRA se repete o semestre "
+    "e de cada coluna antes de executar, essa 'gramática' do SIDRA se repete o semestre "
     "inteiro. Erros comuns ao escrever: aspas esquecidas no nome da coluna e `=` no lugar "
     "de `==`.")})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 2 — Filtros: isolando o que interessa
+## Seção 2. Filtros: isolando o que interessa
 
 Um **filtro** seleciona linhas que atendem a uma condição. A sintaxe do pandas é:
 
@@ -118,7 +118,7 @@ Repare no `==` (comparação), diferente do `=` (atribuição).
 
 **Um detalhe de pesquisador:** cada "ano" desta base é uma **coorte** de empresas nascidas
 naquele ano. A taxa de 3 anos de sobrevivência da coorte 2021 ainda não existia quando a
-pesquisa foi publicada — a coorte não tinha 3 anos de vida! Por isso, o ano mais recente
+pesquisa foi publicada, a coorte não tinha 3 anos de vida! Por isso, o ano mais recente
 **com dado disponível** não é o último ano da base. O código abaixo encontra esse ano
 corretamente, descartando valores vazios (`NaN`) com `.notna()`."""})
 
@@ -153,7 +153,52 @@ print("Linhas após o filtro:", len(sob1))
 sob1[["secao_cnae", "faixa_pessoal", "Valor"]].head()"""})
 
 C.append({"tipo": "md", "texto": """\
-## Seção 3 — A pergunta do dia: empresas maiores sobrevivem mais?
+## Estatística do encontro: proporção, taxa e tabela cruzada
+
+**A fórmula.** Proporção é a parte dividida pelo todo. A **taxa de sobrevivência de 3 anos** é uma
+proporção: empresas que sobreviveram divididas por empresas nascidas naquele ano. O IBGE já
+publica a taxa pronta, em porcentagem, na coluna `Valor`.
+
+**A tabela cruzada** é o formato da pesquisa correlacional com variáveis categóricas: duas
+variáveis nas mesmas linhas, para ver se a distribuição de uma muda conforme a outra. Aqui as duas
+variáveis são **seção CNAE** e **faixa de pessoal**, e o que se lê no cruzamento é a taxa."""})
+
+C.append({"tipo": "code", "texto": """\
+# cruzamento: setor nas linhas, porte nas colunas, taxa de 3 anos nas células
+cruzada = sob3.pivot_table(index="secao_cnae",
+                           columns="faixa_pessoal",
+                           values="Valor")
+
+# só as linhas de setor (sem o Total) e arredondado para leitura
+cruzada = cruzada.drop(index="Total", errors="ignore").round(1)
+cruzada"""})
+
+C.append({"tipo": "code", "texto": """\
+# a diferença entre o maior e o menor porte, em PONTOS PERCENTUAIS, por setor
+colunas = [c for c in cruzada.columns if c != "Total"]
+diferenca = (cruzada[colunas[-1]] - cruzada[colunas[0]]).sort_values(ascending=False)
+
+print("Diferença entre", colunas[-1], "e", colunas[0], "(em pontos percentuais):")
+diferenca.round(1)"""})
+
+C.append({"tipo": "md", "texto": """\
+**Quando a base é de registros individuais**, a tabela cruzada sai com `pd.crosstab`, e o
+argumento `normalize` é a escolha do denominador:
+
+```python
+pd.crosstab(dados["porte"], dados["situacao"], normalize="index")   # proporção por linha
+```
+
+**Escreva a sua leitura.** Cuidado com a diferença entre por cento e ponto percentual.
+
+*A taxa de sobrevivência em três anos foi de ______% entre as empresas de ______________ e de
+______% entre as de ______________, uma diferença de ______ pontos percentuais. O setor em que o
+porte mais pesa é ______________.*
+
+*Esta análise é do tipo ______________ (descritiva ou correlacional?), porque ______________.*"""})
+
+C.append({"tipo": "md", "texto": """\
+## Seção 3. A pergunta do dia: empresas maiores sobrevivem mais?
 
 Primeiro, a resposta à provocação da aula 1. Considerando **todas** as empresas (seção CNAE =
 Total, faixa de pessoal = Total): qual a taxa de sobrevivência após 1 ano? E após 3?"""})
@@ -168,7 +213,7 @@ total_geral[["variavel", "Valor"]]"""})
 
 C.append({"tipo": "nota", "texto": (
     "Momento-chave da aula: confronte o resultado com a frase 'a maioria fecha no primeiro "
-    "ano'. A taxa de sobrevivência de 1 ano fica bem acima de 50% — dita assim, a frase é "
+    "ano'. A taxa de sobrevivência de 1 ano fica bem acima de 50%, dita assim, a frase é "
     "falsa; a mortalidade é alta, mas acumulada em horizonte maior e concentrada em perfis "
     "específicos. É o exemplo perfeito de senso comum corrigido por dado oficial. Se aparecer "
     "NaN em taxas de horizonte longo, não se assuste: é a coorte que ainda não completou o "
@@ -230,7 +275,7 @@ sob3_por_secao = (
 plt.figure(figsize=(10, 7))
 plt.barh(sob3_por_secao["secao_cnae"].str.slice(0, 45), sob3_por_secao["Valor"])
 plt.gca().invert_yaxis()
-plt.title("Sobrevivência de empresas em 3 anos, por seção CNAE — Brasil")
+plt.title("Sobrevivência de empresas em 3 anos, por seção CNAE, Brasil")
 plt.xlabel("Taxa de sobrevivência em 3 anos (%)")
 plt.tight_layout()
 plt.show()
@@ -239,7 +284,7 @@ print("Maior sobrevivência:", sob3_por_secao.iloc[0]["secao_cnae"])
 print("Menor sobrevivência:", sob3_por_secao.iloc[-1]["secao_cnae"])"""})
 
 C.append({"tipo": "md", "texto": """\
-### Laboratório de prompts — melhorar a visualização
+### Laboratório de prompts: melhorar a visualização
 
 O gráfico acima funciona, mas é bruto. Use um assistente de IA (o painel do Colab, ou outra
 aba com Claude ou ChatGPT) para refiná-lo. Um bom prompt tem quatro partes: **contexto** (onde
@@ -280,12 +325,12 @@ C.append({"tipo": "code", "texto": """\
 C.append({"tipo": "nota", "texto": (
     "Pergunta de amarração: 'o que fizemos aqui é pesquisa descritiva ou correlacional?' "
     "Resposta: descrevemos uma associação entre porte (ordinal) e sobrevivência (razão) sem "
-    "afirmar causa — e há explicações alternativas (capital inicial, setor, experiência do "
+    "afirmar causa, e há explicações alternativas (capital inicial, setor, experiência do "
     "fundador). Quanto mais dessas explicações você conseguir listar na pergunta 2, melhor "
     "você entendeu o limite de uma análise descritiva.")})
 
 C.append({"tipo": "md", "texto": """\
-### Laboratório de prompts — explorar mais a base
+### Laboratório de prompts: explorar mais a base
 
 A tabela 9949 responde a muito mais perguntas do que as três que fizemos. **Contexto para colar
 antes de qualquer pedido:**
@@ -323,7 +368,7 @@ C.append({"tipo": "code", "texto": """\
 
 
 C.append({"tipo": "md", "texto": """\
-## Seção 4 — Perguntas de interpretação
+## Seção 4: Perguntas de interpretação
 
 Responda por escrito, editando esta célula:
 
@@ -354,6 +399,6 @@ C.append({"tipo": "md", "texto": """\
 1. Salve e compartilhe o link do notebook;
 2. **Tarefa:** ler o capítulo de GIL (2019) sobre formulação de problemas e hipóteses e
 **trazer por escrito uma pergunta de pesquisa** sobre tema empresarial ou econômico do seu
-interesse — ela será trabalhada na oficina do encontro 3."""})
+interesse, ela será trabalhada na oficina do encontro 3."""})
 
 gera_notebooks(2, C)
