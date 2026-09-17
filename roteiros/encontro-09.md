@@ -1,29 +1,29 @@
-# Encontro 9. Estatística descritiva: tendência central, dispersão e frequências
+# Encontro 9. Estatística descritiva: consolidação, assimetria e frequências
 
 ## 1. Identificação
 
 | Campo | Descrição |
 |---|---|
 | Unidade | III – Análise de dados |
-| Tema | Medidas de tendência central (média, mediana, moda), medidas de dispersão (amplitude, variância, desvio padrão, coeficiente de variação) e distribuições de frequência |
+| Tema | Consolidação das medidas de posição e dispersão (encontros 3 e 4) numa base real; assimetria, curtose e distribuições de frequência |
 | Duração | 4 horas (240 min) |
 | Notebook | `notebooks/encontro-09/encontro09.ipynb` |
 | Dados | Demonstrações financeiras de companhias abertas (CVM, DFP 2024): receita, margem líquida e endividamento por setor |
 
 ## 2. Objetivos de aprendizagem
 
-Ao final do encontro, o estudante deverá ser capaz de: (i) calcular e interpretar média, mediana e moda, escolhendo a medida adequada conforme o nível de mensuração da variável e a forma da distribuição; (ii) explicar por que valores extremos deslocam a média e não a mediana, e reconhecer as situações (típicas de dados empresariais) em que a mediana é a medida honesta; (iii) calcular e interpretar amplitude, variância, desvio padrão e coeficiente de variação, usando o CV para comparar dispersões de grupos com escalas diferentes; (iv) construir e ler distribuições de frequência (absoluta, relativa e acumulada) com classes; (v) produzir essas medidas em pandas (`mean`, `median`, `mode`, `std`, `describe`, `groupby`, `pd.cut`) sobre uma base real e registrar a interpretação por escrito; (vi) aplicar o repertório descritivo à base do próprio projeto individual.
+Ao final do encontro, o estudante deverá ser capaz de: (i) aplicar média, mediana, moda, desvio padrão e CV, já ensinados nos encontros 3 e 4, a uma base real, maior e mais assimétrica; (ii) reconhecer e nomear assimetria e curtose, explicando por que a média setorial pode até trocar de sinal; (iii) aplicar o cuidado técnico do CV a variáveis com média perto de zero ou negativa; (iv) construir e ler distribuições de frequência (absoluta, relativa e acumulada) com classes; (v) produzir essas medidas em pandas (`mean`, `median`, `mode`, `std`, `describe`, `groupby`, `pd.cut`) sobre uma base real e registrar a interpretação por escrito; (vi) aplicar o repertório descritivo à base do próprio projeto individual.
 
 ## 3. Estrutura da aula
 
 | Bloco | Duração | Atividade |
 |---|---|---|
-| 1 | 25 min | Devolutiva da Avaliação 1: notas e resolução comentada da prova |
-| 2 | 40 min | Exposição dialogada: medidas de tendência central e o problema dos extremos |
+| 1 | 30 min | Devolutiva da Avaliação 1: notas e resolução comentada da prova |
+| 2 | 30 min | Consolidação: assimetria e curtose nos dados da CVM |
 | 3 | 15 min | Intervalo |
-| 4 | 30 min | Exposição: medidas de dispersão e distribuições de frequência |
+| 4 | 25 min | Distribuições de frequência |
 | 5 | **45 min** | **Bloco de estatística: quartis, cinco números e forma** (seção 4.E) |
-| 6 | 65 min | Prática no Colab: descritivas sobre as demonstrações financeiras da CVM |
+| 6 | 100 min | Prática no Colab: descritivas sobre as demonstrações financeiras da CVM |
 | 7 | 15 min | Descritivas da base do projeto individual |
 | 8 | 5 min | Síntese e tarefa |
 
@@ -33,19 +33,19 @@ Ao final do encontro, o estudante deverá ser capaz de: (i) calcular e interpret
 
 Devolver as notas individualmente (pelo Colab ou impresso) e resolver a prova em conjunto, questão a questão, concentrando o tempo nos erros mais frequentes da turma, tipicamente a confusão entre nível ordinal e intervalar na classificação de variáveis e a justificativa do plano amostral. A resolução comentada cumpre função dupla: fecha as Unidades I e II com o gabarito público e prepara o terreno da Unidade III, porque as tarefas da prova (classificar variáveis, sortear amostra) são exatamente o que antecede a análise que começa hoje. Encerrar o bloco situando a virada da disciplina: até aqui planejamos a pesquisa e coletamos dados; dos encontros 9 a 13, analisamos.
 
-### Bloco 2 – Medidas de tendência central e o problema dos extremos (40 min)
+### Bloco 2 – Consolidação: assimetria e curtose nos dados da CVM (30 min)
 
-Abrir com a pergunta que organiza o bloco: como resumir mil números em um só sem mentir? A média aritmética é o centro de gravidade dos dados (soma dividida pelo número de observações) e é a medida mais usada e a mais frágil: cada valor participa do cálculo, portanto um único valor extremo a arrasta. A mediana é o valor que divide os dados ordenados ao meio (50% abaixo, 50% acima) e depende só da posição, não do tamanho dos valores: por isso resiste a extremos. A moda é o valor mais frequente, única medida disponível para variáveis nominais (o setor mais comum entre as companhias, a seção CNAE com mais empresas).
+Abrir situando o bloco: média, mediana, moda (encontro 3), desvio padrão e coeficiente de variação (encontro 4) já foram ensinados, com fórmula, exemplo resolvido e código no Colab. Nada disso é novo hoje; o que muda é a base, real, maior e mais assimétrica do que os exemplos didáticos anteriores.
 
-Desenvolver o critério de escolha em dois eixos. Primeiro, o nível de mensuração (retomando o encontro 3): nominal só admite moda; ordinal admite moda e mediana; intervalar e razão admitem as três. Segundo, a forma da distribuição: em distribuições simétricas, média e mediana coincidem e a média aproveita toda a informação; em distribuições assimétricas (e dados empresariais são o reino da assimetria: receitas, salários, tamanhos de empresa têm muitos pequenos e poucos gigantes) a média desloca-se na direção da cauda e deixa de representar o caso típico. O exemplo âncora: numa rua com nove empresas de receita modesta, a chegada de uma gigante eleva a receita média a um valor que não descreve nenhuma das dez; a mediana permanece onde a vida acontece. Regra prática a fixar: quando média e mediana divergem muito, a distribuição é assimétrica ou há outliers, e reportar as duas é mais honesto que escolher uma. Anunciar que a prática mostrará isso em dados reais: a margem líquida das companhias abertas tem extremos tão severos que a média setorial pode trocar de sinal por causa de uma única empresa.
+Apresentar as duas medidas que faltavam: a assimetria, que mede para que lado a distribuição pende (positiva: cauda longa à direita, poucos valores muito altos, o padrão de receita, salário e faturamento; negativa: cauda longa à esquerda), e a curtose, que mede o quanto os casos se concentram perto do centro e nas caudas, comparado à distribuição normal. Retomar a regra prática já vista no encontro 3: quando média e mediana divergem muito, a distribuição é assimétrica ou há outliers, e reportar as duas é mais honesto que escolher uma.
 
-### Bloco 4 – Medidas de dispersão e distribuições de frequência (30 min)
+Anunciar o que a prática vai mostrar em dados reais: a margem líquida das companhias abertas tem extremos tão severos que a média setorial pode trocar de sinal por causa de uma única empresa, a assinatura de uma assimetria forte. Generalizar o ponto para qualquer negócio: o mesmo desvio padrão que descreve a margem também orienta decisão, uma empresa de e-commerce usa o desvio das vendas diárias para dimensionar estoque de segurança (desvio alto, picos a cobrir) e para o planejamento financeiro (desvio baixo, vendas previsíveis). Abrir a discussão em duplas (um minuto): cada dupla cita uma variável do próprio projeto em que espera média muito diferente da mediana, e uma em que espera que coincidam, justificando pela assimetria esperada.
 
-Duas cidades podem ter a mesma temperatura média, uma com clima estável, outra alternando calor e frio; dois setores podem ter a mesma margem mediana, um homogêneo, outro com empresas excelentes e empresas à beira da falência. A tendência central sozinha esconde isso: precisamos medir o espalhamento. A amplitude (máximo menos mínimo) é a medida mais simples e a mais frágil, pois depende só dos dois valores extremos. A variância mede a distância média (ao quadrado) de cada valor em relação à média; o quadrado resolve o problema dos desvios que se cancelam, mas devolve o resultado numa unidade sem sentido prático (reais ao quadrado). O desvio padrão (raiz quadrada da variância) devolve a dispersão à unidade original da variável e é a medida de referência: interpretá-lo como "o desvio típico em relação à média".
+Fechar retomando, sem reensinar, o cuidado técnico do CV: só faz sentido para variáveis de razão com valores positivos e média longe de zero. Antes do exercício, relembrar em uma frase o exemplo clássico do encontro 4 (duas turmas com a mesma média 5,0 e dispersões diferentes) como o motivo de existir uma medida de dispersão. Exercício rápido: para receita das companhias, margem líquida, número de funcionários e nota de satisfação de 1 a 5, dizer se o CV faz sentido, justificando pelo nível de mensuração e pela posição da média. Anunciar que a prática mostrará deliberadamente o CV explodindo na margem líquida, onde a média fica perto de zero. Fechar com a tabela de referência do CV (acima de 30%, alta dispersão; entre 15% e 30%, média; abaixo de 15%, baixa) e com o exemplo de comparar ações de preço médio muito diferente (Google, média R$ 55,62 e CV ≈ 9,15%; Amazon, média R$ 24,86 e CV ≈ 14,48%): mesmo com desvios em patamares parecidos, o CV mostra a Amazon proporcionalmente mais volátil.
 
-O coeficiente de variação (desvio padrão dividido pela média, em %) responde à pergunta que o desvio padrão sozinho não responde: qual grupo é mais disperso quando as escalas são diferentes? Um desvio de R$ 1 milhão é enorme entre padarias e irrisório entre petroleiras; o CV neutraliza a escala e permite a comparação. Registrar o cuidado técnico: o CV só faz sentido para variáveis de razão com valores positivos e média longe de zero. Aplicá-lo à margem líquida (que tem médias próximas de zero e valores negativos) produz números absurdos, e a prática mostrará isso deliberadamente.
+### Bloco 4 – Distribuições de frequência (25 min)
 
-Fechar com as distribuições de frequência: a tabela que conta quantas observações caem em cada categoria (variável qualitativa) ou em cada classe de valores (variável quantitativa agrupada). Definir frequência absoluta, relativa (%) e acumulada, e o papel das classes: transformar uma lista ilegível de números numa estrutura que revela a forma da distribuição, onde os dados se concentram, onde rareiam, se há caudas. A tabela de frequências é o histograma em forma de tabela; o histograma como gráfico é assunto do encontro 10, que trata da visualização.
+A tabela que conta quantas observações caem em cada categoria (variável qualitativa) ou em cada classe de valores (variável quantitativa agrupada). Definir frequência absoluta, relativa (%) e acumulada, e o papel das classes: transformar uma lista ilegível de números numa estrutura que revela a forma da distribuição, onde os dados se concentram, onde rareiam, se há caudas. A tabela de frequências é o histograma em forma de tabela; o histograma como gráfico é assunto do encontro 10, que trata da visualização.
 
 
 ### 4.E Bloco de estatística: quartis, cinco números e forma (45 min)
@@ -59,6 +59,10 @@ entram os quartis, que são a versão robusta das duas coisas, e a leitura da fo
 
 Apresentar **Q1, mediana e Q3** pela posição, e a **amplitude interquartil** como a dispersão dos
 50% do meio. A regra de 1,5 IQR para valores extremos é convenção, e é o que o boxplot desenha.
+Antes de ir para o caso CVM, passar um exemplo simples e redondo: dez salários mensais (em R$
+mil) já ordenados, 2,5 · 3,0 · 3,2 · 3,8 · 4,0 · 4,5 · 4,8 · 5,0 · 5,5 · 6,0, com Q1 = 3,2 e
+Q3 = 5,0, logo IQR = 1,8. Interpretar: um IQR pequeno aqui sinaliza política salarial
+consistente dentro do cargo, sem grandes desigualdades.
 
 O **boxplot das onze margens** é o centro do bloco. Percorrer o desenho elemento por elemento:
 onde está cada um dos cinco números, o que a caixa contém, por que o ponto isolado ficou de fora

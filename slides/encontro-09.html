@@ -40,11 +40,11 @@
   <table>
     <tr><th>Bloco</th><th>Atividade</th></tr>
     <tr><td>30 min</td><td>Devolutiva da Avaliação 1: notas e resolução comentada</td></tr>
-    <tr><td>50 min</td><td>Tendência central e o problema dos extremos</td></tr>
+    <tr><td>30 min</td><td>Consolidação: assimetria e curtose nos dados da CVM</td></tr>
     <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>40 min</td><td>Dispersão e distribuições de frequência</td></tr>
-    <tr><td>75 min</td><td><strong>Prática no Colab:</strong> descritivas sobre a base CVM</td></tr>
-    <tr><td>20 min</td><td><strong>Oficina:</strong> descritivas da base do seu projeto</td></tr>
+    <tr><td>25 min</td><td>Distribuições de frequência</td></tr>
+    <tr><td>100 min</td><td><strong>Prática no Colab:</strong> descritivas sobre a base CVM</td></tr>
+    <tr><td>30 min</td><td><strong>Oficina:</strong> descritivas da base do seu projeto</td></tr>
     <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
   </table>
   <p class="menor">A virada da disciplina: até aqui planejar e coletar; dos encontros 9 a 13,
@@ -57,12 +57,12 @@
   <h2>Objetivos de aprendizagem</h2>
   <p class="menor">Ao final do encontro, vocês deverão ser capazes de:</p>
   <ol>
-    <li><strong>Calcular e interpretar</strong> média, mediana e moda, escolhendo a medida
-        conforme o nível de mensuração e a forma da distribuição;</li>
-    <li><strong>Explicar</strong> por que valores extremos deslocam a média e não a mediana,
-        e reconhecer quando a mediana é a medida honesta;</li>
-    <li><strong>Calcular e interpretar</strong> amplitude, variância, desvio padrão e
-        coeficiente de variação, usando o CV para comparar grupos de escalas diferentes;</li>
+    <li><strong>Aplicar</strong> média, mediana, moda, desvio padrão e CV (encontros 3 e 4)
+        a uma base real, maior e mais assimétrica;</li>
+    <li><strong>Reconhecer e nomear</strong> assimetria e curtose, e explicar por que a média
+        setorial pode até trocar de sinal;</li>
+    <li><strong>Aplicar</strong> o cuidado técnico do CV a variáveis com média perto de zero
+        ou negativa;</li>
     <li><strong>Construir e ler</strong> distribuições de frequência (absoluta, relativa e
         acumulada) com classes;</li>
     <li><strong>Produzir</strong> essas medidas em pandas (<code>mean</code>,
@@ -100,159 +100,75 @@
 </section>
 
 <section class="slide divisor">
-  <h2>Medidas de tendência central</h2>
-  <p>Como resumir mil números em um só, sem mentir</p>
+  <h2>Estatística descritiva: da revisão à consolidação</h2>
+  <p>Média, mediana, moda (encontro 3), desvio padrão e CV (encontro 4) já foram ensinados;
+  hoje se aplicam a uma base real, maior e mais assimétrica</p>
 </section>
 
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A pergunta que organiza o bloco</h2>
-  <div class="pergunta">Como resumir mil números em <strong>um só valor</strong>, sem
-  mentir?</div>
-  <p>Cada medida de tendência central é uma resposta diferente, com forças e fraquezas
-  próprias:</p>
-  <div class="cartoes">
-    <div class="cartao">
-      <h4>Média</h4>
-      <p>Centro de <strong>gravidade</strong>: soma dividida pela contagem. Usa toda a
-      informação, e sofre com todo valor extremo.</p>
-    </div>
-    <div class="cartao alt-dourado">
-      <h4>Mediana</h4>
-      <p>Valor que divide os dados <strong>ordenados ao meio</strong>: 50% abaixo, 50%
-      acima. Depende só da posição, resiste a extremos.</p>
-    </div>
-    <div class="cartao alt-verde">
-      <h4>Moda</h4>
-      <p>Valor <strong>mais frequente</strong>. Única medida possível para variáveis
-      nominais.</p>
-    </div>
-  </div>
+  <h2>Duas medidas novas: assimetria e curtose</h2>
+  <div class="definicao"><span class="rotulo">Assimetria</span>
+  Mede para que lado a distribuição pende. Positiva: cauda longa à direita, poucos valores
+  muito altos, o padrão de receita, salário e faturamento. Negativa: cauda longa à
+  esquerda.</div>
+  <div class="definicao"><span class="rotulo">Curtose</span>
+  Mede o quanto os casos se concentram perto do centro e nas caudas, comparado à
+  distribuição normal. Curtose alta: poucos casos extremos pesam muito no resultado.</div>
+  <div class="pergunta">Regra prática, já vista no encontro 3: média e mediana divergindo
+  muito → distribuição assimétrica ou outliers → reportar as duas.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A média é a mais usada, e a mais frágil</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Média aritmética = soma dos valores ÷ número de observações.</div>
-  <div class="exemplo"><span class="rotulo">Exemplo-âncora, uma rua com dez empresas</span>
-  Nove empresas com receita modesta; a décima é uma gigante. A receita <strong>média</strong>
-  sobe para um valor que não descreve <strong>nenhuma das dez</strong>. A
-  <strong>mediana</strong> permanece onde a vida acontece.</div>
-  <p class="menor">Cada valor participa do cálculo da média, um único extremo a arrasta.</p>
-  <div class="instrucao"><span class="rotulo">No quadro</span>
-  Vamos montar a rua juntos: nove receitas modestas e uma gigante. Calculem a
-  <strong>média</strong> e a <strong>mediana</strong> antes e depois da chegada da gigante e
-  respondam: qual das duas ainda descreve a empresa típica da rua?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O critério de escolha, eixo 1: nível de mensuração</h2>
-  <table>
-    <tr><th>Nível (encontro 3)</th><th>Medida disponível</th></tr>
-    <tr><td>Nominal</td><td>só <strong>moda</strong> (a seção CNAE mais comum)</td></tr>
-    <tr><td>Ordinal</td><td>moda e <strong>mediana</strong></td></tr>
-    <tr><td>Intervalar e razão</td><td>as <strong>três</strong></td></tr>
-  </table>
-  <div class="pergunta">Não existe "melhor medida" no abstrato, existe a medida
-  <strong>compatível</strong> com o seu tipo de dado.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O critério de escolha, eixo 2: a forma da distribuição</h2>
-  <div class="definicao"><span class="rotulo">Simétrica</span>
-  Média e mediana <strong>coincidem</strong>; a média aproveita toda a informação.</div>
-  <div class="definicao"><span class="rotulo">Assimétrica</span>
-  A média <strong>desloca-se na direção da cauda</strong> e deixa de representar o caso
-  típico; a mediana resiste.</div>
-  <div class="exemplo"><span class="rotulo">Dados empresariais = o reino da assimetria</span>
-  Receitas, salários e tamanhos de empresa: muitos pequenos, poucos gigantes. Reportar
-  <strong>média e mediana juntas</strong> é mais honesto que escolher uma.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que vamos ver nos dados reais da CVM</h2>
+  <h2>Nos dados reais da CVM</h2>
   <div class="afirmacao">A margem líquida das companhias abertas tem extremos tão severos
   que a <strong>média setorial pode trocar de sinal</strong> por causa de uma única
-  empresa.</div>
-  <p class="menor">Regra prática a fixar: média e mediana divergindo muito → distribuição
-  assimétrica ou outliers → reportar as duas.</p>
+  empresa: a assinatura de uma assimetria forte.</div>
+  <div class="exemplo"><span class="rotulo">Por que isso importa para a decisão</span>
+  O mesmo raciocínio vale para qualquer variável de negócio: uma empresa que acompanha o
+  desvio padrão das vendas diárias de um produto usa esse número para decidir o estoque de
+  segurança (desvio alto → picos de demanda a cobrir) e o planejamento financeiro (desvio
+  baixo → vendas previsíveis, alocação de caixa mais simples).</div>
   <div class="instrucao"><span class="rotulo">Discussão</span>
   Em duplas, um minuto: citem uma variável do <strong>seu projeto</strong> em que vocês
   esperam média muito diferente da mediana, e uma em que esperam que coincidam. Justifiquem
-  pela forma da distribuição.</div>
-  <div class="pergunta">Relembrando o objetivo 2 do encontro: reconhecer quando a
-  <strong>mediana é a medida honesta</strong>.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Medidas de dispersão</h2>
-  <p>Tendência central sozinha esconde o espalhamento</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Por que centro não basta</h2>
-  <div class="definicao"><span class="rotulo">O exemplo das duas cidades</span>
-  Mesma temperatura média, uma com clima estável, outra alternando calor e frio.</div>
-  <div class="definicao"><span class="rotulo">O exemplo dos dois setores</span>
-  Mesma margem mediana, um homogêneo, outro com empresas excelentes e empresas à beira da
-  falência.</div>
-  <p class="menor">A tendência central diz <em>onde</em> os dados estão; a dispersão diz
-  <em>quão espalhados</em> estão em torno desse centro.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Amplitude e variância</h2>
-  <div class="definicao"><span class="rotulo">Amplitude</span>
-  Máximo − mínimo. A medida mais simples e a mais frágil: depende só dos dois extremos.</div>
-  <div class="definicao"><span class="rotulo">Variância</span>
-  A distância média (ao quadrado) de cada valor em relação à média. O quadrado resolve o
-  cancelamento dos desvios, mas devolve a resposta em unidade sem sentido prático (reais
-  ao quadrado).</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Desvio padrão e coeficiente de variação</h2>
-  <div class="definicao"><span class="rotulo">Desvio padrão</span>
-  Raiz quadrada da variância, devolve a dispersão à <strong>unidade original</strong> da
-  variável. A medida de referência: "o desvio típico em relação à média".</div>
-  <div class="definicao"><span class="rotulo">Coeficiente de variação (CV)</span>
-  Desvio padrão ÷ média, em %. Responde: <strong>qual grupo é mais disperso quando as
-  escalas diferem?</strong> Um desvio de R$ 1 mi é enorme entre padarias e irrisório entre
-  petroleiras.</div>
+  pela assimetria esperada.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O cuidado técnico do CV</h2>
+  <h2>Lembrando o encontro 4: o cuidado técnico do CV</h2>
+  <div class="exemplo"><span class="rotulo">Por que isso já foi visto</span>
+  No encontro 4, o exemplo clássico foi duas turmas com a mesma média (5,0), mas dispersões
+  diferentes: a turma A tinha notas mais espalhadas que a B, e só o desvio padrão revelava a
+  diferença que a média escondia.</div>
   <div class="pergunta">CV só faz sentido para variáveis de <strong>razão com valores
   positivos</strong> e média longe de zero.</div>
-  <ul>
-    <li>Aplicado à <strong>margem líquida</strong> (médias perto de zero e valores
-        negativos) o CV produz <strong>números absurdos</strong>;</li>
-    <li>A prática de hoje mostrará isso <strong>deliberadamente</strong>;</li>
-    <li>Lógica: dividir por um denominador que flerta com o zero explode o resultado.</li>
-  </ul>
   <div class="instrucao"><span class="rotulo">Exercício</span>
   Para cada variável, digam se o CV faz sentido: (a) receita das companhias; (b) margem
   líquida; (c) número de funcionários; (d) nota de satisfação de 1 a 5. Justifiquem pelo
   nível de mensuração e pela posição da média.</div>
-  <div class="afirmacao">Toda medida tem <strong>pressupostos de uso</strong>: fórmula sem
-  julgamento produz absurdo.</div>
+  <p class="menor">A prática de hoje mostrará deliberadamente o CV explodindo na margem
+  líquida, onde a média fica perto de zero.</p>
+  <div class="colunas">
+    <div>
+      <table>
+        <tr><th>CV</th><th>Leitura</th></tr>
+        <tr><td>&gt; 30%</td><td>Alta dispersão</td></tr>
+        <tr><td>15% a 30%</td><td>Média dispersão</td></tr>
+        <tr><td>&lt; 15%</td><td>Baixa dispersão</td></tr>
+      </table>
+    </div>
+    <div>
+      <p class="menor"><strong>Outra aplicação do CV:</strong> comparar ações com preços médios
+      muito diferentes. Ação da Google: média R$ 55,62, desvio R$ 5,10, CV ≈ 9,15%. Ação da
+      Amazon: média R$ 24,86, desvio R$ 3,60, CV ≈ 14,48%. Mesmo com desvios em patamares
+      parecidos, a Amazon é proporcionalmente mais volátil.</p>
+    </div>
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
 
@@ -278,16 +194,19 @@
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Lendo uma tabela de frequências</h2>
-  <div class="instrucao"><span class="rotulo">No quadro</span>
-  Vamos montar juntos a tabela da margem líquida em cinco classes (prejuízo, 0 a 5%, 5 a
-  10%, 10 a 20%, acima de 20%). Para cada classe, preencham: contagem, % do total e %
-  acumulado.</div>
-  <div class="instrucao"><span class="rotulo">Perguntas para a turma</span>
-  <ul>
-    <li>Em que classe está a <strong>maior concentração</strong> de companhias?</li>
-    <li>Que proporção opera no <strong>prejuízo</strong>? Onde a acumulada responde isso?</li>
-    <li>A tabela sugere uma distribuição simétrica ou com cauda? Para que lado?</li>
-  </ul></div>
+  <div class="exemplo"><span class="rotulo">A margem líquida de 40 empresas, em classes</span>
+  <table>
+  <tr><th>Classe</th><th>Contagem</th><th>% do total</th><th>% acumulado</th></tr>
+  <tr><td>Prejuízo</td><td>4</td><td>10%</td><td>10%</td></tr>
+  <tr><td>0% a 5%</td><td>10</td><td>25%</td><td>35%</td></tr>
+  <tr><td>5% a 10%</td><td>14</td><td>35%</td><td>70%</td></tr>
+  <tr><td>10% a 20%</td><td>9</td><td>22,5%</td><td>92,5%</td></tr>
+  <tr><td>Acima de 20%</td><td>3</td><td>7,5%</td><td>100%</td></tr>
+  </table></div>
+  <div class="pergunta">A maior concentração está na faixa de 5% a 10% (14 empresas, 35% do
+  total). Os 10% no prejuízo aparecem direto na primeira linha da acumulada. A cauda mais
+  longa fica à direita: a faixa acima de 20% ainda reúne empresas, enquanto o prejuízo some
+  logo depois da primeira classe.</div>
   <p class="menor">A tabela de frequências é o histograma em forma de tabela; o gráfico
   fica para o encontro 10.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
@@ -314,6 +233,11 @@
     mais alto, e veja o quanto o miolo se espalha. Quem cai a mais de uma vez e meia o IQR das
     bordas da caixa é tratado como valor extremo.</span>
   </div>
+  <div class="exemplo"><span class="rotulo">Exemplo simples, antes do caso CVM</span>
+  Salários mensais (R$ mil) de dez funcionários do mesmo cargo, já ordenados: 2,5 · 3,0 · 3,2 ·
+  3,8 · 4,0 · 4,5 · 4,8 · 5,0 · 5,5 · 6,0. Q1 = 3,2, Q3 = 5,0, logo IQR = 5,0 − 3,2 = 1,8. Metade
+  dos salários está entre R$ 3,2 mil e R$ 5,0 mil: um IQR pequeno aqui sinaliza política salarial
+  consistente, sem grandes desigualdades dentro do cargo.</div>
   <p>Por que isso importa: média e desvio padrão são arrastados por um único valor extremo.
   Mediana e quartis não são. Em dados empresariais, que quase sempre têm cauda longa, o segundo
   par descreve melhor.</p>
