@@ -152,19 +152,20 @@ print("ORDINAL  |", len(ordinal), "faixas |",
 
 # --- 3. RAZÃO: empresas de alojamento e alimentação, Brasil
 pas = baixa_sidra("2325", "1", "all", variable="all", period="last")
+# o SIDRA devolve a coluna "Valor" com V maiúsculo; a Célula B lê "valor" do
+# CSV. Renomear aqui deixa as duas células produzindo a MESMA tabela — sem isso,
+# a base razão quebra com a Célula A e funciona com a B.
 razao = (pas.dropna(subset=["Variável", "Valor"])
-           .loc[:, ["Variável", "Unidade de Medida", "Valor"]]
+           .loc[:, ["Variável", "Unidade de Medida", "Valor", "Ano"]]
            .rename(columns={"Variável": "variavel",
-                            "Unidade de Medida": "unidade"})
+                            "Unidade de Medida": "unidade",
+                            "Valor": "valor", "Ano": "ano"})
            .drop_duplicates("variavel")
            .reset_index(drop=True))
-print("RAZAO    |", len(razao), "variáveis de", int(razao["ano"].iloc[0])
-      if "ano" in razao.columns else "RAZAO    |", len(razao), "variáveis")
+print("RAZAO    |", len(razao), "variáveis | ano de referência:",
+      int(razao["ano"].iloc[0]) if "ano" in razao.columns else "(ver painel)")
 razao''' 
 
-CELULA_A = CELULA_A.replace('''print("RAZAO    |", len(razao), "variáveis de", int(razao["ano"].iloc[0])
-      if "ano" in razao.columns else "RAZAO    |", len(razao), "variáveis")''',
-                            'print("RAZAO    |", len(razao), "variáveis")')
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
@@ -183,7 +184,8 @@ print("NOMINAL  |", len(nominal), "seções |",
       f"{nominal['Valor'].sum():,.0f}".replace(",", "."), "empresas")
 print("ORDINAL  |", len(ordinal), "faixas |",
       f"{ordinal['nascimentos'].sum():,.0f}".replace(",", "."), "nascimentos")
-print("RAZAO    |", len(razao), "variáveis")
+print("RAZAO    |", len(razao), "variáveis | ano de referência:",
+      int(razao["ano"].iloc[0]) if "ano" in razao.columns else "(ver painel)")
 nominal''' 
 
 # ------------------------------------------------------------------ conteudo
@@ -261,31 +263,67 @@ print(f"Exemplo real:  {exemplo}")
 print(f"  ordenar? {ordena}   somar? {soma}   média? {media}   mediana? "
       f"{'sim' if BASE in ('ordinal', 'intervalo', 'razao') else 'nao'}   dobro? {dobro}")'''},
 
-    {"tipo": "code", "texto": '''# A base escolhida, com a contagem e a porcentagem.
+    {"tipo": "code", "texto": '''# A base escolhida, tratada conforme o nível dela.
+#
+# Nominal e ordinal são UMA variável com categorias: cabe a tabela de frequências.
+# Razão não é: o PAS traz QUATRO variáveis medidas, em unidades diferentes. Somar
+# receita (mil reais) com pessoal ocupado (pessoas) não significa nada — e é por
+# isso que a tabela de frequências não se aplica. O que se aplica é a RAZÃO entre
+# elas, que só o nível de razão permite.
 if BASE == "nominal":
     tabela = nominal[["letra", "atividade", "Valor"]].copy()
     tabela.columns = ["categoria", "rotulo", "n_i"]
+    n = tabela["n_i"].sum()
+    tabela["pct"] = (tabela["n_i"] / n * 100).round(2)
+    print(f"Base {BASE}: {len(tabela)} categorias | total n = {n:,.0f}".replace(",", "."))
+    print(f"Conferência: a soma das porcentagens é {tabela['pct'].sum():.2f}%  (tem que dar 100)")
+    tabela.head(10)
+
 elif BASE == "ordinal":
     tabela = ordinal[["faixa", "nascimentos", "pct", "pct_acumulado"]].copy()
     tabela = tabela.rename(columns={"faixa": "categoria", "nascimentos": "n_i"})
+    n = tabela["n_i"].sum()
+    tabela["pct"] = (tabela["n_i"] / n * 100).round(2)
+    print(f"Base {BASE}: {len(tabela)} categorias | total n = {n:,.0f}".replace(",", "."))
+    print(f"Conferência: a soma das porcentagens é {tabela['pct'].sum():.2f}%  (tem que dar 100)")
+    tabela.head(10)
+
 else:
     tabela = razao[["variavel", "unidade", "valor"]].copy()
-    tabela = tabela.rename(columns={"variavel": "categoria", "valor": "n_i"})
+    print(f"Base {BASE}: {len(tabela)} variáveis medidas — não é uma variável com "
+          f"categorias, e por isso não há tabela de frequências.")
+    print("O que este nível permite é DIVIDIR um valor pelo outro:")
+    print()
+    for _, r in tabela.iterrows():
+        # o replace do separador de milhar vale só para o NÚMERO: aplicado à linha
+        # inteira, ele trocaria também a vírgula do nome da variável
+        valor = f"{r['valor']:,.0f}".replace(",", ".")
+        print(f"  {r['variavel'][:42]:<44} {valor:>14}  {r['unidade']}")
 
-n = tabela["n_i"].sum()
-tabela["pct"] = (tabela["n_i"] / n * 100).round(2)
-print(f"Base {BASE}: {len(tabela)} categorias | total n = {n:,.0f}".replace(",", "."))
-print(f"Conferência: a soma das porcentagens é {tabela['pct'].sum():.2f}%  (tem que dar 100)")
-tabela.head(10)'''},
+    # as razões que só o nível de razão permite
+    empresas = float(tabela.loc[tabela["variavel"] == "Número de empresas", "valor"].iloc[0])
+    pessoas = float(tabela.loc[tabela["variavel"].str.contains("Pessoal"), "valor"].iloc[0])
+    receita = float(tabela.loc[tabela["variavel"].str.contains("Receita"), "valor"].iloc[0])
+    salarios = float(tabela.loc[tabela["variavel"].str.contains("Salários"), "valor"].iloc[0])
+
+    print()
+    print("Três razões com sentido, todas deste nível:")
+    print(f"  pessoas por empresa ........... {pessoas / empresas:.2f}")
+    print(f"  receita por pessoa (mil R$) ... {receita / pessoas:.2f}")
+    print(f"  salários sobre a receita ...... {salarios / receita * 100:.1f}%")
+    print()
+    print("Nenhuma dessas três divisões faria sentido em variável nominal ou ordinal.")
+    tabela'''},
 
     {"tipo": "code", "texto": '''# AGORA A CONFERÊNCIA. Os números esperados já estavam escritos no slide.
 ESPERADO = {
     "nominal":  ("total de empresas no Brasil", 10607110.0, 1, ""),
     "ordinal":  ("nascimentos no total",        674660.0, 1, ""),
-    "razao":    ("número de empresas",          281133.0, 1, ""),
+    "razao":    ("número de empresas",          281133.0, 1, ""),   # conferido no bloco próprio
 }
-rotulo, alvo, tol, uni = ESPERADO[BASE]
-conferir(rotulo, n, alvo, tolerancia=tol, unidade=uni)
+if BASE != "razao":
+    rotulo, alvo, tol, uni = ESPERADO[BASE]
+    conferir(rotulo, n, alvo, tolerancia=tol, unidade=uni)
 
 if BASE == "ordinal":
     conferir("1 a 9 pessoas", float(tabela.loc[0, "pct"]), 93.01, tolerancia=0.01, unidade="%")
@@ -298,8 +336,11 @@ if BASE == "nominal":
     conferir("comercio (secao G)", comercio, 27.42, tolerancia=0.02, unidade="%")
 
 if BASE == "razao":
-    pessoas = float(tabela.loc[tabela["categoria"].str.contains("Pessoal"), "n_i"].iloc[0])
-    conferir("pessoal ocupado", pessoas, 1420230.0, tolerancia=1, unidade="")'''},
+    # as conferências da base razão são os valores das variáveis e as razões entre
+    # elas — e não uma soma, que aqui não significaria nada
+    conferir("número de empresas", empresas, 281133.0, tolerancia=1, unidade="")
+    conferir("pessoal ocupado", pessoas, 1420230.0, tolerancia=1, unidade="")
+    conferir("pessoas por empresa", pessoas / empresas, 5.05, tolerancia=0.01, unidade="")'''},
 
     {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número
 > do slide. Se apareceu `[X]` em um número que ontem batia, quase sempre é que a
@@ -313,8 +354,9 @@ A **frequência acumulada** responde a uma pergunta que a frequência comum não
 responde: *"quantas empresas têm **até** tal tamanho?"*. E ela só tem sentido
 porque a variável **tem ordem**. Numa base nominal, acumular seria absurdo.
 
-Na base de hoje, a resposta éVASculina: **até 49 pessoas, 99,3% dos nascimentos.**
-Uma em cada mil empresas nascent nasce com 50 pessoas ou mais."""},
+Na base de hoje, a resposta é direta: **até 49 pessoas, 99,3% dos nascimentos.**
+E apenas 0,65% nasceram com 50 pessoas ou mais — cerca de **uma em cada 150**
+empresas."""},
 
     {"tipo": "code", "texto": '''# A acumulada só faz sentido em ordinal. Rode depois de escolher BASE = "ordinal".
 if BASE == "ordinal":
@@ -323,8 +365,12 @@ if BASE == "ordinal":
         print(f"  até {r['faixa']:<20} {r['pct_acumulado']:6.2f}%  "
               f"({r['nascimentos']:,.0f} nascimentos)".replace(",", "."))
     print()
-    print("E se a pergunta fosse 'qual é a faixa da mediana'?")
-    print(f"  a mediana cai na faixa: {ordinal.loc[len(ordinal)//2, 'faixa']}")
+    print("E se a pergunta fosse 'em que faixa cai a mediana dos nascimentos'?")
+    # a mediana é a primeira faixa cujo acumulado passa de 50% — e não o índice
+    # do meio da lista, que é outra coisa
+    faixa_mediana = ordinal.loc[ordinal["pct_acumulado"] >= 50, "faixa"].iloc[0]
+    print(f"  a mediana cai na faixa: {faixa_mediana}")
+    print("  (a primeira faixa cujo acumulado passa de 50%)")
 else:
     print(f"A base de hoje é {BASE}. A frequência acumulada não se aplica:")
     print("não há ordem entre as categorias, então 'até' não quer dizer nada.")'''},
@@ -392,7 +438,7 @@ print("ANÁLISE 1: 'número de funcionários da empresa' foi classificado como O
 print("           (o nível certo é razão ou intervalo? o que muda na hora de resumir?)")
 print()
 print("ANÁLISE 2: 'setor de atividade da empresa' foi classificado como ORDINAL,")
-print("           justificando com que as letras da CNAE vão de A a U")
+print("           justificando que as letras da CNAE vão de A a U")
 print("           (letras em ordem alfabética formam uma ordem? )")
 print()
 print("ANÁLISE 3: 'satisfação do cliente, de 0 a 10' foi classificada como RAZÃO,")
@@ -431,7 +477,7 @@ _(dica: procure uma onde o zero não signifique "nenhum")_
 ---
 """},
 
-    {"tipo": "md", "texto": """**3. O que a base de hoje **não** permite afirmar sobre as empresas brasileiras?**
+    {"tipo": "md", "texto": """**3. O que a base de hoje NÃO permite afirmar sobre as empresas brasileiras?**
 
 _(pense em pelo menos uma coisa que o dado não diz)_
 

@@ -63,7 +63,7 @@ BLOCO_D1 = {
               <span class="marca-estatistica">Parte 2 · Estatística</span>
               <h2>A regra: o nível decide o que é permitido</h2>
               <table>
-                <tr><th>Nível</th><th>Exemplo real de hoje</th><th>Ordenar</th>
+                <tr><th>Nível</th><th>Exemplo</th><th>Ordenar</th>
                     <th>Somar</th><th>Média</th><th>Mediana</th><th>“O dobro”</th></tr>
                 <tr><td><strong>Nominal</strong></td>
                     <td>Seção da CNAE: A, B, C… U<br><span class="menor">10.607.110 empresas · comércio 27,42%</span></td>
@@ -82,7 +82,7 @@ BLOCO_D1 = {
                     <td><strong>sim</strong></td></tr>
               </table>
               <p class="menor">Em corrente: <strong>cada nível libera uma fileira.</strong>
-              Suba de level e a lista de permissões só cresce. É por isso que a ordem dos
+              Suba de nível e a lista de permissões só cresce. É por isso que a ordem dos
               níveis importa.</p>
             </section>"""),
 
@@ -101,7 +101,7 @@ BLOCO_D1 = {
               </div>
               <div class="definicao"><span class="rotulo">O teste do zero, em uma pergunta</span>
               Pergunte: <strong>o zero significa ausência da coisa?</strong><br>
-              Satisfaction de 0 a 10: o zero significa <em>ninguém respondeu</em>, e não
+              Satisfação de 0 a 10: o zero significa <em>ninguém respondeu</em>, e não
               ausência de satisfação. Logo é <strong>intervalo</strong>, e “8 pontos é o dobro
               de 4” não quer dizer nada.<br>
               Receita de R$ 0: significa <em>nenhum serviço prestado</em>. Logo é
@@ -126,7 +126,7 @@ BLOCO_D1 = {
                 <li>Acumulando a terceira: <span class="num">100,00%</span>. A soma fecha, e
                     a conta está certa.</li>
               </ol>
-              <p class="menor">Só o passo 4 é novo em relação ao encontro 1. Ele só existe
+              <p class="menor">Os passos 4 e 5 são novos em relação ao encontro 1. Ele só existe
               porque a variável <strong>tem ordem</strong>.</p>
             </section>"""),
 
@@ -144,8 +144,8 @@ BLOCO_D1 = {
               <ul>
                 <li>traduz “99,35%” em “99,3% até 49 pessoas” — que é a pergunta que o
                     gestor faz de fato;</li>
-                <li>diz <strong>qual</strong> faixa, <strong>de quando</strong> e
-                    <strong>de onde</strong>;</li>
+                <li>diz <strong>quais</strong> casos (a faixa de pessoal),
+                    <strong>onde</strong> (no Brasil) e <strong>quando</strong> (em 2021);</li>
                 <li>não diz nada sobre eficiência, lucro ou qualidade de gestão.</li>
               </ul>
             </section>"""),
@@ -156,7 +156,7 @@ BLOCO_D1 = {
               <img class="logo-slide" src="assets/logo-ufma.png" alt="">
               <span class="marca-estatistica">Parte 2 · Estatística</span>
               <h2>Como se faz no Colab</h2>
-              <pre class="codigo"><span class="cmt"># a acumulada: a coluna_running_ soma a coluna anterior</span>
+              <pre class="codigo"><span class="cmt"># a acumulada: cada linha soma as anteriores</span>
 ordinal[<span class="str">"pct"</span>]          = ordinal[<span class="str">"nascimentos"</span>] / ordinal[<span class="str">"nascimentos"</span>].sum() * 100
 ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"pct"</span>].cumsum()
 
@@ -240,7 +240,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
                   <h4>O erro</h4>
                   <p>Confundir a ordem do <strong>código</strong> com a ordem do
                   <strong>fenômeno</strong>, e promover nominal a ordinal.</p>
-                  <p>Os totais de hoje: 10.607.110 empresas · 674.660 nascimentos · 281.133 empresas e 1.420.230 pessoas</p>
+                  <p>Os números de hoje: 10.607.110 empresas (CNAE) · 674.660 nascimentos (2021) · 281.133 empresas e 1.420.230 pessoas (PAS, 2001)</p>
                 </div>
               </div>
             </section>"""),
