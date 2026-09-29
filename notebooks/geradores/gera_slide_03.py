@@ -116,13 +116,14 @@ SECOES = [
             <strong>um</strong> mês extremo. Peça que a turma calcule a média antes de o notebook
             mostrar: a mão em seis valores é viável e o efeito do extremo é visível.</p>
             <p>Ao revelar, dizer o número que impressiona: <strong>um único mês e a média subiu
-            0,1255 ponto percentual</strong> — de 0,4317 para 0,5571 — enquanto a mediana foi de
-            0,35 para 0,42. A média é frágil; a mediana não.</p>
+            0,1255 ponto percentual</strong> — de 0,4317 para 0,5571, quase 30% — enquanto a
+            mediana foi de 0,35 para 0,42. A média é frágil; a mediana não.</p>
             """, "pergunta-aula"),
             ("A média ponderada: por que ela existe", """
-            <p>O exemplo de relatório — duas vendas mensais com números diferentes de dias —
-            mostra que a média simples e a ponderada <strong>respondem a perguntas
-            diferentes</strong>. O ponto não é a fórmula, é a pergunta: “por mês” ou “por dia”?</p>
+            <p>O exemplo de relatório — duas lojas, uma vendendo 100 unidades a R$ 10 e
+            outra 900 a R$ 20 — mostra que a média simples e a ponderada <strong>respondem
+            a perguntas diferentes</strong>. O ponto não é a fórmula, é a pergunta: os casos
+            valem todos o mesmo, ou cada um pesa diferente?</p>
             <p>Vale antecipar que a ponderada volta em dois lugares: na amostragem estratificada
             do Módulo II e nos índices de preço do Módulo IV.</p>
             """, "falar"),

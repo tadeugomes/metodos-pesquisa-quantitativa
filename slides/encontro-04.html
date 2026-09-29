@@ -501,7 +501,7 @@ desvio = serie[<span class="str">"valor_venda"</span>].std()      <span class="c
 cv     = desvio / media * 100
 iqr    = serie[<span class="str">"valor_venda"</span>].quantile(0.75) - serie[<span class="str">"valor_venda"</span>].quantile(0.25)
 
-<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"desvio padrao"</span>, desvio, 0.42))
+<span class="fn">conferir</span>(<span class="str">"desvio padrao"</span>, desvio, 0.42))
 <span class="fn">print</span>(<span class="str">f"{media:.2f} +- {desvio:.2f}  (CV {cv:.1f}%)  IQR {iqr:.2f}"</span>)</pre>
   <p>A leitura mais útil do código é a linha do <code>print</code> final: ela imprime
   <strong>centro e dispersão juntos, na mesma frase</strong>. É assim que o resultado vai para
@@ -698,9 +698,9 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
   <pre class="codigo">cincos = serie[<span class="str">"valor_venda"</span>].quantile([0, .25, .5, .75, 1])
 z      = (serie[<span class="str">"valor_venda"</span>] - media) / desvio
 
-<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"Q1"</span>, cincos[0.25], 5.79))
-<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"IQR"</span>, cincos[0.75] - cincos[0.25], 0.66))
-<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"z do mais caro"</span>, z.max(), 2.52))
+<span class="fn">conferir</span>(<span class="str">"Q1"</span>, cincos[0.25], 5.79))
+<span class="fn">conferir</span>(<span class="str">"IQR"</span>, cincos[0.75] - cincos[0.25], 0.66))
+<span class="fn">conferir</span>(<span class="str">"z do mais caro"</span>, z.max(), 2.52))
 
 serie[<span class="str">"valor_venda"</span>].hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   <p>O histograma é a última linha, e não a menos importante: <strong>a forma da distribuição é

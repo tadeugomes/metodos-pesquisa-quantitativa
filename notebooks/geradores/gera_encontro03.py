@@ -138,6 +138,8 @@ def monta_base(ultimos=36):
 base = monta_base(36)
 base["mes"] = base["data"].dt.strftime("%Y-%m")
 print(f"Base carregada: {len(base)} meses, de {base['mes'].iloc[0]} a {base['mes'].iloc[-1]}")
+print("  (as duas séries não começam e terminam no mesmo mês: cada uma tem 36 meses,")
+print("   e a base reúne os dois períodos)")
 base.head(6)'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
@@ -156,10 +158,14 @@ inad.columns = ["data", "inadimplencia"]
 ipca["data"] = pd.to_datetime(ipca["data"], format="%Y-%m")
 inad["data"] = pd.to_datetime(inad["data"], format="%Y-%m")
 
-base = (ipca.merge(inad, on="data", how="inner")
+# o join é EXTERNO, igual ao da Célula A: as duas séries não terminam no mesmo
+# mês, e um join interno apagaria as pontas — deixando 35 meses em vez de 36, e
+# fazendo a conferência da quantidade de meses falhar
+base = (ipca.merge(inad, on="data", how="outer")
             .sort_values("data").reset_index(drop=True))
 base["mes"] = base["data"].dt.strftime("%Y-%m")
 print(f"Base carregada: {len(base)} meses, de {base['mes'].iloc[0]} a {base['mes'].iloc[-1]}")
+print("  (cada série tem 36 meses válidos: as duas não começam e terminam no mesmo mês)")
 base.head(6)'''
 
 CELULAS = [
@@ -246,12 +252,15 @@ print(f"n = {len(serie)} meses")
 print(f"  média   = {media:.2f}%   (soma tudo e divide pelo número de meses)")
 print(f"  mediana = {mediana:.2f}%   (o valor do meio, em ordem)")
 print(f"  mínimo  = {serie['valor'].min():.2f}%   máximo = {serie['valor'].max():.2f}%")
+print(f"  moda    = {', '.join(f'{m:.2f}%' for m in moda)}   "
+      f"(o valor que mais se repete)")
 print(f"  |média - mediana| = {abs(media - mediana):.3f}  ponto percentual")
 print()
 print("O que essa diferença diz:")
 if abs(media - mediana) < 0.05:
-    print("  média e mediana quase iguais -> a distribuição é praticamente simétrica,")
-    print("  e a média é uma boa descrição.")
+    print("  média e mediana próximas -> a média descreve bem o centro do conjunto.")
+    print("  Atenção: isso NÃO prova que a distribuição é simétrica. Para isso, olhe")
+    print("  o mínimo e o máximo — a distância de cada um até o centro é parecida?")
 else:
     print("  média e mediana distantes -> a distribuição é assimétrica, e a média")
     print("  está sendo puxada por algum valor extremo. Descreva com a mediana.")'''},
@@ -313,25 +322,27 @@ Em corrente: **multiplique cada valor pelo peso, some tudo, e divida pela soma d
 pesos.** Se todos os pesos forem iguais, a ponderada vira a média simples — é por isso
 que a fórmula é a mesma."""},
 
-    {"tipo": "code", "texto": '''# Média ponderada: um exemplo que vem de um relatório de mercado.
-# Uma rede de varejo vendou em dois meses, e o segundo teve o dobro de dias de venda.
-meses = ["março", "abril"]
-vendas = [820.0, 910.0]          # mil unidades
-dias = [26, 28]                  # dias de venda em cada mes
+    {"tipo": "code", "texto": '''# Média ponderada: o uso mais frequente em relatório de gestão é o PREÇO MÉDIO
+# ponderado pela quantidade. É o exemplo da tela da estatística.
+lojas = ["Loja A", "Loja B"]
+preco = [10.0, 20.0]     # R$ por unidade
+qtd = [100, 900]         # unidades vendidas
 
-simples = sum(vendas) / len(vendas)
-ponderada = (vendas[0]*dias[0] + vendas[1]*dias[1]) / (dias[0] + dias[1])
-por_dia = [v / d for v, d in zip(vendas, dias)]
+simples = sum(preco) / len(preco)
+ponderada = sum(q * p for q, p in zip(qtd, preco)) / sum(qtd)
 
-print(f"Vendas totais: {sum(vendas):.0f} mil unidades em {sum(dias)} dias")
-print(f"  média simples de vendas ....... {simples:.1f} mil por mes")
-print(f"  média ponderada por dia de venda {ponderada:.1f} mil por dia")
-print(f"  vendas por dia, mes a mes ..... "
-      + " e ".join(f"{p:.1f}" for p in por_dia))
+print(f"{lojas[0]}: {qtd[0]} unidades a R$ {preco[0]:.0f}")
+print(f"{lojas[1]}: {qtd[1]} unidades a R$ {preco[1]:.0f}")
 print()
-print("Note que as duas respostas não são a mesma pergunta:")
-print("  'por mes' ignora que abril teve mais dias; 'por dia' corrige isso.")
-print("  Antes de escolher, escreva a pergunta.")'''},
+print(f"  média simples dos preços ......... R$ {simples:.2f}")
+print(f"  média ponderada pela quantidade .. R$ {ponderada:.2f}")
+print()
+print("A média simples trata as duas lojas como se vendessem o mesmo tanto —")
+print("e a Loja B vendeu nove vezes mais. O preço que de fato se praticou foi")
+print(f"R$ {ponderada:.2f}, e não R$ {simples:.2f}.")
+print()
+print("É por isso que existe a ponderada: quando os casos NÃO valem o mesmo,")
+print("a média simples responde à pergunta errada.")'''},
 
     {"tipo": "md", "texto": """**A frase que vai para o relatório**
 
@@ -383,9 +394,9 @@ sua_analise = None   # <-- o assistente escreve aqui embaixo
     {"tipo": "md", "texto": "Rode a célula abaixo e responda: **qual é o erro, e o que deveria ter sido dito?**"},
 
     {"tipo": "code", "texto": '''# As três leituras erradas do professor.
-print("ANÁLISE 1: 'a inadimplência média do período foi de 3,54%, e o valor de hoje é")
-print("           3,54%'")
-print("           (os dois números são a mesma coisa?)")
+print("ANÁLISE 1: 'a inadimplência média do período foi de 3,54%, e hoje segue")
+print("           nos mesmos 3,54%'")
+print("           (o valor de hoje é o mesmo da média? confira o último mês da série)")
 print()
 print("ANÁLISE 2: 'a inadimplência média é de 3,54%. Logo, quase 4 em cada 100 empresas")
 print("           estavam inadimplentes durante todo o periodo'")
@@ -404,7 +415,36 @@ print("           (uma diferença de 0,015 basta para concluir isso?)")'''},
 | **3** | **A conclusão é mais forte do que o dado.** A diferença de 0,015 ponto percentual entre média e mediana sugere simetria aproximada, mas **sugerir** não é **demonstrar**: para afirmar, seria preciso ver o gráfico da distribuição, que é o assunto do encontro 4. |\n\n\nRepare que a análise 2 é a mais perigosa: usa um número certo e tira dele uma afirmação que o número não sustenta. É o mesmo cuidado da tela de leitura do encontro 1, aplicado a uma série temporal."""},
 
     # ------------------------------------------------------------ perguntas
-    {"tipo": "md", "texto": """## Seção 4. As três perguntas do dia
+    {"tipo": "md", "texto": """## Seção 4. Oficina do projeto: o cardápio de temas
+
+Escolha um tema do cardápio — ou proponha outro, desde que a base seja pública e
+acessível com as ferramentas da disciplina — e escreva, nas células do fim, a sua
+pergunta delimitada.
+
+**Todas as fontes abaixo foram testadas e entregam dado** (ver `dados/FONTES.md`).
+
+| Tema | Fonte | Pergunta exemplo |
+|---|---|---|
+| Sobrevivência de empresas por porte ou setor | Demografia das Empresas (SIDRA **9949**) | Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? |
+| Estrutura empresarial do Maranhão vs. Brasil | CEMPRE (SIDRA **9582**) | A economia maranhense é mais concentrada em comércio? |
+| Preço de combustíveis por município | ANP — SHPC (dados abertos) | O preço da gasolina difere sistematicamente entre os municípios do Maranhão? |
+| Crédito e inadimplência empresarial | SGS/BCB (**20543**, **21086**) | A inadimplência PJ sobe quando o crédito encarece? |
+| Inflação e inadimplência | SGS/BCB (**433**, **21086**) | A inadimplência PJ acompanha a inflação? |
+| Setor de serviços: emprego e receita | PAS (SIDRA **2325–2330**) | Que segmento de serviços mais emprega por real de receita? |
+| Rentabilidade de companhias abertas por setor | CVM (dados abertos DFP) | Margens diferem sistematicamente entre setores? |
+| Endividamento e desempenho de empresas listadas | CVM (dados abertos DFP) | Empresas mais endividadas são menos rentáveis? |
+| Universo de empresas por município e atividade | Receita Federal (Base CNPJ) e CEMPRE (9582, N6) | Quantas empresas do comércio há em São Luís, e como isso se compara ao estado? |
+| Demografia empresarial municipal | CEMPRE (9582, N6) | Como São Luís se compara às demais capitais do NE? |
+
+> **Antes de escolher, passe a fonte pelos seis critérios do encontro 4** —
+> periodicidade, granularidade, cobertura, metadado, licença e acesso. O mais
+> frequente é o tema ter a variável desejada, mas para outro período ou território.
+
+> **O cardápio orienta sem engessar.** A pergunta exemplo é um modelo de
+> delimitação, não uma obrigação: o que se pede é que a sua pergunta tenha
+> população, território e período declarados.
+"""} ,
+    {"tipo": "md", "texto": """## Seção 5. As três perguntas do dia
 
 Responda **por escrito**, clicando duas vezes nesta célula e substituindo o texto entre
 as linhas `---`. Não há gabarito para estas: o que se avalia é a qualidade da leitura."""},
@@ -418,7 +458,7 @@ _(duas ou três frases)_
 
     {"tipo": "md", "texto": """**2. Em que situação concreta uma média ponderada é a escolha certa, e o que aconteceria se alguém usasse a média simples?**
 
-_(pense num exemplo de gestão real: vendas, notas, produção, movimento)_
+_(pense num exemplo de gestão real: preço, notas, produção, movimento)_
 
 ---
 """},

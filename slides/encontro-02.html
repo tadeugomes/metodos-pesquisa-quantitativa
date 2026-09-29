@@ -390,7 +390,7 @@
 ordinal[<span class="str">"pct"</span>]          = ordinal[<span class="str">"nascimentos"</span>] / ordinal[<span class="str">"nascimentos"</span>].sum() * 100
 ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"pct"</span>].cumsum()
 
-<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"acumulada ate 49 pessoas"</span>,
+<span class="fn">conferir</span>(<span class="str">"acumulada ate 49 pessoas"</span>,
       ordinal[<span class="str">"pct_acumulado"</span>].iloc[1], 99.35))</pre>
               <p>Repare que a acumulada nasce de <strong>uma coluna e uma função</strong>:
               <code>cumsum()</code>, soma acumulada. Ela está em duas linhas, e a segunda
