@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,8 +18,12 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 1 · Unidade I</div>
+  <div class="marcador-encontro">Encontro 1 · Módulo I · Fundamentos e estatística descritiva</div>
   <h1>Introdução à pesquisa quantitativa</h1>
   <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
@@ -32,22 +37,35 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>30 min</td><td>Apresentação do programa, das avaliações e do projeto individual</td></tr>
-    <tr><td>50 min</td><td>Ciência, senso comum e pesquisa quantitativa</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>30 min</td><td>Quantitativo e qualitativo; perguntas de pesquisa em Administração</td></tr>
-    <tr><td>90 min</td><td><strong>Prática no Colab:</strong> primeiro notebook com dados reais do IBGE</td></tr>
-    <tr><td>25 min</td><td>Síntese, discussão e tarefa</td></tr>
-  </table>
+  <p>Hoje é o primeiro encontro do <strong>Módulo I</strong>, e o dia tem duas partes.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: a pergunta</h3>
+      <p>O que diferencia ciência de sentido comum, e o que faz uma pesquisa ser quantitativa.
+      Até a metade da aula.</p>
+      <h3>Parte 2: estatística — frequência e porcentagem</h3>
+      <p>A <strong>Parte 2</strong> do encontro: contar, dividir e descobrir por que o denominador decide
+      tudo. É o primeiro de quarenta itens que constroem a estatística descritiva da
+      disciplina.</p>
+    </div>
+    <div>
+      <h3>Depois: a prática</h3>
+      <p>Baixar a primeira base oficial do IBGE por API, montar a tabela de frequências, ver os
+      três denominadores na tela e escrever a frase de leitura.</p>
+      <h3>Três coisas, e só</h3>
+      <p>Executar, mexer em dois valores, escrever a frase. <strong>Você não vai escrever
+      código nesta disciplina.</strong></p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">Onde está a minutagem</span>
+  A minutagem do encontro não está nestas telas de propósito: ela está na camada de condução
+  deste mesmo arquivo, que é o plano de aula. Tecla <strong>D</strong>, ou imprima o PDF, que
+  sai em duas partes.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Objetivos de aprendizagem</h2>
@@ -61,7 +79,6 @@
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O contrato da disciplina</h2>
@@ -78,7 +95,6 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Duas ansiedades que podemos dispensar</h2>
@@ -91,20 +107,22 @@
     </div>
     <div class="cartao alt-dourado">
       <h4>"Eu nunca programei"</h4>
-      <p>Ninguém precisa saber Python. Os notebooks vêm com o <strong>código pronto e
-      comentado</strong>, e a IA generativa ajuda quando for preciso adaptá-lo.</p>
-      <p>A progressão é gradual: hoje você executa e troca parâmetros; ao final, analisa sua
-      própria base.</p>
+      <p>Você <strong>não vai escrever código</strong> nesta disciplina. Nem neste encontro, nem
+      em nenhum dos quinze. Os notebooks vêm com o código pronto, e a sua tarefa é executar,
+      ler e responder.</p>
+      <p>No encontro de hoje você mexe em <strong>dois valores</strong> do bloco de
+      configuração e escreve uma frase. Nada além disso. A IA generativa está disponível e é
+      incentivada.</p>
     </div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
   <h2>Conhecimento e ciência</h2>
   <p>Como sabemos o que achamos que sabemos sobre o mundo dos negócios</p>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Três afirmações que todo mundo já ouviu</h2>
@@ -118,7 +136,6 @@
   registramos no quadro <strong>de onde veio</strong> cada resposta (experiência, autoridade, repetição, dados).</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>As formas de conhecer o mundo</h2>
@@ -145,7 +162,6 @@
   cotidiano, insuficiente para decidir e generalizar.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Por que o senso comum falha (justo quando importa)</h2>
@@ -164,7 +180,6 @@
   vieses, por isso cresce a <strong>gestão baseada em evidências</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Conhecimento científico</h2>
@@ -183,7 +198,6 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Ciência não é certeza: é procedimento</h2>
@@ -200,12 +214,12 @@
   método científico. Pesquisar = disciplinar perguntas com evidências.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
 <section class="slide divisor">
   <h2>A pesquisa quantitativa</h2>
   <p>O que ela é, o que a define, o que ela não faz</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Pesquisa quantitativa: definição</h2>
@@ -220,7 +234,6 @@
   generalização · estatística</strong></p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Característica 1: Mensuração</h2>
@@ -235,7 +248,6 @@
   <p class="menor">Aprofundaremos no encontro 3 (variáveis e níveis de mensuração).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Característica 2: Sistematização</h2>
@@ -251,7 +263,6 @@
   <p class="menor">Aprofundaremos nos encontros 6 e 7 (instrumentos de coleta).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Característica 3: Generalização</h2>
@@ -266,7 +277,6 @@
   quantos são necessários é o tema do encontro 5 (amostragem).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Característica 4: Estatística como linguagem</h2>
@@ -282,7 +292,6 @@
   <p class="menor">É o conteúdo dos encontros 9 a 13, sempre com o computador fazendo as contas.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que a pesquisa quantitativa NÃO faz</h2>
@@ -298,7 +307,6 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Quantitativa × qualitativa</h2>
@@ -318,7 +326,6 @@
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Complementares, não rivais</h2>
@@ -338,7 +345,6 @@
   hipóteses, o quanti as testa em escala, ou o quanti aponta um padrão e o quali o explica.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exercício: quanti ou quali?</h2>
@@ -354,7 +360,6 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exercício: quanti ou quali? (continuação)</h2>
@@ -371,7 +376,6 @@
   a do porte da empresa é quanti correlacional.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Onde o administrador usa isso</h2>
@@ -385,7 +389,6 @@
   <p class="menor">A lógica quantitativa é ferramenta de trabalho, não exigência acadêmica.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>E a primeira afirmação do quadro?</h2>
@@ -401,205 +404,199 @@
      responderão <strong>com dados</strong> o que hoje respondem com impressões.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
 <section class="slide divisor estat">
-  <h2>Estatística do encontro 1</h2>
-  <p>Contar e transformar contagem em porcentagem: a tabela de frequência</p>
+  <h2>Parte 2: estatística</h2>
+  <p>Ler um conjunto de dados: contagem, divisão e o denominador</p>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: frequência absoluta, relativa e porcentagem</h2>
-
-  <div class="definicao"><span class="rotulo">Definição</span>
-  A <strong>tabela de frequência</strong> resume uma variável qualitativa contando quantos casos
-  caem em cada categoria. A contagem bruta é a frequência absoluta; dividida pelo total, vira
-  frequência relativa; multiplicada por 100, vira porcentagem.</div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">São <strong>69.518 empresas de comércio</strong> no Maranhão, e
+  <strong>2.908.372 no Brasil</strong>. Quanto isso representa?</div>
+  <p>Essa é a única pergunta do bloco de hoje, e a resposta depende inteiramente de uma
+  decisão que parece invisível: <strong>por quem estamos dividindo</strong>.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Antes de qualquer divisão, escreva a frase <strong>“entre quem?”</strong>. Se você não
+  consegue respondê-la, o cálculo está errado ou a pergunta está mal feita. Todo o Módulo I
+  é construído sobre este hábito.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Frequência absoluta e frequência relativa</h2>
+  <div class="definicao"><span class="rotulo">O conceito, em linguagem corrente</span>
+  Contar quantas observações caem em cada categoria é a <strong>frequência absoluta</strong>.
+  Dividir essa contagem pelo total de observações é a <strong>frequência relativa</strong>.
+  Multiplicada por 100, vira <strong>porcentagem</strong>.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use quando</span>
+    A pergunta é “quantas” e a resposta é um número inteiro. Toda contagem começa aqui.</div>
+    <div class="nao-usa"><span class="rotulo">Não use quando</span>
+    A pergunta exige comparar a categoria com um todo e você ainda não declarou qual
+    todo é. É aí que nasce o erro do dia.</div>
+  </div>
+  <p class="menor">Parece elementar, e é. Mas é a operação mais usada em pesquisa
+  aplicada, e a que mais produz erro, porque <strong>tudo depende de qual número foi
+  para o denominador</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula, com cada símbolo nomeado</h2>
   <div class="formula">
-    <span class="expr">f<sub>i</sub><span class="op">=</span><span class="frac"><span class="cima">n<sub>i</sub></span><span class="baixo">n</span></span><span class="op">        </span>%<sub>i</sub><span class="op">=</span>f<sub>i</sub><span class="op">×</span>100</span>
+    <span class="expr">f<sub>i</sub><span class="op">=</span><span class="frac"><span class="cima">n<sub>i</sub></span><span class="baixo">n</span></span><span class="op">&nbsp;&nbsp;&nbsp;</span>%<sub>i</sub><span class="op">=</span>f<sub>i</sub><span class="op">×</span>100</span>
     <span class="simbolos">
       <span><b>n<sub>i</sub></b>casos na categoria i</span>
       <span><b>n</b>total de casos</span>
-      <span><b>f<sub>i</sub></b>frequência relativa (entre 0 e 1)</span>
+      <span><b>f<sub>i</sub></b>frequência relativa, entre 0 e 1</span>
     </span>
-    <span class="legenda-formula">Em linguagem corrente: conte quantos são de cada tipo e divida
-    pelo total. A soma de todas as frequências relativas é sempre 1, e a das porcentagens é
-    sempre 100.</span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> conte quantos são de
+    cada tipo e divida pelo total. A soma de todas as frequências relativas é sempre 1, e a
+    das porcentagens é sempre 100 — e isso serve de conferência.</span>
   </div>
-  <p>Parece elementar, e é. Mas é a operação mais usada em pesquisa aplicada, e a que mais
-  produz erro, porque tudo depende de <strong>qual número foi para o denominador</strong>.</p>
+  <p class="menor">Repare que os dois símbolos da fração estão nomeados: o que sobe é a
+  <em>contagem</em> e o que desce é o <em>total</em>. Trocar um pelo outro é o erro do dia.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: um exemplo resolvido</h2>
-
-  <p>Vinte empresas de um município, classificadas por seção CNAE. A coluna n<sub>i</sub> é a
-  contagem; as demais saem dela.</p>
-  <div class="colunas">
-    <div>
-      <table>
-        <tr><th>Seção CNAE</th><th>n<sub>i</sub></th><th>f<sub>i</sub></th><th>%</th></tr>
-        <tr><td>Comércio</td><td>9</td><td>9 ÷ 20 = 0,45</td><td>45%</td></tr>
-        <tr><td>Serviços</td><td>6</td><td>6 ÷ 20 = 0,30</td><td>30%</td></tr>
-        <tr><td>Indústria</td><td>3</td><td>3 ÷ 20 = 0,15</td><td>15%</td></tr>
-        <tr><td>Construção</td><td>2</td><td>2 ÷ 20 = 0,10</td><td>10%</td></tr>
-        <tr><td><strong>Total</strong></td><td><strong>20</strong></td><td><strong>1,00</strong></td><td><strong>100%</strong></td></tr>
-      </table>
-      <p class="menor">Confira sempre a linha do total: se a soma não fecha em 100%, ou há
-      categoria faltando, ou o denominador está errado, ou é arredondamento (e aí a diferença é
-      de 0,1 ponto, não de 5).</p>
-    </div>
-    <div>
-      <div class="figura">
-        <svg viewBox="0 0 420 250" role="img" aria-label="Gráfico de barras das quatro seções CNAE">
-          <line x1="150" y1="16" x2="150" y2="216" stroke="#bbb" stroke-width="1.6"/>
-          <rect x="152" y="24" width="234" height="34" fill="#8D0333"/>
-          <text x="144" y="47" text-anchor="end" font-size="16" fill="#333">Comércio</text>
-          <text x="394" y="47" font-size="16" fill="#8D0333" font-weight="700">45%</text>
-          <rect x="152" y="74" width="156" height="34" fill="#8D0333" opacity="0.82"/>
-          <text x="144" y="97" text-anchor="end" font-size="16" fill="#333">Serviços</text>
-          <text x="316" y="97" font-size="16" fill="#8D0333" font-weight="700">30%</text>
-          <rect x="152" y="124" width="78" height="34" fill="#8D0333" opacity="0.64"/>
-          <text x="144" y="147" text-anchor="end" font-size="16" fill="#333">Indústria</text>
-          <text x="238" y="147" font-size="16" fill="#8D0333" font-weight="700">15%</text>
-          <rect x="152" y="174" width="52" height="34" fill="#8D0333" opacity="0.46"/>
-          <text x="144" y="197" text-anchor="end" font-size="16" fill="#333">Construção</text>
-          <text x="212" y="197" font-size="16" fill="#8D0333" font-weight="700">10%</text>
-          <text x="270" y="240" text-anchor="middle" font-size="15" fill="#777">O gráfico de barras é a tabela desenhada.</text>
-        </svg>
-      </div>
-    </div>
-  </div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: as 20 seções da CNAE no Maranhão</h2>
+  <ol class="passos">
+    <li>O total do estado: <span class="num">n = 168.098</span> empresas cadastradas no
+        CEMPRE, corte de 2024;</li>
+    <li>O comércio, na seção G: <span class="num">n<sub>i</sub> = 69.518</span> empresas;</li>
+    <li>A divisão: <span class="num">f = 69.518 ÷ 168.098 = 0,4136</span>;</li>
+    <li>Em porcentagem: <span class="num">0,4136 × 100 = 41,36%</span>;</li>
+    <li>Conferência: as outras 19 seções somam <span class="num">58,64%</span>. As duas
+        somam 100%, e a soma fecha. A conta está certa.</li>
+  </ol>
+  <p class="menor">Este exemplo não é fictício: é a tabela 9582 do IBGE, que a prática de hoje
+  baixa pela API. O mesmo número vai aparecer na célula de conferência do notebook.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Das 168.098 empresas cadastradas no Maranhão, <strong>69.518 (41,4%)</strong> estão no setor
+  de comércio, e as 91.674 empresas de comércio e de outras atividades de serviços (54,5%)
+  somam mais da metade do cadastro do estado.</div>
+  <p>Repare no que a frase faz, e no que o número sozinho não faz:</p>
+  <ul>
+    <li>diz <strong>quais</strong> empresas foram contadas e <strong>de quando</strong>;</li>
+    <li>diz <strong>em relação a quê</strong> — o total do estado, declarado;</li>
+    <li>transforma 0,4136 em algo que um leitor leigo entende.</li>
+  </ul>
+  <div class="alerta"><span class="rotulo">Por que isso é insistir o semestre inteiro</span>
+  Nenhum número vai para o relatório sem a frase que o acompanha. É a frase que separa um
+  relatório de pesquisa de uma lista de números.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Como se faz no Colab</h2>
+  <pre class="codigo"><span class="cmt"># a contagem e o total, em linhas separadas</span>
+num = dados.loc[dados[<span class="str">"secao_cnae"</span>].str.startswith(<span class="str">"G "</span>), <span class="str">"Valor"</span>].sum()
+den = dados[<span class="str">"Valor"</span>].sum()
 
-  <p>Uma única função do pandas faz a tabela inteira: <code>value_counts()</code>. O argumento
-  <code>normalize</code> é o que troca contagem por proporção.</p>
-  <pre class="codigo"><span class="cmt"># 1. frequência absoluta: quantas empresas em cada seção</span>
-dados[<span class="str">"secao_cnae"</span>].<span class="fn">value_counts</span>()
-
-<span class="cmt"># 2. frequência relativa: a mesma contagem dividida pelo total</span>
-dados[<span class="str">"secao_cnae"</span>].<span class="fn">value_counts</span>(normalize=<span class="fn">True</span>)
-
-<span class="cmt"># 3. porcentagem com uma casa decimal, pronta para a tabela do relatório</span>
-(dados[<span class="str">"secao_cnae"</span>].<span class="fn">value_counts</span>(normalize=<span class="fn">True</span>) * 100).<span class="fn">round</span>(1)</pre>
-  <table>
-    <tr><th>Argumento</th><th>O que faz</th><th>Quando usar</th></tr>
-    <tr><td><code>normalize=True</code></td><td>Divide cada contagem pelo total</td><td>Sempre que a resposta for um percentual</td></tr>
-    <tr><td><code>dropna=False</code></td><td>Conta também os valores ausentes</td><td>Para saber quantos casos estão sem informação</td></tr>
-    <tr><td><code>sort=False</code></td><td>Mantém a ordem original das categorias</td><td>Em variável ordinal, onde a ordem tem significado</td></tr>
-  </table>
+<span class="fn">print</span>(<span class="str">f"{num} de {den} = {num/den:.2%}"</span>)
+<span class="fn">conferir</span>(<span class="str">"comercio / MA"</span>, num/den, 0.4136)</pre>
+  <p>Repare que o numerador e o denominador estão em <strong>duas linhas separadas</strong>,
+  cada um com nome próprio. Isso é proposital: <strong>o denominador fica visível no
+  código</strong>, e não escondido dentro de uma divisão. Você vê qual é o todo antes de
+  dividir.</p>
+  <p class="menor">A função <code>conferir</code> compara o seu resultado com o número que já
+  estava escrito nesta tela, e devolve o veredito. Você nunca precisa ficar adivinhando se
+  acertou.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê o resultado</h2>
-
-  <p>O número sozinho não é resultado de pesquisa. O resultado é a frase, e a frase tem sempre
-  três partes: <strong>quanto</strong>, <strong>de quê</strong> e <strong>entre quem</strong>.</p>
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "Entre as 20 empresas do município, <strong>45%</strong> (9 empresas) pertencem ao
-  <strong>comércio</strong>, que é a seção mais frequente. Indústria e construção somam 25%."</div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Em 2024, o setor de comércio reunia <strong>69.518 das 168.098 empresas</strong> cadastradas
+  no Maranhão, o equivalente a <strong>41,4%</strong> do total, contra <strong>27,4%</strong>
+  no Brasil (IBGE, CEMPRE).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  41,4% <strong>não diz</strong> que o comércio é o setor mais importante da economia do
+  Maranhão: diz quantas empresas estão cadastradas naquela seção. São coisas diferentes, e
+  confundir as duas é o erro mais comum de relatório.</div>
+  <p class="menor">E repare na segunda metade: 41,4% contra 27,4% é uma diferença de
+  <strong>13,94 pontos percentuais</strong> — não é “51% maior”, que é a leitura errada. Esse é
+  o item de ponto percentual, e ele volta no Módulo III.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: o mesmo número, três denominadores</h2>
   <div class="colunas">
-    <div>
-      <h3>O que a frase precisa ter</h3>
-      <ul>
-        <li>O percentual <strong>e</strong> a contagem entre parênteses, porque 45% de 20 e 45%
-        de 20 mil são coisas muito diferentes;</li>
-        <li>O total que serviu de denominador, explícito;</li>
-        <li>A categoria nomeada, não o código.</li>
-      </ul>
+    <div class="alerta">
+      <span class="rotulo">Três respostas para uma pergunta</span>
+      <strong>69.518 empresas de comércio no Maranhão.</strong><br><br>
+      Dividindo pelo total do estado: <strong>41,36%</strong>.<br>
+      Dividindo pelo comércio mais os serviços: <strong>75,83%</strong>.<br>
+      Dividindo pelo total do país: <strong>0,66%</strong>.<br><br>
+      As três contas estão <em>corretas</em>. As três respostas estão erradas, porque
+      respondem a perguntas diferentes.
     </div>
-    <div>
-      <h3>A ponte com o encontro de hoje</h3>
-      <p>Sistematização, a segunda característica da pesquisa quantitativa, é exatamente isto: a
-      tabela de frequência substitui a impressão pessoal. "Tem muita loja nesta cidade" vira "45%
-      das empresas formais são do comércio", e a segunda frase pode ser conferida por qualquer
-      pessoa que abra a mesma base.</p>
+    <div class="exemplo">
+      <span class="rotulo">A regra que resolve</span>
+      Antes de dividir, responda em voz alta: <strong>“entre quem?”</strong><br><br>
+      “41,4% das empresas cadastradas no Maranhão estão no comércio” é uma afirmação com
+      denominador declarado, e responde à pergunta do dia.<br><br>
+      “Comércio é o setor mais importante do Maranhão” é outra afirmação, e <strong>este
+      cálculo não a sustenta</strong>.<br><br>
+      <span class="destaque-dourado">É esse o exercício que a turma faz hoje no notebook.</span>
     </div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O erro comum: trocar o denominador</h2>
-
-  <p>O mesmo conjunto de dados produz percentuais diferentes conforme o total escolhido. Isso não
-  é erro de conta, é erro de pergunta.</p>
-  <table>
-    <tr><th></th><th>Comércio</th><th>Serviços</th><th>Total da linha</th></tr>
-    <tr><td><strong>Microempresas</strong></td><td>60</td><td>40</td><td>100</td></tr>
-    <tr><td><strong>Pequenas</strong></td><td>30</td><td>70</td><td>100</td></tr>
-    <tr><td><strong>Total da coluna</strong></td><td>90</td><td>110</td><td>200</td></tr>
-  </table>
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Três frases, três denominadores</span>
-      "60 das 200 empresas são microempresas de comércio" usa o total geral: 30%.<br>
-      "60 das 100 microempresas são de comércio" usa o total da linha: 60%.<br>
-      "60 das 90 empresas de comércio são microempresas" usa o total da coluna: 67%.</div>
-    </div>
-    <div>
-      <p>As três estão certas, e respondem a perguntas diferentes. O erro é escrever uma e
-      pensar na outra, o que acontece o tempo todo em relatórios de gestão.</p>
-      <p><strong>A regra prática:</strong> antes de dividir, diga em voz de pergunta qual é o
-      grupo de referência. "Entre quem?" A resposta é o denominador.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: frequência e porcentagem</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística · ficha de revisão</span>
+  <h2>Ficha de revisão: ler um conjunto de dados</h2>
   <div class="ficha">
     <div>
       <h4>A fórmula</h4>
-      <p><span class="expr">f<sub>i</sub> = n<sub>i</sub> ÷ n</span></p>
-      <p>Porcentagem é a mesma coisa multiplicada por 100. A soma fecha em 100%.</p>
+      <span class="expr">f<sub>i</sub> = n<sub>i</sub> ÷ n</span>
+      <p>A contagem da categoria dividida pelo total. Em corrente: <em>conte e divida</em>.</p>
     </div>
     <div>
       <h4>No Colab</h4>
-      <pre class="codigo">dados["col"].value_counts()
-dados["col"].value_counts(
-    normalize=True)</pre>
+      <pre class="codigo">num = dados[<span class="str">"col"</span>].sum()
+den = dados[<span class="str">"Valor"</span>].sum()
+<span class="fn">print</span>(<span class="str">f"{num} de {den}"</span>)
+<span class="fn">conferir</span>(<span class="str">"rotulo"</span>, num/den, 0.4136)</pre>
     </div>
     <div>
       <h4>A frase de leitura</h4>
-      <p>"Entre as <em>n</em> empresas, <em>x</em>% (<em>n<sub>i</sub></em> casos) pertencem
-      a <em>categoria</em>."</p>
+      <p>“X de Y observações (Z%), da fonte, no recorte e no ano.”</p>
+      <p>Com o denominador declarado em voz alta.</p>
     </div>
     <div>
-      <h4>O erro a evitar</h4>
-      <p>Trocar o denominador. Antes de dividir, pergunte "entre quem?" e use esse total.</p>
+      <h4>O erro</h4>
+      <p>Dividir pelo total errado, sem declarar qual total era. E confundir pontos
+      percentuais com variação em por cento.</p>
     </div>
   </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
-  volume I, seções 2.1 e 2.2.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-5" data-conducao="1">
 <section class="slide divisor">
   <h2>Mão na massa</h2>
   <p>Google Colab + dados do CEMPRE/IBGE, abra o notebook <code>encontro01_aluno.ipynb</code></p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>A ferramenta: notebook no Google Colab</h2>
@@ -618,147 +615,410 @@ dados["col"].value_counts(
   científico aplicada ao seu trabalho.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A prática de hoje, em 5 seções</h2>
+  <h2>A prática de hoje, em seis seções</h2>
   <ol>
-    <li><strong>O que é um notebook</strong>: células de texto e de código, <code>Shift+Enter</code></li>
-    <li><strong>Python mínimo</strong>: variáveis, operações, listas (só o indispensável)</li>
-    <li><strong>Dados reais</strong>: empresas por atividade no Brasil, direto da API do IBGE</li>
-    <li><strong>Primeiro gráfico</strong>, e a comparação Brasil × Maranhão</li>
-    <li><strong>Interpretação por escrito</strong>: o que os dados mostram e o que não mostram</li>
+    <li><strong>Como se usa um notebook</strong>: célula de texto, célula de código,
+        <code>Shift+Enter</code></li>
+    <li><strong>A base</strong>: empresas por seção da CNAE no Maranhão, direto da API do IBGE,
+        com o painel do encontro escrito no topo</li>
+    <li><strong>A tabela de frequências</strong> e a conferência contra o número desta tela</li>
+    <li><strong>Os três denominadores</strong> e a comparação Maranhão × Brasil</li>
+    <li><strong>Usando o assistente</strong>: três modos de uso, com registro</li>
+    <li><strong>As três perguntas</strong>, respondidas por escrito</li>
   </ol>
-  <div class="pergunta">Regra do dia: <strong>execute muito, digite pouco.</strong> O código
-  vem pronto: o que você faz é executar, ler e trocar parâmetros.</div>
+  <div class="pergunta">Regra do dia: <strong>execute muito, digite pouco.</strong>
+  Você não vai escrever código: mexe em dois valores do bloco de configuração, executa, e
+  escreve a frase.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1: O que é um notebook (15 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  <h2>Seção 1: como se usa um notebook</h2>
+  <p>Um notebook é uma lista de blocos. Blocos de <strong>texto</strong> são explicação.
+  Blocos de <strong>código</strong> são instruções para o computador, e precisam ser
+  executados.</p>
+  <div class="instrucao"><span class="rotulo">O que você faz aqui</span>
   <ol>
-    <li>Acesse o Google Colab com sua conta Google e abra o notebook <code>encontro01_aluno.ipynb</code>;</li>
-    <li>Identifique o que é célula de <strong>texto</strong> e o que é célula de <strong>código</strong>;</li>
-    <li>Edite a célula de identificação com seu <strong>nome e curso</strong>;</li>
-    <li>Execute a célula <code>print("Olá, ...")</code> com <code>Shift+Enter</code>.</li>
+    <li>Clicar na célula e apertar <code>Shift + Enter</code>. A célula vira texto, e o
+        resultado aparece embaixo;</li>
+    <li>Conferir se o resultado é o que a tela da estatística diz que é. É por isso que o
+        notebook vem <strong>pré-executado</strong>: você lê o esperado antes de rodar;</li>
+    <li>Marcar seu nome na primeira célula.</li>
   </ol></div>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Executar células fora de ordem: uma célula pode depender do que a anterior criou. Se algo
-  "sumir" ou der erro estranho, use <em>Ambiente de execução → Reiniciar e executar tudo</em>
-  e siga de cima para baixo.</div>
+  <div class="alerta"><span class="rotulo">Três coisas resolvem quase todo problema de laboratório</span>
+  Executou e o resultado não bateu? Execute tudo de novo de cima para baixo:
+  <em>Runtime → Run all</em>. Quer recomeçar? <em>Runtime → Restart runtime</em>. A célula de
+  contingência pediu um arquivo? Faça <em>upload</em> do arquivo que o professor indicar e
+  execute a célula B.</div>
+  <p class="menor">Se você leu isto e a saída aparecer logo abaixo, você já sabe tudo o que
+  precisa saber de notebook. O resto do encontro é executar e ler.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2: Python mínimo (20 min)</h2>
-  <p>Variáveis, números, texto, listas e a função <code>print</code>, sempre com exemplos
-  de gestão: faturamento de uma empresa, lista de filiais.</p>
-  <div class="instrucao"><span class="rotulo">O que você faz</span>
-  Crie uma variável com o faturamento de uma empresa fictícia em dois anos e calcule a
-  <strong>variação percentual</strong> entre eles. O padrão está na célula anterior: basta
-  trocar os números.</div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  Não vamos além disso hoje: nada de laços ou condicionais. O pandas, que veremos nos próximos
-  encontros, dispensa essas estruturas para o que a disciplina precisa. Dois tropeços
-  frequentes: texto sem aspas e número decimal com vírgula (Python usa ponto: <code>1250.5</code>).</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: Primeiro contato com dados reais (25 min)</h2>
-  <p>O código de leitura já está pronto: ele baixa do SIDRA/IBGE o número de empresas por
-  seção CNAE no Brasil e no Maranhão (CEMPRE).</p>
-  <div class="pergunta">Antes de executar, escreva seu palpite: qual seção CNAE
-  <strong>concentra mais empresas no Maranhão</strong>?</div>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Execute a célula de leitura e acompanhe no projetor: <code>head()</code> mostra as primeiras
-  linhas; veremos quantas linhas a tabela tem e o que significa cada coluna. Depois compare
-  a resposta dos dados com o seu palpite.</div>
+  <h2>Seção 2: a base, direto da API do IBGE</h2>
+  <p>A primeira chamada de API da disciplina. Uma API é um endereço da internet que devolve
+  dados; aqui devolve a tabela 9582 do SIDRA, o CEMPRE: número de empresas por seção da CNAE,
+  por Unidade da Federação.</p>
+  <div class="instrucao"><span class="rotulo">O painel do encontro</span>
+  O notebook já vem com tudo o que você precisa saber sobre os dados escrito no topo: a fonte,
+  a tabela, o recorte, o período, e o que cada coluna quer dizer. Você não precisa descobrir
+  nada sobre a base.</div>
+  <div class="instrucao"><span class="rotulo">O único lugar onde você mexe</span>
+  O bloco de configuração no topo do notebook tem dois valores: o <strong>recorte</strong>
+  (Maranhão ou Brasil) e a <strong>letra da seção</strong> que vamos destacar. Troque, execute
+  de novo, e siga. É a única edição de código do encontro.</div>
   <div class="alerta"><span class="rotulo">Se a API falhar</span>
-  Há uma célula de contingência que lê o mesmo arquivo CSV da pasta <code>dados/</code>.
-  Execute-a e siga em frente; o resultado é idêntico.</div>
+  Há uma célula de contingência ao lado, que lê o mesmo arquivo CSV da pasta
+  <code>dados/</code> por <em>upload</em>. Execute-a e siga: o resultado é idêntico. Não tente
+  descobrir o que quebrou — pergunte ao professor.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: Primeiro gráfico (20 min)</h2>
-  <p>Gráfico de barras das <strong>dez seções CNAE</strong> com mais empresas, com o código pronto.</p>
-  <div class="instrucao"><span class="rotulo">O que você adapta</span>
-  <ol>
-    <li>Troque o recorte de <strong>Brasil</strong> para <strong>Maranhão</strong> e execute de novo;</li>
-    <li>Altere o <strong>título</strong> do gráfico para refletir o novo recorte.</li>
-  </ol></div>
-  <div class="instrucao"><span class="rotulo">Primeiro uso de IA na disciplina</span>
-  Quer mudar a cor das barras ou inverter a ordem? Peça à IA, descrevendo o
-  <strong>nome do DataFrame e das colunas</strong>, e cole o código no notebook. Depois
-  responda: ele executou? O gráfico mostra o que você pediu? Registre o prompt em uma
-  célula de texto.</div>
-  <div class="instrucao"><span class="rotulo">Discussão</span>
-  Com os dois gráficos lado a lado: a estrutura empresarial maranhense é
-  <strong>mais concentrada em comércio</strong> que a nacional? Esta é a primeira análise
-  da turma; vamos formulá-la antes de escrever.</div>
+  <h2>Seção 3: a tabela e a conferência</h2>
+  <p>O notebook monta a tabela de frequências das 20 seções e imprime, antes de qualquer
+  conta, o <strong>total do recorte</strong> e a <strong>soma das porcentagens</strong>.</p>
+  <div class="instrucao"><span class="rotulo">A célula de conferência</span>
+  Cada resultado é comparado com o número que já estava resolvido na tela da estatística, e a
+  função <code>conferir</code> devolve o veredito: <code>[ok]</code> ou <code>[X]</code>. Você
+  nunca precisa ficar adivinhando se acertou.</div>
+  <div class="alerta"><span class="rotulo">Se aparecer [X] em um número que ontem batia</span>
+  Quase sempre é que o IBGE divulgou um corte novo da base: o CEMPRE é atualizado todo ano.
+  Nesse caso, copie o número novo, anote o ano, e siga. <strong>O número que vale é o que
+  saiu do código, não o do slide.</strong> É assim que se trabalha com dado real.</div>
+  <div class="instrucao"><span class="rotulo">A linha "Total" da tabela do IBGE</span>
+  A tabela vem com uma linha <code>Total</code> que é a soma de todas as seções. Se ela entrar
+  na soma, cada empresa é contada duas vezes. O notebook a tira antes de qualquer conta — e
+  essa é a primeira lição de qualidade de dado do semestre.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5: Interpretação por escrito (10 min)</h2>
-  <p>Responda às três perguntas na célula de texto do notebook, com suas palavras:</p>
-  <ol>
-    <li>O que os dados <strong>mostram</strong>?</li>
-    <li>O que eles <strong>não permitem afirmar</strong>?</li>
-    <li>Que pergunta de pesquisa <strong>você gostaria de responder com dados</strong> ao longo do semestre?</li>
-  </ol>
-  <div class="instrucao"><span class="rotulo">Gancho com o projeto individual</span>
-  A resposta 3 é o embrião do seu projeto. Escreva uma pergunta concreta, ligada a um tema
-  empresarial ou econômico que lhe interesse. Ao final, <strong>compartilhe o link do
-  notebook</strong>: suas perguntas serão lidas antes do encontro 3, quando será apresentado
-  o cardápio de temas.</div>
+  <h2>Seção 4: os três denominadores e a comparação</h2>
+  <p>O notebook calcula a mesma contagem com três denominadores e imprime os três resultados,
+  para você ver na tela que o numerador nunca muda.</p>
+  <div class="pergunta">Depois, troque o recorte para <strong>Brasil</strong>, execute tudo de
+  novo, e responda: o comércio pesa <strong>mais</strong> ou <strong>menos</strong> no Maranhão
+  do que no Brasil?</div>
+  <div class="instrucao"><span class="rotulo">O que você faz</span>
+  Trocar <code>RECORTE = "Maranhao"</code> por <code>"Brasil"</code> no bloco de configuração,
+  executar tudo de cima para baixo, ler a diferença em pontos percentuais, e voltar a linha
+  para <code>"Maranhao"</code> antes de seguir.</div>
+  <div class="instrucao"><span class="rotulo">Discussão, ao final</span>
+  Com os dois números na tela: 41,4% no Maranhão contra 27,4% no Brasil. A estrutura
+  empresarial maranhense é <strong>mais concentrada em comércio</strong> que a nacional? Esta
+  é a primeira análise da turma, e ela é verbalizada antes de ser escrita.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5: usando o assistente sem perder o trabalho</h2>
+  <div class="pergunta">A IA explica, o código calcula, e você <strong>confere e escreve</strong>.</div>
+  <div class="instrucao"><span class="rotulo">Modo 1 — Pergunta</span>
+  Rode a célula de contexto, que imprime as linhas que você precisa colar no assistente. Sem
+  esse contexto a IA inventa número, e você não tem como perceber.</div>
+  <div class="instrucao"><span class="rotulo">Modo 2 — Encomenda</span>
+  Escreva o que quer em uma frase, peça o código, e cole na <strong>célula cinza</strong>. Só
+  mude os <em>parâmetros de consulta</em> — qual coluna, qual filtro, qual agrupamento. Nunca
+  peça para mudar a lógica do cálculo: o número da tela foi conferido, e trocar a lógica
+  quebra a conferência.</div>
+  <div class="instrucao"><span class="rotulo">Modo 3 — Ler um resultado errado</span>
+  O professor preparou três análises com um <strong>erro de estatística</strong>, todas com
+  dados certeiros. O erro está no que foi feito com eles. Diga qual é o erro, e o que deveria
+  ter sido dividido.</div>
+  <div class="alerta"><span class="rotulo">A proibição do semestre</span>
+  Nenhum número vai para o relatório que não tenha saído de uma célula executada na sua frente.
+  A IA explica o resultado e sugere o gráfico; ela não escreve o número do relatório.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
+</section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li><strong>Senso comum</strong> responde por experiência, autoridade e repetição, e
-        falha por generalização apressada e viés de confirmação;</li>
-    <li><strong>Ciência</strong> é conhecimento por procedimento: conceitos definidos,
-        coleta sistemática, verificação por terceiros, e sempre revisável;</li>
-    <li><strong>Pesquisa quantitativa</strong> = mensuração + sistematização +
-        generalização + estatística;</li>
-    <li>Ela <strong>não substitui</strong> a qualitativa: a pergunta escolhe a abordagem;</li>
-    <li>O <strong>notebook</strong> é o caderno de laboratório que torna a análise
-        registrada e reprodutível.</li>
+    <li><strong>Senso comum</strong> responde por experiência, autoridade e repetição, e falha
+        por generalização apressada e viés de confirmação;</li>
+    <li><strong>Ciência</strong> é conhecimento por procedimento: conceitos definidos, coleta
+        sistemática, verificação por terceiros, e sempre revisável;</li>
+    <li><strong>Pesquisa quantitativa</strong> = mensuração + sistematização + generalização
+        + estatística; ela <strong>não substitui</strong> a qualitativa — a pergunta escolhe a
+        abordagem;</li>
+    <li><strong>Contar e dividir</strong>: a frequência absoluta conta os casos de uma
+        categoria, a relativa divide essa contagem pelo total, e a porcentagem é a relativa
+        multiplicada por 100 — e a soma fecha em 100%;</li>
+    <li><strong>O denominador é a decisão.</strong> A mesma contagem, com denominadores
+        diferentes, dá três respostas diferentes: 41,36%, 75,83% e 0,66%. As três contas estão
+        certas; só uma responde à pergunta;</li>
+    <li><strong>O notebook</strong> é o caderno de laboratório que torna a análise registrada
+        e reproduzível.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
-
-<section class="slide">
+<section class="slide leitura">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-leitura">Material de estudo do encontro</span>
   <h2>Para estudar em casa</h2>
   <ul>
-    <li><strong>GIL (2019)</strong>, <em>Métodos e técnicas de pesquisa social</em>,
-        capítulo inicial: ciência, conhecimento e tipos de pesquisa;</li>
-    <li><strong>Estes slides</strong> foram feitos para releitura: as caixas
-        <span class="destaque-dourado">Definição</span> e Exemplo cobrem a teoria do
-        encontro;</li>
-    <li><strong>O notebook do encontro</strong>: reexecute em casa; é revisão ativa.</li>
+    <li><strong>Estes slides</strong> são autossuficientes: cada conceito tem caixa de
+        <span class="destaque-dourado">Definição</span>, exemplo aplicado e ficha de revisão
+        no fim da Parte 2.</li>
+    <li><strong>A condução da aula</strong>: este mesmo arquivo tem uma segunda camada, que é
+        o plano de aula — minutagem, o que falar, o que evitar, as perguntas para a turma e o
+        gabarito. Abra com a tecla <strong>D</strong>, ou imprima: o PDF sai em duas partes,
+        primeiro as telas e depois a condução.</li>
+    <li><strong>O notebook do encontro</strong>: está <em>pré-executado</em>, ou seja, você
+        abre e já lê o resultado esperado antes de rodar. Reexecutar em casa é revisão
+        ativa.</li>
+    <li><strong>GIL (2019)</strong>, <em>Métodos e técnicas de pesquisa social</em>, capítulo
+        inicial: ciência, conhecimento e tipos de pesquisa.</li>
   </ul>
   <h3>Antes de sair</h3>
   <ul>
     <li>Salve o notebook e <strong>compartilhe o link</strong> com o professor;</li>
-    <li>Sua resposta à pergunta 3 ("o que você gostaria de investigar?") é o
-        <strong>embrião do seu projeto individual</strong>; o cardápio de temas vem no encontro 3;</li>
-    <li>Problemas com a conta do Colab? Resolva <strong>durante a semana</strong>.</li>
+    <li>Sua resposta à terceira pergunta é o <strong>embrião do projeto individual</strong>, e
+        ela é lida antes do próximo encontro para orientar a lista de temas;</li>
+    <li>Problemas com a conta do Colab? Resolva <strong>durante a semana</strong>, não na
+        próxima aula.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 1</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
+
+<div class="cabecalho-conducao">
+  <h1>Encontro 1</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 5</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a></p>
+    <h2>Abertura, contrato didático e o que vamos fazer hoje <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) distinguir conhecimento
+            científico de senso comum em afirmações sobre gestão e negócios; (ii) enunciar as
+            características definidoras da pesquisa quantitativa (mensuração, sistematização,
+            generalização); (iii) reconhecer perguntas de pesquisa que pedem abordagem
+            quantitativa; (iv) explicar o que é frequência relativa e por que o denominador é a
+            decisão mais importante de um cálculo; (v) executar as células de um notebook no
+            Google Colab e ler a saída; (vi) baixar a primeira base oficial por API.</p>
+                <h3>Os três pontos do contrato didático</h3>
+
+            <ol>
+              <li><strong>Todas as aulas são no laboratório</strong> e combinam exposição
+              conceitual com prática em notebook. A disciplina não é um curso de estatística
+              abstrata nem um curso de programação.</li>
+              <li><strong>A avaliação é no Colab</strong>, e não em papel. São três atividades,
+              nos encontros 5, 9 e 14.</li>
+              <li><strong>O projeto individual atravessa o semestre</strong>: tema, problema,
+              hipóteses, análise e relatório, com entregas parciais nos encontros 5 e 9.</li>
+            </ol>
+                <div class="caixa falar"><span class="rotulo">As duas ansiedades a desarmar, nesta ordem</span>
+            <p><strong>A da matemática.</strong> A disciplina exige raciocínio, não
+            virtuosismo algébrico. Nenhuma conta é feita à mão em nenhum encontro do semestre:
+            a fórmula é explicada para que se entenda de onde vem o número, e a
+            operacionalização é no Colab. O que se cobra é a decisão sobre qual cálculo fazer
+            e a leitura do resultado.</p>
+            <p><strong>A da programação.</strong> Ninguém escreve código nesta disciplina. O
+            estudante executa células prontas, mexe em quatro ou cinco valores declarados no
+            topo do notebook e escreve frases. A IA generativa está disponível e é
+            incentivada.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">O que não entra nestas horas</span>
+            <p>Não antecipar população e amostra nem tamanho de amostra: isso é o Módulo II, e
+            introduzir aqui só cria um termo solto. Não mostrar a tabela de frequências do CEMPRE
+            antes do bloco de estatística: o contraste entre a afirmação do quadro e o dado
+            real é o que fecha a aula, e ele se perde se o aluno já viu o número.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 6 a 24</b> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a></p>
+    <h2>Ciência, sentido comum e as características da abordagem <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Provocação no quadro</td><td>10</td></tr>
+      <tr><td>O que distingue ciência de senso comum</td><td>20</td></tr>
+      <tr><td>As três características da abordagem quantitativa</td><td>15</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Como conduzir a provocação</span>
+            <p>Escrever as três afirmações no quadro — ou no chat da sala — antes de falar
+            qualquer coisa. Perguntar à turma como se saberia se cada uma é verdadeira, e
+            <strong>deixar o silêncio durar</strong>. É nessa hesitação que o sentido comum
+            aparece em operação.</p>
+            <p>Registrar no quadro os três critérios de julgamento que a turma levantar, e só
+            então nomear: <em>esses são os mecanismos do sentido comum</em>. Não antecipar a
+            resposta.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Perguntas de pesquisa em Administração</span>
+            <p>Exercício rápido: o professor apresenta oito perguntas e a turma classifica cada
+            uma como quanti ou quali, justificando. Exemplos: <em>“qual o perfil dos
+            consumidores de delivery em São Luís?”</em> (quanti, descritiva); <em>“por que
+            consumidores abandonam o carrinho de compras?”</em> (ambígua: quali para explorar
+            motivos, quanti para medir a frequência de motivos já conhecidos); <em>“o porte da
+            empresa está associado à adoção de comércio eletrônico?”</em> (quanti,
+            correlacional).</p>
+            <p><strong>Não hierarquizar as abordagens.</strong> São complementares, e a escolha
+            decorre do problema, não da preferência do pesquisador. Um administrador que só sabe
+            fazer número é tão limitado quanto um que só sabe ouvir.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Encerramento com a realidade profissional</span>
+            <p>Conectar com o trabalho do administrador: relatórios gerenciais, pesquisas de
+            satisfação, indicadores de desempenho, testes A/B de marketing e estudos de
+            viabilidade são aplicações da mesma lógica quantitativa. A disciplina forma tanto
+            para o trabalho de conclusão de curso quanto para a prática de gestão baseada em
+            evidências.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 25 a 34</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
+    <h2>Parte 2: estatística — frequência, porcentagem e o denominador <span class="min">(75 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura: a pergunta que a estatística do dia responde</td><td>8</td></tr>
+      <tr><td>Contagem, frequência absoluta e frequência relativa</td><td>18</td></tr>
+      <tr><td>Porcentagem e o denominador, com o exemplo dos 168.098</td><td>25</td></tr>
+      <tr><td>Razão, proporção, taxa, ponto percentual e base 100</td><td>19</td></tr>
+      <tr><td>Ficha de revisão e leitura do slide</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir em voz alta, muitas vezes ao longo dos 75 minutos: <strong>“tudo depende
+            de qual número foi para o denominador”</strong>. É só isso. Se a turma levar uma
+            frase do encontro 1, que seja essa.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Tratar o exemplo sem ironia</span>
+            <p>Porcentagem parece elementar e não é. O diagnóstico inicial da disciplina
+            mostrou que a turma erra a divisão. Tratar o assunto com vagar e sem piada: é a
+            operação mais usada em pesquisa aplicada, e a que mais aparece errada em
+            relatório.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O ponto de maior impacto do encontro</span>
+            <p>A tabela de <strong>dois denominadores</strong> (30%, 60% e 67% a partir dos
+            mesmos 60 casos). Essa tela costuma provocar a reação mais forte da aula, porque as
+            três leituras parecem iguais e não são. Condução sugerida: escrever as três no
+            quadro sem dizer o que são, e pedir que a turma diga qual responde à pergunta do
+            dia. Se sobrar tempo, fazer a turma dizer em voz alta “entre quem?” antes de cada
+            divisão — é o hábito que se quer instalar.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O terceiro slide, no projetor, com a base aberta</span>
+            <p>Mostrar as três variações de <code>value_counts()</code> com a base do CEMPRE já
+            aberta, e apontar que <code>normalize=True</code> é literalmente a divisão da
+            fórmula, escrita em Python.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O slide da frase de leitura</span>
+            <p>É o que mais interessa ao projeto: porcentagem, contagem entre parênteses e
+            denominador explícito. Os últimos minutos rendem bem se a turma reescrever uma frase
+            mal formulada.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Soma 102% ou 98%.</strong> Arredondamento de cada linha. Explicar que é
+              esperado, e que por isso a conferência é “da soma” e não “de cada linha”.</li>
+              <li><strong>Confundir 35% com 35 pontos percentuais.</strong> Voltar à tela de
+              ponto percentual quando aparecer.</li>
+              <li><strong>“Comércio é 35% da economia do Maranhão”.</strong> Erro de leitura, não
+              de cálculo: a contagem de empresas não mede participação no PIB.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gancho com a prática</span>
+            <p>A seção 3 do notebook produz exatamente a tabela de frequências das seções CNAE.
+            Anunciar isso ao fim do bloco: a prática passa a exigir a frase de leitura por
+            escrito. O bloco termina e a prática começa na mesma ideia.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 35 a 42</b> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a></p>
+    <h2>Prática no Colab: ambientação, primeira API e primeira frase <span class="min">(75 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Seção 1: o que é um notebook</td><td>15</td></tr>
+      <tr><td>Seção 2: a base, a API e a célula de contingência</td><td>25</td></tr>
+      <tr><td>Seção 3: contagem e primeiro gráfico</td><td>20</td></tr>
+      <tr><td>Seção 4: o recorte Brasil</td><td>10</td></tr>
+      <tr><td>Perguntas de interpretação e entrega</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A regra didática do dia</span>
+            <p>O estudante executa muito e digita pouco. As adaptações pedem apenas troca de
+            parâmetros, nunca código novo.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 1 — o que é um notebook (15 min)</span>
+            <p>Criar conta ou acessar o Colab, abrir o notebook do encontro, distinguir célula
+            de texto e célula de código, executar com Shift + Enter. Pedir que cada estudante
+            edite a célula de identificação (nome e curso) e execute a célula
+            <code>print("Olá, ...")</code>.</p>
+            <p><strong>Dificuldade esperada:</strong> estudantes que executam células fora de
+            ordem. Mostrar o menu <em>Ambiente de execução → Reiniciar e executar tudo</em> já
+            na primeira aula evita confusão em todas as aulas seguintes.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seção 2 — a base e a API (25 min)</span>
+            <p>O notebook carrega uma tabela do CEMPRE (número de empresas por seção CNAE,
+            Brasil e Maranhão) com o código de leitura pronto, primeiro pela API do SIDRA e,
+            em célula de contingência, pelo CSV do diretório <code>dados/</code>.</p>
+            <p>Perguntar à turma <strong>antes</strong> de executar: qual seção CNAE vocês
+            acham que concentra mais empresas no Maranhão? A resposta (comércio) sai do
+            próprio dado, e o contraste entre palpite e evidência retoma o argumento do bloco
+            expositivo.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 3 — contagem e primeiro gráfico (20 min)</span>
+            <p>Gráfico de barras das dez seções CNAE com mais empresas, código pronto. O
+            estudante adapta: troca o recorte de Brasil para Maranhão e altera o título do
+            gráfico. É também a primeira ocasião de usar IA generativa em aula: pedir uma
+            variação do gráfico, colar o código e conferir o resultado, registrando o prompt.</p>
+            <p>A comparação entre os dois recortes é a primeira “análise” da turma e deve ser
+            verbalizada em discussão.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 4 — as três perguntas (10 min)</span>
+            <p>Três perguntas em célula de texto, respondidas por escrito no próprio notebook: o
+            que os dados mostram, o que eles não permitem afirmar, e uma pergunta de pesquisa
+            que o estudante gostaria de responder com dados ao longo do semestre. A terceira
+            resposta é o embrião do projeto individual.</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">Se o aluno travar</span>
+            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. Se
+            aparecer um erro, o aluno levanta a mão e o professor resolve. Perder dez minutos
+            depurando é perder vinte e meia hora de aula.</p>
+            <p>Resolver antes do início da aula quem não conseguiu criar conta do Colab: esses
+            alunos usam o computador do colega de dupla e resolvem na semana seguinte, não na
+            próxima aula.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">O que coletar antes do fim da aula</span>
+            <p>O link do notebook, compartilhado no Colab. As respostas da terceira pergunta de
+            interpretação orientam o cardápio de temas que será apresentado no encontro 3:
+            conhecer os interesses da turma permite direcionar o cardápio. Ler as respostas
+            antes do encontro 3.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 43 a 44</b> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os dois aprendizados do dia</span>
+            <ol>
+              <li>A pesquisa quantitativa é um procedimento de <strong>disciplinar perguntas com
+              dados</strong>, não um método que produz a verdade sozinho.</li>
+              <li>O notebook é o <strong>caderno de laboratório</strong> onde esse procedimento
+              fica registrado e reproduzível — e, a partir deste semestre, cada cálculo vem com
+              a conferência que diz se ele bateu.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o encontro 2</h3>
+
+            <ol>
+              <li>Ler o capítulo inicial de GIL (2019) sobre pesquisa social e seus tipos.</li>
+              <li>Anotar uma pergunta de pesquisa sobre um tema de interesse, mesmo que ainda
+              mal formulada. O encontro 2 é sobre variáveis, e a pergunta vem antes da
+              variável.</li>
+              <li>Garantir acesso funcional ao Colab: quem teve problema de conta resolve na
+              semana, não na próxima aula.</li>
+            </ol>
+              </section>
+</main><!-- /conducao -->
 
 <div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>

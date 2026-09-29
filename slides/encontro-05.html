@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,10 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 5 · Unidade II</div>
-  <h1>Amostragem e tamanho da amostra</h1>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 5 · Módulo I · Avaliação 1</div>
+  <h1>Avaliação 1</h1>
+  <p class="subtitulo">Estatística descritiva no Colab, e a primeira entrega do projeto</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -32,715 +37,291 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>10 min</td><td>Retomada da Unidade I e devolutiva das matrizes</td></tr>
-    <tr><td>55 min</td><td>População, amostra e técnicas probabilísticas</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>40 min</td><td>Técnicas não probabilísticas; tamanho da amostra</td></tr>
-    <tr><td>95 min</td><td><strong>Prática no Colab:</strong> sorteios e simulação do erro amostral</td></tr>
-    <tr><td>25 min</td><td>Síntese, conexão com os projetos e tarefa</td></tr>
-  </table>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p>Ao final do encontro, vocês deverão ser capazes de:</p>
-  <ol>
-    <li><strong>distinguir</strong> população, amostra, censo e cadastro (marco amostral);</li>
-    <li><strong>caracterizar</strong> as técnicas probabilísticas (aleatória simples, sistemática,
-        estratificada, por conglomerados) e não probabilísticas (conveniência, cotas, bola de
-        neve), com as condições de uso de cada uma;</li>
-    <li><strong>explicar</strong> por que apenas amostras probabilísticas autorizam generalização
-        com margem de erro conhecida;</li>
-    <li><strong>calcular</strong> o tamanho de amostra necessário em função da margem de erro, do
-        nível de confiança e do tamanho da população;</li>
-    <li><strong>executar</strong> sorteios amostrais em código e comparar as estimativas com os
-        valores populacionais conhecidos.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Antes de começar: retomada da Unidade I (10 min)</h2>
-  <div class="instrucao"><span class="rotulo">Devolutiva</span>
-  Vocês recebem de volta as <strong>matrizes de amarração</strong> entregues no encontro
-  anterior, com comentários. Leiam os apontamentos agora e anotem o que precisa ser ajustado
-  no projeto individual.</div>
-  <div class="instrucao"><span class="rotulo">Retomada</span>
-  Respondam de memória: qual é a pergunta do seu projeto, qual a hipótese e quais as
-  variáveis? A partir de hoje entra a pergunta seguinte: <strong>de quem</strong> vêm os
-  dados que respondem a essa pergunta?</div>
-  <p class="menor">A Unidade II começa aqui: amostragem, instrumentos e coleta de dados.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A pergunta que motiva a aula</h2>
-  <div class="pergunta">Como uma pesquisa eleitoral ouve <strong>2 mil pessoas</strong> e
-  acerta o comportamento de <strong>100 milhões</strong> de eleitores?</div>
-  <p>A resposta parece mágica, e é <strong>técnica</strong>. Ao final da aula, você saberá:</p>
-  <ul>
-    <li>por que o <strong>sorteio</strong> é o segredo (e não o tamanho);</li>
-    <li>como sortear de quatro maneiras diferentes;</li>
-    <li>quantos casos são necessários, por fórmula, não por chute.</li>
-  </ul>
-  <div class="instrucao"><span class="rotulo">Discussão (5 min)</span>
-  Antes de ver a resposta, arrisquem uma: o que faz a pesquisa acertar, o tamanho ou o
-  modo de escolher quem responde? Guardem o palpite; voltaremos a ele no fim da aula.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
-  <h2>População e amostra</h2>
-  <p>Os quatro termos que organizam tudo</p>
+  <h2>Avaliação 1</h2>
+  <p>Três partes, três entregas: o conceitual, a prática e o projeto</p>
 </section>
-
-<section class="slide compacto">
+<section class="slide slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Os termos, com precisão</h2>
-  <div class="definicao"><span class="rotulo">População</span>
-  O conjunto <strong>completo</strong> de casos sobre o qual se quer concluir.
-  Ex.: todas as empresas formais de comércio de São Luís.</div>
-  <div class="definicao"><span class="rotulo">Amostra</span>
-  O <strong>subconjunto</strong> efetivamente estudado.</div>
-  <div class="definicao"><span class="rotulo">Censo</span>
-  O estudo da população <strong>inteira</strong>: caro e raro; é o que IBGE faz a cada
-  década com a população brasileira.</div>
-  <div class="definicao"><span class="rotulo">Cadastro (marco amostral)</span>
-  A <strong>lista concreta</strong> de onde a amostra é sorteada.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>População-alvo ≠ cadastro</h2>
-  <p>A população é uma <strong>ideia</strong>; o cadastro é uma <strong>lista real</strong>,
-  e toda lista tem buracos.</p>
-  <div class="exemplo"><span class="rotulo">Exemplo</span>
-  População-alvo: "empresas de comércio de São Luís". Cadastros possíveis: o CEMPRE/IBGE ou
-  os registros da Junta Comercial. <strong>Nenhum contém os informais</strong>: que são
-  parte relevante do comércio real.</div>
-  <p>Consequência: toda conclusão vale, a rigor, para a população <strong>coberta pelo
-  cadastro</strong>. Declarar essa cobertura é dever do relatório.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O princípio que separa os dois mundos</h2>
-  <div class="definicao"><span class="rotulo">Amostra probabilística</span>
-  Todo elemento da população tem <strong>probabilidade conhecida e não nula</strong> de ser
-  sorteado.</div>
-  <p>É essa propriedade (e <strong>apenas ela</strong>) que permite:</p>
-  <ul>
-    <li>calcular a <strong>margem de erro</strong> das estimativas;</li>
-    <li><strong>generalizar</strong> da amostra para a população com fundamento
-        estatístico.</li>
-  </ul>
-  <p>Sem sorteio, não há margem de erro que valha, por maior que seja a amostra.
-  (Um milhão de respostas voluntárias na internet continua sendo um retrato de quem quis
-  responder.)</p>
-  <div class="instrucao"><span class="rotulo">Pergunta para a turma</span>
-  Uma enquete no Instagram da loja com 3 mil respostas ou um sorteio de 300 clientes do
-  cadastro: qual das duas permite dizer algo sobre <strong>todos</strong> os clientes? Por quê?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Técnica 1: Aleatória simples (AAS)</h2>
-  <div class="definicao"><span class="rotulo">Como funciona</span>
-  Sorteio <strong>direto</strong> do cadastro: cada elemento com a mesma probabilidade.
-  É o padrão-ouro conceitual, as fórmulas de margem de erro assumem AAS.</div>
-  <div class="exemplo"><span class="rotulo">Exemplo</span>
-  Da lista de 8.000 empresas do cadastro, o computador sorteia 400, como uma loteria em
-  que cada empresa é uma bolinha.</div>
-  <p><strong>Exige:</strong> cadastro completo e numerável. <strong>Limite:</strong> pode,
-  por azar, sub-representar grupos pequenos (um setor com 1% da população pode nem aparecer
-  numa amostra pequena).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Técnica 2: Sistemática</h2>
-  <div class="definicao"><span class="rotulo">Como funciona</span>
-  Calcula-se o passo <strong>k = N / n</strong>, sorteia-se o ponto de partida entre 1 e k,
-  e toma-se <strong>1 elemento a cada k posições</strong> da lista.</div>
-  <div class="exemplo"><span class="rotulo">Exemplo</span>
-  8.000 empresas, amostra de 400 → k = 20. Sorteado o início 7: entram as empresas nas
-  posições 7, 27, 47, 67...</div>
-  <p><strong>Vantagem:</strong> simplicidade operacional (linhas de produção, filas,
-  arquivos). <strong>Cuidado:</strong> se a lista tem <strong>periodicidade oculta</strong>
-  (ex.: a cada 20 registros, um é de segunda-feira), o passo pode viciar a amostra.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Técnica 3: Estratificada</h2>
-  <div class="definicao"><span class="rotulo">Como funciona</span>
-  Divide-se a população em <strong>estratos</strong> (grupos internamente homogêneos:
-  porte, setor, região) e sorteia-se <strong>dentro de cada estrato</strong>.</div>
-  <ul>
-    <li><strong>Alocação proporcional:</strong> cada estrato entra na amostra na proporção
-        que tem na população;</li>
-    <li><strong>Alocação uniforme:</strong> mesmo n por estrato, quando se quer comparar
-        estratos entre si, inclusive os pequenos.</li>
-  </ul>
-  <p><strong>Ganhos:</strong> garante representação de todos os estratos <em>por
-  construção</em> e melhora a precisão. Na prática de hoje, você verá a estratificada
-  acertar em cheio a proporção de um setor pequeno em que a AAS flutua.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Técnica 4: Por conglomerados</h2>
-  <div class="definicao"><span class="rotulo">Como funciona</span>
-  Sorteiam-se <strong>grupos inteiros</strong> (conglomerados: bairros, escolas, filiais) e
-  estudam-se <strong>todos os elementos</strong> dos grupos sorteados (ou nova amostra
-  dentro deles).</div>
-  <div class="exemplo"><span class="rotulo">Exemplo</span>
-  Para entrevistar comerciantes do estado, sorteiam-se 10 municípios e visitam-se todos os
-  mercados dos municípios sorteados, em vez de viajar a 100 cidades.</div>
-  <p><strong>Vantagem:</strong> economia de deslocamento e de cadastro.
-  <strong>Custo:</strong> menor precisão para o mesmo n (elementos do mesmo conglomerado
-  tendem a se parecer). É a técnica das grandes pesquisas domiciliares do IBGE.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>As quatro probabilísticas, lado a lado</h2>
+  <h2>Como o encontro está organizado</h2>
   <table>
-    <tr><th>Técnica</th><th>Como sorteia</th><th>Força</th><th>Cuidado</th></tr>
-    <tr><td><strong>Aleatória simples</strong></td><td>Direto do cadastro</td>
-        <td>Padrão-ouro conceitual</td><td>Grupos pequenos podem sumir</td></tr>
-    <tr><td><strong>Sistemática</strong></td><td>1 a cada k, início sorteado</td>
-        <td>Simplicidade operacional</td><td>Periodicidade oculta</td></tr>
-    <tr><td><strong>Estratificada</strong></td><td>Dentro de cada estrato</td>
-        <td>Representação garantida, + precisão</td><td>Exige variável de estrato no cadastro</td></tr>
-    <tr><td><strong>Conglomerados</strong></td><td>Grupos inteiros</td>
-        <td>Economia de campo</td><td>− precisão para o mesmo n</td></tr>
+    <tr><th>Parte</th><th>O que é</th><th>Duração</th><th>Consulta</th></tr>
+    <tr><td><strong>A</strong></td><td>Conceitual, em células de texto do notebook</td>
+        <td>30 min</td><td><strong>Sem consulta</strong>, telas fechadas</td></tr>
+    <tr><td><strong>B</strong></td><td>Prática: descritiva no Colab, sobre uma base real</td>
+        <td>120 min</td><td>Com consulta e registro de IA</td></tr>
+    <tr><td><strong>Projeto</strong></td><td>1ª entrega: tema, pergunta e base funcionando</td>
+        <td>30 min</td><td>Com consulta</td></tr>
   </table>
+  <div class="pergunta">A avaliação é <strong>inteiramente no Colab</strong>. Não há prova em
+  papel em nenhuma das três atividades do semestre.</div>
+  <div class="instrucao"><span class="rotulo">Antes de começar</span>
+  Abra o notebook do encontro, no link que o professor enviou, e faça
+  <em>Arquivo → Salvar uma cópia no Drive</em>. Se o notebook não abrir, chame o professor
+  <strong>agora</strong>, e não depois de perder metade do tempo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Exercício: qual técnica você usaria?</h2>
-  <div class="instrucao"><span class="rotulo">Em duplas (8 min)</span>
-  Para cada situação, escolham a técnica probabilística mais adequada, digam <strong>qual
-  cadastro</strong> usariam e qual o principal risco. Depois, uma dupla responde para a turma.</div>
+  <h2>Parte A: o conceitual, sem consulta</h2>
+  <p>Sete perguntas, respondidas <strong>por escrito</strong> nas células de texto do notebook, com
+  as telas fechadas. O que se cobra é a decisão e a justificativa, não a conta.</p>
+  <table>
+    <tr><th>#</th><th>O que a questão pede</th></tr>
+    <tr><td>1</td><td>Qual medida de resumo cabe em uma variável de cada nível de mensuração, e
+        por quê</td></tr>
+    <tr><td>2</td><td>Aplicar o teste do zero a uma variável, para decidir entre intervalo e
+        razão</td></tr>
+    <tr><td>3</td><td>Dizer qual medida descreve melhor uma distribuição assimétrica, com a
+        justificativa</td></tr>
+    <tr><td>4</td><td>Explicar por que a soma dos desvios em relação à média não serve como
+        medida de dispersão</td></tr>
+    <tr><td>5</td><td>Comparar a dispersão de duas variáveis medidas em escalas diferentes</td></tr>
+    <tr><td>6</td><td>Ler um resultado e dizer o que ele <strong>não</strong> permite afirmar</td></tr>
+    <tr><td>7</td><td>Dizer, para uma variável dada, o seu nível e a sua medida</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">O que mais custa ponto nesta parte</span>
+  Responder com o número sem a justificativa. <strong>Metade da nota está no porquê.</strong></div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O registro de uso de IA</h2>
+  <p>O assistente é <strong>permitido</strong> na Parte B e no projeto. A exigência é de
+  transparência: quem usa, registra.</p>
+  <table>
+    <tr><th>O que se registra</th><th>Exemplo</th></tr>
+    <tr><td>O <strong>pedido</strong> que você fez</td>
+        <td>“calcule a média e o desvio padrão da coluna de preço, por município”</td></tr>
+    <tr><td>A <strong>checagem</strong> que você fez</td>
+        <td>“conferi contra o <code>describe()</code> e contra a célula de conferência”</td></tr>
+    <tr><td>O que você <strong>mudou</strong> na resposta</td>
+        <td>“a IA agrupou por bairro e eu troquei para município”</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">Três coisas que a IA não faz</span>
   <ol>
-    <li>Avaliar a satisfação dos 6.000 clientes cadastrados de uma rede de farmácias;</li>
-    <li>Inspecionar a qualidade das peças que saem de uma linha de produção contínua;</li>
-    <li>Comparar o faturamento de micro, pequenas e médias empresas do comércio de São Luís,
-        sabendo que as médias são poucas;</li>
-    <li>Entrevistar comerciantes de mercados públicos em todo o Maranhão com equipe pequena
-        e pouco orçamento de viagem.</li>
+    <li>Ela não decide <strong>qual análise cabe</strong> no problema — isso é a sua leitura do
+        nível e do formato da distribuição;</li>
+    <li>Ela não <strong>confere</strong> o resultado — a conferência é contra o valor esperado,
+        e ela pode errar;</li>
+    <li>Ela não escreve a <strong>frase de leitura</strong> — a interpretação é sua, e é onde
+        está metade da nota.</li>
+  </ol></div>
+  <p class="menor">O registro não desconta pontos. A omissão é falta de honestidade acadêmica
+  — e é a única coisa desta avaliação que não se recupera com argumento.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte B: a prática, no Colab</h2>
+  <p>Uma base real, entregue pelo professor, e um roteiro de análise. Você executa, confere e
+  escreve. As cinco tarefas:</p>
+  <ol>
+    <li><strong>A tabela de frequências</strong> de uma variável qualitativa, com a leitura
+        escrita de cada percentual;</li>
+    <li><strong>A medida de posição</strong> adequada ao nível da variável, e a justificativa
+        da escolha;</li>
+    <li><strong>A dispersão</strong>: desvio padrão, CV e IQR, com a leitura em uma frase;</li>
+    <li><strong>Um gráfico</strong> que mostre a forma da distribuição, e a descrição da forma
+        em palavras;</li>
+    <li><strong>A frase de leitura</strong> de cada resultado — a frase que iria para o
+        relatório.</li>
   </ol>
-  <p class="menor">Na prática de hoje vocês vão sortear amostras de um cadastro de milhares de
-  empresas cuja "verdade" é conhecida e medir o erro de cada técnica.</p>
+  <div class="instrucao"><span class="rotulo">A conferência funciona na prova também</span>
+  A função <code>conferir</code> está no notebook e compara o seu resultado com o valor
+  esperado. Use: ela diz se você acertou, <strong>antes</strong> de entregar.</div>
+  <div class="alerta"><span class="rotulo">O que faz perder ponto sem perceber</span>
+  Deixar a base carregada por <em>contingência</em> sem dizer, ou entregar o número sem a
+  unidade e sem o recorte. O relatório precisa dizer <strong>de onde</strong>, <strong>de
+  quando</strong> e <strong>em que unidade</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Sem sorteio</h2>
-  <p>As técnicas não probabilísticas, usos legítimos e limites</p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Conveniência, cotas e bola de neve</h2>
-  <div class="definicao"><span class="rotulo">Conveniência</span>
-  Casos de fácil acesso (quem passa no corredor, quem responde ao link). Legítima para
-  <strong>pré-testes e estudos exploratórios</strong>; a mais usada (e a mais abusada)
-  nos TCCs.</div>
-  <div class="definicao"><span class="rotulo">Cotas</span>
-  Reproduz proporções conhecidas da população (tantos por gênero, por faixa etária), mas
-  <strong>sem sorteio dentro das cotas</strong>: parece estratificada, não é.</div>
-  <div class="definicao"><span class="rotulo">Bola de neve</span>
-  Cada participante indica outros. A via de acesso a populações <strong>raras ou
-  ocultas</strong>: empreendedores informais, vítimas de fraude.</div>
-  <div class="instrucao"><span class="rotulo">Pergunta para a turma</span>
-  Um TCC aplicou um questionário na cantina da UFMA e concluiu sobre "os estudantes da
-  UFMA". Que técnica foi usada e o que ela <strong>não</strong> permite afirmar?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que cada mundo autoriza</h2>
+  <h2>Como a nota é composta</h2>
   <table>
-    <tr><th></th><th>Probabilística</th><th>Não probabilística</th></tr>
-    <tr><td><strong>Margem de erro</strong></td><td>Calculável</td><td>Não existe</td></tr>
-    <tr><td><strong>Generalização</strong></td><td>Com fundamento estatístico</td>
-        <td>Não autorizada</td></tr>
-    <tr><td><strong>Usos típicos</strong></td><td>Surveys conclusivos, pesquisas oficiais</td>
-        <td>Pré-teste, exploração, populações ocultas</td></tr>
-    <tr><td><strong>Frase honesta no relatório</strong></td>
-        <td>"estima-se que, com margem de X%..."</td>
-        <td>"entre os respondentes, observou-se..."</td></tr>
+    <tr><th>Parte</th><th>Peso</th><th>O que se avalia</th></tr>
+    <tr><td><strong>A</strong> conceitual</td><td>1/3 da nota do dia</td>
+        <td>A escolha da medida e a justificativa. Não a conta</td></tr>
+    <tr><td><strong>B</strong> prática</td><td>1/3 da nota do dia</td>
+        <td>A análise correta, a conferência feita e a leitura escrita</td></tr>
+    <tr><td><strong>Projeto</strong></td><td>1/3 da nota do dia</td>
+        <td>A base carregada, funcionando, com a pergunta de pesquisa</td></tr>
   </table>
-  <div class="pergunta">Regra de comunicação honesta: <strong>sempre declarar a técnica
-  usada e suas limitações.</strong></div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Quantos são necessários?</h2>
-  <p>O tamanho da amostra sai de fórmula, não de percentual mágico</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Dois mitos para derrubar</h2>
-  <div class="afirmacao">Mito 1, "Amostra boa é amostra grande."</div>
-  <p>O tamanho necessário depende da <strong>margem de erro</strong> e da
-  <strong>confiança</strong> desejadas, e cresce pouco com a população.</p>
-  <div class="afirmacao">Mito 2, "A amostra deve ser uns 10% da população."</div>
-  <p>Não existe regra de percentual. Para populações grandes, <strong>~384 casos</strong>
-  dão 5% de margem com 95% de confiança, valham eles para 100 mil ou para 100 milhões.</p>
-  <div class="instrucao"><span class="rotulo">Palpite antes da fórmula</span>
-  Escrevam num papel: quantas pessoas vocês ouviriam para estimar, com 5% de margem, a
-  proporção de clientes satisfeitos numa população de 100 mil? E de 100 milhões? Comparem
-  com a tabela dos próximos slides.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A fórmula (proporção, população finita)</h2>
-  <div class="definicao"><span class="rotulo">Fórmula</span>
-  n₀ = z² · p · (1−p) / e² &nbsp;&nbsp;e depois&nbsp;&nbsp; n = n₀ / (1 + (n₀−1)/N)</div>
-  <table>
-    <tr><th>Termo</th><th>Significado</th><th>Valores usuais</th></tr>
-    <tr><td><strong>z</strong></td><td>Nível de confiança</td>
-        <td>1,645 (90%) · <strong>1,96 (95%)</strong> · 2,576 (99%)</td></tr>
-    <tr><td><strong>p</strong></td><td>Proporção esperada</td>
-        <td><strong>0,5</strong> na dúvida (pior caso, maximiza n)</td></tr>
-    <tr><td><strong>e</strong></td><td>Margem de erro</td><td>0,05 = 5 pontos percentuais</td></tr>
-    <tr><td><strong>N</strong></td><td>Tamanho da população</td><td>correção para população finita</td></tr>
-  </table>
-  <p class="menor">Na prática, a fórmula vira uma função Python, e você verá o n saltar
-  quando a margem aperta.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Os números que derrubam os mitos</h2>
-  <table>
-    <tr><th></th><th>N = 8.000</th><th>N = 800.000</th><th>N = 100 milhões</th></tr>
-    <tr><td><strong>margem 5%</strong></td><td>367</td><td>384</td><td>385</td></tr>
-    <tr><td><strong>margem 3%</strong></td><td>943</td><td>1.066</td><td>1.068</td></tr>
-    <tr><td><strong>margem 2%</strong></td><td>1.786</td><td>2.395</td><td>2.401</td></tr>
-  </table>
+  <div class="exemplo"><span class="rotulo">O que separa a nota cheia da nota parcial</span>
   <ul>
-    <li>Da coluna da esquerda à da direita, a população multiplica por 12.500, e o n quase
-        não se move (mito 2 derrubado);</li>
-    <li>Da margem 5% à 2%, o n multiplica por ~6: <strong>precisão custa caro</strong>
-        (mito 1 qualificado).</li>
-  </ul>
+    <li><strong>Nota cheia</strong>: a análise certa, a conferência executada e cada resultado
+        acompanhado da frase de leitura, com o recorte e a unidade;</li>
+    <li><strong>Nota parcial</strong>: a análise certa e nenhuma leitura escrita;</li>
+    <li><strong>Nota baixa</strong>: a medida errada para o nível da variável, mesmo que a conta
+        esteja certa. <em>É o erro que o Módulo I inteiro tentou evitar.</em></li>
+  </ul></div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
 </section>
-
-<section class="slide divisor estat">
-  <h2>Estatística do encontro 5</h2>
-  <p>Da amostra para a população: erro padrão, teorema central do limite e intervalo de confiança</p>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: erro padrão e intervalo de confiança</h2>
-
-  <p>Você sorteia uma amostra e calcula x̄. Outra pessoa sorteia outra amostra da mesma população e
-  encontra um número diferente. O <strong>erro padrão</strong> mede o tamanho dessa variação.</p>
-  <div class="formula">
-    <span class="expr">EP<span class="op">=</span><span class="frac"><span class="cima">s</span><span class="baixo"><span class="raiz">√n</span></span></span><span class="op">           </span>IC<span class="op">=</span>x̄<span class="op">±</span>z<span class="op">·</span>EP</span>
-    <span class="simbolos">
-      <span><b>s</b>desvio padrão da amostra</span>
-      <span><b>n</b>tamanho da amostra</span>
-      <span><b>z</b>1,96 para 95% de confiança</span>
-    </span>
-    <span class="legenda-formula">Em linguagem corrente: quanto mais dispersos os dados, maior a
-    incerteza; quanto maior a amostra, menor a incerteza. E n está sob uma raiz, o que tem
-    consequência prática séria.</span>
-  </div>
-  <p>Para proporção, o desvio padrão sai da própria proporção, e o erro padrão fica
-  <span class="expr" style="font-size:2.6vh">EP = <span class="raiz">√[p̂(1−p̂) ÷ n]</span></span>.
-  É a versão que a fórmula do tamanho da amostra usa.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: o teorema central do limite</h2>
-  <div class="figura">
-    <svg viewBox="0 0 1000 236" role="img" aria-label="Distribuição assimétrica da população e distribuição simétrica das médias de mil amostras">
-      <text x="200" y="20" text-anchor="middle" font-size="19" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">A população</text>
-      <text x="200" y="42" text-anchor="middle" font-size="16" fill="#666">faturamento das 5.000 empresas</text>
-      <rect x="40.0" y="84.0" width="30.0" height="96.0" fill="#8D0333"/><rect x="73.0" y="106.0" width="30.0" height="74.0" fill="#8D0333"/><rect x="106.0" y="124.0" width="30.0" height="56.0" fill="#8D0333"/><rect x="139.0" y="138.0" width="30.0" height="42.0" fill="#8D0333"/><rect x="172.0" y="149.0" width="30.0" height="31.0" fill="#8D0333"/><rect x="205.0" y="157.0" width="30.0" height="23.0" fill="#8D0333"/><rect x="238.0" y="163.0" width="30.0" height="17.0" fill="#8D0333"/><rect x="271.0" y="168.0" width="30.0" height="12.0" fill="#8D0333"/><rect x="304.0" y="172.0" width="30.0" height="8.0" fill="#8D0333"/><rect x="337.0" y="175.0" width="30.0" height="5.0" fill="#8D0333"/><rect x="370.0" y="177.0" width="30.0" height="3.0" fill="#8D0333"/>
-      <line x1="40" y1="180" x2="400" y2="180" stroke="#bbb" stroke-width="1.6"/>
-      <text x="200" y="202" text-anchor="middle" font-size="15" fill="#999">muito assimétrica</text>
-      <path d="M424 96 H556" stroke="#0AB0AB" stroke-width="3" marker-end="url(#sg)"/>
-      <text x="490" y="126" text-anchor="middle" font-size="15" fill="#05635f">sorteia 1.000</text>
-      <text x="490" y="146" text-anchor="middle" font-size="15" fill="#05635f">amostras de</text>
-      <text x="490" y="166" text-anchor="middle" font-size="15" fill="#05635f">n = 100 cada</text>
-      <text x="790" y="20" text-anchor="middle" font-size="19" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">As médias das amostras</text>
-      <text x="790" y="42" text-anchor="middle" font-size="16" fill="#666">uma média por amostra</text>
-      <rect x="610.0" y="176.0" width="30.0" height="4.0" fill="#0AB0AB"/><rect x="643.0" y="170.0" width="30.0" height="10.0" fill="#0AB0AB"/><rect x="676.0" y="156.0" width="30.0" height="24.0" fill="#0AB0AB"/><rect x="709.0" y="134.0" width="30.0" height="46.0" fill="#0AB0AB"/><rect x="742.0" y="108.0" width="30.0" height="72.0" fill="#0AB0AB"/><rect x="775.0" y="88.0" width="30.0" height="92.0" fill="#0AB0AB"/><rect x="808.0" y="108.0" width="30.0" height="72.0" fill="#0AB0AB"/><rect x="841.0" y="134.0" width="30.0" height="46.0" fill="#0AB0AB"/><rect x="874.0" y="156.0" width="30.0" height="24.0" fill="#0AB0AB"/><rect x="907.0" y="170.0" width="30.0" height="10.0" fill="#0AB0AB"/><rect x="940.0" y="176.0" width="30.0" height="4.0" fill="#0AB0AB"/>
-      <line x1="610" y1="180" x2="970" y2="180" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="790" y1="58" x2="790" y2="188" stroke="#a67c2e" stroke-width="2.4" stroke-dasharray="7 5"/>
-      <text x="790" y="202" text-anchor="middle" font-size="15" fill="#a67c2e">centradas em μ, e simétricas</text>
-      <text x="500" y="228" text-anchor="middle" font-size="16" fill="#777">É por isso que uma amostra sorteada permite falar da população, mesmo quando a população é torta.</text>
-    </svg>
-  </div>
-
-  <div class="colunas">
-    <div>
-      <p>Faturamento de empresas é uma distribuição torta: muitas pequenas e poucas gigantes.
-      Ainda assim, se você sortear mil amostras e anotar a média de cada uma, essas
-      <strong>médias</strong> se distribuem de forma quase simétrica em torno da média da
-      população. É o teorema central do limite, e ele é o que sustenta toda a inferência.</p>
-    </div>
-    <div>
-      <h3>A raiz de n, na prática</h3>
-      <table>
-        <tr><th>n</th><th>Erro padrão</th><th>Para reduzir pela metade</th></tr>
-        <tr><td>100</td><td>s ÷ 10</td><td>quadruplicar n</td></tr>
-        <tr><td>400</td><td>s ÷ 20</td><td>quadruplicar n</td></tr>
-        <tr><td>1.600</td><td>s ÷ 40</td><td>quadruplicar n</td></tr>
-      </table>
-      <p class="menor">Dobrar a amostra não dobra a precisão. É isso que derruba o mito de que
-      "amostra boa é amostra grande": a partir de certo ponto, cada ponto de precisão custa
-      caríssimo.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se faz no Colab</h2>
-
-  <p>Primeiro, ver o teorema acontecer. Depois, calcular o intervalo.</p>
-  <pre class="codigo"><span class="cmt"># 1. mil amostras de 100 empresas, guardando a média de cada uma</span>
-medias = [cadastro[<span class="str">"faturamento"</span>].<span class="fn">sample</span>(100).<span class="fn">mean</span>() <span class="fn">for</span> _ <span class="fn">in</span> <span class="fn">range</span>(1000)]
-pd.<span class="fn">Series</span>(medias).<span class="fn">hist</span>(bins=30)   <span class="cmt"># o histograma fica simétrico</span>
-
-<span class="cmt"># 2. erro padrão e intervalo de confiança de UMA amostra</span>
-amostra = cadastro[<span class="str">"faturamento"</span>].<span class="fn">sample</span>(100)
-media = amostra.<span class="fn">mean</span>()
-ep    = amostra.<span class="fn">std</span>() / <span class="fn">len</span>(amostra) ** 0.5
-ic    = (media - 1.96 * ep, media + 1.96 * ep)
-<span class="fn">print</span>(<span class="str">"média:"</span>, <span class="fn">round</span>(media, 1), <span class="str">"| IC 95%:"</span>, [<span class="fn">round</span>(v, 1) <span class="fn">for</span> v <span class="fn">in</span> ic])</pre>
-  <div class="exemplo"><span class="rotulo">O que conferir</span>
-  Compare a média da sua amostra com a média verdadeira do cadastro, que nesta simulação você
-  conhece. Repita o sorteio algumas vezes: em torno de 95 de cada 100 intervalos vão conter a
-  média verdadeira. É esse o significado de 95% de confiança.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê, e de onde vem a fórmula do n</h2>
-
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "A proporção estimada de empresas que adotaram o Pix é de <strong>62%</strong>, com margem de
-  erro de <strong>4,4 pontos percentuais</strong> para mais ou para menos, a 95% de confiança
-  (n = 480, amostra aleatória simples)."</div>
-  <div class="colunas">
-    <div>
-      <h3>A margem de erro é metade do intervalo</h3>
-      <p>O que se chama de margem de erro nas pesquisas eleitorais é exatamente o
-      <strong>z · EP</strong> da fórmula. O intervalo é a estimativa mais ou menos essa margem.</p>
-      <p>Invertendo a fórmula para isolar n, chega-se à expressão do tamanho da amostra que você
-      viu antes do intervalo:</p>
-      <div class="formula">
-        <span class="expr" style="font-size:3vh">n<span class="op">=</span><span class="frac"><span class="cima">z² · p(1−p)</span><span class="baixo">e²</span></span></span>
-      </div>
-      <p class="menor">Ou seja: a fórmula do n não é uma receita solta. Ela é o intervalo de
-      confiança resolvido para n, com e no lugar da margem desejada.</p>
-    </div>
-    <div>
-      <h3>A ponte com o encontro de hoje</h3>
-      <p>Tudo isso vale sob uma condição: <strong>a amostra foi sorteada</strong>. O erro padrão
-      é o desvio padrão das médias de amostras sorteadas; sem sorteio, ele não existe e não há
-      margem de erro a calcular.</p>
-      <div class="alerta"><span class="rotulo">A frase honesta da amostra por conveniência</span>
-      "Os 210 respondentes foram obtidos por conveniência. Os resultados descrevem esse grupo e
-      não permitem estimativa com margem de erro para a população."</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O erro comum: o que 95% de confiança não significa</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Errado</span>
-      "Há 95% de probabilidade de a média da população estar entre 58% e 66%."</div>
-      <p>A média da população é um número fixo: ou está no intervalo ou não está. Não há
-      probabilidade envolvida depois que o intervalo foi calculado.</p>
-      <div class="exemplo"><span class="rotulo">Certo</span>
-      "O procedimento que gerou este intervalo acerta em 95% das amostras. Aplicado a esta
-      amostra, produziu o intervalo de 58% a 66%."</div>
-      <p class="menor">A confiança é uma propriedade do método, não deste intervalo em
-      particular. Parece filigrana e não é: é a diferença entre entender e decorar.</p>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">O erro que mais aparece em TCC</span>
-      Calcular margem de erro sobre uma amostra por conveniência, em geral um formulário
-      divulgado em rede social. A fórmula devolve um número, o número vai para o texto, e o
-      texto afirma algo que o desenho não sustenta.</div>
-      <div class="alerta"><span class="rotulo">O segundo erro mais comum</span>
-      Achar que o tamanho da população importa muito. Para populações grandes, o n necessário
-      quase não muda: 384 serve tanto para 100 mil quanto para 10 milhões de pessoas, a 95% e 5
-      pontos de margem. O que manda é a margem, não o tamanho do país.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: erro padrão e intervalo</h2>
-
-  <div class="ficha">
-    <div>
-      <h4>A fórmula</h4>
-      <p><span class="expr">EP = s ÷ √n</span></p>
-      <p>IC = x̄ ± 1,96 · EP, a 95%. O n necessário é essa expressão resolvida para n.</p>
-    </div>
-    <div>
-      <h4>No Colab</h4>
-      <pre class="codigo">ep = x.std()/len(x)**0.5
-ic = (x.mean() - 1.96*ep,
-      x.mean() + 1.96*ep)</pre>
-    </div>
-    <div>
-      <h4>A frase de leitura</h4>
-      <p>"Estimativa de <em>x</em>, com margem de erro de <em>m</em> a 95% de confiança
-      (n = <em>n</em>, amostra aleatória)."</p>
-    </div>
-    <div>
-      <h4>O erro a evitar</h4>
-      <p>Ler a confiança como probabilidade do parâmetro, e calcular margem de erro sem
-      sorteio.</p>
-    </div>
-  </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Silva e Samá (2021), <em>Estatística</em>,
-  volume II, capítulos 3 (distribuição amostral e teorema central do limite) e 4 (intervalos de
-  confiança, com as seções 4.5 a 4.7 sobre proporção).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-
-<section class="slide divisor">
-  <h2>Mão na massa</h2>
-  <p>Cadastro sintético calibrado no CEMPRE, abra o notebook <code>encontro05_aluno.ipynb</code></p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O laboratório de hoje: por que um cadastro sintético?</h2>
-  <div class="definicao"><span class="rotulo">O artifício</span>
-  Geraremos 8.000 empresas com proporções setoriais <strong>reais</strong> (CEMPRE/MA) e
-  receitas simuladas. Por ser sintético, conhecemos a <strong>verdade populacional</strong>,
-  e podemos medir <strong>exatamente</strong> o erro de cada amostra.</div>
-  <p>Nenhum dado real permite isso: na pesquisa de verdade, a verdade populacional é
-  justamente o que não se conhece. O laboratório sintético é onde se aprende a confiar
-  (e a desconfiar) das amostras.</p>
-  <p class="menor">Conceito novo de passagem: a <strong>semente</strong> (seed) torna o
-  sorteio reprodutível, exigência de pesquisa, não paradoxo.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A prática de hoje, em 5 seções</h2>
+  <h2>Antes de entregar</h2>
   <ol>
-    <li><strong>O cadastro e a população</strong>: gerar e conhecer o gabarito;</li>
-    <li><strong>Aleatória simples</strong>: amostras de 50, 200 e 800; o erro cai com
-        retornos decrescentes (o boxplot mais importante da aula);</li>
-    <li><strong>Sistemática e estratificada</strong>: implementar e comparar num setor
-        pequeno;</li>
-    <li><strong>Tamanho da amostra</strong>: aplicar a fórmula e derrubar os mitos em
-        números;</li>
-    <li><strong>Interpretação por escrito.</strong></li>
+    <li>O notebook está salvo <strong>com as saídas</strong>, e não em branco. Rode
+        <em>Runtime → Run all</em> antes de fechar;</li>
+    <li>A Parte A está respondida <strong>em células de texto</strong>, e não em comentário de
+        código;</li>
+    <li>Toda análise tem a <strong>frase de leitura</strong> escrita, com recorte e unidade;</li>
+    <li>A célula de <strong>registro de IA</strong> está preenchida, ou marcada como “não
+        usei”;</li>
+    <li>A base do projeto <strong>carrega sem erro</strong>, e os seis critérios estão
+        preenchidos;</li>
+    <li>O link do notebook foi <strong>compartilhado</strong> com o professor.</li>
   </ol>
+  <div class="pergunta">Entregou e ficou em dúvida? <strong>Reabra o notebook e confira a
+  conferência.</strong> A avaliação é sobre o que está no arquivo, e não sobre o que você
+  lembra ter feito.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1: o cadastro e a população (15 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li>Executem a célula que gera o cadastro (código pronto, semente fixa) e inspecionem:
-        8.000 linhas, colunas de <code>setor</code>, <code>porte</code> e receita anual;</li>
-    <li>Calculem os <strong>parâmetros populacionais</strong>: receita média e proporção por
-        setor. Anotem os valores: eles são o gabarito de toda a prática;</li>
-    <li>Localizem o <code>random_state</code> no código e expliquem em uma frase para o
-        colega ao lado o que ele faz.</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  Sem semente, cada execução dá um sorteio diferente e ninguém consegue reproduzir seu
-  resultado. Em pesquisa, sorteio reprodutível é exigência, não opção.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2: amostra aleatória simples (20 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li>Sorteiem com <code>df.sample(n=..., random_state=...)</code> amostras de
-        <strong>50, 200 e 800</strong> empresas, trocando o tamanho a cada rodada;</li>
-    <li>Calculem a receita média de cada amostra e o <strong>erro absoluto</strong> em
-        relação à média populacional;</li>
-    <li>Executem a célula pronta que repete o sorteio muitas vezes e mostra a distribuição
-        dos erros por tamanho de amostra.</li>
-  </ol></div>
-  <div class="pergunta">O que acontece com o erro quando n vai de 50 para 200? E de 200 para
-  800? O ganho é o mesmo?</div>
-  <p class="menor">Esta é a intuição visual do que a fórmula formaliza: o erro cai com o
-  tamanho, mas com retornos decrescentes.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: sistemática e estratificada (25 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li><strong>Sistemática</strong> (código guiado): calculem o passo k = N/n, sorteiem o
-        início entre 0 e k−1 e selecionem as posições início, início+k, início+2k...;</li>
-    <li><strong>Estratificada proporcional</strong> por setor: completem o
-        <code>groupby("setor")</code> + <code>sample(frac=...)</code>;</li>
-    <li>Comparem a proporção estimada de um <strong>setor pequeno</strong> nas três técnicas
-        (AAS, sistemática, estratificada) com a proporção populacional.</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
-  A lógica do passo sistemático confunde. Vamos resolver no quadro com uma lista de 20
-  elementos e n = 4 (k = 5): sorteado o início 2, entram as posições 2, 7, 12 e 17. Só depois
-  voltem ao código.</div>
-  <p class="menor">Resultado a observar: a estratificada acerta a proporção do setor pequeno
-  por construção; a AAS flutua.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: tamanho da amostra (25 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Executem a função <code>tamanho_amostra(N, margem, confianca)</code>, que já vem pronta,
-  e respondam, preenchendo a tabela do notebook:
-  <ol>
-    <li>Quantas empresas ouvir no cadastro de 8.000 para 5% de margem e 95% de confiança?</li>
-    <li>E para 2% de margem?</li>
-    <li>E se a população fosse <strong>100 vezes maior</strong> (800.000)?</li>
-  </ol>
-  Fechem executando o gráfico pronto de n em função da margem de erro.</div>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Digitar a margem como 5 em vez de 0,05 (e a confiança como 95 em vez de 0,95). Se o n
-  sair menor que 1 ou absurdamente grande, confira as unidades antes de duvidar da fórmula.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5: perguntas de interpretação (10 min)</h2>
-  <div class="instrucao"><span class="rotulo">Por escrito, no notebook</span>
-  Respondam individualmente, em 3 a 5 linhas cada:
-  <ol>
-    <li>Por que a amostra de conveniência da cantina <strong>não</strong> representa os
-        estudantes da UFMA?</li>
-    <li>Qual técnica você usaria, e com <strong>que cadastro</strong>, num survey com as
-        empresas do seu projeto?</li>
-    <li>O que acontece com o n exigido quando se aperta a margem de erro, e que
-        <strong>decisão prática</strong> isso impõe a quem tem orçamento limitado?</li>
-  </ol></div>
-  <p class="menor">Compartilhe o link do notebook ao final da aula.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Amostragem no seu projeto individual</h2>
-  <p>Os projetos usam dados secundários (censitários ou de companhias abertas), não amostras
-  próprias. Ainda assim, a amostragem entra de duas formas. Registrem no notebook hoje:</p>
-  <div class="instrucao"><span class="rotulo">Escreva no notebook do projeto</span>
-  <ol>
-    <li>Sua base é <strong>censo, amostra ou recorte</strong>? Uma frase justificando. Ex.: a
-        PMC é pesquisa <strong>amostral</strong>; o CEMPRE é registro administrativo de
-        cobertura <strong>censitária</strong> das empresas formais;</li>
-    <li>Se você planeja TCC com survey: qual a população que pretende estudar, que cadastro
-        a lista, e qual o <strong>n</strong> necessário para 5% de margem e 95% de confiança
-        (use a função que acabou de escrever).</li>
-  </ol></div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese teórica do encontro</h2>
+  <h2>Depois desta avaliação</h2>
   <ul>
-    <li><strong>População</strong> é a ideia; <strong>cadastro</strong> é a lista real, e
-        toda lista tem buracos que o relatório declara;</li>
-    <li>Só a amostra <strong>probabilística</strong> (probabilidade conhecida e não nula)
-        autoriza margem de erro e generalização;</li>
-    <li>Quatro técnicas probabilísticas: <strong>AAS</strong> (padrão-ouro),
-        <strong>sistemática</strong> (passo k), <strong>estratificada</strong>
-        (representação garantida, + precisão), <strong>conglomerados</strong> (economia de
-        campo, − precisão);</li>
-    <li>As não probabilísticas (<strong>conveniência, cotas, bola de neve</strong>) têm
-        usos legítimos, e a obrigação da frase honesta;</li>
-    <li>O <strong>n</strong> sai da fórmula: depende de margem e confiança, quase nada da
-        população; precisão custa caro.</li>
+    <li>O <strong>Módulo I termina aqui</strong>. Você tem o repertório da estatística
+        descritiva: frequência, níveis de mensuração, tendência central, dispersão e forma;</li>
+    <li>O <strong>Módulo II começa no próximo encontro</strong>, e abre com a pergunta que a
+        sua base de projeto já levanta: <em>de quem</em> esses dados falam, e como a informação
+        foi produzida;</li>
+    <li>O que você entregou hoje é a base sobre a qual o projeto inteiro vai crescer. Guarde o
+        notebook: ele é o primeiro capítulo do relatório final.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
-  <ul>
-    <li><strong>RICHARDSON (2017)</strong>: capítulo sobre questionários e escalas
-        (prepara o próximo encontro);</li>
-    <li><strong>Estes slides</strong>: releia as quatro técnicas e a tabela dos mitos;</li>
-    <li><strong>Tarefa para o encontro 6:</strong> responder, individualmente e em cerca de
-        10 minutos, ao questionário-exemplo que será enviado por link, as respostas da
-        própria turma serão o material da próxima aula.</li>
-  </ul>
-  <p><strong>Síntese do dia:</strong> só o sorteio autoriza generalização com margem de
-  erro; estratificar garante representação; e o tamanho da amostra sai de fórmula, não de
-  percentual mágico.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 5</div>
-</section>
+<div class="cabecalho-conducao">
+  <h1>Encontro 5</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 3</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a></p>
+    <h2>Abertura da avaliação e as regras do dia <span class="min">(15 min)</span></h2>
+    <h3>Objetivos do dia</h3>
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+            <p>Este não é um encontro de conteúdo: é o <strong>fechamento do Módulo I</strong>.
+            O estudante deve resolver, sem consulta, as sete questões conceituais; executar, com
+            consulta, a análise descritiva de uma base real; e entregar a base do projeto
+            funcionando.</p>
+                <div class="caixa falar"><span class="rotulo">O que preparar antes de liberar a avaliação</span>
+            <ol>
+              <li>O notebook da avaliação deve estar <strong>publicado e compartilhado</strong>
+              — se o link falhar, a avaliação inteira atrasa;</li>
+              <li>Peça que cada estudante faça <em>Arquivo → Salvar uma cópia no Drive</em> e
+              execute a primeira célula. Só libere a Parte A quando todos tiverem o arquivo
+              rodando;</li>
+              <li>Confirme o acesso à internet do laboratório: a Parte B lê uma base real.</li>
+            </ol>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Como cronometrar</span>
+            <p>Trinta minutos para a Parte A, com as telas fechadas, é apertado de propósito: as
+            sete questões são de decisão, não de conta. Anuncie o tempo restante aos 15 e aos
+            25 minutos.</p>
+            <p>Depois, 120 minutos para a Parte B, com consulta liberada. Os últimos 30 minutos
+            são para a entrega do projeto — <strong>não deixe virar trabalho de casa</strong>:
+            o valor da entrega é a base carregando na frente do professor.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>tela 4</b> <a class="chip-tela" href="#4">4</a></p>
+    <h2>Parte A: o conceitual, sem consulta <span class="min">(30 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">O que se cobra, e o que não se cobra</span>
+            <p>Diga antes de começar, em voz alta: <strong>não se cobra a conta, cobra-se a
+            escolha</strong>. Nenhuma questão da Parte A exige aritmética no papel — a disciplina
+            não faz conta à mão em nenhum encontro. O que se exige é: qual medida cabe nesta
+            variável, e por quê.</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">A supervisão que importa</span>
+            <p>Telas fechadas, celular fora da mesa, e caminhar pela sala. A Parte A é curta:
+            <strong>quinze minutos de vigilância resolvem os trinta</strong>.</p>
+            <p>Se alguém travar, dê o empurrão de método, nunca de conteúdo: <em>“qual é o nível
+            dessa variável?”</em>. É a pergunta que destrava a avaliação inteira, e é a entrega do
+            Módulo I.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 5 a 7</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a></p>
+    <h2>Parte B: a prática no Colab <span class="min">(120 min)</span></h2>
+    <h3>Minutagem da parte prática</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Leitura do roteiro e conferência da base</td><td>15</td></tr>
+      <tr><td>Tabela de frequências e leitura escrita</td><td>20</td></tr>
+      <tr><td>Medida de posição, com justificativa</td><td>20</td></tr>
+      <tr><td>Dispersão: desvio, CV e IQR</td><td>20</td></tr>
+      <tr><td>Gráfico e forma da distribuição</td><td>20</td></tr>
+      <tr><td>Frase de leitura de cada resultado</td><td>15</td></tr>
+      <tr><td>Entrega do projeto e dos seis critérios</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O que o professor faz durante a Parte B</span>
+            <p><strong>Percorrer a sala e confirmar a conferência.</strong> A célula
+            <code>conferir</code> existe para que o estudante saiba se acertou antes de entregar;
+            seu trabalho é garantir que ela foi <em>executada</em>, e não só copiada.</p>
+            <p>Pergunta que faz diferença e custa dez segundos: <em>“qual medida você escolheu,
+            e por quê?”</em>. Se a resposta não citar o nível da variável, o ponto da Parte B não
+            vem.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O registro de IA</span>
+            <p>Lembrar, sem dramatizar: o assistente é permitido e a disciplina o incentiva. O que
+            se pede é o <strong>registro</strong> — o pedido, a checagem e o que foi mudado. O
+            registro não desconta pontos; a omissão é falta de honestidade acadêmica.</p>
+            <p>Vale reforçar as três coisas que a IA não faz, porque é ali que está metade da
+            nota: não decide qual análise cabe, não confere o resultado, e não escreve a frase de
+            leitura.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">A entrega do projeto</span>
+            <p>Os últimos 30 minutos são da <strong>primeira entrega parcial</strong>: tema,
+            pergunta de pesquisa, base carregando por API e os seis critérios preenchidos.
+            Circule e verifique três coisas, nesta ordem:</p>
+            <ol>
+              <li>A base <strong>carrega sem erro</strong>? Se não carrega, o projeto não começou;</li>
+              <li>A <strong>pergunta</strong> é uma pergunta, e não um tema?</li>
+              <li>Os seis critérios estão preenchidos com o <strong>recorte declarado</strong>?</li>
+            </ol>
+            <p class="aviso">Quem não conseguiu a base hoje sai com uma tarefa clara: resolver o
+            acesso e reenviar antes do encontro seguinte. Não deixe acumular.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 8 a 9</b> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a></p>
+    <h2>Fechamento e devolutiva <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">O balanço que se anuncia</span>
+            <p>Fechar dizendo o que o Módulo I entregou: o estudante sabe contar e dividir,
+            identificar o nível de mensuração, escolher entre média e mediana, medir dispersão e
+            ler a forma de uma distribuição. <strong>É o repertório que descreve qualquer
+            conjunto de dados</strong>, e é a base de tudo o que vem.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A devolutiva, e quando ela vem</span>
+            <p>Combinar a data da devolutiva — a avaliação é individual e comentada, e o
+            estudante precisa saber quando recebe. Os erros recorrentes da turma viram telas de
+            revisão no encontro de retomada.</p>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Quem não entregou a base do projeto: <strong>resolver o acesso e reenviar</strong>
+              antes do próximo encontro;</li>
+              <li>Ler o capítulo de BABBIE (1999) sobre tipos de delineamento, ou o de GIL (2022)
+              sobre pesquisa experimental, coorte, caso-controle e levantamento. O próximo
+              encontro abre o <strong>Módulo II</strong>;</li>
+              <li>Reexecutar os notebooks 1 a 4, se algum ficou em branco. Eles são o material de
+              estudo da avaliação, e agora estão todos pré-executados.</li>
+            </ol>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>

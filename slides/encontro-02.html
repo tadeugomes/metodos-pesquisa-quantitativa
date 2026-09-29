@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,10 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 2 · Unidade I</div>
-  <h1>Tipos de pesquisa quantitativa</h1>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 2 · Módulo I · Fundamentos e estatística descritiva</div>
+  <h1>Variáveis, tipos de dado e a regra da medida</h1>
+  <p class="subtitulo">O nível de mensuração decide o que você pode calcular</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -32,7 +37,6 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Retomando o quadro da aula passada</h2>
@@ -47,1592 +51,534 @@
   registrá-las no quadro: ao final da manhã, cada uma receberá um tipo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>10 min</td><td>Retomada e perguntas de pesquisa da turma</td></tr>
-    <tr><td>60 min</td><td>Os tipos de pesquisa quantitativa</td></tr>
-    <tr><td>30 min</td><td>Leitura dirigida: dois artigos brasileiros</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>105 min</td><td><strong>Prática no Colab:</strong> pandas e sobrevivência de empresas</td></tr>
-    <tr><td>20 min</td><td>Síntese e tarefa</td></tr>
-  </table>
+  <p>Hoje é o segundo encontro do <strong>Módulo I</strong>, e o dia tem duas partes.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: a variável</h3>
+      <p>O que é uma variável, e o que significa <strong>medir</strong> uma coisa. A boa notícia:
+      o encontro 1 deixou uma frase que organiza tudo — <em>mensurar é atribuir números a
+      conceitos</em>.</p>
+      <h3>Parte 2: estatística — a regra da medida</h3>
+      <p>Os quatro níveis de mensuração, e a regra que decorre deles: <strong>o nível decide
+      qual medida você pode calcular.</strong></p>
+    </div>
+    <div>
+      <h3>Depois: a prática</h3>
+      <p>Três bases do IBGE, cada uma escolhida por trazer um nível diferente, e a
+      classificação de variáveis do seu próprio projeto.</p>
+      <h3>Três coisas, e só</h3>
+      <p>Executar, trocar <strong>um</strong> valor, escrever a frase. Você não vai escrever
+      código.</p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">Onde está a minutagem</span>
+  A minutagem do encontro não está nestas telas de propósito: ela está na camada de condução
+  deste mesmo arquivo. Tecla <strong>D</strong>, ou imprima o PDF, que sai em duas partes.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Objetivos de aprendizagem</h2>
   <p>Ao final do encontro, você deverá ser capaz de:</p>
   <ol>
-    <li><strong>Caracterizar</strong> os quatro tipos de pesquisa quantitativa (descritiva,
-        correlacional, experimental e quase-experimental) e o survey como estratégia;</li>
-    <li><strong>Identificar</strong> o tipo de pesquisa a partir da pergunta e do
-        delineamento de estudos publicados;</li>
-    <li><strong>Carregar</strong> dados do SIDRA com <code>sidrapy</code> e
-        <strong>inspecionar</strong> um DataFrame com <code>head()</code>,
-        <code>info()</code> e <code>shape</code>;</li>
-    <li><strong>Filtrar</strong> linhas e <strong>selecionar</strong> colunas de um
-        DataFrame;</li>
-    <li><strong>Agrupar</strong> dados com <code>groupby</code> para responder a uma
-        pergunta descritiva sobre a sobrevivência de empresas.</li>
+    <li><strong>explicar</strong> o que é uma variável, e distinguir o papel dela na hipótese
+        (independente, dependente, de controle);</li>
+    <li><strong>classificar</strong> uma variável quanto ao tipo e ao nível de mensuração —
+        nominal, ordinal, intervalo ou razão;</li>
+    <li><strong>aplicar</strong> a regra que decorre do nível: qual medida de resumo cabe em
+        cada variável, e qual não cabe;</li>
+    <li><strong>usar o teste do zero</strong> para decidir entre intervalo e razão;</li>
+    <li><strong>operacionalizar</strong> um conceito abstrato da gestão em uma variável
+        mensurável;</li>
+    <li><strong>executar</strong> o notebook e ler a tabela de frequências com a frase de
+        leitura, sem precisar entender o código.</li>
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
-  <h2>Quatro tipos de pesquisa, um survey</h2>
-  <p>Descritiva · Correlacional · Experimental · Quase-experimental</p>
+  <h2>Variáveis</h2>
+  <p>A unidade de construção de toda pesquisa quantitativa</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Antes dos tipos: o que é delineamento</h2>
-  <div class="definicao"><span class="rotulo">Definição · delineamento</span>
-  O <strong>plano geral da pesquisa</strong>: como os dados serão obtidos e comparados para
-  responder à pergunta. É o delineamento que determina <strong>que tipo de conclusão</strong>
-  a pesquisa pode sustentar.</div>
-  <p>A mesma pergunta genérica ("treinamento melhora vendas?") pode virar quatro pesquisas
-  diferentes, e só uma delas autoriza falar em <strong>causa</strong>.</p>
-  <p>Por isso classificamos os tipos: não é taxonomia decorativa, é o mapa do que cada
-  desenho <strong>pode e não pode afirmar</strong>.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Uma pergunta, quatro pesquisas diferentes</h2>
-
-  <p>Uma empresa quer saber se o treinamento de vendas funciona. Nos quatro casos a pergunta é
-  a mesma: o que muda é o delineamento, e com ele a frase que a pesquisa pode concluir.</p>
-  <div class="cartoes-4">
-    <div class="cartao">
-      <svg class="fig-mini" viewBox="0 0 300 80" role="img" aria-label="Um único grupo é medido, sem grupo de comparação">
-        <rect x="6" y="18" width="112" height="44" rx="6" fill="#F5F5F5" stroke="#8D0333" stroke-width="2"/>
-        <text x="62" y="40" text-anchor="middle" font-size="15" fill="#333">Treinados</text>
-        <text x="62" y="55" text-anchor="middle" font-size="12" fill="#777">um grupo só</text>
-        <path d="M124 40 H164" stroke="#8D0333" stroke-width="2.5" marker-end="url(#sv)"/>
-        <text x="144" y="30" text-anchor="middle" font-size="12" fill="#777">mede</text>
-        <rect x="174" y="18" width="120" height="44" rx="6" fill="#faf3f6" stroke="#D4B277" stroke-width="2"/>
-        <text x="234" y="46" text-anchor="middle" font-size="18" fill="#8D0333" font-weight="700">R$ 42 mil</text>
-      </svg>
-      <h4>Descritiva</h4>
-      <p>Mede a venda média dos treinados no trimestre.</p>
-      <span class="conclusao"><strong>Conclusão autorizada:</strong> os treinados venderam em
-      média R$ 42 mil.</span>
-      <p class="menor">Sem grupo de comparação, não se sabe quanto venderiam sem o treinamento.</p>
-    </div>
-    <div class="cartao alt-verde">
-      <svg class="fig-mini" viewBox="0 0 300 80" role="img" aria-label="Nuvem de pontos com tendência ascendente">
-        <line x1="34" y1="66" x2="292" y2="66" stroke="#bbb" stroke-width="1.5"/>
-        <line x1="34" y1="6" x2="34" y2="66" stroke="#bbb" stroke-width="1.5"/>
-        <text x="164" y="78" text-anchor="middle" font-size="11" fill="#777">horas de treinamento</text>
-        <text x="22" y="36" text-anchor="middle" font-size="11" fill="#777" transform="rotate(-90 22 36)">vendas</text>
-        <line x1="46" y1="60" x2="284" y2="16" stroke="#0AB0AB" stroke-width="2.5" stroke-dasharray="5 4"/>
-        <g fill="#8D0333">
-          <circle cx="54" cy="58" r="3.4"/><circle cx="74" cy="52" r="3.4"/><circle cx="92" cy="57" r="3.4"/>
-          <circle cx="110" cy="46" r="3.4"/><circle cx="126" cy="50" r="3.4"/><circle cx="146" cy="41" r="3.4"/>
-          <circle cx="164" cy="44" r="3.4"/><circle cx="182" cy="35" r="3.4"/><circle cx="202" cy="38" r="3.4"/>
-          <circle cx="220" cy="28" r="3.4"/><circle cx="244" cy="31" r="3.4"/><circle cx="268" cy="21" r="3.4"/>
-        </g>
-      </svg>
-      <h4>Correlacional</h4>
-      <p>Cruza horas de treinamento e vendas dos 300 vendedores.</p>
-      <span class="conclusao"><strong>Conclusão autorizada:</strong> quem recebeu mais horas de
-      treinamento vendeu mais.</span>
-      <p class="menor">Ainda não é causa: a empresa pode ter treinado justamente os melhores.</p>
-    </div>
-    <div class="cartao alt-dourado">
-      <svg class="fig-mini" viewBox="0 0 300 80" role="img" aria-label="Dois grupos já formados, comparados sem sorteio">
-        <text x="150" y="12" text-anchor="middle" font-size="12" fill="#a67c2e">grupos já formados, sem sorteio</text>
-        <rect x="4" y="20" width="128" height="46" rx="6" fill="#F5F5F5" stroke="#8D0333" stroke-width="2" stroke-dasharray="6 4"/>
-        <text x="68" y="41" text-anchor="middle" font-size="14" fill="#333">Treinados</text>
-        <text x="68" y="57" text-anchor="middle" font-size="12" fill="#777">n = 80</text>
-        <text x="150" y="48" text-anchor="middle" font-size="17" fill="#a67c2e" font-weight="700">×</text>
-        <rect x="168" y="20" width="128" height="46" rx="6" fill="#F5F5F5" stroke="#888" stroke-width="2" stroke-dasharray="6 4"/>
-        <text x="232" y="41" text-anchor="middle" font-size="14" fill="#333">Não treinados</text>
-        <text x="232" y="57" text-anchor="middle" font-size="12" fill="#777">n = 80</text>
-      </svg>
-      <h4>Quase-experimental</h4>
-      <p>Compara os dois grupos antes e depois do treinamento.</p>
-      <span class="conclusao"><strong>Conclusão autorizada:</strong> o grupo treinado cresceu
-      12 p.p. a mais que o não treinado.</span>
-      <p class="menor">Com a ressalva de que os grupos podiam já ser diferentes.</p>
-    </div>
-    <div class="cartao alt-amarelo">
-      <svg class="fig-mini" viewBox="0 0 300 80" role="img" aria-label="Um grupo é sorteado em dois">
-        <rect x="2" y="26" width="80" height="30" rx="6" fill="#F5F5F5" stroke="#333" stroke-width="1.6"/>
-        <text x="42" y="46" text-anchor="middle" font-size="13" fill="#333">160 vend.</text>
-        <path d="M86 41 H112" stroke="#8D0333" stroke-width="2.2" marker-end="url(#sv)"/>
-        <circle cx="140" cy="41" r="22" fill="#FEC84D" stroke="#a67c2e" stroke-width="2"/>
-        <text x="140" y="45" text-anchor="middle" font-size="12" fill="#6b4c00" font-weight="700">sorteio</text>
-        <path d="M164 32 L194 18" stroke="#0AB0AB" stroke-width="2.2" marker-end="url(#sg)"/>
-        <path d="M164 50 L194 64" stroke="#0AB0AB" stroke-width="2.2" marker-end="url(#sg)"/>
-        <rect x="200" y="2" width="96" height="28" rx="6" fill="#f0faf9" stroke="#0AB0AB" stroke-width="1.8"/>
-        <text x="248" y="21" text-anchor="middle" font-size="12.5" fill="#067a76">treina agora</text>
-        <rect x="200" y="50" width="96" height="28" rx="6" fill="#f0faf9" stroke="#0AB0AB" stroke-width="1.8"/>
-        <text x="248" y="69" text-anchor="middle" font-size="12.5" fill="#067a76">treina depois</text>
-      </svg>
-      <h4>Experimental</h4>
-      <p>Sorteia quem treina agora e quem treina em seis meses.</p>
-      <span class="conclusao"><strong>Conclusão autorizada:</strong> o treinamento aumentou as
-      vendas em 12 p.p.</span>
-      <p class="menor">Sem ressalva: o sorteio resolveu a formação dos grupos.</p>
-    </div>
-  </div>
-  <div class="alerta"><span class="rotulo">O que reter</span>
-  A força da conclusão não vem do tamanho da base nem da técnica estatística: vem do
-  delineamento. Um milhão de linhas sem grupo de comparação continua sendo pesquisa descritiva.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O mapa de Gil: quinze delineamentos, sete que nos interessam</h2>
-  <p>Gil (2022, cap. 4) classifica as pesquisas pelo <strong>ambiente, pela abordagem
-  teórica e pelas técnicas de coleta e análise</strong>, e lista quinze delineamentos.
-  Sete deles produzem ou usam números e são o nosso território:</p>
-  <table>
-    <tr><th>Delineamento (Gil)</th><th>De onde vêm os dados</th><th>Onde entra nesta disciplina</th></tr>
-    <tr><td>Bibliográfica · Documental</td><td>Material já publicado · registros
-        internos e estatísticos</td><td>Bases IBGE, BCB e CVM (pesquisa documental
-        com registros estatísticos)</td></tr>
-    <tr><td><strong>Experimental</strong> · Ensaio clínico</td><td>O pesquisador aplica a
-        intervenção e sorteia grupos</td><td>Teste A/B, pilotos de RH</td></tr>
-    <tr><td><strong>Estudo de coorte</strong></td><td>Grupos expostos e não expostos,
-        seguidos no tempo</td><td>Demografia das Empresas (prática de hoje!),
-        rotatividade de admitidos</td></tr>
-    <tr><td><strong>Estudo caso-controle</strong></td><td>Parte do desfecho e olha para
-        trás</td><td>Quem pediu demissão × quem ficou</td></tr>
-    <tr><td><strong>Levantamento (survey)</strong></td><td>Interrogação direta de uma
-        amostra</td><td>Encontros 5 a 7</td></tr>
-  </table>
-  <p class="menor">Os demais (estudo de caso, etnografia, fenomenologia, grounded theory,
-  pesquisa-ação, participante, narrativa, métodos mistos) são majoritariamente
-  qualitativos. Coorte, caso-controle e ensaio clínico nasceram nas ciências da saúde e
-  foram importados pela gestão, sobretudo por <em>people analytics</em>.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Pesquisa descritiva</h2>
+  <h2>O que é uma variável, e seu papel na hipótese</h2>
   <div class="definicao"><span class="rotulo">Definição</span>
-  Mede e descreve as <strong>características de uma população ou fenômeno</strong>:
-  frequências, médias, proporções, perfis. Estabelece o retrato; não explica causas.</div>
-  <div class="exemplo"><span class="rotulo">Exemplos empresariais</span>
-  Qual a taxa de sobrevivência das empresas brasileiras após três anos? · Qual o perfil dos
-  consumidores de um shopping? · Quantas empresas cada setor emprega no Maranhão?</div>
-  <ul>
-    <li>Responde: <strong>quantos? qual a proporção? qual o perfil?</strong></li>
-    <li>Boa parte das estatísticas públicas (IBGE, BCB) e das pesquisas de mercado é
-        descritiva;</li>
-    <li><strong>Descrever bem já é contribuição</strong>: sem o retrato, nenhuma explicação
-        se sustenta.</li>
-  </ul>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Descritiva em detalhe: como se faz e o que se relata</h2>
-
-  <div class="figura">
-    <svg viewBox="0 0 1000 104" role="img" aria-label="Cadeia de quatro decisões da pesquisa descritiva">
-      <g font-family="Montserrat, Calibri, sans-serif">
-      <rect x="0" y="14" width="214" height="72" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="107" y="44" text-anchor="middle" font-size="20" fill="#8D0333" font-weight="700">1. População</text>
-      <text x="107" y="68" text-anchor="middle" font-size="16" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">quem será descrito</text>
-      <path d="M222 50 H254" stroke="#8D0333" stroke-width="3" marker-end="url(#sv)"/>
-      <rect x="262" y="14" width="214" height="72" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="369" y="44" text-anchor="middle" font-size="20" fill="#8D0333" font-weight="700">2. Variáveis</text>
-      <text x="369" y="68" text-anchor="middle" font-size="16" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">o que será medido</text>
-      <path d="M484 50 H516" stroke="#8D0333" stroke-width="3" marker-end="url(#sv)"/>
-      <rect x="524" y="14" width="214" height="72" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="631" y="44" text-anchor="middle" font-size="20" fill="#8D0333" font-weight="700">3. Casos</text>
-      <text x="631" y="68" text-anchor="middle" font-size="16" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">censo ou amostra</text>
-      <path d="M746 50 H778" stroke="#8D0333" stroke-width="3" marker-end="url(#sv)"/>
-      <rect x="786" y="14" width="214" height="72" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="893" y="44" text-anchor="middle" font-size="20" fill="#8D0333" font-weight="700">4. Medidas</text>
-      <text x="893" y="68" text-anchor="middle" font-size="16" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">como resumir</text>
-      </g>
-    </svg>
-    <p class="legenda">As quatro decisões são tomadas nesta ordem e antes da coleta. É nelas que
-    a pesquisa descritiva se ganha ou se perde.</p>
-  </div>
-  <table>
-    <tr><th>Decisão</th><th>Pergunta que ela responde</th><th>No exemplo da Demografia das Empresas</th></tr>
-    <tr><td><strong>1. População</strong></td><td>Quem exatamente será descrito? "Consumidores do
-        shopping" é vago; "pessoas de 18 anos ou mais que entraram entre 14h e 20h nos dias úteis
-        de maio de 2026" é reproduzível</td><td>Empresas empregadoras nascidas em 2017,
-        registradas no Cadastro Central de Empresas</td></tr>
-    <tr><td><strong>2. Variáveis</strong></td><td>O que será medido em cada caso, e com que
-        registro decidido antes da coleta?</td><td>Sobreviveu ou não em 2020; seção CNAE; faixa
-        de pessoal assalariado</td></tr>
-    <tr><td><strong>3. Casos</strong></td><td>Todos (censo), amostra probabilística ou amostra por
-        conveniência? A escolha limita o que se pode dizer depois</td><td>Todos: a base vem de
-        registro administrativo, portanto é censo</td></tr>
-    <tr><td><strong>4. Medidas</strong></td><td>Frequência e percentual para variáveis
-        categóricas; média, mediana e desvio padrão para numéricas</td><td>Proporção de
-        sobreviventes, por setor e por faixa de porte</td></tr>
-  </table>
-  <p class="menor">Com valores extremos, como renda e faturamento, a mediana descreve melhor
-  que a média.</p>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Terminar um estudo descritivo com uma frase causal. "A taxa de sobrevivência é maior nas
-  empresas maiores, logo crescer protege a empresa" não é conclusão descritiva: o estudo mediu
-  duas proporções, não testou nenhum mecanismo.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Pesquisa correlacional</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Examina se duas ou mais variáveis <strong>variam juntas</strong> (covariação): quando uma
-  sobe, a outra tende a subir (associação positiva) ou a descer (negativa)? <strong>Não
-  manipula</strong> nada, observa o que já existe.</div>
-  <div class="exemplo"><span class="rotulo">Exemplos empresariais</span>
-  Empresas maiores sobrevivem mais? · Escolaridade do gestor está associada à adoção de
-  tecnologia? · Endividamento anda junto com rentabilidade?</div>
-  <ul>
-    <li>Responde: <strong>X está associado a Y? Com que força e direção?</strong></li>
-    <li>É o tipo mais comum em Administração, e o mais mal interpretado.</li>
-  </ul>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Correlacional em detalhe: o que a associação diz e o que não diz</h2>
-  <div class="figura baixa">
-    <svg viewBox="0 0 1000 196" class="scatter" role="img" aria-label="Quatro nuvens de pontos com correlações de 0,90, 0,58, 0,02 e -0,70">
-        <line x1="28" y1="142" x2="224" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <line x1="28" y1="14" x2="28" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <circle cx="158.5" cy="38.5" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="178.3" cy="46.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="213.6" cy="24.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="146.7" cy="66.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="143.7" cy="83.9" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="61.1" cy="126.9" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="99.9" cy="104.2" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="123.0" cy="68.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="86.8" cy="115.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="113.7" cy="84.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="70.8" cy="132.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="72.3" cy="120.5" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="167.8" cy="53.5" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="167.3" cy="50.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="155.0" cy="59.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="173.6" cy="42.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <line x1="40" y1="128" x2="212" y2="28" stroke="#0AB0AB" stroke-width="2.6" stroke-dasharray="6 5"/>
-        <text x="126" y="172" text-anchor="middle" font-size="19" fill="#8D0333" font-weight="700">r = 0,90</text>
-        <text x="126" y="190" text-anchor="middle" font-size="16" fill="#666">forte e positiva</text>
-        <line x1="284" y1="142" x2="480" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <line x1="284" y1="14" x2="284" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <circle cx="418.5" cy="93.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="449.3" cy="24.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="405.7" cy="63.3" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="311.8" cy="110.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="326.1" cy="98.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="393.2" cy="97.7" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="463.7" cy="44.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="365.4" cy="99.8" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="325.9" cy="102.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="340.8" cy="131.7" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="390.9" cy="67.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="457.4" cy="66.5" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="331.3" cy="132.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="302.5" cy="107.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="440.0" cy="48.9" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="334.6" cy="106.9" r="4" fill="#8D0333" opacity="0.8"/>
-        <line x1="296" y1="128" x2="468" y2="28" stroke="#0AB0AB" stroke-width="2.6" stroke-dasharray="6 5"/>
-        <text x="382" y="172" text-anchor="middle" font-size="19" fill="#8D0333" font-weight="700">r = 0,58</text>
-        <text x="382" y="190" text-anchor="middle" font-size="16" fill="#666">moderada e positiva</text>
-        <line x1="540" y1="142" x2="736" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <line x1="540" y1="14" x2="540" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <circle cx="643.1" cy="117.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="708.2" cy="98.8" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="705.3" cy="115.5" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="624.6" cy="24.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="603.9" cy="46.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="577.2" cy="55.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="598.3" cy="108.7" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="682.5" cy="102.2" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="565.2" cy="54.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="647.1" cy="65.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="697.6" cy="53.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="653.6" cy="132.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="662.1" cy="78.8" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="586.3" cy="50.9" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="644.2" cy="100.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="619.0" cy="94.8" r="4" fill="#8D0333" opacity="0.8"/>
-        <text x="638" y="172" text-anchor="middle" font-size="19" fill="#8D0333" font-weight="700">r = 0,02</text>
-        <text x="638" y="190" text-anchor="middle" font-size="16" fill="#666">sem associação</text>
-        <line x1="796" y1="142" x2="992" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <line x1="796" y1="14" x2="796" y2="142" stroke="#bbb" stroke-width="1.6"/>
-        <circle cx="834.8" cy="37.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="961.6" cy="114.2" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="966.6" cy="127.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="909.1" cy="73.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="916.3" cy="75.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="810.0" cy="30.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="911.8" cy="49.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="831.5" cy="46.9" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="872.9" cy="97.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="848.2" cy="33.1" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="874.2" cy="58.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="942.8" cy="132.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="830.7" cy="24.0" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="875.5" cy="60.6" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="864.4" cy="76.3" r="4" fill="#8D0333" opacity="0.8"/>
-        <circle cx="866.8" cy="62.4" r="4" fill="#8D0333" opacity="0.8"/>
-        <line x1="808" y1="28" x2="980" y2="128" stroke="#0AB0AB" stroke-width="2.6" stroke-dasharray="6 5"/>
-        <text x="894" y="172" text-anchor="middle" font-size="19" fill="#8D0333" font-weight="700">r = -0,70</text>
-        <text x="894" y="190" text-anchor="middle" font-size="16" fill="#666">forte e negativa</text>
-    </svg>
-    <p class="legenda">Cada ponto é um caso observado. O coeficiente resume a nuvem em um número
-    entre -1 e +1: o sinal dá a direção, o valor absoluto dá a força.</p>
-  </div>
-
+  Característica observável que <strong>assume valores diferentes</strong> entre os casos
+  estudados (empresas, pessoas, meses, filiais).</div>
   <div class="colunas">
     <div>
-      <h3>Como se lê o coeficiente</h3>
-      <ul>
-        <li><strong>Sinal:</strong> positivo, as duas sobem juntas; negativo, quando uma sobe a
-        outra desce.</li>
-        <li><strong>Valor absoluto:</strong> perto de 0, quase não andam juntas; perto de 1, os
-        pontos se alinham.</li>
-        <li><strong>Simetria:</strong> a correlação de X com Y é igual à de Y com X, e por isso
-        nada informa sobre quem causa quem.</li>
-      </ul>
+      <h3>Independente</h3>
+      <p>O suposto <strong>fator</strong>: ex.: porte da empresa</p>
     </div>
     <div>
-      <h3>Duas variáveis categóricas</h3>
-      <p>Não há coeficiente: a associação aparece na tabela cruzada, comparando proporções.</p>
-      <table>
-        <tr><th>Porte</th><th>Sobreviveu</th><th>Fechou</th></tr>
-        <tr><td>Até 9 empregados</td><td>62%</td><td>38%</td></tr>
-        <tr><td>10 ou mais</td><td>81%</td><td>19%</td></tr>
-      </table>
-      <p class="menor">A sobrevivência muda conforme o porte: há associação.</p>
+      <h3>Dependente</h3>
+      <p>O suposto <strong>efeito</strong>: ex.: taxa de sobrevivência</p>
     </div>
   </div>
-  <div class="exemplo"><span class="rotulo">Leitura correta e leitura incorreta</span>
-  Em 120 lojas, a correlação entre gasto com propaganda e faturamento é 0,58.
-  <strong>Correto:</strong> lojas que gastam mais com propaganda tendem a faturar mais, e a
-  associação é moderada. <strong>Incorreto:</strong> cada real gasto com propaganda gera
-  faturamento. O número 0,58 não autoriza a segunda frase.</div>
-  <p class="menor">A correlacional é a mais frequente em Administração porque quase sempre é a
-  única viável. Teste de significância e coeficiente de Pearson: encontro 13.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+  <p class="menor">Há ainda variáveis <strong>de controle</strong> (mantidas constantes ou
+  consideradas na análise, ex.: setor) e <strong>intervenientes</strong> (explicam o
+  caminho entre X e Y). Por ora, domine o par independente/dependente.</p>
+  <div class="exemplo"><span class="rotulo">Aplicando à hipótese do exemplo</span>
+  Hipótese: "empresas de maior porte sobrevivem mais que as de menor porte". Independente
+  (x): porte da empresa. Dependente (y): taxa de sobrevivência em três anos.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Correlação não é causalidade: as três razões</h2>
-  <div class="cartoes">
-    <div class="cartao">
-      <h4>1. Terceira variável (oculta)</h4>
-      <p>X e Y andam juntos porque <strong>Z causa os dois</strong>.</p>
-      <p class="menor">Nº de funcionários ↔ faturamento: ambos refletem o porte.</p>
-    </div>
-    <div class="cartao alt-dourado">
-      <h4>2. Causalidade reversa</h4>
-      <p>Talvez seja <strong>Y que cause X</strong>.</p>
-      <p class="menor">Empresas inovam porque lucram, ou lucram porque inovam?</p>
-    </div>
-    <div class="cartao alt-verde">
-      <h4>3. Acaso</h4>
-      <p>Com dados suficientes, <strong>alguma</strong> associação aparece por sorte.</p>
-      <p class="menor">Testaremos isso formalmente no encontro 11.</p>
-    </div>
-  </div>
-  <div class="pergunta">Exercício: "empresas que investem em marketing faturam mais".
-  Proponham <strong>explicações alternativas</strong> para essa correlação.
-  Para toda correlação, pergunte: que outras explicações existem?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Pesquisa experimental</h2>
+  <h2>Nível de mensuração 1: Nominal</h2>
   <div class="definicao"><span class="rotulo">Definição</span>
-  O pesquisador <strong>manipula</strong> a variável independente, <strong>controla</strong>
-  as demais condições e distribui os participantes <strong>aleatoriamente</strong> entre
-  grupo de tratamento e grupo de controle. Para Gil (2022, seção 4.4), é a pesquisa em
-  que o pesquisador é "um <strong>agente ativo</strong>, e não um observador passivo": o
-  delineamento mais prestigiado nos meios científicos.</div>
-  <p>Os três pilares:</p>
-  <ul>
-    <li><strong>Manipulação</strong>: o pesquisador decide quem recebe o quê;</li>
-    <li><strong>Controle</strong>: as demais condições são mantidas iguais;</li>
-    <li><strong>Aleatorização</strong>: o sorteio define os grupos.</li>
-  </ul>
-  <div class="exemplo"><span class="rotulo">Por que o sorteio é mágico</span>
-  Com grupos sorteados, eles ficam <strong>equivalentes em tudo</strong> (idade, renda,
-  motivação, inclusive no que não medimos). Se ao final diferem, a única explicação
-  restante é o tratamento. Por isso o experimento é o delineamento mais forte para afirmar
-  <strong>causalidade</strong>.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Experimentos no mundo da gestão</h2>
-  <div class="exemplo"><span class="rotulo">Teste A/B</span>
-  Metade dos visitantes do site vê o preço X, metade vê o preço Y, <strong>o sistema
-  sorteia</strong> quem vê o quê. Compara-se a taxa de compra. É um experimento completo, e
-  empresas digitais rodam centenas por mês.</div>
-  <div class="exemplo"><span class="rotulo">Currículos fictícios</span>
-  Currículos idênticos, variando apenas o nome do candidato, enviados a vagas reais para
-  medir discriminação em contratações, experimento clássico em economia do trabalho.</div>
-  <p>Limite prático: nem tudo se pode manipular (não se sorteia quem "recebe" uma crise
-  econômica), nem tudo se <em>deve</em> manipular (ética, encontro 7).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Experimental em detalhe: montando um teste A/B passo a passo</h2>
-
-  <div class="figura">
-    <svg viewBox="0 0 1000 152" role="img" aria-label="Visitantes sorteados entre versão A e versão B, com comparação das taxas de compra">
-      <rect x="0" y="46" width="140" height="60" rx="8" fill="#F5F5F5" stroke="#333" stroke-width="1.8"/>
-      <text x="70" y="72" text-anchor="middle" font-size="17" fill="#333">Visitantes</text>
-      <text x="70" y="92" text-anchor="middle" font-size="14" fill="#777">40 mil</text>
-      <path d="M146 76 H180" stroke="#8D0333" stroke-width="3" marker-end="url(#sv)"/>
-      <circle cx="222" cy="76" r="34" fill="#FEC84D" stroke="#a67c2e" stroke-width="2.4"/>
-      <text x="222" y="82" text-anchor="middle" font-size="16" fill="#6b4c00" font-weight="700">sorteio</text>
-      <path d="M258 60 L300 34" stroke="#0AB0AB" stroke-width="3" marker-end="url(#sg)"/>
-      <path d="M258 92 L300 118" stroke="#0AB0AB" stroke-width="3" marker-end="url(#sg)"/>
-      <rect x="308" y="6" width="250" height="54" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="433" y="28" text-anchor="middle" font-size="16" fill="#067a76" font-weight="700">A · "Comprar agora"</text>
-      <text x="433" y="48" text-anchor="middle" font-size="14" fill="#555">20 mil visitantes</text>
-      <rect x="308" y="92" width="250" height="54" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="433" y="114" text-anchor="middle" font-size="16" fill="#067a76" font-weight="700">B · "Adicionar ao carrinho"</text>
-      <text x="433" y="134" text-anchor="middle" font-size="14" fill="#555">20 mil visitantes</text>
-      <path d="M566 33 H606" stroke="#888" stroke-width="2.4" marker-end="url(#sc)"/>
-      <path d="M566 119 H606" stroke="#888" stroke-width="2.4" marker-end="url(#sc)"/>
-      <rect x="614" y="6" width="150" height="54" rx="8" fill="#fff" stroke="#8D0333" stroke-width="2"/>
-      <text x="689" y="32" text-anchor="middle" font-size="22" fill="#8D0333" font-weight="700">3,1%</text>
-      <text x="689" y="50" text-anchor="middle" font-size="13" fill="#777">taxa de compra</text>
-      <rect x="614" y="92" width="150" height="54" rx="8" fill="#fff" stroke="#8D0333" stroke-width="2"/>
-      <text x="689" y="118" text-anchor="middle" font-size="22" fill="#8D0333" font-weight="700">3,6%</text>
-      <text x="689" y="136" text-anchor="middle" font-size="13" fill="#777">taxa de compra</text>
-      <path d="M772 33 H800 V 76" stroke="#a67c2e" stroke-width="2.4" fill="none"/>
-      <path d="M772 119 H800 V 76" stroke="#a67c2e" stroke-width="2.4" fill="none"/>
-      <path d="M800 76 H836" stroke="#a67c2e" stroke-width="2.4" marker-end="url(#sd)"/>
-      <rect x="844" y="46" width="156" height="60" rx="8" fill="#fff8e6" stroke="#D4B277" stroke-width="2"/>
-      <text x="922" y="72" text-anchor="middle" font-size="20" fill="#8D0333" font-weight="700">+0,5 p.p.</text>
-      <text x="922" y="92" text-anchor="middle" font-size="13" fill="#777">atribuível ao botão</text>
-    </svg>
-    <p class="legenda">Como só o texto do botão diferia entre os grupos, e o sorteio os tornou
-    equivalentes em tudo o mais, a diferença final é atribuível ao botão.</p>
-  </div>
-  <div class="colunas">
-    <div>
-      <p><strong>1. Variável independente e condições.</strong> O texto do botão, em duas
-      versões. Só isso muda: preço, fotos, frete e layout permanecem iguais, o que é o controle.</p>
-      <p><strong>2. Variável dependente.</strong> Proporção de visitantes que concluem a compra
-      na mesma sessão, definida a ponto de virar uma consulta no banco de dados.</p>
-      <p><strong>3. Sortear.</strong> Cada visitante é atribuído a A ou B por sorteio, o que
-      iguala os grupos em idade, renda e intenção de compra, inclusive no que não se mede.</p>
-    </div>
-    <div>
-      <p><strong>4. Tamanho e duração definidos antes.</strong> 20 mil visitantes por grupo, ou
-      duas semanas completas, o que vier primeiro.</p>
-      <p><strong>5. Rodar sem intervir.</strong> Nenhuma promoção ou mudança de layout no
-      período: qualquer alteração aplicada a um grupo destrói a comparação.</p>
-      <p><strong>6. Comparar e decidir.</strong> Falta ainda verificar se 0,5 ponto percentual é
-      maior do que o acaso produziria, e isso é teste de hipótese, no encontro 11.</p>
-    </div>
-  </div>
-  <div class="alerta"><span class="rotulo">Onde o experimento costuma quebrar</span>
-  Sorteio que não é sorteio, como dividir por região ou por horário. Grupos contaminados, quando
-  a mesma pessoa vê as duas versões. Encerramento antecipado assim que o resultado agrada.
-  Qualquer um dos três devolve o estudo ao terreno quase-experimental.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Planos experimentais (Gil, cap. 7): uma variável ou fatorial</h2>
-  <div class="definicao"><span class="rotulo">Plano de uma única variável ("mão única")</span>
-  Manipula-se <strong>uma</strong> variável independente, em duas ou mais condições.
-  Ex.: sorteiam-se vendedores para <em>com treinamento</em> (A1) e <em>sem treinamento</em>
-  (A2); compara-se a venda média por vendedor.</div>
-  <div class="definicao"><span class="rotulo">Plano fatorial</span>
-  Duas ou mais variáveis independentes <strong>ao mesmo tempo</strong>, para estudar
-  efeitos separados e <strong>conjuntos</strong> (interação). Três testes num só
-  experimento.</div>
-  <table>
-    <tr><th>Vendas médias (fictícias)</th><th>Presencial (B1)</th><th>On-line (B2)</th></tr>
-    <tr><td><strong>Com treinamento (A1)</strong></td><td>7</td><td>3</td></tr>
-    <tr><td><strong>Sem treinamento (A2)</strong></td><td>5</td><td>5</td></tr>
-  </table>
-  <p class="menor">Leitura: o treinamento <strong>ajuda no presencial e atrapalha no
-  on-line</strong>. Se só tivéssemos testado "treinou × não treinou", a média (5 × 5)
-  esconderia tudo. É a <strong>interação</strong> que o plano fatorial revela, e é o
-  achado mais comum em people analytics: o efeito depende do contexto.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Pesquisa quase-experimental</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Compara grupos "tratado" e "não tratado" <strong>sem aleatorização</strong>: os grupos
-  já estavam formados quando a pesquisa começou. É o delineamento possível quando a
-  intervenção já aconteceu ou não pode ser sorteada.</div>
+  Categorias <strong>sem ordem</strong> entre si: apenas classificam. Nenhuma categoria é
+  "maior" que outra.</div>
   <div class="exemplo"><span class="rotulo">Exemplos</span>
-  Lojas que adotaram o novo sistema × lojas que não adotaram · Empresas que receberam o
-  incentivo fiscal × as que não receberam.</div>
-  <div class="afirmacao">Ameaça central, <strong>viés de seleção</strong>: os grupos podem
-  diferir por razões prévias. Talvez as lojas que adotaram o sistema já fossem as mais
-  organizadas, e a diferença de desempenho venha daí, não do sistema.</div>
-  <p class="menor">Toda conclusão quase-experimental deve declarar essa limitação. Gil
-  (2022), com Campbell e Stanley, resume: são delineamentos "substancialmente mais
-  fracos", mas "não destituídos de valor", desde que o pesquisador
-  <strong>esclareça o que deixou de controlar</strong>.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+  Seção CNAE (comércio, indústria, serviços...) · unidade da federação · gênero · forma
+  jurídica (MEI, LTDA, S.A.)</div>
+  <p><strong>Dicotômicas × politômicas:</strong> gênero é dicotômica (duas categorias); seção
+  CNAE é politômica (mais de duas). Numa modelagem, a dicotômica é recodificada como
+  <em>dummy</em>: 0 = Feminino, 1 = Masculino, por exemplo.</p>
+  <p><strong>Operações que fazem sentido:</strong> contar, calcular proporções, achar a
+  categoria mais frequente (moda). <strong>Não fazem sentido:</strong> média, mediana,
+  "maior que".</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Quase-experimental em detalhe: o que se faz contra o viés</h2>
-
-  <div class="figura">
-    <svg viewBox="0 0 1000 208" role="img" aria-label="Faturamento antes e depois nos dois grupos, com a diferença entre as variações">
-      <line x1="250" y1="180" x2="760" y2="180" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="250" y1="14" x2="250" y2="180" stroke="#bbb" stroke-width="1.6"/>
-      <text x="300" y="200" text-anchor="middle" font-size="17" fill="#555">antes</text>
-      <text x="620" y="200" text-anchor="middle" font-size="17" fill="#555">depois</text>
-      <line x1="300" y1="92" x2="620" y2="42" stroke="#8D0333" stroke-width="3.4"/>
-      <circle cx="300" cy="92" r="6" fill="#8D0333"/><circle cx="620" cy="42" r="6" fill="#8D0333"/>
-      <line x1="300" y1="140" x2="620" y2="116" stroke="#888" stroke-width="3.4"/>
-      <circle cx="300" cy="140" r="6" fill="#888"/><circle cx="620" cy="116" r="6" fill="#888"/>
-      <line x1="300" y1="92" x2="620" y2="62" stroke="#0AB0AB" stroke-width="2.6" stroke-dasharray="7 5"/>
-      <text x="286" y="78" text-anchor="end" font-size="15" fill="#8D0333" font-weight="700">20 lojas adotaram</text>
-      <text x="286" y="98" text-anchor="end" font-size="15" fill="#8D0333">R$ 310 mil</text>
-      <text x="286" y="136" text-anchor="end" font-size="15" fill="#666">R$ 250 mil</text>
-      <text x="286" y="156" text-anchor="end" font-size="15" fill="#666">20 lojas não adotaram</text>
-      <text x="634" y="36" font-size="14" fill="#8D0333">R$ 372 mil (+20%)</text>
-      <text x="634" y="66" font-size="13" fill="#067a76">contrafactual: +12%</text>
-      <text x="634" y="122" font-size="14" fill="#666">R$ 280 mil (+12%)</text>
-      <line x1="628" y1="42" x2="794" y2="42" stroke="#ccc" stroke-width="1.2" stroke-dasharray="4 4"/>
-      <line x1="628" y1="62" x2="794" y2="62" stroke="#ccc" stroke-width="1.2" stroke-dasharray="4 4"/>
-      <path d="M800 42 V 62" stroke="#a67c2e" stroke-width="3"/>
-      <path d="M794 43 H806 M794 61 H806" stroke="#a67c2e" stroke-width="3"/>
-      <text x="816" y="46" font-size="16" fill="#8D0333" font-weight="700">efeito estimado</text>
-      <text x="816" y="68" font-size="16" fill="#8D0333" font-weight="700">8 pontos percentuais</text>
-      <text x="816" y="92" font-size="13" fill="#777">(20% menos 12%)</text>
-    </svg>
-    <p class="legenda">Os grupos já eram diferentes antes (R$ 310 mil contra R$ 250 mil). Por isso
-    se comparam as variações, e não os níveis finais.</p>
-  </div>
-  <div class="cartoes-3">
-    <div class="cartao"><h4>Pré-teste</h4>
-      <p>Medir a variável dependente nos dois grupos antes da intervenção. Se as lojas que
-      adotaram já vendiam mais, isso aparece.</p></div>
-    <div class="cartao alt-dourado"><h4>Pareamento</h4>
-      <p>Para cada loja tratada, escolher uma não tratada semelhante em porte, região, setor e
-      faturamento anterior.</p></div>
-    <div class="cartao alt-verde"><h4>Comparação de variações</h4>
-      <p>Comparar quanto cada grupo mudou, e não onde cada grupo chegou. Neutraliza o que
-      separava os grupos e permanecia constante.</p></div>
-  </div>
-  <div class="alerta"><span class="rotulo">A ressalva que precisa estar escrita</span>
-  A comparação de variações só vale se, na ausência do sistema, os dois grupos teriam variado de
-  forma parecida. Isso é uma suposição, não um resultado. Se as lojas que adotaram também
-  estavam abrindo filiais, os 8 pontos misturam as duas coisas.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A escada do rigor: o mesmo treinamento, três desenhos</h2>
-  <p class="menor">Pergunta de people analytics: "o treinamento de vendas aumentou o
-  desempenho?" Gil (seções 4.4 e 8.4 a 8.6) distingue três degraus.</p>
-  <table>
-    <tr><th>Degrau</th><th>Desenho</th><th>O que compara</th><th>Ameaça principal</th></tr>
-    <tr><td><strong>Pré-experimental</strong></td><td><strong>Antes e depois</strong>, um
-        único grupo, sem controle (série temporal simples)</td><td>Vendas dos treinados
-        antes × depois</td><td>Tudo o que mudou junto: sazonalidade, maturação, efeito de
-        aprendizado no teste, campanha promocional</td></tr>
-    <tr><td><strong>Quase-experimental</strong></td><td><strong>Grupo de controle não
-        equivalente</strong>: treinados × não treinados, com pré-teste</td><td>Variação
-        dos treinados × variação dos não treinados</td><td>Viés de seleção: quem foi
-        treinado talvez já fosse melhor</td></tr>
-    <tr><td><strong>Experimental</strong></td><td><strong>Sorteio</strong> de quem treina
-        agora e quem treina depois (lista de espera ou delineamento cruzado)</td>
-        <td>Grupos equivalentes por construção</td><td>Só o acaso, mensurável
-        (encontro 11)</td></tr>
-  </table>
-  <div class="afirmacao">O "antes e depois" tão usado em RH é, para Gil, um delineamento
-  <strong>pré-experimental</strong>: cada participante é o seu próprio controle, o que
-  elimina diferenças inatas, mas <strong>não elimina o tempo</strong>. Vale como
-  evidência inicial, não como prova de impacto.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Estudo de coorte</h2>
-  <div class="definicao"><span class="rotulo">Definição (Gil, 2022, seção 4.6 e cap. 9)</span>
-  Grupo de indivíduos com uma <strong>característica comum</strong>, acompanhado por um
-  período para observar o que lhes acontece. Compara-se uma amostra de
-  <strong>expostos</strong> a um fator com uma amostra equivalente de <strong>não
-  expostos</strong>, e ao final verifica-se quanto o desfecho foi mais frequente entre os
-  expostos. A exposição <strong>não é sorteada</strong>: é o que separa a coorte do
-  experimento.</div>
-  <div class="exemplo"><span class="rotulo">People analytics</span>
-  Coorte: todos os <strong>admitidos em 2023</strong>. Expostos: passaram por onboarding
-  estruturado; não expostos: não passaram. Seguimento: 24 meses. Desfecho: desligamento
-  voluntário. Resultado: <strong>risco relativo</strong> (quantas vezes o risco é maior
-  num grupo) e <strong>risco atribuível</strong> (diferença de incidências atribuída à
-  exposição).</div>
-  <div class="exemplo"><span class="rotulo">A prática de hoje é uma coorte</span>
-  A Demografia das Empresas segue as empresas <strong>nascidas em cada ano</strong> e
-  mede quantas sobrevivem após 1, 2 e 3 anos, por porte e setor. É um estudo de coorte
-  <strong>retrospectivo</strong>, montado a partir de registros administrativos.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Coorte prospectiva ou retrospectiva; etapas e limites</h2>
-  <div class="colunas">
-    <div>
-      <h3>Prospectiva</h3>
-      <p>Grupos formados <strong>hoje</strong>, seguidos para o futuro. Planejamento
-      rigoroso, próximo do experimento; cara e demorada.</p>
-      <p class="menor">Ex.: acompanhar por dois anos as MPEs que aderiram ao Pix
-      versus as que não aderiram.</p>
-    </div>
-    <div>
-      <h3>Retrospectiva</h3>
-      <p>Exposição e desfecho <strong>já ocorreram</strong>; reconstrói-se a coorte a
-      partir de <strong>arquivos</strong>. Rápida; depende de registros completos e
-      padronizados.</p>
-      <p class="menor">Ex.: base do RH ou do SIDRA, como na prática de hoje.</p>
-    </div>
-  </div>
-  <p><strong>Etapas (Gil, cap. 9):</strong> definir objetivos como hipóteses → selecionar
-  expostos e não expostos <em>na mesma fonte e pelo mesmo procedimento</em> → medir o
-  nível de exposição (de preferência em graus, não só sim/não) → acompanhar até o
-  desfecho, a saída ou o fim do estudo → calcular as taxas de ocorrência.</p>
-  <div class="afirmacao">Limites que Gil destaca: <strong>sem aleatorização</strong> os
-  grupos podem diferir desde o início; amostras precisam ser <strong>grandes</strong>; e a
-  <strong>perda de participantes</strong> ao longo do seguimento (quem sai da empresa,
-  quem some da base) pode enviesar tudo.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Coorte em detalhe: lendo o risco relativo</h2>
-
-  <div class="figura">
-    <svg viewBox="0 0 1000 188" role="img" aria-label="Coorte de admitidos separada por exposição e seguida por 24 meses até o desfecho">
-      <rect x="0" y="46" width="160" height="64" rx="8" fill="#F5F5F5" stroke="#333" stroke-width="1.8"/>
-      <text x="80" y="72" text-anchor="middle" font-size="16" fill="#333">Admitidos 2023</text>
-      <text x="80" y="92" text-anchor="middle" font-size="14" fill="#777">n = 500</text>
-      <path d="M166 62 L196 34" stroke="#8D0333" stroke-width="2.6" marker-end="url(#sv)"/>
-      <path d="M166 94 L196 122" stroke="#8D0333" stroke-width="2.6" marker-end="url(#sv)"/>
-      <rect x="204" y="4" width="230" height="56" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="319" y="26" text-anchor="middle" font-size="15.5" fill="#067a76" font-weight="700">Com onboarding (300)</text>
-      <text x="319" y="46" text-anchor="middle" font-size="14" fill="#555">não expostos ao risco</text>
-      <rect x="204" y="96" width="230" height="56" rx="8" fill="#fdf0f0" stroke="#c0392b" stroke-width="2"/>
-      <text x="319" y="118" text-anchor="middle" font-size="15.5" fill="#a93226" font-weight="700">Sem onboarding (200)</text>
-      <text x="319" y="138" text-anchor="middle" font-size="14" fill="#555">expostos</text>
-      <path d="M442 32 H560" stroke="#888" stroke-width="2.4" marker-end="url(#sc)"/>
-      <path d="M442 124 H560" stroke="#888" stroke-width="2.4" marker-end="url(#sc)"/>
-      <text x="500" y="82" text-anchor="middle" font-size="15" fill="#777">seguimento de 24 meses</text>
-      <rect x="570" y="4" width="240" height="56" rx="8" fill="#fff" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="690" y="27" text-anchor="middle" font-size="15" fill="#333">30 pedem demissão</text>
-      <text x="690" y="48" text-anchor="middle" font-size="18" fill="#067a76" font-weight="700">incidência 10%</text>
-      <rect x="570" y="96" width="240" height="56" rx="8" fill="#fff" stroke="#c0392b" stroke-width="2"/>
-      <text x="690" y="119" text-anchor="middle" font-size="15" fill="#333">60 pedem demissão</text>
-      <text x="690" y="140" text-anchor="middle" font-size="18" fill="#a93226" font-weight="700">incidência 30%</text>
-      <path d="M818 32 H852 V 68" stroke="#a67c2e" stroke-width="2.2" fill="none"/>
-      <path d="M818 124 H852 V 88" stroke="#a67c2e" stroke-width="2.2" fill="none"/>
-      <path d="M852 78 H882" stroke="#a67c2e" stroke-width="2.4" marker-end="url(#sd)"/>
-      <rect x="890" y="48" width="110" height="60" rx="8" fill="#fff8e6" stroke="#D4B277" stroke-width="2"/>
-      <text x="945" y="74" text-anchor="middle" font-size="20" fill="#8D0333" font-weight="700">RR = 3</text>
-      <text x="945" y="94" text-anchor="middle" font-size="13" fill="#777">30% ÷ 10%</text>
-      <path d="M0 178 H240" stroke="#bbb" stroke-width="2" marker-end="url(#sc)"/>
-      <text x="250" y="183" font-size="14" fill="#999">direção do estudo: exposição primeiro, desfecho depois</text>
-    </svg>
-  </div>
-  <div class="colunas">
-    <div>
-      <table>
-        <tr><th>Admitidos em 2023</th><th>Pediram demissão</th><th>Ficaram</th><th>Total</th></tr>
-        <tr><td><strong>Com onboarding</strong></td><td>30</td><td>270</td><td>300</td></tr>
-        <tr><td><strong>Sem onboarding</strong></td><td>60</td><td>140</td><td>200</td></tr>
-      </table>
-      <p class="menor">Só a coorte permite calcular incidência, porque ela parte de quem entrou e
-      observa quem sai.</p>
-    </div>
-    <div>
-      <div class="chips">
-        <div class="chip"><span class="valor">30%</span><span class="rot">incidência entre os
-        expostos: 60 ÷ 200</span></div>
-        <div class="chip"><span class="valor">3</span><span class="rot">risco relativo: quantas
-        vezes maior</span></div>
-        <div class="chip"><span class="valor">20 p.p.</span><span class="rot">risco atribuível:
-        quantos casos a mais</span></div>
-      </div>
-      <p class="menor">O risco relativo responde "quantas vezes maior". O risco atribuível
-      responde "quantos desligamentos a mais em cada 100 admitidos", e é o número que interessa
-      a quem decide orçamento.</p>
-    </div>
-  </div>
-  <div class="alerta"><span class="rotulo">O que esses números ainda não provam</span>
-  A empresa escolheu quem passou pelo onboarding, não sorteou. Se o programa foi aplicado
-  primeiro nas áreas mais estruturadas, parte dos 20 pontos vem da área e não do programa. Quem
-  saiu da base antes dos 24 meses por outro motivo precisa ser tratado de forma explícita.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Estudo caso-controle</h2>
-  <div class="definicao"><span class="rotulo">Definição (Gil, 2022, seção 4.7 e cap. 10)</span>
-  Estudo <strong>retrospectivo</strong>, <em>ex post facto</em>: parte do
-  <strong>desfecho</strong> e volta ao <strong>antecedente</strong>. Seleciona-se um
-  grupo que apresenta o desfecho (<strong>casos</strong>) e outro, semelhante em tudo
-  exceto no desfecho (<strong>controles</strong>), e verifica-se em qual deles a
-  exposição ao fator foi mais frequente.</div>
-  <div class="exemplo"><span class="rotulo">People analytics</span>
-  Casos: os 60 analistas que <strong>pediram demissão</strong> nos últimos 12 meses.
-  Controles: 60 analistas que ficaram, <strong>pareados</strong> por área, cargo e tempo
-  de casa. Olhando para trás nos registros: que proporção de cada grupo teve troca de
-  gestor, ficou sem promoção, não recebeu treinamento? A medida é a
-  <strong>razão de chances (odds ratio)</strong>: quantas vezes é maior a chance de os
-  casos terem estado expostos.</div>
-  <div class="exemplo"><span class="rotulo">Empresas</span>
-  Casos: empresas que <strong>fecharam</strong> em três anos. Controles: sobreviventes do
-  mesmo setor, porte e município. Exposição: tomaram crédito caro? tinham um único
-  cliente?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Caso-controle: por que usar, e onde ele engana</h2>
-  <div class="colunas">
-    <div>
-      <h3>Vantagens (Gil)</h3>
-      <ul>
-        <li><strong>Rápido e barato</strong>: não há seguimento;</li>
-        <li>Único desenho viável para <strong>desfechos raros</strong> (fraude, acidente
-            grave, falência em setor pequeno);</li>
-        <li>Bom para <strong>gerar hipóteses</strong> que uma coorte ou um experimento
-            testará depois.</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Cuidados (Gil, cap. 10)</h3>
-      <ul>
-        <li>Escolher os controles é a parte <strong>mais difícil</strong>: mesma fonte,
-            mesma chance de exposição, <strong>pareamento</strong>;</li>
-        <li><strong>Viés de memória</strong>: casos lembram das exposições de forma
-            diferente dos controles; prefira registros anteriores à pesquisa;</li>
-        <li>Não se estima incidência: os grupos foram escolhidos pelo desfecho, não pela
-            exposição.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="pergunta">Teste de sanidade: se você começou a pesquisa <strong>listando quem
-  saiu</strong>, é caso-controle; se começou listando <strong>quem entrou</strong> e
-  esperou para ver quem sairia, é coorte.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Caso-controle em detalhe: lendo a razão de chances</h2>
-
-  <div class="figura">
-    <svg viewBox="0 0 1000 188" role="img" aria-label="Caso-controle: parte do desfecho e volta aos registros de exposição">
-      <rect x="810" y="46" width="190" height="64" rx="8" fill="#F5F5F5" stroke="#333" stroke-width="1.8"/>
-      <text x="905" y="72" text-anchor="middle" font-size="15.5" fill="#333">Desfecho conhecido</text>
-      <text x="905" y="92" text-anchor="middle" font-size="14" fill="#777">pedir demissão</text>
-      <path d="M804 62 L772 34" stroke="#8D0333" stroke-width="2.6" marker-end="url(#sv)"/>
-      <path d="M804 94 L772 122" stroke="#8D0333" stroke-width="2.6" marker-end="url(#sv)"/>
-      <rect x="530" y="4" width="238" height="56" rx="8" fill="#fdf0f0" stroke="#c0392b" stroke-width="2"/>
-      <text x="649" y="27" text-anchor="middle" font-size="15.5" fill="#a93226" font-weight="700">Casos (60)</text>
-      <text x="649" y="47" text-anchor="middle" font-size="14" fill="#555">pediram demissão</text>
-      <rect x="530" y="96" width="238" height="56" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="649" y="119" text-anchor="middle" font-size="15.5" fill="#067a76" font-weight="700">Controles (60)</text>
-      <text x="649" y="139" text-anchor="middle" font-size="14" fill="#555">ficaram, pareados</text>
-      <path d="M524 32 H450" stroke="#888" stroke-width="2.4" marker-end="url(#sc)"/>
-      <path d="M524 124 H450" stroke="#888" stroke-width="2.4" marker-end="url(#sc)"/>
-      <text x="487" y="82" text-anchor="middle" font-size="15" fill="#777">registros anteriores</text>
-      <rect x="180" y="4" width="262" height="56" rx="8" fill="#fff" stroke="#c0392b" stroke-width="2"/>
-      <text x="311" y="27" text-anchor="middle" font-size="15" fill="#333">36 tiveram troca de gestor</text>
-      <text x="311" y="48" text-anchor="middle" font-size="17" fill="#a93226" font-weight="700">chance = 36 ÷ 24 = 1,5</text>
-      <rect x="180" y="96" width="262" height="56" rx="8" fill="#fff" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="311" y="119" text-anchor="middle" font-size="15" fill="#333">18 tiveram troca de gestor</text>
-      <text x="311" y="140" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">chance = 18 ÷ 42 = 0,43</text>
-      <path d="M174 32 H140 V 68" stroke="#a67c2e" stroke-width="2.2" fill="none"/>
-      <path d="M174 124 H140 V 88" stroke="#a67c2e" stroke-width="2.2" fill="none"/>
-      <path d="M140 78 H112" stroke="#a67c2e" stroke-width="2.4" marker-end="url(#sd)"/>
-      <rect x="0" y="48" width="108" height="60" rx="8" fill="#fff8e6" stroke="#D4B277" stroke-width="2"/>
-      <text x="54" y="74" text-anchor="middle" font-size="18" fill="#8D0333" font-weight="700">OR = 3,5</text>
-      <text x="54" y="94" text-anchor="middle" font-size="13" fill="#777">1,5 ÷ 0,43</text>
-      <path d="M1000 178 H760" stroke="#bbb" stroke-width="2" marker-end="url(#sc)"/>
-      <text x="750" y="183" text-anchor="end" font-size="14" fill="#999">direção do estudo: do desfecho para trás, até a exposição</text>
-    </svg>
-  </div>
-  <div class="colunas">
-    <div>
-      <table>
-        <tr><th>Analistas</th><th>Troca de gestor</th><th>Sem troca</th><th>Total</th></tr>
-        <tr><td><strong>Casos</strong>: pediram demissão</td><td>36</td><td>24</td><td>60</td></tr>
-        <tr><td><strong>Controles</strong>: ficaram</td><td>18</td><td>42</td><td>60</td></tr>
-      </table>
-      <p class="menor">Chance não é proporção: é a razão entre quem teve e quem não teve a
-      exposição, dentro do mesmo grupo.</p>
-    </div>
-    <div>
-      <p><strong>Leitura:</strong> entre quem pediu demissão, a chance de ter passado por troca
-      de gestor é cerca de três vezes e meia maior do que entre quem ficou.</p>
-      <p><strong>O que a frase não diz:</strong> que 3,5 seja o risco de pedir demissão. Como os
-      60 casos e os 60 controles foram escolhidos pelo pesquisador, a proporção de demissões
-      nesta tabela é um artefato do desenho, e não uma taxa da empresa.</p>
-    </div>
-  </div>
-  <div class="alerta"><span class="rotulo">Os dois vieses que derrubam um caso-controle</span>
-  <strong>Seleção dos controles:</strong> se vierem de outra área ou de outro período, a
-  comparação mede a diferença entre áreas, não a exposição. <strong>Viés de memória:</strong> se
-  a exposição for reconstruída por entrevista, quem pediu demissão lembra mais das trocas de
-  gestor. Sempre que possível, use registros feitos antes do desfecho.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Experimento, coorte e caso-controle, lado a lado</h2>
-  <table>
-    <tr><th></th><th>Experimento / ensaio</th><th>Coorte</th><th>Caso-controle</th></tr>
-    <tr><td><strong>Quem forma os grupos</strong></td><td>O pesquisador, por sorteio</td>
-        <td>Fatores naturais e sociais (a exposição já é dada)</td><td>O pesquisador, a
-        partir do desfecho</td></tr>
-    <tr><td><strong>Direção no tempo</strong></td><td>Intervenção → desfecho</td>
-        <td>Exposição → desfecho</td><td>Desfecho → exposição (para trás)</td></tr>
-    <tr><td><strong>O que se quer conhecer</strong></td><td>Efeito da intervenção</td>
-        <td>Efeitos da exposição</td><td>Causas do desfecho</td></tr>
-    <tr><td><strong>Medida típica</strong></td><td>Diferença entre grupos</td>
-        <td>Risco relativo, risco atribuível</td><td>Razão de chances (odds ratio)</td></tr>
-    <tr><td><strong>Exemplo em RH</strong></td><td>Sorteio de quem recebe o treinamento</td>
-        <td>Admitidos com × sem onboarding, seguidos 24 meses</td><td>Quem saiu × quem
-        ficou: quem teve treinamento?</td></tr>
-    <tr><td><strong>Força causal</strong></td><td>Alta</td><td>Média</td><td>Baixa a
-        média</td></tr>
-  </table>
-  <p class="menor">Gil: "a estrutura de um estudo de coorte é a inversa da de um estudo
-  caso-controle". Ambos são <strong>observacionais</strong> e, no nosso vocabulário,
-  correlacionais com desenho reforçado. Nenhum substitui o sorteio.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Os tipos, lado a lado</h2>
-  <table>
-    <tr><th>Tipo</th><th>Manipula?</th><th>Aleatoriza?</th><th>Pode afirmar causa?</th><th>Pergunta típica</th></tr>
-    <tr><td><strong>Descritiva</strong></td><td>Não</td><td>não se aplica</td><td>Não</td>
-        <td>Quantos? Qual o perfil?</td></tr>
-    <tr><td><strong>Correlacional</strong></td><td>Não</td><td>não se aplica</td><td>Não</td>
-        <td>X está associado a Y?</td></tr>
-    <tr><td><strong>Experimental</strong></td><td>Sim</td><td>Sim</td><td><strong>Sim</strong></td>
-        <td>X causa Y?</td></tr>
-    <tr><td><strong>Quase-experimental</strong></td><td>Às vezes</td><td>Não</td>
-        <td>Com ressalvas</td><td>O grupo com X difere do sem X?</td></tr>
-    <tr><td><strong>Coorte</strong> (observacional)</td><td>Não</td><td>Não</td>
-        <td>Com ressalvas</td><td>Expostos a X têm mais Y ao longo do tempo?</td></tr>
-    <tr><td><strong>Caso-controle</strong> (observacional)</td><td>Não</td><td>Não</td>
-        <td>Com ressalvas</td><td>Quem tem Y esteve mais exposto a X?</td></tr>
-  </table>
-  <p class="menor">Guarde esta tabela: ela volta na prova e no seu projeto. Coorte e
-  caso-controle são delineamentos <strong>correlacionais reforçados</strong> pelo tempo e
-  pelo pareamento (Gil, 2022).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O survey (levantamento)</h2>
+  <h2>Nível de mensuração 2: Ordinal</h2>
   <div class="definicao"><span class="rotulo">Definição</span>
-  Estratégia de coleta que aplica um <strong>questionário padronizado a uma amostra</strong>
-  de uma população, para descrever características ou examinar associações.</div>
-  <ul>
-    <li><strong>Transversal:</strong> uma única coleta, um retrato no tempo (o mais comum);</li>
-    <li><strong>Longitudinal:</strong> coletas repetidas, acompanhando a mudança.</li>
-  </ul>
-  <p>É a estratégia <strong>dominante</strong> nas pesquisas acadêmicas em Administração e a
-  provável escolha de muitos TCCs. Seus instrumentos (questionários, escalas, validade,
-  confiabilidade) terão dois encontros dedicados: <strong>6 e 7</strong>.</p>
-  <p class="menor">Note: survey é estratégia de <em>coleta</em>, o propósito pode ser
-  descritivo ou correlacional. Gil (2022, seção 4.8): quando abrange todo o universo é
-  <strong>censo</strong>; sua limitação maior é registrar a <strong>percepção</strong> que
-  as pessoas têm de si, o que o torna mais adequado a estudos descritivos do que
-  explicativos.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+  Categorias <strong>com ordem</strong>, mas sem distância definida entre elas: sabe-se o
+  que é maior, não <em>quanto</em> maior.</div>
+  <div class="exemplo"><span class="rotulo">Exemplos</span>
+  Faixa de pessoal ocupado (1–9, 10–49, 50+) · escolaridade (fundamental, médio, superior)
+  · classificação de risco de crédito (AAA, AA, A...)</div>
+  <p><strong>Fazem sentido:</strong> tudo do nominal + ordenar, calcular mediana e
+  percentis. <strong>Não fazem sentido:</strong> média aritmética a rigor (a distância
+  entre "1–9" e "10–49" não é a mesma que entre "10–49" e "50+").</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide leitura">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Survey em detalhe: as cinco decisões de um levantamento</h2>
-
-  <div class="figura baixa">
-    <svg viewBox="0 0 1000 100" role="img" aria-label="As cinco decisões de um levantamento, em sequência">
-      <line x1="100" y1="34" x2="900" y2="34" stroke="#D4B277" stroke-width="3"/>
-      <g font-family="Montserrat, Calibri, sans-serif">
-      <circle cx="100" cy="34" r="26" fill="#8D0333"/><text x="100" y="42" text-anchor="middle" font-size="22" fill="#fff" font-weight="700">1</text>
-      <circle cx="300" cy="34" r="26" fill="#8D0333"/><text x="300" y="42" text-anchor="middle" font-size="22" fill="#fff" font-weight="700">2</text>
-      <circle cx="500" cy="34" r="26" fill="#8D0333"/><text x="500" y="42" text-anchor="middle" font-size="22" fill="#fff" font-weight="700">3</text>
-      <circle cx="700" cy="34" r="26" fill="#8D0333"/><text x="700" y="42" text-anchor="middle" font-size="22" fill="#fff" font-weight="700">4</text>
-      <circle cx="900" cy="34" r="26" fill="#8D0333"/><text x="900" y="42" text-anchor="middle" font-size="22" fill="#fff" font-weight="700">5</text>
-      <text x="100" y="82" text-anchor="middle" font-size="18" fill="#333">População</text>
-      <text x="300" y="82" text-anchor="middle" font-size="18" fill="#333">Amostra</text>
-      <text x="500" y="82" text-anchor="middle" font-size="18" fill="#333">Instrumento</text>
-      <text x="700" y="82" text-anchor="middle" font-size="18" fill="#333">Aplicação</text>
-      <text x="900" y="82" text-anchor="middle" font-size="18" fill="#333">Momento</text>
-      </g>
-    </svg>
-  </div>
-  <table>
-    <tr><th>Decisão</th><th>O que se decide</th><th>Erro típico</th></tr>
-    <tr><td><strong>1. População</strong></td><td>Quem responde e qual é a unidade de análise.
-        Num survey com gerentes sobre adoção de tecnologia, o respondente é o gerente e a unidade
-        é a empresa</td><td>Concluir sobre empresas a partir de opiniões individuais</td></tr>
-    <tr><td><strong>2. Amostra</strong></td><td>Probabilística, com chance conhecida de sorteio e
-        margem de erro; ou não probabilística, por conveniência ou indicação (encontro 5)</td>
-        <td>Generalizar para a população o que só descreve quem respondeu</td></tr>
-    <tr><td><strong>3. Instrumento</strong></td><td>Como transformar conceitos não observáveis
-        (satisfação, comprometimento) em conjuntos de itens em escala (encontros 6 e 7)</td>
-        <td>Medir um conceito com uma pergunta só, sem checar validade</td></tr>
-    <tr><td><strong>4. Aplicação</strong></td><td>Presencial, por telefone ou por formulário
-        on-line</td><td>Divulgar em rede social e alcançar só quem já segue a organização</td></tr>
-    <tr><td><strong>5. Momento</strong></td><td>Transversal, uma coleta única; ou longitudinal,
-        coletas repetidas que permitem observar mudança</td><td>Falar em mudança com uma coleta
-        única</td></tr>
-  </table>
-  <div class="exemplo"><span class="rotulo">Exemplo de survey correlacional</span>
-  Pergunta: a percepção de suporte da chefia está associada à intenção de permanecer na empresa?
-  Instrumento: dois blocos de itens em escala de 1 a 5, aplicados a 400 empregados de uma rede
-  varejista. Delineamento: levantamento transversal com propósito correlacional.
-  <strong>Conclusão possível:</strong> as duas percepções andam juntas.
-  <strong>Conclusão impossível:</strong> melhorar o suporte da chefia reduz a rotatividade.</div>
-  <p class="menor">O survey mede percepção declarada, e não comportamento. Quem responde que
-  "sempre segue o procedimento" relata a imagem que tem de si. Daí Gil considerá-lo mais adequado
-  a estudos descritivos do que explicativos.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+  <h2>Níveis 3 e 4: Intervalar e Razão</h2>
+  <div class="definicao"><span class="rotulo">Intervalar</span>
+  Números com distâncias iguais entre valores, mas <strong>zero arbitrário</strong> (o zero
+  não significa ausência). Ex.: temperatura em °C, ano de fundação. 40°C não é "o dobro do
+  calor" de 20°C.</div>
+  <div class="definicao"><span class="rotulo">Razão</span>
+  Números com <strong>zero absoluto</strong> (zero = ausência): receita, número de
+  empregados, taxa de sobrevivência. Aqui, sim, R$ 2 milhões é o dobro de R$ 1 milhão.</div>
+  <p><strong>Fazem sentido:</strong> todas as operações, média, desvio padrão e (só na
+  razão) razões e proporções entre valores.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese: o nível decide a análise</h2>
+  <table>
+    <tr><th>Nível</th><th>O que registra</th><th>Estatísticas possíveis</th><th>Exemplo</th></tr>
+    <tr><td><strong>Nominal</strong></td><td>Categorias sem ordem</td>
+        <td>Contagem, proporção, moda</td><td>Seção CNAE</td></tr>
+    <tr><td><strong>Ordinal</strong></td><td>Categorias ordenadas</td>
+        <td>+ mediana, percentis</td><td>Faixa de porte</td></tr>
+    <tr><td><strong>Intervalar</strong></td><td>Distâncias iguais, zero arbitrário</td>
+        <td>+ média, desvio padrão</td><td>Ano de fundação</td></tr>
+    <tr><td><strong>Razão</strong></td><td>Zero absoluto</td>
+        <td>+ razões ("o dobro de")</td><td>Receita, nº de empregados</td></tr>
+  </table>
+  <ul>
+    <li>Não se calcula <strong>média de seção CNAE</strong>;</li>
+    <li>Reduzir receita a faixas <strong>joga informação fora</strong> (razão → ordinal);</li>
+    <li>Nos encontros 9 a 13, cada técnica exigirá um nível.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: classifique o nível</h2>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
+  Dez variáveis serão ditas uma a uma. A turma responde o nível de
+  mensuração (nominal, ordinal, intervalar ou razão). Quando a turma se dividir, paramos e
+  discutimos: <em>que operações fazem sentido com esse valor?</em></div>
+  <div class="colunas">
+    <div>
+      <ol>
+        <li>Seção CNAE da empresa</li>
+        <li>Unidade da federação</li>
+        <li>Receita bruta anual</li>
+        <li>Faixa de pessoal ocupado (1–9, 10–49, 50+)</li>
+        <li>Número de empregados</li>
+      </ol>
+    </div>
+    <div>
+      <ol start="6">
+        <li>CEP da sede</li>
+        <li>Ano de fundação</li>
+        <li>Escolaridade do gestor</li>
+        <li>Nota de satisfação de 1 a 5</li>
+        <li>Taxa de sobrevivência em três anos</li>
+      </ol>
+    </div>
+  </div>
+  <p class="menor">Alguns desses casos são propositalmente traiçoeiros. Confira no próximo
+  slide.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A pergunta denuncia o tipo</h2>
-  <table>
-    <tr><th>Pergunta</th><th>Tipo</th></tr>
-    <tr><td>"Qual o perfil...?" · "Quantos...?" · "Qual a taxa...?"</td><td>Descritiva</td></tr>
-    <tr><td>"X está associado a Y?" · "Quem tem mais X tem mais Y?"</td><td>Correlacional</td></tr>
-    <tr><td>"Se eu mudar X (sorteando quem recebe), Y muda?"</td><td>Experimental</td></tr>
-    <tr><td>"O grupo que passou por X difere do que não passou?"</td><td>Quase-experimental</td></tr>
-    <tr><td>"Quem começou com X teve mais Y depois de N anos?"</td><td>Coorte</td></tr>
-    <tr><td>"Entre os que tiveram Y, quantos haviam passado por X?"</td><td>Caso-controle</td></tr>
-    <tr><td>"O grupo melhorou depois de X?" (um grupo só)</td><td>Pré-experimental: cuidado</td></tr>
-  </table>
-  <p class="menor">Regra prática para a leitura dirigida e para o seu projeto.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+  <h2>Casos traiçoeiros</h2>
+  <ul>
+    <li><strong>CEP</strong>: numérico na aparência, <strong>nominal</strong> na essência:
+        somar CEPs não significa nada;</li>
+    <li><strong>Ano de fundação</strong>: <strong>intervalar</strong>: o ano zero é
+        convenção; "2000 é o dobro de 1000" não faz sentido;</li>
+    <li><strong>Porte</strong> depende da operacionalização: <strong>ordinal</strong> em
+        faixas, <strong>razão</strong> em número de empregados;</li>
+    <li><strong>Nota de satisfação 1–5</strong>: a rigor ordinal; na prática, tratada como
+        intervalar (discutiremos no encontro 6).</li>
+    <li><strong>Salário</strong>: informado em valor (R$ 1.050, R$ 15.200) é <strong>razão</strong>;
+        o mesmo dado agrupado em <strong>faixa de renda</strong> (R$ 1.050 a R$ 1.500, R$ 1.500
+        a R$ 2.000) passa a ser <strong>ordinal</strong>. Calcular a média de uma faixa é o erro
+        mais comum desse tipo: só a distribuição de frequência vale para dado qualitativo.</li>
+  </ul>
+  <div class="pergunta">Regra de bolso: pergunte <strong>"que operações fazem sentido com
+  este número?"</strong>, não "ele parece número?"</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Que delineamento é este? Fluxograma de decisão</h2>
-  <div class="colunas">
-    <div>
-      <div class="figura">
-        <svg viewBox="0 0 560 430" role="img" aria-label="Fluxograma que classifica o delineamento a partir de quatro perguntas">
-      <rect x="0" y="0" width="290" height="64" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="145" y="28" text-anchor="middle" font-size="16" fill="#333">1. O pesquisador sorteou</text>
-      <text x="145" y="50" text-anchor="middle" font-size="16" fill="#333">quem recebe o quê?</text>
-      <path d="M292 32 H326" stroke="#0AB0AB" stroke-width="2.4" marker-end="url(#sg)"/>
-      <text x="309" y="26" text-anchor="middle" font-size="13" fill="#067a76">sim</text>
-      <rect x="330" y="0" width="230" height="64" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="445" y="39" text-anchor="middle" font-size="19" fill="#067a76" font-weight="700">Experimental</text>
-      <path d="M145 64 V 88" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
-      <text x="160" y="82" font-size="13" fill="#8D0333">não</text>
-      <rect x="0" y="92" width="290" height="64" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="145" y="120" text-anchor="middle" font-size="16" fill="#333">2. Existe grupo de</text>
-      <text x="145" y="142" text-anchor="middle" font-size="16" fill="#333">comparação?</text>
-      <path d="M292 124 H326" stroke="#0AB0AB" stroke-width="2.4" marker-end="url(#sg)"/>
-      <text x="309" y="118" text-anchor="middle" font-size="13" fill="#067a76">não</text>
-      <rect x="330" y="92" width="230" height="64" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="445" y="131" text-anchor="middle" font-size="19" fill="#067a76" font-weight="700">Descritiva ou</text>
-      <path d="M145 156 V 180" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
-      <text x="160" y="174" font-size="13" fill="#8D0333">sim</text>
-      <rect x="0" y="184" width="290" height="64" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="145" y="212" text-anchor="middle" font-size="16" fill="#333">3. A seleção partiu do</text>
-      <text x="145" y="234" text-anchor="middle" font-size="16" fill="#333">desfecho, para trás?</text>
-      <path d="M292 216 H326" stroke="#0AB0AB" stroke-width="2.4" marker-end="url(#sg)"/>
-      <text x="309" y="210" text-anchor="middle" font-size="13" fill="#067a76">sim</text>
-      <rect x="330" y="184" width="230" height="64" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="445" y="223" text-anchor="middle" font-size="19" fill="#067a76" font-weight="700">Caso-controle</text>
-      <path d="M145 248 V 272" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
-      <text x="160" y="266" font-size="13" fill="#8D0333">não</text>
-      <rect x="0" y="276" width="290" height="64" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
-      <text x="145" y="304" text-anchor="middle" font-size="16" fill="#333">4. Houve intervenção</text>
-      <text x="145" y="326" text-anchor="middle" font-size="16" fill="#333">aplicada a um grupo?</text>
-      <path d="M292 308 H326" stroke="#0AB0AB" stroke-width="2.4" marker-end="url(#sg)"/>
-      <text x="309" y="302" text-anchor="middle" font-size="13" fill="#067a76">sim</text>
-      <rect x="330" y="276" width="230" height="64" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="445" y="315" text-anchor="middle" font-size="19" fill="#067a76" font-weight="700">Quase-experimental</text>
-      <path d="M145 340 V 364" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
-      <text x="160" y="358" font-size="13" fill="#8D0333">não</text>
-      <rect x="0" y="368" width="290" height="56" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
-      <text x="145" y="403" text-anchor="middle" font-size="19" fill="#067a76" font-weight="700">Coorte</text>
-      <text x="445" y="152" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">correlacional</text>
-        </svg>
-      </div>
-    </div>
-    <div>
-      <h3>Duas perguntas resolvem quase tudo</h3>
-      <p><strong>Quem formou os grupos?</strong> O pesquisador por sorteio (experimento), a
-      empresa ou a vida (quase-experimento e coorte), ou o próprio pesquisador partindo do
-      desfecho (caso-controle).</p>
-      <p><strong>Em que direção o estudo caminha no tempo?</strong> Da intervenção ou da
-      exposição para o desfecho (experimento e coorte), ou do desfecho de volta à exposição
-      (caso-controle).</p>
-      <div class="alerta"><span class="rotulo">O caso sem grupo de comparação</span>
-      Um grupo único medido antes e depois responde "não" à pergunta 2, mas não é descritivo nem
-      correlacional: é <strong>pré-experimental</strong>. Vale como evidência inicial, e a
-      conclusão precisa registrar que o tempo não foi controlado.</div>
-      <div class="exemplo"><span class="rotulo">Teste de sanidade</span>
-      Começou a pesquisa <strong>listando quem saiu</strong>? É caso-controle. Começou
-      <strong>listando quem entrou</strong> e esperou para ver quem sairia? É coorte.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Cinco erros de classificação e como corrigi-los</h2>
-
-  <table>
-    <tr><th>Erro</th><th>Como identificar</th><th>Classificação correta</th></tr>
-    <tr><td><strong>1.</strong> Chamar de experimental o estudo que só compara grupos já
-        formados</td><td>Houve sorteio feito pelo pesquisador? Se não, não é experimento, mesmo
-        que o texto use a palavra "tratamento"</td><td>Quase-experimental ou observacional</td></tr>
-    <tr><td><strong>2.</strong> Chamar de experimental o antes e depois de um grupo único</td>
-        <td>Existe grupo de comparação? Sem ele, não se separa o efeito da intervenção do que
-        aconteceu no tempo</td><td>Pré-experimental, e a conclusão precisa dizer isso</td></tr>
-    <tr><td><strong>3.</strong> Confundir coorte com caso-controle</td><td>O ponto de partida da
-        seleção foi a exposição ou o desfecho?</td><td>Seleção pela exposição, com espera:
-        coorte. Seleção pelo desfecho, olhando para trás: caso-controle</td></tr>
-    <tr><td><strong>4.</strong> Chamar de correlacional a pesquisa que apenas descreve</td>
-        <td>Alguma variável foi cruzada com outra nos mesmos casos? Percentuais e médias
-        apresentados isoladamente não cruzam nada</td><td>Descritiva</td></tr>
-    <tr><td><strong>5.</strong> Tratar o survey como tipo de pesquisa</td><td>Survey é o modo de
-        coletar. O tipo vem do propósito: o mesmo questionário serve a estudo descritivo ou
-        correlacional</td><td>Na ficha, o survey entra em "fonte dos dados", não em "tipo"</td></tr>
-  </table>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Autoavaliação: responda antes de olhar a página seguinte</h2>
-  <p>Classifique cada pesquisa e escreva, em uma linha, a conclusão que ela autoriza.</p>
-  <ol>
-    <li>Um banco mede o tempo médio de espera nas suas 40 agências no mês de março.</li>
-    <li>Uma pesquisadora sorteia 500 clientes para receber um cupom por e-mail e 500 para não
-    receber, e compara as compras dos dois grupos no mês seguinte.</li>
-    <li>Um estudo acompanha por cinco anos todas as startups criadas em 2019 no Maranhão,
-    separando as que receberam investimento anjo das que não receberam, e mede quantas
-    encerraram atividades.</li>
-    <li>Uma consultoria seleciona as 25 empresas que sofreram fraude interna nos últimos três
-    anos e 25 empresas semelhantes que não sofreram, e verifica em quais havia rodízio de
-    funções no setor financeiro.</li>
-    <li>Um artigo aplica questionário a 300 servidores e relata a correlação entre percepção
-    de justiça organizacional e intenção de rotatividade.</li>
-    <li>Uma empresa compara a produtividade das equipes que migraram para o trabalho remoto
-    com a das equipes que permaneceram presenciais, tendo a migração sido decidida por cada
-    gerente.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Autoavaliação: gabarito comentado</h2>
-
-  <table>
-    <tr><th>Caso</th><th>Delineamento</th><th>Conclusão autorizada</th></tr>
-    <tr><td><strong>1.</strong> Tempo de espera nas 40 agências</td><td>Descritiva</td>
-        <td>O tempo médio de espera foi de tantos minutos, com variação entre agências. Uma
-        variável, medida e resumida, sem comparação de grupos</td></tr>
-    <tr><td><strong>2.</strong> Cupom sorteado entre 1.000 clientes</td><td>Experimental</td>
-        <td>O cupom aumentou as compras em tanto no período. Houve manipulação e sorteio feito
-        pela pesquisadora</td></tr>
-    <tr><td><strong>3.</strong> Startups de 2019, com e sem investimento anjo</td><td>Coorte</td>
-        <td>Entre as que receberam investimento a taxa de encerramento foi de tanto, contra
-        tanto nas demais. Sem sorteio, não se afirma que o investimento causou a diferença</td></tr>
-    <tr><td><strong>4.</strong> Empresas com fraude × empresas semelhantes sem fraude</td>
-        <td>Caso-controle</td><td>Entre as empresas que sofreram fraude, a chance de não haver
-        rodízio era tantas vezes maior. Não se estima o risco de fraude na população</td></tr>
-    <tr><td><strong>5.</strong> Questionário a 300 servidores</td><td>Correlacional, com survey
-        como estratégia de coleta</td><td>As duas percepções variam juntas na amostra. Não se
-        afirma que a percepção de justiça reduz a rotatividade</td></tr>
-    <tr><td><strong>6.</strong> Equipes remotas × presenciais, migração decidida pelo gerente</td>
-        <td>Quase-experimental</td><td>O grupo remoto apresentou produtividade diferente, com a
-        ressalva de que gerentes que optaram pelo remoto podem liderar equipes diferentes desde
-        o início</td></tr>
-  </table>
-  <div class="alerta"><span class="rotulo">Se errou algum</span>
-  Volte ao slide do delineamento correspondente e refaça as duas perguntas do fluxograma: quem
-  formou os grupos, e em que direção o estudo caminha no tempo.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Como ler o método de um artigo</h2>
-  <p>Toda pesquisa quantitativa publicada declara, em geral na seção "Metodologia":</p>
-  <ol>
-    <li>A <strong>pergunta</strong> (ou objetivo), costuma fechar a introdução;</li>
-    <li>O <strong>tipo/delineamento</strong>: às vezes nomeado, às vezes deduzível;</li>
-    <li>As <strong>variáveis</strong> e como foram medidas;</li>
-    <li>A <strong>fonte dos dados</strong>: survey próprio? Base secundária? Quantos casos?</li>
-  </ol>
-  <div class="exemplo"><span class="rotulo">Leitura dirigida (em duplas, 30 min)</span>
-  Dois artigos de periódicos brasileiros (RSP, RAC, RAE, BBR): identifiquem os quatro elementos
-  em cada um. O objetivo não é entender tudo, é <strong>reconhecer a estrutura</strong> que
-  vocês mesmos declararão no projeto individual. O <strong>artigo 1 está resolvido nos dois
-  slides seguintes</strong>, para servir de modelo.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Leitura dirigida: como vamos fazer</h2>
-  <div class="instrucao"><span class="rotulo">Exercício em duplas (20 min + 10 min de plenária)</span>
-  Vocês recebem o resumo e o trecho metodológico de <strong>dois artigos</strong>: um
-  descritivo ou correlacional com survey, outro quase-experimental ou com dados
-  secundários. Preencham a ficha abaixo para cada artigo; depois comparamos as respostas
-  em plenária.</div>
-  <table>
-    <tr><th>Elemento</th><th>Artigo 1 (Diógenes et al., 2016)</th><th>Artigo 2</th></tr>
-    <tr><td><strong>Pergunta de pesquisa</strong></td><td></td><td></td></tr>
-    <tr><td><strong>Tipo de pesquisa</strong> (use a tabela "a pergunta denuncia o tipo")</td><td></td><td></td></tr>
-    <tr><td><strong>Variáveis principais</strong></td><td></td><td></td></tr>
-    <tr><td><strong>Fonte dos dados</strong> (survey próprio? base secundária? quantos casos?)</td><td></td><td></td></tr>
-  </table>
-  <p class="menor">Na plenária, cada dupla defende a classificação de um artigo: se
-  discordarem, voltem à pergunta e ao modo como os grupos foram formados.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>O artigo do dia: ficha preenchida</h2>
-  <div class="exemplo"><span class="rotulo">Referência</span>
-  DIÓGENES, L. C.; PASCHOAL, T.; NEIVA, E. R.; MENESES, P. P. M. Intenção de rotatividade e
-  percepção de suporte organizacional em um órgão público federal. <strong>Revista do Serviço
-  Público</strong>, v. 67, n. 2, p. 147-172, 2016. DOI 10.21874/rsp.v67i2.655. Acesso aberto.</div>
-  <table>
-    <tr><th>Elemento</th><th>O que o artigo diz</th><th>Comentário</th></tr>
-    <tr><td><strong>1. Pergunta</strong></td>
-        <td>Testar a influência do suporte organizacional percebido na intenção de rotatividade
-        de servidores do Plano Geral de Cargos do Poder Executivo em um órgão federal.</td>
-        <td>Fecha a introdução. O verbo "testar a influência" já separa quem é a variável
-        explicativa e quem é a explicada.</td></tr>
-    <tr><td><strong>2. Tipo</strong></td>
-        <td>Os autores escrevem: "estudo teórico-empírico, com emprego de survey para
-        levantamento de dados, abordagem quantitativa e recorte transversal".</td>
-        <td>No vocabulário do encontro: <strong>correlacional</strong>, com o survey como
-        estratégia de coleta, em corte transversal. Não é experimento, porque ninguém sorteou
-        quem receberia mais ou menos suporte.</td></tr>
-    <tr><td><strong>3. Variáveis</strong></td>
-        <td>Dependente: intenção de rotatividade (escala de Siqueira et al., 1997; 3 itens,
-        Likert de 1 a 5, α = 0,95). Independentes: quatro fatores de suporte organizacional
-        (escala de Tamayo et al., 2000; 23 itens, Likert de 1 a 5): ascensão, promoção e
-        salários; gestão do desempenho; suporte material; sobrecarga de trabalho. Controle:
-        idade e tempo de organização.</td>
-        <td>Conceitos não observáveis medidos por conjuntos de itens, exatamente o problema de
-        instrumento dos encontros 6 e 7.</td></tr>
-    <tr><td><strong>4. Fonte dos dados</strong></td>
-        <td>Survey próprio, formulário eletrônico enviado por e-mail institucional a 348
-        servidores no primeiro semestre de 2012. Responderam 112 (32,18%).</td>
-        <td>Amostra não probabilística: quem respondeu se autosselecionou. Isso limita a
-        generalização, e os próprios autores dizem isso.</td></tr>
-  </table>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide leitura">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-leitura">Leitura em casa</span>
-  <h2>Gabarito comentado: o que os números autorizam dizer</h2>
-  <div class="colunas">
-    <div>
-      <h3>O que o artigo encontrou</h3>
-      <p><strong>Descritivas.</strong> Intenção de rotatividade média de 4,35 (desvio padrão
-      0,93) numa escala de 1 a 5, ou seja, desejo alto de sair. O fator pior avaliado foi o
-      suporte para ascensão, promoção e salários, com média 1,63 (desvio padrão 0,47).</p>
-      <p><strong>Associações.</strong> Correlação da intenção de rotatividade com ascensão e
-      promoção (-0,51), gestão do desempenho (-0,40), suporte material (-0,32), sobrecarga
-      (+0,28), idade (-0,53) e tempo de organização (-0,50).</p>
-      <p><strong>Modelo.</strong> A regressão hierárquica sai de R² ajustado de 0,39, só com
-      idade e tempo de casa, para 0,56 quando entram os fatores de suporte. Preditores
-      significativos: ascensão e promoção, tempo de organização e idade.</p>
-      <p class="menor">Correlação e regressão são o encontro 13; a significância dos
-      coeficientes, o encontro 11. Aqui basta ler o sinal e a força: quanto pior o suporte
-      percebido, maior a intenção declarada de sair.</p>
-    </div>
-    <div>
-      <h3>O que se pode e o que não se pode concluir</h3>
-      <div class="exemplo"><span class="rotulo">Conclusão autorizada</span>
-      Nesta amostra, servidores que percebem menos suporte para ascensão, promoção e salários
-      declaram maior intenção de deixar a organização, e a associação é moderada a forte.</div>
-      <div class="alerta"><span class="rotulo">Conclusões não autorizadas</span>
-      Que melhorar o suporte reduziria a rotatividade: não houve sorteio nem intervenção, e
-      pode ser quem já quer sair que passe a avaliar tudo pior. Que o achado vale para o
-      serviço público federal: um único órgão, amostra não probabilística, 32% de resposta. Que
-      as pessoas efetivamente saíram: o survey mediu <strong>intenção declarada</strong>, não
-      desligamento observado.</div>
-      <p class="menor"><strong>No fluxograma:</strong> houve sorteio feito pelo pesquisador?
-      Não. Existe grupo de comparação? Não, o que há é variação contínua medida nas mesmas
-      pessoas. Logo, correlacional. Os próprios autores declaram as limitações de
-      representatividade, de órgão único e de corte transversal, que é o comportamento
-      esperado de um bom artigo.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide divisor estat">
-  <h2>Estatística do encontro 2</h2>
-  <p>Proporção, taxa e tabela cruzada: como um delineamento vira número</p>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: proporção e taxa</h2>
-
+  <h2>Operacionalização: do conceito ao indicador</h2>
   <div class="definicao"><span class="rotulo">Definição</span>
-  <strong>Proporção</strong> é a parte dividida pelo todo. <strong>Taxa</strong> é uma proporção
-  em que o todo é um grupo acompanhado no tempo. A taxa de sobrevivência de três anos é o número
-  de empresas que sobreviveram dividido pelo número de empresas nascidas naquele ano.</div>
-  <div class="formula">
-    <span class="expr">p<span class="op">=</span><span class="frac"><span class="cima">casos com o atributo</span><span class="baixo">total de casos do grupo</span></span></span>
-    <span class="legenda-formula">A proporção vive entre 0 e 1; multiplicada por 100 vira
-    porcentagem. O que muda de uma pergunta para outra não é a conta, é o que entra no
-    denominador.</span>
-  </div>
-  <div class="alerta"><span class="rotulo">Por cento e ponto percentual não são a mesma coisa</span>
-  Se a taxa passa de 62% para 81%, a diferença é de <strong>19 pontos percentuais</strong>. Dizer
-  "19% a mais" seria outra conta: 19% de 62 são 11,8, e a taxa teria ido a 73,8%. Em relatório,
-  a diferença entre duas porcentagens se escreve sempre em pontos percentuais (p.p.).</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: a tabela cruzada resolvida</h2>
-
-  <p>A tabela cruzada é a ferramenta da pesquisa correlacional com variáveis categóricas: ela
-  mostra se a distribuição de uma variável muda conforme a categoria da outra.</p>
-  <div class="colunas">
-    <div>
-      <table>
-        <tr><th>Porte</th><th>Sobreviveu</th><th>Fechou</th><th>Total</th></tr>
-        <tr><td>Até 9 empregados</td><td>620</td><td>380</td><td>1.000</td></tr>
-        <tr><td>10 ou mais</td><td>405</td><td>95</td><td>500</td></tr>
-      </table>
-      <p><strong>Proporções por linha</strong>, que é o que a pergunta pede:</p>
-      <p>Menor porte: 620 ÷ 1.000 = 0,62, ou <strong>62%</strong>.<br>
-      Maior porte: 405 ÷ 500 = 0,81, ou <strong>81%</strong>.<br>
-      Diferença: 81 − 62 = <strong>19 pontos percentuais</strong>.</p>
-    </div>
-    <div>
-      <div class="figura">
-        <svg viewBox="0 0 440 210" role="img" aria-label="Taxa de sobrevivência por porte: 62% e 81%">
-          <line x1="120" y1="170" x2="410" y2="170" stroke="#bbb" stroke-width="1.6"/>
-          <rect x="150" y="88" width="70" height="82" fill="#8D0333" opacity="0.75"/>
-          <text x="185" y="78" text-anchor="middle" font-size="22" fill="#8D0333" font-weight="700">62%</text>
-          <text x="185" y="190" text-anchor="middle" font-size="15" fill="#555">até 9</text>
-          <rect x="280" y="62" width="70" height="108" fill="#0AB0AB"/>
-          <text x="315" y="52" text-anchor="middle" font-size="22" fill="#05635f" font-weight="700">81%</text>
-          <text x="315" y="190" text-anchor="middle" font-size="15" fill="#555">10 ou mais</text>
-          <path d="M236 88 H264" stroke="#a67c2e" stroke-width="2"/>
-          <path d="M236 62 H264" stroke="#a67c2e" stroke-width="2"/>
-          <path d="M250 88 V 62" stroke="#a67c2e" stroke-width="2.6"/>
-          <text x="250" y="32" text-anchor="middle" font-size="15" fill="#a67c2e" font-weight="700">19 p.p.</text>
-          <text x="110" y="120" text-anchor="end" font-size="15" fill="#777" transform="rotate(-90 110 120)">taxa de 3 anos</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se faz no Colab</h2>
-
-  <p>A função é <code>pd.crosstab</code>. Sem argumento, ela conta; com
-  <code>normalize</code>, transforma em proporção. O valor de <code>normalize</code> é
-  exatamente a escolha do denominador do slide anterior.</p>
-  <pre class="codigo"><span class="cmt"># contagem bruta: quantas empresas em cada cruzamento</span>
-pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dados[<span class="str">"situacao"</span>])
-
-<span class="cmt"># proporção dentro de cada linha: "entre as empresas de cada porte, quantas..."</span>
-pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dados[<span class="str">"situacao"</span>], normalize=<span class="str">"index"</span>)
-
-<span class="cmt"># em porcentagem, com uma casa decimal</span>
-(pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dados[<span class="str">"situacao"</span>],
-             normalize=<span class="str">"index"</span>) * 100).<span class="fn">round</span>(1)</pre>
+  Processo de traduzir um <strong>conceito abstrato</strong> (não observável diretamente)
+  em <strong>indicadores mensuráveis</strong> que o representem.</div>
   <table>
-    <tr><th>normalize</th><th>Divide por</th><th>Responde</th></tr>
-    <tr><td><code>"index"</code></td><td>total de cada linha</td><td>Entre as empresas de cada porte, que proporção sobreviveu?</td></tr>
-    <tr><td><code>"columns"</code></td><td>total de cada coluna</td><td>Entre as que sobreviveram, que proporção era de cada porte?</td></tr>
-    <tr><td><code>"all"</code></td><td>total geral</td><td>Que proporção do total é de cada cruzamento?</td></tr>
+    <tr><th>Conceito</th><th>Operacionalizações possíveis</th></tr>
+    <tr><td>Desempenho do varejo</td><td>volume de vendas (PMC) · nº de empresas (CEMPRE) ·
+        receita (PAS)</td></tr>
+    <tr><td>Porte</td><td>faixa de pessoal ocupado · nº de empregados · receita anual</td></tr>
+    <tr><td>Inovação</td><td>gasto em P&amp;D · nº de produtos novos · % da receita de
+        produtos recentes</td></tr>
   </table>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+  <div class="pergunta">A escolha é uma <strong>decisão do pesquisador</strong>: muda o
+  resultado, e por isso precisa ser justificada e registrada no relatório.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
+<section class="slide divisor estat">
+  <h2>Parte 2: estatística</h2>
+  <p>Tipos de dado e a regra da medida: o nível decide o que é permitido calcular</p>
+</section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê o resultado, e o que ele não diz</h2>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">Uma empresa tem <strong>0</strong>, <strong>3</strong> ou
+  <strong>27</strong> funcionários. Posso somar?</div>
+  <p>Essa é a única pergunta do bloco de hoje, e a resposta muda tudo o que vem
+  depois: a medida que você pode calcular, o gráfico que faz sentido, o teste que
+  cabe. Toda a estatística do semestre depende de responder isso antes.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Antes de qualquer cálculo, identifique o <strong>nível de mensuração</strong> da
+  variável. O nível não é um detalhe técnico: é o que define a sua ferramenta.</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Os quatro níveis de mensuração</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  Toda variável tem um <strong>nível</strong>. Ele diz o que a variável carrega:
+  só um nome, uma ordem, intervalos, ou intervalos com zero verdadeiro.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Para decidir, antes de calcular, qual medida de resumo cabe: a média só entra
+    se o nível for intervalo ou razão.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Para ordenar categorias que não têm ordem. A letra “G” do comércio não vem
+    antes nem depois da letra “C” da indústria.</div>
+  </div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A regra: o nível decide o que é permitido</h2>
+  <table>
+    <tr><th>Nível</th><th>Exemplo real de hoje</th><th>Ordenar</th>
+        <th>Somar</th><th>Média</th><th>Mediana</th><th>“O dobro”</th></tr>
+    <tr><td><strong>Nominal</strong></td>
+        <td>Seção da CNAE: A, B, C… U<br><span class="menor">10.607.110 empresas · comércio 27,42%</span></td>
+        <td>não</td><td>não</td><td>não</td><td>não</td><td>não</td></tr>
+    <tr><td><strong>Ordinal</strong></td>
+        <td>Faixa de pessoal: 1 a 9, 10 a 49, 50 ou mais<br><span class="menor">674.660 nascimentos</span></td>
+        <td><strong>sim</strong></td><td>não</td><td>não</td>
+        <td><strong>sim</strong></td><td>não</td></tr>
+    <tr><td><strong>Intervalo</strong></td>
+        <td>Escala de satisfação de 0 a 10</td>
+        <td>sim</td><td><strong>sim</strong></td><td><strong>sim</strong></td>
+        <td>sim</td><td>não</td></tr>
+    <tr><td><strong>Razão</strong></td>
+        <td>Receita, pessoal ocupado, nº de empresas<br><span class="menor">281.133 empresas · 1.420.230 pessoas</span></td>
+        <td>sim</td><td>sim</td><td>sim</td><td>sim</td>
+        <td><strong>sim</strong></td></tr>
+  </table>
+  <p class="menor">Em corrente: <strong>cada nível libera uma fileira.</strong>
+  Suba de level e a lista de permissões só cresce. É por isso que a ordem dos
+  níveis importa.</p>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A mesma regra, como receita</h2>
+  <div class="formula">
+    <span class="expr">média permitida <span class="op">⟺</span>
+      nível <span class="op">≥</span> intervalo</span>
+    <span class="legenda-formula">Se a variável é intervalo ou razão, a média
+    entra. Se é nominal ou ordinal, a média não entra — e a mediana entra a
+    partir do ordinal.</span>
+  </div>
+  <div class="definicao"><span class="rotulo">O teste do zero, em uma pergunta</span>
+  Pergunte: <strong>o zero significa ausência da coisa?</strong><br>
+  Satisfaction de 0 a 10: o zero significa <em>ninguém respondeu</em>, e não
+  ausência de satisfação. Logo é <strong>intervalo</strong>, e “8 pontos é o dobro
+  de 4” não quer dizer nada.<br>
+  Receita de R$ 0: significa <em>nenhum serviço prestado</em>. Logo é
+  <strong>razão</strong>, e “o dobro” faz sentido.</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: nascimentos por faixa de pessoal</h2>
+  <ol class="passos">
+    <li>A pergunta: <span class="num">quantas empresas nasceram no Brasil em
+        2021, e por tamanho?</span> A base é o IBGE, Demografia das Empresas;</li>
+    <li>O total: <span class="num">n = 674.660</span> nascimentos em três
+        faixas;</li>
+    <li>A primeira faixa, 1 a 9 pessoas: <span class="num">627.498</span>
+        nascimentos, ou <span class="num">93,01%</span>;</li>
+    <li>Acumulando a segunda faixa, 10 a 49: <span class="num">99,35%</span>
+        acumulados;</li>
+    <li>Acumulando a terceira: <span class="num">100,00%</span>. A soma fecha, e
+        a conta está certa.</li>
+  </ol>
+  <p class="menor">Só o passo 4 é novo em relação ao encontro 1. Ele só existe
+  porque a variável <strong>tem ordem</strong>.</p>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Quase todas as empresas que abriram no Brasil em 2021 eram pequenas: das 674.660
+  empresas empregadoras, <strong>99,3% até 49 pessoas</strong> assalariadas, e
+  apenas <strong>0,65%</strong> nasceram com 50 pessoas ou mais.</div>
+  <p>Repare no que a frase faz:</p>
+  <ul>
+    <li>traduz “99,35%” em “99,3% até 49 pessoas” — que é a pergunta que o
+        gestor faz de fato;</li>
+    <li>diz <strong>qual</strong> faixa, <strong>de quando</strong> e
+        <strong>de onde</strong>;</li>
+    <li>não diz nada sobre eficiência, lucro ou qualidade de gestão.</li>
+  </ul>
+</section>
+<section class="slide estatistica">
+              <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+              <span class="marca-estatistica">Parte 2 · Estatística</span>
+              <h2>Como se faz no Colab</h2>
+              <pre class="codigo"><span class="cmt"># a acumulada: a coluna_running_ soma a coluna anterior</span>
+ordinal[<span class="str">"pct"</span>]          = ordinal[<span class="str">"nascimentos"</span>] / ordinal[<span class="str">"nascimentos"</span>].sum() * 100
+ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"pct"</span>].cumsum()
 
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "A taxa de sobrevivência em três anos foi de <strong>62%</strong> entre as empresas de até 9
-  empregados (620 de 1.000) e de <strong>81%</strong> entre as de 10 ou mais (405 de 500), uma
-  diferença de <strong>19 pontos percentuais</strong>."</div>
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"acumulada ate 49 pessoas"</span>,
+      ordinal[<span class="str">"pct_acumulado"</span>].iloc[1], 99.35))</pre>
+              <p>Repare que a acumulada nasce de <strong>uma coluna e uma função</strong>:
+              <code>cumsum()</code>, soma acumulada. Ela está em duas linhas, e a segunda
+              depende da primeira — por isso a ordem de execução importa.</p>
+              <p class="menor">E note o que <strong>não</strong> aparece: nenhuma média. Com
+              uma variável ordinal, a média nem entra no código.</p>
+            </section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Das 674.660 empresas empregadoras que abriram no Brasil em 2021,
+  <strong>627.498 (93,0%)</strong> tinham de 1 a 9 pessoas assalariadas;
+  <strong>até 49 pessoas, são 99,3%</strong> do total (IBGE, Demografia das
+  Empresas). ”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que a empresa pequena é mais eficiente, nem que a grande é melhor administrada.
+  A frase diz <strong>quantas</strong> empresas nasceram em cada faixa, em um ano,
+  no Brasil. Conclusões sobre eficiência administrativa exigem outro desenho de
+  pesquisa — e desenho de pesquisa é o tema do <strong>Módulo II</strong>.</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: a ordem do código não é a ordem do mundo</h2>
   <div class="colunas">
-    <div>
-      <h3>A ponte com o encontro de hoje</h3>
-      <p>Repare no que a tabela cruzada é, nos termos da aula: <strong>duas variáveis observadas
-      nos mesmos casos</strong>, sem sorteio e sem intervenção. Isso é, exatamente, pesquisa
-      correlacional. A tabela mostra que porte e sobrevivência andam juntos; ela não mostra que
-      crescer protege a empresa.</p>
-      <p>Uma tabela de frequência simples, com uma variável só, seria pesquisa descritiva. É a
-      segunda variável que muda o tipo de pesquisa.</p>
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      Um analista classificou a <strong>seção da CNAE</strong> como
+      <strong>ordinal</strong>, escreveu que “as letras vão de A a U, logo há
+      ordem”.<br><br>
+      Com essa classificação, sentiu que podia calcular a média da seção, e
+     publicou que “a empresa mediana está na seção N”.
     </div>
-    <div>
-      <h3>O erro comum: ler a proporção da coluna errada</h3>
-      <div class="alerta"><span class="rotulo">Errado</span>
-      "Entre as empresas que sobreviveram, 60% eram de pequeno porte, logo o pequeno porte
-      sobrevive mais." Essa proporção reflete apenas que há mais empresas pequenas na base.</div>
-      <div class="exemplo"><span class="rotulo">Certo</span>
-      A pergunta é sobre o desfecho dentro de cada grupo de exposição, então o denominador é a
-      linha: 62% contra 81%.</div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      A CNAE é <strong>nominal</strong>. A ordem de A a U é a ordem do
+      <strong>código</strong>, não do fenômeno: não existe “comércio antes de
+      indústria”.<br><br>
+      O que dá para fazer: contar, e ver a frequência de cada seção.<br><br>
+      O que não dá: somar as letras, ou dizer qual seção é a “do meio”.
     </div>
   </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
 <section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: proporção e tabela cruzada</h2>
-
-  <div class="ficha">
-    <div>
-      <h4>A fórmula</h4>
-      <p><span class="expr">p = parte ÷ todo</span></p>
-      <p>Diferença entre duas porcentagens se escreve em pontos percentuais.</p>
-    </div>
-    <div>
-      <h4>No Colab</h4>
-      <pre class="codigo">pd.crosstab(dados["a"],
-            dados["b"],
-            normalize="index")</pre>
-    </div>
-    <div>
-      <h4>A frase de leitura</h4>
-      <p>"Entre os casos de <em>grupo</em>, <em>x</em>% apresentaram <em>desfecho</em>, contra
-      <em>y</em>% em <em>outro grupo</em>: <em>x−y</em> p.p."</p>
-    </div>
-    <div>
-      <h4>O erro a evitar</h4>
-      <p>Normalizar pela coluna quando a pergunta é sobre a linha, e confundir ponto percentual
-      com por cento.</p>
-    </div>
-  </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
-  volume I, seção 2.3.2 (tipos de frequência) e seção 5.12 (tabela de contingência).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-
-
+              <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+              <span class="marca-estatistica">Parte 2 · Estatística · ficha de revisão</span>
+              <h2>Ficha de revisão: tipos de dado e a regra da medida</h2>
+              <div class="ficha">
+                <div>
+                  <h4>A regra</h4>
+                  <span class="expr">média ⟺ nível ≥ intervalo</span>
+                  <p>Cada nível libera uma fileira da tabela de permissões.</p>
+                </div>
+                <div>
+                  <h4>No Colab</h4>
+                  <pre class="codigo">t[<span class="str">"pct"</span>] = t[<span class="str">"n_i"</span>]/t[<span class="str">"n_i"</span>].sum()*100
+t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
+<span class="fn">conferir</span>(<span class="str">"acumulada"</span>, t[<span class="str">"acum"</span>].iloc[1], 99.35)</pre>
+                </div>
+                <div>
+                  <h4>A frase de leitura</h4>
+                  <p>“Até 49 pessoas, 99,3% dos nascimentos (IBGE, 2021).”</p>
+                  <p>O acumulado só existe porque a variável tem ordem.</p>
+                </div>
+                <div>
+                  <h4>O erro</h4>
+                  <p>Confundir a ordem do <strong>código</strong> com a ordem do
+                  <strong>fenômeno</strong>, e promover nominal a ordinal.</p>
+                  <p>Os totais de hoje: 10.607.110 empresas · 674.660 nascimentos · 281.133 empresas e 1.420.230 pessoas</p>
+                </div>
+              </div>
+            </section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
 <section class="slide divisor">
   <h2>Mão na massa</h2>
   <p>Demografia das Empresas (IBGE), abra o notebook <code>encontro02_aluno.ipynb</code></p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A base do dia: tabela 9949 do SIDRA</h2>
-  <ul>
-    <li>Nascimentos de empresas empregadoras e <strong>taxas de sobrevivência</strong> de
-        1, 2 e 3 anos;</li>
-    <li>Por <strong>seção CNAE</strong> (atividade) e <strong>faixa de pessoal
-        assalariado</strong> (porte);</li>
-    <li>Coortes de 2017 a 2021.</li>
-  </ul>
-  <div class="definicao"><span class="rotulo">Definição · coorte</span>
-  Conjunto de casos que compartilham um evento inicial no mesmo período, aqui, as empresas
-  <strong>nascidas no mesmo ano</strong>. Uma coorte só tem taxa de 3 anos quando 3 anos se
-  passaram: por isso a coorte mais recente da base não tem todas as taxas.</div>
-  <div class="definicao"><span class="rotulo">Definição · taxa de sobrevivência</span>
-  Percentual das empresas da coorte que <strong>continuavam ativas</strong> após 1, 2 ou 3
-  anos. Taxa de 3 anos = sobreviventes após 3 anos ÷ nascidas na coorte × 100.</div>
+  <h2>Seção 1: como se usa um notebook</h2>
+
+  <p>Bloco de <strong>texto</strong> é explicação; bloco de <strong>código</strong> é
+  instrução, e precisa ser executado com <code>Shift + Enter</code>.</p>
+  <div class="instrucao"><span class="rotulo">Se isso aconteceu</span>
+  O resultado não é o esperado? <em>Runtime → Run all</em>, de cima para baixo. Quer recomeçar?
+  <em>Runtime → Restart runtime</em>. A célula B pediu um arquivo? Faça <em>upload</em> dos
+  arquivos de <code>dados/</code> que o professor indicar.</div>
+  <p class="menor">Você já sabe disso desde o encontro 1. O ganho de hoje é outro:
+  <strong>você não precisa entender o código para ler o resultado.</strong></p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>As perguntas do dia</h2>
+  <h2>Seção 2: as três bases de hoje</h2>
+
+  <p>Cada base tem uma <strong>Célula A</strong> (chamada à API) e uma <strong>Célula B</strong>
+  (contingência, por upload). Execute a A. Se a API não responder, o professor manda você
+  executar a B, que produz a mesma tabela.</p>
+  <div class="instrucao"><span class="rotulo">Repare no que muda entre elas</span>
+  As três bases <strong>não têm as mesmas colunas</strong>, e isso é o ponto do dia: cada uma foi
+  desenhada para um tipo diferente de variável. A CNAE traz uma letra e um nome; a faixa de
+  pessoal traz só categorias ordenadas; o PAS traz valores com unidade.</div>
+  <div class="alerta"><span class="rotulo">Se a API falhar</span>
+  Execute a Célula B. Não tente descobrir qual deu errado, e não edite o código: pergunte ao
+  professor.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3: a tabela que decide</h2>
+
+  <p>O notebook imprime a linha do seu nível: o que é possível <strong>ordenar</strong>,
+  <strong>somar</strong>, calcular a <strong>média</strong>, a <strong>mediana</strong>, e dizer
+  que um valor é <strong>o dobro</strong> de outro.</p>
+  <div class="instrucao"><span class="rotulo">A sua parte</span>
+  Troque <code>BASE = "ordinal"</code> por <code>"nominal"</code> e por <code>"razao"</code>,
+  execute tudo de novo, e veja a linha mudar. Em qual das três a média entra?</div>
+  <div class="pergunta">E a base do <code>intervalo</code>? Por que ela não está na Célula A?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4: a base escolhida e a conferência</h2>
+
+  <p>Com a base escolhida, o notebook monta a tabela de categorias, calcula a contagem e a
+  porcentagem, e imprime a soma das porcentagens <strong>antes</strong> de qualquer
+  conferência.</p>
+  <div class="instrucao"><span class="rotulo">A célula de conferência</span>
+  Cada resultado é comparado com o número que já estava resolvido na tela da estatística, e a
+  função <code>conferir</code> devolve o veredito: <code>[ok]</code> ou <code>[X]</code>. Você
+  nunca precisa ficar adivinhando se acertou.</div>
+  <div class="alerta"><span class="rotulo">Se aparecer [X] em um número que ontem batia</span>
+  Quase sempre é que o IBGE divulgou um corte novo. Copie o número novo, anote o ano, e siga.
+  <strong>O número que vale é o que saiu do código.</strong></div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5: a frequência acumulada, que só existe em ordinal</h2>
+
+  <p>A acumulada responde a uma pergunta que a frequência comum não responde:
+  <em>“quantas empresas têm <strong>até</strong> tal tamanho?”</em>. E ela só tem sentido porque a
+  variável <strong>tem ordem</strong>.</p>
+  <div class="instrucao"><span class="rotulo">Rode com BASE = "ordinal"</span>
+  O notebook imprime a acumulada das três faixas e responde onde cai a faixa da mediana. Depois
+  troque para <code>"nominal"</code> e veja o que ele diz: a acumulada não se aplica, porque
+  “até” não quer dizer nada numa base sem ordem.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 6: usando o assistente</h2>
+
+  <div class="pergunta">A IA explica, o código calcula, e você <strong>confere e escreve</strong>.</div>
+  <div class="instrucao"><span class="rotulo">Modo 1 — Pergunta</span>
+  Rode a célula de contexto, que imprime as linhas que você precisa colar no assistente. Sem o
+  contexto a IA inventa número, e você não tem como perceber.</div>
+  <div class="instrucao"><span class="rotulo">Modo 2 — Encomenda</span>
+  Peça o código, cole na <strong>célula cinza</strong>. Só mude os <em>parâmetros de
+  consulta</em>: qual base, qual recorte, qual ordenação. Nunca peça para mudar a lógica do
+  cálculo.</div>
+  <div class="instrucao"><span class="rotulo">Modo 3 — Ler um resultado errado</span>
+  O professor preparou três classificações de nível <strong>erradas</strong>, todas com
+  variáveis reais. Diga qual é o erro e qual é o nível certo. A segunda é a mais sutil: as
+  letras da CNAE vão de A a U, e mesmo assim a CNAE não é ordinal.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As três perguntas do dia</h2>
+
+  <p>Respondidas <strong>por escrito</strong>, no próprio notebook:</p>
   <ol>
-    <li>Afinal, <strong>a maioria das empresas fecha no primeiro ano?</strong></li>
-    <li>Qual seção CNAE tem a <strong>maior</strong> e a <strong>menor</strong> taxa de
-        sobrevivência em 3 anos?</li>
-    <li><strong>Empresas empregadoras de maior porte sobrevivem mais</strong> que as de
-        menor porte?</li>
+    <li>Uma variável que você usa no trabalho ou na vida profissional. Em que nível está, e o que
+        isso permite calcular?</li>
+    <li>Escolha uma variável quantitativa e explique por que ela <strong>não</strong> é de
+        razão.</li>
+    <li>O que a base de hoje <strong>não</strong> permite afirmar sobre as empresas
+        brasileiras?</li>
   </ol>
-  <p>Ferramentas novas do pandas, o que cada uma faz conceitualmente:</p>
-  <ul>
-    <li><code>unique()</code>: que valores esta coluna assume?</li>
-    <li><strong>filtro</strong>: isole as linhas que atendem a uma condição;</li>
-    <li><code>groupby</code>: uma estatística <em>por grupo</em> (a média por faixa de porte);</li>
-    <li><code>sort_values</code>: ordene para ver maiores e menores.</li>
-  </ul>
+  <div class="instrucao"><span class="rotulo">Gancho com o projeto individual</span>
+  A resposta 1 é o começo do seu projeto: toda variável do seu trabalho vai precisar de um
+  nível declarado antes de qualquer análise. Guarde o notebook: ele é a segunda parte do guia
+  de estatística descritiva da disciplina.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1 · Carregando os dados (20 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  A célula com <code>sidrapy.get_table(table_code="9949", ...)</code> vem pronta. Vamos ler
-  no projetor o que cada parâmetro significa (tabela, nível territorial, variáveis,
-  classificações, período): essa gramática se repete o semestre inteiro. Se o SIDRA estiver
-  fora do ar, rode a célula de contingência, que lê
-  <code>dados/demografia_sobrevivencia_empresas.csv</code>.</div>
-  <p>Primeira inspeção, nesta ordem: <code>head()</code>, <code>shape</code>,
-  <code>info()</code>. Anote quantas linhas e colunas a base tem e qual o tipo de cada
-  coluna.</p>
-  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
-  A tabela do SIDRA chega com a primeira linha de cabeçalho duplicada e os valores como
-  texto. A célula de limpeza (renomear colunas, converter <code>V</code> para numérico) já
-  está escrita e comentada linha a linha: leia-a, execute-a e confira com <code>info()</code>
-  que a coluna virou numérica. Você não precisa escrevê-la hoje.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2 · Filtros e seleção (25 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Selecione as colunas relevantes e filtre: só o ano mais recente, só a taxa de
-  sobrevivência de 3 anos, só o total das seções. O código vem pronto; o exercício é
-  <strong>ler e adaptar</strong>, em dificuldade crescente:
-  <ol>
-    <li>Troque a coluna selecionada;</li>
-    <li>Mude a condição de filtro para outra variável;</li>
-    <li>Combine duas condições.</li>
-  </ol>
-  Travou em alguma? Descreva à IA o nome do DataFrame e das colunas, peça o filtro e
-  confira o número de linhas do resultado.</div>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Confundir <code>=</code> (atribuição) com <code>==</code> (comparação) e esquecer as aspas
-  em texto (<code>df["ano"] == 2021</code>, mas <code>df["secao"] == "Total"</code>). Vamos
-  provocar esses dois erros de propósito no projetor e ler as mensagens juntos: errar e ler
-  a mensagem de erro é parte normal do trabalho, não sinal de que você não sabe.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3 · A pergunta do dia (35 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Responda com <code>groupby</code> e <code>sort_values</code>, e produza um gráfico de
-  barras horizontal:
-  <ol>
-    <li>Qual seção CNAE tem a <strong>maior</strong> e a <strong>menor</strong> taxa de
-        sobrevivência em 3 anos?</li>
-    <li>Empresas empregadoras de <strong>maior porte</strong> sobrevivem mais que as de
-        menor porte?</li>
-  </ol></div>
-  <div class="pergunta">A segunda pergunta é a mais importante da aula. Quando o gráfico
-  aparecer, responda: isso é pesquisa <strong>descritiva</strong> ou
-  <strong>correlacional</strong>?</div>
-  <div class="instrucao"><span class="rotulo">Para o seu projeto (ao final da seção)</span>
-  Anote no notebook <strong>uma pergunta que você gostaria de investigar</strong> e
-  classifique-a como descritiva ou correlacional. No encontro 3, ela será confrontada com o
-  cardápio de temas e bases do projeto individual.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4 · Perguntas de interpretação (15 min)</h2>
-  <div class="instrucao"><span class="rotulo">Por escrito, no notebook</span>
-  <ol>
-    <li>O que os dados mostram sobre a afirmação <em>"a maioria das empresas fecha no
-        primeiro ano"</em>? Cite o número que sustenta sua resposta.</li>
-    <li>Que <strong>explicações alternativas</strong> existem para a associação entre porte
-        e sobrevivência?</li>
-    <li>Que <strong>outra pergunta</strong> essa base permitiria responder? Classifique-a
-        como descritiva ou correlacional.</li>
-  </ol></div>
-  <p>Ao terminar, <strong>compartilhe o link do seu notebook no Colab</strong> (permissão
-  de leitura para qualquer pessoa com o link): é assim que a prática será recolhida.</p>
-  <p class="menor">Se sobrar tempo, use-o para revisar as Seções 2 e 3: os dez minutos
-  finais do bloco são folga deliberada, para que ninguém fique sem responder.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
-</section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para fechar a prática</h2>
@@ -1646,59 +592,279 @@ pd.<span class="fn">crosstab</span>(dados[<span class="str">"porte"</span>], dad
   análise de achismo.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li>O <strong>delineamento</strong> é o plano da pesquisa, e determina o que ela pode
-        concluir;</li>
-    <li><strong>Descritiva</strong> retrata; <strong>correlacional</strong> mede associação;
-        <strong>experimental</strong> (manipulação + controle + aleatorização) pode afirmar
-        causa; <strong>quase-experimental</strong> compara grupos já formados, sob risco de
-        viés de seleção;</li>
-    <li><strong>Correlação ≠ causalidade</strong> por três razões: terceira variável,
-        causalidade reversa, acaso;</li>
-    <li>O <strong>survey</strong> é a estratégia de coleta dominante em Administração,
-        transversal ou longitudinal;</li>
-    <li><strong>Estudo de coorte</strong> (expostos × não expostos seguidos no tempo;
-        risco relativo) e <strong>caso-controle</strong> (parte do desfecho e olha para
-        trás; razão de chances): desenhos observacionais que a gestão importou da saúde
-        (Gil, 2022);</li>
-    <li><strong>Antes e depois de um grupo só</strong> é pré-experimental: evidência
-        inicial, não prova de impacto; o plano <strong>fatorial</strong> revela
-        interações;</li>
-    <li><strong>Coorte</strong> e <strong>taxa de sobrevivência</strong>: conceitos-chave
-        das estatísticas de demografia empresarial.</li>
+    <li><strong>Mensurar é atribuir números a conceitos</strong>, e a primeira decisão de
+        qualquer pesquisa quantitativa é <em>o que exatamente</em> será medido;</li>
+    <li><strong>Variável</strong> é a característica que assume valores diferentes entre os
+        casos. Na hipótese, ela tem papel: independente, dependente ou de controle;</li>
+    <li><strong>Os quatro níveis de mensuração</strong>: nominal (categorias sem ordem),
+        ordinal (categorias com ordem), intervalo (ordem e intervalos, com zero arbitrário) e
+        razão (com zero que significa ausência);</li>
+    <li><strong>O nível decide a ferramenta.</strong> Cada nível libera uma fileira da tabela
+        de permissões, e a média só entra a partir do intervalo;</li>
+    <li><strong>O teste do zero</strong> resolve a maior parte dos casos: zero de ausência é
+        razão; zero de ausência de resposta é intervalo;</li>
+    <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE vão de A a
+        U, e isso não faz do comércio uma seção “maior” que a indústria;</li>
+    <li><strong>A frequência acumulada só existe em ordinal</strong>, porque ela responde
+        “quantos <em>até</em> tal ponto?” — e sem ordem essa pergunta não tem sentido.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
-
-<section class="slide">
+<section class="slide leitura">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
   <ul>
-    <li><strong>GIL (2022)</strong>, <em>Como elaborar projetos de pesquisa</em>,
-        capítulo 4 (seções 4.4 a 4.8: experimental, ensaio clínico, coorte, caso-controle,
-        levantamento) e, para quem quiser aprofundar, capítulos 7, 9 e 10 (como delinear
-        cada um);</li>
-    <li><strong>GIL (2022)</strong>: capítulos 2 e 3, sobre problema e hipóteses
-        (preparam o próximo encontro);</li>
-    <li><strong>Estes slides</strong>: releia as caixas de definição, a tabela
-        comparativa e sobretudo os slides marcados <strong>leitura em casa</strong>,
-        que trazem cada delineamento com exemplo trabalhado do começo ao fim;</li>
-    <li><strong>Autoavaliação</strong>: resolva as seis classificações e só depois
-        confira o gabarito comentado;</li>
-    <li><strong>Reexecute o notebook</strong> em casa, revisão ativa.</li>
+    <li><strong>Estes slides</strong> são autossuficientes: cada nível tem caixa de definição,
+        exemplo real e a tela de ficha no fim da Parte 2.</li>
+    <li><strong>A Parte 2 em três frases.</strong> Toda variável tem um nível. O nível decide
+        o que dá para calcular. Antes de calcular, identifique o nível.</li>
+    <li><strong>O notebook do encontro</strong> está <em>pré-executado</em>: você abre e já lê o
+        resultado esperado antes de rodar. Rode com as três bases
+        (<code>nominal</code>, <code>ordinal</code>, <code>razao</code>) e veja a linha de
+        permissões mudar.</li>
+    <li><strong>A condução da aula</strong>: este mesmo arquivo tem uma segunda camada, com a
+        minutagem, o que falar, as perguntas e o gabarito. Tecla <strong>D</strong>.</li>
   </ul>
-  <h3>Tarefa obrigatória</h3>
-  <p>Trazer <strong>por escrito</strong> uma pergunta de pesquisa sobre tema empresarial ou
-  econômico do seu interesse, ela será trabalhada na oficina do próximo encontro.</p>
-  <p class="menor"><strong>Síntese do dia:</strong> o tipo de pesquisa decorre da pergunta;
-  a mesma base responde a perguntas descritivas e correlacionais; o pandas transforma
-  pergunta em filtro, agrupamento e gráfico.</p>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Salve o notebook e <strong>compartilhe o link</strong>;</li>
+    <li>Traga <strong>uma variável</strong> do seu trabalho ou da sua área, com o nível
+        declarado e uma frase justificando. Ela vai virar a primeira variável do seu
+        projeto;</li>
+    <li>Problemas com a conta do Colab? Resolva <strong>durante a semana</strong>.</li>
+  </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
+
+<div class="cabecalho-conducao">
+  <h1>Encontro 2</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 4</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a></p>
+    <h2>Abertura, contrato e o que vamos fazer hoje <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) explicar o que é uma
+            variável e distinguir o papel dela na hipótese; (ii) classificar uma variável quanto
+            ao tipo e ao nível de mensuração; (iii) aplicar a regra que decorre do nível, e dizer
+            qual medida de resumo cabe em cada variável; (iv) usar o teste do zero para decidir
+            entre intervalo e razão; (v) operacionalizar um conceito de gestão em uma variável
+            mensurável.</p>
+                <div class="caixa falar"><span class="rotulo">A retomada que faz a ponte</span>
+            <p>Retomar a frase do encontro 1 que organiza o dia: <strong>mensurar é atribuir
+            números a conceitos</strong>. Hoje vamos ao passo seguinte — decidir <em>o que
+            exatamente</em> medir, e <em>como</em> o número que resultar da medição poderá ser
+            usado.</p>
+            </div>
+    <h3>Onde está a minutagem</h3>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 5 a 13</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a></p>
+    <h2>Variáveis, tipos de dado e níveis de mensuração <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>O que é uma variável, e seu papel na hipótese</td><td>8</td></tr>
+      <tr><td>Os quatro níveis de mensuração, um a um</td><td>18</td></tr>
+      <tr><td>A síntese: o nível decide a análise</td><td>6</td></tr>
+      <tr><td>O exercício de classificação e os casos traiçoeiros</td><td>8</td></tr>
+      <tr><td>Operacionalização: do conceito ao indicador</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>Uma frase, repetida: <strong>o nível de mensuração decide a análise.</strong> Não
+            é uma classificação decorativa: é o que autoriza (ou proíbe) a média, o gráfico, o
+            teste. E é a resposta à pergunta que abre o bloco de estatística daqui a pouco.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A ponte para a Parte 2, feita duas vezes</span>
+            <p>Anunciar no fim deste bloco que <strong>a mesma matéria volta</strong> no bloco de
+            estatística, agora com dado oficial e com a tabela de permissões. Não é repetição: é
+            o conceito virando operação. Avisar que a turma vai ver o mesmo conteúdo duas vezes
+            <em>de propósito</em>.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O exercício que mais rende</span>
+            <p>“Classifique o nível”: a turma classifica variáveis reais em voz alta, e justifica.
+            Depois, os <strong>casos traiçoeiros</strong> — e o melhor deles é a seção da CNAE:
+            as letras vão de A a U, e mesmo assim a variável é nominal.</p>
+            <p>A frase que fecha: <em>“a ordem do código não é a ordem do mundo”</em>. É a mesma
+            lição do encontro 1 sobre código e rótulo, agora aplicada ao nível de mensuração.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Promover nominal a ordinal</strong> por causa da ordem alfabética do
+              código.</li>
+              <li><strong>Tratar escala de satisfação como razão</strong>, porque “tem zero”. O
+              zero significa <em>ninguém respondeu</em>, e não ausência do fenômeno.</li>
+              <li><strong>Achar que número é sinônimo de quantitativo.</strong> Código de
+              município é número e é nominal.</li>
+              <li><strong>Confundir o papel na hipótese com o nível.</strong> São duas
+              classificações independentes: uma variável pode ser dependente e nominal.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gancho com o projeto individual</span>
+            <p>Ao fim do bloco, cada estudante deve ter <strong>uma variável</strong> do seu
+            projeto com o nível declarado e uma frase justificando. É o insumo do encontro 3,
+            onde a variável entra na hipótese.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 14 a 24</b> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a></p>
+    <h2>Parte 2: estatística — a regra da medida <span class="min">(90 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta do dia: “posso somar os valores desta variável?”</td><td>8</td></tr>
+      <tr><td>Os quatro níveis, com um exemplo real de cada um</td><td>28</td></tr>
+      <tr><td>A tabela de permissões e o teste do zero</td><td>22</td></tr>
+      <tr><td>O exemplo resolvido, com a frequência acumulada</td><td>22</td></tr>
+      <tr><td>Erro comum e ficha de revisão</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir, em voz alta: <strong>“antes de calcular, identifique o nível”</strong>. O
+            nível não é detalhe técnico de quem trabalha com estatística: é o que define a
+            ferramenta. E é a primeira coisa que impede um erro caro — a média de uma
+            categoria.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Um exemplo real por nível, e a honestidade do intervalo</span>
+            <p>As três bases do notebook foram escolhidas por trazerem um nível cada:</p>
+            <ul>
+              <li><strong>Nominal</strong> — a seção da CNAE, letras de A a U. 10.607.110
+              empresas, comércio 27,42%;</li>
+              <li><strong>Ordinal</strong> — a faixa de pessoal assalariado. 674.660 nascimentos,
+              93,01% na menor faixa, e 99,35% até 49 pessoas;</li>
+              <li><strong>Razão</strong> — receita, pessoal ocupado, número de empresas. 281.133
+              empresas e 1.420.230 pessoas no alojamento e alimentação.</li>
+            </ul>
+            <p>E o <strong>intervalo</strong> fica sem exemplo oficial: as bases do dia não têm
+            nenhuma variável assim. O exemplo é uma escala de satisfação de 0 a 10.
+            <strong>Dizer isso em voz alta é honesto e ensina:</strong> nem toda variável do
+            mundo tem exemplo na fonte oficial.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O teste do zero, repetido até virar hábito</span>
+            <p>Uma pergunta só: <strong>“o zero significa ausência da coisa?”</strong> Se
+            significa, é razão. Se significa “ninguém respondeu”, é intervalo. Se a variável é
+            categoria, o zero nem existe. Leva trinta segundos e resolve a maior parte dos casos
+            de pesquisa aplicada.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A acumulada, que só existe em ordinal</span>
+            <p>É a única novidade em relação ao encontro 1, e existe por causa da ordem. Vale
+            perguntar antes de mostrar: <em>“por que acumular não faz sentido na base da
+            CNAE?”</em>. A resposta é a lição do dia em forma de operação.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Somar categorias.</strong> “O total de funcionários do setor é a soma
+              das faixas” não faz sentido: as faixas não são valores.</li>
+              <li><strong>Usar a média em ordinal.</strong> A média de três faixas não
+              corresponde a nenhuma faixa real.</li>
+              <li><strong>Concluir que a base menor é mais frágil</strong> a partir do 93,01%.
+              O dado diz quantas nasceram pequenas, não que pequenas fracassam mais.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Recorte</th><th>Total</th><th>Detalhe</th><th>Valor</th></tr>
+              <tr><td>CNAE, Brasil (nominal)</td><td>10.607.110 empresas</td>
+                  <td>Comércio (G)</td><td>27,42%</td></tr>
+              <tr><td>Nascimentos, Brasil, 2021 (ordinal)</td><td>674.660</td>
+                  <td>1 a 9 pessoas</td><td>93,01%</td></tr>
+              <tr><td></td><td></td><td>Até 49 pessoas (acumulado)</td><td>99,35%</td></tr>
+              <tr><td>PAS, alojamento e alimentação (razão)</td><td>281.133 empresas</td>
+                  <td>Pessoal ocupado</td><td>1.420.230</td></tr>
+            </table>
+            <p>São os valores esperados da função <code>conferir</code> do notebook. O estudante
+            confere sozinho, e só o professor vê quando a turma inteira erra junto.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 25 a 33</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a></p>
+    <h2>Prática no Colab: três bases, uma tabela que decide <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Seção 1: como se usa um notebook</td><td>8</td></tr>
+      <tr><td>Seção 2: as três bases de hoje</td><td>18</td></tr>
+      <tr><td>Seção 3: a tabela que decide</td><td>12</td></tr>
+      <tr><td>Seção 4: a base escolhida e a conferência</td><td>10</td></tr>
+      <tr><td>Seção 5: a frequência acumulada</td><td>8</td></tr>
+      <tr><td>Seção 6: o assistente</td><td>4</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A regra didática do dia</span>
+            <p>A única edição de código é trocar <code>BASE = "ordinal"</code> por
+            <code>"nominal"</code> e <code>"razao"</code>. Nada além disso.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seção 2 — as três bases (18 min)</span>
+            <p>Antes de executar, perguntar: <em>“qual delas vocês acham que é ordinal, e por
+            quê?”</em>. A resposta sai da base, não da opinião.</p>
+            <p>Chamar atenção para o detalhe novo em relação ao encontro 1: a API do IBGE
+            <strong>não traz os nomes das categorias da faixa de pessoal</strong> — o notebook
+            pede tudo e escolhe a variável no pandas. É a primeira vez que o estudante vê que
+            filtrar também é analisar.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seção 3 — a tabela que decide (12 min)</span>
+            <p>A sessão mais curta e mais importante da prática: o aluno troca o valor de
+            <code>BASE</code> e vê a linha de permissões mudar. Em qual das três a média entra?
+            Em qual a soma?</p>
+            <p>Perguntar também: <em>“e a base do intervalo, por que ela não está na Célula
+            A?”</em> A resposta honesta — porque o IBGE não publica uma assim nessas tabelas — é
+            a mesma que vale para a vida profissional.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 5 — a frequência acumulada (8 min)</span>
+            <p>Rodar com <code>BASE = "ordinal"</code> e depois trocar para
+            <code>"nominal"</code>. A diferença no comportamento do notebook é o argumento: com
+            ordem, acumula; sem ordem, “até” não quer dizer nada.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 6 — o modo 3, e por que ele é o mais importante</span>
+            <p>As três classificações erradas do professor. A segunda é a pérola do encontro: a
+            CNAE classificada como ordinal “porque as letras vão de A a U”. Pedir que a turma
+            argumente <strong>contra</strong> antes de revelar o gabarito.</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">Se o aluno travar</span>
+            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. A
+            Célula B já está escrita e só exige upload.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">O que coletar antes do fim da aula</span>
+            <p>O link do notebook e as respostas da primeira pergunta de interpretação. Elas
+            dizem de que variável a turma fala, e alimentam o problema e a hipótese do encontro
+            3.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 34 a 35</b> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os três aprendizados do dia</span>
+            <ol>
+              <li><strong>Mensurar é decidir.</strong> Antes de qualquer cálculo, o nível da
+              variável está decidido — e o nível decide a ferramenta.</li>
+              <li><strong>O teste do zero</strong> resolve a maior parte dos casos: zero de
+              ausência é razão; zero de ausência de resposta é intervalo.</li>
+              <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE
+              vão de A a U, e isso não faz do comércio uma seção “maior” que a indústria.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Trazer <strong>uma variável</strong> do seu trabalho ou da sua área, com o
+              nível declarado e uma frase justificando. Essa frase é o primeiro esboço da
+              hipótese do seu projeto.</li>
+              <li>Ler o capítulo de GIL (2022) sobre como formular um problema: as seis regras e a
+              definição operacional.</li>
+              <li>Reexecutar o notebook nas três bases.</li>
+            </ol>
+              </section>
+</main><!-- /conducao -->
 
 <div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>

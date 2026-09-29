@@ -1,271 +1,285 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook único e autossuficiente do Encontro 6."""
-from nb_helper import gera_notebooks
+"""Gera os notebooks dos encontros 6 e 7, do Modulo II.
 
-C = []
+E6 — o sorteio: a base de precos da ANP e, na verdade, um CADASTRO de postos (tem CNPJ,
+municipio e bandeira). E o unico cadastro de estabelecimentos que a disciplina tem em
+maos, e serve para ensinar sorteio com dado real.
 
-C.append({"tipo": "md", "texto": """\
-# Encontro 6: Escalas, validade e confiabilidade
+  N = 236 postos unicos | 11 municipios | 9 bandeiras
+  populacao: media R$ 6,0087 | desvio R$ 0,3402
+  AAS n=100: media 5,9753 (erro -0,0334) | sistematica n=100: media 6,0561
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
+E7 — a distribuicao amostral: mil amostras de n=50 sorteadas da mesma populacao.
 
-Neste notebook você vai:
-1. Explorar as respostas de 200 gestores a uma escala Likert de **satisfação com
-fornecedores** (8 itens);
-2. Implementar e interpretar o **alfa de Cronbach**;
-3. Diagnosticar e corrigir **dois itens defeituosos** escondidos na escala;
-4. Levar o método para o seu questionário do Google Formulários.
+  media das 1000 medias: 6,0081 (a 0,0006 da media populacional)
+  desvio das medias: 0,0425  vs  erro padrao teorico s/raiz(n) = 0,0481
+  a dispersao das medias e 8,0 vezes menor que a da populacao
+  74,4% das medias a 1 erro padrao; 97,5% a 2 erros padrao
+"""
+import io
+import os
+import sys
 
-Os dados são **simulados com semente fixa**: como no encontro 5, isso nos permite saber
-onde estão os defeitos e verificar se o diagnóstico os encontra."""})
+RAIZ = r"C:\Users\tadeu\OneDrive\Documentos\GitHub\metodos-pesquisa-quantitativa"
+sys.path.insert(0, os.path.join(RAIZ, "notebooks", "geradores"))
+import nb_helper as nb
 
-C.append({"tipo": "md", "texto": """\
-## Seção 1: Conhecendo a escala
+# ==================================================================== E6
+PAINEL_E6 = """# Encontro 6. População, amostra e o sorteio
 
-Um construto ("satisfação com o fornecedor") não se mede com uma pergunta: mede-se com um
-**conjunto de itens** que, somados, formam o escore da escala. Os 8 itens abaixo foram
-respondidos de 1 (discordo totalmente) a 5 (concordo totalmente):
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
-| Item | Afirmação |
+> **O que você vai fazer hoje**
+> 1. **Executar** as células de cima para baixo.
+> 2. **Mudar um valor** no bloco de configuração: o tamanho da amostra.
+> 3. **Escrever** a diferença entre a população e o cadastro, no fim.
+>
+> Você não vai escrever código. Se algo não funcionar, **chame o professor**.
+
+---
+
+## Painel do encontro
+
+Hoje a pergunta é **“de quem esses dados falam?”**. E, pela primeira vez, a resposta
+depende de uma decisão sua: **quais casos entram na amostra, e como eles foram escolhidos.**
+
+A base de hoje tem uma particularidade: ela é, ao mesmo tempo, **a população** e **o
+cadastro** do exercício. É a lista de postos de combustível do Maranhão que a ANP
+pesquisa todo mês — cada posto com CNPJ, município e bandeira.
+
+| Item | Valor |
 |---|---|
-| q1_prazo | "O fornecedor cumpre os prazos combinados" |
-| q2_qualidade | "Os produtos chegam dentro do padrão de qualidade" |
-| q3_atendimento | "O atendimento comercial resolve rápido" |
-| q4_flexibilidade | "O fornecedor se adapta a pedidos fora do padrão" |
-| q5_atrasos | "O fornecedor **atrasa** entregas com frequência" ⚠️ item negativo |
-| q6_preco_justo | "Os preços praticados são justos" |
-| q7_recomendaria | "Eu recomendaria este fornecedor a outra empresa" |
-| q8_distancia_sede | "A sede do fornecedor fica longe da minha empresa" |
+| **Fonte** | ANP — Série Histórica de Preços de Combustíveis (SHPC) |
+| **O que é** | O **cadastro** de postos: um registro por posto, com CNPJ e município |
+| **Recorte** | Maranhão, 2025, gasolina comum |
+| **População do exercício** | **236 postos**, em 11 municípios |
+| **Unidade** | R$ por litro (o preço médio do posto no ano) |
 
-Execute a geração dos dados:"""})
+> **O que a disciplina faz com esta base hoje** é o que se faz com um cadastro de
+> empresas: **sortear**. E o que se aprende aqui vale para qualquer cadastro — o CEMPRE,
+> a RAIS, a base de clientes de uma empresa."""
 
-C.append({"tipo": "code", "texto": """\
-import numpy as np
+CONFIG_E6 = """## Bloco de configuração
+
+**O único lugar do notebook onde se mexe em código.**
+
+```python
+# --- o que você pode mudar ---
+N_AMOSTRA = 100   # quantos postos sortear, de 10 a 200
+```"""
+
+CELULA_A_E6 = '''# ================= CÉLULA A: o cadastro, montado a partir dos dados da ANP =====
+# Se esta célula falhar, peça ao professor para usar a CÉLULA B.
+
+import io
+import urllib.request
+
 import pandas as pd
 
-rng = np.random.default_rng(123)
-n = 200
-satisfacao_latente = rng.normal(0, 1, n)   # o "sentimento verdadeiro" de cada gestor
+BASE_ANP = ("https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/"
+            "arquivos/shpc/dsan/2025/precos-gasolina-etanol-%02d.csv")
 
-def gera_item(carga, invertido=False, aleatorio=False):
-    if aleatorio:                          # item que NÃO pertence ao construto
-        bruto = rng.normal(0, 1, n)
-    else:
-        bruto = carga * satisfacao_latente + rng.normal(0, 0.8, n)
-    likert = np.clip(np.round(3 + bruto), 1, 5).astype(int)
-    return (6 - likert) if invertido else likert
 
-dados = pd.DataFrame({
-    "q1_prazo":          gera_item(0.9),
-    "q2_qualidade":      gera_item(0.85),
-    "q3_atendimento":    gera_item(0.8),
-    "q4_flexibilidade":  gera_item(0.75),
-    "q5_atrasos":        gera_item(0.85, invertido=True),
-    "q6_preco_justo":    gera_item(0.7),
-    "q7_recomendaria":   gera_item(0.9),
-    "q8_distancia_sede": gera_item(0, aleatorio=True),
-})
-print("Respostas:", dados.shape)
-dados.describe().round(2)"""})
+def baixa_mes(mes):
+    pedido = urllib.request.Request(BASE_ANP % mes,
+                                    headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(pedido, timeout=180) as resposta:
+        bruto = resposta.read()
+    d = pd.read_csv(io.BytesIO(bruto), sep=";", encoding="utf-8-sig", decimal=",")
+    d["mes"] = mes
+    return d[d["Estado - Sigla"] == "MA"].copy()
 
-C.append({"tipo": "nota", "texto": (
-    "Os defeitos plantados na escala: q5 é item negativo NÃO recodificado (correlaciona "
-    "negativamente com os demais) e q8 não pertence ao construto (distância da sede não é "
-    "satisfação). A graça é descobrir isso pelo diagnóstico das Seções 2 e 3, execute os "
-    "códigos na ordem e anote a sua suspeita antes de seguir.")})
 
-C.append({"tipo": "md", "texto": """\
-## Estatística do encontro: a correlação entre itens
+quadros = [baixa_mes(m) for m in range(1, 13)]
+anp = pd.concat(quadros, ignore_index=True)
+anp = anp.rename(columns={"Municipio": "municipio", "CNPJ da Revenda": "cnpj",
+                          "Produto": "produto", "Valor de Venda": "valor_venda",
+                          "Bandeira": "bandeira"})
+anp["valor_venda"] = pd.to_numeric(anp["valor_venda"], errors="coerce")
 
-**A ideia.** O alfa é, no fundo, a média das correlações entre os itens, ajustada pelo número de
-itens. Antes de calcular o alfa, que é um número só, vale olhar a **matriz de correlação**, que
-mostra qual item está fora do lugar.
+# O CADASTRO: um registro por posto, com o preço do primeiro mês em que aparece.
+# A chave é o CNPJ — e não a combinação de município e bandeira, que muda de grafia
+# entre os arquivos e criaria postos duplicados no cadastro.
+gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
+cadastro = (gas.sort_values("mes")
+               .drop_duplicates("cnpj", keep="first")
+               [["cnpj", "municipio", "bandeira", "valor_venda"]]
+               .rename(columns={"valor_venda": "preco_medio"})
+               .reset_index(drop=True))
 
-**Como se lê uma matriz de correlação.** Cada célula é a correlação entre dois itens, de -1 a +1.
-A diagonal é sempre 1 (todo item é perfeitamente correlacionado consigo mesmo). Itens do mesmo
-construto costumam ficar entre 0,3 e 0,7 entre si."""})
+N = len(cadastro)
+print(f"CADASTRO montado: {N} postos, em {cadastro['municipio'].nunique()} municípios")
+print(f"  preço médio da POPULAÇÃO: R$ {cadastro['preco_medio'].mean():.4f}")
+print(f"  desvio padrão da POPULAÇÃO: R$ {cadastro['preco_medio'].std():.4f}")
+cadastro.head(4)'''
 
-C.append({"tipo": "code", "texto": """\
-correlacoes = dados.corr().round(2)
-correlacoes"""})
+CELULA_B_E6 = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+# NÃO EXECUTE AGORA. Só se o professor mandar, e depois de fazer upload do arquivo
+# dados/anp_precos_revenda_ma_2025.csv.
 
-C.append({"tipo": "code", "texto": """\
-# a correlação média de cada item com os demais: o diagnóstico em uma coluna
-import numpy as np
+import pandas as pd
 
-sem_diagonal = correlacoes.where(~np.eye(len(correlacoes), dtype=bool))
-media_corr = sem_diagonal.mean().sort_values()
+anp = pd.read_csv("anp_precos_revenda_ma_2025.csv")
+gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
+cadastro = (gas.sort_values("mes_arquivo")
+               .drop_duplicates("cnpj_da_revenda", keep="first")
+               [["cnpj_da_revenda", "municipio", "bandeira", "valor_venda"]]
+               .rename(columns={"cnpj_da_revenda": "cnpj",
+                                "valor_venda": "preco_medio"})
+               .reset_index(drop=True))
+N = len(cadastro)
+print(f"CADASTRO montado do arquivo local: {N} postos")
+cadastro.head(4)'''
 
-print("Correlação média de cada item com os demais:")
-print(media_corr.round(2))"""})
+CELULAS_E6 = [
+    {"tipo": "md", "texto": PAINEL_E6},
+    {"tipo": "md", "texto": CONFIG_E6},
+    {"tipo": "code", "texto": 'N_AMOSTRA = 100   # quantos postos sortear, de 10 a 200\n'
+                              '\n'
+                              'print("Tamanho da amostra de hoje:", N_AMOSTRA)'},
+    {"tipo": "md", "texto": """## Utilitários da disciplina
 
-C.append({"tipo": "md", "texto": """\
-**O que procurar.** Item com correlação média **próxima de zero** não pertence ao construto. Item
-com correlação média **negativa** está invertido: é uma pergunta formulada no negativo que não foi
-recodificada.
+`conferir` compara o seu resultado com o número do slide. **Não precisa alterá-la.**"""},
+    {"tipo": "util"},
+    {"tipo": "md", "texto": """## Seção 1. De quem esses dados falam
 
-Os dois itens problemáticos desta escala aparecem no fim da lista acima. Guarde quais são: a
-Seção 3 vai tratá-los.
+Antes de sortear, três definições que a disciplina vai usar o semestre inteiro:
 
-**Escreva a sua leitura.**
+| Termo | O que é | No exercício de hoje |
+|---|---|---|
+| **População** | O conjunto sobre o qual se quer falar | Os 236 postos do Maranhão |
+| **Cadastro** | A lista a que se tem acesso, de onde se sorteia | A mesma lista dos 236 postos |
+| **Amostra** | O subconjunto efetivamente estudado | Os postos sorteados |
+| **Parâmetro** | A medida da população &mdash; o valor verdadeiro, quase sempre desconhecido | O preço médio dos 236 postos |
+| **Estatística** | A medida da amostra &mdash; a estimativa | O preço médio dos postos sorteados |
 
-*O item ______________ tem correlação média de ______ com os demais, o que indica
-______________. O item ______________ tem correlação ______________, o que indica
-______________.*"""})
+> **População-alvo ≠ cadastro**, e é aí que nasce o primeiro viés. Aqui os dois
+> coincidem de propósito, para que se veja o sorteio funcionando. Em um cadastro de
+> empresas, eles quase nunca coincidem: o cadastro inclui só as formais, só as que
+> declararam, e às vezes só as que estão ativas."""},
+    {"tipo": "code", "texto": CELULA_A_E6},
+    {"tipo": "contingencia", "texto": CELULA_B_E6},
 
-C.append({"tipo": "md", "texto": """\
-## Seção 2: O alfa de Cronbach
+    {"tipo": "md", "texto": """## Parte 2 · Estatística: o sorteio e a estimativa
 
-O alfa mede a **consistência interna**: o quanto os itens "andam juntos". A fórmula:
+**A ideia do bloco.** Uma amostra sorteada é uma **estimativa** de um valor que existe
+na população, e essa estimativa **erra**. A pergunta do bloco é: quanto ela costuma
+errar, e o que se pode fazer para errar menos.
 
-$$\\alpha = \\frac{k}{k-1}\\left(1 - \\frac{\\sum \\text{var}(item_i)}{\\text{var}(escore\\ total)}\\right)$$
+**As quatro técnicas probabilísticas, em uma linha cada**
 
-onde *k* é o número de itens. Convenção usual: **α ≥ 0,7** aceitável; ≥ 0,8 bom.
-Complete a função:"""})
+| Técnica | Como se faz | Quando usar |
+|---|---|---|
+| **Aleatória simples** | Sorteia n casos do cadastro inteiro | Cadastro completo e homogêneo |
+| **Sistemática** | Sorteia o ponto de partida e toma 1 a cada k | Cadastro em ordem, sem periodicidade |
+| **Estratificada** | Sorteia dentro de cada grupo, proporcional ao tamanho | Grupos internamente parecidos e diferentes entre si |
+| **Por conglomerados** | Sorteia grupos inteiros | Cadastro disperso, coleta cara demais |
 
-C.append({"tipo": "code", "aluno": """\
-def alfa_cronbach(df):
-    k = df.shape[1]
-    # === COMPLETE AQUI: soma das variâncias dos itens (df.var() soma com .sum()) ===
-    soma_var_itens = ...
-    # === COMPLETE AQUI: variância do escore total (soma das colunas por linha) ===
-    var_total = ...
-    return (k / (k - 1)) * (1 - soma_var_itens / var_total)
+**A amostra tem erro, e ele pode ser medido.** O **erro de amostragem** é a diferença
+entre a estatística (a média da amostra) e o parâmetro (a média da população). Ninguém
+conhece o parâmetro na prática — e é por isso que este exercício é raro e valioso:
+aqui ele é conhecido, e a turma pode **ver** o erro acontecer."""},
 
-alfa_inicial = alfa_cronbach(dados)
-print(f"Alfa de Cronbach da escala completa: {alfa_inicial:.3f}")""", "professor": """\
-def alfa_cronbach(df):
-    k = df.shape[1]
-    soma_var_itens = df.var(ddof=1).sum()
-    var_total = df.sum(axis=1).var(ddof=1)
-    return (k / (k - 1)) * (1 - soma_var_itens / var_total)
+    {"tipo": "code", "texto": '''# A amostra aleatória simples: o sorteio honesto.
+amostra = cadastro.sample(n=N_AMOSTRA, random_state=2025)
 
-alfa_inicial = alfa_cronbach(dados)
-print(f"Alfa de Cronbach da escala completa: {alfa_inicial:.3f}")"""})
+parametro = cadastro["preco_medio"].mean()      # o valor verdadeiro
+estimativa = amostra["preco_medio"].mean()      # a estimativa da amostra
+erro = estimativa - parametro
 
-C.append({"tipo": "md", "texto": """\
-O alfa saiu **abaixo do aceitável**. Escala ruim? Calma: antes de descartar, um bom
-pesquisador **diagnostica os itens**. É o que faremos agora."""})
+print(f"População : {N} postos | média (parâmetro) = R$ {parametro:.4f}")
+print(f"Amostra   : {len(amostra)} postos | média (estimativa) = R$ {estimativa:.4f}")
+print(f"Erro de amostragem = {erro:+.4f}")
+print()
+print("A estimativa NÃO é o valor verdadeiro: ela erra. E é isso que se mede.")
 
-C.append({"tipo": "md", "texto": """\
-## Seção 3: Diagnóstico de itens
+conferir("média da população", parametro, 6.0087, tolerancia=0.001, unidade=" R$")
+conferir("média da amostra de 100", estimativa, 5.9753, tolerancia=0.001, unidade=" R$")'''},
 
-Duas ferramentas:
-1. **Correlação item-total**: quanto cada item se correlaciona com o escore da escala.
-Item de correlação **negativa** = provável escala invertida; correlação **próxima de
-zero** = item que não pertence ao construto;
-2. **"Alfa se excluído"**: quanto o alfa ficaria sem cada item. Se sobe muito ao remover
-um item, ele está atrapalhando."""})
+    {"tipo": "md", "texto": """### As três técnicas, lado a lado
 
-C.append({"tipo": "code", "aluno": """\
-escore_total = dados.sum(axis=1)
+Cada técnica constrói a amostra de um jeito, e cada uma dá uma estimativa diferente. O
+exercício é comparar as três **com o mesmo valor verdadeiro ao lado**."""},
 
-diagnostico = pd.DataFrame({
-    "correlacao_item_total": dados.corrwith(escore_total),
-    # === COMPLETE AQUI: alfa da escala SEM cada item (dados.drop(columns=col)) ===
-    "alfa_se_excluido": [alfa_cronbach(...) for col in dados.columns],
-})
-diagnostico.round(3)""", "professor": """\
-escore_total = dados.sum(axis=1)
+    {"tipo": "code", "texto": '''# As três probabilísticas, com o mesmo n, sobre o mesmo cadastro.
+# 1. aleatória simples
+aas = cadastro.sample(n=N_AMOSTRA, random_state=2025)
 
-diagnostico = pd.DataFrame({
-    "correlacao_item_total": dados.corrwith(escore_total),
-    "alfa_se_excluido": [alfa_cronbach(dados.drop(columns=col)) for col in dados.columns],
-})
-diagnostico.round(3)"""})
+# 2. sistemática: um a cada k, depois do ponto de partida sorteado
+k = N // N_AMOSTRA
+partida = 7
+passos = range(partida, N, k)
+sist = cadastro.iloc[list(passos)][:N_AMOSTRA]
 
-C.append({"tipo": "md", "texto": """\
-Leia a tabela e identifique os dois suspeitos. Depois, os dois tratamentos:
+# 3. estratificada: proporcional ao tamanho de cada município
+pesos = cadastro["municipio"].value_counts(normalize=True)
+alocacao = (pesos * N_AMOSTRA).round().astype(int)
+estrat = (cadastro.groupby("municipio", group_keys=False)
+                 .apply(lambda g: g.sample(n=min(alocacao[g.name], len(g)),
+                                           random_state=1)))
 
-- **q5_atrasos** tem correlação **negativa**: é o item negativo que ninguém recodificou.
-Quem está satisfeito **discorda** de "atrasa com frequência". O conteúdo é válido, basta
-**recodificar**: valor novo = 6 − valor antigo;
-- **q8_distancia_sede** tem correlação **próxima de zero**: distância não é satisfação.
-Aqui não há conserto, o item **sai da escala**."""})
+print(f"PARÂMETRO (a verdade): R$ {parametro:.4f}")
+print()
+print(f"  aleatória simples  n={len(aas):3d}  estimativa = R$ {aas['preco_medio'].mean():.4f}  "
+      f"erro = {aas['preco_medio'].mean() - parametro:+.4f}")
+print(f"  sistemática (k={k})  n={len(sist):3d}  estimativa = R$ {sist['preco_medio'].mean():.4f}  "
+      f"erro = {sist['preco_medio'].mean() - parametro:+.4f}")
+print(f"  estratificada      n={len(estrat):3d}  estimativa = R$ {estrat['preco_medio'].mean():.4f}  "
+      f"erro = {estrat['preco_medio'].mean() - parametro:+.4f}")
+print()
+print("As três estimativas são diferentes, e as três erram um pouco.")
+print("É isso que a margem de erro de uma pesquisa mede.")'''},
 
-C.append({"tipo": "code", "aluno": """\
-dados_corrigidos = dados.copy()
+    {"tipo": "code", "texto": '''# A amostra por conveniência: pegar os primeiros da lista, sem sortear.
+conveniencia = cadastro.head(N_AMOSTRA)
 
-# === COMPLETE AQUI: recodifique q5_atrasos (6 - valor) ===
-dados_corrigidos["q5_atrasos"] = ...
+print(f"  conveniência (os {N_AMOSTRA} primeiros)  estimativa = "
+      f"R$ {conveniencia['preco_medio'].mean():.4f}  "
+      f"erro = {conveniencia['preco_medio'].mean() - parametro:+.4f}")
+print()
+print("Repare no erro. Os primeiros da lista são os de um município, e o preço varia")
+print("por município: o erro da conveniência é o maior dos quatro, e ele NÃO é aleatório.")
+print("É um viés — e viés não se conserta aumentando a amostra.")'''},
 
-# === COMPLETE AQUI: remova q8_distancia_sede (drop de coluna) ===
-dados_corrigidos = ...
+    {"tipo": "md", "texto": """**A frase que vai para o relatório**
 
-alfa_final = alfa_cronbach(dados_corrigidos)
-print(f"Alfa inicial : {alfa_inicial:.3f}")
-print(f"Alfa final   : {alfa_final:.3f}  (após recodificar q5 e excluir q8)")""", "professor": """\
-dados_corrigidos = dados.copy()
+> "Sobre um cadastro de **236 postos** de combustível do Maranhão, cujo preço médio é
+> **R$ 6,01**, uma amostra aleatória simples de 100 postos estimou o preço médio em
+> **R$ 5,98** — um erro de amostragem de **−R$ 0,03**, ou 0,6% do valor verdadeiro
+> (ANP, SHPC, 2025)."
 
-dados_corrigidos["q5_atrasos"] = 6 - dados_corrigidos["q5_atrasos"]
+**O que essa frase não diz.** Que a amostra "acertou". Ela errou, e o erro está declarado.
+Uma amostra não é boa por acertar o valor verdadeiro — é boa por ter sido **sorteada**, e
+por isso ter um erro que se pode **medir e declarar**."""},
 
-dados_corrigidos = dados_corrigidos.drop(columns="q8_distancia_sede")
+    {"tipo": "md", "texto": """## Seção 2. As três perguntas do dia
 
-alfa_final = alfa_cronbach(dados_corrigidos)
-print(f"Alfa inicial : {alfa_inicial:.3f}")
-print(f"Alfa final   : {alfa_final:.3f}  (após recodificar q5 e excluir q8)")"""})
+Responda por escrito, editando as células abaixo."""},
+    {"tipo": "md", "texto": """**1. Qual é a população-alvo do seu projeto, e qual é o cadastro a que você tem acesso?
+A diferença entre os dois é grande?**
 
-C.append({"tipo": "nota", "texto": (
-    "O arco desta seção é o método em miniatura: calcular → diagnosticar → corrigir → "
-    "documentar. Com os dados desta semente, o alfa parte de 0,49 e termina em 0,84. E "
-    "registre: num relatório real, a recodificação de q5 e a exclusão de q8 seriam "
-    "declaradas com justificativa, nunca feitas em silêncio.")})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 4: Perguntas de interpretação
-
-Responda por escrito, editando esta célula:
-
-**1.** A escala corrigida atingiu α > 0,8. Isso prova que ela **mede satisfação**?
-Diferencie confiabilidade de validade na sua resposta.
-
-*Sua resposta:*
-
-**2.** Por que a atitude correta diante do item de correlação negativa foi **recodificar**,
-e diante do item de correlação nula foi **excluir**? O que mudaria se q5 tivesse sido
-excluído em vez de recodificado?
-
-*Sua resposta:*
-
-**3.** O alfa tende a subir quando se acrescentam itens à escala. Por que "inflar" a escala
-com itens redundantes é má prática, mesmo melhorando o alfa?
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 5: Seu questionário no Google Formulários
-
-Agora aplique a teoria: construa **individualmente** um questionário (8 a 12 perguntas)
-para o cenário que o professor sortear.
-
-**Requisitos técnicos:**
-- Um bloco Likert de 5 pontos com **4+ itens do mesmo construto** (você calculará o alfa
-dele no pré-teste);
-- Opções **exaustivas e mutuamente excludentes** nas perguntas fechadas;
-- **Período de referência** definido onde couber ("nos últimos 30 dias...");
-- Dados de caracterização **ao final**;
-- Tela inicial com consentimento (aprofundaremos o TCLE no encontro 7);
-- Estrutura pensada para exportação: prefira perguntas fechadas.
-
-**Checklist de defeitos a evitar** (use na avaliação cruzada):
-pergunta dupla · pergunta indutora · vocabulário técnico não compartilhado · opções
-sobrepostas · falta de período de referência · dupla negação.
-
-**Avaliação cruzada (15 min finais):** troque o link com um colega e registre abaixo as
-críticas que você fez e as que recebeu.
-
-*Críticas que fiz ao questionário de _____________:*
-
-*Críticas que recebi:*"""})
-
-C.append({"tipo": "md", "texto": """\
 ---
-### Antes de sair
+"""},
+    {"tipo": "md", "texto": """**2. Que técnica de amostragem caberia no seu projeto? Justifique pela forma do cadastro.**
 
-1. Salve e compartilhe o link do notebook **e** o link do seu questionário;
-2. **Tarefa 1:** incorporar as críticas recebidas ao questionário (ele será pré-testado no
-próximo encontro, com as respostas importadas para o Colab);
-3. **Tarefa 2:** ler o material indicado sobre ética em pesquisa, Resoluções CNS
-nº 466/2012 e nº 510/2016, com atenção ao TCLE."""})
+---
+"""},
+    {"tipo": "md", "texto": """**3. Se alguém usasse uma amostra por conveniência no seu projeto, que viés apareceria?**
 
-gera_notebooks(6, C)
+---
+"""},
+    {"tipo": "md", "texto": """## Antes de sair
+
+- [ ] Executei o notebook inteiro de cima para baixo, sem erro
+- [ ] Troquei `N_AMOSTRA` para outro valor e vi a estimativa mudar
+- [ ] Comparei as quatro amostras e sei qual erra mais, e por quê
+- [ ] Respondi as três perguntas, uma delas sobre o meu projeto
+
+> Guarde este notebook. No próximo encontro ele responde a outra pergunta: se eu
+> sorteasse **mil** amostras, como as estimativas se distribuíram?"""},
+]
+
+if __name__ == "__main__":
+    nb.gera_notebooks(6, CELULAS_E6, versao="autossuficiente",
+                      executa_notebook=True, timeout=1800)

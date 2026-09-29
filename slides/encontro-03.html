@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,10 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 3 · Unidade I</div>
-  <h1>Problema, objetivos, hipóteses e variáveis</h1>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 3 · Módulo I · Fundamentos e estatística descritiva</div>
+  <h1>Problema, objetivos, hipóteses e tendência central</h1>
+  <p class="subtitulo">Da pergunta de pesquisa à medida que resume a resposta</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -32,23 +37,32 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>10 min</td><td>Retomada e coleta das perguntas trazidas como tarefa</td></tr>
-    <tr><td>50 min</td><td>Do tema ao problema; objetivos e hipóteses</td></tr>
-    <tr><td>40 min</td><td>Variáveis e níveis de mensuração</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>60 min</td><td><strong>Prática no Colab:</strong> classificação de variáveis com PAS e PMC</td></tr>
-    <tr><td>50 min</td><td><strong>Oficina do projeto individual:</strong> cardápio, problema e hipóteses</td></tr>
-    <tr><td>15 min</td><td>Síntese e tarefa</td></tr>
-  </table>
+  <p>Hoje é o terceiro encontro do <strong>Módulo I</strong>, e o dia tem duas partes.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: a pergunta de pesquisa</h3>
+      <p>Do tema ao problema, do problema à hipótese. E a hipótese é uma frase sobre um
+      <strong>número</strong> — o que já nos leva direto à Parte 2.</p>
+      <h3>Parte 2: estatística — média, mediana e moda</h3>
+      <p>Média, mediana e moda, e a regra que decide entre elas: <strong>a medida que sobrevive a
+      um valor extremo.</strong></p>
+    </div>
+    <div>
+      <h3>Depois: a prática</h3>
+      <p>Duas séries mensais do Banco Central, baixadas por API, e um exemplo de média
+      ponderada que vem de relatório de mercado.</p>
+      <h3>Três coisas, e só</h3>
+      <p>Executar, trocar <strong>um</strong> valor, escrever a frase.</p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">Onde está a minutagem</span>
+  A minutagem do encontro não está nestas telas de propósito: ela está na camada de condução
+  deste mesmo arquivo. Tecla <strong>D</strong>, ou imprima o PDF, que sai em duas partes.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Objetivos de aprendizagem</h2>
@@ -56,24 +70,25 @@
   <ol>
     <li><strong>transformar</strong> um tema amplo em um problema de pesquisa delimitado e
         formulado como pergunta;</li>
-    <li><strong>redigir</strong> objetivo geral e objetivos específicos com verbos adequados;</li>
-    <li><strong>formular</strong> hipóteses testáveis, distinguindo hipótese de pesquisa e
-        hipótese nula;</li>
-    <li><strong>classificar</strong> variáveis quanto ao papel (independente, dependente) e ao
-        nível de mensuração (nominal, ordinal, intervalar, de razão);</li>
-    <li><strong>operacionalizar</strong> conceitos abstratos da gestão em variáveis
-        mensuráveis;</li>
-    <li><strong>escolher</strong> o tema e <strong>rascunhar</strong> o problema e as hipóteses
-        do seu projeto individual.</li>
+    <li><strong>aplicar as seis regras de Gil</strong> para julgar se um problema está bem
+        formulado;</li>
+    <li><strong>redigir</strong> objetivo geral e objetivos específicos com verbos que denunciam
+        o que se pretende;</li>
+    <li><strong>formular hipóteses aplicáveis</strong>, e reconhecer uma hipótese que não pode
+        ser falseada;</li>
+    <li><strong>explicar</strong> por que a média se desloca com um valor extremo e a mediana
+        não;</li>
+    <li><strong>decidir</strong> entre média e mediana a partir do formato da distribuição, e
+        ler o par de medidas como um sinal.</li>
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
   <h2>Do tema ao problema</h2>
   <p>A pergunta é a peça mais importante da pesquisa, e a mais difícil de escrever</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Retomada: as perguntas que vocês trouxeram</h2>
@@ -91,7 +106,6 @@
   do projeto, no fim da aula.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Tema não é problema</h2>
@@ -107,7 +121,6 @@
   problematizá-lo.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Nem toda pergunta é um problema científico</h2>
@@ -129,7 +142,6 @@
   engenharia são a versão adulta dos "verbos de intervenção" que veremos adiante.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Por que se formula um problema? (Gil, 2022)</h2>
@@ -160,7 +172,6 @@
   capacitar-se a elaborar um projeto. O cardápio de temas do fim da aula existe para isso.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O funil em ação</h2>
@@ -175,7 +186,6 @@
   linha. Hoje descem até a terceira.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>As seis regras de Gil para formular o problema</h2>
@@ -204,7 +214,6 @@
   ideia, o problema ainda não está pronto.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Regra 2 em detalhe: definir operacionalmente</h2>
@@ -225,7 +234,6 @@
   <strong>diretamente a fatos empíricos</strong>, e não a percepções pessoais.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Problemas bons e ruins, lado a lado</h2>
@@ -241,7 +249,6 @@
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Como enunciar o problema: o exemplo de Gil, passo a passo</h2>
@@ -262,7 +269,6 @@
   três anos inferior à das de maior porte, nas coortes nascidas a partir de 2018?"</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Objetivos: geral e específicos</h2>
@@ -279,7 +285,6 @@
   não virar, sobra promessa.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Os verbos denunciam</h2>
@@ -319,7 +324,6 @@
   setores.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Hipóteses</h2>
@@ -342,7 +346,6 @@
   O teste formal vem no encontro 11.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Três níveis de hipótese, e o que interessa à ciência</h2>
@@ -364,7 +367,6 @@
   <strong>verificação empírica</strong>.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Como as variáveis se relacionam na hipótese</h2>
@@ -394,7 +396,6 @@
   encontro 2 insistiu que correlação não é causalidade.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Seis formas de relação assimétrica (Rosenberg, apud Gil)</h2>
@@ -418,7 +419,6 @@
   consegue, talvez a relação seja apenas simétrica.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>De onde vêm as hipóteses?</h2>
@@ -455,7 +455,6 @@
   já se pesquisou sobre o seu tema antes do encontro 8.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Seis requisitos da hipótese aplicável (Gil, 2022, seção 3.4)</h2>
@@ -487,7 +486,6 @@
   análise, descartar a maioria. Use a tabela como filtro na oficina de hoje.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Três defeitos clássicos de hipótese</h2>
@@ -515,7 +513,6 @@
   têm crescimento de faturamento maior que as que não investem".</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Toda pesquisa precisa de hipótese?</h2>
@@ -540,466 +537,313 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Variáveis</h2>
-  <p>A unidade de construção de toda pesquisa quantitativa</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que é uma variável, e seu papel na hipótese</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Característica observável que <strong>assume valores diferentes</strong> entre os casos
-  estudados (empresas, pessoas, meses, filiais).</div>
-  <div class="colunas">
-    <div>
-      <h3>Independente</h3>
-      <p>O suposto <strong>fator</strong>: ex.: porte da empresa</p>
-    </div>
-    <div>
-      <h3>Dependente</h3>
-      <p>O suposto <strong>efeito</strong>: ex.: taxa de sobrevivência</p>
-    </div>
-  </div>
-  <p class="menor">Há ainda variáveis <strong>de controle</strong> (mantidas constantes ou
-  consideradas na análise, ex.: setor) e <strong>intervenientes</strong> (explicam o
-  caminho entre X e Y). Por ora, domine o par independente/dependente.</p>
-  <div class="exemplo"><span class="rotulo">Aplicando à hipótese do exemplo</span>
-  Hipótese: "empresas de maior porte sobrevivem mais que as de menor porte". Independente
-  (x): porte da empresa. Dependente (y): taxa de sobrevivência em três anos.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Nível de mensuração 1: Nominal</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Categorias <strong>sem ordem</strong> entre si: apenas classificam. Nenhuma categoria é
-  "maior" que outra.</div>
-  <div class="exemplo"><span class="rotulo">Exemplos</span>
-  Seção CNAE (comércio, indústria, serviços...) · unidade da federação · gênero · forma
-  jurídica (MEI, LTDA, S.A.)</div>
-  <p><strong>Dicotômicas × politômicas:</strong> gênero é dicotômica (duas categorias); seção
-  CNAE é politômica (mais de duas). Numa modelagem, a dicotômica é recodificada como
-  <em>dummy</em>: 0 = Feminino, 1 = Masculino, por exemplo.</p>
-  <p><strong>Operações que fazem sentido:</strong> contar, calcular proporções, achar a
-  categoria mais frequente (moda). <strong>Não fazem sentido:</strong> média, mediana,
-  "maior que".</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Nível de mensuração 2: Ordinal</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Categorias <strong>com ordem</strong>, mas sem distância definida entre elas: sabe-se o
-  que é maior, não <em>quanto</em> maior.</div>
-  <div class="exemplo"><span class="rotulo">Exemplos</span>
-  Faixa de pessoal ocupado (1–9, 10–49, 50+) · escolaridade (fundamental, médio, superior)
-  · classificação de risco de crédito (AAA, AA, A...)</div>
-  <p><strong>Fazem sentido:</strong> tudo do nominal + ordenar, calcular mediana e
-  percentis. <strong>Não fazem sentido:</strong> média aritmética a rigor (a distância
-  entre "1–9" e "10–49" não é a mesma que entre "10–49" e "50+").</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Níveis 3 e 4: Intervalar e Razão</h2>
-  <div class="definicao"><span class="rotulo">Intervalar</span>
-  Números com distâncias iguais entre valores, mas <strong>zero arbitrário</strong> (o zero
-  não significa ausência). Ex.: temperatura em °C, ano de fundação. 40°C não é "o dobro do
-  calor" de 20°C.</div>
-  <div class="definicao"><span class="rotulo">Razão</span>
-  Números com <strong>zero absoluto</strong> (zero = ausência): receita, número de
-  empregados, taxa de sobrevivência. Aqui, sim, R$ 2 milhões é o dobro de R$ 1 milhão.</div>
-  <p><strong>Fazem sentido:</strong> todas as operações, média, desvio padrão e (só na
-  razão) razões e proporções entre valores.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese: o nível decide a análise</h2>
-  <table>
-    <tr><th>Nível</th><th>O que registra</th><th>Estatísticas possíveis</th><th>Exemplo</th></tr>
-    <tr><td><strong>Nominal</strong></td><td>Categorias sem ordem</td>
-        <td>Contagem, proporção, moda</td><td>Seção CNAE</td></tr>
-    <tr><td><strong>Ordinal</strong></td><td>Categorias ordenadas</td>
-        <td>+ mediana, percentis</td><td>Faixa de porte</td></tr>
-    <tr><td><strong>Intervalar</strong></td><td>Distâncias iguais, zero arbitrário</td>
-        <td>+ média, desvio padrão</td><td>Ano de fundação</td></tr>
-    <tr><td><strong>Razão</strong></td><td>Zero absoluto</td>
-        <td>+ razões ("o dobro de")</td><td>Receita, nº de empregados</td></tr>
-  </table>
-  <ul>
-    <li>Não se calcula <strong>média de seção CNAE</strong>;</li>
-    <li>Reduzir receita a faixas <strong>joga informação fora</strong> (razão → ordinal);</li>
-    <li>Nos encontros 9 a 13, cada técnica exigirá um nível.</li>
-  </ul>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Exercício: classifique o nível</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Dez variáveis serão ditas uma a uma. A turma responde o nível de
-  mensuração (nominal, ordinal, intervalar ou razão). Quando a turma se dividir, paramos e
-  discutimos: <em>que operações fazem sentido com esse valor?</em></div>
-  <div class="colunas">
-    <div>
-      <ol>
-        <li>Seção CNAE da empresa</li>
-        <li>Unidade da federação</li>
-        <li>Receita bruta anual</li>
-        <li>Faixa de pessoal ocupado (1–9, 10–49, 50+)</li>
-        <li>Número de empregados</li>
-      </ol>
-    </div>
-    <div>
-      <ol start="6">
-        <li>CEP da sede</li>
-        <li>Ano de fundação</li>
-        <li>Escolaridade do gestor</li>
-        <li>Nota de satisfação de 1 a 5</li>
-        <li>Taxa de sobrevivência em três anos</li>
-      </ol>
-    </div>
-  </div>
-  <p class="menor">Alguns desses casos são propositalmente traiçoeiros. Confira no próximo
-  slide.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Casos traiçoeiros</h2>
-  <ul>
-    <li><strong>CEP</strong>: numérico na aparência, <strong>nominal</strong> na essência:
-        somar CEPs não significa nada;</li>
-    <li><strong>Ano de fundação</strong>: <strong>intervalar</strong>: o ano zero é
-        convenção; "2000 é o dobro de 1000" não faz sentido;</li>
-    <li><strong>Porte</strong> depende da operacionalização: <strong>ordinal</strong> em
-        faixas, <strong>razão</strong> em número de empregados;</li>
-    <li><strong>Nota de satisfação 1–5</strong>: a rigor ordinal; na prática, tratada como
-        intervalar (discutiremos no encontro 6).</li>
-    <li><strong>Salário</strong>: informado em valor (R$ 1.050, R$ 15.200) é <strong>razão</strong>;
-        o mesmo dado agrupado em <strong>faixa de renda</strong> (R$ 1.050 a R$ 1.500, R$ 1.500
-        a R$ 2.000) passa a ser <strong>ordinal</strong>. Calcular a média de uma faixa é o erro
-        mais comum desse tipo: só a distribuição de frequência vale para dado qualitativo.</li>
-  </ul>
-  <div class="pergunta">Regra de bolso: pergunte <strong>"que operações fazem sentido com
-  este número?"</strong>, não "ele parece número?"</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Operacionalização: do conceito ao indicador</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Processo de traduzir um <strong>conceito abstrato</strong> (não observável diretamente)
-  em <strong>indicadores mensuráveis</strong> que o representem.</div>
-  <table>
-    <tr><th>Conceito</th><th>Operacionalizações possíveis</th></tr>
-    <tr><td>Desempenho do varejo</td><td>volume de vendas (PMC) · nº de empresas (CEMPRE) ·
-        receita (PAS)</td></tr>
-    <tr><td>Porte</td><td>faixa de pessoal ocupado · nº de empregados · receita anual</td></tr>
-    <tr><td>Inovação</td><td>gasto em P&amp;D · nº de produtos novos · % da receita de
-        produtos recentes</td></tr>
-  </table>
-  <div class="pergunta">A escolha é uma <strong>decisão do pesquisador</strong>: muda o
-  resultado, e por isso precisa ser justificada e registrada no relatório.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
 <section class="slide divisor estat">
-  <h2>Estatística do encontro 3</h2>
-  <p>Média, mediana e moda: qual medida cabe em cada nível de mensuração</p>
+  <h2>Parte 2: estatística</h2>
+  <p>Média, mediana e moda: a medida que sobrevive a um valor extremo</p>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: as três medidas de posição</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">Qual <strong>um número</strong> resume bem 36 meses de
+  variação do IPCA?</div>
+  <p>A resposta de sempre seria a média. Hoje ela vai ser <strong>não, e sim a
+  mediana</strong> — e a turma vai ver por quê, com o dado oficial na tela.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  A medida de tendência central que descreve bem uma distribuição é a que
+  <strong>sobrevive a um valor extremo</strong>. A média não sobrevive.</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Média, mediana e moda</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Média</strong>: some tudo e divida pelo número de valores.<br>
+  <strong>Mediana</strong>: coloque em ordem e pegue o do meio.<br>
+  <strong>Moda</strong>: o valor que mais se repete.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    A média quando o nível permite somar <strong>e</strong> a distribuição não tem
+    extremos. A mediana sempre que houver dúvida — ela serve a partir do ordinal.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    A média sobre categorias — a média da letra “G” não é nada. E a média
+    quando há um valor muito distante: ela é puxada por ele, e a mediana não.</div>
+  </div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula, com cada símbolo nomeado</h2>
   <div class="formula">
-    <span class="expr">x̄<span class="op">=</span><span class="frac"><span class="cima">Σx<sub>i</sub></span><span class="baixo">n</span></span></span>
+    <span class="expr">x&#772;<span class="op">=</span><span class="frac">
+      <span class="cima">x<sub>1</sub> + x<sub>2</sub> + … + x<sub>n</sub></span>
+      <span class="baixo">n</span></span></span>
     <span class="simbolos">
-      <span><b>Σ</b>somatório: some todos</span>
-      <span><b>x<sub>i</sub></b>cada valor observado</span>
-      <span><b>n</b>quantos valores há</span>
+      <span><b>x<sub>i</sub></b>o valor observado</span>
+      <span><b>n</b>a quantidade de valores</span>
+      <span><b>x&#772;</b>a média, e a barra significa “valor típico”</span>
     </span>
-    <span class="legenda-formula">Média: some tudo e divida pela quantidade.</span>
+    <span class="legenda-formula">Em linguagem corrente: <strong>some todos os
+    valores e divida pela quantidade</strong>. A média só existe quando essa soma e
+    essa divisão fazem sentido — e isso depende do nível de mensuração, que é a
+    Parte 2 do encontro 2.</span>
   </div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A média ponderada, que aparece em todo relatório</h2>
+  <div class="formula">
+    <span class="expr">x&#772;<sub>p</sub><span class="op">=</span>
+      <span class="frac"><span class="cima">w<sub>1</sub>x<sub>1</sub> +
+        w<sub>2</sub>x<sub>2</sub> + … + w<sub>n</sub>x<sub>n</sub></span>
+        <span class="baixo">w<sub>1</sub> + w<sub>2</sub> + … + w<sub>n</sub></span>
+      </span></span>
+    <span class="simbolos">
+      <span><b>w<sub>i</sub></b>o peso do valor <i>x<sub>i</sub></i></span>
+      <span><b>Σw</b>a soma dos pesos</span>
+    </span>
+    <span class="legenda-formula">Em linguagem corrente: <strong>multiplique cada
+    valor pelo peso, some tudo, e divida pela soma dos pesos.</strong> Se todos os
+    pesos forem iguais, a ponderada vira a média simples — é por isso que a fórmula
+    é a mesma.</span>
+  </div>
+  <p class="menor">Quando ponderar? Quando os casos não valem o mesmo: um mês de
+  Pandemia não pesa como um mês comum, e um mês de alta temporada pesa
+  mais.</p>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: seis valores e um extremo</h2>
+  <ol class="passos">
+    <li>Seis meses de IPCA, em %:
+        <span class="num">0,26 · 0,24 · 0,28 · 0,56 · 0,42 · 0,83</span>;</li>
+    <li>A soma: <span class="num">2,59</span>. A média:
+        <span class="num">2,59 ÷ 6 = 0,4317</span>;</li>
+    <li>A mediana: em ordem, o do meio é
+        <span class="num">0,35</span>;</li>
+    <li>Agora acrescentamos <strong>um</strong> valor extremo, o maior da série:
+        <span class="num">1,31</span> (fevereiro de 2025);</li>
+    <li>A média salta para <span class="num">0,5571</span> — sobe
+        <span class="num">0,1255</span>. A mediana vai para
+        <span class="num">0,42</span>.</li>
+  </ol>
+  <p class="menor"><strong>Um único valor, e a média mudou um quarto do período
+  inteiro. A mediana mudou 0,07.</strong> É esta é a lição do bloco.</p>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Os seis meses terão variação média de <strong>0,43%</strong>, com valor típico de
+  <strong>0,35%</strong>. Ao entrar um único mês de 1,31%, a média vai para
+  <strong>0,56%</strong> e o valor típico para <strong>0,42%</strong>.</div>
+  <p>Repare que as duas medidas não respondem à mesma pergunta:</p>
+  <ul>
+    <li>a <strong>média</strong> diz o balance do conjunto, e um valor extremo a
+        desloca;</li>
+    <li>a <strong>mediana</strong> diz o valor que ocupa o meio, e o extremo
+        simplesmente não a alcança.</li>
+  </ul>
+  <div class="alerta"><span class="rotulo">Quando as duas discordam, não há erro</span>
+  Média e mediana distantes é um <strong>sinal</strong>: a distribuição é assimétrica
+  e existem valores extremos. Nessas horas, a mediana descreve melhor.</div>
+</section>
+<section class="slide estatistica">
+              <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+              <span class="marca-estatistica">Parte 2 · Estatística</span>
+              <h2>Como se faz no Colab</h2>
+              <pre class="codigo">media   = serie[<span class="str">"valor"</span>].mean()      <span class="cmt"># a que desloca</span>
+mediana = serie[<span class="str">"valor"</span>].median()    <span class="cmt"># a que nao desloca</span>
+dif     = abs(media - mediana)
+
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"media"</span>, media, 0.37))
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"mediana"</span>, mediana, 0.35))</pre>
+              <p>São três funções, uma linha cada. A que importa é a terceira: a
+              <strong>diferença entre média e mediana</strong> é o número que diz se a
+              distribuição é simétrica.</p>
+              <p class="menor">Regra de bolso que a turma vai levar: se a diferença for
+              pequena em relação ao próprio valor, a distribuição é praticamente simétrica e a
+              média serve.</p>
+            </section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “A inadimplência da carteira de empresas de pessoa jurídica do Sistema Financeiro
+  Nacional foi, em média, de <strong>3,54%</strong> ao mês entre agosto de 2023 e
+  julho de 2026, com <strong>mediana de 3,53%</strong> — as duas medidas
+  praticamente coincidem, o que sugere distribuição simétrica (Banco Central, SGS,
+  série 21086). ”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  3,54% <strong>não é</strong> a inadimplência de hoje, que é <strong>4,19%</strong>.
+  A média resume 36 meses, e o último valor é um mês só. Citar a média como se fosse
+  o número de hoje é o erro mais comum de relatório com série temporal.</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: transformar média em frequência</h2>
   <div class="colunas">
-    <div>
-      <div class="definicao"><span class="rotulo">Mediana</span>
-      O valor que fica no meio quando os dados são <strong>ordenados</strong>. Com n ímpar, é o
-      valor da posição (n+1)÷2. Com n par, é a média dos dois centrais. Metade dos casos está
-      abaixo dela, metade acima.</div>
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “A inadimplência média é de 3,54%. Logo, quase <strong>4 em cada 100
+      empresas</strong> estavam inadimplentes durante todo o período.”<br><br>
+      O número está certo. A conclusão, não.
     </div>
-    <div>
-      <div class="definicao"><span class="rotulo">Moda</span>
-      O valor que <strong>mais se repete</strong>. É a única das três que funciona em variável
-      nominal, e pode não existir ou haver mais de uma.</div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      Uma média de 36 meses <strong>não diz o que aconteceu em cada mês</strong>.
+      Ela resume o conjunto.<br><br>
+      O honesto é: <em>“a inadimplência variou de 2,77% a 4,19% no período, com
+      média de 3,54%.”</em><br><br>
+      A taxa de cada mês só se obtém mês a mês.
     </div>
   </div>
-  <p>As três respondem à mesma pergunta, "qual é o valor típico?", e dão respostas diferentes
-  quando a distribuição não é simétrica. Escolher entre elas é decisão de pesquisa, não de conta.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: um exemplo resolvido</h2>
-
-  <p>Faturamento mensal, em R$ mil, de sete empresas de uma mesma rua. Seis são pequenas; uma é
-  um atacadista.</p>
-  <div class="figura">
-    <svg viewBox="0 0 1000 168" role="img" aria-label="Sete faturamentos numa reta, com a mediana no agrupamento e a média puxada pelo valor extremo">
-      <line x1="60" y1="112" x2="960" y2="112" stroke="#bbb" stroke-width="2"/>
-      <g fill="#8D0333">
-        <circle cx="134" cy="112" r="8"/><circle cx="148" cy="112" r="8"/><circle cx="153" cy="112" r="8"/>
-        <circle cx="162" cy="112" r="8"/><circle cx="171" cy="112" r="8"/><circle cx="180" cy="112" r="8"/>
-      </g>
-      <circle cx="894" cy="112" r="8" fill="#c0392b"/>
-      <text x="894" y="140" text-anchor="middle" font-size="16" fill="#c0392b">900</text>
-      <text x="157" y="140" text-anchor="middle" font-size="16" fill="#777">80 a 130</text>
-      <line x1="162" y1="52" x2="162" y2="124" stroke="#0AB0AB" stroke-width="3" stroke-dasharray="7 5"/>
-      <text x="154" y="44" text-anchor="end" font-size="19" fill="#05635f" font-weight="700">mediana = 110</text>
-      <line x1="263" y1="52" x2="263" y2="124" stroke="#8D0333" stroke-width="3"/>
-      <text x="273" y="44" font-size="19" fill="#8D0333" font-weight="700">média = 219,3</text>
-      <text x="620" y="90" text-anchor="middle" font-size="16" fill="#777">um único valor extremo puxa a média para cá</text>
-      <path d="M760 96 H880" stroke="#c0392b" stroke-width="2" marker-end="url(#sv)"/>
-      <text x="500" y="164" text-anchor="middle" font-size="15" fill="#999">faturamento mensal, em R$ mil</text>
-    </svg>
-  </div>
-  <div class="colunas">
-    <div>
-      <p><strong>Os dados ordenados:</strong> 80, 95, 100, <strong>110</strong>, 120, 130, 900.</p>
-      <p><strong>Média:</strong> a soma é 1.535; dividida por 7, dá 219,3.</p>
-      <p><strong>Mediana:</strong> n = 7, então a posição central é (7+1)÷2 = 4ª, que é 110.</p>
-    </div>
-    <div>
-      <p>Seis das sete empresas faturam menos que a média. Nenhuma empresa da rua fatura
-      "em torno de 219". A média existe, está corretamente calculada, e descreve mal o conjunto.</p>
-      <p>Esse é o padrão de quase toda variável econômica: faturamento, receita, patrimônio,
-      salário. Por isso o IBGE publica rendimento <strong>mediano</strong>.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se faz no Colab</h2>
-
-  <pre class="codigo"><span class="cmt"># uma medida de cada vez</span>
-dados[<span class="str">"faturamento"</span>].<span class="fn">mean</span>()      <span class="cmt"># média</span>
-dados[<span class="str">"faturamento"</span>].<span class="fn">median</span>()    <span class="cmt"># mediana</span>
-dados[<span class="str">"secao_cnae"</span>].<span class="fn">mode</span>()       <span class="cmt"># moda (serve para variável qualitativa)</span>
-
-<span class="cmt"># tudo de uma vez: contagem, média, desvio, mínimo, quartis e máximo</span>
-dados[<span class="str">"faturamento"</span>].<span class="fn">describe</span>()
-
-<span class="cmt"># a medida por grupo, que é o formato da tabela de resultados</span>
-dados.<span class="fn">groupby</span>(<span class="str">"secao_cnae"</span>)[<span class="str">"faturamento"</span>].<span class="fn">median</span>()</pre>
-  <div class="exemplo"><span class="rotulo">O diagnóstico em uma linha</span>
-  Rode <code>mean()</code> e <code>median()</code> na mesma variável. Se os dois números forem
-  próximos, a distribuição é razoavelmente simétrica e a média descreve bem. Se a média for
-  muito maior que a mediana, há valores extremos à direita, e a mediana é a medida honesta.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê, e a ponte com a hipótese</h2>
-
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "O faturamento mensal mediano das empresas da amostra é de <strong>R$ 110 mil</strong>. A média,
-  de R$ 219 mil, é puxada por uma única empresa de grande porte, e por isso a mediana foi adotada
-  como medida de posição."</p>
-  <p class="menor">Note que a frase declara a escolha e a justifica. Isso é método, não
-  preciosismo: outro pesquisador precisa poder repetir a decisão.</p></div>
-  <div class="colunas">
-    <div>
-      <h3>Que medida cabe em cada nível</h3>
-      <table>
-        <tr><th>Nível</th><th>Moda</th><th>Mediana</th><th>Média</th></tr>
-        <tr><td>Nominal</td><td>sim</td><td>não</td><td>não</td></tr>
-        <tr><td>Ordinal</td><td>sim</td><td>sim</td><td>com ressalva</td></tr>
-        <tr><td>Intervalar</td><td>sim</td><td>sim</td><td>sim</td></tr>
-        <tr><td>Razão</td><td>sim</td><td>sim</td><td>sim</td></tr>
-      </table>
-    </div>
-    <div>
-      <h3>A hipótese é uma frase sobre uma medida</h3>
-      <p>Hoje vocês escreveram hipóteses. Uma hipótese testável nomeia a medida que será
-      comparada:</p>
-      <div class="exemplo"><span class="rotulo">Vago</span>
-      "Empresas de serviços vão melhor que as de comércio."</div>
-      <div class="exemplo"><span class="rotulo">Testável</span>
-      "A <strong>mediana</strong> do faturamento das empresas de serviços é maior que a das
-      empresas de comércio."</div>
-      <p class="menor">A segunda diz o que medir, em quem e como comparar. É ela que o encontro
-      11 vai testar.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O erro comum: a média de tudo</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 1: média de variável nominal</span>
-      "A média do código CNAE é 38,4." Categoria não tem média. Para variável nominal, a medida de
-      posição é a moda, e o resumo é a tabela de frequência do encontro 1.</div>
-      <div class="alerta"><span class="rotulo">Erro 2: média com extremos, sem avisar</span>
-      "O faturamento médio é de R$ 219 mil" descreve uma rua em que seis das sete empresas
-      faturam menos de R$ 130 mil. Não é mentira; é descrição ruim.</div>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 3: média de médias</span>
-      Se um setor tem 1.000 empresas com média 50 e outro tem 10 empresas com média 500, a média
-      geral não é (50+500)÷2 = 275. É a soma de todos dividida por 1.010, que dá 54,5. Só se pode
-      tirar média de médias com pesos.</div>
-      <div class="exemplo"><span class="rotulo">A regra de bolso</span>
-      Antes de escolher a medida, olhe duas coisas: o nível de mensuração da variável e a
-      distância entre média e mediana. Essas duas informações resolvem quase todos os casos.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: medidas de posição</h2>
-
-  <div class="ficha">
-    <div>
-      <h4>A fórmula</h4>
-      <p><span class="expr">x̄ = Σx<sub>i</sub> ÷ n</span></p>
-      <p>Mediana: valor da posição (n+1)÷2 nos dados ordenados. Moda: o mais frequente.</p>
-    </div>
-    <div>
-      <h4>No Colab</h4>
-      <pre class="codigo">dados["v"].mean()
-dados["v"].median()
-dados["v"].describe()</pre>
-    </div>
-    <div>
-      <h4>A frase de leitura</h4>
-      <p>"O valor mediano é <em>x</em>; a média, <em>y</em>, é puxada por <em>motivo</em>, e por
-      isso adotou-se a mediana."</p>
-    </div>
-    <div>
-      <h4>O erro a evitar</h4>
-      <p>Média de variável nominal, média com extremos sem aviso, e média de médias sem peso.</p>
-    </div>
-  </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
-  volume I, seção 3.1.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-
+              <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+              <span class="marca-estatistica">Parte 2 · Estatística · ficha de revisão</span>
+              <h2>Ficha de revisão: tendência central</h2>
+              <div class="ficha">
+                <div>
+                  <h4>A fórmula</h4>
+                  <span class="expr">x&#772; = Σx<sub>i</sub> ÷ n</span>
+                  <p>Some todos os valores e divida pela quantidade.</p>
+                </div>
+                <div>
+                  <h4>No Colab</h4>
+                  <pre class="codigo">media   = s.mean()
+mediana = s.median()
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"media"</span>, media, 0.37))</pre>
+                </div>
+                <div>
+                  <h4>A frase de leitura</h4>
+                  <p>“Média X e mediana Y ao mês entre [período], com máximo Z em [mês].”</p>
+                  <p>Sempre o período, nunca “hoje”.</p>
+                </div>
+                <div>
+                  <h4>O erro</h4>
+                  <p>Usar a média de um período como se fosse o valor atual, ou como se fosse
+                  uma taxa de cada mês.</p>
+                </div>
+              </div>
+            </section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
 <section class="slide divisor">
   <h2>Mão na massa</h2>
   <p>PAS e PMC (IBGE), abra o notebook <code>encontro03_aluno.ipynb</code></p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Dois conceitos novos na prática de hoje</h2>
-  <div class="definicao"><span class="rotulo">Definição · série temporal</span>
-  Dados em que cada observação é um <strong>ponto no tempo</strong> (um mês, um ano) e a
-  <strong>ordem importa</strong>: analisam-se tendência, sazonalidade e variação, não só o
-  valor de cada ponto.</div>
-  <div class="definicao"><span class="rotulo">Definição · número-índice</span>
-  Valor expresso <strong>em relação a uma base</strong> fixada em 100 (na PMC, a média de
-  2022). Índice 110 = 10% acima da base; 95 = 5% abaixo. O que interessa é a
-  <strong>variação</strong>, não o valor absoluto.</div>
-  <div class="exemplo"><span class="rotulo">Leitura</span>
-  "O volume de vendas de móveis está em 87 (2022=100)" significa: as vendas reais de móveis
-  estão 13% abaixo da média de 2022, independentemente de quantos reais isso representa.</div>
+  <h2>Seção 1: como se usa um notebook</h2>
+
+  <p>Bloco de <strong>texto</strong> é explicação; bloco de <strong>código</strong> é instrução,
+  e precisa ser executado com <code>Shift + Enter</code>.</p>
+  <div class="instrucao"><span class="rotulo">Se isso aconteceu</span>
+  O resultado não é o esperado? <em>Runtime → Run all</em>. Quer recomeçar?
+  <em>Runtime → Restart runtime</em>. A célula B pediu um arquivo? Faça <em>upload</em> dos
+  arquivos de <code>dados/</code> que o professor indicar.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A prática de hoje, em 3 seções</h2>
+  <h2>Seção 2: a base de hoje, duas séries do Banco Central</h2>
+
+  <p>Cada base tem uma <strong>Célula A</strong> (chamada à API) e uma <strong>Célula B</strong>
+  (contingência, por upload).</p>
+  <div class="instrucao"><span class="rotulo">Uma diferença em relação ao IBGE</span>
+  A API do Banco Central devolve <strong>JSON</strong>, e o IBGE devolve uma tabela pronta. Por
+  isso a coluna de data precisa ser convertida com o formato brasileiro
+  <code>DD/MM/AAAA</code>. É a primeira vez que você precisa prestar atenção a um detalhe de
+  formato — e a chamada está escrita à mão, para você ver o que é pedido e o que é
+  recebido.</div>
+  <div class="alerta"><span class="rotulo">A API do Banco Central falha de vez em quando</span>
+  Por isso a função baixa a mesma URL até <strong>três vezes</strong> antes de desistir. Isso é
+  comportamento normal de quem usa API de verdade, e não esconde nada: se as três tentativas
+  falharem, o erro aparece — e a Célula B entra em cena.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 3: as três medidas</h2>
+
+  <p>O notebook calcula a média, a mediana e a moda da série de hoje, e imprime
+  <strong>|média − mediana|</strong>, que é o número que diz se a distribuição é simétrica.</p>
+  <div class="instrucao"><span class="rotulo">A sua parte</span>
+  Troque <code>SERIE = 433</code> (IPCA) por <code>SERIE = 21086</code> (inadimplência),
+  execute tudo de novo, e compare as duas linhas. Em qual das duas séries a média descreve melhor
+  o período?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 4: seis valores e um extremo</h2>
+
+  <p>É aqui que a média e a mediana se separam, e o notebook mostra as duas contas lado a
+  lado.</p>
+  <div class="instrucao"><span class="rotulo">A leitura que o professor quer da turma</span>
+  <em>“Um único valor, de 1,31%, e a média mudou 0,13 ponto percentual. A mediana mudou
+  0,07.”</em> Perguntar antes de mostrar o resultado: <strong>qual das duas descreve melhor este
+  conjunto?</strong></div>
+  <div class="instrucao"><span class="rotulo">Depois</span>
+  A mesma pergunta na série inteira: o notebook acha o maior valor da série, mostra em que mês
+  está, e calcula a média sem ele. Média e mediana distantes é um <strong>sinal</strong>, não um
+  erro.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 5: a média ponderada</h2>
+
+  <p>Nem todo mês vale o mesmo. O notebook traz um exemplo de relatório: duas vendas mensais, com
+  números diferentes de dias de venda, e mostra que a média simples e a ponderada respondem a
+  perguntas diferentes.</p>
+  <div class="pergunta">Antes de escolher a medida, escreva a pergunta: “por mês” ou “por dia”?</div>
+  <p class="menor">Regra: se todos os casos valem o mesmo, a ponderada vira a média simples. É
+  por isso que a fórmula é a mesma.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Seção 6: usando o assistente</h2>
+
+  <div class="pergunta">A IA explica, o código calcula, e você <strong>confere e escreve</strong>.</div>
+  <div class="instrucao"><span class="rotulo">Modo 1 — Pergunta</span>
+  Rode a célula de contexto, que imprime o que você precisa colar no assistente.</div>
+  <div class="instrucao"><span class="rotulo">Modo 2 — Encomenda</span>
+  Peça o código, cole na <strong>célula cinza</strong>. Só mude os <em>parâmetros de
+  consulta</em>: qual série, qual recorte, quantos meses.</div>
+  <div class="instrucao"><span class="rotulo">Modo 3 — Ler um resultado errado</span>
+  Três leituras erradas, todas com a série real. A segunda é a mais perigosa: usa um número
+  certo e tira dele uma afirmação que o número não sustenta.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As três perguntas do dia</h2>
+
+  <p>Respondidas <strong>por escrito</strong>, no próprio notebook:</p>
   <ol>
-    <li><strong>PAS</strong>: dados gerais das empresas de serviços: classifique cada
-        variável (papel + nível de mensuração);</li>
-    <li><strong>PMC</strong>: volume de vendas do varejo, mês a mês: filtre uma atividade,
-        calcule a variação no período e leia o gráfico da série;</li>
-    <li><strong>Do conceito à variável</strong>: duas operacionalizações para "desempenho
-        do varejo maranhense", com as limitações de cada uma.</li>
+    <li>Uma variável quantitativa do seu trabalho ou da sua área. Média ou mediana? Justifique
+        pelo formato da distribuição, e não pela roupa do símbolo.</li>
+    <li>Em que situação concreta uma média ponderada é a escolha certa, e o que aconteceria se
+        alguém usasse a média simples?</li>
+    <li>A série de hoje tem média e mediana quase iguais. O que isso permite dizer, e o que
+        <strong>não</strong> permite dizer?</li>
   </ol>
+  <div class="instrucao"><span class="rotulo">Gancho com o projeto individual</span>
+  A resposta 2 é a que mais aparece em relatório de câmera setorial: sempre perguntar se os
+  períodos do seu projeto têm o mesmo peso. Guarde o notebook: ele é a terceira parte do guia de
+  estatística descritiva da disciplina.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1 · PAS: dados gerais das empresas de serviços (25 min)</h2>
-  <div class="instrucao"><span class="rotulo">O que fazer</span>
-  Carregue a tabela 2325 (empresas de alojamento e alimentação: número de empresas, pessoal
-  ocupado, receita, salários). Para <strong>cada coluna</strong>, preencha na célula de texto
-  estruturada: (1) o que a variável mede; (2) o papel que ela poderia ter em uma hipótese
-  (independente ou dependente); (3) o nível de mensuração.</div>
-  <div class="instrucao"><span class="rotulo">No código</span>
-  Filtre e exiba as variáveis disponíveis na tabela com <code>unique()</code>.</div>
-  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
-  Não confunda a <strong>variável</strong> (receita) com a <strong>unidade</strong> em que ela é
-  expressa (mil reais). "Mil reais" não é variável: é a escala em que a receita foi
-  registrada. Vamos conferir esse ponto juntos no projetor.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2 · PMC: índice de volume de vendas por atividade (25 min)</h2>
-  <div class="instrucao"><span class="rotulo">O que fazer</span>
-  Carregue a tabela 8882 (volume de vendas do varejo por atividade, base 2022 = 100, últimos
-  24 meses). Duas noções novas aparecem aqui: <strong>série temporal</strong> e
-  <strong>número-índice</strong>.</div>
-  <div class="pergunta">Antes de codar, responda: que nível de mensuração tem um índice com
-  base 100? Por que a comparação relevante é a <strong>variação</strong>, e não o valor
-  absoluto?</div>
-  <div class="instrucao"><span class="rotulo">O que você adapta</span>
-  (1) Filtre <strong>uma atividade à sua escolha</strong>; (2) calcule a variação percentual
-  entre o primeiro e o último mês da série; (3) leia o gráfico da série.</div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  Índice 110 não são "110 reais" nem "110 vendas": é 10% acima da média de 2022. Dois
-  índices de atividades diferentes não se somam.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3 · Do conceito à variável (10 min)</h2>
-  <div class="instrucao"><span class="rotulo">Exercício invertido (célula de texto)</span>
-  Conceito: <strong>"desempenho do varejo maranhense"</strong>. Proponha <strong>duas
-  operacionalizações diferentes</strong> usando as bases que você já conhece (CEMPRE e PMC)
-  e indique <strong>uma limitação de cada</strong>.</div>
-  <div class="exemplo"><span class="rotulo">Para começar</span>
-  Pergunte-se: que coluna, de que tabela, representaria "desempenho"? O que essa escolha
-  captura, e o que ela deixa de fora (informalidade? preços? sazonalidade?)</div>
-  <p class="menor">Este exercício antecipa a decisão que você tomará no seu projeto: cada
-  conceito do seu problema precisará virar uma variável de uma base pública.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Oficina do projeto: o cardápio de temas (1/2)</h2>
@@ -1022,7 +866,6 @@ dados["v"].describe()</pre>
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Oficina do projeto: o cardápio de temas (2/2)</h2>
@@ -1043,72 +886,265 @@ dados["v"].describe()</pre>
   delimitação, não uma obrigação. O mesmo cardápio está no notebook.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que você entrega hoje (rascunho)</h2>
-  <ul>
-    <li><strong>Tema delimitado</strong>: setor, período, território, população;</li>
-    <li><strong>Problema</strong>, em forma de pergunta;</li>
-    <li><strong>Uma hipótese</strong>: relação esperada entre variáveis;</li>
-    <li><strong>Variáveis</strong>: papel, nível de mensuração e base onde estão.</li>
-  </ul>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  Escreva nas células indicadas do notebook e use os <strong>seis requisitos da hipótese
-  aplicável</strong> como filtro. Se o seu tema não tem base viável ou a sua pergunta é de
-  intervenção, chame o professor: esses casos merecem conversa direta. Ao final,
-  <strong>compartilhe o link do notebook</strong>.</div>
-  <p class="menor">Este rascunho será <strong>comentado por escrito</strong> até o encontro 4
-  e é o embrião da entrega formal do encontro 8.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li><strong>Tema → delimitação → problema:</strong> o problema é uma pergunta
-        delimitada e respondível com dados acessíveis; não é problema de "engenharia"
-        (como fazer) nem de valor (se deve);</li>
-    <li><strong>Seis regras de Gil:</strong> pergunta, claro e preciso (definição
-        operacional), base empírica, suscetível de solução, delimitado, ético;</li>
-    <li><strong>Objetivos:</strong> o geral reformula o problema; os específicos decompõem
-        o caminho, com verbos precisos (identificar, verificar, descrever, comparar,
-        avaliar), nunca vagos (pesquisar, entender, conhecer);</li>
-    <li><strong>Hipótese:</strong> enunciado conjectural da relação entre duas ou mais
-        variáveis; resposta provisória e falseável; H1 afirma a relação, H0 a nega, e é
-        a H0 que a estatística testa;</li>
-    <li><strong>Hipótese aplicável:</strong> clara, específica, empírica, parcimoniosa,
-        testável com as técnicas disponíveis e ligada a uma teoria;</li>
-    <li><strong>Variáveis:</strong> independente (fator) e dependente (efeito);</li>
-    <li><strong>Níveis de mensuração:</strong> nominal, ordinal, intervalar, razão, e é o
-        nível que decide as análises possíveis;</li>
-    <li><strong>Operacionalização:</strong> traduzir conceito em indicador é decisão do
-        pesquisador, e se justifica por escrito.</li>
+    <li><strong>Tema não é problema.</strong> O problema é uma pergunta delimitada, e as seis
+        regras de Gil são o teste de qualidade dela;</li>
+    <li><strong>Objetivo pede verbo verificável</strong> — medir, comparar, estimar, testar. Não
+        “contribuir para o debate”;</li>
+    <li><strong>Hipótese é uma frase sobre um número.</strong> “A mediana do setor A é maior
+        que a do setor B” é hipótese; “o setor A é melhor que o B” não é;</li>
+    <li><strong>A média é frágil a um valor extremo, e a mediana não.</strong> Um único mês de
+        1,31% deslocou a média do IPCA em 0,13 ponto, e a mediana em 0,07;</li>
+    <li><strong>Média e mediana distantes é um sinal, não um erro:</strong> a distribuição é
+        assimétrica, e a mediana descreve melhor;</li>
+    <li><strong>A média ponderada existe porque os casos não valem o mesmo.</strong> A pergunta
+        “por mês ou por dia?” vem antes da fórmula;</li>
+    <li>O próximo passo é a <strong>dispersão</strong>: duas séries podem ter a mesma média e
+        realidades opostas, e é por isso que uma medida só não basta.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
-
-<section class="slide">
+<section class="slide leitura">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
   <ul>
-    <li><strong>GIL (2022)</strong>, <em>Como elaborar projetos de pesquisa</em>,
-        capítulo 2 (Como formular um problema de pesquisa?) e capítulo 3 (Como construir
-        hipóteses?): base teórica desta aula; faça os exercícios do fim de cada capítulo
-        com o seu próprio tema;</li>
-    <li><strong>RICHARDSON (2017)</strong>: capítulo sobre planejamento de pesquisa
-        (prepara o próximo encontro);</li>
-    <li><strong>Estes slides</strong>: releia as definições de hipótese, os quatro níveis
-        de mensuração e a tabela-síntese;</li>
-    <li><strong>Refine o rascunho do projeto</strong> conforme os comentários que você
-        receberá.</li>
+    <li><strong>Estes slides</strong> são autossuficientes, e a Parte 2 fecha com a ficha de
+        revisão: fórmula, código, frase de leitura e erro comum num quadro só.</li>
+    <li><strong>GIL (2022)</strong>, capítulo 2 (como formular um problema de pesquisa: as seis
+        regras, definição operacional, enunciado e objetivos) e capítulo 3 (como construir
+        hipóteses: níveis, relações entre variáveis e os seis requisitos).</li>
+    <li><strong>O notebook do encontro</strong> está <em>pré-executado</em>. Rode com as duas
+        séries — <code>SERIE = 433</code> e <code>SERIE = 21086</code> — e compare as linhas.</li>
+    <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai
+        em duas partes.</li>
   </ul>
-  <p><strong>Síntese do dia:</strong> tema delimitado vira problema; problema vira
-  objetivos e hipóteses; hipóteses exigem variáveis; e o nível de mensuração das variáveis
-  decidirá as análises possíveis.</p>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Você deve ter no papel, do seu projeto: <strong>o problema</strong> (uma pergunta),
+        <strong>o objetivo geral</strong>, <strong>uma hipótese</strong> e as variáveis com o
+        nível declarado. É o insumo da primeira etapa do projeto no encontro 5;</li>
+    <li>Leia sobre a <strong>matriz de amarração</strong> antes do próximo encontro, e traga a
+        sua rascunhada.</li>
+  </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
+
+<div class="cabecalho-conducao">
+  <h1>Encontro 3</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 3</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a></p>
+    <h2>Abertura e o que vamos fazer hoje <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) transformar um tema
+            amplo em um problema delimitado; (ii) aplicar as seis regras de Gil; (iii) redigir
+            objetivo geral e específicos com verbos verificáveis; (iv) formular hipóteses
+            aplicáveis e reconhecer uma que não pode ser falseada; (v) explicar por que a média
+            se desloca com um valor extremo e a mediana não; (vi) decidir entre média e mediana
+            pelo formato da distribuição.</p>
+                <div class="caixa falar"><span class="rotulo">A ponte entre o dia e o bloco de estatística</span>
+            <p>Anunciar a ligação já na abertura, para que a turma ouça duas vezes: uma hipótese
+            é <strong>uma frase sobre um número</strong> — “a mediana do setor A é maior que a
+            do setor B”. Sem saber que número escolher, a hipótese não pode ser testada. É para
+            isso que o bloco de hoje existe.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 4 a 23</b> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a></p>
+    <h2>Do tema ao problema, objetivos e hipóteses <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Retomada: as perguntas que a turma trouxe</td><td>6</td></tr>
+      <tr><td>Tema não é problema, e as seis regras de Gil</td><td>12</td></tr>
+      <tr><td>Objetivos: geral e específicos, e os verbos</td><td>8</td></tr>
+      <tr><td>Hipóteses: níveis, relações e os seis requisitos</td><td>14</td></tr>
+      <tr><td>Os três defeitos clássicos de hipótese</td><td>5</td></tr>
+  </table>
+    <div class="caixa pergunta-aula"><span class="rotulo">Como conduzir a retomada</span>
+            <p>Abrir pedindo que <strong>três estudantes leiam em voz alta</strong> a pergunta de
+            pesquisa que trouxeram do encontro 2. O exercício funciona melhor com perguntas
+            reais, ainda mal formuladas, do que com exemplos do livro: a turma vê a diferença
+            entre tema e problema acontecendo na frente dela.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>Todo o bloco é uma única passagem: <strong>tema → problema → objetivo →
+            hipótese</strong>. Cada etapa reduz a anterior, e é essa redução que transforma um
+            assunto de interesse em algo pesquisável. Vale desenhar a passagem no quadro e
+            voltar a ela ao fim de cada tela.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O ponto que mais rende: hipótese é uma frase sobre um número</span>
+            <p>É a articulação entre os dois blocos do dia, e a frase que a turma deve levar:
+            <em>“a mediana do setor A é maior que a do setor B”</em> é hipótese; <em>“o setor A é
+            melhor que o B”</em> não é, porque não diz sobre que número se está falando. Pedir
+            que a turma reescreva uma hipótese vaga nesse formato.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Confundir tema com problema.</strong> “Comércio eletrônico no
+              Maranhão” é tema; “o porte da empresa está associado à adoção de comércio
+              eletrônico?” é problema.</li>
+              <li><strong>Objetivo com verbo de intenção</strong> — “contribuir para o debate”.
+              Objetivo quantitativo pede verbo verificável: medir, comparar, estimar, testar.</li>
+              <li><strong>Hipótese que não pode ser falseada.</strong> Se nenhum resultado
+              possível a contradiz, não é hipótese.</li>
+              <li><strong>Hipótese sem o número.</strong> É o erro que a Parte 2 do encontro 3 desfaz.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gancho com o projeto individual</span>
+            <p>Ao fim do bloco, cada estudante deve ter no papel: o problema (uma pergunta), o
+            objetivo geral e uma hipótese. É o insumo da primeira etapa do projeto, no encontro
+            5. Não deixar sair da sala sem isso.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 24 a 34</b> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
+    <h2>Parte 2: estatística — média, mediana e moda <span class="min">(90 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta do dia: “qual número resume bem este conjunto?”</td><td>8</td></tr>
+      <tr><td>Média, mediana e moda, e a fórmula de cada uma</td><td>25</td></tr>
+      <tr><td>A média ponderada, que aparece em todo relatório</td><td>15</td></tr>
+      <tr><td>O exemplo resolvido: seis valores e um extremo</td><td>25</td></tr>
+      <tr><td>Erro comum e ficha de revisão</td><td>17</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir, em voz alta: <strong>“a medida que descreve bem é a que sobrevive a um
+            valor extremo”</strong>. O bloco não é sobre três fórmulas: é sobre uma decisão. E a
+            decisão tem um teste de trinta segundos — compare a média com a mediana. Se estão
+            longe, use a mediana.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O exemplo que faz a aula acontecer</span>
+            <p>Seis meses de IPCA (0,26 · 0,24 · 0,28 · 0,56 · 0,42 · 0,83) e, depois,
+            <strong>um</strong> mês extremo. Peça que a turma calcule a média antes de o notebook
+            mostrar: a mão em seis valores é viável e o efeito do extremo é visível.</p>
+            <p>Ao revelar, dizer o número que impressiona: <strong>um único mês e a média subiu
+            0,1255 ponto percentual</strong> — de 0,4317 para 0,5571 — enquanto a mediana foi de
+            0,35 para 0,42. A média é frágil; a mediana não.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A média ponderada: por que ela existe</span>
+            <p>O exemplo de relatório — duas vendas mensais com números diferentes de dias —
+            mostra que a média simples e a ponderada <strong>respondem a perguntas
+            diferentes</strong>. O ponto não é a fórmula, é a pergunta: “por mês” ou “por dia”?</p>
+            <p>Vale antecipar que a ponderada volta em dois lugares: na amostragem estratificada
+            do Módulo II e nos índices de preço do Módulo IV.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Usar a média sem olhar o formato.</strong> É o erro do dia.</li>
+              <li><strong>Transformar média em frequência</strong> — “média de 3,54% logo, 4 em
+              cada 100 empresas”. O slide de erro comum trata exatamente disso.</li>
+              <li><strong>Citar a média do período como se fosse o valor de hoje.</strong> Erro
+              clássico de relatório com série temporal.</li>
+              <li><strong>Concluir simetria de uma diferença pequena.</strong> Diferença pequena
+              <em>sugere</em> simetria; demonstrar exige ver a distribuição, que é o encontro
+              4.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Série</th><th>Média</th><th>Mediana</th><th>Máximo</th></tr>
+              <tr><td>IPCA mensal (433), 36 meses</td><td>0,37%</td><td>0,35%</td>
+                  <td>1,31% (fev/2025)</td></tr>
+              <tr><td>Inadimplência PJ (21086), 36 meses</td><td>3,54%</td><td>3,53%</td>
+                  <td>4,19% (jul/2026)</td></tr>
+            </table>
+            <p>E o par de números da tela do exemplo: os seis primeiros meses do IPCA têm média
+            <strong>0,4317</strong> e mediana <strong>0,35</strong>; acrescentando o 1,31, a média
+            vai a <strong>0,5571</strong> e a mediana a <strong>0,42</strong>.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 35 a 44</b> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a></p>
+    <h2>Prática no Colab: duas séries do Banco Central <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Seção 1: como se usa um notebook</td><td>8</td></tr>
+      <tr><td>Seção 2: a base de hoje, duas séries do Banco Central</td><td>18</td></tr>
+      <tr><td>Seção 3: as três medidas</td><td>12</td></tr>
+      <tr><td>Seção 4: seis valores e um extremo</td><td>12</td></tr>
+      <tr><td>Seção 5: a média ponderada e o assistente</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A regra didática do dia</span>
+            <p>A única edição de código do dia é trocar <code>SERIE = 433</code> por
+            <code>21086</code>.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 2 — duas séries do Banco Central (18 min)</span>
+            <p>Primeira vez que a disciplina usa uma API cujo retorno é <strong>JSON</strong>, e
+            não uma tabela pronta. Vale parar dois minutos na diferença: a coluna de data vem no
+            formato brasileiro e precisa ser convertida, e o código mostra isso escrito à
+            mão.</p>
+            <p>Falar também da <strong>retentativa</strong>: a função tenta três vezes antes de
+            desistir, porque a API do Banco Central devolve 502 de vez em quando. É comportamento
+            de quem usa API de verdade, e não esconde nada — se as três falharem, a Célula B
+            entra em cena.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seções 3 e 4 — as medidas e o exemplo (24 min)</span>
+            <p>Pedir a troca de <code>SERIE</code> e a comparação das duas linhas: em qual das
+            duas séries a média descreve melhor o período? A inadimplência, com diferença de
+            0,007; o IPCA, com diferença de 0,015.</p>
+            <p>Depois, o exemplo: <strong>peça o cálculo antes de mostrar</strong>. A turma calcula
+            a média dos seis valores na mão, e o notebook confirma. Em seguida o valor extremo
+            entra, e o efeito aparece na tela.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 6 — o modo 3, e por que ele é o mais perigoso</span>
+            <p>A segunda leitura errada é a que merece mais tempo: um número <strong>certo</strong>
+            (a média de 3,54%) usado para afirmar algo que ele não sustenta. É o mesmo cuidado da
+            tela de leitura do encontro 1, agora aplicado a uma série temporal.</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">Se o aluno travar</span>
+            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. Se
+            a API falhar e a Célula B pedir arquivo, o professor resolve o upload.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">A oficina do projeto</span>
+            <p>As duas telas de oficina fecham o dia: apresentar o cardápio de temas e pedir que
+            cada estudante escreva <strong>o problema e uma hipótese</strong> do seu projeto, com
+            o número declarado. Circular pela sala, porque é aqui que se descobre quem ainda não
+            escolheu tema — e o encontro 5 tem entrega.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 45 a 46</b> <a class="chip-tela" href="#45">45</a> <a class="chip-tela" href="#46">46</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os três aprendizados do dia</span>
+            <ol>
+              <li><strong>Um problema não é um tema</strong>, e uma hipótese é uma frase sobre um
+              número — o que obriga a decidir qual número antes de enunciá-la.</li>
+              <li><strong>A média não é sempre a melhor medida.</strong> Ela é frágil a um único
+              valor extremo; a mediana não é.</li>
+              <li><strong>Média e mediana distantes é um sinal, não um erro:</strong> a
+              distribuição é assimétrica, e a mediana descreve melhor.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Leia o capítulo de GIL (2022) sobre a <strong>matriz de amarração</strong> e
+              traga a sua rascunhada: problema, objetivo, hipótese e as variáveis com o nível
+              declarado.</li>
+              <li>Escreva <strong>uma frase</strong> dizendo, para cada variável quantitativa do
+              seu projeto, se usaria média ou mediana, e por quê.</li>
+              <li>Reexecute o notebook em casa, com as duas séries.</li>
+            </ol>
+            <p>O próximo encontro é o mais denso do Módulo I: a estatística passa a ter duas
+            medidas, tendência central <strong>e dispersão</strong>. Quem chegar com a matriz de
+            amarração esboçada aproveita o dobro.</p>
+              </section>
+</main><!-- /conducao -->
 
 <div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>

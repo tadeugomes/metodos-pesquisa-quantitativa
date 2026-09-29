@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,8 +18,12 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 4 · Unidade I</div>
+  <div class="marcador-encontro">Encontro 4 · Módulo I · O projeto, as fontes e a dispersão</div>
   <h1>Etapas do processo e planejamento da pesquisa</h1>
   <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
@@ -32,7 +37,6 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Devolutiva dos rascunhos: três padrões</h2>
@@ -56,23 +60,31 @@
   para a oficina do fim da aula.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>15 min</td><td>Devolutiva geral dos rascunhos de projeto</td></tr>
-    <tr><td>45 min</td><td>As etapas do processo de pesquisa quantitativa</td></tr>
-    <tr><td>30 min</td><td>A matriz de amarração metodológica</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>85 min</td><td><strong>Prática no Colab:</strong> séries do Banco Central e do Ipeadata</td></tr>
-    <tr><td>35 min</td><td><strong>Oficina:</strong> matriz de amarração do seu projeto</td></tr>
-    <tr><td>15 min</td><td>Síntese e fechamento da Unidade I</td></tr>
-  </table>
+  <p>Este é o <strong>último encontro de conteúdo do Módulo I</strong>. No próximo é a AV1, e
+  ela exige a base do projeto já carregada e descrita.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: o projeto e os dados</h3>
+      <p>As oito etapas do processo de pesquisa, a diferença entre dado primário e secundário,
+      e os <strong>seis critérios</strong> para escolher uma fonte. Depois, a qualidade do dado,
+      a ética em dado secundário e a matriz de amarração.</p>
+    </div>
+    <div>
+      <h3>Parte 2: estatística — dispersão e forma</h3>
+      <p>Duas medidas, e não uma: <strong>onde está o centro e quanto os casos se afastam</strong>
+      dele. Desvio padrão, coeficiente de variação, IQR, quartis, histograma e escore z — sobre
+      um painel real de preços de combustível no Maranhão.</p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">O que você leva deste encontro</span>
+  O repertório completo da estatística descritiva: contar, identificar o nível, escolher a
+  medida, medir a dispersão e ler a forma. <strong>É o que a AV1 cobra</strong> — e é o que
+  descreve qualquer conjunto de dados.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Objetivos de aprendizagem</h2>
@@ -86,12 +98,12 @@
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
   <h2>O processo de pesquisa</h2>
   <p>Uma sequência de decisões encadeadas, não uma burocracia de projeto</p>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>As oito etapas: visão geral</h2>
@@ -108,7 +120,6 @@
   <p class="menor">Nos próximos slides, o que se decide (e o que dá errado) em cada uma.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Etapas 1 e 2: Problema e literatura</h2>
@@ -124,7 +135,6 @@
   uma medida melhor que a improvisada.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Etapas 3 e 4: Delineamento, população e fontes</h2>
@@ -141,7 +151,6 @@
   amostra de conveniência tratada como se representasse a população.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Etapas 5 e 6: Instrumentos e coleta</h2>
@@ -158,7 +167,6 @@
   comparáveis.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Etapas 7 e 8: Análise e comunicação</h2>
@@ -174,7 +182,6 @@
   nasceu na etapa 1 e só apareceu na 7. É disso que a matriz de amarração protege.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Decisões encadeadas</h2>
@@ -193,12 +200,12 @@
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
 <section class="slide divisor">
   <h2>Dados primários e secundários</h2>
   <p>De onde vêm os dados, e o que cada origem custa e permite</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Dados primários</h2>
@@ -214,7 +221,6 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Dados secundários</h2>
@@ -245,7 +251,6 @@
   declarar o que o indicador disponível captura e o que deixa de fora.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O ecossistema brasileiro de dados abertos</h2>
@@ -264,12 +269,61 @@
   fontes, todas públicas, todas acessíveis por código, todas citáveis.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como se escolhe uma fonte de dados</h2>
+  <p>Uma fonte não é boa por ser grande. É boa por <strong>responder à pergunta</strong>.
+  Antes de baixar qualquer coisa, passe pelos seis critérios:</p>
+  <table>
+    <tr><th>#</th><th>Critério</th><th>A pergunta que se faz</th></tr>
+    <tr><td>1</td><td><strong>Periodicidade</strong></td>
+        <td>De quanto em quanto tempo é atualizada? Serve para o meu período?</td></tr>
+    <tr><td>2</td><td><strong>Granularidade</strong></td>
+        <td>A observação é a empresa, o município, a UF ou o país?</td></tr>
+    <tr><td>3</td><td><strong>Cobertura</strong></td>
+        <td>Quais territórios e quais anos existem de fato?</td></tr>
+    <tr><td>4</td><td><strong>Metadado</strong></td>
+        <td>Quem produz, com que metodologia, e a base é revisada?</td></tr>
+    <tr><td>5</td><td><strong>Licença e citação</strong></td>
+        <td>O que posso publicar? Como cito a fonte no relatório?</td></tr>
+    <tr><td>6</td><td><strong>Acesso</strong></td>
+        <td>Há API, há arquivo para baixar, ou é preciso digitar?</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">O critério mais ignorado</span>
+  O <strong>metadado</strong>. Uma base sem metadado não permite saber se a série foi
+  recalculada, se houve quebra de metodologia ou se o número é preliminar.
+  <strong>Uma base sem metadado é um número sem origem</strong> — e um número sem origem não
+  pode entrar num relatório.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Quatro codificações, e por que isso importa</h2>
+  <p>Ler um CSV com a codificação errada <strong>não dá erro</strong>: dá resultado errado,
+  com acentos quebrados. É o erro mais silencioso da disciplina, e a razão pela qual o
+  notebook sempre declara a codificação de modo explícito.</p>
+  <table>
+    <tr><th>Fonte</th><th>Codificação</th><th>Separador</th></tr>
+    <tr><td>ANP (preços de revenda)</td><td><code>utf-8-sig</code> (tem BOM)</td><td><code>;</code></td></tr>
+    <tr><td>ANTT</td><td><code>latin-1</code></td><td><code>;</code></td></tr>
+    <tr><td>Receita Federal (CNPJ)</td><td><code>latin-1</code></td><td><code>;</code></td></tr>
+    <tr><td>IBGE (SIDRA)</td><td><code>utf-8</code></td><td><code>;</code></td></tr>
+    <tr><td>CVM</td><td><code>latin-1</code></td><td><code>;</code></td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">A regra prática do material</span>
+  Acrescentar <code>encoding="utf-8-sig"</code> num arquivo <em>sem</em> BOM não estraga nada.
+  Por isso a disciplina usa sempre essa forma: ela funciona nos dois casos.</div>
+  <p class="menor">E o detalhe que mais confunde: <strong>uma coluna numérica pode chegar como
+  texto</strong>. O <em>padrão brasileiro</em> usa vírgula decimal, e o Python espera ponto. Sem
+  <code>decimal=","</code> na leitura, todos os valores viram <code>NaN</code> em silêncio.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
 <section class="slide divisor">
   <h2>A matriz de amarração</h2>
   <p>O raio-x da coerência interna do seu projeto</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que é, e para que serve</h2>
@@ -285,7 +339,6 @@
   <strong>buraco</strong>, e é melhor descobri-lo agora do que na análise (etapa 7).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exemplo preenchido, coluna a coluna</h2>
@@ -304,7 +357,6 @@
   associação entre variáveis): os testes específicos vêm nos encontros 9 a 11.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que a matriz revela</h2>
@@ -318,306 +370,482 @@
   encontro 8</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-5" data-conducao="1">
 <section class="slide divisor estat">
-  <h2>Estatística do encontro 4</h2>
-  <p>Dispersão: desvio padrão e coeficiente de variação</p>
+  <h2>Parte 2: estatística</h2>
+  <p>Duas medidas, e não uma: tendência central <em>e</em> dispersão</p>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: variância, desvio padrão e CV</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">Dois grupos podem ter a <strong>mesma média</strong> e serem
+  completamente diferentes. Como distinguir?</div>
+  <p>Até agora descrevemos o <em>centro</em> de um conjunto. Duas empresas com faturamento médio
+  de R$ 1 milhão podem ser muito parecidas — ou uma faturar R$ 1 milhão todo mês e a outra
+  oscilar entre R$ 100 mil e R$ 2 milhões. <strong>A média não distingue as duas.</strong></p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Uma descrição honesta tem <strong>duas medidas</strong>: onde está o centro e
+  <strong>quanto os casos se afastam</strong> dele. Uma medida só esconde metade da
+  história.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>As medidas de dispersão</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Amplitude</strong>: o maior menos o menor.<br>
+  <strong>Variância</strong>: a média dos quadrados dos desvios.<br>
+  <strong>Desvio padrão</strong>: a raiz da variância — volta à unidade original.<br>
+  <strong>CV</strong>: o desvio dividido pela média — serve para comparar escalas
+  diferentes.<br>
+  <strong>IQR</strong>: do terceiro quartil menos o primeiro — a dispersão do miolo, imune
+  aos extremos.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    O <strong>desvio padrão</strong> para descrever a dispersão de uma variável só, e o
+    <strong>CV</strong> quando for comparar duas variáveis medidas em escalas diferentes.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    A <strong>amplitude</strong> como medida principal: ela depende de dois valores apenas, e
+    um único extremo a destrói.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula, com cada símbolo nomeado</h2>
   <div class="formula">
-    <span class="expr">s²<span class="op">=</span><span class="frac"><span class="cima">Σ(x<sub>i</sub> − x̄)²</span><span class="baixo">n − 1</span></span><span class="op">        </span>s<span class="op">=</span><span class="raiz">√s²</span><span class="op">        </span>CV<span class="op">=</span><span class="frac"><span class="cima">s</span><span class="baixo">x̄</span></span><span class="op">×</span>100</span>
+    <span class="expr">s<span class="op">=</span><span class="raiz">x</span>
+      <span class="frac"><span class="cima">(x<sub>1</sub> − x&#772;)<sup>2</sup>
+        + … + (x<sub>n</sub> − x&#772;)<sup>2</sup></span>
+        <span class="baixo">n − 1</span></span></span>
     <span class="simbolos">
-      <span><b>x<sub>i</sub> − x̄</b>o quanto cada caso se afasta da média</span>
-      <span><b>s²</b>variância</span>
-      <span><b>s</b>desvio padrão</span>
+      <span><b>x<sub>i</sub></b>cada valor observado</span>
+      <span><b>x&#772;</b>a média dos valores</span>
+      <span><b>n</b>a quantidade de valores</span>
+      <span><b>s</b>o desvio padrão</span>
     </span>
-    <span class="legenda-formula">Em linguagem corrente: veja o quanto cada valor se afasta da
-    média, tire a média desses afastamentos e volte à unidade original.</span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> veja quanto cada valor
+    se afasta da média, eleve esses desvios ao quadrado, tire a média deles e, por fim, a raiz.
+    A raiz é o que devolve o número à <strong>unidade original</strong>: a variância está em
+    R$ ao quadrado, o desvio padrão está em reais.</span>
   </div>
-  <div class="colunas">
-    <div>
-      <h3>Por que elevar ao quadrado</h3>
-      <p>Os afastamentos acima e abaixo da média se cancelam: a soma de (x<sub>i</sub> − x̄) é
-      sempre zero. Elevar ao quadrado elimina o sinal e ainda pesa mais os afastamentos grandes.</p>
-    </div>
-    <div>
-      <h3>Por que tirar a raiz</h3>
-      <p>A variância está em unidade ao quadrado, "reais ao quadrado", que não significa nada. A
-      raiz devolve a medida à unidade original, e por isso o desvio padrão é o número que se
-      relata.</p>
-    </div>
-  </div>
-  <p class="menor">O denominador n − 1, e não n, corrige o fato de que a média usada já veio da
-  própria amostra. Em bases grandes a diferença é irrelevante; a convenção existe porque o
-  resultado estima melhor a dispersão da população.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: duas amostras com a mesma média</h2>
-
-  <p>Margem líquida, em porcentagem, de cinco empresas de cada setor. A média dos dois setores é
-  exatamente a mesma: 100.</p>
-  <div class="figura">
-    <svg viewBox="0 0 1000 196" role="img" aria-label="Dois setores com a mesma média e dispersões muito diferentes">
-      <line x1="80" y1="56" x2="940" y2="56" stroke="#ddd" stroke-width="2"/>
-      <g fill="#0AB0AB">
-        <circle cx="591" cy="56" r="9"/><circle cx="607" cy="56" r="9"/><circle cx="617" cy="56" r="9"/>
-        <circle cx="628" cy="56" r="9"/><circle cx="644" cy="56" r="9"/>
-      </g>
-      <text x="80" y="48" font-size="18" fill="#05635f" font-weight="700">Setor A</text>
-      <text x="80" y="70" font-size="15" fill="#777">s = 3,8 · CV = 3,8%</text>
-      <line x1="80" y1="136" x2="940" y2="136" stroke="#ddd" stroke-width="2"/>
-      <g fill="#8D0333">
-        <circle cx="402" cy="136" r="9"/><circle cx="510" cy="136" r="9"/><circle cx="617" cy="136" r="9"/>
-        <circle cx="725" cy="136" r="9"/><circle cx="832" cy="136" r="9"/>
-      </g>
-      <text x="80" y="128" font-size="18" fill="#8D0333" font-weight="700">Setor B</text>
-      <text x="80" y="150" font-size="15" fill="#777">s = 31,6 · CV = 31,6%</text>
-      <line x1="617" y1="20" x2="617" y2="170" stroke="#a67c2e" stroke-width="2.4" stroke-dasharray="7 5"/>
-      <text x="617" y="14" text-anchor="middle" font-size="16" fill="#a67c2e" font-weight="700">média = 100 nos dois</text>
-      <text x="402" y="176" text-anchor="middle" font-size="14" fill="#999">60</text>
-      <text x="832" y="176" text-anchor="middle" font-size="14" fill="#999">140</text>
-      <text x="500" y="193" text-anchor="middle" font-size="15" fill="#999">margem líquida (%)</text>
-    </svg>
-  </div>
-  <p>Setor A: 95, 98, 100, 102, 105. Setor B: 60, 80, 100, 120, 140. A média não distingue os dois
-  conjuntos; o desvio padrão distingue. Relatar apenas a média seria esconder que, no setor B,
-  qualquer empresa individual pode estar muito longe do valor típico.</p>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Por que elevar ao quadrado, e por que tirar a raiz</h2>
+  <div class="definicao"><span class="rotulo">Por que o quadrado</span>
+  Se somássemos os desvios <em>como eles são</em>, os positivos e os negativos se
+  cancelariam e a soma daria sempre perto de zero. Elevar ao quadrado resolve isso e
+  <strong>pune mais os desvios grandes</strong> — o que é proposital: um caso que se afasta
+  muito deve pesar mais.</div>
+  <div class="definicao"><span class="rotulo">Por que a raiz</span>
+  A variância fica na unidade <em>ao quadrado</em>, e isso não se interpreta: R$ 0,18 ao
+  quadrado não quer dizer nada. A raiz devolve o número à unidade original, e aí a leitura
+  fica direta: “o preço típico é R$ 6,13, e a oscilação típica em torno dele é R$ 0,42”.</div>
+  <p class="menor">E por que dividir por <em>n − 1</em> em vez de <em>n</em>? Porque a média foi
+  estimada a partir dos próprios dados, o que “gasta” um grau de liberdade. Com n grande a
+  diferença é pequena; com n pequeno, ela importa.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: a gasolina no Maranhão</h2>
+  <ol class="passos">
+    <li>A base: <span class="num">4.816</span> observações de preço de gasolina comum no
+        Maranhão em 2025 (ANP);</li>
+    <li>A média: <span class="num">R$ 6,13</span>; a mediana:
+        <span class="num">R$ 6,08</span>;</li>
+    <li>Os desvios em relação à média, ao quadrado, somados e divididos por
+        <span class="num">4.815</span>, dão a variância:
+        <span class="num">0,1773</span>;</li>
+    <li>A raiz da variância é o desvio padrão:
+        <span class="num">s = R$ 0,42</span>;</li>
+    <li>O coeficiente de variação: <span class="num">0,42 ÷ 6,13 = 6,87%</span>.</li>
+  </ol>
+  <p class="menor">A leitura completa: <strong>“o preço típico é R$ 6,13, com oscilação típica
+  de R$ 0,42, ou 6,9% da média”</strong>. As três informações juntas descrevem a distribuição;
+  a média sozinha, não.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Em 2025, o preço da gasolina comum nos postos do Maranhão teve média de
+  <strong>R$ 6,13</strong> e desvio padrão de <strong>R$ 0,42</strong> — ou seja, a oscilação
+  típica entre postos foi de cerca de <strong>6,9%</strong> em torno da média (ANP).</div>
+  <p>Repare no que a frase faz:</p>
+  <ul>
+    <li>dá o centro <strong>e</strong> a dispersão, porque uma sem a outra engana;</li>
+    <li>traduz o desvio em porcentagem da média, que é o que permite dizer se a oscilação é
+    grande ou pequena;</li>
+    <li>diz de onde vem e de quando — e aqui isso importa muito: preço de combustível tem
+    sazonalidade e política de preço.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Como se faz no Colab</h2>
+  <pre class="codigo">media  = serie[<span class="str">"valor_venda"</span>].mean()
+desvio = serie[<span class="str">"valor_venda"</span>].std()      <span class="cmt"># ddof=1 por padrao no pandas</span>
+cv     = desvio / media * 100
+iqr    = serie[<span class="str">"valor_venda"</span>].quantile(0.75) - serie[<span class="str">"valor_venda"</span>].quantile(0.25)
 
-  <pre class="codigo"><span class="cmt"># dispersão em uma variável</span>
-dados[<span class="str">"margem"</span>].<span class="fn">std</span>()      <span class="cmt"># desvio padrão (já usa n-1)</span>
-dados[<span class="str">"margem"</span>].<span class="fn">var</span>()      <span class="cmt"># variância</span>
-
-<span class="cmt"># coeficiente de variação: não existe função pronta, escreve-se a fórmula</span>
-cv = dados[<span class="str">"margem"</span>].<span class="fn">std</span>() / dados[<span class="str">"margem"</span>].<span class="fn">mean</span>() * 100
-
-<span class="cmt"># média e desvio por grupo, que é a tabela de resultados do relatório</span>
-dados.<span class="fn">groupby</span>(<span class="str">"setor"</span>)[<span class="str">"margem"</span>].<span class="fn">agg</span>([<span class="str">"mean"</span>, <span class="str">"median"</span>, <span class="str">"std"</span>])
-
-<span class="cmt"># em série temporal, a variação percentual de um período para o outro</span>
-serie.<span class="fn">pct_change</span>() * 100</pre>
-  <p class="menor">O <code>describe()</code> do encontro 3 já traz o desvio padrão na linha
-  <code>std</code>. O CV é o único que precisa ser escrito, porque depende de duas medidas.</p>
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"desvio padrao"</span>, desvio, 0.42))
+<span class="fn">print</span>(<span class="str">f"{media:.2f} +- {desvio:.2f}  (CV {cv:.1f}%)  IQR {iqr:.2f}"</span>)</pre>
+  <p>A leitura mais útil do código é a linha do <code>print</code> final: ela imprime
+  <strong>centro e dispersão juntos, na mesma frase</strong>. É assim que o resultado vai para
+  o relatório.</p>
+  <p class="menor">Detalhe que vale comentar: no pandas, <code>.std()</code> já usa
+  <code>ddof=1</code>, a fórmula de <em>n − 1</em>. É o padrão para dado amostral, que é o
+  nosso caso.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê, e por que o CV existe</h2>
-
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "A margem líquida média do setor B é de 100%, com desvio padrão de 31,6 pontos, o que
-  corresponde a um <strong>coeficiente de variação de 31,6%</strong>. A dispersão é oito vezes
-  maior que a do setor A, cuja média é a mesma."</div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Os 4.816 preços de gasolina comum coletados em postos do Maranhão em 2025 tiveram
+  <strong>média de R$ 6,13 e desvio padrão de R$ 0,42</strong> (CV de 6,9%), com metade dos
+  postos entre <strong>R$ 5,79 e R$ 6,45</strong> (ANP, SHPC).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que o preço é caro ou barato: o desvio de R$ 0,42 é <em>pequeno</em> em relação à média, o que
+  indica um mercado com pouca variação entre postos. <strong>Mas isso mede só a dispersão dos
+  preços — não diz se o preço é alto ou baixo.</strong> Um mercado uniformemente caro tem
+  desvio pequeno e preços ruins: são duas informações diferentes.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: comparar desvios de escalas diferentes</h2>
   <div class="colunas">
-    <div>
-      <h3>O que o CV resolve</h3>
-      <p>Desvio padrão tem unidade. Um desvio de R$ 50 mil é enorme em faturamento de padaria e
-      irrelevante em faturamento de rede de supermercados. Dividir o desvio pela média elimina a
-      unidade e permite comparar dispersões de variáveis diferentes.</p>
-      <p>Regra de leitura usual: até 15% a dispersão é baixa, entre 15% e 30% é média, acima de
-      30% é alta. É convenção, não lei.</p>
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “O desvio padrão do preço da gasolina no Maranhão é de
+      <strong>R$ 0,42</strong>, e o do IPCA mensal é de <strong>0,30%</strong>. Logo, o preço da
+      gasolina varia mais que a inflação.”<br><br>
+      As unidades são <strong>diferentes</strong> — reais contra pontos percentuais — e os
+      números não se comparam. Além disso, o desvio acompanha a média: variável de média alta
+      tende a ter desvio alto, sem que seja mais dispersa.
     </div>
-    <div>
-      <h3>A ponte com a matriz de amarração</h3>
-      <p>A matriz que vocês montaram hoje ganha uma coluna: <strong>que estatística responde a
-      cada objetivo específico</strong>.</p>
-      <table>
-        <tr><th>Objetivo específico</th><th>Estatística</th></tr>
-        <tr><td>Caracterizar o perfil das empresas</td><td>Frequência e porcentagem</td></tr>
-        <tr><td>Descrever o faturamento típico</td><td>Mediana e quartis</td></tr>
-        <tr><td>Comparar a regularidade entre setores</td><td>Desvio padrão e CV</td></tr>
-      </table>
-      <p class="menor">Objetivo sem estatística prevista é objetivo que não se sabe como
-      responder.</p>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      Divida o desvio pela média, nos dois casos, e só então compare:<br><br>
+      gasolina: 0,42 ÷ 6,13 = <strong>6,87%</strong><br>
+      IPCA: 0,30 ÷ 0,37 = <strong>79,90%</strong><br><br>
+      Agora sim: a <strong>variação mensal do IPCA é muito mais dispersa</strong> que o preço da
+      gasolina no espaço. O CV é o que torna a comparação legítima.
     </div>
   </div>
+  <p class="menor">Guarde a regra: <strong>desvio padrão só se compara dentro da mesma variável;
+  variáveis diferentes, só pelo CV.</strong></p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O erro comum: comparar desvios sem o CV</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Errado</span>
-      "O desvio padrão do faturamento das grandes empresas é de R$ 4 milhões, contra R$ 30 mil
-      das microempresas; logo, as grandes são muito mais instáveis."</div>
-      <p>A comparação não se sustenta: as escalas são incomparáveis. Se a média das grandes é
-      R$ 80 milhões, o CV é 5%. Se a média das micro é R$ 100 mil, o CV é 30%. São as
-      microempresas que variam mais, em termos relativos.</p>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">O limite do CV</span>
-      Quando a média está próxima de zero, o CV explode. Margem líquida média de 0,5% com desvio
-      de 8 pontos dá CV de 1.600%, um número sem sentido prático. Em variáveis que assumem valores
-      negativos e positivos, como lucro, o CV não deve ser usado.</div>
-      <div class="exemplo"><span class="rotulo">A regra prática</span>
-      Relate sempre média (ou mediana), desvio padrão e o número de casos. As três juntas
-      descrevem; qualquer uma sozinha engana.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Ficha de revisão: dispersão</h2>
-
   <div class="ficha">
     <div>
       <h4>A fórmula</h4>
-      <p><span class="expr">s = √[Σ(x<sub>i</sub>−x̄)² ÷ (n−1)]</span></p>
-      <p>CV = (s ÷ x̄) × 100, sem unidade, para comparar escalas diferentes.</p>
+      <span class="expr">s = √(Σ(x<sub>i</sub> − x&#772;)² ÷ (n − 1))</span>
+      <p>Desvio médio ao quadrado, com a raiz de volta à unidade original.</p>
     </div>
     <div>
       <h4>No Colab</h4>
-      <pre class="codigo">dados["v"].std()
-cv = (dados["v"].std() /
-      dados["v"].mean() * 100)</pre>
+      <pre class="codigo">s   = serie.std()
+cv  = serie.std() / serie.mean() * 100
+iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
     </div>
     <div>
       <h4>A frase de leitura</h4>
-      <p>"Média de <em>x</em>, com desvio padrão de <em>s</em> (CV de <em>c</em>%), em <em>n</em>
-      casos."</p>
+      <p>“Média X, desvio Y, CV Z% — com metade dos casos entre Q1 e Q3.”</p>
+      <p>Centro <strong>e</strong> dispersão, sempre juntos.</p>
     </div>
     <div>
-      <h4>O erro a evitar</h4>
-      <p>Comparar desvios padrão de escalas diferentes sem o CV, e usar o CV quando a média está
-      perto de zero.</p>
+      <h4>O erro</h4>
+      <p>Comparar desvios de variáveis diferentes, em unidades diferentes. Entre variáveis,
+      só pelo CV.</p>
     </div>
   </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
-  volume I, seção 3.2, itens 3.2.1 a 3.2.5.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-6" data-conducao="1">
+<section class="slide divisor estat">
+  <h2>A forma da distribuição</h2>
+  <p>O gráfico, os quartis e o escore z: como a distribuição se desenha</p>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a forma responde</h2>
+  <div class="pergunta">Se você vendeu gasolina a R$ 6,20 ontem, isso foi caro ou barato?</div>
+  <p>Para responder, não basta saber a média. É preciso saber <strong>onde aquele valor cai na
+  distribuição</strong> — e a forma da distribuição é o que permite dizer isso em uma frase
+  compreensível.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Um número isolado não é caro nem barato: ele é caro ou barato <strong>em relação à
+  distribuição</strong>. O escore z faz essa conta, e a forma da distribuição decide se ele é
+  confiável.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Quartis, histograma e escore z</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Quartis</strong>: dividem os dados em quatro partes iguais. O Q1 deixa 25% abaixo
+  dele; o Q3, 75%.<br>
+  <strong>Cinco números</strong>: mínimo, Q1, mediana, Q3, máximo — a distribuição inteira
+  em cinco valores.<br>
+  <strong>Histograma</strong>: a tabela de frequência desenhada.<br>
+  <strong>Escore z</strong>: quantos desvios padrão um valor está acima ou abaixo da
+  média.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Os <strong>cinco números</strong> e o <strong>boxplot</strong> para descrever qualquer
+    distribuição, inclusive as assimétricas. O <strong>z</strong> para comparar valores de
+    variáveis diferentes.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    O escore z como se fosse uma régua infalível quando a distribuição é assimétrica: foi
+    construído para a normal, e ali é que ele é exato.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula do escore z, com cada símbolo nomeado</h2>
+  <div class="formula">
+    <span class="expr">z<span class="op">=</span><span class="frac">
+      <span class="cima">x − x&#772;</span><span class="baixo">s</span></span></span>
+    <span class="simbolos">
+      <span><b>x</b>o valor observado</span>
+      <span><b>x&#772;</b>a média</span>
+      <span><b>s</b>o desvio padrão</span>
+      <span><b>z</b>quantos desvios o valor está da média</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> tire a média do valor
+    (isso diz “quanto acima ou abaixo”), e divida pelo desvio (isso diz “em quantas unidades de
+    oscilação”). O resultado é <strong>adimensional</strong> — e é por isso que permite comparar
+    grandezas diferentes.</span>
+  </div>
+  <p class="menor">Referência de leitura: cerca de dois terços dos dados ficam entre
+  <em>z</em> = −1 e <em>z</em> = +1, e 95% entre −2 e +2. Um valor com <em>z</em> acima de 2 é
+  incomum.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: onde o posto cai na distribuição</h2>
+  <ol class="passos">
+    <li>A média da gasolina no Maranhão é <span class="num">R$ 6,13</span> e o desvio,
+        <span class="num">R$ 0,42</span>;</li>
+    <li>O cinco números da distribuição:
+        <span class="num">5,37 · 5,79 · 6,08 · 6,45 · 7,19</span>;</li>
+    <li>O IQR: <span class="num">6,45 − 5,79 = 0,66</span>. Metade dos postos está nessa
+        faixa de R$ 0,66;</li>
+    <li>O posto mais barato: <span class="num">z = (5,37 − 6,13) ÷ 0,42 = −1,80</span>;</li>
+    <li>O posto mais caro: <span class="num">z = (7,19 − 6,13) ÷ 0,42 = +2,52</span> — incomum,
+        acima de 2 desvios.</li>
+  </ol>
+  <p class="menor">Atenção ao IQR: <strong>metade dos postos está em uma faixa de R$ 0,66, e a
+  amplitude é de R$ 1,82</strong>. A amplitude é quase o triplo do IQR porque as duas pontas
+  esticam os extremos. É por isso que o IQR descreve melhor o miolo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo, e a forma da distribuição</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Metade dos postos do Maranhão praticou preço entre <strong>R$ 5,79 e R$ 6,45</strong> em
+  2025, com o posto mais caro a <strong>2,5 desvios</strong> acima da média — um valor
+  incomum, mas dentro do intervalo.</div>
+  <p>Aqui os dois blocos do dia se encontram. A média (R$ 6,13) é
+  <strong>maior</strong> que a mediana (R$ 6,08): isso já anunciava cauda à direita. E a
+  distribuição por classes confirma:</p>
+  <table>
+    <tr><th>Faixa de preço</th><th>Postos</th><th>%</th><th>% acumulado</th></tr>
+    <tr><td>R$ 5,30 a 5,80</td><td>1.409</td><td>29,3%</td><td>29,3%</td></tr>
+    <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,7%</td><td>65,9%</td></tr>
+    <tr><td>R$ 6,30 a 6,80</td><td>1.272</td><td>26,4%</td><td>92,3%</td></tr>
+    <tr><td>R$ 6,80 a 7,30</td><td>370</td><td>7,7%</td><td>100,0%</td></tr>
+  </table>
+  <p class="menor">A cauda se estende para a direita: há mais postos caros distantes do centro do
+  que postos baratos. Assimetria positiva, de 0,40. E é por isso que a
+  <strong>mediana</strong> descreve melhor o posto típico do que a média.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se faz no Colab</h2>
+  <pre class="codigo">cincos = serie[<span class="str">"valor_venda"</span>].quantile([0, .25, .5, .75, 1])
+z      = (serie[<span class="str">"valor_venda"</span>] - media) / desvio
 
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"Q1"</span>, cincos[0.25], 5.79))
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"IQR"</span>, cincos[0.75] - cincos[0.25], 0.66))
+<span class="fn">print</span>(<span class="fn">conferir</span>(<span class="str">"z do mais caro"</span>, z.max(), 2.52))
 
+serie[<span class="str">"valor_venda"</span>].hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
+  <p>O histograma é a última linha, e não a menos importante: <strong>a forma da distribuição é
+  mais fácil de ver do que de ler em números</strong>. A cauda à direita aparece no desenho
+  antes de aparecer na assimetria calculada.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “A distribuição dos preços de gasolina no Maranhão em 2025 é
+  <strong>assimétrica à direita</strong> (assimetria de 0,40): a média (R$ 6,13) supera a
+  mediana (R$ 6,08), e metade dos postos está entre R$ 5,79 e R$ 6,45. Por isso, o
+  <strong>preço típico</strong> é descrito pela mediana (ANP).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Não diz <em>por que</em> a distribuição é assimétrica. A causa provável — diferença de
+  custo logístico entre a capital e o interior, ou bandeira do posto — exige
+  <strong>outra análise</strong>, que é a correlação e a regressão do Módulo IV. Descrever a
+  forma é o começo; explicá-la é a etapa seguinte.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: usar a média em distribuição assimétrica</h2>
+  <div class="colunas">
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “O preço médio da gasolina no Maranhão é R$ 6,13.”<br><br>
+      Usado sozinho, esse número sugere que metade dos postos cobra acima dele e metade abaixo
+      — <strong>o que é falso</strong>. Em distribuição assimétrica à direita, a média fica
+      <em>acima</em> da mediana, e a maioria dos postos cobra menos que a média.
+    </div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      Diga as duas coisas, com a mediana na frente:<br><br>
+      <em>“O preço mediano da gasolina no Maranhão foi de <strong>R$ 6,08</strong>, com metade
+      dos postos entre R$ 5,79 e R$ 6,45; a média foi de R$ 6,13, um pouco acima da mediana
+      porque há postos caros puxando a distribuição para a direita.”</em><br><br>
+      Uma frase a mais, e a leitura deixa de ser enganosa.
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Ficha de revisão: forma da distribuição</h2>
+  <div class="ficha">
+    <div>
+      <h4>A fórmula do z</h4>
+      <span class="expr">z = (x − x&#772;) ÷ s</span>
+      <p>Quantos desvios o valor está da média. Adimensional, e por isso comparável.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">cincos = s.quantile([0, .25, .5, .75, 1])
+z      = (s - s.mean()) / s.std()
+s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>“Distribuição assimétrica à direita: média acima da mediana, e metade dos casos entre
+      Q1 e Q3.”</p>
+      <p>Assimetria: 0,40.</p>
+    </div>
+    <div>
+      <h4>O erro</h4>
+      <p>Reportar só a média numa distribuição assimétrica. Diga a mediana e o par Q1–Q3
+      também.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-7" data-conducao="1">
 <section class="slide divisor">
   <h2>Mão na massa</h2>
   <p>Banco Central e Ipeadata, abra o notebook <code>encontro04_aluno.ipynb</code></p>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>As séries de hoje (SGS / Banco Central)</h2>
-  <table>
-    <tr><th>Série</th><th>Código</th><th>Frequência</th></tr>
-    <tr><td>Meta Selic (% a.a.)</td><td>432</td><td>diária</td></tr>
-    <tr><td>Câmbio R$/US$ (venda)</td><td>1</td><td>diária</td></tr>
-    <tr><td>IPCA, variação mensal (%)</td><td>433</td><td>mensal</td></tr>
-    <tr><td>Saldo de crédito a PJ (R$ mi)</td><td>20543</td><td>mensal</td></tr>
-    <tr><td>Inadimplência da carteira PJ (%)</td><td>21086</td><td>mensal</td></tr>
-  </table>
-  <p class="menor">Cada série do SGS tem um código numérico, descobre-se buscando no
-  portal público do SGS.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Prática · Seção 1: Banco Central com <code>python-bcb</code></h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer · 30 min</span>
-  Carregue com <code>sgs.get</code> as cinco séries da tabela anterior, desde 2018. Observe a
-  gramática da chamada: um dicionário nome → código e uma data inicial. Depois, adapte:
+  <h2>Seção 1: a base de hoje, preços de revenda da ANP</h2>
+  <p>A primeira base do módulo que <strong>não</strong> vem do IBGE nem do Banco Central: é a
+  pesquisa de preços de combustíveis da ANP, no nível do <strong>posto</strong> — e não
+  agregada.</p>
+  <div class="instrucao"><span class="rotulo">O que muda em relação às bases anteriores</span>
   <ol>
-    <li>Altere a <strong>data inicial</strong> da consulta;</li>
-    <li>Acrescente <strong>uma série nova</strong> ao dicionário (descubra o código no portal do SGS).</li>
+    <li>É <strong>dado de registro</strong>: cada linha é um posto em um mês, e não uma
+    categoria já contada. Isso é o que permite calcular dispersão;</li>
+    <li>Tem <strong>duas colunas de texto com padrão brasileiro</strong>: a data
+    (<code>DD/MM/AAAA</code>) e o valor com vírgula decimal. As duas precisam ser convertidas;</li>
+    <li>Traz um código de “sem informação” (<code>..</code>), que vira <code>NaN</code> na
+    conversão. <strong>É o defeito de qualidade de hoje.</strong></li>
   </ol></div>
-  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
-  Selic e câmbio são diários; IPCA, crédito e inadimplência são mensais. Juntar tudo direto
-  produz uma tabela cheia de vazios. O notebook resolve com reamostragem mensal,
-  <code>resample("MS").last()</code>: basta entender o que ela faz, não dominar a sintaxe.</div>
+  <div class="alerta"><span class="rotulo">Se a API falhar</span>
+  Esta base não tem API: são 12 arquivos mensais, um por mês de 2025. O notebook baixa os 12 e
+  recorta o Maranhão. Havendo falha, a célula B lê o CSV já recortado.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Prática · Seção 2: Ipeadata com <code>ipeadatapy</code></h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer · 20 min</span>
-  <ol>
-    <li>Use <code>list_series("Taxa de câmbio")</code> como ferramenta de busca e veja como o catálogo responde;</li>
-    <li>Carregue <code>BM12_TJOVER12</code> (Selic overnight mensal);</li>
-    <li>Compare com a Selic do BCB: mesma variável? Mesma definição? Mesma frequência?</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  Fontes diferentes publicam a "mesma" variável com definições e frequências distintas. Qual
-  delas usar é uma decisão de operacionalização, e ela precisa ficar registrada por escrito.</div>
+  <h2>Seção 2: a dispersão calculada</h2>
+  <p>O notebook calcula média, mediana, desvio padrão, CV e IQR sobre a mesma série, e imprime
+  <strong>centro e dispersão na mesma frase</strong>.</p>
+  <div class="instrucao"><span class="rotulo">A conferência do dia</span>
+  Quatro valores esperados: <strong>R$ 6,13</strong> de média, <strong>R$ 0,42</strong> de
+  desvio, <strong>6,87%</strong> de CV e <strong>R$ 0,66</strong> de IQR. O
+  <code>conferir</code> compara, e o gabarito está na tela.</div>
+  <div class="pergunta">Antes de rodar: você espera que o desvio padrão do preço da gasolina no
+  Maranhão seja grande ou pequeno, em relação à média? Anote o palpite.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Prática · Seção 3: Juntando e visualizando</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer · 25 min</span>
-  Concatene as séries mensais em um único DataFrame e produza dois gráficos de linha:
-  <ol>
-    <li><strong>Juros e inflação</strong> (já montado no notebook);</li>
-    <li>Um segundo gráfico em que <strong>você escolhe o par de séries</strong> (sugestão: crédito PJ e inadimplência) e <strong>escreve o título</strong>.</li>
-  </ol>
-  Ao final, leitura dos gráficos em plenária: o que os dois traçados sugerem?</div>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Concluir que uma série "causa" a outra porque sobem juntas no gráfico. Hoje só sabemos
-  descrever a coincidência visual; escreva essa limitação em uma célula de texto.</div>
+  <h2>Seção 3: a forma e o escore z</h2>
+  <p>Os cinco números, o histograma e o escore z sobre a mesma série. E a comparação com a
+  regra 68-95-99,7, que revela a assimetria.</p>
+  <div class="instrucao"><span class="rotulo">A leitura que o professor quer da turma</span>
+  <em>“A média é maior que a mediana, a cauda é à direita, e a regra da normal não fecha em
+  nenhum dos três intervalos: 59,3% em |z|&lt;1, contra 68,3% previstos.”</em> Isso é a
+  conclusão do bloco inteiro, e ela é verbalizada antes de ser escrita.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Frequência e reamostragem: uma decisão de pesquisa</h2>
-  <div class="definicao"><span class="rotulo">O problema</span>
-  Séries de <strong>frequências diferentes</strong> (Selic diária, IPCA mensal) não se
-  juntam diretamente: é preciso <strong>reamostrar</strong>: converter a série diária para
-  o padrão mensal.</div>
-  <div class="definicao"><span class="rotulo">A decisão</span>
-  Converter como? <strong>Último valor do mês?</strong> <strong>Média do mês?</strong>
-  Cada escolha produz números diferentes, e por isso a escolha se
-  <strong>registra no relatório</strong>, como toda decisão de operacionalização.</div>
-  <div class="exemplo"><span class="rotulo">Operacionalizações concorrentes da "mesma" variável</span>
-  BCB publica a <strong>meta</strong> Selic (% a.a., decisão do Copom); o Ipeadata, a Selic
-  <strong>efetiva overnight</strong> (% a.m.). Fontes distintas definem a "taxa básica" de
-  formas distintas, cabe ao pesquisador escolher, justificar e citar.</div>
+  <h2>Seção 4: a sua base, contra os seis critérios</h2>
+  <p>A oficina do dia: cada estudante pega a base que escolheu para o projeto e a submete aos
+  <strong>seis critérios</strong> — periodicidade, granularidade, cobertura, metadado, licença,
+  acesso.</p>
+  <div class="instrucao"><span class="rotulo">O produto de hoje</span>
+  Uma tabela de seis linhas, no próprio notebook, com a resposta de cada critério para a
+  <strong>sua</strong> fonte. É a primeira entrega parcial do projeto: no encontro 5, a AV1
+  exige a base já carregada e descrita.</div>
+  <div class="alerta"><span class="rotulo">O critério que reprova mais projetos</span>
+  A <strong>cobertura</strong>. Muita base tem a variável que o estudante quer, mas para outro
+  período ou outro território. Descobrir isso agora custa uma tarde; descobrir depois custa o
+  projeto.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Conter a conclusão</h2>
-  <div class="pergunta">"A inadimplência sobe depois que os juros sobem?"</div>
-  <ul>
-    <li>O que sabemos fazer <strong>hoje</strong>: descrever a coincidência visual nos
-        gráficos;</li>
-    <li>O que aprenderemos no <strong>encontro 13</strong>: medir a associação (correlação,
-        regressão);</li>
-    <li>O que exige <strong>ainda mais</strong>: afirmar causalidade.</li>
-  </ul>
-  <p class="menor">Registrar a limitação por escrito é parte do exercício, conter a
-  conclusão é disciplina de pesquisador.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Prática · Seção 4: Perguntas de interpretação</h2>
+  <h2>Seção 5: as três perguntas do dia</h2>
   <div class="instrucao"><span class="rotulo">Escreva no notebook · 10 min</span>
   Responda em célula de texto, com frases completas:
   <ol>
@@ -627,10 +855,9 @@ cv = (dados["v"].std() /
   <p class="menor">Compartilhe o link do notebook ao final da aula.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Oficina · A matriz de amarração do seu projeto</h2>
+  <h2>Oficina do projeto: a matriz de amarração</h2>
   <table>
     <tr><th>Problema</th><th>Objetivo específico</th><th>Hipótese</th><th>Variáveis e níveis</th><th>Base</th><th>Técnica prevista</th></tr>
     <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
@@ -644,7 +871,6 @@ cv = (dados["v"].std() /
   <p class="menor">A matriz preenchida integra a entrega do encontro 8.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
@@ -663,10 +889,9 @@ cv = (dados["v"].std() /
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Fechamento da Unidade I: o que você já tem</h2>
+  <h2>Fechamento do Módulo I: o que você já tem</h2>
   <ul>
     <li>Problema, hipóteses e variáveis classificadas de um <strong>projeto próprio</strong>;</li>
     <li><strong>Matriz de amarração</strong> rascunhada;</li>
@@ -683,7 +908,6 @@ cv = (dados["v"].std() /
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para estudar em casa · antes de sair</h2>
@@ -698,6 +922,242 @@ cv = (dados["v"].std() /
   amarração é o instrumento que verifica se as suas decisões formam um projeto coerente.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
+
+<div class="cabecalho-conducao">
+  <h1>Encontro 4</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 4</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a></p>
+    <h2>Abertura e o que vamos fazer hoje <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) situar o seu projeto nas
+            oito etapas do processo de pesquisa; (ii) aplicar os seis critérios de escolha de uma
+            fonte de dados; (iii) reconhecer os quatro defeitos de qualidade do dado e o que se
+            faz com cada um; (iv) explicar o risco de reidentificação em dado anonimizado;
+            (v) calcular e interpretar desvio padrão, CV e IQR; (vi) ler a forma de uma
+            distribuição pelos cinco números e pelo escore z.</p>
+                <div class="caixa falar"><span class="rotulo">O fecho do Módulo I</span>
+            <p>Marcar com clareza: este é o <strong>último encontro de conteúdo do Módulo I</strong>.
+            No próximo é a AV1, e ela exige a base do projeto já carregada e descrita. Tudo o que
+            a disciplina ensinou sobre descrever um conjunto de dados fecha hoje.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 5 a 21</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a></p>
+    <h2>O processo de pesquisa, os dados e a matriz de amarração <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>As oito etapas do processo de pesquisa</td><td>10</td></tr>
+      <tr><td>Dados primários e secundários</td><td>6</td></tr>
+      <tr><td>Como se escolhe uma fonte: os seis critérios</td><td>12</td></tr>
+      <tr><td>Qualidade do dado e ética</td><td>12</td></tr>
+      <tr><td>A matriz de amarração</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>O processo de pesquisa é uma <strong>cadeia de decisões encadeadas</strong>: o
+            problema define o delineamento, que define a população e as fontes, que definem o
+            instrumento, que define a análise. Errar uma etapa contamina todas as seguintes — e
+            é por isso que as decisões aparecem na <strong>matriz de amarração</strong>.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O bloco que mais serve ao projeto</span>
+            <p>Os <strong>seis critérios</strong> e a <strong>qualidade do dado</strong> são o
+            conteúdo mais aproveitável do dia para o projeto individual. Conduzir como oficina:
+            cada estudante pega a fonte que escolheu e responde os seis critérios, um a um, no
+            próprio notebook.</p>
+            <p>O critério que mais reprova projetos é a <strong>cobertura</strong>: muita base tem
+            a variável desejada, mas para outro período ou outro território. Descobrir isso agora
+            custa uma tarde; descobrir depois custa o projeto.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A ética, que fecha o bloco</span>
+            <p>O conceito do dia é o <strong>risco de reidentificação</strong>: quanto mais rara a
+            combinação de características divulgadas, mais fácil reconstruir quem é o caso. Uma
+            tabela com município, porte, setor e faixa de faturamento consegue isolar uma única
+            empresa — e aí a “anonimização” virou ficção.</p>
+            <p>Vale dizer que é a mesma exigência da pesquisa com seres humanos, aplicada a dado
+            que já existe: não é burocracia, é o que permite publicar sem expor.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">A matriz de amarração, e a coluna que ela ganha</span>
+            <p>Fechar o bloco ligando matriz e estatística: a matriz amarra objetivo, variável e
+            <strong>técnica de análise</strong>. É a coluna que o Módulo I passou a permitir
+            preencher — e é ela que a AV1 vai cobrar.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 22 a 32</b> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a></p>
+    <h2>Parte 2: dispersão <span class="min">(55 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta: dois grupos, a mesma média</td><td>8</td></tr>
+      <tr><td>As cinco medidas de dispersão</td><td>16</td></tr>
+      <tr><td>Por que o quadrado, e por que a raiz</td><td>12</td></tr>
+      <tr><td>O exemplo resolvido: a gasolina no Maranhão</td><td>14</td></tr>
+      <tr><td>Erro comum e ficha</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>Uma frase, repetida: <strong>“uma medida só descreve metade da história”</strong>.
+            Duas empresas com faturamento médio de R$ 1 milhão podem ser idênticas — ou uma
+            faturar R$ 1 milhão todo mês e a outra oscilar entre R$ 100 mil e R$ 2 milhões. A
+            média não distingue. A dispersão, sim.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O ponto que mais rende: por que o quadrado</span>
+            <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir
+            pelo número?”</em>. A resposta — eles se cancelam — costuma sair de algum estudante, e
+            o quadrado passa a fazer sentido em vez de ser regra decorada.</p>
+            <p>Em seguida, a segunda pergunta: <em>“e por que tirar a raiz depois?”</em>. Aí é a
+            interpretação: sem a raiz, o número fica em R$ ao quadrado, que não se lê.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O exemplo, e a frase que sai dele</span>
+            <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
+            com oscilação típica de R$ 0,42 — 6,9% da média”</em>. A disciplina quer que essa
+            forma de dizer vire hábito: <strong>centro e dispersão na mesma frase</strong>.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide, e
+              o mais comum em relatório que compara dois indicadores.</li>
+              <li><strong>Achar que desvio alto significa problema.</strong> Desvio alto é
+              <em>vendação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
+              <li><strong>Usar a amplitude como medida principal.</strong> Ela depende de dois
+              valores só, e um extremo a destrói.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Medida</th><th>Gasolina, MA 2025</th></tr>
+              <tr><td>n</td><td>4.816 posto-mês</td></tr>
+              <tr><td>Média</td><td>R$ 6,13</td></tr>
+              <tr><td>Mediana</td><td>R$ 6,08</td></tr>
+              <tr><td>Desvio padrão</td><td>R$ 0,42</td></tr>
+              <tr><td>CV</td><td>6,87%</td></tr>
+              <tr><td>Amplitude</td><td>R$ 1,82</td></tr>
+              <tr><td>Q1 / Q3 / IQR</td><td>5,79 / 6,45 / 0,66</td></tr>
+            </table>
+            <p>E a comparação de CV que o notebook faz: gasolina <strong>6,87%</strong> contra IPCA
+            <strong>79,90%</strong>. É o par que inverte a conclusão do erro comum.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 33 a 42</b> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a></p>
+    <h2>Parte 2: forma da distribuição <span class="min">(55 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta: R$ 6,20 foi caro ou barato?</td><td>8</td></tr>
+      <tr><td>Quartis, cinco números, histograma e escore z</td><td>16</td></tr>
+      <tr><td>O exemplo resolvido: onde o posto cai</td><td>12</td></tr>
+      <tr><td>A forma da distribuição, e o encontro com o bloco anterior</td><td>14</td></tr>
+      <tr><td>Erro comum e ficha</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p><strong>Um número isolado não é caro nem barato</strong>: ele é caro ou barato
+            <em>em relação à distribuição</em>. O escore z faz essa conta, e a forma da
+            distribuição decide se ele é confiável.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O momento em que os dois blocos do dia se encontram</span>
+            <p>Este é o ponto mais importante da tarde, e vale conduzir devagar: na
+            <strong>tela “Como se lê o exemplo, e a forma da distribuição”</strong>, a média
+            (6,13) maior que a mediana (6,08) do primeiro bloco <em>explica</em> a assimetria que
+            o segundo bloco mede. Não são dois assuntos: são o mesmo, visto por dois ângulos.</p>
+            <p>E a <strong>regra 68-95-99,7</strong> fecha o argumento com dado: 59,3% dos postos
+            caem em |z| &lt; 1, contra 68,3% que a normal previria. A diferença é a assimetria,
+            medida em pontos percentuais.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O IQR contra a amplitude</span>
+            <p>A pergunta que rende: <em>“por que o IQR (R$ 0,66) é menos da metade da amplitude
+            (R$ 1,82)?”</em>. A resposta — a amplitude olha dois valores, o IQR olha o miolo — é a
+            lição de robustez do bloco.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Usar a média em distribuição assimétrica.</strong> O erro do slide:
+              dizer “metade acima e metade abaixo da média” quando a cauda é à direita.</li>
+              <li><strong>Tratar o escore z como régua infalível.</strong> Ele foi construído para
+              a normal, e aqui a distribuição não é normal.</li>
+              <li><strong>Concluir causa a partir da forma.</strong> Descrever a assimetria não é
+              explicá-la: isso é a correlação e a regressão do Módulo IV.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <p>Cinco números: <strong>5,37 · 5,79 · 6,08 · 6,45 · 7,19</strong>. IQR
+            <strong>0,66</strong>. Assimetria <strong>0,40</strong>. Escore z do posto mais barato
+            <strong>−1,80</strong>, do mais caro <strong>+2,52</strong>.</p>
+            <p>E a distribuição por classes, que é a tabela da tela:</p>
+            <table>
+              <tr><th>Faixa</th><th>Postos</th><th>%</th><th>% acumulado</th></tr>
+              <tr><td>R$ 5,30 a 5,80</td><td>1.409</td><td>29,3%</td><td>29,3%</td></tr>
+              <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,7%</td><td>65,9%</td></tr>
+              <tr><td>R$ 6,30 a 6,80</td><td>1.272</td><td>26,4%</td><td>92,3%</td></tr>
+              <tr><td>R$ 6,80 a 7,30</td><td>370</td><td>7,7%</td><td>100,0%</td></tr>
+            </table>
+            <p>São os valores que o notebook confere, e as classes são
+            <strong>fechadas à esquerda</strong> — é o detalhe que faz a tabela do notebook bater
+            com a do slide.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 43 a 52</b> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a> <a class="chip-tela" href="#45">45</a> <a class="chip-tela" href="#46">46</a> <a class="chip-tela" href="#47">47</a> <a class="chip-tela" href="#48">48</a> <a class="chip-tela" href="#49">49</a> <a class="chip-tela" href="#50">50</a> <a class="chip-tela" href="#51">51</a> <a class="chip-tela" href="#52">52</a></p>
+    <h2>Prática, fechamento do Módulo I e tarefa <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Seção 1: a base da ANP, por 12 arquivos mensais</td><td>18</td></tr>
+      <tr><td>Seção 2: a dispersão calculada</td><td>12</td></tr>
+      <tr><td>Seção 3: a forma e o escore z</td><td>12</td></tr>
+      <tr><td>Seção 4: a sua base, contra os seis critérios</td><td>12</td></tr>
+      <tr><td>Seção 5: as três perguntas</td><td>6</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A regra didática do dia</span>
+            <p>A única edição de código é trocar <code>PRODUTO</code> entre
+            <code>"GASOLINA"</code>, <code>"GASOLINA ADITIVADA"</code> e
+            <code>"ETANOL"</code>. Nada além disso.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Seção 1 — a base da ANP (18 min)</span>
+            <p>Esta é a parte mais lenta da prática, e vale avisar antes: são
+            <strong>12 arquivos mensais</strong>, um por mês, e o notebook baixa os 12. Enquanto
+            roda, aproveitar para explicar a diferença das bases anteriores:</p>
+            <ul>
+              <li>é <strong>dado de registro</strong>, uma linha por posto por mês — é isso que
+              permite calcular dispersão;</li>
+              <li>tem <strong>duas colunas no padrão brasileiro</strong> (data e valor com vírgula
+              decimal), que precisam ser convertidas;</li>
+              <li>traz o código <code>..</code> para “sem valor”, que vira <code>NaN</code> em
+              silêncio — o <strong>defeito de qualidade do dia</strong>.</li>
+            </ul>
+            <p>Se a rede da sala for lenta, rode a célula A antes de começar a aula, ou use a
+            célula B com o arquivo de contingência. Não deixe a turma esperando 12 downloads.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seções 2 e 3 — a dispersão e a forma (24 min)</span>
+            <p>O ponto de chegada da prática: o aluno vê média, desvio, CV, IQR, cinco números e
+            escore z <strong>sobre a mesma série</strong>, e depois o histograma com a média e a
+            mediana desenhadas. A leitura que se quer ouvir:</p>
+            <p><em>“a média é maior que a mediana, a assimetria é positiva, e a regra da normal
+            não fecha em nenhum dos três intervalos.”</em></p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Seção 4 — a oficina do projeto (12 min)</span>
+            <p>A entrega parcial: cada estudante preenche os seis critérios para a
+            <strong>própria</strong> fonte, no notebook. Circule pela sala: é aqui que se descobre
+            quem escolheu uma base sem a variável, ou com cobertura errada. A AV1 é no próximo
+            encontro e exige essa base funcionando.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O fechamento do Módulo I</span>
+            <p>As três telas finais fazem o balanço do módulo. Vale construir junto com a turma, no
+            quadro, a lista do que ela já sabe: contar e dividir; identificar o nível de
+            mensuração; escolher entre média e mediana; medir dispersão; ler a forma. <strong>É
+            esse o repertório da AV1</strong>, e ele é suficiente para descrever qualquer conjunto
+            de dados.</p>
+            </div>
+  </section>
+</main><!-- /conducao -->
 
 <div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>

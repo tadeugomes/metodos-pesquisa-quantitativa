@@ -1,0 +1,254 @@
+/* =========================================================
+   Camada de condução — PLANO_REFORMULACAO.md, seção 8.1
+   Fica em arquivo separado de propósito: o `ufma-slides.css` é
+   a identidade visual da UFMA (Manual 2024) e não é tocado pela
+   reforma. Tudo o que este arquivo acrescenta é o deck de duas
+   camadas: as telas projetadas e a condução da aula.
+
+   - #deck       as telas, uma por página, que se projeta
+   - #conducao   minutagem, condução, perguntas, gabarito, tarefa
+   Tecla D alterna entre os dois modos. Ao imprimir, o PDF sai em
+   duas partes: primeiro as telas, depois a condução.
+   ========================================================= */
+
+/* ---------------- navegação do modo detalhe ---------------- */
+#aviso-modo {
+  position: fixed;
+  top: 4.6vh; left: 6vw;
+  background: var(--vinho);
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-size: 1.5vh;
+  letter-spacing: 0.08em;
+  padding: 0.5vh 1vw;
+  border-radius: 0.4vh;
+  z-index: 20;
+  display: none;
+}
+body.modo-detalhe #aviso-modo { display: block; }
+body.modo-detalhe .dica-navegacao { display: none; }
+
+/* o botao fica ACIMA do contador de telas, que e do CSS original e fica no
+   canto inferior direito; na mesma linha os dois se cobriam */
+.barra-detalhe {
+  position: fixed;
+  bottom: 5.4vh; right: 1.6vw;
+  z-index: 30;
+}
+.barra-detalhe button {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4vh;
+  letter-spacing: 0.06em;
+  color: #ddd;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid #555;
+  border-radius: 0.4vh;
+  padding: 0.4vh 0.9vw;
+  cursor: pointer;
+}
+.barra-detalhe button:hover { color: #fff; background: rgba(0, 0, 0, 0.8); }
+body.modo-detalhe .barra-detalhe { display: none; }
+
+/* no modo detalhe, o deck vira um documento rolável */
+body.modo-detalhe #conducao { display: block; }
+body.modo-detalhe #deck { padding-bottom: 6vh; }
+body.modo-detalhe .slide {
+  position: relative;
+  inset: auto;
+  height: auto;
+  min-height: 58vh;
+  display: block;
+  margin-bottom: 2.4vh;
+  border: 1px solid #e4e4e4;
+}
+body.modo-detalhe .numero-slide { display: none; }
+
+/* =========================================================
+   Telas novas do bloco de estatística (seção 8.2 do plano):
+   elementos 5 e 6 — exemplo passo a passo e leitura do exemplo.
+   ========================================================= */
+.passos { counter-reset: passo; margin: 1vh 0 0 0; padding: 0; }
+.passos > li {
+  list-style: none;
+  counter-increment: passo;
+  position: relative;
+  padding-left: 3.4vw;
+  margin-bottom: 0.9vh;
+  font-size: 2.25vh;
+  line-height: 1.35;
+}
+.passos > li::before {
+  content: counter(passo);
+  position: absolute;
+  left: 0; top: 0.1vh;
+  width: 2.2vw; height: 2.2vw;
+  background: var(--verde);
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.7vh;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 0.4vh;
+}
+.passos > li .num {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: #05635f;
+}
+.slide.estatistica .passos > li { font-size: 2.2vh; }
+
+/* elemento 2 — quando usar e quando não usar, lado a lado */
+.limites { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2vh 1.3vw; margin: 1.1vh 0; }
+.limites > div { padding: 1.1vh 1.3vw; font-size: 2.15vh; line-height: 1.35; }
+.limites .usa { background: #f0faf9; border-left: 0.4vw solid var(--verde); }
+.limites .nao-usa { background: #fdf0f0; border-left: 0.4vw solid #c0392b; }
+.limites .rotulo {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.8vh;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5vh;
+}
+.limites .usa .rotulo { color: #05635f; }
+.limites .nao-usa .rotulo { color: #a93226; }
+
+/* =========================================================
+   A camada de condução propriamente dita
+   ========================================================= */
+#conducao {
+  display: none;
+  background: #ffffff;
+  color: var(--cinza-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 11.5pt;
+  line-height: 1.5;
+}
+
+#conducao .cabecalho-conducao {
+  background: var(--vinho);
+  color: #fff;
+  padding: 3vh 4vw 2.4vh 4vw;
+  margin-bottom: 3vh;
+}
+#conducao .cabecalho-conducao h1 {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 22pt;
+  margin: 0 0 0.4vh 0;
+}
+#conducao .cabecalho-conducao p { font-size: 12pt; color: #f2d9c0; margin: 0; }
+#conducao .cabecalho-conducao .aviso {
+  margin-top: 1.2vh; padding-top: 1vh;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 10.5pt; line-height: 1.45; color: #f2d9c0;
+}
+
+#conducao .secao-conducao {
+  max-width: 46em;
+  margin: 0 auto 4vh auto;
+  padding: 0 3vw;
+}
+#conducao h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 16pt;
+  color: var(--vinho);
+  border-bottom: 2px solid var(--dourado);
+  padding-bottom: 0.4vh;
+  margin: 2.6vh 0 1.4vh 0;
+}
+#conducao h2 .min { font-weight: 400; font-size: 12pt; color: #666; }
+#conducao h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 13pt;
+  color: #05534f;
+  margin: 2vh 0 0.7vh 0;
+}
+#conducao p { margin-bottom: 0.9vh; }
+#conducao ul, #conducao ol { margin: 0 0 1vh 1.6em; }
+#conducao li { margin-bottom: 0.4vh; }
+#conducao strong { color: var(--vinho); }
+#conducao em { color: #444; }
+
+/* a ligação entre a condução e a tela que se projeta */
+#conducao .telas-da-secao { margin: -0.4vh 0 1.4vh 0; }
+#conducao .chip-tela {
+  display: inline-block;
+  font-family: var(--fonte-titulo);
+  font-size: 9pt; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none; color: #05534f;
+  background: #d9f2f1; border: 1px solid #7fd0cc;
+  border-radius: 0.5vh; padding: 0.35vh 0.8vw;
+  margin: 0 0.5vw 0.6vh 0;
+}
+#conducao .chip-tela:hover { background: #b9e9e7; }
+
+/* tabelas de minutagem */
+#conducao .minutagem {
+  width: 100%; border-collapse: collapse;
+  margin: 1vh 0 1.6vh 0; font-size: 10.5pt;
+}
+#conducao .minutagem th {
+  background: var(--vinho); color: #fff; text-align: left;
+  padding: 0.6vh 0.7em; font-weight: 700;
+}
+#conducao .minutagem td {
+  padding: 0.5vh 0.7em; border-bottom: 1px solid var(--dourado);
+}
+#conducao .minutagem tr:nth-child(even) td { background: var(--cinza-claro); }
+
+/* as caixas coloridas da condução */
+#conducao .caixa {
+  padding: 1.1vh 1.1em; margin: 1.1vh 0;
+  border-left: 4px solid var(--verde); background: #f4fbfb;
+}
+#conducao .caixa.falar { border-left-color: var(--dourado); background: #fffaf0; }
+#conducao .caixa.nao-falar { border-left-color: #c0392b; background: #fdf3f3; }
+#conducao .caixa.pergunta-aula { border-left-color: var(--verde); background: #f0faf9; font-style: italic; }
+#conducao .caixa.gabarito { border-left-color: var(--vinho); background: #faf3f6; }
+#conducao .caixa.alerta { border-left-color: #8a6400; background: #fff8e6; }
+#conducao .caixa .rotulo {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-weight: 700; font-size: 9pt;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 0.5vh; color: #05534f;
+}
+#conducao .caixa.falar .rotulo { color: #8a6400; }
+#conducao .caixa.nao-falar .rotulo { color: #a93226; }
+#conducao .caixa.gabarito .rotulo { color: var(--vinho); }
+#conducao .caixa.alerta .rotulo { color: #8a6400; }
+#conducao .caixa > :last-child { margin-bottom: 0; }
+
+#conducao code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--cinza-claro);
+  padding: 0.1em 0.3em; border-radius: 3px; color: var(--vinho);
+}
+
+/* =========================================================
+   Impressão: duas partes no mesmo PDF
+   ========================================================= */
+@media print {
+  #conducao { display: block !important; }
+  #conducao .secao-conducao { break-before: page; max-width: none; padding: 0 1.5em; }
+  #conducao h2 { break-after: avoid; }
+  #conducao .caixa, #conducao table, #conducao .minutagem { break-inside: avoid; }
+  .barra-detalhe, #aviso-modo { display: none !important; }
+  body.modo-detalhe .slide { min-height: 0; border: none; margin-bottom: 0; }
+}
+
+/* ?so_deck na URL: a impressão sai só com as telas */
+body.so-deck #conducao { display: none !important; }
+@media print { body.so-deck #conducao { display: none !important; } }
+
+/* telas pouco largas (4:3) */
+@media (max-aspect-ratio: 14/10) {
+  .passos > li { font-size: 2.05vh; }
+  .limites > div { font-size: 2vh; }
+  #conducao { font-size: 10.5pt; }
+}

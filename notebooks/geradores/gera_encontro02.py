@@ -1,404 +1,459 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook único e autossuficiente do Encontro 2."""
-from nb_helper import gera_notebooks
+"""Gera o notebook do encontro 2 (Módulo I — Parte 2: tipos de dado e a regra da medida).
 
-C = []
+Segue o PLANO_REFORMULACAO.md, secao 9: pre-executado, painel do encontro, CONFIG,
+utilitarios no topo, zero diagnostico, `conferir` em cada questao, e nenhuma tarefa
+que exija escrever codigo.
 
-C.append({"tipo": "md", "texto": """\
-# Encontro 2: Tipos de pesquisa e demografia das empresas
+A Parte 2 do encontro ensina os niveis de mensuracao de Stevens (nominal, ordinal, intervalo,
+razao) e a regra que decorre deles: o nivel decide qual medida de resumo pode ser
+usada. Cada nivel tem um exemplo REAL, de fonte oficial:
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
+  nominal  -> a secao da CNAE, letras de A a U (CEMPRE 9582, IBGE)
+  ordinal  -> a faixa de pessoal assalariado (Demografia das Empresas 9949, IBGE)
+  razao    -> receita, pessoal ocupado e numero de empresas (PAS 2325, IBGE)
 
-Na aula 1 discutimos a afirmação *"a maioria das empresas fecha no primeiro ano"*. Hoje vamos
-respondê-la com a pesquisa **Demografia das Empresas** (IBGE), que registra nascimentos de
-empresas e suas **taxas de sobrevivência** após 1, 2 e 3 anos, por atividade e por porte.
+Nao ha exemplo oficial de nivel INTERVALO nas bases do IBGE usadas aqui, e o
+material trata isso com honestidade: o exemplo do intervalo e uma escala de
+satisfacao de 0 a 10, que e variavel de verdade em pesquisa de administracao e
+prepara o terreno para o questionario do Modulo II.
 
-Neste notebook você vai:
-1. Carregar a tabela 9949 do SIDRA e entender seus parâmetros;
-2. Aprender a **filtrar** linhas e **selecionar** colunas de um DataFrame;
-3. Usar `groupby` para responder: **empresas maiores sobrevivem mais?**
-4. Classificar a análise feita como descritiva ou correlacional."""})
+Numeros verificados em 28/09/2026 (ver dados/FONTES.md, secao 3).
+"""
+import nb_helper as nb
 
-C.append({"tipo": "code", "texto": "%pip install sidrapy -q"})
+# ------------------------------------------------------------------ painel
 
-C.append({"tipo": "md", "texto": """\
-## Seção 1: Carregando os dados
+PAINEL = """# Encontro 2. Variáveis, tipos de dado e a regra da medida
 
-Releia os parâmetros com atenção: essa "gramática" do SIDRA se repetirá o semestre inteiro.
-- `table_code`: qual tabela;
-- `territorial_level` / `ibge_territorial_code`: qual território (esta tabela só existe para o Brasil);
-- `variable`: quais variáveis (aqui, todas: nascimentos e as três taxas de sobrevivência);
-- `classifications`: aberturas da tabela (seção CNAE e faixa de pessoal assalariado);
-- `period`: quais anos (todos: 2017 a 2021)."""})
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
-C.append({"tipo": "code", "texto": """\
+> **O que você vai fazer hoje, em três passos**
+> 1. **Executar** as células de cima para baixo, uma de cada vez.
+> 2. **Mudar um valor** no bloco de configuração, em um único lugar.
+> 3. **Escrever a frase** na célula de texto destacada, no fim.
+>
+> Você não vai escrever código. Se alguma coisa não funcionar, **chame o professor**:
+> a solução já está pronta em uma célula ao lado.
+
+---
+
+## Painel do encontro
+
+Tudo o que você precisa saber sobre os dados, escrito aqui. Não precisa descobrir nada.
+
+A **Parte 2** do encontro é a estatística: tipos de dado e a regra da medida. A ideia
+inteira do encontro cabe numa frase: **o nível de mensuração de uma variável decide
+qual medida de resumo pode ser usada nela.** Essa é a regra que você vai levar para
+todos os encontros restantes do semestre.
+
+As três bases de hoje, todas do IBGE, cada uma escolhida por trazer um nível diferente:
+
+| Base | Tabela | Traz | Nível |
+|---|---|---|---|
+| **CEMPRE** | 9582 | Empresas por seção da CNAE (Brasil) | **nominal** |
+| **Demografia das Empresas** | 9949 | Nascimentos por faixa de pessoal assalariado (Brasil) | **ordinal** |
+| **PAS** | 2325 | Receita, pessoal ocupado e número de empresas | **razão** |
+
+**Confira em:** <https://sidra.ibge.gov.br/tabela/9582> ·
+<https://sidra.ibge.gov.br/tabela/9949> · <https://sidra.ibge.gov.br/tabela/2325>
+
+> **Uma observação de honestidade.** Não existe exemplo oficial de nível **intervalo**
+> nessas três bases. O exemplo do intervalo no slide é uma escala de satisfação de
+> 0 a 10, que é variável de verdade em pesquisa em Administração — e é o tipo de
+> escala que você vai construir no questionário do Módulo II."""
+
+CONFIG = """## Bloco de configuração
+
+**Este é o único lugar do notebook onde se mexe em código.** Troque o valor abaixo,
+execute esta célula de novo, e só então execute as células seguintes.
+
+```python
+# --- o que você pode mudar ---
+BASE = "ordinal"   # "nominal", "ordinal" ou "razao"
+```"""
+
+UTILITARIOS_NOTA = """## Utilitários da disciplina
+
+As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá-las** — e
+não precisa entender o que fazem para seguir. `conferir` é a que mais importa: ela
+compara o seu resultado com o número que já estava resolvido no slide e diz se bateu.
+
+> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> escreve.* Nenhum número vai para o relatório que não tenha saído de uma célula
+> executada na sua frente."""
+
+# ------------------------------------------------------------------ carga
+
+CARGA = """## Seção 2. As três bases de hoje
+
+Cada base tem uma **Célula A** (chamada à API) e uma **Célula B** (contingência, por
+upload). Execute a A. Se a API não responder, o professor manda você executar a B,
+que produz exatamente a mesma tabela. Não tente descobrir qual deu errado: pergunte.
+
+Repare que as três bases **não têm as mesmas colunas**, e isso é o ponto do dia: cada
+uma foi desenhada para um tipo de variável diferente."""
+
+CELULA_A = '''# ================= CÉLULA A: as três bases do IBGE, por API =================
+# Se esta célula falhar, peça ao professor para usar a CÉLULA B.
+
+%pip install sidrapy -q
+
 import sidrapy
 import pandas as pd
 
-bruto = sidrapy.get_table(
-    table_code="9949",
-    territorial_level="1",
-    ibge_territorial_code="all",
-    variable="all",
-    classifications={"12762": "all", "370": "all"},
-    period="all",
-)
 
-print("Linhas e colunas:", bruto.shape)
-bruto.head()"""})
+def baixa_sidra(tabela, nivel, codigo, **kwargs):
+    """Baixa uma tabela do SIDRA e devolve uma tabela limpa, com nomes legíveis."""
+    bruto = sidrapy.get_table(table_code=tabela, territorial_level=nivel,
+                              ibge_territorial_code=codigo, **kwargs)
+    # a versão instalada do sidrapy já devolve um DataFrame; versões antigas
+    # exigiam .to_dataframe() sobre o objeto da tabela
+    if hasattr(bruto, "to_dataframe"):
+        bruto = bruto.to_dataframe()
 
-C.append({"tipo": "md", "texto": """\
-**Célula de contingência**: execute apenas se a anterior falhar. No Colab, faça upload de
-`dados/demografia_sobrevivencia_empresas.csv` antes."""})
+    # a tabela vem "crua": a primeira linha traz os nomes das colunas
+    bruto = bruto.copy()
+    bruto.columns = bruto.iloc[0]
+    bruto = bruto.iloc[1:].reset_index(drop=True)
+    bruto["Valor"] = pd.to_numeric(bruto["Valor"], errors="coerce")
+    return bruto
 
-C.append({"tipo": "code", "texto": """\
+
+# --- 1. NOMINAL: empresas por seção da CNAE, Brasil
+cempre = baixa_sidra("9582", "1", "all", variable="2585",
+                     classifications={"12762": "all"}, period="last")
+cempre = cempre.rename(columns={
+    "Classificação Nacional de Atividades Econômicas (CNAE 2.0)": "secao"})
+cempre = cempre[cempre["secao"] != "Total"].dropna(subset=["Valor"]).copy()
+cempre["letra"] = cempre["secao"].str.slice(0, 1)          # o código da seção
+cempre["atividade"] = cempre["secao"].str.slice(2).str.strip()  # o nome, sem o código
+nominal = (cempre.groupby(["letra", "atividade"], as_index=False)["Valor"].sum()
+           .sort_values("Valor", ascending=False).reset_index(drop=True))
+nominal["pct"] = (nominal["Valor"] / nominal["Valor"].sum() * 100).round(2)
+print("NOMINAL  |", len(nominal), "seções |",
+      f"{nominal['Valor'].sum():,.0f}".replace(",", "."), "empresas")
+
+# --- 2. ORDINAL: nascimentos por faixa de pessoal assalariado, Brasil
+#     a 9949 só existe para o Brasil; o código de variável 2595 não existe mais,
+#     então trazemos tudo e escolhemos a variável aqui
+demog = baixa_sidra("9949", "1", "all", variable="all",
+                    classifications={"12762": "all", "370": "all"}, period="last")
+nasc = demog[demog["Variável"].str.contains("nascimentos", na=False)]
+ORDEM = ["1 a 9 pessoas", "10 a 49 pessoas", "50 ou mais pessoas"]
+tabela = nasc.groupby("Faixas de pessoal ocupado assalariado")["Valor"].sum()
+ordinal = tabela[[f for f in ORDEM if f in tabela.index]].reset_index()
+ordinal.columns = ["faixa", "nascimentos"]
+ordinal["pct"] = (ordinal["nascimentos"] / ordinal["nascimentos"].sum() * 100).round(2)
+ordinal["pct_acumulado"] = ordinal["pct"].cumsum().round(2)
+print("ORDINAL  |", len(ordinal), "faixas |",
+      f"{ordinal['nascimentos'].sum():,.0f}".replace(",", "."), "nascimentos")
+
+# --- 3. RAZÃO: empresas de alojamento e alimentação, Brasil
+pas = baixa_sidra("2325", "1", "all", variable="all", period="last")
+razao = (pas.dropna(subset=["Variável", "Valor"])
+           .loc[:, ["Variável", "Unidade de Medida", "Valor"]]
+           .rename(columns={"Variável": "variavel",
+                            "Unidade de Medida": "unidade"})
+           .drop_duplicates("variavel")
+           .reset_index(drop=True))
+print("RAZAO    |", len(razao), "variáveis de", int(razao["ano"].iloc[0])
+      if "ano" in razao.columns else "RAZAO    |", len(razao), "variáveis")
+razao''' 
+
+CELULA_A = CELULA_A.replace('''print("RAZAO    |", len(razao), "variáveis de", int(razao["ano"].iloc[0])
+      if "ano" in razao.columns else "RAZAO    |", len(razao), "variáveis")''',
+                            'print("RAZAO    |", len(razao), "variáveis")')
+
+CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# upload dos três arquivos de dados/ indicados no enunciado.
+#
+# Esta célula produz exatamente as mesmas três tabelas que a Célula A.
+
 import os
-if "bruto" not in dir():
-    for caminho in ("../../dados/demografia_sobrevivencia_empresas.csv",
-                    "demografia_sobrevivencia_empresas.csv"):
-        if os.path.exists(caminho):
-            bruto = pd.read_csv(caminho, dtype=str)
-            print("Carregado do arquivo local:", caminho)
-            break"""})
+import pandas as pd
 
-C.append({"tipo": "code", "texto": """\
-def limpa_sidra(df):
-    \"\"\"Arruma uma tabela vinda do SIDRA (mesma função do encontro 1).\"\"\"
-    df = df.copy()
-    df.columns = df.iloc[0]
-    df = df.iloc[1:].reset_index(drop=True)
-    df["Valor"] = pd.to_numeric(df["Valor"], errors="coerce")
-    return df
+nominal = pd.read_csv("cempre_secoes_cnae_brasil.csv")
+ordinal = pd.read_csv("demografia_nascimentos_por_faixa.csv")
+razao = pd.read_csv("pas_alojamento_alimentacao.csv")
 
-demografia = limpa_sidra(bruto)
+print("NOMINAL  |", len(nominal), "seções |",
+      f"{nominal['Valor'].sum():,.0f}".replace(",", "."), "empresas")
+print("ORDINAL  |", len(ordinal), "faixas |",
+      f"{ordinal['nascimentos'].sum():,.0f}".replace(",", "."), "nascimentos")
+print("RAZAO    |", len(razao), "variáveis")
+nominal''' 
 
-# Nomes mais curtos para as colunas que vamos usar
-demografia = demografia.rename(columns={
-    "Variável": "variavel",
-    "Ano": "ano",
-    "Classificação Nacional de Atividades Econômicas (CNAE 2.0)": "secao_cnae",
-    "Faixas de pessoal ocupado assalariado": "faixa_pessoal",
-})
+# ------------------------------------------------------------------ conteudo
 
-demografia[["ano", "variavel", "secao_cnae", "faixa_pessoal", "Valor"]].head(10)"""})
+CELULAS = [
+    {"tipo": "md", "texto": PAINEL},
+    {"tipo": "md", "texto": CONFIG},
+    {"tipo": "code", "texto": 'BASE = "ordinal"   # "nominal", "ordinal" ou "razao"\n'
+                              '\n'
+                              'print("Base de hoje:", BASE)'},
+    {"tipo": "md", "texto": UTILITARIOS_NOTA},
+    {"tipo": "util"},
 
-C.append({"tipo": "md", "texto": """\
-Antes de qualquer análise, um bom pesquisador pergunta: **que valores cada coluna assume?**
-O método `.unique()` responde."""})
+    {"tipo": "md", "texto": """## Seção 1. Como se usa um notebook
 
-C.append({"tipo": "code", "aluno": """\
-print("Anos disponíveis:", demografia["ano"].unique())
+Bloco de **texto** é explicação. Bloco de **código** é instrução para o computador, e
+precisa ser executado. Clique na célula e aperte **Shift + Enter**.
+
+| Se isso aconteceu | Faça isso |
+|---|---|
+| Executei e o resultado não é o esperado | Execute tudo de novo de cima para baixo: menu *Runtime → Run all* |
+| Quero recomeçar do zero | Menu *Runtime → Restart runtime* |
+| A célula B pediu um arquivo | Faça *upload* dos arquivos de `dados/` que o professor indicar |
+
+Você já sabe disso desde o encontro 1. Hoje o ganho é outro: **você não precisa
+entender o código para ler o resultado.**"""},
+
+    {"tipo": "md", "texto": CARGA},
+    {"tipo": "code", "texto": CELULA_A},
+    {"tipo": "contingencia", "texto": CELULA_B},
+
+    # ------------------------------------------------------------ estatística (Parte 2)
+    {"tipo": "md", "texto": """## Estatística do encontro: tipos de dado e a regra da medida
+
+**A ideia que organiza o bloco inteiro.** Toda variável tem um **nível de
+mensuração**, e o nível **decide o que você pode fazer com ela**. Antes de calcular
+nada, você precisa saber em que nível a variável está.
+
+**Os quatro níveis, de Stevens**
+
+| Nível | O que é | Exemplo real de hoje |
+|---|---|---|
+| **Nominal** | Categorias **sem** ordem natural | Seção da CNAE: A, B, C… U |
+| **Ordinal** | Categorias **com** ordem definida | Faixa de pessoal: 1 a 9, 10 a 49, 50 ou mais |
+| **Intervalo** | Ordem, e intervalos iguais, mas o **zero não é ausência** | Escala de satisfação de 0 a 10 |
+| **Razão** | Ordem, intervalos iguais, e o **zero é ausência real** | Receita, pessoal ocupado, nº de empresas |
+
+**O que cada nível permite — esta é a tabela que importa**
+
+| Nível | Ordenar | Somar valores | Média | Mediana | "O dobro" |
+|---|---|---|---|---|---|
+| Nominal | não | não | não | não | não |
+| Ordinal | **sim** | não | não | **sim** | não |
+| Intervalo | sim | **sim** | **sim** | sim | não |
+| Razão | sim | sim | sim | sim | **sim** |
+
+**Quando usar e quando não usar**
+
+| | |
+|---|---|
+| **Use** | Antes de qualquer cálculo, para decidir a medida de resumo: a média só entra se o nível for intervalo ou razão |
+| **Não use** | Para categorias sem ordem. A letra "G" do comércio não vem antes nem depois da letra "C" da indústria — ordenar por letra seria inventar uma ordem que não existe |"""},
+
+    {"tipo": "code", "texto": '''# A tabela que decide. Cada linha é uma base real, com o seu nível.
+NIVEL = {
+    "nominal": ("Nominal", "Seção da CNAE (A a U)", "não", "não", "não", "não"),
+    "ordinal": ("Ordinal", "Faixa de pessoal assalariado", "sim", "não", "não", "não"),
+    "intervalo": ("Intervalo", "Escala de satisfação de 0 a 10", "sim", "sim", "sim", "não"),
+    "razao": ("Razão", "Receita, pessoal ocupado, nº de empresas", "sim", "sim", "sim", "sim"),
+}
+
+nome, exemplo, ordena, soma, media, dobro = NIVEL[BASE]
+print(f"Nível de hoje: {nome}")
+print(f"Exemplo real:  {exemplo}")
+print(f"  ordenar? {ordena}   somar? {soma}   média? {media}   mediana? "
+      f"{'sim' if BASE in ('ordinal', 'intervalo', 'razao') else 'nao'}   dobro? {dobro}")'''},
+
+    {"tipo": "code", "texto": '''# A base escolhida, com a contagem e a porcentagem.
+if BASE == "nominal":
+    tabela = nominal[["letra", "atividade", "Valor"]].copy()
+    tabela.columns = ["categoria", "rotulo", "n_i"]
+elif BASE == "ordinal":
+    tabela = ordinal[["faixa", "nascimentos", "pct", "pct_acumulado"]].copy()
+    tabela = tabela.rename(columns={"faixa": "categoria", "nascimentos": "n_i"})
+else:
+    tabela = razao[["variavel", "unidade", "valor"]].copy()
+    tabela = tabela.rename(columns={"variavel": "categoria", "valor": "n_i"})
+
+n = tabela["n_i"].sum()
+tabela["pct"] = (tabela["n_i"] / n * 100).round(2)
+print(f"Base {BASE}: {len(tabela)} categorias | total n = {n:,.0f}".replace(",", "."))
+print(f"Conferência: a soma das porcentagens é {tabela['pct'].sum():.2f}%  (tem que dar 100)")
+tabela.head(10)'''},
+
+    {"tipo": "code", "texto": '''# AGORA A CONFERÊNCIA. Os números esperados já estavam escritos no slide.
+ESPERADO = {
+    "nominal":  ("total de empresas no Brasil", 10607110.0, 1, ""),
+    "ordinal":  ("nascimentos no total",        674660.0, 1, ""),
+    "razao":    ("número de empresas",          281133.0, 1, ""),
+}
+rotulo, alvo, tol, uni = ESPERADO[BASE]
+conferir(rotulo, n, alvo, tolerancia=tol, unidade=uni)
+
+if BASE == "ordinal":
+    conferir("1 a 9 pessoas", float(tabela.loc[0, "pct"]), 93.01, tolerancia=0.01, unidade="%")
+    conferir("50 ou mais pessoas", float(tabela.loc[2, "pct"]), 0.65, tolerancia=0.01, unidade="%")
+    conferir("acumulada ate 49 pessoas", float(tabela.loc[1, "pct_acumulado"]), 99.35,
+             tolerancia=0.01, unidade="%")
+
+if BASE == "nominal":
+    comercio = float(tabela.loc[tabela["categoria"] == "G", "pct"].iloc[0])
+    conferir("comercio (secao G)", comercio, 27.42, tolerancia=0.02, unidade="%")
+
+if BASE == "razao":
+    pessoas = float(tabela.loc[tabela["categoria"].str.contains("Pessoal"), "n_i"].iloc[0])
+    conferir("pessoal ocupado", pessoas, 1420230.0, tolerancia=1, unidade="")'''},
+
+    {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número
+> do slide. Se apareceu `[X]` em um número que ontem batia, quase sempre é que a
+> base foi atualizada: o IBGE divulga dados novos todo ano. Nesse caso, copie o
+> número novo, anote o ano ao lado, e siga. **O número que vale é o que saiu do
+> código, não o do slide.** É assim que se trabalha com dado real."""},
+
+    {"tipo": "md", "texto": """### A frequência acumulada, que só existe em ordinal
+
+A **frequência acumulada** responde a uma pergunta que a frequência comum não
+responde: *"quantas empresas têm **até** tal tamanho?"*. E ela só tem sentido
+porque a variável **tem ordem**. Numa base nominal, acumular seria absurdo.
+
+Na base de hoje, a resposta éVASculina: **até 49 pessoas, 99,3% dos nascimentos.**
+Uma em cada mil empresas nascent nasce com 50 pessoas ou mais."""},
+
+    {"tipo": "code", "texto": '''# A acumulada só faz sentido em ordinal. Rode depois de escolher BASE = "ordinal".
+if BASE == "ordinal":
+    print("A pergunta: quantas empresas têm ATÉ tal tamanho?")
+    for _, r in ordinal.iterrows():
+        print(f"  até {r['faixa']:<20} {r['pct_acumulado']:6.2f}%  "
+              f"({r['nascimentos']:,.0f} nascimentos)".replace(",", "."))
+    print()
+    print("E se a pergunta fosse 'qual é a faixa da mediana'?")
+    print(f"  a mediana cai na faixa: {ordinal.loc[len(ordinal)//2, 'faixa']}")
+else:
+    print(f"A base de hoje é {BASE}. A frequência acumulada não se aplica:")
+    print("não há ordem entre as categorias, então 'até' não quer dizer nada.")'''},
+
+    {"tipo": "md", "texto": """**A frase que vai para o relatório**
+
+> "Das 674.660 empresas empregadoras que abriram no Brasil em 2021, **627.498
+> (93,0%)** tinham de 1 a 9 pessoas assalariadas; **até 49 pessoas, são 99,3%** do
+> total (IBGE, Demografia das Empresas)."
+
+**O que essa frase não diz.** Ela não diz que a empresa pequena é mais eficiente,
+nem que a empresa grande é melhor administrada. Ela diz **quantas** empresas nasceram
+em cada faixa de tamanho, em um ano, no Brasil. Conclusões sobre eficiência
+administrativa precisariam de outro desenho de pesquisa — e é por isso que o
+delineamento vem no Módulo II."""},
+
+    # ------------------------------------------------------------ IA
+    {"tipo": "md", "texto": """## Seção 3. Usando o assistente
+
+Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
+explica, o código calcula, e você confere e escreve.**
+
+### Modo 1 — Pergunta
+
+Copie o cartão de contexto abaixo e cole na conversa do assistente. Sem o contexto, a
+IA inventa número — e você não tem como perceber."""},
+
+    {"tipo": "code", "texto": 'cartao(ordinal, "categoria", nome_base="Demografia das Empresas / IBGE")'},
+
+    {"tipo": "md", "texto": """Sugestões de pergunta:
+
+1. "Por que a frequência acumulada só existe em variável ordinal?"
+2. "Neste cartão, o que a coluna `pct_acumulado` está somando, e a partir de quê?"
+3. "Se a base fosse de CNAE em vez de faixa de pessoal, a acumulada faria sentido?"
+
+### Modo 2 — Encomenda
+
+Escreva o que você quer, peça o código, e cole na **célula cinza** abaixo. Só mude os
+**parâmetros de consulta**: qual base, qual recorte, qual ordenação. **Nunca** peça
+para mudar a lógica do cálculo — os números do slide foram conferidos, e trocar a
+lógica quebra a conferência.
+
+### Modo 3 — Ler um resultado errado
+
+O professor preparou três classificações de nível de mensuração **erradas**. Todas as
+variáveis são reais. O erro está no nível atribuído. Diga qual é o erro, e qual é o
+nível certo."""},
+
+    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
+# Sugestão de pedido: "liste as dez seções da CNAE com mais empresas no Brasil,
+# com a contagem e a porcentagem, ordenado da maior para a menor"
+#
+# Cole o código ABAIXO desta linha. A célula já vem pronta para recebê-lo.
+
+print("Cole o código do assistente ACIMA desta linha.")
+print("Depois execute e confira o resultado com a função conferir.")
+sua_analise = None   # <-- o assistente escreve aqui embaixo
+
+# ====================================================================================='''},
+
+    {"tipo": "md", "texto": "Rode a célula abaixo e responda: **qual é o erro, e qual é o nível certo?**"},
+
+    {"tipo": "code", "texto": '''# As três classificações erradas do professor.
+print("ANÁLISE 1: 'número de funcionários da empresa' foi classificado como ORDINAL")
+print("           (o nível certo é razão ou intervalo? o que muda na hora de resumir?)")
 print()
-print("Variáveis:", demografia["variavel"].unique())
+print("ANÁLISE 2: 'setor de atividade da empresa' foi classificado como ORDINAL,")
+print("           justificando com que as letras da CNAE vão de A a U")
+print("           (letras em ordem alfabética formam uma ordem? )")
 print()
-# === COMPLETE AQUI: exiba os valores únicos da coluna de faixas de pessoal ===
-print("Faixas de pessoal:", ...)""", "professor": """\
-print("Anos disponíveis:", demografia["ano"].unique())
-print()
-print("Variáveis:", demografia["variavel"].unique())
-print()
-print("Faixas de pessoal:", demografia["faixa_pessoal"].unique())"""})
+print("ANÁLISE 3: 'satisfação do cliente, de 0 a 10' foi classificada como RAZÃO,")
+print("           porque admite o número zero")
+print("           (o zero numa escala de satisfação significa ausência de satisfação?)")'''},
 
-C.append({"tipo": "nota", "texto": (
-    "Esta seção leva ~20 min. Percorra mentalmente o significado de cada parâmetro da chamada "
-    "e de cada coluna antes de executar, essa 'gramática' do SIDRA se repete o semestre "
-    "inteiro. Erros comuns ao escrever: aspas esquecidas no nome da coluna e `=` no lugar "
-    "de `==`.")})
+    {"tipo": "md", "texto": """**Gabarito, para conferir depois de tentar:**
 
-C.append({"tipo": "md", "texto": """\
-## Seção 2. Filtros: isolando o que interessa
+| Análise | O que há de errado |
+|---|---|
+| **1** | "Número de funcionários" tem valor numérico exato, não é categoria: entra em contagem, que é **razão**. Se a empresa tiver 0 funcionários, não é funcionário — o zero é ausência real. Com contagem, a média faz sentido. |
+| **2** | **O erro mais sutil do dia.** As letras A a U estão em ordem alfabética, mas essa ordem é do **código**, não do mundo. Não existe "Comércio antes de Indústria". Por isso a CNAE é **nominal**: dá para contar, e a média da letra não significa nada. |
+| **3** | Numa escala de 0 a 10, o zero significa **ausência de resposta**, não ausência do fenômeno. Não se pode dizer que 8 pontos são "o dobro" de 4, porque 0 pontos não é "nenhuma satisfação" — é "ninguém respondeu". Por isso é **intervalo**, e não razão. |
 
-Um **filtro** seleciona linhas que atendem a uma condição. A sintaxe do pandas é:
+Repare que a análise 2 é a mais instrutiva: **a ordem do código não é a ordem do
+fenômeno.** É exatamente o cuidado que o slide do encontro 1 pedia — case sempre pelo
+código, e nunca confunda o rótulo com a coisa."""},
 
-```python
-tabela[tabela["coluna"] == "valor"]
-```
+    # ------------------------------------------------------------ perguntas
+    {"tipo": "md", "texto": """## Seção 4. As três perguntas do dia
 
-Repare no `==` (comparação), diferente do `=` (atribuição).
+Responda **por escrito**, clicando duas vezes nesta célula e substituindo o texto entre
+as linhas `---`. Não há gabarito para estas: o que se avalia é a qualidade da leitura."""},
 
-**Um detalhe de pesquisador:** cada "ano" desta base é uma **coorte** de empresas nascidas
-naquele ano. A taxa de 3 anos de sobrevivência da coorte 2021 ainda não existia quando a
-pesquisa foi publicada, a coorte não tinha 3 anos de vida! Por isso, o ano mais recente
-**com dado disponível** não é o último ano da base. O código abaixo encontra esse ano
-corretamente, descartando valores vazios (`NaN`) com `.notna()`."""})
+    {"tipo": "md", "texto": """**1. Uma variável qualquer que você usa no trabalho ou na vida profissional. Em que nível de mensuração ela está, e o que isso permite calcular?**
 
-C.append({"tipo": "code", "texto": """\
-taxa3 = demografia[demografia["variavel"] == "Taxa de 3 anos de sobrevivência"]
-ano_recente = taxa3[taxa3["Valor"].notna()]["ano"].max()
-print("Coorte mais recente com taxa de 3 anos disponível:", ano_recente)
+_(duas ou três frases)_
 
-sob3 = demografia[
-    (demografia["ano"] == ano_recente)
-    & (demografia["variavel"] == "Taxa de 3 anos de sobrevivência")
-]
-print("Linhas após o filtro:", len(sob3))
-sob3[["secao_cnae", "faixa_pessoal", "Valor"]].head()"""})
-
-C.append({"tipo": "md", "texto": """\
-**Sua vez.** Filtre agora a taxa de **1 ano** de sobrevivência, no mesmo ano. Consulte a
-lista de variáveis que você exibiu com `.unique()` para copiar o nome exato."""})
-
-C.append({"tipo": "code", "aluno": """\
-sob1 = demografia[
-    (demografia["ano"] == ano_recente)
-    & (demografia["variavel"] == "")   # === COMPLETE AQUI: nome exato da variável ===
-]
-print("Linhas após o filtro:", len(sob1))
-sob1[["secao_cnae", "faixa_pessoal", "Valor"]].head()""", "professor": """\
-sob1 = demografia[
-    (demografia["ano"] == ano_recente)
-    & (demografia["variavel"] == "Taxa de 1 ano de sobrevivência")
-]
-print("Linhas após o filtro:", len(sob1))
-sob1[["secao_cnae", "faixa_pessoal", "Valor"]].head()"""})
-
-C.append({"tipo": "md", "texto": """\
-## Estatística do encontro: proporção, taxa e tabela cruzada
-
-**A fórmula.** Proporção é a parte dividida pelo todo. A **taxa de sobrevivência de 3 anos** é uma
-proporção: empresas que sobreviveram divididas por empresas nascidas naquele ano. O IBGE já
-publica a taxa pronta, em porcentagem, na coluna `Valor`.
-
-**A tabela cruzada** é o formato da pesquisa correlacional com variáveis categóricas: duas
-variáveis nas mesmas linhas, para ver se a distribuição de uma muda conforme a outra. Aqui as duas
-variáveis são **seção CNAE** e **faixa de pessoal**, e o que se lê no cruzamento é a taxa."""})
-
-C.append({"tipo": "code", "texto": """\
-# cruzamento: setor nas linhas, porte nas colunas, taxa de 3 anos nas células
-cruzada = sob3.pivot_table(index="secao_cnae",
-                           columns="faixa_pessoal",
-                           values="Valor")
-
-# só as linhas de setor (sem o Total) e arredondado para leitura
-cruzada = cruzada.drop(index="Total", errors="ignore").round(1)
-cruzada"""})
-
-C.append({"tipo": "code", "texto": """\
-# a diferença entre o maior e o menor porte, em PONTOS PERCENTUAIS, por setor
-colunas = [c for c in cruzada.columns if c != "Total"]
-diferenca = (cruzada[colunas[-1]] - cruzada[colunas[0]]).sort_values(ascending=False)
-
-print("Diferença entre", colunas[-1], "e", colunas[0], "(em pontos percentuais):")
-diferenca.round(1)"""})
-
-C.append({"tipo": "md", "texto": """\
-**Quando a base é de registros individuais**, a tabela cruzada sai com `pd.crosstab`, e o
-argumento `normalize` é a escolha do denominador:
-
-```python
-pd.crosstab(dados["porte"], dados["situacao"], normalize="index")   # proporção por linha
-```
-
-**Escreva a sua leitura.** Cuidado com a diferença entre por cento e ponto percentual.
-
-*A taxa de sobrevivência em três anos foi de ______% entre as empresas de ______________ e de
-______% entre as de ______________, uma diferença de ______ pontos percentuais. O setor em que o
-porte mais pesa é ______________.*
-
-*Esta análise é do tipo ______________ (descritiva ou correlacional?), porque ______________.*"""})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 3. A pergunta do dia: empresas maiores sobrevivem mais?
-
-Primeiro, a resposta à provocação da aula 1. Considerando **todas** as empresas (seção CNAE =
-Total, faixa de pessoal = Total): qual a taxa de sobrevivência após 1 ano? E após 3?"""})
-
-C.append({"tipo": "code", "texto": """\
-total_geral = demografia[
-    (demografia["ano"] == ano_recente)
-    & (demografia["secao_cnae"] == "Total")
-    & (demografia["faixa_pessoal"] == "Total")
-]
-total_geral[["variavel", "Valor"]]"""})
-
-C.append({"tipo": "nota", "texto": (
-    "Momento-chave da aula: confronte o resultado com a frase 'a maioria fecha no primeiro "
-    "ano'. A taxa de sobrevivência de 1 ano fica bem acima de 50%, dita assim, a frase é "
-    "falsa; a mortalidade é alta, mas acumulada em horizonte maior e concentrada em perfis "
-    "específicos. É o exemplo perfeito de senso comum corrigido por dado oficial. Se aparecer "
-    "NaN em taxas de horizonte longo, não se assuste: é a coorte que ainda não completou o "
-    "tempo.")})
-
-C.append({"tipo": "md", "texto": """\
-Agora a associação com o **porte**. O método `groupby` agrupa as linhas por uma coluna e
-calcula uma estatística por grupo:
-
-```python
-tabela.groupby("coluna_de_grupo")["coluna_de_valor"].mean()
-```
-
-Vamos agrupar a taxa de 3 anos por faixa de pessoal assalariado (usando só as linhas do
-total das atividades, para não misturar setores):"""})
-
-C.append({"tipo": "code", "aluno": """\
-sob3_total_atividades = sob3[sob3["secao_cnae"] == "Total"]
-
-# === COMPLETE AQUI: agrupe por "faixa_pessoal" e calcule a média de "Valor" ===
-por_porte = sob3_total_atividades.groupby(...)[...].mean()
-
-por_porte""", "professor": """\
-sob3_total_atividades = sob3[sob3["secao_cnae"] == "Total"]
-
-por_porte = sob3_total_atividades.groupby("faixa_pessoal")["Valor"].mean()
-
-por_porte"""})
-
-C.append({"tipo": "md", "texto": """\
-E por **atividade econômica**: quais seções CNAE têm a maior e a menor sobrevivência em 3
-anos? Ordene com `sort_values` e visualize."""})
-
-C.append({"tipo": "code", "aluno": """\
-import matplotlib.pyplot as plt
-
-sob3_por_secao = (
-    sob3[(sob3["faixa_pessoal"] == "Total") & (sob3["secao_cnae"] != "Total")]
-    .sort_values("Valor", ascending=False)   # maior taxa primeiro
-)
-
-plt.figure(figsize=(10, 7))
-plt.barh(sob3_por_secao["secao_cnae"].str.slice(0, 45), sob3_por_secao["Valor"])
-plt.gca().invert_yaxis()
-plt.title("")    # === COMPLETE AQUI: um título que diga o que o gráfico mostra ===
-plt.xlabel("Taxa de sobrevivência em 3 anos (%)")
-plt.tight_layout()
-plt.show()
-
-print("Maior sobrevivência:", sob3_por_secao.iloc[0]["secao_cnae"])
-print("Menor sobrevivência:", sob3_por_secao.iloc[-1]["secao_cnae"])""", "professor": """\
-import matplotlib.pyplot as plt
-
-sob3_por_secao = (
-    sob3[(sob3["faixa_pessoal"] == "Total") & (sob3["secao_cnae"] != "Total")]
-    .sort_values("Valor", ascending=False)   # maior taxa primeiro
-)
-
-plt.figure(figsize=(10, 7))
-plt.barh(sob3_por_secao["secao_cnae"].str.slice(0, 45), sob3_por_secao["Valor"])
-plt.gca().invert_yaxis()
-plt.title("Sobrevivência de empresas em 3 anos, por seção CNAE, Brasil")
-plt.xlabel("Taxa de sobrevivência em 3 anos (%)")
-plt.tight_layout()
-plt.show()
-
-print("Maior sobrevivência:", sob3_por_secao.iloc[0]["secao_cnae"])
-print("Menor sobrevivência:", sob3_por_secao.iloc[-1]["secao_cnae"])"""})
-
-C.append({"tipo": "md", "texto": """\
-### Laboratório de prompts: melhorar a visualização
-
-O gráfico acima funciona, mas é bruto. Use um assistente de IA (o painel do Colab, ou outra
-aba com Claude ou ChatGPT) para refiná-lo. Um bom prompt tem quatro partes: **contexto** (onde
-você está e quais dados tem), **objetivo** (o que quer obter), **formato da resposta** (código
-comentado) e **restrição** (o que não pode mudar).
-
-**Comece colando este contexto:**
-
-> Estou em um notebook Colab com pandas e matplotlib. Tenho o DataFrame `sob3_por_secao` com
-> as colunas `secao_cnae` (texto, nome da atividade econômica) e `Valor` (float, taxa de
-> sobrevivência em 3 anos, em %). Já fiz um gráfico de barras horizontais com `plt.barh(...)`.
-> Responda com código Python comentado e explique cada alteração que fizer.
-
-**Depois escolha um destes pedidos e cole em seguida:**
-
-1. "Acrescente o valor numérico ao final de cada barra, com uma casa decimal e o sinal de
-   porcentagem, sem deixar o texto sair da área do gráfico."
-2. "Destaque em cor diferente a barra de maior e a de menor taxa, mantendo as demais em cinza,
-   e explique por que esse destaque ajuda a leitura."
-3. "Os nomes das seções CNAE estão cortados em 45 caracteres, às vezes no meio da palavra.
-   Reescreva o corte para quebrar em duas linhas respeitando os espaços."
-4. "Acrescente uma linha vertical tracejada na média nacional, com legenda identificando-a."
-5. "Substitua as barras por um gráfico de pontos (dot plot) e me diga em que situações ele
-   comunica melhor que barras."
-6. "Prepare a figura para um relatório: título em duas linhas, nota de rodapé com a fonte
-   (IBGE, Demografia das Empresas, tabela 9949), fonte de texto maior e salvamento em PNG com
-   300 dpi."
-
-**Regra da disciplina:** todo código sugerido por IA é executado e conferido. Depois de rodar,
-compare os valores do gráfico novo com a tabela `sob3_por_secao` e confirme que nada mudou além
-da aparência."""})
-
-C.append({"tipo": "code", "texto": """\
-# Cole aqui o código que a IA sugeriu, execute e confira os valores contra sob3_por_secao
-"""})
-
-
-C.append({"tipo": "nota", "texto": (
-    "Pergunta de amarração: 'o que fizemos aqui é pesquisa descritiva ou correlacional?' "
-    "Resposta: descrevemos uma associação entre porte (ordinal) e sobrevivência (razão) sem "
-    "afirmar causa, e há explicações alternativas (capital inicial, setor, experiência do "
-    "fundador). Quanto mais dessas explicações você conseguir listar na pergunta 2, melhor "
-    "você entendeu o limite de uma análise descritiva.")})
-
-C.append({"tipo": "md", "texto": """\
-### Laboratório de prompts: explorar mais a base
-
-A tabela 9949 responde a muito mais perguntas do que as três que fizemos. **Contexto para colar
-antes de qualquer pedido:**
-
-> Tenho o DataFrame `demografia` em pandas, vindo da tabela 9949 do SIDRA (IBGE, Demografia das
-> Empresas). Colunas: `ano` (texto), `variavel` (texto, com os valores "Empresas nascidas",
-> "Taxa de 1 ano de sobrevivência", "Taxa de 2 anos de sobrevivência" e "Taxa de 3 anos de
-> sobrevivência"), `secao_cnae` (texto, inclui a categoria "Total"), `faixa_pessoal` (texto,
-> faixas de pessoal assalariado, inclui a categoria "Total") e `Valor` (float). Responda com
-> código pandas comentado, explique linha a linha e diga ao final o que a análise **não**
-> permite concluir.
-
-**Pedidos sugeridos:**
-
-1. "Monte um gráfico de linhas com a taxa de 1 ano de sobrevivência ao longo dos anos
-   disponíveis, usando só as linhas de Total. Cada ponto é uma coorte diferente: escreva no
-   título uma frase que deixe isso claro."
-2. "Faça uma tabela cruzada (pivot) de seção CNAE por faixa de pessoal, com a taxa de 3 anos, e
-   destaque as células acima e abaixo da média geral."
-3. "Para cada seção CNAE, calcule a diferença entre a taxa de 3 anos da maior e da menor faixa
-   de pessoal e ordene do maior para o menor. Em que setores o porte pesa mais?"
-4. "Verifique a consistência da base: para cada combinação de ano, seção e faixa, a taxa de 1
-   ano deveria ser maior ou igual à de 2 anos, e esta maior ou igual à de 3. Liste as exceções,
-   se houver, e sugira explicações."
-5. "Compare o número de empresas nascidas com a taxa de sobrevivência de 3 anos por seção CNAE,
-   em um gráfico de dispersão. Os setores que mais geram empresas são os que menos sobrevivem?"
-
-**Antes de aceitar a resposta**, pergunte: *"que delineamento de pesquisa essa análise
-representa, e que conclusão ela não autoriza?"* Confronte o que a IA responder com o fluxograma
-de decisão dos slides do encontro."""})
-
-C.append({"tipo": "code", "texto": """\
-# Cole aqui a análise que você pediu à IA, execute e confira o resultado
-"""})
-
-
-C.append({"tipo": "md", "texto": """\
-## Seção 4: Perguntas de interpretação
-
-Responda por escrito, editando esta célula:
-
-**1.** A afirmação *"a maioria das empresas fecha no primeiro ano"* é sustentada pelos dados?
-Reescreva-a em versão fiel ao que os dados mostram.
-
-*Sua resposta:*
-
-**2.** Empresas com mais pessoal assalariado apresentam maior sobrevivência. Cite **duas
-explicações alternativas** para essa associação, além de "tamanho protege".
-
-*Sua resposta:*
-
-**3.** Que outra pergunta esta base permitiria responder? Classifique-a como **descritiva**
-ou **correlacional**.
-
-*Sua resposta:*
-
-**4. (Projeto individual)** Anote uma pergunta que você gostaria de investigar no semestre e
-classifique-a como descritiva ou correlacional.
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "md", "texto": """\
 ---
-### Antes de sair
+"""},
 
-1. Salve e compartilhe o link do notebook;
-2. **Tarefa:** ler o capítulo de GIL (2019) sobre formulação de problemas e hipóteses e
-**trazer por escrito uma pergunta de pesquisa** sobre tema empresarial ou econômico do seu
-interesse, ela será trabalhada na oficina do encontro 3."""})
+    {"tipo": "md", "texto": """**2. Escolha uma variável quantitativa que você já viu e explique por que ela NÃO é de razão.**
 
-gera_notebooks(2, C)
+_(dica: procure uma onde o zero não signifique "nenhum")_
+
+---
+"""},
+
+    {"tipo": "md", "texto": """**3. O que a base de hoje **não** permite afirmar sobre as empresas brasileiras?**
+
+_(pense em pelo menos uma coisa que o dado não diz)_
+
+---
+"""},
+
+    {"tipo": "md", "texto": """## Antes de sair
+
+- [ ] Executei o notebook inteiro de cima para baixo, sem erro
+- [ ] Troquei `BASE` para as três opções e conferi cada uma
+- [ ] Rodei a célula de contexto e colei no assistente
+- [ ] Respondi as três perguntas por escrito
+- [ ] Compartilhei o link do notebook
+
+**Para o próximo encontro:** leia o capítulo de GIL (2022) sobre como formular um
+problema de pesquisa — as seis regras e a definição operacional. Traga uma pergunta de
+pesquisa, mesmo que ainda mal formulada.
+
+> Guarde este arquivo. Ele é a **segunda parte do guia de estatística descritiva** da
+> disciplina, que vai crescendo a cada encontro até o fim do Módulo I."""},
+]
+
+if __name__ == "__main__":
+    nb.gera_notebooks(2, CELULAS, versao="autossuficiente", executa_notebook=True,
+                      timeout=1200)
