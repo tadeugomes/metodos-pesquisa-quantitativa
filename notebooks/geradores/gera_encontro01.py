@@ -53,7 +53,7 @@ Tudo o que você precisa saber sobre os dados, escrito aqui. Não precisa descob
 
 | Item | Valor |
 |---|---|
-| **Fonte** | IBGE — Sistema de Contas Nacionais Trimestrais para aistemática Nacional (**SIDRA**) |
+| **Fonte** | IBGE — SIDRA, o Sistema IBGE de Recuperação Automática (**SIDRA**) |
 | **Base** | CEMPRE — Cadastro Central de Empresas, tabela 9582 |
 | **O que é** | Número de empresas cadastradas, por seção da CNAE 2.0, por Unidade da Federação |
 | **Recorte** | Brasil (nível 1) e Maranhão (nível 3, código 21) |
@@ -144,7 +144,7 @@ transforma em texto, e o resultado aparece embaixo.
 |---|---|
 | Executei uma coisa e o resultado não é o esperado | Execute de novo **toda vez de cima para baixo**: menu *Runtime → Run all* |
 | Quero recomeçar do zero | Menu *Runtime → Restart runtime* |
-| A célula de contingência pide um arquivo | Faça upload do arquivo `dados/` que o professor indicar e execute a célula **B** |"""},
+| A célula de contingência pede um arquivo | Faça upload do arquivo `dados/` que o professor indicar e execute a célula **B** |"""},
 
     {"tipo": "code", "texto": "# Uma celula de codigo e uma instrucao. Execute e veja o que acontece.\n"
                               'print("Ola! Este notebook roda no Google Colab, no navegador.")  '},
@@ -295,7 +295,7 @@ O numerador é o mesmo nas três linhas. Muda o denominador, e muda a resposta.
 | $n$ = 10.607.110 (todas as empresas do Brasil) | Quanto do **país**? | **0,66%** |
 
 As três contas estão **certas**. As três respostas estão **erradas**, porque respondem a
-perguntas diferentes. A única que responde a pergunta do dia é a primeira."""},
+perguntas diferentes. A única que responde à pergunta do dia é a primeira."""},
 
     {"tipo": "code", "texto": '''# Os três denominadores, calculados. Repare que o numerador nunca muda.
 numerador   = float(tabela.loc[tabela["secao_cnae"].str.startswith(SECAO + " "), "n_i"].iloc[0])
