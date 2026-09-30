@@ -286,30 +286,30 @@ conferir("frequência do comércio (seção G)", float(tabela.loc[
 
 A pergunta do dia: **69.518 empresas de comércio no Maranhão. Quanto isso representa?**
 
-O numerador é o mesmo nas três linhas. Muda o denominador, e muda a resposta.
+A pergunta só fica completa quando se responde "entre quem?". O numerador é o mesmo nas três
+linhas. Muda o denominador, e muda a pergunta que a conta responde.
 
-| Denominador | A pergunta que ele responde | Resultado |
+| Denominador | A pergunta completa | Resultado |
 |---|---|---|
-| $n$ = 168.098 (todas as empresas do MA) | Quanto do **estado**? | **41,36%** |
-| comércio + serviços do MA (91.674) | Quanto do **setor de serviços**? | **75,83%** |
-| $n$ = 10.607.110 (todas as empresas do Brasil) | Quanto do **país**? | **0,66%** |
+| $n$ = 168.098 (todas as empresas do MA) | Das empresas do Maranhão, quantas são de comércio? | **41,36%** |
+| 2.908.372 (empresas de comércio do Brasil) | Das empresas de comércio do Brasil, quantas estão no Maranhão? | **2,39%** |
+| 10.607.110 (todas as empresas do Brasil) | Das empresas do Brasil, quantas são comércio do Maranhão? | **0,66%** |
 
-As três contas estão **certas**. As três respostas estão **erradas**, porque respondem a
-perguntas diferentes. A única que responde à pergunta do dia é a primeira."""},
+As três contas estão **corretas**. Cada uma responde a uma pergunta diferente. A aula adota a
+primeira, porque o tema do encontro é a composição do cadastro de empresas do estado."""},
 
     {"tipo": "code", "texto": '''# Os três denominadores, calculados. Repare que o numerador nunca muda.
 numerador   = float(tabela.loc[tabela["secao_cnae"].str.startswith(SECAO + " "), "n_i"].iloc[0])
-den_estado  = n
-den_servico = float(tabela.loc[
-    tabela["secao_cnae"].str.startswith(SECAO + " ")
-    | tabela["secao_cnae"].str.startswith("S "), "n_i"].sum())
+den_estado  = n            # todas as empresas do Maranhão
+den_com_br  = 2908372      # empresas de comércio do Brasil (tabela 9582, seção G, recorte Brasil)
+den_brasil  = 10607110     # todas as empresas do Brasil (tabela 9582, recorte Brasil)
 
 print(f"{numerador:.0f} de {den_estado:,.0f} empresas do Maranhao  "
       f"= {numerador / den_estado:.2%}".replace(",", "."))
-print(f"{numerador:.0f} de {den_servico:,.0f} empresas de comércio e serviços  "
-      f"= {numerador / den_servico:.2%}".replace(",", "."))
-print(f"{numerador:.0f} de 10.607.110 empresas do Brasil  "
-      f"= {numerador / 10607110:.2%}".replace(",", "."))
+print(f"{numerador:.0f} de {den_com_br:,.0f} empresas de comércio do Brasil  "
+      f"= {numerador / den_com_br:.2%}".replace(",", "."))
+print(f"{numerador:.0f} de {den_brasil:,.0f} empresas do Brasil  "
+      f"= {numerador / den_brasil:.2%}".replace(",", "."))
 
 conferir("comércio / total do Maranhão", numerador / den_estado, 0.4136,
          tolerancia=0.0005, unidade="")'''},
@@ -319,9 +319,10 @@ conferir("comércio / total do Maranhão", numerador / den_estado, 0.4136,
 > "Em 2024, o setor de comércio reunia **69.518 das 168.098 empresas** cadastradas no
 > Maranhão, o equivalente a **41,4%** do total, contra **27,4%** no Brasil (IBGE, CEMPRE)."
 
-**O que essa frase não diz.** 41,4% não diz que o comércio é o setor mais importante da
-economia do Maranhão: diz quantas empresas estão cadastradas naquela seção. São coisas
-diferentes, e confundir as duas é o erro mais comum de relatório.
+**Limite da medida.** 41,4% é a parcela das empresas cadastradas, e não do faturamento nem
+do emprego. Por isso não sustenta dizer que o comércio é o setor mais importante da economia
+do Maranhão. Contar empresas e medir peso econômico são coisas diferentes, e confundir as duas
+é o erro mais comum de relatório.
 
 E repare na segunda metade: 41,4% contra 27,4% é uma diferença de **13,94 pontos
 percentuais** — não é "51% maior", que é a leitura errada."""},
@@ -462,7 +463,7 @@ print("          (o número está certo? a afirmação, responde à pergunta do 
 | Análise | O que há de errado |
 |---|---|
 | **1** | Está certa. 41,4% é a resposta à pergunta do dia, com o denominador declarado |
-| **2** | O número está certo (75,8%), mas a **frase** está errada: "da economia do Maranhão" não é o que a contagem de empresas mede. Trocar por "das empresas de comércio e serviços" |
+| **2** | O número está certo (75,8%), mas a **frase** está errada: "da economia do Maranhão" não é o que a contagem de empresas mede. Trocar por "das empresas de comércio e de outras atividades de serviços (seções G e S da CNAE)" |
 | **3** | O número está certo (0,66%) e é uma informação verdadeira e útil — mas responde a outra pergunta: a participação **no Brasil**, não "no Maranhão". Está errada **como resposta** à pergunta do dia |
 
 Repare que a análise 3 é a mais instrutiva: um número verdadeiro pode ser uma resposta

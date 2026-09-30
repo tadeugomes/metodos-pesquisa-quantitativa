@@ -130,7 +130,7 @@
   <div class="afirmacao">"Funcionário feliz produz mais."</div>
   <div class="afirmacao">"Propaganda em rede social aumenta as vendas."</div>
   <div class="pergunta">Como saberíamos se cada uma é <strong>verdadeira</strong>?</div>
-  <div class="instrucao"><span class="rotulo">Discussão · 10 min</span>
+  <div class="instrucao"><span class="rotulo">Discussão</span>
   Em duplas, escolham uma afirmação e respondam: vocês acreditam nela? Por quê? O que
   precisaria acontecer para vocês mudarem de ideia? Depois, cada dupla apresenta e
   registramos no quadro <strong>de onde veio</strong> cada resposta (experiência, autoridade, repetição, dados).</div>
@@ -348,7 +348,7 @@
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exercício: quanti ou quali?</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer · 10 min</span>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
   Vou ler oito perguntas de pesquisa, uma a uma. A turma responde:
   quanti ou quali? Em seguida, alguém justifica: o que na pergunta pede medição, e o que pede
   aprofundamento? Algumas são ambíguas de propósito.</div>
@@ -414,12 +414,13 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>A pergunta que a estatística do dia responde</h2>
-  <div class="pergunta">São <strong>69.518 empresas de comércio</strong> no Maranhão, e
-  <strong>2.908.372 no Brasil</strong>. Quanto isso representa?</div>
+  <div class="pergunta">São <strong>69.518 empresas de comércio</strong> no Maranhão.
+  Quanto isso representa?</div>
   <p>A pergunta está <strong>incompleta de propósito</strong>: falta dizer <strong>em relação a
-  quê</strong>. Em relação ao total de empresas do Maranhão? Ao total de comércio e serviços do
-  estado? Ao total de empresas do país? São três respostas diferentes — e as três parecem
-  certas.</p>
+  quê</strong>. Em relação a todas as empresas do Maranhão (168.098)? A todas as empresas de
+  comércio do Brasil (2.908.372)? A todas as empresas do Brasil (10.607.110)? São três perguntas,
+  três divisões e três resultados. Nenhum está errado, porque cada conta responde a uma pergunta
+  diferente.</p>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
   Antes de qualquer divisão, complete a pergunta com a frase <strong>“entre quem?”</strong>. Se
   você não consegue respondê-la, o cálculo está errado ou a pergunta está mal feita. Todo o
@@ -490,8 +491,7 @@
   <h2>Como se lê o exemplo</h2>
   <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
   <strong>Em 2024</strong>, das 168.098 empresas cadastradas no Maranhão, <strong>69.518
-  (41,4%)</strong> estão no setor de comércio, e as 91.674 empresas de comércio e de outras
-  atividades de serviços (54,5%) somam mais da metade do cadastro do estado.</div>
+  (41,4%)</strong> estão no setor de comércio.</div>
   <p>Repare no que a frase faz, e no que o número sozinho não faz:</p>
   <ul>
     <li>diz <strong>quais</strong> casos foram contados (o setor de comércio), <strong>onde</strong>
@@ -532,10 +532,11 @@ den = dados[<span class="str">"Valor"</span>].sum()
   “Em 2024, o setor de comércio reunia <strong>69.518 das 168.098 empresas</strong> cadastradas
   no Maranhão, o equivalente a <strong>41,4%</strong> do total, contra <strong>27,4%</strong>
   no Brasil (IBGE, CEMPRE).”</div>
-  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
-  41,4% <strong>não diz</strong> que o comércio é o setor mais importante da economia do
-  Maranhão: diz quantas empresas estão cadastradas naquela seção. São coisas diferentes, e
-  confundir as duas é o erro mais comum de relatório.</div>
+  <div class="alerta"><span class="rotulo">Limite da medida</span>
+  41,4% é a parcela das <strong>empresas cadastradas</strong>, e não do faturamento nem do
+  emprego. Por isso não sustenta dizer que o comércio é o setor mais importante da economia do
+  Maranhão. Contar empresas e medir peso econômico são coisas diferentes, e confundir as duas
+  é o erro mais comum de relatório.</div>
   <p class="menor">E repare na segunda metade: 41,4% contra 27,4% é uma diferença de
   <strong>13,94 pontos percentuais</strong> — não é “51% maior”, que é a leitura errada. Esse é
   o item de ponto percentual, e ele volta no Módulo III.</p>
@@ -547,21 +548,19 @@ den = dados[<span class="str">"Valor"</span>].sum()
   <h2>Erro comum: o mesmo número, três denominadores</h2>
   <div class="colunas">
     <div class="alerta">
-      <span class="rotulo">Três respostas para uma pergunta</span>
+      <span class="rotulo">Três perguntas para um numerador</span>
       <strong>69.518 empresas de comércio no Maranhão.</strong><br><br>
-      Dividindo pelo total do estado: <strong>41,36%</strong>.<br>
-      Dividindo pelo comércio mais os serviços: <strong>75,83%</strong>.<br>
-      Dividindo pelo total do país: <strong>0,66%</strong>.<br><br>
-      As três contas estão <em>corretas</em>. As três respostas estão erradas, porque
-      respondem a perguntas diferentes.
+      Entre as empresas do Maranhão: <strong>41,36%</strong>.<br>
+      Entre as empresas de comércio do Brasil: <strong>2,39%</strong>.<br>
+      Entre as empresas do Brasil: <strong>0,66%</strong>.<br><br>
+      As três contas estão <em>corretas</em>. Cada uma responde a uma pergunta diferente, e o
+      erro é apresentar o resultado de uma como se fosse a resposta de outra.
     </div>
     <div class="exemplo">
       <span class="rotulo">A regra que resolve</span>
       Antes de dividir, responda em voz alta: <strong>“entre quem?”</strong><br><br>
       “41,4% das empresas cadastradas no Maranhão estão no comércio” é uma afirmação com
-      denominador declarado, e responde à pergunta do dia.<br><br>
-      “Comércio é o setor mais importante do Maranhão” é outra afirmação, e <strong>este
-      cálculo não a sustenta</strong>.<br><br>
+      denominador declarado, e é a pergunta que o encontro adota.<br><br>
       <span class="destaque-dourado">É esse o exercício que a turma faz hoje no notebook.</span>
     </div>
   </div>
@@ -755,8 +754,8 @@ den = dados[<span class="str">"Valor"</span>].sum()
         categoria, a relativa divide essa contagem pelo total, e a porcentagem é a relativa
         multiplicada por 100 — e a soma fecha em 100%;</li>
     <li><strong>O denominador é a decisão.</strong> A mesma contagem, com denominadores
-        diferentes, dá três respostas diferentes: 41,36%, 75,83% e 0,66%. As três contas estão
-        certas; só uma responde à pergunta;</li>
+        diferentes, dá três resultados diferentes: 41,36%, 2,39% e 0,66%. As três contas estão
+        certas, e cada uma responde a uma pergunta diferente. A aula adota a primeira;</li>
     <li><strong>O notebook</strong> é o caderno de laboratório que torna a análise registrada
         e reproduzível.</li>
   </ul>
