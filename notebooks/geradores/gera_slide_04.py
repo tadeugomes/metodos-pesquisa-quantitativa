@@ -73,6 +73,28 @@ SECOES = [
             a variável desejada, mas para outro período ou outro território. Descobrir isso agora
             custa uma tarde; descobrir depois custa o projeto.</p>
             """, "pergunta-aula"),
+            ("Os quatro defeitos de qualidade do dado", """
+            <p>Não é preciso decorar: cada defeito tem um caso real nas bases da disciplina, e
+            a tela traz os quatro na mesma tabela. Vale construir a coluna “o que se faz” com a
+            turma, porque é ela que resolve o problema.</p>
+            <ol>
+              <li><strong>Coluna ou célula vazia.</strong> A coluna <code>Valor de Compra</code>
+              da ANP está vazia nas 12 planilhas; na CVM, 35 das 451 companhias não têm setor.
+              O que se faz: contar e declarar — nunca preencher por conta própria.</li>
+              <li><strong>Escala e unidade.</strong> Na CVM, 444 companhias declaram em
+              <code>MIL</code> e 7 em <code>UNIDADE</code>. Misturar as duas faz a mediana das
+              segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro, e volta na
+              AV1.</li>
+              <li><strong>Número no padrão nacional.</strong> O <code>6,29</code> da ANP e a data
+              <code>DD/MM/AAAA</code>: sem <code>decimal=","</code> a coluna chega como texto, e
+              a conta falha ou sai errada.</li>
+              <li><strong>Codificação.</strong> A CVM publica em <code>latin-1</code>: lida com
+              a codificação errada, <code>Elétrica</code> chega como <code>ElÃ©trica</code>,
+              e nada avisa.</li>
+            </ol>
+            <p>Fechar com a regra: o erro não é o defeito existir, é não declará-lo no
+            relatório.</p>
+            """, "falar"),
             ("A ética, que fecha o bloco", """
             <p>O conceito do dia é o <strong>risco de reidentificação</strong>: quanto mais rara a
             combinação de características divulgadas, mais fácil reconstruir quem é o caso. Uma
@@ -124,7 +146,7 @@ SECOES = [
               <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide, e
               o mais comum em relatório que compara dois indicadores.</li>
               <li><strong>Achar que desvio alto significa problema.</strong> Desvio alto é
-              <em>vendação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
+              <em>variação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
               <li><strong>Usar a amplitude como medida principal.</strong> Ela depende de dois
               valores só, e um extremo a destrói.</li>
             </ol>
@@ -195,7 +217,7 @@ SECOES = [
             <table>
               <tr><th>Faixa</th><th>Postos</th><th>%</th><th>% acumulado</th></tr>
               <tr><td>R$ 5,30 a 5,80</td><td>1.409</td><td>29,3%</td><td>29,3%</td></tr>
-              <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,7%</td><td>65,9%</td></tr>
+              <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,6%</td><td>65,9%</td></tr>
               <tr><td>R$ 6,30 a 6,80</td><td>1.272</td><td>26,4%</td><td>92,3%</td></tr>
               <tr><td>R$ 6,80 a 7,30</td><td>370</td><td>7,7%</td><td>100,0%</td></tr>
             </table>
@@ -212,18 +234,19 @@ SECOES = [
         "entre": ["Mão na massa", ""],
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
-                ("Seção 1: a base da ANP, por 12 arquivos mensais", "18"),
-                ("Seção 2: a dispersão calculada", "12"),
-                ("Seção 3: a forma e o escore z", "12"),
-                ("Seção 4: a sua base, contra os seis critérios", "12"),
-                ("Seção 5: as três perguntas", "6"),
+                ("A base da ANP, por 12 arquivos mensais (notebook, Seção 2)", "18"),
+                ("A dispersão calculada (notebook, Parte 2)", "12"),
+                ("A forma e o escore z (notebook, Parte 2)", "12"),
+                ("A sua base, contra os seis critérios (notebook, Seção 5)", "12"),
+                ("As três perguntas (notebook, Seção 4)", "6"),
+                ("A matriz de amarração (notebook, Seção 6)", "6"),
             ]), "bruto"),
             ("A regra didática do dia", """
             <p>A única edição de código é trocar <code>PRODUTO</code> entre
             <code>"GASOLINA"</code>, <code>"GASOLINA ADITIVADA"</code> e
             <code>"ETANOL"</code>. Nada além disso.</p>
             """, "falar"),
-            ("Seção 1 — a base da ANP (18 min)", """
+            ("A base da ANP, por 12 arquivos mensais (18 min)", """
             <p>Esta é a parte mais lenta da prática, e vale avisar antes: são
             <strong>12 arquivos mensais</strong>, um por mês, e o notebook baixa os 12. Enquanto
             roda, aproveitar para explicar a diferença das bases anteriores:</p>
@@ -232,24 +255,34 @@ SECOES = [
               permite calcular dispersão;</li>
               <li>tem <strong>duas colunas no padrão brasileiro</strong> (data e valor com vírgula
               decimal), que precisam ser convertidas;</li>
-              <li>traz o código <code>..</code> para “sem valor”, que vira <code>NaN</code> em
-              silêncio — o <strong>defeito de qualidade do dia</strong>.</li>
+              <li>traz uma <strong>coluna inteiramente vazia</strong> — <code>Valor de
+              Compra</code> não tem um único valor nas 12 planilhas — o
+              <strong>defeito de qualidade do dia</strong>.</li>
             </ul>
             <p>Se a rede da sala for lenta, rode a célula A antes de começar a aula, ou use a
             célula B com o arquivo de contingência. Não deixe a turma esperando 12 downloads.</p>
             """, "falar"),
-            ("Seções 2 e 3 — a dispersão e a forma (24 min)", """
+            ("A dispersão e a forma, sobre a mesma série (24 min)", """
             <p>O ponto de chegada da prática: o aluno vê média, desvio, CV, IQR, cinco números e
             escore z <strong>sobre a mesma série</strong>, e depois o histograma com a média e a
             mediana desenhadas. A leitura que se quer ouvir:</p>
             <p><em>“a média é maior que a mediana, a assimetria é positiva, e a regra da normal
             não fecha em nenhum dos três intervalos.”</em></p>
             """, "pergunta-aula"),
-            ("Seção 4 — a oficina do projeto (12 min)", """
+            ("A oficina do projeto: os seis critérios (12 min)", """
             <p>A entrega parcial: cada estudante preenche os seis critérios para a
             <strong>própria</strong> fonte, no notebook. Circule pela sala: é aqui que se descobre
             quem escolheu uma base sem a variável, ou com cobertura errada. A AV1 é no próximo
             encontro e exige essa base funcionando.</p>
+            """, "gabarito"),
+            ("A matriz de amarração, na Seção 6 do notebook", """
+            <p>Última tarefa da prática: cada estudante preenche a matriz do seu projeto com o
+            que já sabe — problema, objetivo específico, hipótese, variáveis e níveis, base e
+            técnica prevista. As três primeiras colunas vêm do encontro 3; a base, dos seis
+            critérios de hoje; a técnica ainda pode ficar genérica.</p>
+            <p>Circular priorizando quem recebeu apontamento de inviabilidade da base no
+            encontro anterior. A matriz é revisada ao final do Módulo III, quando a turma
+            souber nomear os testes, e integra a entrega da AV1.</p>
             """, "gabarito"),
             ("O fechamento do Módulo I", """
             <p>As três telas finais fazem o balanço do módulo. Vale construir junto com a turma, no

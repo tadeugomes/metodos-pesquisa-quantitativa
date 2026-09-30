@@ -122,6 +122,10 @@ print(f"Base carregada: {len(anp)} posto-mês no Maranhão, 2025")
 print(f"  municípios: {anp['municipio'].nunique()} | produtos: "
       f"{sorted(anp['produto'].unique())}")
 print(f"  valores ausentes em valor_venda: {anp['valor_venda'].isna().sum()}")
+
+# a ANP publica uma coluna que nao preenche: o defeito de qualidade do dia
+vazias = [c for c in anp.columns if anp[c].isna().all()]
+print(f"  colunas inteiramente vazias: {vazias}")
 anp.head(4)'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
@@ -335,13 +339,16 @@ classes = pd.cut(serie, bins=CLASSES, right=False)
 tabela = (classes.value_counts().sort_index()
           .rename_axis("faixa").reset_index(name="postos"))
 tabela["pct"] = (tabela["postos"] / len(serie) * 100).round(1)
-tabela["pct_acumulado"] = tabela["pct"].cumsum().round(1)
+# o acumulado se calcula sobre as CONTAGENS, e só o resultado é arredondado: somar as
+# porcentagens já arredondadas faria a última linha fechar em 100,1%
+tabela["pct_acumulado"] = (tabela["postos"].cumsum() / len(serie) * 100).round(1)
 
 # as quatro faixas largas, que são as que o slide mostra
 largas = pd.cut(serie, bins=[5.30, 5.80, 6.30, 6.80, 7.30], right=False)
 resumo = (largas.value_counts().sort_index()
           .rename_axis("faixa").reset_index(name="postos"))
 resumo["pct"] = (resumo["postos"] / len(serie) * 100).round(1)
+resumo["pct_acumulado"] = (resumo["postos"].cumsum() / len(serie) * 100).round(1)
 
 print(f"Distribuição de frequência, {len(serie)} postos em 8 classes de R$ 0,25:")
 print(tabela.to_string(index=False))
@@ -472,12 +479,45 @@ você escolheu, e ela será conferida na AV1 do encontro 5.
 ---
 """},
 
+    {"tipo": "md", "texto": """## Seção 6. Oficina do projeto: a matriz de amarração
+
+A matriz é a **verificação de coerência** do projeto: cada linha liga
+**problema → objetivo específico → hipótese → variáveis (e níveis) → base → técnica prevista**.
+Se qualquer elo falta ou não combina com o vizinho, o projeto tem um buraco — e é melhor
+descobri-lo agora do que na análise.
+
+Preencha a linha do **seu** projeto:
+
+| Problema | Objetivo específico | Hipótese | Variáveis (nível) | Base | Técnica prevista |
+|---|---|---|---|---|---|
+| | | | | | |
+
+**Como preencher cada coluna**
+
+- **Problema:** a pergunta delimitada que você escreveu no encontro 3 — com população,
+  território e período declarados.
+- **Objetivo específico:** o que a pesquisa vai fazer para responder. Comece com um verbo
+  (comparar, medir, associar, descrever).
+- **Hipótese:** a resposta provável, com as variáveis nomeadas. "X é importante" não serve.
+- **Variáveis (nível):** cada variável com o nível de mensuração do encontro 2.
+- **Base:** a fonte e a tabela ou arquivo — a mesma que você passou pelos seis critérios.
+- **Técnica prevista:** por ora basta o **tipo** ("comparação de grupos", "associação entre
+  variáveis"). Os testes específicos vêm no Módulo III, e a coluna é revisitada lá.
+
+> **O exemplo do encontro, como modelo**
+>
+> | Problema | Objetivo específico | Hipótese | Variáveis (nível) | Base | Técnica |
+> |---|---|---|---|---|---|
+> | Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? | Comparar as taxas de sobrevivência em 3 anos por faixa de pessoal | Quanto maior a faixa, maior a taxa | Faixa de pessoal (ordinal); taxa de sobrevivência (razão) | Demografia das Empresas, SIDRA 9949 | Comparação de grupos |
+"""},
+
     {"tipo": "md", "texto": """## Antes de sair
 
 - [ ] Executei o notebook inteiro de cima para baixo, sem erro
 - [ ] Troquei `PRODUTO` para as três opções e conferi cada uma
 - [ ] Preenchi a tabela dos seis critérios para a minha fonte
 - [ ] Respondi as três perguntas por escrito
+- [ ] Preenchi a matriz de amarração do meu projeto (Seção 6)
 - [ ] Compartilhei o link do notebook
 
 > Guarde este arquivo. Ele fecha o **guia de estatística descritiva** do Módulo I, que

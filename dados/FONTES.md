@@ -42,7 +42,7 @@ As duas continuam no mapa da seção 2 como referência de onde buscar, e a pró
 de baixar é uma lição: **escala de dado é parte do método**, e o adequado para um TCC nem sempre
 é o adequado para uma aula de quatro horas.
 
-### 1.2 Quatro codificações diferentes, e por que isso importa
+### 1.2 As codificações das fontes, e por que isso importa
 
 Ler um CSV com a codificação errada não dá erro: dá resultado errado, com acentos quebrados. É o
 erro mais silencioso da aula, e a razão pela qual o notebook **sempre** declara a codificação de
@@ -236,6 +236,7 @@ bruto = pd.read_csv(BASE % mes, sep=";", encoding="utf-8-sig", decimal=",")
 | Separador / codificação | `;` / `utf-8-sig`, decimal vírgula, data `DD/MM/AAAA` |
 | Colunas (16) | `Regiao - Sigla`, `Estado - Sigla`, `Municipio`, `Revenda`, `CNPJ da Revenda`, endereço, `Bairro`, `Cep`, `Produto`, `Data da Coleta`, `Valor de Venda`, `Valor de Compra`, `Unidade de Medida`, `Bandeira` |
 | Recorte MA | 10.641 linhas posto-mês, 11 municípios, 3 produtos (gasolina, gasolina aditivada, etanol) |
+| **Defeito de qualidade** | A coluna `Valor de Compra` está **inteiramente vazia** nas 12 planilhas, e `Valor de Venda` chega como texto (`6,29`) sem `decimal=","`. É o exemplo do defeito de qualidade do encontro 4 |
 
 Preço médio de venda no Maranhão em 2025, que é o exemplo resolvido do encontro 4:
 

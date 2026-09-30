@@ -51,7 +51,7 @@ anterior.
 | 14 | IV | Comunicação; **AV3** — relatório e apresentação | — (dia de avaliação) | v2 | *em revisão* | *em revisão* |
 | 15 | IV | Prova final | — | v2 | *em revisão* | *em revisão* |
 
-**O que já está pronto e verificado:** os **encontros 1 a 7** — 44, 35, 46, 52, 9, 48 e 21
+**O que já está pronto e verificado:** os **encontros 1 a 7** — 44, 35, 46, 54, 9, 48 e 21
 telas, todos com a camada de condução, todos idempotentes — e **sete notebooks pré-executados**,
 com a conferência passando nos números reais. O Módulo I está fechado (1 a 5) e o Módulo II vai
 até o encontro 7.

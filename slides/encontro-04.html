@@ -54,7 +54,7 @@
       <p>O dado não existe, não é público ou não está ao alcance das nossas ferramentas.</p>
     </div>
   </div>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer · 15 min</span>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
   Comentário em plenária, sem identificar autores. Enquanto ouve, localize o seu rascunho:
   ele cai em algum dos três padrões? Anote o que precisa mudar. Os casos individuais ficam
   para a oficina do fim da aula.</div>
@@ -92,9 +92,9 @@
   <ol>
     <li><strong>Descrever</strong> as etapas do processo de pesquisa quantitativa e as decisões tomadas em cada uma;</li>
     <li><strong>Construir</strong> a matriz de amarração metodológica de um projeto, verificando a coerência entre problema, objetivos, hipóteses, variáveis, base e técnica de análise;</li>
-    <li><strong>Consumir</strong> séries temporais das APIs do Banco Central (<code>python-bcb</code>) e do Ipeadata (<code>ipeadatapy</code>);</li>
-    <li><strong>Juntar</strong> séries de fontes diferentes em um único DataFrame e produzir gráficos de linha comparados;</li>
-    <li><strong>Delimitar</strong> a base de dados e as variáveis do seu projeto individual.</li>
+    <li><strong>Aplicar</strong> os seis critérios de escolha de uma fonte de dados à base do seu projeto;</li>
+    <li><strong>Reconhecer</strong> os quatro defeitos de qualidade do dado e o que se faz com cada um;</li>
+    <li><strong>Explicar</strong> o risco de reidentificação em dado anonimizado, e o que a ética exige de quem usa dado secundário.</li>
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -145,7 +145,7 @@
   <strong>População:</strong> o conjunto sobre o qual se quer concluir (ex.: todas as MPEs
   do varejo de São Luís). <strong>Amostra:</strong> a parte que será efetivamente estudada.
   Quem entra, como se seleciona e <strong>quantos são necessários</strong> é o tema do
-  encontro 5.</div>
+  encontro 6, e quantos são necessários, o do encontro 8.</div>
   <div class="exemplo"><span class="rotulo">Erro típico</span>
   Concluir sobre "as empresas maranhenses" tendo ouvido só os conhecidos do pesquisador,
   amostra de conveniência tratada como se representasse a população.</div>
@@ -157,7 +157,7 @@
   <div class="definicao"><span class="rotulo">5 · Instrumentos</span>
   O questionário, a escala, o roteiro de observação ou a consulta à base secundária.
   Precisam de <strong>validade</strong> (medem o que dizem medir) e
-  <strong>confiabilidade</strong> (medem de forma consistente), encontro 6.</div>
+  <strong>confiabilidade</strong> (medem de forma consistente), encontro 8.</div>
   <div class="definicao"><span class="rotulo">6 · Coleta</span>
   Aplicação <strong>padronizada</strong> do instrumento: mesmas perguntas, mesmas condições,
   registro do que fugiu do plano. Na pesquisa com dados secundários, a "coleta" é a
@@ -171,8 +171,8 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Etapas 7 e 8: Análise e comunicação</h2>
   <div class="definicao"><span class="rotulo">7 · Preparação e análise</span>
-  Limpar os dados (valores ausentes, inconsistências), descrever (encontros 9–10) e testar
-  as hipóteses (encontros 11–13). A técnica certa depende do <strong>nível de
+  Limpar os dados (valores ausentes, inconsistências), descrever (encontros 1 a 4) e testar
+  as hipóteses (encontros 11 e 12). A técnica certa depende do <strong>nível de
   mensuração</strong> definido lá atrás.</div>
   <div class="definicao"><span class="rotulo">8 · Interpretação e comunicação</span>
   Responder à pergunta, declarar as limitações e comunicar em relatório com tabelas e
@@ -193,10 +193,10 @@
   <h3>O programa da disciplina é o processo desdobrado no tempo</h3>
   <table>
     <tr><th>Etapa</th><th>Encontros</th></tr>
-    <tr><td>Problema, hipóteses, variáveis, planejamento</td><td>1 – 4 (Unidade I)</td></tr>
-    <tr><td>Amostra e instrumentos de coleta</td><td>5 – 8 (Unidade II)</td></tr>
-    <tr><td>Análise dos dados</td><td>9 – 13 (Unidade III)</td></tr>
-    <tr><td>Interpretação e comunicação</td><td>14 – 15 (Unidade IV)</td></tr>
+    <tr><td>Problema, hipóteses, variáveis, planejamento</td><td>1 – 5 (Módulo I)</td></tr>
+    <tr><td>Amostra e instrumentos de coleta</td><td>6 – 9 (Módulo II)</td></tr>
+    <tr><td>Análise dos dados</td><td>10 – 12 (Módulo III)</td></tr>
+    <tr><td>Interpretação e comunicação</td><td>13 – 15 (Módulo IV)</td></tr>
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -259,9 +259,9 @@
     <tr><td><strong>IBGE / SIDRA</strong></td><td>CEMPRE, Demografia das Empresas, PAS, PMC,
         PIA, PINTEC</td><td>biblioteca <code>sidrapy</code></td></tr>
     <tr><td><strong>Banco Central / SGS</strong></td><td>Juros, câmbio, crédito,
-        inadimplência, inflação</td><td>biblioteca <code>python-bcb</code></td></tr>
-    <tr><td><strong>IPEA / Ipeadata</strong></td><td>Séries macroeconômicas, regionais e
-        sociais agregadas</td><td>biblioteca <code>ipeadatapy</code></td></tr>
+        inadimplência, inflação</td><td>API do SGS, por URL direta</td></tr>
+    <tr><td><strong>ANP</strong></td><td>Preços de combustível por posto (SHPC) e
+        processamento de petróleo</td><td>CSVs mensais de dados abertos</td></tr>
     <tr><td><strong>CVM</strong></td><td>Demonstrações financeiras de companhias abertas</td>
         <td>CSVs de dados abertos</td></tr>
   </table>
@@ -298,14 +298,16 @@
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Quatro codificações, e por que isso importa</h2>
+  <h2>As codificações das fontes, e por que isso importa</h2>
   <p>Ler um CSV com a codificação errada <strong>não dá erro</strong>: dá resultado errado,
   com acentos quebrados. É o erro mais silencioso da disciplina, e a razão pela qual o
   notebook sempre declara a codificação de modo explícito.</p>
   <table>
     <tr><th>Fonte</th><th>Codificação</th><th>Separador</th></tr>
     <tr><td>ANP (preços de revenda)</td><td><code>utf-8-sig</code> (tem BOM)</td><td><code>;</code></td></tr>
+    <tr><td>ANP (processamento)</td><td><code>utf-8-sig</code> (tem BOM)</td><td><code>;</code></td></tr>
     <tr><td>ANTT</td><td><code>latin-1</code></td><td><code>;</code></td></tr>
+    <tr><td>DNIT</td><td><code>utf-8-sig</code> (tem BOM)</td><td><code>;</code></td></tr>
     <tr><td>Receita Federal (CNPJ)</td><td><code>latin-1</code></td><td><code>;</code></td></tr>
     <tr><td>IBGE (SIDRA)</td><td><code>utf-8</code></td><td><code>;</code></td></tr>
     <tr><td>CVM</td><td><code>latin-1</code></td><td><code>;</code></td></tr>
@@ -315,7 +317,61 @@
   Por isso a disciplina usa sempre essa forma: ela funciona nos dois casos.</div>
   <p class="menor">E o detalhe que mais confunde: <strong>uma coluna numérica pode chegar como
   texto</strong>. O <em>padrão brasileiro</em> usa vírgula decimal, e o Python espera ponto. Sem
-  <code>decimal=","</code> na leitura, todos os valores viram <code>NaN</code> em silêncio.</p>
+  <code>decimal=","</code> na leitura, a coluna chega como texto: a conta falha ou sai errada,
+  sem nenhum aviso.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Qualidade do dado: quatro defeitos, e o que se faz com cada um</h2>
+  <p>Nenhum destes defeitos <strong>dá erro</strong> no Python: o resultado sai, só que errado.
+  É isso que os torna perigosos.</p>
+  <table>
+    <tr><th>Defeito</th><th>Como aparece</th><th>O que se faz</th></tr>
+    <tr><td><strong>Célula ou coluna vazia</strong></td>
+        <td>Na ANP, a coluna <code>Valor de Compra</code> está vazia nas 12 planilhas; na CVM,
+        35 das 451 companhias não têm setor</td>
+        <td>Contar quantos são, declarar no relatório, e <strong>nunca preencher por conta
+        própria</strong></td></tr>
+    <tr><td><strong>Escala e unidade</strong></td>
+        <td>Na CVM, 444 companhias declaram a receita em <code>MIL</code> e 7 em
+        <code>UNIDADE</code> — misturar as duas faz a mediana das segundas parecer
+        <strong>34 vezes</strong> maior</td>
+        <td>Normalizar a unidade antes de qualquer conta, e registrar a conversão</td></tr>
+    <tr><td><strong>Número no padrão nacional</strong></td>
+        <td>Na ANP, o preço chega como <code>6,29</code> e a data como <code>DD/MM/AAAA</code>:
+        sem <code>decimal=","</code>, a coluna chega como texto</td>
+        <td>Declarar <code>decimal=","</code> e converter a data na leitura</td></tr>
+    <tr><td><strong>Codificação</strong></td>
+        <td>A CVM publica em <code>latin-1</code>: lida com a codificação errada,
+        “Elétrica” chega como <code>ElÃ©trica</code> — e nada avisa</td>
+        <td>Declarar <code>encoding=</code> e conferir uma linha com acento</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">O erro não é o defeito existir</span>
+  É não declará-lo. Uma base com 35 setores vazios <strong>continua servindo</strong> — desde
+  que o relatório diga que <strong>35 de 451</strong> companhias não têm setor.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Ética em dado secundário: o risco de reidentificação</h2>
+  <div class="definicao"><span class="rotulo">O conceito do dia</span>
+  <strong>Reidentificar</strong> é reconstruir de quem é o registro. Quanto mais rara a
+  combinação de características divulgadas, mais fácil é: uma tabela com município, setor e
+  faixa de pessoal pode isolar <strong>uma única</strong> empresa — e aí a “anonimização”
+  virou ficção.</div>
+  <p>Num município pequeno, em que poucas empresas empregadoras existem, uma célula da faixa
+  “5 a 9 pessoas” de um setor pode corresponder a <strong>uma só</strong> empresa. O dado está
+  agregado, e mesmo assim identifica.</p>
+  <div class="exemplo"><span class="rotulo">O que se faz</span>
+  <ul>
+    <li>Agregar em faixas maiores quando a célula é pequena;</li>
+    <li><strong>Não cruzar bases</strong> para “completar” um registro que ficou identificado;</li>
+    <li>Declarar a fonte, a licença e o que não será publicado (critério 5 da fonte).</li>
+  </ul></div>
+  <p class="menor">É a mesma exigência da pesquisa com seres humanos
+  (<em>Res. CNS 466/2012</em>), aplicada a dado que já existe: não é burocracia, é o que
+  permite publicar sem expor.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 </section><!-- /secao-projecao -->
@@ -354,7 +410,7 @@
     </tr>
   </table>
   <div class="pergunta">Na coluna "técnica", basta o tipo por ora (comparação de grupos,
-  associação entre variáveis): os testes específicos vêm nos encontros 9 a 11.</div>
+  associação entre variáveis): os testes específicos vêm nos encontros 11 e 12.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 <section class="slide">
@@ -366,8 +422,7 @@
     <li>Técnica <strong>incompatível</strong> com o nível de mensuração;</li>
     <li>Problema que <strong>nenhuma linha</strong> responde por inteiro.</li>
   </ul>
-  <div class="pergunta">A matriz preenchida do seu projeto integra a <strong>entrega do
-  encontro 8</strong>.</div>
+  <div class="pergunta">A matriz preenchida do seu projeto integra a <strong>entrega da AV1</strong>, no encontro 5.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 </section><!-- /secao-projecao -->
@@ -418,10 +473,9 @@
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>A fórmula, com cada símbolo nomeado</h2>
   <div class="formula">
-    <span class="expr">s<span class="op">=</span><span class="raiz">x</span>
-      <span class="frac"><span class="cima">(x<sub>1</sub> − x&#772;)<sup>2</sup>
+    <span class="expr">s<span class="op">=</span>√<span class="raiz"><span class="frac"><span class="cima">(x<sub>1</sub> − x&#772;)<sup>2</sup>
         + … + (x<sub>n</sub> − x&#772;)<sup>2</sup></span>
-        <span class="baixo">n − 1</span></span></span>
+        <span class="baixo">n − 1</span></span></span></span>
     <span class="simbolos">
       <span><b>x<sub>i</sub></b>cada valor observado</span>
       <span><b>x&#772;</b>a média dos valores</span>
@@ -496,13 +550,15 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Como se faz no Colab</h2>
-  <pre class="codigo">media  = serie[<span class="str">"valor_venda"</span>].mean()
-desvio = serie[<span class="str">"valor_venda"</span>].std()      <span class="cmt"># ddof=1 por padrao no pandas</span>
-cv     = desvio / media * 100
-iqr    = serie[<span class="str">"valor_venda"</span>].quantile(0.75) - serie[<span class="str">"valor_venda"</span>].quantile(0.25)
+  <pre class="codigo">serie  = anp[anp[<span class="str">"produto"</span>] == PRODUTO][<span class="str">"valor_venda"</span>].dropna()
 
-<span class="fn">conferir</span>(<span class="str">"desvio padrao"</span>, desvio, 0.42))
-<span class="fn">print</span>(<span class="str">f"{media:.2f} +- {desvio:.2f}  (CV {cv:.1f}%)  IQR {iqr:.2f}"</span>)</pre>
+media  = serie.mean()
+desvio = serie.std()                      <span class="cmt"># ddof=1 por padrão no pandas</span>
+cv     = desvio / media * 100
+iqr    = serie.quantile(0.75) - serie.quantile(0.25)
+
+<span class="fn">conferir</span>(<span class="str">"desvio padrão"</span>, desvio, 0.42)
+<span class="fn">print</span>(<span class="str">f"média R$ {media:.2f}  desvio R$ {desvio:.2f}  (CV {cv:.1f}%)  IQR R$ {iqr:.2f}"</span>)</pre>
   <p>A leitura mais útil do código é a linha do <code>print</code> final: ela imprime
   <strong>centro e dispersão juntos, na mesma frase</strong>. É assim que o resultado vai para
   o relatório.</p>
@@ -682,7 +738,7 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
   <table>
     <tr><th>Faixa de preço</th><th>Postos</th><th>%</th><th>% acumulado</th></tr>
     <tr><td>R$ 5,30 a 5,80</td><td>1.409</td><td>29,3%</td><td>29,3%</td></tr>
-    <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,7%</td><td>65,9%</td></tr>
+    <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,6%</td><td>65,9%</td></tr>
     <tr><td>R$ 6,30 a 6,80</td><td>1.272</td><td>26,4%</td><td>92,3%</td></tr>
     <tr><td>R$ 6,80 a 7,30</td><td>370</td><td>7,7%</td><td>100,0%</td></tr>
   </table>
@@ -695,14 +751,14 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Como se faz no Colab</h2>
-  <pre class="codigo">cincos = serie[<span class="str">"valor_venda"</span>].quantile([0, .25, .5, .75, 1])
-z      = (serie[<span class="str">"valor_venda"</span>] - media) / desvio
+  <pre class="codigo">cinco  = serie.quantile([0, 0.25, 0.5, 0.75, 1])
+z      = (serie - media) / desvio
 
-<span class="fn">conferir</span>(<span class="str">"Q1"</span>, cincos[0.25], 5.79))
-<span class="fn">conferir</span>(<span class="str">"IQR"</span>, cincos[0.75] - cincos[0.25], 0.66))
-<span class="fn">conferir</span>(<span class="str">"z do mais caro"</span>, z.max(), 2.52))
+<span class="fn">conferir</span>(<span class="str">"Q1"</span>, cinco.iloc[1], 5.79)
+<span class="fn">conferir</span>(<span class="str">"IQR"</span>, cinco.iloc[3] - cinco.iloc[1], 0.66)
+<span class="fn">conferir</span>(<span class="str">"z do mais caro"</span>, z.max(), 2.52)
 
-serie[<span class="str">"valor_venda"</span>].hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
+serie.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   <p>O histograma é a última linha, e não a menos importante: <strong>a forma da distribuição é
   mais fácil de ver do que de ler em números</strong>. A cauda à direita aparece no desenho
   antes de aparecer na assimetria calculada.</p>
@@ -781,11 +837,11 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
 <section class="secao-projecao" id="sec-7" data-conducao="1">
 <section class="slide divisor">
   <h2>Mão na massa</h2>
-  <p>Banco Central e Ipeadata, abra o notebook <code>encontro04_aluno.ipynb</code></p>
+  <p>Preços de revenda da ANP, abra o notebook <code>encontro04.ipynb</code></p>
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1: a base de hoje, preços de revenda da ANP</h2>
+  <h2>A base de hoje: preços de revenda da ANP</h2>
   <p>A primeira base do módulo que <strong>não</strong> vem do IBGE nem do Banco Central: é a
   pesquisa de preços de combustíveis da ANP, no nível do <strong>posto</strong> — e não
   agregada.</p>
@@ -795,17 +851,19 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
     categoria já contada. Isso é o que permite calcular dispersão;</li>
     <li>Tem <strong>duas colunas de texto com padrão brasileiro</strong>: a data
     (<code>DD/MM/AAAA</code>) e o valor com vírgula decimal. As duas precisam ser convertidas;</li>
-    <li>Traz um código de “sem informação” (<code>..</code>), que vira <code>NaN</code> na
-    conversão. <strong>É o defeito de qualidade de hoje.</strong></li>
+    <li>Traz uma <strong>coluna inteiramente vazia</strong>: <code>Valor de Compra</code> não
+    tem um único valor nas 12 planilhas. <strong>É o defeito de qualidade de hoje</strong> — o
+    primeiro dos quatro que a aula nomeia.</li>
   </ol></div>
   <div class="alerta"><span class="rotulo">Se a API falhar</span>
   Esta base não tem API: são 12 arquivos mensais, um por mês de 2025. O notebook baixa os 12 e
   recorta o Maranhão. Havendo falha, a célula B lê o CSV já recortado.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
+  <p class="menor">No notebook, a base é carregada na <strong>Seção 2</strong>.</p>
+  </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2: a dispersão calculada</h2>
+  <h2>A dispersão calculada</h2>
   <p>O notebook calcula média, mediana, desvio padrão, CV e IQR sobre a mesma série, e imprime
   <strong>centro e dispersão na mesma frase</strong>.</p>
   <div class="instrucao"><span class="rotulo">A conferência do dia</span>
@@ -815,10 +873,11 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   <div class="pergunta">Antes de rodar: você espera que o desvio padrão do preço da gasolina no
   Maranhão seja grande ou pequeno, em relação à média? Anote o palpite.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
+  <p class="menor">No notebook, a dispersão é a primeira metade da <strong>Parte 2</strong>.</p>
+  </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: a forma e o escore z</h2>
+  <h2>A forma e o escore z</h2>
   <p>Os cinco números, o histograma e o escore z sobre a mesma série. E a comparação com a
   regra 68-95-99,7, que revela a assimetria.</p>
   <div class="instrucao"><span class="rotulo">A leitura que o professor quer da turma</span>
@@ -826,10 +885,11 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   nenhum dos três intervalos: 59,3% em |z|&lt;1, contra 68,3% previstos.”</em> Isso é a
   conclusão do bloco inteiro, e ela é verbalizada antes de ser escrita.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
+  <p class="menor">No notebook, o escore z e o histograma são a segunda metade da <strong>Parte 2</strong>.</p>
+  </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: a sua base, contra os seis critérios</h2>
+  <h2>A sua base, contra os seis critérios</h2>
   <p>A oficina do dia: cada estudante pega a base que escolheu para o projeto e a submete aos
   <strong>seis critérios</strong> — periodicidade, granularidade, cobertura, metadado, licença,
   acesso.</p>
@@ -842,17 +902,23 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   período ou outro território. Descobrir isso agora custa uma tarde; descobrir depois custa o
   projeto.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
+  <p class="menor">No notebook, a tabela dos seis critérios é a <strong>Seção 5</strong>.</p>
+  </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5: as três perguntas do dia</h2>
-  <div class="instrucao"><span class="rotulo">Escreva no notebook · 10 min</span>
+  <h2>As três perguntas do dia</h2>
+  <div class="instrucao"><span class="rotulo">Escreva no notebook</span>
   Responda em célula de texto, com frases completas:
   <ol>
-    <li>Que série do BCB ou do Ipeadata serviria de <strong>variável de contexto</strong> para o seu projeto? Por quê?</li>
-    <li>Que cuidado a <strong>diferença de frequências</strong> exigiria no seu caso (série mensal, trimestral, anual)?</li>
+    <li>Escolha uma <strong>variável</strong> do seu trabalho ou da sua área e diga o que uma
+    <strong>média</strong> esconderia sobre ela;</li>
+    <li>Você tem dois conjuntos com a <strong>mesma média</strong>. Que medida você pediria para
+    distingui-los, e por quê?</li>
+    <li>Olhe o histograma da gasolina. Descreva a <strong>forma</strong> em uma frase, sem usar
+    nenhum número.</li>
   </ol></div>
-  <p class="menor">Compartilhe o link do notebook ao final da aula.</p>
+  <p class="menor">No notebook, as três perguntas são a <strong>Seção 4</strong>. Compartilhe o
+  link do notebook ao final da aula.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 <section class="slide compacto">
@@ -862,15 +928,16 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
     <tr><th>Problema</th><th>Objetivo específico</th><th>Hipótese</th><th>Variáveis e níveis</th><th>Base</th><th>Técnica prevista</th></tr>
     <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
   </table>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer · 35 min</span>
+  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
   O template está em célula de texto do notebook (tabela markdown). Preencha a matriz do
   <strong>seu projeto</strong>, incorporando os comentários que recebeu sobre o rascunho do
   encontro 3. Quem recebeu apontamento de inviabilidade da base começa por essa coluna.
   A técnica prevista pode ficar genérica ("comparação de grupos", "associação entre variáveis"):
   vamos revisitá-la ao final da Unidade III.</div>
-  <p class="menor">A matriz preenchida integra a entrega do encontro 8.</p>
+  <p class="menor">A matriz preenchida integra a entrega da AV1, no encontro 5.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
+  <p class="menor">No notebook, o template da matriz é a <strong>Seção 6</strong>.</p>
+  </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
@@ -884,8 +951,11 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
         justificada</strong>;</li>
     <li>A <strong>matriz de amarração</strong> conecta problema → objetivo → hipótese →
         variáveis → base → técnica, e revela os buracos antes que custem caro;</li>
-    <li><strong>Reamostragem</strong> de frequências é decisão de pesquisa, escolhida,
-        justificada e registrada.</li>
+    <li>Todo dado real chega com <strong>defeito</strong> — vazio, escala, formato ou
+        codificação — e o que se exige não é a base perfeita, e sim que o defeito seja
+        <strong>declarado</strong>;</li>
+    <li>Em dado secundário, <strong>agregar não é anonimizar</strong>: o risco de
+        reidentificação se mede antes de publicar.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -895,16 +965,17 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   <ul>
     <li>Problema, hipóteses e variáveis classificadas de um <strong>projeto próprio</strong>;</li>
     <li><strong>Matriz de amarração</strong> rascunhada;</li>
-    <li><strong>Quatro fontes de dados</strong> dominadas no Colab: SIDRA/IBGE, Demografia
-        das Empresas, Banco Central, Ipeadata.</li>
+    <li><strong>Três fontes de dados</strong> dominadas no Colab: SIDRA/IBGE, Banco
+        Central/SGS e ANP — com a CVM e a Receita já mapeadas para o projeto.</li>
   </ul>
   <h3>Próximos passos</h3>
   <ul>
-    <li><strong>Encontro 5:</strong> amostragem, quem entra na pesquisa e quantos são
-        necessários;</li>
-    <li><strong>Encontros 6 e 7:</strong> questionários, escalas e ética em pesquisa;</li>
-    <li><strong>Encontro 8, Avaliação 1:</strong> prova com parte prática + entrega da
-        primeira etapa do projeto.</li>
+    <li><strong>Encontro 5: AV1</strong> — conceitual, parte prática e entrega da primeira
+        etapa do projeto (a base carregando e descrita);</li>
+    <li><strong>Encontros 6 e 7:</strong> delineamentos e amostragem — quem entra na pesquisa e
+        como se sorteia;</li>
+    <li><strong>Encontro 8:</strong> tamanho da amostra, instrumentos e escalas — a validade e a
+        confiabilidade do questionário.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -912,11 +983,11 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para estudar em casa · antes de sair</h2>
   <ul>
-    <li><strong>GIL (2019)</strong>: capítulo sobre amostragem (prepara o encontro 5);</li>
+    <li><strong>GIL (2019)</strong>: capítulo sobre amostragem (prepara o encontro 6);</li>
     <li><strong>Estes slides</strong>: releia as oito etapas com os "erros típicos" e a
         comparação primários × secundários;</li>
     <li><strong>Tarefa:</strong> concluir a matriz de amarração do seu projeto (ela integra a
-        entrega da primeira etapa no encontro 8: problema, hipóteses, variáveis, base e matriz).</li>
+        entrega da primeira etapa na AV1, no encontro 5: problema, hipóteses, variáveis, base e matriz).</li>
   </ul>
   <p><strong>Síntese do dia:</strong> pesquisar é encadear decisões, e a matriz de
   amarração é o instrumento que verifica se as suas decisões formam um projeto coerente.</p>
@@ -951,7 +1022,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
   </section>
   <section class="secao-conducao" id="det-2">
-    <p class="telas-da-secao"><b>telas 5 a 21</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a></p>
+    <p class="telas-da-secao"><b>telas 5 a 23</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a></p>
     <h2>O processo de pesquisa, os dados e a matriz de amarração <span class="min">(45 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
@@ -977,6 +1048,28 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             a variável desejada, mas para outro período ou outro território. Descobrir isso agora
             custa uma tarde; descobrir depois custa o projeto.</p>
             </div>
+    <div class="caixa falar"><span class="rotulo">Os quatro defeitos de qualidade do dado</span>
+            <p>Não é preciso decorar: cada defeito tem um caso real nas bases da disciplina, e
+            a tela traz os quatro na mesma tabela. Vale construir a coluna “o que se faz” com a
+            turma, porque é ela que resolve o problema.</p>
+            <ol>
+              <li><strong>Coluna ou célula vazia.</strong> A coluna <code>Valor de Compra</code>
+              da ANP está vazia nas 12 planilhas; na CVM, 35 das 451 companhias não têm setor.
+              O que se faz: contar e declarar — nunca preencher por conta própria.</li>
+              <li><strong>Escala e unidade.</strong> Na CVM, 444 companhias declaram em
+              <code>MIL</code> e 7 em <code>UNIDADE</code>. Misturar as duas faz a mediana das
+              segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro, e volta na
+              AV1.</li>
+              <li><strong>Número no padrão nacional.</strong> O <code>6,29</code> da ANP e a data
+              <code>DD/MM/AAAA</code>: sem <code>decimal=","</code> a coluna chega como texto, e
+              a conta falha ou sai errada.</li>
+              <li><strong>Codificação.</strong> A CVM publica em <code>latin-1</code>: lida com
+              a codificação errada, <code>Elétrica</code> chega como <code>ElÃ©trica</code>,
+              e nada avisa.</li>
+            </ol>
+            <p>Fechar com a regra: o erro não é o defeito existir, é não declará-lo no
+            relatório.</p>
+            </div>
     <div class="caixa falar"><span class="rotulo">A ética, que fecha o bloco</span>
             <p>O conceito do dia é o <strong>risco de reidentificação</strong>: quanto mais rara a
             combinação de características divulgadas, mais fácil reconstruir quem é o caso. Uma
@@ -992,7 +1085,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
   </section>
   <section class="secao-conducao" id="det-3">
-    <p class="telas-da-secao"><b>telas 22 a 32</b> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a></p>
+    <p class="telas-da-secao"><b>telas 24 a 34</b> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
     <h2>Parte 2: dispersão <span class="min">(55 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
@@ -1026,7 +1119,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
               <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide, e
               o mais comum em relatório que compara dois indicadores.</li>
               <li><strong>Achar que desvio alto significa problema.</strong> Desvio alto é
-              <em>vendação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
+              <em>variação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
               <li><strong>Usar a amplitude como medida principal.</strong> Ela depende de dois
               valores só, e um extremo a destrói.</li>
             </ol>
@@ -1047,7 +1140,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
   </section>
   <section class="secao-conducao" id="det-4">
-    <p class="telas-da-secao"><b>telas 33 a 42</b> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a></p>
+    <p class="telas-da-secao"><b>telas 35 a 44</b> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a></p>
     <h2>Parte 2: forma da distribuição <span class="min">(55 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
@@ -1095,7 +1188,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             <table>
               <tr><th>Faixa</th><th>Postos</th><th>%</th><th>% acumulado</th></tr>
               <tr><td>R$ 5,30 a 5,80</td><td>1.409</td><td>29,3%</td><td>29,3%</td></tr>
-              <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,7%</td><td>65,9%</td></tr>
+              <tr><td>R$ 5,80 a 6,30</td><td>1.765</td><td>36,6%</td><td>65,9%</td></tr>
               <tr><td>R$ 6,30 a 6,80</td><td>1.272</td><td>26,4%</td><td>92,3%</td></tr>
               <tr><td>R$ 6,80 a 7,30</td><td>370</td><td>7,7%</td><td>100,0%</td></tr>
             </table>
@@ -1105,23 +1198,24 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
   </section>
   <section class="secao-conducao" id="det-5">
-    <p class="telas-da-secao"><b>telas 43 a 52</b> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a> <a class="chip-tela" href="#45">45</a> <a class="chip-tela" href="#46">46</a> <a class="chip-tela" href="#47">47</a> <a class="chip-tela" href="#48">48</a> <a class="chip-tela" href="#49">49</a> <a class="chip-tela" href="#50">50</a> <a class="chip-tela" href="#51">51</a> <a class="chip-tela" href="#52">52</a></p>
+    <p class="telas-da-secao"><b>telas 45 a 54</b> <a class="chip-tela" href="#45">45</a> <a class="chip-tela" href="#46">46</a> <a class="chip-tela" href="#47">47</a> <a class="chip-tela" href="#48">48</a> <a class="chip-tela" href="#49">49</a> <a class="chip-tela" href="#50">50</a> <a class="chip-tela" href="#51">51</a> <a class="chip-tela" href="#52">52</a> <a class="chip-tela" href="#53">53</a> <a class="chip-tela" href="#54">54</a></p>
     <h2>Prática, fechamento do Módulo I e tarefa <span class="min">(60 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
     <tr><th>Bloco</th><th>Minutos</th></tr>
-      <tr><td>Seção 1: a base da ANP, por 12 arquivos mensais</td><td>18</td></tr>
-      <tr><td>Seção 2: a dispersão calculada</td><td>12</td></tr>
-      <tr><td>Seção 3: a forma e o escore z</td><td>12</td></tr>
-      <tr><td>Seção 4: a sua base, contra os seis critérios</td><td>12</td></tr>
-      <tr><td>Seção 5: as três perguntas</td><td>6</td></tr>
+      <tr><td>A base da ANP, por 12 arquivos mensais (notebook, Seção 2)</td><td>18</td></tr>
+      <tr><td>A dispersão calculada (notebook, Parte 2)</td><td>12</td></tr>
+      <tr><td>A forma e o escore z (notebook, Parte 2)</td><td>12</td></tr>
+      <tr><td>A sua base, contra os seis critérios (notebook, Seção 5)</td><td>12</td></tr>
+      <tr><td>As três perguntas (notebook, Seção 4)</td><td>6</td></tr>
+      <tr><td>A matriz de amarração (notebook, Seção 6)</td><td>6</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A regra didática do dia</span>
             <p>A única edição de código é trocar <code>PRODUTO</code> entre
             <code>"GASOLINA"</code>, <code>"GASOLINA ADITIVADA"</code> e
             <code>"ETANOL"</code>. Nada além disso.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">Seção 1 — a base da ANP (18 min)</span>
+    <div class="caixa falar"><span class="rotulo">A base da ANP, por 12 arquivos mensais (18 min)</span>
             <p>Esta é a parte mais lenta da prática, e vale avisar antes: são
             <strong>12 arquivos mensais</strong>, um por mês, e o notebook baixa os 12. Enquanto
             roda, aproveitar para explicar a diferença das bases anteriores:</p>
@@ -1130,24 +1224,34 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
               permite calcular dispersão;</li>
               <li>tem <strong>duas colunas no padrão brasileiro</strong> (data e valor com vírgula
               decimal), que precisam ser convertidas;</li>
-              <li>traz o código <code>..</code> para “sem valor”, que vira <code>NaN</code> em
-              silêncio — o <strong>defeito de qualidade do dia</strong>.</li>
+              <li>traz uma <strong>coluna inteiramente vazia</strong> — <code>Valor de
+              Compra</code> não tem um único valor nas 12 planilhas — o
+              <strong>defeito de qualidade do dia</strong>.</li>
             </ul>
             <p>Se a rede da sala for lenta, rode a célula A antes de começar a aula, ou use a
             célula B com o arquivo de contingência. Não deixe a turma esperando 12 downloads.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">Seções 2 e 3 — a dispersão e a forma (24 min)</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">A dispersão e a forma, sobre a mesma série (24 min)</span>
             <p>O ponto de chegada da prática: o aluno vê média, desvio, CV, IQR, cinco números e
             escore z <strong>sobre a mesma série</strong>, e depois o histograma com a média e a
             mediana desenhadas. A leitura que se quer ouvir:</p>
             <p><em>“a média é maior que a mediana, a assimetria é positiva, e a regra da normal
             não fecha em nenhum dos três intervalos.”</em></p>
             </div>
-    <div class="caixa gabarito"><span class="rotulo">Seção 4 — a oficina do projeto (12 min)</span>
+    <div class="caixa gabarito"><span class="rotulo">A oficina do projeto: os seis critérios (12 min)</span>
             <p>A entrega parcial: cada estudante preenche os seis critérios para a
             <strong>própria</strong> fonte, no notebook. Circule pela sala: é aqui que se descobre
             quem escolheu uma base sem a variável, ou com cobertura errada. A AV1 é no próximo
             encontro e exige essa base funcionando.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">A matriz de amarração, na Seção 6 do notebook</span>
+            <p>Última tarefa da prática: cada estudante preenche a matriz do seu projeto com o
+            que já sabe — problema, objetivo específico, hipótese, variáveis e níveis, base e
+            técnica prevista. As três primeiras colunas vêm do encontro 3; a base, dos seis
+            critérios de hoje; a técnica ainda pode ficar genérica.</p>
+            <p>Circular priorizando quem recebeu apontamento de inviabilidade da base no
+            encontro anterior. A matriz é revisada ao final do Módulo III, quando a turma
+            souber nomear os testes, e integra a entrega da AV1.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">O fechamento do Módulo I</span>
             <p>As três telas finais fazem o balanço do módulo. Vale construir junto com a turma, no
