@@ -261,7 +261,7 @@ nada, você precisa saber em que nível a variável está.
 | | |
 |---|---|
 | **Use** | Antes de qualquer cálculo, para decidir a medida de resumo: a média só entra se o nível for intervalo ou razão |
-| **Não use** | Para categorias sem ordem. A letra "G" do comércio não vem antes nem depois da letra "C" da indústria — ordenar por letra seria inventar uma ordem que não existe |"""},
+| **Não use** | Para categorias sem ordem. O IBGE classifica as empresas em seções da CNAE, e cada seção tem uma letra de código: G é o comércio e C é a indústria de transformação. A letra C vem antes da G no alfabeto, mas isso não põe a indústria antes do comércio em nada. A letra só identifica a seção, e ordenar por ela seria inventar uma ordem que não existe |"""},
 
     {"tipo": "code", "texto": '''# A tabela que decide. Cada linha é uma base real, com o seu nível.
 NIVEL = {

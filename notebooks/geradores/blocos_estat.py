@@ -51,8 +51,10 @@ BLOCO_D1 = {
                 Para decidir, antes de calcular, qual medida de resumo cabe: a média só entra
                 se o nível for intervalo ou razão.</div>
                 <div class="nao-usa"><span class="rotulo">Não use</span>
-                Para ordenar categorias que não têm ordem. A letra “G” do comércio não vem
-                antes nem depois da letra “C” da indústria.</div>
+                Para ordenar categorias que não têm ordem. O IBGE classifica as empresas por atividade em
+                seções da CNAE, e cada seção tem uma letra de código: G é o comércio e C é a indústria de
+                transformação. A letra C vem antes da G no alfabeto, mas isso não põe a indústria antes do
+                comércio em nada. A letra só identifica a seção.</div>
               </div>
             </section>"""),
 
@@ -81,14 +83,11 @@ BLOCO_D1 = {
                     <td>sim</td><td>sim</td><td>sim</td><td>sim</td>
                     <td><strong>sim</strong></td></tr>
               </table>
-              <p class="menor">Em corrente: <strong>cada nível libera uma fileira.</strong>
-              Suba de nível e a lista de permissões só cresce. É por isso que a ordem dos
-              níveis importa.</p>
             </section>"""),
 
         # 4 --- a mesma regra dita como receita
         dedent("""
-            <section class="slide estatistica">
+            <section class="slide estatistica compacto">
               <img class="logo-slide" src="assets/logo-ufma.png" alt="">
               <span class="marca-estatistica">Parte 2 · Estatística</span>
               <h2>A mesma regra, como receita</h2>
@@ -100,12 +99,18 @@ BLOCO_D1 = {
                 partir do ordinal.</span>
               </div>
               <div class="definicao"><span class="rotulo">O teste do zero, em uma pergunta</span>
-              Pergunte: <strong>o zero significa ausência da coisa?</strong><br>
-              Satisfação de 0 a 10: o zero significa <em>ninguém respondeu</em>, e não
-              ausência de satisfação. Logo é <strong>intervalo</strong>, e “8 pontos é o dobro
-              de 4” não quer dizer nada.<br>
-              Receita de R$ 0: significa <em>nenhum serviço prestado</em>. Logo é
-              <strong>razão</strong>, e “o dobro” faz sentido.</div>
+              Pergunte: <strong>o zero significa ausência da coisa?</strong> Se sim, a variável é razão. Se o zero
+              é só o ponto de partida escolhido por quem montou a medida, é intervalo.</div>
+              <div class="colunas">
+                <div class="exemplo"><span class="rotulo">Receita: razão</span>
+                R$ 0 de receita é nenhum serviço prestado, uma ausência real. Por isso R$ 80 mil é o dobro de
+                R$ 40 mil, e a frase continua verdadeira se a receita for contada em milhares.</div>
+                <div class="alerta"><span class="rotulo">Satisfação de 0 a 10: intervalo</span>
+                Quem marca 0 está muito insatisfeito, mas tem opinião. O zero é só o início da escala, escolhido
+                por quem montou o questionário. Com a escala de 1 a 11, as notas 4 e 8 viram 5 e 9: a diferença
+                de 4 pontos se mantém, e 9 já não é o dobro de 5. Decisão: comparar pela diferença (“subiu 2
+                pontos”), e não pela proporção (“ficou 25% maior”).</div>
+              </div>
             </section>"""),
 
         # 5 --- exemplo resolvido passo a passo
@@ -223,7 +228,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
                 <div>
                   <h4>A regra</h4>
                   <span class="expr">média ⟺ nível ≥ intervalo</span>
-                  <p>Cada nível libera uma fileira da tabela de permissões.</p>
+                  <p>A média só vale para intervalo e razão.</p>
                 </div>
                 <div>
                   <h4>No Colab</h4>
