@@ -220,6 +220,20 @@ entender o código para ler o resultado.**"""},
     # ------------------------------------------------------------ estatística (Parte 2)
     {"tipo": "md", "texto": """## Estatística do encontro: tipos de dado e a regra da medida
 
+### A pergunta do dia
+
+Uma empresa tem **0**, **3** ou **27** funcionários. **Posso somar?**
+
+**Em linguagem corrente.** A pergunta é se a conta de somar faz sentido com esses números.
+A resposta depende do que cada número **significa**: uma quantidade, que aceita conta, ou uma
+etiqueta, que só identifica. A estatística chama isso de **nível de mensuração**.
+
+| Quando posso somar | Quando não posso somar |
+|---|---|
+| Três filiais de uma rede têm 0, 3 e 27 funcionários. Cada número é uma **contagem de pessoas**. 0 + 3 + 27 = **30 funcionários** na rede, e a média é 10 por filial. Decisão: o total de 30 entra no planejamento da folha de pagamento. | As mesmas filiais recebem o código de porte 1 (micro), 2 (pequena) e 3 (média). Cada número é uma **etiqueta**. 1 + 2 + 3 = 6, e "6" não é o porte de nada. Decisão: nenhuma, porque a soma não descreve a rede. |
+
+### A regra
+
 **A ideia que organiza o bloco inteiro.** Toda variável tem um **nível de
 mensuração**, e o nível **decide o que você pode fazer com ela**. Antes de calcular
 nada, você precisa saber em que nível a variável está.
@@ -362,7 +376,7 @@ empresas."""},
 if BASE == "ordinal":
     print("A pergunta: quantas empresas têm ATÉ tal tamanho?")
     for _, r in ordinal.iterrows():
-        print(f"  até {r['faixa']:<20} {r['pct_acumulado']:6.2f}%  "
+        print(f"  até a faixa {r['faixa']:<18} {r['pct_acumulado']:6.2f}%  "
               f"({r['nascimentos']:,.0f} nascimentos)".replace(",", "."))
     print()
     print("E se a pergunta fosse 'em que faixa cai a mediana dos nascimentos'?")
@@ -435,7 +449,7 @@ sua_analise = None   # <-- o assistente escreve aqui embaixo
 
     {"tipo": "code", "texto": '''# As três classificações erradas do professor.
 print("ANÁLISE 1: 'número de funcionários da empresa' foi classificado como ORDINAL")
-print("           (o nível certo é razão ou intervalo? o que muda na hora de resumir?)")
+print("           (0 funcionários significa ausência de funcionário? que nível isso indica?)")
 print()
 print("ANÁLISE 2: 'setor de atividade da empresa' foi classificado como ORDINAL,")
 print("           justificando que as letras da CNAE vão de A a U")
@@ -449,13 +463,12 @@ print("           (o zero numa escala de satisfação significa ausência de sat
 
 | Análise | O que há de errado |
 |---|---|
-| **1** | "Número de funcionários" tem valor numérico exato, não é categoria: entra em contagem, que é **razão**. Se a empresa tiver 0 funcionários, não é funcionário — o zero é ausência real. Com contagem, a média faz sentido. |
+| **1** | "Número de funcionários" tem valor numérico exato, não é categoria: entra em contagem, que é **razão**. Uma empresa com 0 funcionários não tem nenhum funcionário, e esse zero é ausência real. Com contagem, a média faz sentido. |
 | **2** | **O erro mais sutil do dia.** As letras A a U estão em ordem alfabética, mas essa ordem é do **código**, não do mundo. Não existe "Comércio antes de Indústria". Por isso a CNAE é **nominal**: dá para contar, e a média da letra não significa nada. |
-| **3** | Numa escala de 0 a 10, o zero significa **ausência de resposta**, não ausência do fenômeno. Não se pode dizer que 8 pontos são "o dobro" de 4, porque 0 pontos não é "nenhuma satisfação" — é "ninguém respondeu". Por isso é **intervalo**, e não razão. |
+| **3** | Numa escala de 0 a 10, o zero é um ponto **escolhido por quem montou a escala**, e não ausência de satisfação. Quem marca 0 respondeu, e está muito insatisfeito, e não sem satisfação nenhuma. Por isso não se pode dizer que 8 pontos são "o dobro" de 4. A variável é **intervalo**, e não razão. |
 
 Repare que a análise 2 é a mais instrutiva: **a ordem do código não é a ordem do
-fenômeno.** É exatamente o cuidado que o slide do encontro 1 pedia — case sempre pelo
-código, e nunca confunda o rótulo com a coisa."""},
+fenômeno.** A letra identifica a categoria, e não a coloca antes ou depois de outra."""},
 
     # ------------------------------------------------------------ perguntas
     {"tipo": "md", "texto": """## Seção 4. As três perguntas do dia
@@ -477,7 +490,7 @@ _(dica: procure uma onde o zero não signifique "nenhum")_
 ---
 """},
 
-    {"tipo": "md", "texto": """**3. O que a base de hoje NÃO permite afirmar sobre as empresas brasileiras?**
+    {"tipo": "md", "texto": """**3. O que as bases de hoje NÃO permitem afirmar sobre as empresas brasileiras?**
 
 _(pense em pelo menos uma coisa que o dado não diz)_
 

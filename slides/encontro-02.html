@@ -47,9 +47,6 @@
   <p>Antes, porém, precisamos decidir <strong>o que exatamente será medido</strong>:
   é disso que trata a Parte 1 de hoje, e é o que transforma uma afirmação vaga em algo
   que se pode testar.</p>
-  <div class="instrucao"><span class="rotulo">Retomada</span>
-  Quem trouxe a pergunta de pesquisa esboçada no encontro 1 apresenta. Vamos
-  registrá-las no quadro: ao final da manhã, cada uma receberá um tipo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 <section class="slide">
@@ -75,9 +72,6 @@
       código.</p>
     </div>
   </div>
-  <div class="instrucao"><span class="rotulo">Onde está a minutagem</span>
-  A minutagem do encontro não está nestas telas de propósito: ela está na camada de condução
-  deste mesmo arquivo. Tecla <strong>D</strong>, ou imprima o PDF, que sai em duas partes.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
 <section class="slide compacto">
@@ -271,18 +265,37 @@
   <h2>Parte 2: estatística</h2>
   <p>Tipos de dado e a regra da medida: o nível decide o que é permitido calcular</p>
 </section>
-<section class="slide estatistica">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>A pergunta que a estatística do dia responde</h2>
   <div class="pergunta">Uma empresa tem <strong>0</strong>, <strong>3</strong> ou
   <strong>27</strong> funcionários. Posso somar?</div>
-  <p>Essa é a única pergunta do bloco de hoje, e a resposta muda tudo o que vem
-  depois: a medida que você pode calcular, o gráfico que faz sentido, o teste que
-  cabe. Toda a estatística do semestre depende de responder isso antes.</p>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  A pergunta é se a conta de somar faz sentido com esses números. A resposta depende do que
+  cada número <strong>significa</strong>: uma quantidade, que aceita conta, ou uma etiqueta,
+  que só identifica. A estatística chama isso de <strong>nível de mensuração</strong>.</div>
+  <div class="colunas">
+    <div class="exemplo">
+      <span class="rotulo">Quando posso somar</span>
+      Três filiais de uma rede têm 0, 3 e 27 funcionários. Cada número é uma
+      <strong>contagem de pessoas</strong>.<br>
+      0 + 3 + 27 = <strong>30 funcionários</strong> na rede, e a média é 10 por filial.<br>
+      Decisão: o total de 30 entra no planejamento da folha de pagamento.
+    </div>
+    <div class="alerta">
+      <span class="rotulo">Quando não posso somar</span>
+      As mesmas filiais recebem o código de porte 1 (micro), 2 (pequena) e 3 (média). Cada
+      número é uma <strong>etiqueta</strong>.<br>
+      1 + 2 + 3 = 6, e “6” não é o porte de nada.<br>
+      Decisão: nenhuma, porque a soma não descreve a rede.
+    </div>
+  </div>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
-  Antes de qualquer cálculo, identifique o <strong>nível de mensuração</strong> da
-  variável. O nível não é um detalhe técnico: é o que define a sua ferramenta.</div>
+  Antes de qualquer cálculo, pergunte <strong>o que o número significa</strong> e
+  identifique o nível de mensuração da variável. O nível define a medida que você pode
+  calcular, o gráfico que faz sentido e o teste que cabe. É por isso que a pergunta vem
+  antes de tudo.</div>
 </section>
 <section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
@@ -291,6 +304,16 @@
   <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
   Toda variável tem um <strong>nível</strong>. Ele diz o que a variável carrega:
   só um nome, uma ordem, intervalos, ou intervalos com zero verdadeiro.</div>
+  <ul class="menor">
+    <li><strong>Nominal</strong> carrega só um nome. Exemplo: o setor da empresa, comércio ou
+        indústria. Dá para contar quantas há em cada um.</li>
+    <li><strong>Ordinal</strong> carrega um nome e uma ordem. Exemplo: o porte, micro, pequena
+        ou média. Dá para dizer qual é maior, mas não quanto.</li>
+    <li><strong>Intervalo</strong> carrega ordem e distâncias iguais, sem zero verdadeiro.
+        Exemplo: nota de satisfação de 0 a 10. A diferença entre 4 e 5 é igual à de 8 e 9.</li>
+    <li><strong>Razão</strong> carrega tudo isso e mais um zero que significa ausência.
+        Exemplo: número de funcionários. Zero é nenhum funcionário, e 27 é o dobro de 13,5.</li>
+  </ul>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     Para decidir, antes de calcular, qual medida de resumo cabe: a média só entra
@@ -340,8 +363,8 @@
   </div>
   <div class="definicao"><span class="rotulo">O teste do zero, em uma pergunta</span>
   Pergunte: <strong>o zero significa ausência da coisa?</strong><br>
-  Satisfação de 0 a 10: o zero significa <em>ninguém respondeu</em>, e não
-  ausência de satisfação. Logo é <strong>intervalo</strong>, e “8 pontos é o dobro
+  Satisfação de 0 a 10: o zero é um ponto que quem montou a escala escolheu, e
+  não significa ausência de satisfação. Logo é <strong>intervalo</strong>, e “8 pontos é o dobro
   de 4” não quer dizer nada.<br>
   Receita de R$ 0: significa <em>nenhum serviço prestado</em>. Logo é
   <strong>razão</strong>, e “o dobro” faz sentido.</div>
@@ -391,7 +414,7 @@ ordinal[<span class="str">"pct"</span>]          = ordinal[<span class="str">"na
 ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"pct"</span>].cumsum()
 
 <span class="fn">conferir</span>(<span class="str">"acumulada ate 49 pessoas"</span>,
-      ordinal[<span class="str">"pct_acumulado"</span>].iloc[1], 99.35))</pre>
+      ordinal[<span class="str">"pct_acumulado"</span>].iloc[1], 99.35)</pre>
               <p>Repare que a acumulada nasce de <strong>uma coluna e uma função</strong>:
               <code>cumsum()</code>, soma acumulada. Ela está em duas linhas, e a segunda
               depende da primeira — por isso a ordem de execução importa.</p>
@@ -614,7 +637,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
     <li><strong>O nível decide a ferramenta.</strong> Cada nível libera uma fileira da tabela
         de permissões, e a média só entra a partir do intervalo;</li>
     <li><strong>O teste do zero</strong> resolve a maior parte dos casos: zero de ausência é
-        razão; zero de ausência de resposta é intervalo;</li>
+        razão; zero escolhido pela escala é intervalo;</li>
     <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE vão de A a
         U, e isso não faz do comércio uma seção “maior” que a indústria;</li>
     <li><strong>A frequência acumulada só existe em ordinal</strong>, porque ela responde
@@ -676,7 +699,6 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             exatamente</em> medir, e <em>como</em> o número que resultar da medição poderá ser
             usado.</p>
             </div>
-    <h3>Onde está a minutagem</h3>
   </section>
   <section class="secao-conducao" id="det-2">
     <p class="telas-da-secao"><b>telas 5 a 13</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a></p>
@@ -713,7 +735,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
               <li><strong>Promover nominal a ordinal</strong> por causa da ordem alfabética do
               código.</li>
               <li><strong>Tratar escala de satisfação como razão</strong>, porque “tem zero”. O
-              zero significa <em>ninguém respondeu</em>, e não ausência do fenômeno.</li>
+              zero é um ponto escolhido por quem montou a escala, e não ausência do fenômeno.</li>
               <li><strong>Achar que número é sinônimo de quantitativo.</strong> Código de
               município é número e é nominal.</li>
               <li><strong>Confundir o papel na hipótese com o nível.</strong> São duas
@@ -761,7 +783,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O teste do zero, repetido até virar hábito</span>
             <p>Uma pergunta só: <strong>“o zero significa ausência da coisa?”</strong> Se
-            significa, é razão. Se significa “ninguém respondeu”, é intervalo. Se a variável é
+            significa, é razão. Se é só um ponto escolhido pela escala, é intervalo. Se a variável é
             categoria, o zero nem existe. Leva trinta segundos e resolve a maior parte dos casos
             de pesquisa aplicada.</p>
             </div>
@@ -856,7 +878,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
               <li><strong>Mensurar é decidir.</strong> Antes de qualquer cálculo, o nível da
               variável está decidido — e o nível decide a ferramenta.</li>
               <li><strong>O teste do zero</strong> resolve a maior parte dos casos: zero de
-              ausência é razão; zero de ausência de resposta é intervalo.</li>
+              ausência é razão; zero escolhido pela escala é intervalo.</li>
               <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE
               vão de A a U, e isso não faz do comércio uma seção “maior” que a indústria.</li>
             </ol>
