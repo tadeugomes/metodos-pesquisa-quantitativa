@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 0 - O que é um projeto de pesquisa quantitativo</title>
+<title>Encontro 0: O que é um projeto de pesquisa quantitativo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,6 +18,10 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 0 · Aula inaugural</div>
   <h1>O que é um projeto de pesquisa quantitativo</h1>
@@ -33,22 +38,21 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
   <table>
     <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>40 min</td><td>Pesquisa científica e a construção do saber (Laville &amp; Dionne)</td></tr>
-    <tr><td>50 min</td><td>O que é um projeto de pesquisa: componentes</td></tr>
+    <tr><td>25 min</td><td>Pesquisa científica e a construção do saber (Laville &amp; Dionne)</td></tr>
+    <tr><td>30 min</td><td>O que é um projeto de pesquisa: componentes</td></tr>
     <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>60 min</td><td>Especificidades do <strong>projeto quantitativo</strong></td></tr>
-    <tr><td>50 min</td><td>Do tema ao relatório: o mapa do semestre e o projeto individual</td></tr>
-    <tr><td>25 min</td><td>Síntese e atividade de encerramento</td></tr>
+    <tr><td>40 min</td><td>Especificidades do <strong>projeto quantitativo</strong></td></tr>
+    <tr><td>45 min</td><td>Estatística: o vocabulário da disciplina</td></tr>
+    <tr><td>25 min</td><td>Do tema ao relatório: o mapa do semestre e o projeto individual</td></tr>
+    <tr><td>60 min</td><td>Dinâmica: um projeto no quadro, verificação em duplas e síntese</td></tr>
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Objetivos de aprendizagem</h2>
@@ -70,12 +74,12 @@
   fica para o encontro 1.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
   <h2>Pesquisa e a construção do saber</h2>
   <p>O saber científico não é encontrado pronto - é construído por procedimento</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O saber não é dado; é construído</h2>
@@ -90,7 +94,6 @@
   CEMPRE/Demografia das Empresas do IBGE.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Ditados de negócio que pedem teste</h2>
@@ -111,7 +114,6 @@
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Outros ditados que estudaremos com dados</h2>
@@ -119,14 +121,14 @@
     <div>
       <div class="afirmacao">"Juros altos travam o crédito às empresas."</div>
       <p class="menor">Testável com séries do Banco Central (Selic, saldo de crédito PJ) e do
-      IPEA - a prática do encontro 4.</p>
+      IPEA - a prática do encontro 3.</p>
       <div class="afirmacao">"A inflação é o inimigo número um do pequeno negócio."</div>
       <p class="menor">Testável cruzando IPCA (IBGE) com indicadores de custo e margem.</p>
     </div>
     <div>
       <div class="afirmacao">"Companhia endividada rende menos ao acionista."</div>
       <p class="menor">Testável com as demonstrações financeiras da CVM - a base dos encontros
-      7, 9 e 13.</p>
+      5 e 13.</p>
       <div class="afirmacao">"Serviço domina a economia do Maranhão."</div>
       <p class="menor">Testável com o CEMPRE: contamos empresas e pessoas ocupadas por seção
       CNAE - primeiro notebook do encontro 1.</p>
@@ -134,7 +136,6 @@
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Pesquisa é uma empresa de construção</h2>
@@ -151,7 +152,6 @@
   com problema delimitado, definições explícitas e verificação por terceiros.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Opinião, levantamento e pesquisa</h2>
@@ -173,12 +173,12 @@
   e justifiquem.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
 <section class="slide divisor">
   <h2>O que é um projeto de pesquisa</h2>
   <p>Construção exige projeto: planta antes do prédio</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Ninguém ergue um prédio sem planta</h2>
@@ -202,7 +202,6 @@
   hipóteses, a amostra, os instrumentos, o cronograma.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que é um projeto de pesquisa</h2>
@@ -222,7 +221,6 @@
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Os componentes do projeto</h2>
@@ -238,7 +236,6 @@
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Um exemplo para guardar: comércio eletrônico</h2>
@@ -253,7 +250,6 @@
   hipóteses dos próximos slides.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Problema × objetivo × hipótese (no exemplo)</h2>
@@ -272,7 +268,6 @@
   (analisar, comparar, estimar, testar), o objetivo ainda é uma intenção vaga.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Uma cadeia interdependente</h2>
@@ -287,10 +282,9 @@
   <div class="exemplo"><span class="rotulo">Ferida clássica</span>
   Uma hipótese cuja variável a base de dados não tem torna o projeto incoerente. O semestre
   ensinará a <strong>verificar</strong> essa cadeia - com a <strong>matriz de amarração</strong>,
-  que será cobrada no encontro 8.</div>
+  que será construída no encontro 4.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>A matriz de amarração no exemplo</h2>
@@ -304,15 +298,15 @@
         <td>Adoção (sim/não); porte (ordinal)</td><td>PAS / SIDRA</td></tr>
   </table>
   <p class="menor">Se alguma coluna contradiz a anterior, o projeto quebra - é essa a
-  "amarração". Praticaremos preenchê-la no encontro 3 e entregá-la no 8.</p>
+  "amarração". Praticaremos preenchê-la no encontro 4 e revê-la nos encontros 7 e 9.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
 <section class="slide divisor">
   <h2>Especificidades do projeto quantitativo</h2>
   <p>O que o quantitativo acrescenta - e por quê</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Especificidade 1 - Mensuração</h2>
@@ -327,10 +321,9 @@
   <div class="exemplo"><span class="rotulo">No exemplo-âncora</span>
   "Adotar comércio eletrônico" precisa de regra: a empresa tem página própria com venda online,
   marketplace ou rede social? Só depois dessa decisão é possível contar quem adotou.</div>
-  <p class="menor">Aprofundaremos no encontro 3.</p>
+  <p class="menor">Aprofundaremos no encontro 2.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Níveis de mensuração: o que cada um permite</h2>
@@ -346,10 +339,9 @@
         <td>Receita em R$; pessoas ocupadas; IPCA</td><td>+ razões, variação percentual</td></tr>
   </table>
   <p class="menor">A mensuração decide <strong>quais análises são possíveis</strong> - o tema do
-  encontro 3.</p>
+  encontro 2.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Especificidade 2 - Hipóteses testáveis</h2>
@@ -369,7 +361,6 @@
   e 11.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Especificidade 3 - População, amostra, generalização</h2>
@@ -385,10 +376,9 @@
   sorteamos uma <strong>amostra</strong>; já para dados secundários do CEMPRE, temos a base quase
   inteira - sem necessidade de amostra.</div>
   <p>Só o <strong>sorteio</strong> autoriza essa generalização com erro calculável - técnica, não
-  chute. Encontro 5.</p>
+  chute. Encontros 6 a 8.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Especificidade 4 - Instrumentos que geram números</h2>
@@ -408,10 +398,9 @@
       IPEA (históricas) e CVM (demonstrações financeiras) - o que os projetos individuais usam.</div>
     </div>
   </div>
-  <p class="menor">É a sistematização que blinda contra o viés de confirmação. Encontros 6 e 7.</p>
+  <p class="menor">É a sistematização que blinda contra o viés de confirmação. Encontros 4 e 8.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Especificidade 5 - Validade e confiabilidade</h2>
@@ -437,10 +426,9 @@
   entendimento. Confiabilidade: um respondente que re-lê o enunciado não deveria mudar de
   resposta.</div>
   <p class="menor">Exigências distintas e cumulativas: pode-se medir <em>consistentemente</em>
-  a coisa errada. Encontro 6.</p>
+  a coisa errada. Encontro 8.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Especificidade 6 - Estatística como linguagem</h2>
@@ -449,9 +437,9 @@
   e <strong>comunicados</strong>.</div>
   <ul>
     <li><strong>Descrever:</strong> "40% das empresas do varejo maranhense vendem online; o
-        porte médio de quem adota é 3× o de quem não adota." (encontros 9 e 10);</li>
+        porte médio de quem adota é 3× o de quem não adota." (encontros 1 a 4);</li>
     <li><strong>Inferir:</strong> "com 95% de confiança, a proporção real de adotantes está entre
-        35% e 45%." (encontro 11);</li>
+        35% e 45%." (encontro 10);</li>
     <li><strong>Relacionar:</strong> "a correlação entre porte e adoção é r = 0,42 - forte o
         bastante para afirmar associação?" (encontro 13).</li>
   </ul>
@@ -459,12 +447,12 @@
   resultado.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-5" data-conducao="1">
 <section class="slide divisor estat">
   <h2>Estatística do encontro 0</h2>
   <p>O vocabulário: população e amostra, parâmetro e estatística, tipos de variável</p>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Estatística</span>
@@ -478,17 +466,17 @@
       <text x="159" y="42" text-anchor="middle" font-size="24" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">1. Descrever</text>
       <text x="159" y="72" text-anchor="middle" font-size="17" fill="#444">Resumir o que foi medido</text>
       <text x="159" y="96" text-anchor="middle" font-size="17" fill="#444">em poucos números</text>
-      <text x="159" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 1 a 4, 9 e 10</text>
+      <text x="159" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 1 a 4</text>
       <rect x="341" y="6" width="318" height="120" rx="10" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.4"/>
       <text x="500" y="42" text-anchor="middle" font-size="24" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">2. Inferir</text>
       <text x="500" y="72" text-anchor="middle" font-size="17" fill="#444">Dizer algo sobre a população</text>
       <text x="500" y="96" text-anchor="middle" font-size="17" fill="#444">a partir de uma amostra</text>
-      <text x="500" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 5, 7 e 11</text>
+      <text x="500" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 7 a 12</text>
       <rect x="682" y="6" width="318" height="120" rx="10" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.4"/>
       <text x="841" y="42" text-anchor="middle" font-size="24" fill="#05635f" font-weight="700" font-family="Montserrat, Calibri, sans-serif">3. Relacionar</text>
       <text x="841" y="72" text-anchor="middle" font-size="17" fill="#444">Verificar se duas variáveis</text>
       <text x="841" y="96" text-anchor="middle" font-size="17" fill="#444">andam juntas</text>
-      <text x="841" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 6 e 13</text>
+      <text x="841" y="119" text-anchor="middle" font-size="15" fill="#777">encontros 11 e 13</text>
       <text x="500" y="152" text-anchor="middle" font-size="17" fill="#777">A pergunta de pesquisa decide qual dos três o seu projeto precisa.</text>
     </svg>
   </div>
@@ -496,7 +484,6 @@
   saber o que a fórmula faz e ler o resultado em uma frase que outra pessoa entenda.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Estatística</span>
@@ -514,7 +501,7 @@
     <tr><td>Proporção</td><td>p</td><td>p̂ (pê chapéu)</td></tr>
     <tr><td>Quantidade de casos</td><td>N</td><td>n</td></tr>
   </table>
-  <p>Toda a estatística inferencial, dos encontros 5 e 11, existe por causa de uma única
+  <p>Toda a estatística inferencial, dos encontros 7 a 12, existe por causa de uma única
   dificuldade: você calcula x̄ e quer falar sobre μ. A distância entre os dois é o erro amostral,
   e ele só é calculável quando a amostra foi sorteada.</p>
   <div class="frase-resultado"><span class="rotulo">Como isso aparece no seu projeto</span>
@@ -522,7 +509,6 @@
   CEMPRE; a amostra são as 300 que responderam ao questionário."</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Estatística</span>
@@ -548,7 +534,6 @@
   com algarismos.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Estatística</span>
@@ -565,12 +550,12 @@ dados.columns    <span class="cmt"># o nome de cada variável</span></pre>
   <code>object</code>, o pandas está tratando aquela coluna como texto, isto é, como variável
   qualitativa. Quando mostra <code>int64</code> ou <code>float64</code>, está tratando como
   número. Se o tipo estiver errado, toda medida calculada depois estará errada.</p>
-  <div class="frase-resultado"><span class="rotulo">O primeiro reflexo, sempre</span>
-  Abriu uma base nova, roda <code>shape</code>, <code>head()</code> e <code>info()</code> antes
-  de qualquer outra coisa. São trinta segundos que evitam uma aula inteira de análise errada.</div>
+  <div class="frase-resultado"><span class="rotulo">Você não precisa rodar isso</span>
+  Nos notebooks da disciplina, o <strong>painel do encontro</strong> já traz o número de casos,
+  o significado de cada coluna e o tipo de cada variável. O código acima é o que o professor
+  rodou para escrever o painel: aqui ele serve para mostrar o vocabulário.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Estatística</span>
@@ -600,7 +585,6 @@ dados.columns    <span class="cmt"># o nome de cada variável</span></pre>
   erro de conta: os dois são erro de escolha, que é justamente o que esta disciplina cobra.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Estatística</span>
@@ -633,8 +617,6 @@ dados.info()</pre>
   volume I, capítulo 1, seções 1.1, 1.2 e 1.4. Acesso aberto pela Editora da FURG.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Onde o administrador usa a pesquisa quantitativa</h2>
@@ -661,7 +643,6 @@ dados.info()</pre>
   da academia.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>A especificidade é a pergunta, não o carimbo</h2>
@@ -682,7 +663,6 @@ dados.info()</pre>
   <em>como se vivencia</em>. Contraste aprofundado no encontro 1.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Exercício: quanti, quali - ou ainda não dá para dizer?</h2>
@@ -700,12 +680,12 @@ dados.info()</pre>
   <strong>vivenciar</strong> → quali.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-6" data-conducao="1">
 <section class="slide divisor">
   <h2>Do tema ao relatório</h2>
   <p>O semestre é a construção de um único projeto - o seu</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Cardápio: temas empresariais que viram projeto</h2>
@@ -715,7 +695,7 @@ dados.info()</pre>
         sobrevivência em 3 anos?</td><td>CEMPRE / Demografia das Empresas (IBGE)</td></tr>
     <tr><td>Comércio eletrônico e digitalização</td><td>A adoção de e-commerce varia com porte e setor?</td><td>PAS / TIC Empresas</td></tr>
     <tr><td>Mercado de trabalho e salários</td><td>Educação do trabalhador está associada à
-        remuneração no setor?</td><td>RAIS / CAGED</td></tr>
+        remuneração no setor?</td><td>PNAD Contínua (IBGE)</td></tr>
     <tr><td>Crédito e inadimplência empresarial</td><td>Juros e crédito PJ se movem juntos?</td><td>BCB (SGS)</td></tr>
     <tr><td>Desempenho e endividamento das companhias</td><td>Endividamento está associado à margem?</td><td>CVM (DFP)</td></tr>
     <tr><td>Turismo e economia local</td><td>O turismo cresce junto com o emprego no MA?</td><td>IBGE / BCB</td></tr>
@@ -725,7 +705,6 @@ dados.info()</pre>
   e perguntas-exemplo - e você poderá propor o seu.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>As fontes de dados do semestre (e o que medem)</h2>
@@ -734,17 +713,16 @@ dados.info()</pre>
     <tr><td><strong>IBGE - CEMPRE/PAS/PMC</strong></td><td>Estrutura empresarial, produção,
         comércio</td><td>Nº de empresas por seção CNAE; taxa de sobrevivência (encontros 1–2)</td></tr>
     <tr><td><strong>Banco Central - SGS</strong></td><td>Macrofinanceiro</td>
-        <td>Selic, saldo e inadimplência do crédito PJ (encontros 4 e 10)</td></tr>
+        <td>Selic, saldo e inadimplência do crédito PJ (encontros 3 e 4)</td></tr>
     <tr><td><strong>IPEA - Ipeadata</strong></td><td>Históricas consolidadas</td>
         <td>Séries longas de emprego, renda e câmbio (encontro 4)</td></tr>
     <tr><td><strong>CVM - DFP</strong></td><td>Demonstrações financeiras das companhias abertas</td>
-        <td>Receita, lucro, endividamento e setor (encontros 7, 9 e 13)</td></tr>
+        <td>Receita, lucro, endividamento e setor (encontros 5 e 13)</td></tr>
   </table>
   <p class="menor">Sempre com <strong>célula de contingência</strong>: se a API falhar em aula, um
   CSV idêntico é carregado do diretório <code>dados/</code>.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Ler números com desconfiança</h2>
@@ -765,61 +743,58 @@ dados.info()</pre>
   fonte define como "empresa".</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O mapa do semestre</h2>
   <table>
-    <tr><th>Unidade</th><th>Encontros</th><th>O que se constrói</th></tr>
-    <tr><td><strong>I - Fundamentos</strong></td><td>1–4</td>
-        <td>Problema, objetivos, hipóteses, variáveis, fontes de dados (IBGE, BCB, IPEA, CVM)</td></tr>
-    <tr><td><strong>II - Coleta</strong></td><td>5–8</td>
-        <td>Amostragem, questionários e escalas, ética · <strong>Avaliação 1 + 1ª etapa do projeto</strong></td></tr>
-    <tr><td><strong>III - Análise</strong></td><td>9–13</td>
-        <td>Descritiva, visualização, inferência, testes, correlação e regressão · <strong>Avaliação 2</strong></td></tr>
-    <tr><td><strong>IV - Comunicação</strong></td><td>14–15</td>
-        <td>Interpretação, relatório final · <strong>Avaliação 3</strong> e prova final</td></tr>
+    <tr><th>Módulo</th><th>Encontros</th><th>O que se constrói</th></tr>
+    <tr><td><strong>I - Dados e descritiva</strong></td><td>1–5</td>
+        <td>Problema, objetivos, hipóteses, variáveis, fontes de dados (IBGE, BCB, IPEA, CVM) e estatística descritiva · <strong>AV1 + 1ª entrega do projeto (encontro 5)</strong></td></tr>
+    <tr><td><strong>II - População e amostra</strong></td><td>6–9</td>
+        <td>Delineamento, amostragem, distribuição amostral, tamanho da amostra, questionários e escalas · <strong>AV2 (encontro 9)</strong></td></tr>
+    <tr><td><strong>III - Inferência</strong></td><td>10–12</td>
+        <td>Intervalo de confiança, testes de hipóteses, escolha do teste, testes não paramétricos</td></tr>
+    <tr><td><strong>IV - Modelagem e comunicação</strong></td><td>13–15</td>
+        <td>Correlação, regressão linear e logística, relatório final · <strong>AV3 (encontro 14)</strong> e prova final (encontro 15)</td></tr>
   </table>
   <p class="menor">Cada conceito desta aula tem um encontro dedicado - os slides futuros dirão
   explicitamente onde cada especificidade será aprofundada.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O projeto individual, do embrião ao relatório</h2>
   <ol>
-    <li><strong>Encontro 3:</strong> você escolhe o tema e redige problema, hipótese e variáveis -
-        o rascunho orientado pelo <em>cardápio de temas e bases</em>;</li>
-    <li><strong>Encontro 8:</strong> entrega a 1ª etapa - problema, hipóteses, variáveis, base e
+    <li><strong>Encontros 3 e 4:</strong> você escolhe o tema e a base e redige problema, hipótese e
+        variáveis - orientado pelo <em>cardápio de temas e bases</em> - e monta a
         <strong>matriz de amarração</strong>;</li>
-    <li><strong>Encontro 9 e 10:</strong> mais da metade da aula dedica-se à <strong>sua</strong>
-        base: descritivas e gráficos do projeto;</li>
-    <li><strong>Encontro 14:</strong> entrega o relatório final com análise, interpretação e
-        comunicação dos resultados.</li>
+    <li><strong>Encontro 5:</strong> 1ª entrega, junto com a AV1 - tema, pergunta de pesquisa e a
+        <strong>sua</strong> base carregando por API;</li>
+    <li><strong>Encontros 7 e 9:</strong> o projeto completo - problema, hipóteses, variáveis e
+        plano de amostragem -, revisto na AV2;</li>
+    <li><strong>Encontros 12 a 14:</strong> a análise roda sobre a sua base, e no 14 você entrega o
+        relatório final com análise, interpretação e comunicação dos resultados (AV3).</li>
   </ol>
   <p>Tema empresarial/econômico + dados secundários de fontes oficiais + Colab: o hardware do
   semestre inteiro.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Um cronograma honesto de projeto (exemplo)</h2>
   <table>
     <tr><th>Semana</th><th>Etapa</th><th>Entregável</th></tr>
     <tr><td>1–2</td><td>Delimitar tema e revisar material introdutório</td><td>Tema em uma frase</td></tr>
-    <tr><td>3</td><td>Formular problema, objetivos e hipóteses</td><td>Rascunho (encontro 3)</td></tr>
-    <tr><td>4–7</td><td>Escolher base, baixar dados no Colab, verificar variáveis</td><td>Base carregada</td></tr>
-    <tr><td>8</td><td>Fechar 1ª etapa do projeto</td><td>Problema + matriz de amarração</td></tr>
-    <tr><td>9–13</td><td>Descritivas, gráficos, teste da hipótese</td><td>Blocos no notebook</td></tr>
-    <tr><td>14</td><td>Interpretar, redigir e comunicar</td><td>Relatório final</td></tr>
+    <tr><td>3–4</td><td>Formular problema, objetivos e hipóteses; escolher a base</td><td>Rascunho e matriz de amarração</td></tr>
+    <tr><td>5</td><td>Carregar a base no Colab e descrevê-la</td><td>1ª entrega (AV1)</td></tr>
+    <tr><td>6–9</td><td>Delineamento, amostragem e variáveis do projeto</td><td>Projeto completo (encontros 7 e 9)</td></tr>
+    <tr><td>10–13</td><td>Testes, correlação e regressão sobre a base</td><td>Blocos no notebook</td></tr>
+    <tr><td>14</td><td>Interpretar, redigir e comunicar</td><td>Relatório final (AV3)</td></tr>
   </table>
   <p class="menor">Um cronograma não é compromisso com data perfeita - é um <strong>plano de
   onde o tempo será gasto</strong>, e cada linha vira uma tarefa verificável.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Duas ansiedades que podemos dispensar</h2>
@@ -840,7 +815,6 @@ dados.info()</pre>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>A IA generativa nesta disciplina</h2>
@@ -855,7 +829,7 @@ dados.info()</pre>
       <ul>
         <li>escrever e adaptar código a partir de uma descrição clara;</li>
         <li>explicar o que um trecho de código faz;</li>
-        <li>traduzir a mensagem de erro que travou você.</li>
+        <li>explicar um conceito, quando você cola no pedido o cartão de contexto da base.</li>
       </ul>
     </div>
     <div>
@@ -870,7 +844,6 @@ dados.info()</pre>
   <div class="afirmacao">A IA acelera a parte que o computador faz. A parte que vale nota (decidir e interpretar) continua sendo sua.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Como pedir bem (e conferir sempre)</h2>
@@ -890,12 +863,12 @@ dados.info()</pre>
   esta disciplina reprova.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-7" data-conducao="1">
 <section class="slide divisor">
   <h2>Dinâmica: construindo um projeto no quadro</h2>
   <p>Sem notebook hoje: a prática é edificar, juntos, um mini-projeto do início ao fim</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Construindo um projeto no quadro (40 min)</h2>
@@ -914,7 +887,6 @@ dados.info()</pre>
   cumprindo aqui? Mensuração, hipótese testável, amostra, instrumento ou análise?</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Verificação em duplas (15 min)</h2>
@@ -934,7 +906,6 @@ dados.info()</pre>
   encontro 3: verificar a cadeia antes de escolher ferramentas.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Sua primeira anotação de projeto</h2>
@@ -959,7 +930,6 @@ dados.info()</pre>
   as ferramentas.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica da aula</h2>
@@ -980,7 +950,6 @@ dados.info()</pre>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Para estudar em casa</h2>
@@ -999,8 +968,601 @@ dados.info()</pre>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 0</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 0 · Aula inaugural</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 3</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a></p>
+    <h2>Abertura: a ficha da aula, os objetivos e o plano do dia <span class="min">(5 min)</span></h2>
+    <h3>A ficha da aula</h3>
+
+            <table>
+              <tr><th>Campo</th><th>Descrição</th></tr>
+              <tr><td>Posição</td><td>Aula inaugural, antes do Módulo I</td></tr>
+              <tr><td>Tema</td><td>Pesquisa científica e construção do saber; o que é um
+              projeto de pesquisa; o que torna um projeto <em>quantitativo</em>; o vocabulário
+              da estatística; o mapa do semestre</td></tr>
+              <tr><td>Duração</td><td>4 horas (240 min)</td></tr>
+              <tr><td>Notebook</td><td>Não há. É a única aula conceitual do semestre; a
+              ambientação ao Colab fica para o encontro 1</td></tr>
+              <tr><td>Referência central</td><td>LAVILLE, C.; DIONNE, J. <strong>A construção
+              do saber</strong>: manual de metodologia da pesquisa em ciências humanas. Porto
+              Alegre: Artmed; Belo Horizonte: Editora UFMG, 1999</td></tr>
+              <tr><td>Referência do bloco de estatística</td><td>PINTO, S. S.; SILVA, C. S.
+              <strong>Estatística</strong>: volume I. Rio Grande: Editora da FURG, 2020,
+              capítulo 1 (seções 1.1, 1.2 e 1.4). Acesso aberto</td></tr>
+            </table>
+                <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) explicar por que o
+            conhecimento científico precisa ser <em>construído</em> por procedimento, e não
+            apenas coletado ou intuído; (ii) definir projeto de pesquisa e enumerar seus
+            componentes (problema, objetivos, hipóteses, referencial teórico, método,
+            cronograma, bibliografia); (iii) identificar o que faz de um projeto uma pesquisa
+            <em>quantitativa</em>: mensuração e operacionalização dos conceitos, hipóteses
+            testáveis, variáveis, população e amostra, análise estatística, validade e
+            confiabilidade; (iv) usar o vocabulário básico da estatística (população, amostra,
+            parâmetro, estatística, tipos de variável); (v) localizar cada componente do
+            projeto individual no mapa dos quinze encontros do semestre.</p>
+                <h3>Minutagem da aula</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura: plano do dia e objetivos (telas 1 a 3)</td><td>5</td></tr>
+      <tr><td>Pesquisa científica e a construção do saber</td><td>20</td></tr>
+      <tr><td>O que é um projeto de pesquisa: componentes e cadeia</td><td>30</td></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>Especificidades do projeto quantitativo</td><td>30</td></tr>
+      <tr><td>Estatística: o vocabulário (sete telas, sem fórmula)</td><td>45</td></tr>
+      <tr><td>A abordagem decorre da pergunta: exercício quanti ou quali</td><td>10</td></tr>
+      <tr><td>Do tema ao relatório: mapa do semestre, projeto e IA</td><td>25</td></tr>
+      <tr><td>Dinâmica: projeto no quadro (40) e verificação em duplas (15)</td><td>55</td></tr>
+      <tr><td>Síntese e tarefa</td><td>5</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Como abrir</span>
+            <p>A aula inaugural tem uma tarefa só: mostrar que o semestre inteiro é a
+            construção de <strong>um único projeto</strong>, o do estudante, e que tudo o que
+            vem depois — estatística, fontes, amostragem, testes — são ferramentas para
+            fazê-lo. Dizer isso nos primeiros cinco minutos e voltar a dizer no fim.</p>
+            <p>Projetar o plano do dia (tela 2) e ler os objetivos (tela 3) sem demorar: o
+            ritmo da aula está nas dinâmicas, não na abertura.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">O que não entra na abertura</span>
+            <p>Não apresentar o sistema de avaliação nem o protocolo de IA agora: os dois têm
+            telas próprias no bloco “Do tema ao relatório” e perdem força se antecipados. Não
+            prometer que “não tem matemática”: tem raciocínio, e o que não tem é conta à mão.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 4 a 9</b> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a></p>
+    <h2>Pesquisa científica e a construção do saber <span class="min">(20 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>O saber não é dado; é construído (telas 4 e 5)</td><td>5</td></tr>
+      <tr><td>Ditados de negócio que pedem teste (telas 6 e 7)</td><td>5</td></tr>
+      <tr><td>Pesquisa é uma empresa de construção (tela 8)</td><td>4</td></tr>
+      <tr><td>Opinião, levantamento e pesquisa: a discussão rápida (tela 9)</td><td>6</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia contraintuitiva que abre o semestre</span>
+            <p>Abrir com uma ideia que parece estranha para quem imagina a pesquisa como “ir
+            buscar os fatos”: <strong>o saber não é encontrado pronto, é construído</strong>.
+            Encadear o argumento com Laville e Dionne (1999): nem tudo o que se diz saber é
+            saber. Acumulamos crenças vindas da experiência pessoal, da autoridade de quem
+            falou e da repetição.</p>
+            <p>O conhecimento científico se distingue pelo <strong>procedimento</strong>: parte
+            de uma pergunta delimitada, adota definições explícitas, submete-se à verificação
+            por terceiros e admite revisão. A pesquisa é, portanto, uma <strong>empresa
+            deliberada</strong> de construção de respostas — e, como toda construção, exige
+            projeto antes da execução. É a ponte para o bloco seguinte.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Os ditados como ponte para os dados do semestre</span>
+            <p>As telas 6 e 7 transformam frases que “todo mundo sabe” em perguntas testáveis,
+            e cada uma aponta para uma base que a turma vai usar: CEMPRE no encontro 1, séries
+            do Banco Central no encontro 3, CVM na AV1 e no encontro 13. Não é preciso
+            explicar as bases agora; basta a turma perceber que <strong>cada ditado vira
+            pergunta quando se define o termo e se escolhe o dado</strong>.</p>
+            <p>O exemplo que mais rende: “empresa pequena não sobrevive”. Para virar pergunta,
+            é preciso definir “pequena” (quantos empregados? que faturamento?) e “sobrevive”
+            (um ano? três?). Só então se mede.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Discussão rápida da tela 9</span>
+            <p>Ler as três frases e pedir que a turma diga em qual coluna cai cada uma, e
+            <strong>por quê</strong>. Deixar duas ou três respostas antes de fechar.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito da tela 9</span>
+            <table>
+              <tr><th>Frase</th><th>Coluna</th><th>Por quê</th></tr>
+              <tr><td>“Empresa pequena não sobrevive” (ouvida no balcão)</td>
+                  <td>Opinião</td><td>Não há definição, método nem dado: é o que se acha</td></tr>
+              <tr><td>“62% dos consumidores de São Luís compraram online em 2025”</td>
+                  <td>Levantamento</td><td>Mede o que uma população faz, com método, mas não
+                  explica por quê</td></tr>
+              <tr><td>“O porte explica a sobrevivência das empresas, controlado o setor”</td>
+                  <td>Pesquisa científica</td><td>Tem hipótese, relação entre variáveis e
+                  análise que controla uma terceira variável</td></tr>
+            </table>
+            <p>A frase que fecha o bloco: <strong>o levantamento é parte, nem sempre a
+            totalidade, da pesquisa científica</strong>. A pesquisa acrescenta hipóteses,
+            referencial e análise, e responde a um problema dentro de um quadro
+            explicativo.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar no bloco</span>
+            <p>Não hierarquizar opinião e ciência em tom de desprezo: o senso comum é o ponto
+            de partida de muitas boas perguntas. O que se critica é tomá-lo como resposta. E
+            não entrar em epistemologia além do necessário — a aula é de projeto, e o bloco
+            dura vinte minutos.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 10 a 17</b> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a></p>
+    <h2>O que é um projeto de pesquisa: componentes e a cadeia <span class="min">(30 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A metáfora da planta e a definição em plenária (telas 10 a 12)</td><td>8</td></tr>
+      <tr><td>Os sete componentes e o exemplo-âncora (telas 13 e 14)</td><td>8</td></tr>
+      <tr><td>Problema × objetivo × hipótese no exemplo (tela 15)</td><td>5</td></tr>
+      <tr><td>A cadeia e a matriz de amarração (telas 16 e 17)</td><td>9</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A metáfora que organiza o bloco</span>
+            <p>Usar no quadro a metáfora cara aos autores: ninguém ergue um prédio sem planta;
+            o engenheiro desenha portas, vigas e prazos <em>antes</em> de assentar o primeiro
+            tijolo. O pesquisador faz o mesmo: converte uma curiosidade vaga em um
+            <strong>problema de pesquisa</strong> e desenha o caminho para respondê-lo — isso é
+            o projeto. Pesquisa sem projeto é obra sem planta: atividade intensa, resultado
+            imprevisível.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Antes da definição (tela 12)</span>
+            <p>Pedir que cada um diga, em uma frase, o que entende por “projeto de pesquisa”.
+            Anotar três ou quatro respostas no quadro e só então projetar a definição:
+            <strong>documento-plano que formaliza a intenção de investigar</strong>,
+            especificando o que se quer saber, por que, como e em quanto tempo — antes de
+            coletar o primeiro dado. Comparar com as respostas anotadas: costuma faltar o
+            “quando” e o “com base em quê”.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Os sete componentes, cada um com a pergunta que responde</span>
+            <ol>
+              <li><strong>Tema e delimitação</strong>: o que vou estudar, dentro de que
+              fronteiras (geográficas, temporais, de setor);</li>
+              <li><strong>Problema de pesquisa</strong>: a pergunta central que orienta
+              tudo;</li>
+              <li><strong>Objetivos</strong>: geral e específicos — o que preciso responder para
+              chegar à pergunta central;</li>
+              <li><strong>Hipóteses</strong>: respostas provisórias que o estudo poderá
+              confirmar ou refutar;</li>
+              <li><strong>Referencial teórico</strong>: o quadro de conceitos e autores que dá
+              significado aos dados;</li>
+              <li><strong>Metodologia</strong>: como os dados serão obtidos e analisados
+              (delineamento, população e amostra, instrumentos, técnicas);</li>
+              <li><strong>Cronograma e bibliografia</strong>: quando cada etapa entrega, e com
+              base em que fontes.</li>
+            </ol>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O exemplo-âncora, que volta a aula inteira</span>
+            <p>O comércio eletrônico no varejo maranhense (telas 14, 15, 17, 19, 21, 22, 24 e
+            39) é o fio da aula: cada componente e cada especificidade é mostrado sobre o mesmo
+            projeto. Anunciar isso na tela 14 — “vamos usar este exemplo até o fim” — ajuda a
+            turma a ver as peças se encaixando, em vez de uma lista de conceitos soltos.</p>
+            <p>Na tela 15, insistir na regra do verbo: se o problema não vira verbo de ação
+            (analisar, comparar, estimar, testar), o objetivo ainda é uma intenção vaga.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A cadeia interdependente</span>
+            <p>Mostrar a <strong>interdependência</strong>: o problema determina os objetivos;
+            os objetivos determinam as hipóteses; hipóteses exigem variáveis; variáveis decidem
+            o instrumento e as técnicas de análise. Uma inconsistência em qualquer elo
+            fragiliza o conjunto.</p>
+            <p>É por isso que a disciplina usa a <strong>matriz de amarração</strong>, a tabela
+            que verifica essa cadeia linha a linha (tela 17). Ela é rascunhada depois do
+            encontro 3, construída na oficina do encontro 4 e revista nos encontros 7 e 9.
+            Hoje basta a turma reconhecer a ideia: se uma coluna contradiz a anterior, o
+            projeto quebra.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar no bloco</span>
+            <p>Não pedir que a turma preencha uma matriz própria hoje: ainda não há tema, e a
+            dinâmica do fim da aula faz isso coletivamente, no quadro. E não discutir o
+            referencial teórico em profundidade — ele é o componente menos quantitativo e o
+            que mais se aprende em outras disciplinas.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <h2>Intervalo <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Na volta do intervalo</span>
+            <p>Retomar com uma pergunta de dez segundos: <em>“qual é o elo que liga a hipótese
+            ao instrumento?”</em> (as variáveis). É a ponte para as especificidades do projeto
+            quantitativo, que começam pela mensuração.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 18 a 25</b> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a></p>
+    <h2>Especificidades do projeto quantitativo <span class="min">(30 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Mensuração e níveis de mensuração (telas 19 e 20)</td><td>8</td></tr>
+      <tr><td>Hipóteses testáveis (tela 21)</td><td>5</td></tr>
+      <tr><td>População, amostra e generalização (tela 22)</td><td>5</td></tr>
+      <tr><td>Instrumentos, validade e confiabilidade (telas 23 e 24)</td><td>7</td></tr>
+      <tr><td>Estatística como linguagem (tela 25)</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A promessa que organiza o bloco</span>
+            <p>O projeto quantitativo herda todos os componentes do bloco anterior e acrescenta
+            exigências próprias. Percorrer as seis especificidades com a promessa explícita de
+            que <strong>cada uma tem encontro dedicado</strong> — o número do encontro está no
+            rodapé de cada tela, e vale lê-lo em voz alta:</p>
+            <table>
+              <tr><th>Especificidade</th><th>Onde volta</th></tr>
+              <tr><td>1. Mensuração e operacionalização</td><td>Encontro 2 (variáveis e níveis
+              de mensuração)</td></tr>
+              <tr><td>2. Hipóteses testáveis</td><td>Encontro 3 (problema e hipóteses) e
+              encontro 11 (testes)</td></tr>
+              <tr><td>3. População, amostra e generalização</td><td>Encontros 6 a 8
+              (Módulo II)</td></tr>
+              <tr><td>4. Instrumentos que geram números</td><td>Encontro 4 (fontes de dados
+              secundários) e encontro 8 (questionários e escalas)</td></tr>
+              <tr><td>5. Validade e confiabilidade</td><td>Encontro 8 (escala Likert e alfa de
+              Cronbach)</td></tr>
+              <tr><td>6. Estatística como linguagem</td><td>Do encontro 1 ao 13: descrever
+              (1 a 4), inferir (7 a 12), relacionar (11 e 13)</td></tr>
+            </table>
+            </div>
+    <h3>Cada especificidade em uma frase</h3>
+
+            <ol>
+              <li><strong>Mensuração</strong>: conceitos abstratos (“satisfação”, “porte”,
+              “desempenho”) precisam virar variáveis com regras claras de atribuição de valores.
+              Sem operacionalização não há comparação possível;</li>
+              <li><strong>Hipóteses testáveis</strong>: a hipótese quantitativa afirma uma
+              relação esperada entre variáveis (“quanto maior o porte, maior a taxa de
+              sobrevivência”) e precisa ser <em>falseável</em> — os dados devem poder
+              contrariá-la;</li>
+              <li><strong>População e amostra</strong>: o projeto define a população-alvo e o
+              modo de selecionar a amostra, para que as conclusões se estendam com
+              <strong>margem de erro conhecida</strong>;</li>
+              <li><strong>Instrumentos</strong>: questionários fechados, escalas, bases
+              secundárias (IBGE, BCB, IPEA, CVM) — a coleta é padronizada e uniforme para todos
+              os casos;</li>
+              <li><strong>Validade e confiabilidade</strong>: o instrumento mede o que pretende
+              (validade) e mede de modo consistente (confiabilidade); o projeto precisa
+              declarar como garante as duas;</li>
+              <li><strong>Estatística como linguagem</strong>: descrição, visualização,
+              inferência, testes, correlação e regressão são o idioma em que os resultados são
+              analisados e comunicados.</li>
+            </ol>
+                <div class="caixa pergunta-aula"><span class="rotulo">A pergunta que amarra o exemplo-âncora</span>
+            <p>Na tela 19, antes de mostrar a caixa do exemplo, perguntar: <em>“o que conta
+            como ‘adotar comércio eletrônico’? Uma página própria, um marketplace, vender por
+            rede social?”</em>. A discussão mostra, sem definição formal, que a mensuração é uma
+            <strong>decisão do pesquisador</strong> e que ela muda o número final.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar no bloco</span>
+            <p>Não ensinar os níveis de mensuração a fundo na tela 20: é a tabela do
+            encontro 2, e hoje ela entra só como prova de que a mensuração decide a análise.
+            Não calcular margem de erro na tela 22, nem explicar o alfa de Cronbach na
+            tela 24: os dois são do Módulo II. Basta o nome e a promessa do encontro.</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">O limite do quantitativo, sem hierarquia</span>
+            <p>Encerrar reconhecendo o <strong>limite</strong>, sem hierarquizar as
+            abordagens: o quantitativo responde bem a <em>quantos</em>, <em>com que
+            frequência</em> e <em>está associado a</em>; não responde sozinho a <em>como as
+            pessoas vivenciam</em>. Isso é território do qualitativo, e o contraste volta no
+            encontro 1. As telas 33 a 35, logo depois do bloco de estatística, retomam esse
+            ponto com o exercício.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-6">
+    <p class="telas-da-secao"><b>telas 26 a 32</b> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a></p>
+    <h2>Estatística: o vocabulário da disciplina <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Os três trabalhos da estatística (tela 27)</td><td>7</td></tr>
+      <tr><td>População, amostra, parâmetro e estatística; a notação (tela 28)</td><td>12</td></tr>
+      <tr><td>Tipos de variável e a armadilha do código numérico (tela 29)</td><td>10</td></tr>
+      <tr><td>A anatomia do DataFrame (tela 30)</td><td>6</td></tr>
+      <tr><td>Dois erros que custam caro e a ficha de revisão (telas 31 e 32)</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Por que este bloco existe</span>
+            <p>É o <strong>único bloco do semestre sem fórmula</strong>. Ele instala o
+            vocabulário que todos os demais vão usar e desfaz, logo no primeiro dia, a ideia de
+            que estatística é conta. A leitura de apoio é Pinto e Silva (2020), capítulo 1,
+            seções 1.1, 1.2 e 1.4, de acesso aberto.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Os três trabalhos (tela 27)</span>
+            <p>Abrir pelos <strong>três trabalhos da estatística</strong>: descrever, inferir e
+            relacionar. Insistir que são <strong>perguntas diferentes, não níveis de
+            dificuldade</strong>, e que a pergunta de pesquisa decide qual deles o projeto
+            precisa. Mostrar no diagrama em que encontros cada um será tratado: descrever nos
+            encontros 1 a 4 (o Módulo I inteiro), inferir nos encontros 7 a 12, relacionar nos
+            encontros 11 e 13.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A tabela de notação, devagar (tela 28)</span>
+            <p>Ler a tabela de notação linha a linha — μ e x̄, σ e s, p e p̂, N e n —
+            pronunciando cada símbolo. É a primeira vez que a turma vê esses símbolos, e eles
+            reaparecem em todos os encontros.</p>
+            <p>O ponto que amarra tudo: <strong>calcula-se x̄ e quer-se falar de μ</strong>. É
+            essa distância que a inferência trata, e ela só é calculável quando a amostra foi
+            sorteada.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O critério operacional dos tipos de variável (tela 29)</span>
+            <p>Fixar o critério do slide: <strong>a diferença entre dois valores significa
+            alguma coisa?</strong> Se não significa, a variável é qualitativa, ainda que
+            escrita com algarismos. Usar o código CNAE como exemplo, porque ele volta em todos
+            os notebooks: o código 47 é rótulo, e não existe “CNAE médio”.</p>
+            <p>Perguntar à turma: <em>“o CEP é quantitativo? E o número da nota fiscal?”</em>.
+            Os dois são rótulos: a diferença entre dois CEPs não mede nada.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A anatomia do DataFrame (tela 30)</span>
+            <p>Não há notebook nesta aula, então o código é mostrado no projetor. O objetivo é
+            só que a turma <strong>reconheça</strong> as linhas quando elas aparecerem no
+            encontro 1: linha é caso, coluna é variável, e o tipo da coluna (<code>object</code>
+            ou <code>int64</code>/<code>float64</code>) é a forma como o pandas lê o tipo de
+            variável.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">O que não dizer na tela 30</span>
+            <p>Não apresentar <code>shape</code>, <code>head()</code> e <code>info()</code> como
+            tarefa do estudante. A regra da disciplina é <strong>zero diagnóstico</strong>: nos
+            notebooks, o <strong>painel do encontro</strong> já traz a fonte, o recorte, o
+            número de observações e o significado de cada coluna, e ninguém precisa inspecionar
+            a base para descobrir o que ela tem. A tela mostra o vocabulário; a leitura da base
+            vem pronta.</p>
+            <p>E não mostrar fórmula nenhuma neste bloco, nem mesmo a da média: a primeira
+            fórmula do semestre é a da frequência relativa, no encontro 1.</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">A dificuldade que vai aparecer</span>
+            <p>A turma confunde “amostra” com “uma parte dos dados que eu baixei”. A correção é
+            sempre a mesma pergunta: <strong>houve sorteio?</strong> Sem sorteio há um recorte,
+            e não uma amostra probabilística, e nada pode ser generalizado. É o erro 1 da
+            tela 31, e é o tema do Módulo II.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito dos dois erros (tela 31)</span>
+            <table>
+              <tr><th>Erro</th><th>Por que é erro</th><th>A frase certa</th></tr>
+              <tr><td>“As 500 empresas da base faturam em média R$ 2 milhões, logo as
+              brasileiras também”</td><td>Não houve sorteio: o número descreve as 500, e não a
+              população</td><td>“As 500 empresas da base faturam em média R$ 2 milhões; sem
+              sorteio, o número não autoriza falar das empresas brasileiras”</td></tr>
+              <tr><td>“A média das seções CNAE é 38,4”</td><td>A seção é categoria; média de
+              categoria não significa nada</td><td>“A seção mais frequente é o comércio, com
+              42% das empresas”</td></tr>
+            </table>
+            <p>Os dois são <strong>erro de escolha</strong>, e não erro de conta — que é
+            exatamente o que a disciplina cobra.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-7">
+    <p class="telas-da-secao"><b>telas 33 a 35</b> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a></p>
+    <h2>A abordagem decorre da pergunta: exercício quanti ou quali <span class="min">(10 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Conduzir</span>
+            <p>A tela 33 conecta com o trabalho do administrador: pesquisa de satisfação,
+            teste A/B, indicadores, segmentação, viabilidade. A tela 34 fixa a regra:
+            <strong>a abordagem não é rótulo, decorre do problema</strong>. A tela 35 é o
+            exercício: ler cada pergunta e deixar a turma responder antes de revelar a seta.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A pergunta que decide</span>
+            <p>Para cada item da tela 35: <em>“qual é o verbo da pergunta?”</em>. Medir,
+            comparar e testar indicam quanti; compreender, explorar e vivenciar indicam
+            quali.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito da tela 35</span>
+            <ul>
+              <li>Participação do e-commerce no varejo do MA → <strong>quanti</strong>
+              (mede);</li>
+              <li>Porte associado à adoção de crédito → <strong>quanti</strong>
+              (associa);</li>
+              <li>Por que microempresárias desistem de formalizar → <strong>ambígua</strong>:
+              quali para explorar motivos; quanti para medir a frequência de motivos já
+              conhecidos;</li>
+              <li>Satisfação entre lojas físicas e online → <strong>quanti</strong>
+              (compara);</li>
+              <li>Como feirantes enxergam os aplicativos → <strong>quali</strong>
+              (compreende);</li>
+              <li>Inadimplência PJ e Selic → <strong>quanti</strong>, correlação e regressão do
+              encontro 13.</li>
+            </ul>
+            <p>O item ambíguo é o mais instrutivo: a mesma pergunta pode pedir as duas
+            abordagens, e quem decide é o que já se sabe sobre o tema.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar</span>
+            <p>Não hierarquizar. As abordagens são complementares, e um administrador que só
+            sabe fazer número é tão limitado quanto um que só sabe ouvir.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-8">
+    <p class="telas-da-secao"><b>telas 36 a 45</b> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a> <a class="chip-tela" href="#45">45</a></p>
+    <h2>Do tema ao relatório: o mapa do semestre, o projeto e a IA <span class="min">(25 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Cardápio de temas, fontes e leitura desconfiada (telas 37 a 39)</td><td>7</td></tr>
+      <tr><td>O mapa do semestre e o projeto individual (telas 40 a 42)</td><td>8</td></tr>
+      <tr><td>As duas ansiedades (tela 43)</td><td>3</td></tr>
+      <tr><td>A IA generativa na disciplina (telas 44 e 45)</td><td>7</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O semestre é um projeto só</span>
+            <p>Apresentar o percurso mostrando que o semestre é o desenrolar de <strong>um
+            único projeto</strong>, o individual, e que a sequência das aulas segue a lógica da
+            construção. São quatro módulos, cada um com uma promessa:</p>
+            <table>
+              <tr><th>Módulo</th><th>Encontros</th><th>Promessa</th><th>Avaliação</th></tr>
+              <tr><td>I. Pesquisa quantitativa, dados e estatística descritiva</td><td>1 a 5</td>
+                  <td>Descrever: ler um dado, escolher a medida certa, baixar dados por
+                  API</td><td>AV1 no encontro 5, com a 1ª entrega do projeto</td></tr>
+              <tr><td>II. População, amostra e mensuração</td><td>6 a 9</td>
+                  <td>Sortear: delineamento, amostragem, distribuição amostral, tamanho da
+                  amostra, instrumentos</td><td>AV2 no encontro 9</td></tr>
+              <tr><td>III. Inferência estatística</td><td>10 a 12</td>
+                  <td>Inferir: intervalo de confiança, testes, escolha do teste</td>
+                  <td>— (o produto vai para a AV3)</td></tr>
+              <tr><td>IV. Associação, modelagem e comunicação</td><td>13 a 15</td>
+                  <td>Modelar e comunicar: correlação, regressão linear e logística,
+                  relatório</td><td>AV3 no encontro 14; prova final no 15</td></tr>
+            </table>
+            <p>A ordem é a ordem do fazer pesquisa: <strong>descrever antes de inferir</strong>.
+            A estatística descritiva inteira cabe no Módulo I, e nada dos módulos seguintes
+            aparece sem que a turma já a tenha visto.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O projeto individual em detalhe</span>
+            <p>Cada estudante escolhe um tema empresarial ou econômico, formula problema e
+            hipóteses e o investiga com <strong>dados secundários de fontes oficiais</strong>
+            (IBGE, Banco Central, IPEA, CVM, ANP, Receita Federal). As entregas:</p>
+            <ul>
+              <li><strong>Encontro 3:</strong> o cardápio de temas e bases, e o rascunho do
+              problema;</li>
+              <li><strong>Encontro 4:</strong> a fonte passada pelos seis critérios e a matriz
+              de amarração;</li>
+              <li><strong>Encontro 5:</strong> 1ª entrega, junto com a AV1 — tema, pergunta de
+              pesquisa e a base carregando por API, na frente do professor;</li>
+              <li><strong>Encontros 7 e 9:</strong> o projeto completo, formativo no 7 e
+              reescrito para a AV2;</li>
+              <li><strong>Encontro 14:</strong> relatório final, notebook reprodutível e
+              apresentação de três a cinco minutos (AV3).</li>
+            </ul>
+            </div>
+    <div class="caixa falar"><span class="rotulo">As duas ansiedades (tela 43)</span>
+            <p>Tranquilizar sobre os dois temores recorrentes, que voltam no encontro 1:
+            <strong>o computador faz os cálculos</strong> — cobra-se a decisão sobre qual
+            cálculo fazer e a interpretação, e nenhuma conta é feita à mão em nenhum encontro;
+            e <strong>não é preciso saber programar</strong> — os notebooks vêm com o código
+            pronto, comentado e já executado, com as saídas salvas. O estudante executa, troca
+            um ou dois valores no bloco de configuração e escreve frases.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A política de IA (telas 44 e 45)</span>
+            <p>A IA generativa é <strong>permitida e incentivada</strong>, com uma exigência:
+            <strong>registro do prompt e da checagem feita</strong>. O registro não desconta
+            pontos; a omissão é falta de honestidade acadêmica. A regra de ouro, que aparece em
+            todos os notebooks: <em>a IA explica, o código calcula, e o estudante confere e
+            escreve</em>.</p>
+            <table>
+              <tr><th>Contexto</th><th>Regra</th></tr>
+              <tr><td>Aulas e projeto individual</td><td>Permitida, sobretudo para adaptar a
+              análise à base do projeto</td></tr>
+              <tr><td>AV1 e prova final, Parte A (conceitual)</td><td><strong>Não
+              permitida</strong>: material fechado, telas fechadas</td></tr>
+              <tr><td>AV1 e prova final, Parte B (prática); AV2; AV3</td><td>Permitida, com
+              registro do prompt na célula própria</td></tr>
+            </table>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar ao falar de IA</span>
+            <p>Não apresentar a IA como depuradora de código do estudante. Na disciplina
+            ninguém diagnostica erro: toda análise do notebook já funciona, e o caminho
+            alternativo (a célula de contingência) já está escrito ao lado. O uso da IA é
+            <strong>pedir, colar na célula marcada e conferir o número</strong> com a função
+            <code>conferir</code>, que devolve <code>[ok]</code> ou <code>[X]</code>. Se o
+            código da IA falhar, o estudante não perde nada.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para a tela 45</span>
+            <p>Projetar só o “prompt fraco” e perguntar: <em>“o que falta neste pedido para a
+            IA não inventar?”</em>. Deixar a turma listar — o nome da tabela, as colunas, o tipo
+            de gráfico, a ordem — antes de mostrar o prompt útil. A resposta antecipa o
+            <strong>cartão de contexto</strong> dos notebooks, que imprime exatamente o que se
+            cola no assistente.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-9">
+    <p class="telas-da-secao"><b>telas 46 a 49</b> <a class="chip-tela" href="#46">46</a> <a class="chip-tela" href="#47">47</a> <a class="chip-tela" href="#48">48</a> <a class="chip-tela" href="#49">49</a></p>
+    <h2>Dinâmica: construindo um projeto no quadro <span class="min">(55 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Construindo um projeto no quadro (tela 47)</td><td>40</td></tr>
+      <tr><td>Verificação em duplas (tela 48)</td><td>15</td></tr>
+      <tr><td>A folha do projeto (tela 49), durante a verificação</td><td>—</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Construindo um projeto no quadro (40 min)</span>
+            <p>Sem prática de código nesta aula, a exercitação vem de uma dinâmica coletiva,
+            que serve de exemplo vivo de tudo o que foi exposto. A turma sugere um tema (por
+            exemplo, “comércio eletrônico em São Luís”) e o professor preenche no quadro cada
+            componente em sequência, verbalizando as decisões:</p>
+            <ol>
+              <li>delimitar o tema: onde, quando, que setor;</li>
+              <li>redigir o problema em forma de pergunta;</li>
+              <li>derivar um objetivo geral e dois específicos, com verbo de ação;</li>
+              <li>formular uma hipótese com duas variáveis;</li>
+              <li>indicar onde encontrar os dados (fonte oficial);</li>
+              <li>esboçar um cronograma de oito semanas.</li>
+            </ol>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A pergunta de cada componente</span>
+            <p>A cada componente preenchido, perguntar: <em>“que exigência quantitativa estamos
+            cumprindo aqui?”</em>. A turma deve reconhecer que mensuração, hipótese testável,
+            amostra, instrumento e análise já estavam aparecendo no quadro, antes de qualquer
+            definição formal.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Verificação em duplas (15 min)</span>
+            <p>Cada dupla aponta, no projeto do quadro, <strong>um elo frágil</strong> da cadeia
+            problema → objetivos → hipótese → variáveis → fonte, escreve o ajuste que proporia
+            e o apresenta em uma frase. O exercício antecipa, em miniatura, o que cada um fará
+            com o próprio projeto a partir do encontro 3.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Os elos frágeis que devem aparecer</span>
+            <ul>
+              <li><strong>Problema amplo demais</strong>: não cabe em um semestre nem em uma
+              base;</li>
+              <li><strong>Hipótese sem variável</strong>: afirma importância, não relação
+              mensurável (“o marketing é importante”);</li>
+              <li><strong>Dado que a fonte não tem</strong>: a variável foi inventada, e a base
+              não a registra;</li>
+              <li><strong>Objetivo sem verbo de ação</strong>: “entender”, “abordar” em vez de
+              comparar, estimar, testar.</li>
+            </ul>
+            <p>Se nenhuma dupla achar o terceiro, provocar: <em>“o CEMPRE registra se a empresa
+            vende pela internet?”</em> (não registra; o exemplo-âncora precisaria de outra
+            fonte, como a pesquisa TIC Empresas, ou de um questionário).</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Gancho com o projeto individual (tela 49)</span>
+            <p>A dinâmica encerra com a primeira tarefa reflexiva do semestre: cada estudante
+            anota, numa folha que será recolhida, <strong>uma linha de tema empresarial ou
+            econômico de interesse pessoal</strong> e a pergunta que gostaria de responder
+            sobre ele, identificada com o nome. Dizer que as folhas serão lidas antes do
+            encontro 3, quando o cardápio de temas e bases é apresentado completo: a aula 0
+            planta o projeto antes que a turma conheça as ferramentas.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar na dinâmica</span>
+            <p>Não escrever o projeto pela turma: o professor organiza e verbaliza as decisões,
+            mas as escolhas são da turma, inclusive as ruins — são elas que a verificação em
+            duplas vai encontrar. E não corrigir o tema sugerido logo de saída, mesmo que
+            amplo: delimitar é o primeiro passo da própria dinâmica.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-10">
+    <p class="telas-da-secao"><b>telas 50 a 51</b> <a class="chip-tela" href="#50">50</a> <a class="chip-tela" href="#51">51</a></p>
+    <h2>Síntese e tarefa <span class="min">(5 min)</span></h2>
+    <div class="caixa pergunta-aula"><span class="rotulo">A síntese em três afirmações</span>
+            <p>Pedir que a turma complete cada afirmação antes de mostrar a lista da tela 50:</p>
+            <ol>
+              <li><strong>Pesquisa é construção</strong>, e construção exige projeto;</li>
+              <li><strong>Projeto é uma cadeia coerente</strong>: problema → objetivos →
+              hipóteses → variáveis → método → cronograma;</li>
+              <li><strong>O projeto quantitativo acrescenta</strong> exigências específicas de
+              mensuração, amostragem, instrumento e estatística, que o semestre desenvolve uma a
+              uma.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o encontro 1</h3>
+
+            <ol>
+              <li>Ler em Laville e Dionne (1999) o trecho que discute os <strong>tipos de
+              conhecimento</strong> e o início da problemática (parte I);</li>
+              <li>Garantir <strong>acesso funcional ao Google Colab</strong>: quem tiver
+              problema de conta resolve durante a semana, porque o encontro 1 já usa o notebook
+              e baixa a primeira base pela API do IBGE;</li>
+              <li>Opcional: reler as telas do bloco de estatística (26 a 32) e a leitura de apoio
+              de Pinto e Silva (2020), capítulo 1.</li>
+            </ol>
+            <p>Recolher a folha com o tema e a pergunta antes de a turma sair.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>
