@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 14: Interpretação e comunicação de resultados</title>
+<title>Encontro 14: Comunicação dos resultados e Avaliação 3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,11 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 14 · Unidade IV</div>
-  <h1>Comunicação de resultados</h1>
-  <p class="subtitulo">Estrutura do relatório, escrita científica e notebook reprodutível</p>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 14 · Módulo IV · Avaliação 3</div>
+  <h1>Comunicação dos resultados e Avaliação 3</h1>
+  <p class="subtitulo">Da pergunta à frase: o relatório final, o notebook reprodutível e a apresentação</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -33,384 +37,585 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
+  <p>Hoje o semestre vira texto. Uma exposição curta sobre <strong>como comunicar um
+  resultado</strong>, e o resto do dia é da <strong>Avaliação 3</strong>: o relatório, o
+  notebook e a apresentação do seu projeto.</p>
   <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>15 min</td><td>Retomada: do problema à análise, hoje fechamos com a comunicação</td></tr>
-    <tr><td>70 min</td><td>Estrutura do relatório · escrita científica · notebook reprodutível · slide único</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>60 min</td><td><strong>Oficina de redação:</strong> aplicar a estrutura ao seu projeto</td></tr>
-    <tr><td>60 min</td><td><strong>Apresentações sintéticas</strong> (3–5 min cada)</td></tr>
-    <tr><td>20 min</td><td>Síntese e encerramento da Avaliação 3</td></tr>
+    <tr><th>Bloco</th><th>Minutos</th><th>O que acontece</th></tr>
+    <tr><td>Abertura</td><td>15</td><td>As regras da AV3 e o notebook-modelo aberto</td></tr>
+    <tr><td>Exposição</td><td>30</td><td>Pergunta → estatística → frase; leitura crítica; a seção de resultados; a apresentação</td></tr>
+    <tr><td>Intervalo</td><td>15</td><td></td></tr>
+    <tr><td><strong>AV3</strong></td><td><strong>180</strong></td><td>Fechamento do relatório (60) · apresentações (105) · entrega (15)</td></tr>
   </table>
-  <p class="menor">Avaliação 3 se entrega hoje: relatório final + notebook completo + slide único.</p>
+  <div class="instrucao"><span class="rotulo">Antes de começar</span>
+  Abra o notebook do encontro e faça <em>Arquivo → Salvar uma cópia no Drive</em>. Tenha à
+  mão a base do seu projeto e o notebook em que você vem trabalhando desde o encontro 5.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p>Ao final do encontro, você deverá ser capaz de:</p>
-  <ol>
-    <li><strong>estruturar</strong> um relatório de pesquisa quantitativa nas seções
-        canônicas: introdução, problema e hipóteses, método, resultados, discussão e
-        conclusão;</li>
-    <li><strong>redigir</strong> resultados com precisão estatística e
-        <strong>separar</strong> o que os dados afirmam do que exige interpretação;</li>
-    <li><strong>usar</strong> o notebook como protocolo reprodutível, registrando filtros,
-        transformações e recortes;</li>
-    <li><strong>construir</strong> uma apresentação de problema, método e achados em um
-        único slide;</li>
-    <li><strong>entregar</strong> a Avaliação 3 dentro do prazo da aula.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Retomada: o ciclo se fecha hoje</h2>
-  <table>
-    <tr><th>Etapa</th><th>Encontros</th></tr>
-    <tr><td>Problema, hipóteses e variáveis</td><td>3 e 4</td></tr>
-    <tr><td>Amostra, instrumentos, coleta e ética</td><td>5 a 8</td></tr>
-    <tr><td>Análise: descritivas, gráficos, inferência, relação</td><td>9 a 13</td></tr>
-    <tr><td><strong>Comunicação dos resultados</strong></td><td><strong>hoje</strong></td></tr>
-  </table>
-  <div class="afirmacao">Hoje toda a cadeia metodológica do semestre vira texto, números e
-  perguntas respondidas.</div>
-  <div class="instrucao"><span class="rotulo">Tenha à mão (15 min)</span>
-  A sua base, o seu notebook do semestre e a matriz de amarração do encontro 4. Tudo o que
-  você produziu desde o encontro 3 entra no relatório de hoje.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
-  <h2>A estrutura do relatório</h2>
-  <p>Cada seção responde a uma etapa do método</p>
+  <h2>Comunicar os resultados</h2>
+  <p>Da pergunta à frase: como um número vira resultado de pesquisa</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A anatomia do relatório</h2>
+  <h2>Pergunta, estatística, frase: os Módulos I e II</h2>
+  <p>Encontre a linha da sua pergunta, use a estatística da segunda coluna e escreva a frase
+  no formato da terceira.</p>
   <table>
-    <tr><th>Seção</th><th>O que responde</th><th>Encontro base</th></tr>
-    <tr><td>Introdução</td><td>contexto, problema, justificativa, objetivos</td><td>3</td></tr>
-    <tr><td>Problema e hipóteses</td><td>o que nomeia o estudo, H1 testável</td><td>3, 11</td></tr>
-    <tr><td>Método</td><td>delineamento, amostra, instrumentos, fontes, matriz de amarração</td><td>4, 5, 6, 7, 8</td></tr>
-    <tr><td>Resultados</td><td>descritivas, gráficos e testes em ordem de hipóteses</td><td>9–13</td></tr>
-    <tr><td>Discussão</td><td>o que os resultados respondem, conexões e contexto</td><td>4</td></tr>
-    <tr><td>Conclusão</td><td>síntese, limitações, agenda</td><td>não se aplica</td></tr>
-  </table>
-  <p class="menor">Nenhuma tabela ou gráfico entra sem referência no texto, e toda afirmação de resultado aponta para uma etapa do método.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide divisor">
-  <h2>A escrita científica</h2>
-  <p>Precisão sobre adjetivação</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Do dado à frase</h2>
-  <div class="exemplo"><span class="rotulo">Afirmação estatística</span>
-  "Observamos associação significativa entre Selic e inadimplência defasada (r = 0,77; p &lt;
-  0,001)."</div>
-  <div class="afirmacao">Inferência causal não sustentada pelo teste</div>
-  <div class="exemplo"><span class="rotulo">Frágil</span>
-  "A inadimplência aumenta porque os juros sobem." <span class="rotulo">Precisa</span>
-  "Há associação temporal entre a Selic e a inadimplência seis meses à frente; a direção
-  causal não é testada neste delineamento."</div>
-  <p class="menor">Vocabulário herdado dos encontros 11 e 13: IC de 95%, rejeita/não rejeita
-  H0, elasticidade, associação ≠ causalidade.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Erros clássicos a desmontar</h2>
-  <ol>
-    <li><strong>Reportar r sem p</strong> (ou o teste sem a hipótese);</li>
-    <li>Dizer que "a média é diferente" <strong>sem teste</strong>: diferente estatisticamente, ou só diferente na amostra?</li>
-    <li><strong>Extrapolar</strong> para fora do suporte dos dados;</li>
-    <li><strong>Esconder decisões de tratamento:</strong> extremos, transformações, recortes,
-        decisões se declaram;</li>
-    <li>Números com <strong>unidades e casas inconsistentes</strong>; gráfico ilegível no
-        preto e branco.</li>
-  </ol>
-  <div class="pergunta">Onde você, neste semestre, cometeu ou viu algum desses? Esse é o
-  tipo de item que separa o relatório do achismo.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide divisor">
-  <h2>O notebook reprodutível</h2>
-  <p>Método e produto ao mesmo tempo</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Regras de ouro da entrega</h2>
-  <ul>
-    <li><strong>Reiniciar e executar tudo</strong>: nada pode quebrar;</li>
-    <li><strong>Células de markdown numeradas</strong> que narram: pergunta → dados →
-        análise → conclusão;</li>
-    <li><strong>Comentários que explicam o "porquê"</strong>, não o "o quê";</li>
-    <li><strong>Tabelas e gráficos numerados</strong> com título;</li>
-    <li>Todo passo reproduzível por outro pesquisador, <strong>reprodutibilidade é
-        método</strong>.</li>
-  </ul>
-  <div class="exemplo"><span class="rotulo">Padrão de célula</span>
-  Texto com a pergunta → código comentado dos passos → prosa final com a resposta.
-  Quem lê o notebook entende <strong>o que foi decidido e por quê</strong>.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O slide único (3–5 min)</h2>
-  <ol>
-    <li><strong>Problema</strong> em uma linha;</li>
-    <li><strong>Método</strong> em três marcadores (delineamento, dados, técnicas);</li>
-    <li><strong>Achados</strong> em dois ou três números;</li>
-    <li><strong>Limitação</strong> em uma linha.</li>
-  </ol>
-  <p class="menor">O slide é apoiador da fala, não a fala inteira. Critérios: hierarquia
-  visual, números grandes, um gráfico apenas se for o mais importante, fonte legível à
-  distância.</p>
-  <div class="pergunta">Quem lê o slide não está apresentando, o slide organiza, a fala
-  comunica.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide divisor estat">
-  <h2>Estatística do encontro 14</h2>
-  <p>A tabela de correspondência: que pergunta, que estatística, que frase</p>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Que pergunta, que estatística, que frase</h2>
-
-  <p>Esta tabela resume os quinze encontros. Ela é o mapa para escrever a seção de resultados do
-  relatório: encontre a linha da sua pergunta, use a estatística da segunda coluna e escreva a
-  frase no formato da terceira.</p>
-  <table>
-    <tr><th>A pergunta de pesquisa</th><th>A estatística</th><th>O formato da frase</th></tr>
-    <tr><td>Qual o perfil? Quantos são de cada tipo?</td><td>Frequência e porcentagem (enc. 1)</td>
-        <td>"Entre os <em>n</em> casos, <em>x</em>% (<em>k</em>) pertencem a <em>categoria</em>."</td></tr>
-    <tr><td>Qual a taxa dentro de cada grupo?</td><td>Proporção por linha (enc. 2)</td>
-        <td>"<em>x</em>% no grupo A contra <em>y</em>% no grupo B: <em>x−y</em> pontos percentuais."</td></tr>
-    <tr><td>Qual o valor típico?</td><td>Média ou mediana (enc. 3 e 9)</td>
-        <td>"Mediana de <em>m</em>, com metade dos casos entre <em>Q1</em> e <em>Q3</em>."</td></tr>
-    <tr><td>O quanto os casos variam?</td><td>Desvio padrão e CV (enc. 4)</td>
-        <td>"Média de <em>x</em>, desvio padrão de <em>s</em> (CV de <em>c</em>%), em <em>n</em> casos."</td></tr>
-    <tr><td>Quanto vale para a população?</td><td>Intervalo de confiança (enc. 5)</td>
-        <td>"Estimativa de <em>x</em>, margem de erro de <em>m</em> a 95% (amostra aleatória)."</td></tr>
-    <tr><td>Os itens da escala medem a mesma coisa?</td><td>Alfa de Cronbach (enc. 6)</td>
-        <td>"Escala de <em>k</em> itens, alfa de <em>a</em>, considerado <em>faixa</em>."</td></tr>
-    <tr><td>Qual a chance disso, dado aquilo?</td><td>Probabilidade condicional (enc. 7)</td>
-        <td>"Entre os casos de <em>B</em>, <em>p</em> apresentaram <em>A</em>, contra <em>q</em> no conjunto."</td></tr>
-    <tr><td>Como se distribui? Este caso é atípico?</td><td>Histograma e escore z (enc. 10)</td>
-        <td>"Concentra-se entre <em>a</em> e <em>b</em>; o caso <em>c</em> está a <em>z</em> desvios da média."</td></tr>
-    <tr><td>A diferença é maior do que o acaso?</td><td>Teste t ou qui-quadrado (enc. 11)</td>
-        <td>"<em>t</em> = _; gl = _; p = _. A diferença é de <em>d</em> em unidade original."</td></tr>
-    <tr><td>As duas variáveis andam juntas?</td><td>Correlação e regressão (enc. 13)</td>
-        <td>"r = _; cada unidade de x corresponde a <em>b</em> de y; o modelo explica _%."</td></tr>
+    <tr><th>A pergunta</th><th>A estatística</th><th>O formato da frase</th></tr>
+    <tr><td>Quantos são de cada tipo?</td><td>Frequência e porcentagem, com o denominador</td>
+        <td>“Entre os n casos, x% (k) são do tipo A”</td></tr>
+    <tr><td>Qual a taxa dentro de cada grupo?</td><td>Proporção por linha; pontos percentuais</td>
+        <td>“x% em A contra y% em B: d pontos a mais”</td></tr>
+    <tr><td>Qual o valor típico?</td><td>Média (simétrica) ou mediana (assimétrica, ordinal)</td>
+        <td>“Mediana de m; metade dos casos entre Q1 e Q3”</td></tr>
+    <tr><td>Quanto os casos variam?</td><td>Desvio padrão, CV, intervalo interquartílico</td>
+        <td>“Média de x, desvio de s (CV de c%), em n casos”</td></tr>
+    <tr><td>Este caso é atípico?</td><td>Escore z</td>
+        <td>“O caso c está z desvios acima da média”</td></tr>
+    <tr><td>Quanto vale para a população?</td><td>Erro padrão e margem de erro</td>
+        <td>“Estimativa de x, margem de m a 95% (amostra de n)”</td></tr>
+    <tr><td>Quantos casos são precisos?</td><td>Tamanho da amostra</td>
+        <td>“Para margem de m a 95%, são precisos n casos”</td></tr>
+    <tr><td>Os itens medem a mesma coisa?</td><td>Alfa de Cronbach</td>
+        <td>“Escala de k itens, alfa de a”</td></tr>
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Leitura crítica: o que falta em cada frase</h2>
-
-  <p>Três frases retiradas de relatórios reais. Todas têm número correto e leitura incompleta.</p>
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Frase 1</span>
-      "A satisfação média dos clientes é de 4,2."</div>
-      <p class="menor"><strong>Falta:</strong> a escala (4,2 de 1 a 5 ou de 1 a 10?), o n, e a
-      dispersão. Sem isso, 4,2 não significa nada.</p>
-      <div class="alerta"><span class="rotulo">Frase 2</span>
-      "As empresas que investem em inovação faturam 30% mais, o que mostra que inovar aumenta o
-      faturamento."</div>
-      <p class="menor"><strong>Falta:</strong> o delineamento. Dado observacional sem sorteio não
-      autoriza "aumenta". A correção é trocar por "está associado a".</p>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">Frase 3</span>
-      "O teste não foi significativo (p = 0,21), logo não há diferença entre os grupos."</div>
-      <p class="menor"><strong>Falta:</strong> a distinção entre ausência de evidência e evidência
-      de ausência. A correção: "não há evidência de diferença", seguida do tamanho da diferença
-      observada e do n, que pode ser pequeno demais.</p>
-      <div class="frase-resultado"><span class="rotulo">O teste final de toda frase de resultado</span>
-      Ela diz <strong>quanto</strong>, <strong>em quem</strong>, <strong>com que incerteza</strong> e
-      <strong>o que não autoriza concluir</strong>? Se faltar uma das quatro, reescreva.</div>
-    </div>
+  <h2>Pergunta, estatística, frase: os Módulos III e IV</h2>
+  <table>
+    <tr><th>A pergunta</th><th>A estatística</th><th>O formato da frase</th></tr>
+    <tr><td>Entre que valores está o parâmetro?</td><td>Intervalo de confiança</td>
+        <td>“Entre a e b, com 95% de confiança no método”</td></tr>
+    <tr><td>Dois grupos diferem?</td><td>t de Welch ou Mann-Whitney</td>
+        <td>“Diferença de d (unidade); t = _, p = _”</td></tr>
+    <tr><td>Três ou mais grupos diferem?</td><td>ANOVA ou Kruskal-Wallis</td>
+        <td>“As médias diferem entre os k grupos (F = _, p = _)”</td></tr>
+    <tr><td>Duas categóricas se associam?</td><td>Qui-quadrado</td>
+        <td>“x% contra y%; χ² = _, gl = _, p = _”</td></tr>
+    <tr><td>As duas variáveis andam juntas?</td><td>Correlação r</td>
+        <td>“r = _: associação positiva e forte, que não é causa”</td></tr>
+    <tr><td>Quanto Y muda com X, mantido Z?</td><td>Regressão linear, em cinco colunas</td>
+        <td>“A cada unidade de X, Y muda b, mantido Z; R² = _”</td></tr>
+    <tr><td>Qual a chance de um evento?</td><td>Regressão logística</td>
+        <td>“A chance é OR vezes maior; probabilidade prevista de p%”</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">Se a sua pergunta não está nas duas tabelas</span>
+  O problema é de <strong>delineamento</strong>, e não de redação. Resolva com o professor
+  antes de escrever a seção de resultados.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A frase completa: o teste das quatro perguntas</h2>
+  <p>Toda frase de resultado diz quatro coisas. Se faltar uma, reescreva.</p>
+  <div class="cartoes cartoes-4">
+    <div class="cartao"><h4>1. Quanto</h4><p>O número, com a unidade.</p></div>
+    <div class="cartao alt-dourado"><h4>2. Em quem</h4><p>O n, o recorte e o período.</p></div>
+    <div class="cartao alt-verde"><h4>3. Com que incerteza</h4><p>O intervalo, o erro padrão ou o valor-p.</p></div>
+    <div class="cartao alt-amarelo"><h4>4. O que não autoriza</h4><p>Causa, generalização, o que ficou de fora.</p></div>
   </div>
+  <div class="frase-resultado"><span class="rotulo">A frase do exemplo da aula</span>
+  “O preço médio da gasolina é <strong>R$ 0,61 por litro maior</strong> no interior que na
+  Ilha de São Luís (<strong>236 postos</strong> pesquisados pela ANP no Maranhão em 2025).
+  Os intervalos de 95% não se sobrepõem (Ilha: R$ 5,68 a R$ 5,72; interior: R$ 6,25 a
+  R$ 6,37), e o teste t de Welch rejeita a igualdade (t = −19,44; p &lt; 0,001). O dado
+  não separa frete, concorrência e escala: <strong>não é causa</strong>.”</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O mapa das fichas: onde revisar cada coisa</h2>
-
-  <p>Os treze blocos de estatística do semestre, com a ficha de revisão de cada um. Use este mapa
-  para a prova final e para escrever o relatório.</p>
+  <h2>Leitura crítica 1: antes do número, a base</h2>
+  <p>A base da CVM do encontro 4 tem uma coluna que quase ninguém lê:
+  <code>ESCALA_MOEDA</code>. <strong>444 companhias</strong> informam em milhares de reais;
+  <strong>7</strong> informam em reais.</p>
   <div class="colunas">
-    <div>
-      <table>
-        <tr><th>Enc.</th><th>Ficha</th></tr>
-        <tr><td>0</td><td>O vocabulário: população, amostra, parâmetro, tipos de variável</td></tr>
-        <tr><td>1</td><td>Frequência, porcentagem e o denominador</td></tr>
-        <tr><td>2</td><td>Proporção, taxa, ponto percentual e tabela cruzada</td></tr>
-        <tr><td>3</td><td>Média, mediana e moda</td></tr>
-        <tr><td>4</td><td>Variância, desvio padrão e coeficiente de variação</td></tr>
-        <tr><td>5</td><td>Erro padrão, TCL e intervalo de confiança</td></tr>
-        <tr><td>6</td><td>Correlação entre itens e alfa de Cronbach</td></tr>
-      </table>
-    </div>
-    <div>
-      <table>
-        <tr><th>Enc.</th><th>Ficha</th></tr>
-        <tr><td>7</td><td>Probabilidade e probabilidade condicional</td></tr>
-        <tr><td>9</td><td>Quartis, cinco números e assimetria</td></tr>
-        <tr><td>10</td><td>Classes, histograma e escore z</td></tr>
-        <tr><td>11</td><td>Hipóteses, valor-p e escolha do teste</td></tr>
-        <tr><td>13</td><td>Covariância, r, mínimos quadrados e R²</td></tr>
-      </table>
-      <div class="exemplo"><span class="rotulo">Como estudar para a prova final</span>
-      Leia as treze fichas em sequência: são treze telas. Depois, para cada uma, abra o notebook do
-      encontro correspondente e execute a seção "Estatística do encontro". Ler e executar leva
-      cerca de duas horas, e cobre tudo o que a prova pede.</div>
-    </div>
+    <div class="alerta"><span class="rotulo">Lida sem a escala</span>
+    A Vivara aparece com receita de <strong>R$ 2,6 trilhões</strong> e vira a maior
+    companhia aberta do país. A receita média da base salta para
+    <strong>R$ 21,2 bilhões</strong>.</div>
+    <div class="exemplo"><span class="rotulo">Lida com a escala</span>
+    A receita da Vivara é de <strong>R$ 2,6 bilhões</strong>. Convertidas as 7 companhias, e
+    retiradas 2 com receita negativa, a média das 449 é de <strong>R$ 12,3 bilhões</strong>,
+    e a mediana, de <strong>R$ 2,1 bilhões</strong>.</div>
   </div>
+  <div class="pergunta">O número estava certo; a leitura, não. <strong>Antes de qualquer
+  estatística, leia a unidade de cada coluna</strong> — e declare no método o que você
+  converteu e o que excluiu.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
-
-<section class="slide divisor">
-  <h2>Mão na massa</h2>
-  <p>Oficina de redação e apresentações</p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Avaliação 3: o que você entrega hoje</h2>
-  <div class="instrucao"><span class="rotulo">Três peças, todas do seu projeto</span>
-  <ol>
-    <li><strong>Relatório final</strong>: as seis seções canônicas, com a matriz de
-        amarração preenchida;</li>
-    <li><strong>Notebook completo</strong>: executado do início ao fim sem erro, com as
-        decisões registradas;</li>
-    <li><strong>Slide único</strong>: pronto para a fala de 3 a 5 minutos.</li>
-  </ol></div>
+  <h2>Leitura crítica 2: o que o número diz, e o que não diz</h2>
+  <p>Os 236 postos da ANP. A pergunta: <em>o posto com marca cobra mais caro que o de
+  bandeira branca?</em> Dois modelos, a mesma variável.</p>
   <table>
-    <tr><th>O professor valida</th><th>Olhando o quê</th></tr>
-    <tr><td>Definição operacional das variáveis</td><td>Encontros 3 e 4</td></tr>
-    <tr><td>Descrição da amostra</td><td>Encontros 5 e 8</td></tr>
-    <tr><td>Instrumentos e coleta</td><td>Encontros 6 e 7</td></tr>
-    <tr><td>Análise aplicada e interpretação</td><td>Encontros 9 a 13</td></tr>
+    <tr><th>Modelo</th><th>Efeito de ter marca</th><th>Valor-p</th><th>R²</th></tr>
+    <tr><td>Só a bandeira (a comparação crua)</td><td>+R$ 0,0085 por litro</td><td>0,863</td><td>0,0001</td></tr>
+    <tr><td>Bandeira e região</td><td>+R$ 0,0507 por litro</td><td>0,079</td><td>0,66</td></tr>
   </table>
-  <p class="menor">Entrega pelo link do notebook e do slide, mais o PDF do relatório se a
-  coordenação exigir. Prazo: o fim desta aula.</p>
+  <ul>
+    <li><strong>“Não significativo” não é “igual”.</strong> O p = 0,863 da comparação crua
+        parecia dizer que bandeira não importa; com a região no modelo, o efeito é seis
+        vezes maior;</li>
+    <li><strong>O coeficiente depende do que está ao lado dele.</strong> As marcas estão mais
+        na Ilha (70 de 117, contra 61 de 119 brancas), onde a gasolina é R$ 0,61 mais
+        barata. A região <em>escondia</em> parte do efeito: é a variável de confusão;</li>
+    <li><strong>Associação não é causa.</strong> Nem a região nem a bandeira foram sorteadas.</li>
+  </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Sem base completa? Componha e declare</h2>
-  <div class="alerta"><span class="rotulo">Se a sua base ficou incompleta</span>
-  Componha o relatório sobre um <strong>extrato dos dados da disciplina</strong> (CVM,
-  CEMPRE ou SGS) e <strong>declare a limitação</strong> na seção de método. Entregar um
-  relatório honesto sobre dados parciais vale mais do que forçar uma análise que a base não
-  sustenta.</div>
-  <div class="instrucao"><span class="rotulo">O que não pode faltar</span>
-  Mesmo no extrato simulado: problema em forma de pergunta, hipóteses, variáveis com nível
-  de mensuração, ao menos uma análise das unidades III e a limitação escrita.</div>
-  <p class="menor">A Avaliação 3 soma à média semestral. A prova final, no encontro 15,
-  abrange todo o conteúdo, com componente conceitual e prático.</p>
+  <h2>A seção de resultados, em quatro peças</h2>
+  <p>Sempre nesta ordem. Cada peça vem com a sua frase de leitura, e cada número sai de uma
+  célula executada do notebook.</p>
+  <table>
+    <tr><th>Peça</th><th>O que responde</th><th>No exemplo da aula</th></tr>
+    <tr><td><strong>Tabela 1</strong></td><td>Quem são os casos: n, típico, variação</td>
+        <td>236 postos; média de R$ 5,97 (Ilha R$ 5,70, interior R$ 6,31)</td></tr>
+    <tr><td><strong>Figura 1</strong></td><td>A forma da distribuição em cada grupo</td>
+        <td>Boxplot por região: as caixas não se sobrepõem</td></tr>
+    <tr><td><strong>Inferência</strong></td><td>O que a amostra autoriza dizer</td>
+        <td>Diferença de R$ 0,61; t = −19,44; p &lt; 0,001</td></tr>
+    <tr><td><strong>Modelo</strong></td><td>O efeito de cada variável, mantidas as outras</td>
+        <td>Marca +R$ 0,05 (p = 0,079); Ilha −R$ 0,61; R² = 0,66</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">Toda tabela e toda figura</span>
+  Têm número, título, unidade, n e fonte — e são <strong>citadas no texto</strong>. Uma
+  figura que o texto não menciona não deveria estar no relatório.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Oficina de redação (60 min)</h2>
-  <ol>
-    <li>Pegue o checklist do notebook do encontro, uma célula por seção do relatório;</li>
-    <li>Preencha com a <strong>sua</strong> base: problema, hipóteses, método, resultados,
-        discussão;</li>
-    <li>Confira a <strong>amarração</strong>: cada hipótese da introdução tem um resultado
-        correspondente?</li>
-    <li>Revise a <strong>linguagem</strong>: onde escrevi "causa" ou "diferente" sem teste,
-        reformulo com o vocabulário dos encontros 11 e 13;</li>
-    <li>Monte o <strong>slide único</strong> e ensaie a fala de 3–5 minutos.</li>
-  </ol>
-  <div class="instrucao"><span class="rotulo">Os dois focos da revisão</span>
-  <strong>Coerência da amarração:</strong> cada hipótese anunciada na introdução tem um
-  resultado correspondente na seção de resultados?
-  <strong>Precisão da linguagem:</strong> onde você escreveu "causa", "média diferente" ou
-  "significativo" sem respaldo, reformule com o vocabulário dos encontros 11 e 13.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Apresentações (60 min)</h2>
-  <ul>
-    <li>3–5 minutos por estudante, um slide, cronometrado;</li>
-    <li><strong>Feedback do público:</strong> o que cada um entendeu como problema, método e
-        achado?</li>
-    <li><strong>Feedback do professor:</strong> o slide comunica em uma passada, ou exige a
-        fala para compensar?</li>
-    <li>Objetividade e tempo contam, ensaiar fora da sala vale nota.</li>
-  </ul>
-  <div class="alerta"><span class="rotulo">A armadilha do slide único</span>
-  Quem <strong>lê</strong> o slide não está apresentando. O slide apoia a fala: problema em
-  uma linha, método em três marcadores, dois ou três números de achado e uma linha de
-  limitação. Números grandes, gráfico só se for o mais importante.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese do encontro</h2>
-  <ol>
-    <li><strong>Comunicar é decisão metodológica:</strong> estrutura, vocabulário e
-        reprodutibilidade valem nota;</li>
-    <li><strong>Afirmação estatística ≠ inferência causal:</strong> o relatório diz o que
-        os dados permitem, e declara o que não permitem;</li>
-    <li><strong>O notebook é método e produto:</strong> cada célula documenta uma decisão;</li>
-    <li><strong>Slide único = disciplina de síntese:</strong> problema, método, achados,
-        limitação.</li>
-  </ol>
+  <h2>O modelo no relatório: a tabela de cinco colunas</h2>
+  <p>O relatório nunca traz a saída bruta do pacote. Traz esta tabela — a mesma que o
+  notebook monta —, e uma frase por linha que importa.</p>
+  <table>
+    <tr><th>variável</th><th>estimativa</th><th>erro_padrão</th><th>valor_p</th><th>efeito</th></tr>
+    <tr><td>intercepto</td><td>6,2901</td><td>0,0252</td><td>&lt; 0,001</td><td>preço previsto: branca, interior</td></tr>
+    <tr><td>com_marca</td><td>0,0507</td><td>0,0287</td><td>0,0788</td><td>+R$ 0,05 por litro</td></tr>
+    <tr><td>ilha</td><td>−0,6139</td><td>0,0289</td><td>&lt; 0,001</td><td>−R$ 0,61 por litro</td></tr>
+  </table>
+  <p class="menor">Regressão linear do preço médio anual da gasolina (R$/litro) em 236 postos;
+  R² = 0,66. Fonte: ANP, SHPC, 2025.</p>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Mantida a região, os postos com marca cobram em média R$ 0,05 a mais por litro, diferença
+  não significativa a 5% (p = 0,079); mantida a bandeira, estar na Ilha de São Luís está
+  associado a um preço R$ 0,61 menor (p &lt; 0,001).”</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para a prova final (encontro 15)</h2>
-  <ul>
-    <li><strong>Revisar encontros 1 a 13</strong>, em especial Unidade I (tipos de pesquisa,
-        variáveis, hipóteses) e Unidade II (amostragem, instrumentos, ética);</li>
-    <li><strong>Refazer as atividades práticas</strong> dos encontros 5, 8, 11 e 12 como
-        simulado, são o padrão do componente prático;</li>
-    <li><strong>Prova final:</strong> todo o conteúdo, componentes conceitual e prático em
-        notebook.</li>
-  </ul>
-  <p><strong>Entrega de hoje:</strong> notebook completo, relatório e slide único,
-  compartilhados ou entregues conforme o meio definido pela coordenação.</p>
+  <h2>A apresentação de 3 a 5 minutos</h2>
+  <p>Um slide — no máximo dois, se o segundo for a Figura 1 —, e cinco blocos de cerca de
+  um minuto.</p>
+  <table>
+    <tr><th>Bloco</th><th>O que dizer</th><th>No exemplo</th></tr>
+    <tr><td><strong>1. A pergunta</strong></td><td>O problema de gestão, em uma frase</td>
+        <td>“O preço varia com a bandeira ou com a região?”</td></tr>
+    <tr><td><strong>2. O dado</strong></td><td>Fonte, recorte, unidade e n</td>
+        <td>“ANP, 2025, 236 postos do Maranhão”</td></tr>
+    <tr><td><strong>3. O achado</strong></td><td><strong>Um</strong> número, com a frase completa</td>
+        <td>“R$ 0,61 a mais no interior; a marca, R$ 0,05”</td></tr>
+    <tr><td><strong>4. O limite</strong></td><td>O que o resultado não autoriza</td>
+        <td>“Não é causa; vale para os postos pesquisados”</td></tr>
+    <tr><td><strong>5. A implicação</strong></td><td>O que um gestor faria com isso</td>
+        <td>“Na compra da frota, a região pesa mais que a bandeira”</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">Quem lê o slide não está apresentando</span>
+  O slide organiza; a fala comunica. Números grandes, uma figura só, e nenhuma tabela de
+  cinco colunas projetada inteira.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
 </section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
+<section class="slide divisor">
+  <h2>Avaliação 3</h2>
+  <p>O relatório final, o notebook reprodutível e a apresentação do seu projeto</p>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como a AV3 está organizada</h2>
+  <p>Três peças, todas sobre a base do <strong>seu</strong> projeto, entregues hoje.</p>
+  <table>
+    <tr><th>Peça</th><th>O que é</th><th>Peso</th></tr>
+    <tr><td><strong>Relatório</strong></td><td>Introdução, método, resultados nas quatro peças,
+        discussão e limitações, no próprio notebook</td><td>50</td></tr>
+    <tr><td><strong>Notebook</strong></td><td>O notebook-modelo com a sua base, executando do
+        início ao fim sem erro</td><td>25</td></tr>
+    <tr><td><strong>Apresentação</strong></td><td>3 a 5 minutos, um slide, os cinco blocos</td>
+        <td>25</td></tr>
+  </table>
+  <table>
+    <tr><th>Tempo da AV3</th><th>Minutos</th></tr>
+    <tr><td>Fechamento do relatório e do notebook</td><td>60</td></tr>
+    <tr><td>Apresentações, na ordem sorteada</td><td>105</td></tr>
+    <tr><td>Entrega e conferência dos links</td><td>15</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O notebook-modelo: troque a base, mantenha a estrutura</h2>
+  <p>O notebook do encontro já é um relatório pronto sobre os postos da ANP. Você troca
+  <strong>só os seis valores</strong> da <code>CONFIG</code>, executa tudo, e cada seção se
+  refaz com a sua base.</p>
+  <pre class="codigo">ARQUIVO      = <span class="str">"exemplo"</span>           <span class="cmt"># ou o nome do seu CSV</span>
+FONTE        = <span class="str">"ANP, SHPC, 2025"</span>   <span class="cmt"># a citação da sua fonte</span>
+RESPOSTA     = <span class="str">"preco_gasolina"</span>    <span class="cmt"># numérica: o que se quer explicar</span>
+GRUPO        = <span class="str">"regiao"</span>            <span class="cmt"># categórica: os grupos do teste</span>
+EXPLICATIVAS = [<span class="str">"com_marca"</span>, <span class="str">"ilha"</span>]   <span class="cmt"># entram no modelo</span>
+EVENTO       = <span class="str">"vende_etanol"</span>      <span class="cmt"># 0/1 para a logística, ou ""</span></pre>
+  <div class="instrucao"><span class="rotulo">A conferência muda de papel</span>
+  Com o exemplo, cada número aparece com <code>[ok]</code>. Com a sua base, aparece
+  <code>[--]</code> e o seu número, para anotar. A conferência que vale para qualquer base
+  — <strong>os grupos somam o total</strong> — continua com <code>[ok]</code> ou
+  <code>[X ]</code>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como a AV3 é avaliada</h2>
+  <table>
+    <tr><th>Peça</th><th>O que se avalia</th><th>Pontos</th></tr>
+    <tr><td><strong>Relatório</strong></td><td>Pergunta, método e níveis coerentes (10) · Tabela 1 e
+        Figura 1 com n, unidade e fonte (10) · teste escolhido pelo fluxograma e bem lido (10)
+        · modelo em cinco colunas, sem verbo causal (10) · limitações (5) · frases completas (5)</td>
+        <td>50</td></tr>
+    <tr><td><strong>Notebook</strong></td><td>Executa do início ao fim sem erro (10) ·
+        <code>CONFIG</code> e base do projeto carregando (5) · conferências executadas (5) ·
+        registro de IA preenchido ou “não usei” (5)</td><td>25</td></tr>
+    <tr><td><strong>Apresentação</strong></td><td>Entre 3 e 5 minutos (5) · os cinco blocos (10) ·
+        o número principal com a frase completa (5) · resposta a uma pergunta (5)</td><td>25</td></tr>
+  </table>
+  <div class="exemplo"><span class="rotulo">O que separa a nota cheia da parcial</span>
+  O número certo com a frase que passa no teste das quatro perguntas. <strong>Número sem
+  frase vale menos da metade</strong>, e verbo causal sobre dado observacional custa os
+  pontos do modelo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O registro de uso de IA</h2>
+  <p>O assistente é <strong>permitido</strong> na AV3, sobretudo para adaptar a análise à
+  base do seu projeto. A exigência é de transparência: quem usa, registra.</p>
+  <table>
+    <tr><th>Modo</th><th>O que você faz</th><th>Como se confere</th></tr>
+    <tr><td><strong>Pergunta</strong></td><td>Pergunta conceitual, com o cartão de contexto colado</td>
+        <td>A resposta cita um número que está no cartão</td></tr>
+    <tr><td><strong>Encomenda</strong></td><td>Pede uma troca de coluna, filtro ou agrupamento</td>
+        <td>O número bate; os grupos somam o total; o gráfico é o pedido</td></tr>
+    <tr><td><strong>Leitura</strong></td><td>Pede ajuda para ler uma saída do notebook</td>
+        <td>A frase é sua, e cada número dela está numa saída executada</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">A regra do semestre</span>
+  <strong>A IA explica, o código calcula, e o estudante confere e escreve.</strong> O registro
+  — o pedido, a checagem e o que mudou — vai na tabela do fim do notebook. Ele não desconta
+  pontos; a omissão é falta de honestidade acadêmica.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As apresentações: ordem, tempo e perguntas</h2>
+  <ol>
+    <li>A ordem é <strong>sorteada</strong> no início do bloco, e o professor cronometra:
+        aviso aos 3 minutos, corte aos 5;</li>
+    <li>Cada apresentação termina com <strong>uma pergunta</strong> da turma ou do professor,
+        respondida em até um minuto;</li>
+    <li>Quem assiste anota, para cada colega, <strong>o achado e o limite</strong> em uma
+        linha. É assim que a turma aprende com os 25 projetos, e não só com o seu;</li>
+    <li>O slide vai junto com o notebook: um arquivo, ou a primeira célula de texto do
+        notebook, com o mesmo conteúdo.</li>
+  </ol>
+  <div class="pergunta">A pergunta que o professor faz a quase todos: <strong>“o que esse
+  resultado não autoriza dizer?”</strong>. Tenha a resposta pronta — ela é o bloco 4.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Antes de entregar</h2>
+  <ol>
+    <li>A <code>CONFIG</code> aponta para a <strong>sua</strong> base, e a carga funciona;</li>
+    <li><em>Ambiente de execução → Reiniciar e executar tudo</em> roda <strong>sem erro</strong>,
+        e “os grupos somam o total” deu <code>[ok]</code>;</li>
+    <li>Os resultados estão nas <strong>quatro peças</strong>, nesta ordem, cada uma com a
+        frase que passa no teste das quatro perguntas;</li>
+    <li>Nenhum <strong>verbo causal</strong> sobre dado observacional — “aumenta”, “causa”,
+        “provoca”;</li>
+    <li>O <strong>registro de IA</strong> está preenchido, ou marcado “não usei”;</li>
+    <li>O link do notebook foi <strong>compartilhado</strong> com o professor.</li>
+  </ol>
+  <div class="pergunta">A avaliação é sobre o que está no arquivo, e não sobre o que você
+  lembra ter feito. <strong>Reabra o link compartilhado e confira</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Depois desta avaliação: a prova final</h2>
+  <ul>
+    <li>A prova final, no próximo encontro, cobre <strong>os quatro módulos</strong>:
+        descrever, sortear, inferir e modelar;</li>
+    <li><strong>Parte A</strong>, conceitual, sem consulta e sem IA: a escolha da medida, o
+        denominador, erro padrão e desvio padrão, margem e tamanho de amostra, intervalo de
+        confiança, valor-p, a escolha do teste, correlação e causa, razão de chances;</li>
+    <li><strong>Parte B</strong>, prática, com consulta e registro de IA, sobre a base da CVM:
+        você decide, executa, confere e escreve — como em todo o semestre;</li>
+    <li>Para estudar: a tabela <strong>pergunta → estatística → frase</strong> desta aula e
+        as fichas de revisão de cada bloco de estatística.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 14</div>
+</section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 14</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 2</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a></p>
+    <h2>Abertura: as regras da AV3 e o notebook-modelo <span class="min">(15 min)</span></h2>
+    <h3>Objetivos do dia</h3>
+
+            <p>Ao final do encontro o estudante deverá ter: (i) escrito a seção de resultados do
+            seu projeto nas quatro peças — Tabela 1, Figura 1, inferência e modelo —, cada uma
+            com a frase de leitura; (ii) um notebook que executa do início ao fim sobre a base
+            do projeto; (iii) apresentado o projeto em 3 a 5 minutos, nos cinco blocos; (iv)
+            registrado o uso de IA. É o fechamento do <strong>Módulo IV</strong> e a
+            <strong>AV3</strong>, que vale 1/3 da média.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura: regras da AV3 e notebook-modelo aberto</td><td>15</td></tr>
+      <tr><td>Exposição: comunicar os resultados</td><td>30</td></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>AV3: fechamento do relatório e do notebook</td><td>60</td></tr>
+      <tr><td>AV3: apresentações, na ordem sorteada</td><td>105</td></tr>
+      <tr><td>AV3: entrega e conferência dos links</td><td>15</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O que preparar antes de a turma chegar</span>
+            <ol>
+              <li>O notebook do encontro <strong>publicado e compartilhado</strong>, já
+              executado: o estudante abre e vê o relatório de exemplo pronto;</li>
+              <li>A lista da turma pronta para o <strong>sorteio da ordem</strong> das
+              apresentações, e um cronômetro visível;</li>
+              <li>Um CSV de teste no seu Drive, para mostrar em um minuto como se troca a base:
+              upload, <code>ARQUIVO = "nome.csv"</code>, executar tudo.</li>
+            </ol>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O que dizer na abertura</span>
+            <p>Duas frases bastam: <strong>hoje não tem conteúdo novo</strong> — tem o semestre
+            inteiro virando texto; e <strong>tudo o que vai ser avaliado está na tela de
+            rubrica</strong>, que é projetada antes do intervalo. Quem souber como será
+            avaliado escreve melhor.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 3 a 11</b> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a></p>
+    <h2>Comunicar os resultados: da pergunta à frase <span class="min">(30 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Pergunta → estatística → frase, as duas tabelas</td><td>8</td></tr>
+      <tr><td>A frase completa: o teste das quatro perguntas</td><td>4</td></tr>
+      <tr><td>Leitura crítica 1: a escala da CVM</td><td>5</td></tr>
+      <tr><td>Leitura crítica 2: bandeira, região e o que o número não diz</td><td>6</td></tr>
+      <tr><td>As quatro peças e a tabela de cinco colunas</td><td>4</td></tr>
+      <tr><td>A apresentação de 3 a 5 minutos</td><td>3</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>Toda estatística do semestre nasceu de uma pergunta e morre numa frase. As duas
+            tabelas são o <strong>mapa do semestre</strong>: a linha da pergunta diz qual
+            estatística usar e como escrevê-la. O estudante que não acha a linha da sua
+            pergunta tem um problema de <strong>delineamento</strong>, e é melhor descobrir
+            agora do que na apresentação.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Perguntas para a turma</span>
+            <p>Nas duas tabelas: <em>“em qual linha está a sua pergunta?”</em> — peça que três
+            ou quatro estudantes respondam em voz alta, citando a linha.</p>
+            <p>Na leitura crítica 2, <strong>antes</strong> de mostrar a segunda linha da
+            tabela: <em>“o p da comparação crua é 0,863. O que vocês concluem sobre a
+            bandeira?”</em>. Quase todos dirão que bandeira não importa. Mostre então o modelo
+            com a região: o efeito vai de R$ 0,0085 para R$ 0,0507. É a lição do dia.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Números que você precisa ter na mão</span>
+            <p><strong>Base de exemplo (ANP, SHPC 2025, gasolina comum, Maranhão):</strong>
+            236 postos; 119 de bandeira branca e 117 com marca; 131 na Ilha de São Luís
+            (São Luís e São José de Ribamar) e 105 no interior; 148 com preço de etanol
+            registrado.</p>
+            <p><strong>Tabela 1</strong> (preço médio anual, R$/litro): total 5,974 (mediana
+            5,807; desvio 0,375); Ilha 5,703 (desvio 0,118; CV 2,07%); interior 6,313 (desvio
+            0,304; CV 4,81%).</p>
+            <p><strong>Inferência:</strong> IC 95% Ilha 5,6824 a 5,7233; interior 6,2544 a
+            6,3720; diferença de R$ 0,61; t de Welch = −19,44, p &lt; 0,001; Mann-Whitney
+            U = 270,5, p &lt; 0,001.</p>
+            <p><strong>Modelo linear</strong> (preço ~ com_marca + ilha): intercepto 6,2901;
+            com_marca +0,0507 (EP 0,0287; p = 0,0788); ilha −0,6139 (EP 0,0289; p &lt; 0,001);
+            R² = 0,6599. <strong>Sem a região:</strong> com_marca +0,0085 (p = 0,8630),
+            R² = 0,0001. Postos com marca na Ilha: 70 de 117; brancos na Ilha: 61 de 119.</p>
+            <p><strong>Logística</strong> (vende_etanol ~ com_marca + ilha): razão de chances
+            1,35 (p = 0,2805) e 2,03 (p = 0,0099); probabilidade prevista 49,97% (branca,
+            interior) a 73,16% (com marca, Ilha).</p>
+            <p><strong>CVM (DFP 2024):</strong> 444 companhias informam em milhares e 7 em
+            reais; a Vivara, lida sem a escala, teria R$ 2,6 trilhões de receita (são R$ 2,6
+            bilhões). Nas 449 com receita positiva, a média vai de R$ 21,2 bilhões (sem a
+            conversão) para R$ 12,3 bilhões (com ela); a mediana é R$ 2,1 bilhões.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar no bloco</span>
+            <ol>
+              <li><strong>Ensinar estatística nova.</strong> O bloco é de leitura e redação;
+              tudo o que aparece já foi visto nos módulos I a IV;</li>
+              <li><strong>Projetar a saída bruta de um modelo.</strong> O exemplo é a tabela de
+              cinco colunas, e é ela que vai para o relatório;</li>
+              <li><strong>Dizer que a região “causa” o preço.</strong> É o erro que a tela de
+              leitura crítica quer evitar: frete, concorrência e escala não estão no modelo;</li>
+              <li><strong>Passar do tempo.</strong> São 30 minutos; a AV3 precisa dos 180.</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 12 a 16</b> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a></p>
+    <h2>AV3: o fechamento do relatório e do notebook <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Projetar organização, notebook-modelo e rubrica</td><td>5</td></tr>
+      <tr><td>Trocar a base na CONFIG e executar tudo</td><td>15</td></tr>
+      <tr><td>Tabela 1 e Figura 1, com as frases</td><td>10</td></tr>
+      <tr><td>Inferência e modelo, com as frases</td><td>20</td></tr>
+      <tr><td>Discussão, limitações e o slide da apresentação</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O que o professor faz durante o bloco</span>
+            <p><strong>Circular pela sala na ordem da rubrica.</strong> Em cada notebook,
+            três verificações de dez segundos:</p>
+            <ol>
+              <li>A <code>CONFIG</code> aponta para a base do projeto, e “os grupos somam o
+              total” deu <code>[ok]</code>?</li>
+              <li>O teste relatado foi escolhido <strong>pelo fluxograma</strong>, e não pelo
+              menor valor-p?</li>
+              <li>A frase do modelo diz <strong>“mantida a outra variável”</strong> e evita o
+              verbo causal?</li>
+            </ol>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">Quando a base do projeto não carrega</span>
+            <p>A troca da base é o ponto de maior risco do dia, e <strong>não é tarefa do
+            estudante descobrir o que quebrou</strong>. Os casos que vão aparecer, e o que
+            você faz:</p>
+            <ol>
+              <li><strong>Nome de coluna digitado diferente</strong> do da base: mostre o
+              cartão de contexto, que lista os nomes exatos;</li>
+              <li><strong>Coluna numérica lida como texto</strong> (vírgula decimal): ajuste
+              você mesmo o CSV, ou indique uma variável já numérica;</li>
+              <li><strong>EVENTO que não é 0/1</strong>: troque por <code>""</code> e o relatório
+              fica com o modelo linear — não se inventa evento para usar a logística;</li>
+              <li><strong>A base não chegou a funcionar</strong>: o estudante mantém
+              <code>ARQUIVO = "exemplo"</code>, escreve o relatório sobre um extrato dos dados
+              da disciplina e <strong>declara a limitação no método</strong>. Um relatório
+              honesto sobre dados parciais vale mais que uma análise forçada.</li>
+            </ol>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O registro de IA</span>
+            <p>Lembrar, sem dramatizar: a IA é permitida na AV3, e a disciplina a incentiva para
+            adaptar a análise à base do projeto. O que se exige é o registro — o pedido, a
+            checagem e o que mudou. A checagem mínima de uma encomenda são os três passos
+            fixos: o número bate, os grupos somam o total, o gráfico é o pedido.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">O que é um relatório de nota cheia</span>
+            <ul>
+              <li>Pergunta em forma de pergunta, e o nível de cada variável no método;</li>
+              <li>As quatro peças na ordem, com n, unidade e fonte em cada uma;</li>
+              <li>O teste justificado pelo fluxograma, e o valor-p lido sem dizer “prova”;</li>
+              <li>O modelo em cinco colunas, com o efeito na unidade da resposta e o “mantidas
+              as demais”;</li>
+              <li>As limitações: causa, generalização, o que a medida não mede.</li>
+            </ul>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>tela 17</b> <a class="chip-tela" href="#17">17</a></p>
+    <h2>AV3: as apresentações <span class="min">(105 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Sorteio da ordem e regras do tempo</td><td>5</td></tr>
+      <tr><td>Apresentações: até 5 minutos, com uma pergunta (cerca de 25 estudantes)</td><td>100</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Como conduzir</span>
+            <p><strong>Cronômetro visível</strong>, aviso aos 3 minutos e corte aos 5. A
+            pergunta ao fim de cada apresentação é curta, e a mais útil é quase sempre a mesma:
+            <em>“o que esse resultado não autoriza dizer?”</em>. Ela cobra o bloco 4 e separa
+            quem leu o próprio resultado de quem apenas o executou.</p>
+            <p>Peça que a turma anote, para cada colega, o achado e o limite em uma linha. É o
+            que mantém 25 apresentações seguidas vivas.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">A ficha de cada apresentação</span>
+            <table class="minutagem">
+              <tr><th>Critério</th><th>Pontos</th></tr>
+              <tr><td>Entre 3 e 5 minutos</td><td>5</td></tr>
+              <tr><td>Os cinco blocos: pergunta, dado, achado, limite, implicação</td><td>10</td></tr>
+              <tr><td>O número principal dito com a frase completa</td><td>5</td></tr>
+              <tr><td>Resposta à pergunta, em até um minuto</td><td>5</td></tr>
+            </table>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">Se a turma for maior que o tempo</span>
+            <p>Com mais de 25 estudantes, reduza para <strong>3 minutos e meio com 30 segundos
+            de pergunta</strong>, e anuncie antes do sorteio. O que nunca se corta é o
+            <strong>bloco 4, o limite</strong>: é ele que a disciplina inteira treinou.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer</span>
+            <ol>
+              <li><strong>Ler o slide em voz alta.</strong> Interrompa com gentileza na primeira
+              vez: “diga o achado sem olhar a tela”;</li>
+              <li><strong>Mostrar a tabela de cinco colunas inteira.</strong> No slide vai um
+              número; a tabela fica no relatório;</li>
+              <li><strong>Dizer “o resultado prova”.</strong> Peça a reformulação com
+              “os dados indicam” e o valor-p;</li>
+              <li><strong>Esquecer o n e a fonte.</strong> É o bloco 2, e custa pontos.</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 18 a 19</b> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a></p>
+    <h2>Entrega, conferência e o caminho até a prova final <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">A conferência da entrega</span>
+            <p>Projete a tela “Antes de entregar” e dê dez minutos. Cada estudante executa
+            <em>Reiniciar e executar tudo</em>, confirma que nada quebra e compartilha o link.
+            Antes de liberar a turma, <strong>abra três links ao acaso</strong> e confira que
+            as saídas aparecem: é o teste de que a entrega é reprodutível.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O balanço que se anuncia</span>
+            <p>Fechar dizendo o que o Módulo IV entregou: o estudante <strong>lê um modelo em
+            cinco colunas</strong> e escreve a frase que um gestor entende, dizendo o que ela
+            não autoriza. É a última peça do percurso — descrever, sortear, inferir e
+            modelar.</p>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Estudar para a <strong>prova final</strong>: a tabela pergunta → estatística →
+              frase desta aula e as fichas de revisão de cada bloco de estatística;</li>
+              <li>Reexecutar os notebooks dos encontros 5 e 9 (AV1 e AV2): a Parte B da prova
+              funciona do mesmo jeito — decidir, executar, conferir e escrever;</li>
+              <li>Rever o fluxograma de escolha do teste e a leitura da razão de chances: são
+              duas questões da Parte A.</li>
+            </ol>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>
