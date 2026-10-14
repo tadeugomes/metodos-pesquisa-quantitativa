@@ -175,7 +175,7 @@ Um exemplo real de cada nível de mensuração. São os valores esperados do `co
 | Nível | Base | Recorte | Números |
 |---|---|---|---|
 | **Nominal** | CEMPRE 9582 | Brasil, 20 seções da CNAE | **10.607.110 empresas**; comércio (G) = 2.908.372 = **27,42%** |
-| **Ordinal** | Demografia 9949 | Brasil, 2021 | **674.660 nascimentos**; 1 a 9 = 627.498 = **93,01%**; 10 a 49 = 42.748 = **6,34%**; 50+ = 4.414 = **0,65%**; acumulada até 49 = **99,35%** |
+| **Ordinal** | Demografia 9949 | Brasil, 2021 | **337.330 nascimentos**; 1 a 9 = 313.749 = **93,01%**; 10 a 49 = 21.374 = **6,34%**; 50+ = 2.207 = **0,65%**; acumulada até 49 = **99,35%** |
 | **Razão** | PAS 2325 | Brasil, último ano disponível | **281.133 empresas**; **1.420.230 pessoas**; R$ 22.816.407 mil de receita |
 | **Intervalo** | — | — | **Não existe exemplo oficial** nas bases usadas. O exemplo do material é uma escala de satisfação de 0 a 10 |
 

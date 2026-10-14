@@ -71,7 +71,7 @@ BLOCO_D1 = {
                     <td>Seção da CNAE: A, B, C… U<br><span class="menor">10.607.110 empresas · comércio 27,42%</span></td>
                     <td>não</td><td>não</td><td>não</td><td>não</td><td>não</td></tr>
                 <tr><td><strong>Ordinal</strong></td>
-                    <td>Faixa de pessoal: 1 a 9, 10 a 49, 50 ou mais<br><span class="menor">674.660 nascimentos</span></td>
+                    <td>Faixa de pessoal: 1 a 9, 10 a 49, 50 ou mais<br><span class="menor">337.330 nascimentos</span></td>
                     <td><strong>sim</strong></td><td>não</td><td>não</td>
                     <td><strong>sim</strong></td><td>não</td></tr>
                 <tr><td><strong>Intervalo</strong></td>
@@ -122,9 +122,9 @@ BLOCO_D1 = {
               <ol class="passos">
                 <li>A pergunta: <span class="num">quantas empresas nasceram no Brasil em
                     2021, e por tamanho?</span> A base é o IBGE, Demografia das Empresas;</li>
-                <li>O total: <span class="num">n = 674.660</span> nascimentos em três
+                <li>O total: <span class="num">n = 337.330</span> nascimentos em três
                     faixas;</li>
-                <li>A primeira faixa, 1 a 9 pessoas: <span class="num">627.498</span>
+                <li>A primeira faixa, 1 a 9 pessoas: <span class="num">313.749</span>
                     nascimentos, ou <span class="num">93,01%</span>;</li>
                 <li>Acumulando a segunda faixa, 10 a 49: <span class="num">99,35%</span>
                     acumulados;</li>
@@ -142,7 +142,7 @@ BLOCO_D1 = {
               <span class="marca-estatistica">Parte 2 · Estatística</span>
               <h2>Como se lê o exemplo</h2>
               <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
-              Quase todas as empresas que abriram no Brasil em 2021 eram pequenas: das 674.660
+              Quase todas as empresas que abriram no Brasil em 2021 eram pequenas: das 337.330
               empresas empregadoras, <strong>99,3% até 49 pessoas</strong> assalariadas, e
               apenas <strong>0,65%</strong> nasceram com 50 pessoas ou mais.</div>
               <p>Repare no que a frase faz:</p>
@@ -181,8 +181,8 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
               <span class="marca-estatistica">Parte 2 · Estatística</span>
               <h2>A frase de leitura que vai para o relatório</h2>
               <div class="frase-resultado"><span class="rotulo">A frase</span>
-              “Das 674.660 empresas empregadoras que abriram no Brasil em 2021,
-              <strong>627.498 (93,0%)</strong> tinham de 1 a 9 pessoas assalariadas;
+              “Das 337.330 empresas empregadoras que abriram no Brasil em 2021,
+              <strong>313.749 (93,0%)</strong> tinham de 1 a 9 pessoas assalariadas;
               <strong>até 49 pessoas, são 99,3%</strong> do total (IBGE, Demografia das
               Empresas). ”</div>
               <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
@@ -245,7 +245,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
                   <h4>O erro</h4>
                   <p>Confundir a ordem do <strong>código</strong> com a ordem do
                   <strong>fenômeno</strong>, e promover nominal a ordinal.</p>
-                  <p>Os números de hoje: 10.607.110 empresas (CNAE) · 674.660 nascimentos (2021) · 281.133 empresas e 1.420.230 pessoas (PAS, 2001)</p>
+                  <p>Os números de hoje: 10.607.110 empresas (CNAE) · 337.330 nascimentos (2021) · 281.133 empresas e 1.420.230 pessoas (PAS, 2001)</p>
                 </div>
               </div>
             </section>"""),

@@ -141,6 +141,9 @@ print("NOMINAL  |", len(nominal), "seções |",
 demog = baixa_sidra("9949", "1", "all", variable="all",
                     classifications={"12762": "all", "370": "all"}, period="last")
 nasc = demog[demog["Variável"].str.contains("nascimentos", na=False)]
+# a tabela traz a linha "Total" da CNAE junto com as seções: fica só o Total,
+# senão cada nascimento entra duas vezes na soma
+nasc = nasc[nasc["Classificação Nacional de Atividades Econômicas (CNAE 2.0)"] == "Total"]
 ORDEM = ["1 a 9 pessoas", "10 a 49 pessoas", "50 ou mais pessoas"]
 tabela = nasc.groupby("Faixas de pessoal ocupado assalariado")["Valor"].sum()
 ordinal = tabela[[f for f in ORDEM if f in tabela.index]].reset_index()
@@ -332,7 +335,7 @@ else:
     {"tipo": "code", "texto": '''# AGORA A CONFERÊNCIA. Os números esperados já estavam escritos no slide.
 ESPERADO = {
     "nominal":  ("total de empresas no Brasil", 10607110.0, 1, ""),
-    "ordinal":  ("nascimentos no total",        674660.0, 1, ""),
+    "ordinal":  ("nascimentos no total",        337330.0, 1, ""),
     "razao":    ("número de empresas",          281133.0, 1, ""),   # conferido no bloco próprio
 }
 if BASE != "razao":
@@ -391,7 +394,7 @@ else:
 
     {"tipo": "md", "texto": """**A frase que vai para o relatório**
 
-> "Das 674.660 empresas empregadoras que abriram no Brasil em 2021, **627.498
+> "Das 337.330 empresas empregadoras que abriram no Brasil em 2021, **313.749
 > (93,0%)** tinham de 1 a 9 pessoas assalariadas; **até 49 pessoas, são 99,3%** do
 > total (IBGE, Demografia das Empresas)."
 

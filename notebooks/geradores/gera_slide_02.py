@@ -123,7 +123,7 @@ SECOES = [
             <ul>
               <li><strong>Nominal</strong> — a seção da CNAE, letras de A a U. 10.607.110
               empresas, comércio 27,42%;</li>
-              <li><strong>Ordinal</strong> — a faixa de pessoal assalariado. 674.660 nascimentos,
+              <li><strong>Ordinal</strong> — a faixa de pessoal assalariado. 337.330 nascimentos,
               93,01% na menor faixa, e 99,35% até 49 pessoas;</li>
               <li><strong>Razão</strong> — receita, pessoal ocupado, número de empresas. 281.133
               empresas e 1.420.230 pessoas no alojamento e alimentação.</li>
@@ -159,7 +159,7 @@ SECOES = [
               <tr><th>Recorte</th><th>Total</th><th>Detalhe</th><th>Valor</th></tr>
               <tr><td>CNAE, Brasil (nominal)</td><td>10.607.110 empresas</td>
                   <td>Comércio (G)</td><td>27,42%</td></tr>
-              <tr><td>Nascimentos, Brasil, 2021 (ordinal)</td><td>674.660</td>
+              <tr><td>Nascimentos, Brasil, 2021 (ordinal)</td><td>337.330</td>
                   <td>1 a 9 pessoas</td><td>93,01%</td></tr>
               <tr><td></td><td></td><td>Até 49 pessoas (acumulado)</td><td>99,35%</td></tr>
               <tr><td>PAS, alojamento e alimentação (razão)</td><td>281.133 empresas</td>
