@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 12: Avaliação 2</title>
+<title>Encontro 12: ANOVA, testes não paramétricos e revisão do Módulo III</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,11 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 12 · Unidade III</div>
-  <h1>Avaliação 2</h1>
-  <p class="subtitulo">Prática individual no Colab, descritivas, gráficos e inferência</p>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 12 · Módulo III · Inferência estatística</div>
+  <h1>ANOVA, testes não paramétricos e a revisão do Módulo III</h1>
+  <p class="subtitulo">Quando há mais de dois grupos, e quando a média não representa o grupo</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -33,276 +37,1181 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A avaliação de hoje</h2>
-  <div class="afirmacao">Uma atividade prática individual, no Colab, com um banco de dados
-  empresarial preparado pelo professor (CVM e IBGE) e um roteiro de questões de pesquisa.</div>
-  <ul>
-    <li><strong>O que cobre:</strong> encontros 9, 10 e 11, descritivas, gráficos,
-        intervalo de confiança, teste t e qui-quadrado;</li>
-    <li><strong>O que você entrega:</strong> o notebook <strong>com as respostas escritas</strong>
-        dentro das células de texto, comentar é parte da nota;</li>
-    <li><strong>Como é corrigida:</strong> 100 pontos em quatro tarefas.</li>
-  </ul>
+  <h2>O que vamos fazer hoje</h2>
+  <p>Os encontros 10 e 11 ensinaram a testar uma hipótese com <strong>um</strong> grupo e com
+  <strong>dois</strong>. Hoje o Módulo III termina com as duas perguntas que ficaram abertas —
+  e com a revisão de tudo o que ele ensinou.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: mais de dois grupos</h3>
+      <p>A <strong>ANOVA de um fator</strong>, sobre o preço da gasolina em sete municípios do
+      Maranhão. Por que não se fazem 21 testes t, e o que a ANOVA diz — e não diz.</p>
+    </div>
+    <div>
+      <h3>Parte 2: quando a média não serve</h3>
+      <p>Os três testes de <strong>postos</strong> — Mann-Whitney, Wilcoxon e Kruskal-Wallis —
+      sobre a margem líquida das companhias abertas. E o <strong>fluxograma completo</strong> de
+      escolha do teste.</p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">O fio que liga os dois blocos</span>
+  A Parte 1 compara <strong>médias</strong> de muitos grupos; a Parte 2 mostra o que fazer
+  quando a média <strong>mente</strong>. Na prática, uma célula do notebook escolhe o teste
+  para a base do seu projeto — e você escreve a frase.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
+<section class="slide divisor">
+  <h2>Parte 1: mais de dois grupos</h2>
+  <p>A ANOVA de um fator, e quando o teste paramétrico não cabe</p>
+</section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p class="menor">Ao final do encontro, vocês deverão ser capazes de:</p>
-  <ol>
-    <li><strong>Resumir</strong> uma variável quantitativa por grupo com média, mediana, desvio
-        padrão e CV, <strong>decidindo</strong> entre média e mediana diante de valores extremos;</li>
-    <li><strong>Produzir e interpretar</strong> boxplots e histogramas, <strong>explicando</strong>
-        o efeito da transformação logarítmica;</li>
-    <li><strong>Construir e interpretar</strong> um intervalo de confiança de 95%, com a leitura
-        correta do que "95% de confiança" significa;</li>
-    <li><strong>Formular</strong> H0/H1, <strong>executar</strong> o teste t para dois grupos e
-        <strong>decidir</strong> com base no valor-p e em α = 0,05;</li>
-    <li><strong>Montar</strong> uma tabela de contingência e <strong>aplicar</strong> o teste
-        qui-quadrado de independência, <strong>declarando</strong> suas limitações;</li>
-    <li><strong>Registrar</strong> interpretações completas e justificadas no próprio notebook.</li>
-  </ol>
+  <h2>A pergunta: o preço da gasolina muda de município para município?</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 270" role="img" aria-label="Preço da gasolina por posto em sete municípios do Maranhão, com a média de cada município">
+    <line x1="120" y1="215" x2="980" y2="215" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="120" y1="20" x2="120" y2="215" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="114" y1="193.3" x2="980" y2="193.3" stroke="#eee" stroke-width="1"/>
+    <text x="108" y="198.3" text-anchor="end" font-size="15" fill="#777">R$ 5,50</text>
+    <line x1="114" y1="139.2" x2="980" y2="139.2" stroke="#eee" stroke-width="1"/>
+    <text x="108" y="144.2" text-anchor="end" font-size="15" fill="#777">R$ 6,00</text>
+    <line x1="114" y1="85.0" x2="980" y2="85.0" stroke="#eee" stroke-width="1"/>
+    <text x="108" y="90.0" text-anchor="end" font-size="15" fill="#777">R$ 6,50</text>
+    <line x1="114" y1="30.8" x2="980" y2="30.8" stroke="#eee" stroke-width="1"/>
+    <text x="108" y="35.8" text-anchor="end" font-size="15" fill="#777">R$ 7,00</text>
+    <line x1="120" y1="140.1" x2="980" y2="140.1" stroke="#888" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="980" y="134.1" text-anchor="end" font-size="14" fill="#666">média geral R$ 5,99</text>
+    <circle cx="190.0" cy="178.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="208.8" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="200.4" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="162.5" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="167.7" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="207.1" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="147.4" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="203.5" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="201.9" cy="153.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="179.2" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="167.9" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="166.2" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="164.6" cy="155.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="177.6" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="181.7" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="185.1" cy="166.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="215.5" cy="166.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="201.6" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="189.8" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="215.1" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="161.8" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="158.1" cy="166.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="189.2" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="150.1" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="149.5" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="182.5" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="179.1" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="210.1" cy="193.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="190.3" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="182.4" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="137.2" y1="168.3" x2="225.7" y2="168.3" stroke="#8D0333" stroke-width="4"/>
+    <text x="181.4" y="237" text-anchor="middle" font-size="15" fill="#444">S. J. de Ribamar</text>
+    <text x="181.4" y="257" text-anchor="middle" font-size="13" fill="#888">n = 30 · média 5,73</text>
+    <circle cx="304.1" cy="160.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="286.9" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="270.7" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="283.1" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="317.5" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="283.7" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="295.3" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="270.1" cy="194.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="327.0" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="280.5" cy="171.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="288.3" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="330.5" cy="163.0" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="305.0" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="328.2" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="313.9" cy="163.0" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="320.9" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="276.2" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="307.1" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="304.8" cy="180.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="329.8" cy="178.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="294.7" cy="163.0" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="311.0" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="274.0" cy="163.0" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="296.6" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="292.1" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="280.2" cy="153.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="326.0" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="296.0" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="337.2" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="310.5" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="311.5" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="313.8" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="316.4" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="280.3" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="300.2" cy="91.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="286.4" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="297.6" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="276.5" cy="143.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="336.5" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="284.7" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="316.1" cy="160.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="290.6" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="330.0" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="315.4" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="278.9" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="328.0" cy="141.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="334.9" cy="141.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="332.1" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="309.1" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="279.9" cy="128.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="283.1" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="333.7" cy="143.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="307.9" cy="141.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="282.3" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="330.7" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="314.0" cy="141.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="309.1" cy="152.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="295.8" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="298.2" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="286.4" cy="141.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="272.5" cy="145.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="330.2" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="302.1" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="307.6" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="292.1" cy="166.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="321.6" cy="155.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="271.6" cy="163.0" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="295.5" cy="152.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="272.0" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="278.3" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="336.4" cy="166.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="315.1" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="299.3" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="305.9" cy="207.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="329.9" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="293.6" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="310.5" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="316.9" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="294.3" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="305.6" cy="190.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="322.5" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="332.4" cy="163.0" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="280.3" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="334.1" cy="187.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="270.2" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="321.7" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="325.6" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="279.3" cy="164.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="298.7" cy="205.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="326.0" cy="151.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="270.9" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="313.1" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="324.4" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="305.2" cy="173.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="319.8" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="285.5" cy="177.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="283.5" cy="183.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="294.9" cy="187.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="282.2" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="293.7" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="335.1" cy="172.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="260.1" y1="160.8" x2="348.5" y2="160.8" stroke="#8D0333" stroke-width="4"/>
+    <text x="304.3" y="237" text-anchor="middle" font-size="15" fill="#444">São Luís</text>
+    <text x="304.3" y="257" text-anchor="middle" font-size="13" fill="#888">n = 101 · média 5,80</text>
+    <circle cx="432.2" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="416.1" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="411.4" cy="112.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="458.2" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="423.3" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="460.2" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="428.2" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="428.6" cy="155.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="454.4" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="443.8" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="432.7" cy="126.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="422.1" cy="126.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="453.2" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="421.1" cy="107.7" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="456.2" cy="128.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="397.5" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="422.3" cy="90.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="428.5" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="458.2" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="382.9" y1="117.3" x2="471.4" y2="117.3" stroke="#8D0333" stroke-width="4"/>
+    <text x="427.1" y="237" text-anchor="middle" font-size="15" fill="#444">Pres. Dutra</text>
+    <text x="427.1" y="257" text-anchor="middle" font-size="13" fill="#888">n = 19 · média 6,20</text>
+    <circle cx="532.9" cy="112.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="571.1" cy="112.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="562.1" cy="117.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="564.9" cy="115.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="558.9" cy="117.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="582.4" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="538.5" cy="88.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="543.0" cy="116.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="529.6" cy="112.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="519.1" cy="112.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="530.2" cy="92.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="578.6" cy="117.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="505.8" y1="112.8" x2="594.2" y2="112.8" stroke="#8D0333" stroke-width="4"/>
+    <text x="550.0" y="237" text-anchor="middle" font-size="15" fill="#444">Barra do Corda</text>
+    <text x="550.0" y="257" text-anchor="middle" font-size="13" fill="#888">n = 12 · média 6,24</text>
+    <circle cx="696.3" cy="75.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="646.2" cy="129.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="680.0" cy="75.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="671.4" cy="118.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="679.4" cy="96.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="683.8" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="659.6" cy="129.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="704.6" cy="86.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="670.5" cy="142.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="681.7" cy="118.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="682.2" cy="129.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="651.1" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="642.7" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="666.8" cy="75.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="691.0" cy="118.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="694.5" cy="144.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="688.7" cy="75.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="646.2" cy="134.8" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="701.3" cy="75.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="693.6" cy="53.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="698.8" cy="31.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="674.5" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="701.5" cy="129.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="641.7" cy="140.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="640.5" cy="118.6" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="639.8" cy="129.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="655.8" cy="96.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="628.6" y1="111.6" x2="717.1" y2="111.6" stroke="#8D0333" stroke-width="4"/>
+    <text x="672.9" y="237" text-anchor="middle" font-size="15" fill="#444">Imperatriz</text>
+    <text x="672.9" y="257" text-anchor="middle" font-size="13" fill="#888">n = 27 · média 6,25</text>
+    <circle cx="778.4" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="774.2" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="800.3" cy="96.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="764.0" cy="161.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="801.9" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="772.7" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="808.0" cy="101.3" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="762.8" cy="104.5" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="782.7" cy="75.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="825.9" cy="96.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="751.5" y1="104.2" x2="839.9" y2="104.2" stroke="#8D0333" stroke-width="4"/>
+    <text x="795.7" y="237" text-anchor="middle" font-size="15" fill="#444">Açailândia</text>
+    <text x="795.7" y="257" text-anchor="middle" font-size="13" fill="#888">n = 10 · média 6,32</text>
+    <circle cx="921.2" cy="44.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="940.0" cy="47.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="929.4" cy="49.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="926.2" cy="48.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="897.3" cy="47.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="923.7" cy="47.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="886.9" cy="38.4" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="939.3" cy="47.1" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="950.2" cy="44.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="942.9" cy="44.9" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="887.7" cy="36.2" r="3.6" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="874.3" y1="45.0" x2="962.8" y2="45.0" stroke="#8D0333" stroke-width="4"/>
+    <text x="918.6" y="237" text-anchor="middle" font-size="15" fill="#444">Balsas</text>
+    <text x="918.6" y="257" text-anchor="middle" font-size="13" fill="#888">n = 11 · média 6,87</text>
+    <text x="128" y="24" font-size="15" fill="#8D0333" font-weight="700">— média do município</text>
+    </svg>
+  </div>
+  <p>O cadastro de <strong>236 postos</strong> da ANP, o mesmo dos encontros 6 a 11. Entram os
+  <strong>sete municípios com pelo menos 10 postos</strong> (210 postos). Cada ponto é um posto;
+  o traço vinho é a média do município.</p>
+  <p class="menor">A diferença salta aos olhos: a Grande São Luís abaixo de R$ 5,81, Balsas acima de
+  R$ 6,85. A pergunta da estatística é se ela é maior do que a variação que o acaso produziria.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Como o encontro se organiza</h2>
-  <table>
-    <tr><th>Bloco</th><th>Duração</th><th>Atividade</th></tr>
-    <tr><td>1</td><td>15 min</td><td>Instruções, regras, abertura do notebook e identificação</td></tr>
-    <tr><td>2</td><td>150 min</td><td>Realização da prova (Tarefas 1 a 4), professor em circulação</td></tr>
-    <tr><td>3</td><td>15 min</td><td>Intervalo, no meio do bloco 2 (aos 75 min de prova)</td></tr>
-    <tr><td>4</td><td>75 min</td><td>Devolutiva parcial coletiva: correção comentada das quatro tarefas</td></tr>
-  </table>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-    Notebook <code>encontro12.ipynb</code> em modo prova, com células para completar.
-    Dados: DRE 2024 da CVM (<code>dados/cvm_dre_2024.csv</code>) e demografia de empresas do
-    CEMPRE (<code>dados/demografia_sobrevivencia_empresas.csv</code>). Nada de exposição formal
-    hoje: a aula é a prova e a devolutiva.
+  <h2>Por que não fazer vários testes t</h2>
+  <div class="pergunta">Sete municípios dão <strong>21 pares</strong>. Por que não fazer um teste t
+  para cada par, como no encontro 11?</div>
+  <div class="colunas">
+    <div class="definicao"><span class="rotulo">O problema</span>
+    Cada teste t tem <strong>5% de chance</strong> de acusar uma diferença que não existe (o erro
+    tipo I). Com 21 testes, a chance de <strong>pelo menos um</strong> alarme falso chega a
+    <strong>1 − 0,95²¹ = 65,9%</strong>, se os testes fossem independentes.</div>
+    <div class="exemplo"><span class="rotulo">A simulação do notebook</span>
+    Sete grupos <strong>iguais</strong>, sem diferença nenhuma, sorteados mil vezes (semente 12).
+    Em <strong>45,7%</strong> das vezes, algum dos 21 testes deu “significativo”. Em vez de 5%,
+    quase metade.</div>
+  </div>
+  <p><strong>A saída:</strong> uma pergunta só — <em>há diferença entre alguma das médias?</em> —
+  respondida por um único teste, com α = 5%. É a <strong>ANOVA de um fator</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A ideia da ANOVA: a variação entre os grupos contra a variação dentro deles</h2>
+  <div class="formula">
+    <span class="expr">F<span class="op">=</span>
+      <span class="frac"><span class="cima">variação entre os grupos</span>
+        <span class="baixo">variação dentro dos grupos</span></span></span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> se os municípios cobram
+    preços muito diferentes <strong>e</strong> os postos de um mesmo município cobram preços
+    parecidos, F é grande. Se a diferença entre municípios é do tamanho da variação interna, F fica
+    perto de 1.</span>
+  </div>
+  <div class="colunas">
+    <div class="definicao"><span class="rotulo">As hipóteses</span>
+    <strong>H0:</strong> as sete médias são iguais.<br>
+    <strong>H1:</strong> pelo menos uma média é diferente.</div>
+    <div class="definicao"><span class="rotulo">O tamanho do efeito: η²</span>
+    A parte da variação total que está <strong>entre</strong> os grupos. Vai de 0 a 1, e é ela
+    que diz se a diferença é grande — o p só diz se ela existe.</div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Regras da prova</h2>
+  <h2>A ANOVA nos preços da ANP</h2>
   <table>
-    <tr><th>Item</th><th>Regra</th></tr>
-    <tr><td>Duração</td><td>150 minutos, iniciados agora</td></tr>
-    <tr><td>Consulta</td><td>ao material da disciplina e à IA generativa, permitida</td></tr>
-    <tr><td>Uso de IA</td><td>registre o prompt e a checagem que fez</td></tr>
-    <tr><td>Colegas</td><td>comunicação, não permitida</td></tr>
-    <tr><td>Entrega</td><td>link do Colab compartilhado (edição), ainda em aula</td></tr>
-    <tr><td>Verificação</td><td>todas as células executadas com resultado visível</td></tr>
+    <tr><th>O que se mediu</th><th>Valor</th><th>Leitura</th></tr>
+    <tr><td>Estatística F</td><td><strong>97,38</strong></td><td>a variação entre municípios é quase cem vezes a variação dentro deles</td></tr>
+    <tr><td>Graus de liberdade</td><td>6 e 203</td><td>7 grupos − 1; 210 postos − 7</td></tr>
+    <tr><td>Valor-p</td><td>&lt; 0,001</td><td>rejeita H0 com folga</td></tr>
+    <tr><td>η²</td><td><strong>0,742</strong></td><td>74% da variação do preço está <em>entre</em> os municípios</td></tr>
+    <tr><td>Kruskal-Wallis (a versão de postos)</td><td>H = 136,64</td><td>p &lt; 0,001: concorda com a ANOVA</td></tr>
   </table>
-  <p class="menor">Antes de começar: preencha <strong>nome e matrícula</strong> na célula
-  indicada e execute as células de preparação.</p>
+  <div class="alerta"><span class="rotulo">O que a ANOVA não diz</span>
+  <strong>Quais</strong> municípios diferem. Ela diz que há diferença, não onde. Para saber onde,
+  comparam-se os pares com o α dividido pelo número de comparações (Bonferroni:
+  0,05 ÷ 21 = 0,0024). Dos 21 pares, <strong>15</strong> dão p &lt; 0,05 sem correção, e
+  <strong>14</strong> sobrevivem à correção.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O roteiro da prova</h2>
-  <table>
-    <tr><th>Tarefa</th><th>Conteúdo</th><th>Pontos</th></tr>
-    <tr><td>1</td><td>Estatística descritiva da receita por setor; média × mediana; CV</td>
-        <td>20</td></tr>
-    <tr><td>2</td><td>Gráficos: boxplot da margem, histograma do log-receita</td>
-        <td>25</td></tr>
-    <tr><td>3</td><td>Inferência: IC 95% da margem (Energia); teste t Comércio × Construção</td>
-        <td>30</td></tr>
-    <tr><td>4</td><td>Qui-quadrado: porte × sobrevivência de empresas (CEMPRE)</td>
-        <td>25</td></tr>
-  </table>
-  <p class="menor">As respostas finais de cada tarefa <strong>devem estar escritas no
-  notebook</strong>: interpretar o resultado é metade dos pontos.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Como o tempo será marcado</h2>
-  <table>
-    <tr><th>Momento</th><th>O que acontece</th></tr>
-    <tr><td>0 min</td><td>Nome, matrícula e células de preparação executadas</td></tr>
-    <tr><td>75 min</td><td>Intervalo anunciado</td></tr>
-    <tr><td>135 min</td><td>Aviso: faltam 15 minutos</td></tr>
-    <tr><td>150 min</td><td>Encerramento e entrega dos links</td></tr>
-  </table>
-  <div class="instrucao"><span class="rotulo">Estratégia sugerida</span>
-  Cerca de 30 minutos por tarefa deixa 30 de folga para revisar e escrever as
-  interpretações. Se travar em uma tarefa, <strong>siga para a próxima</strong> e volte
-  depois: uma tarefa em branco custa mais do que uma resposta parcial.</div>
-  <p class="menor">Dúvidas de <strong>processo</strong> (como executar, onde preencher) são
-  respondidas durante a prova. Dúvidas de conteúdo, não: consulte o material.</p>
+  <h2>Os pressupostos da ANOVA</h2>
+  <ul>
+    <li><strong>Independência:</strong> cada caso está em um grupo só, e um caso não interfere no
+        outro. É questão de delineamento, e nenhum teste conserta a falta dela;</li>
+    <li><strong>A média representa cada grupo:</strong> distribuição sem assimetria forte em cada
+        grupo — ou grupos grandes o bastante para o teorema central do limite do encontro 7 socorrer;</li>
+    <li><strong>Variâncias parecidas</strong> entre os grupos. Nos preços da ANP elas não são
+        (o desvio vai de R$ 0,04 em Balsas a R$ 0,30 em Imperatriz): por isso o notebook roda o
+        Kruskal-Wallis ao lado.</li>
+  </ul>
+  <div class="pergunta">Regra de leitura: quando a ANOVA e o Kruskal-Wallis <strong>concordam</strong>,
+  a conclusão é robusta. Quando <strong>discordam</strong>, é sinal de que a média não está
+  representando os grupos — e é o caso da próxima tela.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Onde a turma costuma perder pontos</h2>
-  <div class="alerta"><span class="rotulo">Executar sem interpretar</span>
-  O erro mais caro da prova. Toda tarefa tem célula de texto para a resposta em prosa, e ela
-  vale <strong>metade dos pontos</strong>. Código correto com campo de resposta vazio perde
-  metade, e é justamente a metade que a IA não escreve por você.</div>
-  <div class="alerta"><span class="rotulo">Concluir antes de checar os pressupostos</span>
-  Antes de declarar o resultado de um teste, verifique se tratou os extremos como o encontro
-  11 ensinou. Resultado instável costuma ser sintoma de variável não transformada.</div>
-  <div class="alerta"><span class="rotulo">Filtro errado na base</span>
-  Confira sempre o <strong>ano</strong> e o <strong>recorte</strong> que a tarefa pede antes
-  de calcular. Misturar anos ou categorias invalida a conta inteira, mesmo com o código
-  certo.</div>
-  <p class="menor">A consulta ao material é permitida: os encontros 9, 10 e 11 têm todas as
-  funções e o vocabulário de que você precisa.</p>
+  <h2>Quando o teste paramétrico não cabe: três sinais</h2>
+  <p>O teste t e a ANOVA comparam <strong>médias</strong>. Isso só faz sentido se a média
+  representa o grupo. Três sinais de que não representa:</p>
+  <div class="cartoes-3">
+    <div class="cartao">
+      <h4>Assimetria forte</h4>
+      <p>Margem, receita, renda, tempo de espera: poucos casos extremos arrastam a média para
+      longe da maioria. A regra de bolso do notebook: assimetria além de ±1.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Variável ordinal</h4>
+      <p>Escala Likert, nível de satisfação, classificação de risco. “Concordo” menos
+      “neutro” não é um número, e a média de uma escala ordinal não tem unidade.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>n pequeno</h4>
+      <p>Com menos de 15 casos por grupo e sem saber se a distribuição é normal, o teorema
+      central do limite ainda não socorre.</p>
+    </div>
+  </div>
+  <p class="menor">Nos três casos, a saída é comparar a <strong>ordem</strong> dos valores, e não
+  os valores: os testes de postos da Parte 2.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O caso da margem líquida: a média que mente</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 255" role="img" aria-label="Margem líquida por companhia em três setores, com a média e a mediana de cada setor">
+    <line x1="300.0" y1="18" x2="300.0" y2="200" stroke="#eee" stroke-width="1"/>
+    <text x="300.0" y="220" text-anchor="middle" font-size="14" fill="#777">−60%</text>
+    <line x1="410.0" y1="18" x2="410.0" y2="200" stroke="#eee" stroke-width="1"/>
+    <text x="410.0" y="220" text-anchor="middle" font-size="14" fill="#777">−40%</text>
+    <line x1="520.0" y1="18" x2="520.0" y2="200" stroke="#eee" stroke-width="1"/>
+    <text x="520.0" y="220" text-anchor="middle" font-size="14" fill="#777">−20%</text>
+    <line x1="630.0" y1="18" x2="630.0" y2="200" stroke="#bbb" stroke-width="1.6"/>
+    <text x="630.0" y="220" text-anchor="middle" font-size="14" fill="#777">0%</text>
+    <line x1="740.0" y1="18" x2="740.0" y2="200" stroke="#eee" stroke-width="1"/>
+    <text x="740.0" y="220" text-anchor="middle" font-size="14" fill="#777">20%</text>
+    <line x1="850.0" y1="18" x2="850.0" y2="200" stroke="#eee" stroke-width="1"/>
+    <text x="850.0" y="220" text-anchor="middle" font-size="14" fill="#777">40%</text>
+    <line x1="960.0" y1="18" x2="960.0" y2="200" stroke="#eee" stroke-width="1"/>
+    <text x="960.0" y="220" text-anchor="middle" font-size="14" fill="#777">60%</text>
+    <circle cx="947.4" cy="48.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="640.1" cy="48.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="645.7" cy="42.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="648.8" cy="57.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="660.2" cy="62.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="634.5" cy="47.9" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="719.1" cy="64.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="601.7" cy="62.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="650.3" cy="42.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="636.6" cy="61.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="562.8" cy="64.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="671.2" cy="44.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="602.5" cy="55.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="580.4" cy="57.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="659.3" cy="56.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="644.5" cy="41.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="702.1" cy="58.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="518.8" cy="57.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="608.9" cy="62.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="631.5" cy="62.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="769.4" cy="48.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="650.3" cy="59.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="691.7" cy="64.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="636.7" cy="64.9" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="559.7" cy="43.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="636.5" cy="39.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="821.5" cy="57.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="653.5" cy="45.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="505.2" cy="55.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="647.1" cy="66.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="622.8" cy="49.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="691.1" cy="46.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="709.0" cy="52.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="641.7" cy="57.9" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="675.6" cy="41.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="630.0" cy="49.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="641.7" y1="28.7" x2="641.7" y2="78.0" stroke="#8D0333" stroke-width="4"/>
+    <line x1="555.1" y1="28.7" x2="555.1" y2="78.0" stroke="#a67c2e" stroke-width="4" stroke-dasharray="5 3"/>
+    <text x="286" y="53.3" text-anchor="end" font-size="16" fill="#333" font-weight="600">Comércio (n = 39)</text>
+    <text x="286" y="71.3" text-anchor="end" font-size="13.5" fill="#555">mediana 2,1% · média −13,6%</text>
+    <text x="286" y="87.3" text-anchor="end" font-size="12" fill="#999">fora: 3 abaixo de −60% (mín. −452%)</text>
+    <circle cx="607.9" cy="101.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="652.2" cy="116.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="689.4" cy="121.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="489.8" cy="108.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="662.5" cy="108.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="453.5" cy="113.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="600.6" cy="103.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="727.9" cy="104.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="655.7" cy="107.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="699.6" cy="110.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="635.8" cy="99.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="627.9" cy="119.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="717.9" cy="114.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="749.5" cy="106.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="699.0" cy="99.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="643.9" cy="119.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="676.9" cy="101.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="643.2" cy="101.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="713.0" cy="101.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="769.3" cy="99.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="766.4" cy="123.9" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="671.4" cy="105.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="592.1" cy="106.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="663.5" cy="121.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="700.6" cy="115.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="668.1" cy="102.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="688.2" cy="110.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="648.4" cy="123.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="491.1" cy="108.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="432.6" cy="118.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="646.9" cy="100.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="762.6" cy="118.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="606.7" cy="120.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="608.8" cy="121.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="909.2" cy="117.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="660.2" cy="108.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="714.9" cy="99.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="641.6" cy="112.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="661.3" y1="87.4" x2="661.3" y2="136.6" stroke="#8D0333" stroke-width="4"/>
+    <line x1="645.8" y1="87.4" x2="645.8" y2="136.6" stroke="#a67c2e" stroke-width="4" stroke-dasharray="5 3"/>
+    <text x="286" y="112.0" text-anchor="end" font-size="16" fill="#333" font-weight="600">Construção civil (n = 42)</text>
+    <text x="286" y="130.0" text-anchor="end" font-size="13.5" fill="#555">mediana 5,7% · média 2,9%</text>
+    <text x="286" y="146.0" text-anchor="end" font-size="12" fill="#999">fora: 2 abaixo de −60% (mín. −176%); 2 acima de 60%</text>
+    <circle cx="716.2" cy="178.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="715.3" cy="161.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="751.3" cy="163.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="644.0" cy="171.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="678.4" cy="178.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="840.9" cy="182.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="875.3" cy="159.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="675.7" cy="161.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="707.9" cy="179.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="789.0" cy="174.9" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="656.5" cy="177.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="814.5" cy="185.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="381.6" cy="183.5" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="728.3" cy="180.7" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="845.2" cy="178.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="655.5" cy="167.6" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="648.6" cy="174.8" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="829.3" cy="161.4" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="584.7" cy="178.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="499.8" cy="178.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="691.8" cy="177.2" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="698.0" cy="169.0" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="666.9" cy="167.1" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <circle cx="767.9" cy="168.3" r="4" fill="#0AB0AB" fill-opacity="0.55"/>
+    <line x1="711.6" y1="146.0" x2="711.6" y2="195.3" stroke="#8D0333" stroke-width="4"/>
+    <line x1="707.6" y1="146.0" x2="707.6" y2="195.3" stroke="#a67c2e" stroke-width="4" stroke-dasharray="5 3"/>
+    <text x="286" y="170.7" text-anchor="end" font-size="16" fill="#333" font-weight="600">Energia elétrica (n = 30)</text>
+    <text x="286" y="188.7" text-anchor="end" font-size="13.5" fill="#555">mediana 14,8% · média 14,1%</text>
+    <text x="286" y="204.7" text-anchor="end" font-size="12" fill="#999">fora: 2 abaixo de −60% (mín. −230%); 4 acima de 60%</text>
+    <text x="300" y="247" font-size="15" fill="#8D0333" font-weight="700">— mediana</text>
+    <text x="420" y="247" font-size="15" fill="#a67c2e" font-weight="700">- - média</text>
+    </svg>
+  </div>
+  <p>Os três setores com pelo menos 30 companhias na CVM (DFP 2024), 111 companhias. No
+  <strong>comércio</strong>, a mediana é <strong>+2,1%</strong> e a média é <strong>−13,6%</strong>:
+  uma única companhia com margem de <strong>−452%</strong> arrasta o setor inteiro para o
+  prejuízo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: paramétrico ou de postos?</h2>
+  <div class="instrucao"><span class="rotulo">Em duplas, 8 minutos</span>
+  Para cada situação, digam se a comparação deve ser feita pela <strong>média</strong> (teste t
+  ou ANOVA) ou pelos <strong>postos</strong>, e qual dos três sinais pesou. Depois, uma dupla
+  responde para a turma.</div>
+  <ol>
+    <li>Comparar a nota de satisfação (1 a 5) de clientes de três agências bancárias;</li>
+    <li>Comparar o tempo de entrega, em dias, de duas transportadoras, com 400 entregas de cada
+        e poucos atrasos muito longos;</li>
+    <li>Comparar o faturamento mensal de quatro filiais de uma rede de farmácias, com 12 meses de
+        cada;</li>
+    <li>Comparar o preço da gasolina em sete municípios, com 10 a 101 postos por município.</li>
+  </ol>
+  <p class="menor">A resposta não sai de decorar uma tabela: sai de perguntar <em>a média
+  representa o grupo?</em></p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
+<section class="slide divisor estat">
+  <h2>Parte 2: estatística</h2>
+  <p>Os testes de postos, e o fluxograma completo da escolha do teste</p>
+</section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Revisão pelas fichas (20 min)</h2>
-  <p>Antes de abrir a prova, percorremos as fichas dos blocos de estatística da Unidade III e os
-  fluxogramas de escolha de teste. Cada tarefa da prova exige, além do código, a
-  <strong>frase de leitura</strong> do resultado.</p>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">A margem líquida difere entre comércio, construção civil e energia
+  elétrica? A ANOVA diz que <strong>não</strong> (p = 0,20). O Kruskal-Wallis diz que
+  <strong>sim</strong> (p = 0,002). Em quem acreditar?</div>
+  <p>Os mesmos 111 dados, dois testes, duas respostas opostas. A diferença não está no
+  computador: está em <strong>o que cada teste compara</strong>. A ANOVA compara médias — e a
+  média do comércio é arrastada por uma única companhia. O Kruskal-Wallis compara a
+  <strong>ordem</strong> dos valores.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Quando a média não representa o grupo, <strong>compare os postos</strong>. E o teste se escolhe
+  <strong>antes</strong> de olhar o valor-p, pelo tipo de dado — nunca depois, pelo resultado
+  que se prefere.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Os três testes de postos, em linguagem corrente</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Posto</strong>: a posição do valor na fila ordenada — o menor vira 1, o seguinte 2. Um
+  extremo de −452% vira apenas “o último da fila”, e deixa de arrastar o resultado.<br>
+  <strong>Mann-Whitney</strong>: dois grupos independentes. <strong>Wilcoxon</strong>: duas
+  medidas do mesmo caso. <strong>Kruskal-Wallis</strong>: três ou mais grupos.</div>
   <table>
-    <tr><th>Encontro</th><th>Ficha</th><th>O que a prova cobra</th></tr>
-    <tr><td>3 e 4</td><td>Posição e dispersão</td><td>Escolher entre média e mediana com justificativa; usar o CV para comparar escalas</td></tr>
-    <tr><td>9</td><td>Quartis e forma</td><td>Ler o boxplot, identificar assimetria e decidir a medida a relatar</td></tr>
-    <tr><td>10</td><td>Histograma e escore z</td><td>Escolher o número de classes, explicar o efeito da transformação logarítmica</td></tr>
-    <tr><td>11</td><td>Teste de hipóteses</td><td>Formular H0 e H1, escolher o teste pelo nível de mensuração, ler t, gl e p</td></tr>
+    <tr><th>Situação</th><th>Paramétrico (compara médias)</th><th>De postos (compara a ordem)</th></tr>
+    <tr><td>Dois grupos independentes</td><td>t de Welch</td><td><strong>Mann-Whitney</strong></td></tr>
+    <tr><td>Duas medidas do mesmo caso</td><td>t pareado</td><td><strong>Wilcoxon</strong></td></tr>
+    <tr><td>Três ou mais grupos</td><td>ANOVA de um fator</td><td><strong>Kruskal-Wallis</strong></td></tr>
   </table>
-  <div class="frase-resultado"><span class="rotulo">A exigência nova desta prova</span>
-  Cada número calculado precisa vir acompanhado de <strong>uma frase em linguagem corrente</strong>
-  que um leitor leigo entenda. Tarefa sem a frase perde metade dos pontos, mesmo com o código
-  correto.</div>
-  <div class="alerta"><span class="rotulo">Os três enganos que mais custam</span>
-  Dizer que "não rejeitar H0" prova igualdade. Comparar desvios padrão de escalas diferentes sem o
-  coeficiente de variação. E relatar a média de uma distribuição com cauda longa sem mencionar a
-  mediana.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Com assimetria forte, valores extremos, variável ordinal ou n pequeno. A frase relata a
+    <strong>mediana</strong> de cada grupo.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Como atalho para “achar” significância depois de a ANOVA não dar. Nem quando a média
+    representa bem os grupos: aí o paramétrico é mais preciso.</div>
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
-
-<section class="slide divisor">
-  <h2>Tarefa 1: Descritivas (20)</h2>
-  <p>Resumir a receita por setor e decidir com critério</p>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula do Kruskal-Wallis, com cada símbolo nomeado</h2>
+  <div class="formula">
+    <span class="expr">H<span class="op">=</span>
+      <span class="frac"><span class="cima">12</span>
+        <span class="baixo">N(N + 1)</span></span>
+      <span class="op">·</span>Σ
+      <span class="frac"><span class="cima">R<sub>j</sub>²</span>
+        <span class="baixo">n<sub>j</sub></span></span>
+      <span class="op">−</span>3(N + 1)</span>
+    <span class="simbolos">
+      <span><b>N</b>o total de casos, juntando todos os grupos</span>
+      <span><b>n<sub>j</sub></b>o número de casos do grupo j</span>
+      <span><b>R<sub>j</sub></b>a soma dos postos do grupo j</span>
+      <span><b>H</b>a estatística: quanto os postos médios se afastam do centro</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> ponha todos os casos
+    numa fila única, troque cada valor pelo seu posto e some os postos de cada grupo. Se os grupos
+    fossem iguais, o posto médio de cada um ficaria perto do centro da fila, (N + 1) ÷ 2. H mede o
+    quanto eles se afastam disso.</span>
+  </div>
+  <p class="menor">O Mann-Whitney (U) e o Wilcoxon (W) são a mesma ideia: o primeiro soma os
+  postos de um dos dois grupos; o segundo ordena as <em>diferenças</em> de cada par e soma os
+  postos das diferenças de um sinal só. A conta é do computador.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: a margem em três setores</h2>
+  <ol class="passos">
+    <li>Os dados: <span class="num">111 companhias</span> — <span class="num">39</span> do
+        comércio, <span class="num">42</span> da construção civil e <span class="num">30</span> de
+        energia elétrica;</li>
+    <li>A fila única: as 111 margens em ordem, da menor (<span class="num">−452%</span>, posto 1)
+        à maior (posto 111). O centro da fila é <span class="num">(111 + 1) ÷ 2 = 56,0</span>;</li>
+    <li>O posto médio de cada setor: comércio <span class="num">44,6</span>, construção
+        <span class="num">55,4</span>, energia <span class="num">71,7</span>;</li>
+    <li>A estatística: <span class="num">H = 12,05</span>, com <span class="num">p = 0,0024</span>
+        — abaixo de 0,05, rejeita H0;</li>
+    <li>A ANOVA, sobre os mesmos dados: <span class="num">F = 1,62</span>,
+        <span class="num">p = 0,2017</span> — não rejeita.</li>
+  </ol>
+  <p class="menor">O passo 3 é o coração do exemplo: energia elétrica está bem acima do centro, e o
+  comércio, abaixo. Na fila, a companhia de −452% é só o posto 1 — o mesmo lugar que teria com
+  −250%.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo, e os outros dois testes</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  As medianas (2,1%, 5,7% e 14,8%) e os postos médios contam a mesma história: energia elétrica
+  tem margem mais alta. A ANOVA não enxerga porque a variação <em>dentro</em> do comércio,
+  inflada por um extremo, engole a diferença <em>entre</em> os setores.</div>
+  <table>
+    <tr><th>Comparação</th><th>Paramétrico</th><th>De postos</th></tr>
+    <tr><td>Três setores, margem (n = 111)</td><td>ANOVA: F = 1,62, p = 0,2017</td><td>Kruskal-Wallis: H = 12,05, p = 0,0024</td></tr>
+    <tr><td>Comércio × energia, margem (39 e 30)</td><td>Welch: t = −1,60, p = 0,1150</td><td>Mann-Whitney: U = 305, p = 0,0007</td></tr>
+    <tr><td>O mesmo posto, janeiro × dezembro (88 postos)</td><td>t pareado: t = −7,99, p &lt; 0,001</td><td>Wilcoxon: W = 385, p &lt; 0,001</td></tr>
+  </table>
+  <p class="menor">Nas margens, assimétricas, os dois caminhos discordam. Nos preços pareados, em
+  que a diferença mediana é de −R$ 0,19 e 67 dos 88 postos baixaram o preço, concordam. E o
+  Mann-Whitney tem a sua leitura própria: sorteado um par, a companhia do comércio tem a margem
+  maior em só <strong>26%</strong> das vezes.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se faz no Colab</h2>
+  <pre class="codigo"><span class="cmt"># três ou mais grupos</span>
+H, p = stats.<span class="fn">kruskal</span>(comercio, construcao, energia)
 
+<span class="cmt"># dois grupos independentes</span>
+U, p = stats.<span class="fn">mannwhitneyu</span>(comercio, energia, alternative=<span class="str">"two-sided"</span>)
+
+<span class="cmt"># duas medidas do mesmo caso</span>
+W, p = stats.<span class="fn">wilcoxon</span>(pares[<span class="str">"dezembro"</span>], pares[<span class="str">"janeiro"</span>])
+
+<span class="cmt"># a célula de escolha: o fluxograma inteiro, com a base do bloco de configuração</span>
+<span class="fn">escolhe_teste</span>(base, <span class="str">"margem"</span>, <span class="str">"setor"</span>, minimo=MIN_POR_GRUPO, alfa=ALFA)</pre>
+  <p>Cada linha responde a uma das três situações da tabela. A última faz o caminho todo: conta os
+  grupos, olha a assimetria e o tamanho de cada um, <strong>indica</strong> o teste e roda o
+  paramétrico e o de postos lado a lado.</p>
+  <p class="menor">O argumento <code>alternative="two-sided"</code> é o teste bilateral do encontro
+  10: a pergunta é se os grupos diferem, para qualquer lado.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “A margem líquida das companhias abertas difere entre os setores de comércio, construção civil
+  e energia elétrica (Kruskal-Wallis, <strong>H = 12,05, p = 0,002</strong>; n = 111): a margem
+  mediana vai de <strong>2,1%</strong> no comércio a <strong>14,8%</strong> em energia elétrica.
+  Usou-se o teste de postos porque a margem é fortemente assimétrica (CVM, DFP 2024).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que <strong>todos</strong> os pares de setores diferem, nem <strong>por que</strong> energia
+  elétrica tem margem maior — regulação, escala, estrutura de capital? O teste diz que há
+  diferença na posição típica; a explicação é trabalho da teoria e do delineamento.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: ler o p da ANOVA como prova de igualdade</h2>
+  <div class="colunas">
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “A ANOVA deu p = 0,20. Logo, comércio, construção civil e energia elétrica têm a mesma
+      margem líquida.”<br><br>
+      Dois erros numa frase só. <strong>Não rejeitar H0 não prova igualdade</strong> (encontro
+      10). E a ANOVA nem era o teste adequado: a média do comércio é −13,6% por causa de uma
+      companhia.
+    </div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      Olhar o dado <strong>antes</strong> de escolher o teste: assimetria de −4,9 no comércio.
+      A média não representa o grupo.<br><br>
+      Teste de postos: Kruskal-Wallis, <strong>H = 12,05, p = 0,002</strong>.<br><br>
+      E relatar a mediana: <strong>2,1%, 5,7% e 14,8%</strong>.
+    </div>
+  </div>
+  <p class="menor">E o erro irmão, na Parte 1: fazer 21 testes t e contar os “significativos”
+  sem corrigir o α. Com sete grupos iguais, quase metade das vezes aparece um achado falso.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Ficha de revisão: ANOVA e testes de postos</h2>
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <span class="expr">F = entre ÷ dentro</span>
+      <p>H: os postos médios contra o centro da fila, (N + 1) ÷ 2.</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">stats.f_oneway(g1, g2, g3)
+stats.kruskal(g1, g2, g3)
+stats.mannwhitneyu(a, b)
+stats.wilcoxon(depois, antes)</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>“O [teste] indica diferença entre [grupos] (estatística, p; n): a mediana vai de [a] a
+      [b]. Usou-se o teste de postos porque [motivo].”</p>
+    </div>
+    <div>
+      <h4>O erro</h4>
+      <p>Ler o p da ANOVA como prova de igualdade; e fazer vários testes t sem corrigir o α.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Revisão do Módulo III</span>
+  <h2>O fluxograma completo da escolha do teste</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 300" role="img" aria-label="Fluxograma de escolha do teste: tipo de variável, número de grupos e se a média representa os grupos">
+      <rect x="20" y="20" width="230" height="60" rx="10" fill="#8D0333"/>
+      <text x="135" y="46" text-anchor="middle" font-size="17" fill="#fff" font-weight="700">1. Que tipo de</text>
+      <text x="135" y="68" text-anchor="middle" font-size="17" fill="#fff" font-weight="700">variável resposta?</text>
+      <line x1="250" y1="40" x2="318" y2="40" stroke="#888" stroke-width="2" marker-end="url(#sc)"/>
+      <text x="284" y="32" text-anchor="middle" font-size="13" fill="#666">categórica</text>
+      <rect x="322" y="18" width="300" height="44" rx="8" fill="#f6eef1" stroke="#8D0333"/>
+      <text x="472" y="46" text-anchor="middle" font-size="15" fill="#333">qui-quadrado (independência ou aderência)</text>
+      <line x1="135" y1="80" x2="135" y2="118" stroke="#888" stroke-width="2" marker-end="url(#sc)"/>
+      <text x="145" y="104" font-size="13" fill="#666">quantitativa ou ordinal</text>
+      <rect x="20" y="122" width="230" height="60" rx="10" fill="#a67c2e"/>
+      <text x="135" y="148" text-anchor="middle" font-size="17" fill="#fff" font-weight="700">2. Quantos grupos,</text>
+      <text x="135" y="170" text-anchor="middle" font-size="17" fill="#fff" font-weight="700">e são pareados?</text>
+      <line x1="250" y1="152" x2="318" y2="152" stroke="#888" stroke-width="2" marker-end="url(#sc)"/>
+      <rect x="322" y="92" width="210" height="36" rx="8" fill="#fbf6ec" stroke="#a67c2e"/>
+      <text x="427" y="115" text-anchor="middle" font-size="14" fill="#333">1 grupo contra um valor</text>
+      <rect x="322" y="134" width="210" height="36" rx="8" fill="#fbf6ec" stroke="#a67c2e"/>
+      <text x="427" y="157" text-anchor="middle" font-size="14" fill="#333">2 grupos independentes</text>
+      <rect x="322" y="176" width="210" height="36" rx="8" fill="#fbf6ec" stroke="#a67c2e"/>
+      <text x="427" y="199" text-anchor="middle" font-size="14" fill="#333">2 medidas do mesmo caso</text>
+      <rect x="322" y="218" width="210" height="36" rx="8" fill="#fbf6ec" stroke="#a67c2e"/>
+      <text x="427" y="241" text-anchor="middle" font-size="14" fill="#333">3 ou mais grupos</text>
+      <rect x="548" y="80" width="180" height="52" rx="10" fill="#0AB0AB"/>
+      <text x="638" y="102" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">3. A média representa</text>
+      <text x="638" y="122" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">os grupos?</text>
+      <text x="815" y="76" text-anchor="middle" font-size="14" fill="#05635f" font-weight="700">sim: médias</text>
+      <text x="935" y="76" text-anchor="middle" font-size="14" fill="#8D0333" font-weight="700">não: postos</text>
+      <text x="815" y="115" text-anchor="middle" font-size="14" fill="#333">t de uma amostra</text>
+      <text x="935" y="115" text-anchor="middle" font-size="14" fill="#333">Wilcoxon 1 amostra</text>
+      <text x="815" y="157" text-anchor="middle" font-size="14" fill="#333">t de Welch</text>
+      <text x="935" y="157" text-anchor="middle" font-size="14" fill="#333">Mann-Whitney</text>
+      <text x="815" y="199" text-anchor="middle" font-size="14" fill="#333">t pareado</text>
+      <text x="935" y="199" text-anchor="middle" font-size="14" fill="#333">Wilcoxon</text>
+      <text x="815" y="241" text-anchor="middle" font-size="14" fill="#333">ANOVA de um fator</text>
+      <text x="935" y="241" text-anchor="middle" font-size="14" fill="#333">Kruskal-Wallis</text>
+      <line x1="532" y1="152" x2="546" y2="124" stroke="#888" stroke-width="1.6" marker-end="url(#sc)"/>
+      <text x="500" y="288" text-anchor="middle" font-size="14" fill="#666">“não” no passo 3: assimetria forte ou extremos, variável ordinal, ou n pequeno sem normalidade</text>
+    </svg>
+  </div>
+  <p class="menor">São três perguntas, sempre na mesma ordem, e respondidas <strong>antes</strong>
+  de rodar qualquer teste. A tela seguinte traz a mesma árvore como tabela, com o encontro em que
+  cada teste foi ensinado.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Revisão do Módulo III</span>
+  <h2>Os testes do Módulo III, lado a lado</h2>
+  <table>
+    <tr><th>A pergunta</th><th>Paramétrico</th><th>De postos</th><th>Encontro</th></tr>
+    <tr><td>A média de um grupo difere de um valor de referência?</td><td>t de uma amostra</td><td>Wilcoxon de uma amostra</td><td>10</td></tr>
+    <tr><td>Dois grupos independentes diferem?</td><td>t de Welch</td><td>Mann-Whitney</td><td>11 e 12</td></tr>
+    <tr><td>O mesmo caso mudou entre duas medidas?</td><td>t pareado</td><td>Wilcoxon</td><td>11 e 12</td></tr>
+    <tr><td>Três ou mais grupos diferem?</td><td>ANOVA de um fator</td><td>Kruskal-Wallis</td><td>12</td></tr>
+    <tr><td>Duas variáveis categóricas estão associadas?</td><td colspan="2">qui-quadrado de independência</td><td>11</td></tr>
+    <tr><td>Uma categórica segue a proporção esperada?</td><td colspan="2">qui-quadrado de aderência</td><td>11</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">O que vale para todos</span>
+  O intervalo de confiança e a lógica do teste do encontro 10: <strong>H0, H1, α, valor-p</strong>;
+  e os dois erros do encontro 11: rejeitar uma H0 verdadeira (tipo I) e não rejeitar uma falsa
+  (tipo II). Não rejeitar não prova nada.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
+<section class="slide divisor">
+  <h2>Prática guiada no projeto</h2>
+  <p>A célula de escolha do teste, com a base trocável no bloco de configuração</p>
+</section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Tarefa 1: o que é avaliado</h2>
-  <ol>
-    <li>Complete a função <code>descritivas</code>: média, mediana, desvio (ddof=1) e CV;</li>
-    <li>Monte a tabela por setor na escala de R$ milhões;</li>
-    <li>Responda: onde média e mediana divergem mais? Usa média ou mediana para a receita
-        "típica"? Qual setor tem o CV maior?</li>
-  </ol>
-  <div class="pergunta">Lembrete do encontro 9: com gigantes na amostra, a média viaja, a
-  mediana fica. Justifique cada escolha.</div>
+  <h2>O bloco de configuração da prática</h2>
+  <pre class="codigo">BASE          = <span class="str">"CVM"</span>   <span class="cmt"># "CVM" = margem por setor | "ANP" = preço por município</span>
+MIN_POR_GRUPO = 30      <span class="cmt"># só entram os grupos com pelo menos este número de casos</span>
+ALFA          = 0.05    <span class="cmt"># o nível de significância</span>
+
+ARQUIVO_PROJETO  = <span class="str">""</span>   <span class="cmt"># vazio = usa a BASE; ou o nome do CSV do seu projeto</span>
+VARIAVEL_PROJETO = <span class="str">""</span>   <span class="cmt"># a coluna quantitativa do seu projeto</span>
+GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna que define os grupos</span></pre>
+  <table>
+    <tr><th>Configuração</th><th>O que a célula indica</th><th>Resultado</th></tr>
+    <tr><td><code>BASE = "CVM"</code>, mínimo 30</td><td>3 setores, assimetria forte → <strong>Kruskal-Wallis</strong></td><td>H = 12,05, p = 0,0024</td></tr>
+    <tr><td><code>BASE = "ANP"</code>, mínimo 30</td><td>2 municípios, simétricos → <strong>t de Welch</strong></td><td>t = −2,39, p = 0,0202</td></tr>
+    <tr><td><code>BASE = "ANP"</code>, mínimo 10</td><td>7 municípios, grupos pequenos → <strong>Kruskal-Wallis</strong></td><td>H = 136,64, p &lt; 0,001</td></tr>
+  </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Tarefa 2: Gráficos (25)</h2>
-  <p>Boxplot da margem e histograma do log</p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Tarefa 2: o que é avaliado</h2>
+  <h2>Roteiro da prática (105 minutos)</h2>
   <ol>
-    <li>Boxplot da margem por setor (título, rótulos, ylim [−1,5; 1,5]);</li>
-    <li>Histograma do log-receita do escopo (bins, títulos, rótulos);</li>
-    <li>Responda: o que o boxplot mostra sobre os extremos? Por que o log "normaliza" a
-        receita? Que escala apresentar no relatório?</li>
+    <li><strong>Executar o notebook</strong> de cima para baixo e conferir: todos os
+        <code>conferir</code> devem dar <code>[ok]</code> (15 min);</li>
+    <li><strong>Trocar a base:</strong> <code>BASE = "ANP"</code>, com mínimo 30 e depois 10. Anotar
+        o teste indicado em cada caso, e por quê (15 min);</li>
+    <li><strong>Levar ao projeto:</strong> upload do CSV, preencher as três variáveis do projeto,
+        rodar a célula de escolha (35 min);</li>
+    <li><strong>Escrever a frase</strong> do teste indicado: teste, estatística, p, n e a mediana de
+        cada grupo — e o motivo da escolha (25 min);</li>
+    <li><strong>Revisão do módulo:</strong> localizar a pergunta do projeto no fluxograma e responder
+        as três perguntas do notebook (15 min).</li>
   </ol>
-  <p class="menor">Boas práticas do encontro 10 valem ponto: título descritivo, eixos
-  rotulados, escolha consciente de escala.</p>
+  <div class="instrucao"><span class="rotulo">Se a base do projeto não tiver grupos</span>
+  Use a base da CVM ou da ANP e escreva a frase sobre ela. O que se avalia hoje é a
+  <strong>escolha</strong> do teste e a <strong>leitura</strong>, não a base.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Tarefa 3: Inferência (30)</h2>
-  <p>IC de 95% e teste t de Student</p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Tarefa 3: o que é avaliado</h2>
-  <ol>
-    <li><strong>IC 95% (a):</strong> passo a passo e via <code>scipy.stats.t.interval</code>
-        para a margem de Energia Elétrica;</li>
-    <li><strong>Interpretação (b):</strong> o intervalo contém o zero? O que "95% de
-        confiança" <em>realmente</em> significa;</li>
-    <li><strong>Teste t (c):</strong> Comércio × Construção no log-receita, H0/H1, p-valor
-        e decisão com α = 0,05;</li>
-    <li><strong>Réguas (d):</strong> por que o teste bruto enganaria; e "não rejeitar H0" ≠
-        "provar H0".</li>
-  </ol>
-  <p class="menor">Esta é a tarefa que testa o vocabulário do encontro 11, escreva as
-  conclusões completas.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Tarefa 4: Qui-quadrado (25)</h2>
-  <p>Porte × sobrevivência de empresas no CEMPRE</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Tarefa 4: o que é avaliado</h2>
-  <ol>
-    <li>Monte a tabela de contingência sobreviventes × não sobreviventes por faixa de
-        pessoal (ano mais recente);</li>
-    <li>Rode <code>scipy.stats.chi2_contingency</code>;</li>
-    <li>Responda: χ², graus de liberdade, p-valor; conclusão com α = 0,05;</li>
-    <li>Declare a <strong>limitação</strong>: dados agregados por faixa, o teste fala de
-        associação, não de causalidade.</li>
-  </ol>
-  <p class="menor">Desconto grande para quem escrever "porte causa sobrevivência" sem a
-  ressalva de dados agregados.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Antes de entregar</h2>
-  <ol>
-    <li><strong>Ambiente de execução → Reiniciar e executar tudo</strong>: nada pode
-        quebrar;</li>
-    <li>Conferir as quatro tarefas: células completadas <strong>e</strong> respostas de
-        texto escritas;</li>
-    <li>Salvar e compartilhar o link com permissão de edição;</li>
-    <li>Levantar: cada resposta interpretada vale metade dos pontos.</li>
-  </ol>
-  <p><strong>Boa avaliação.</strong> O método está nos encontros: execute, comente e
-  releia as sínteses teóricas antes de declarar cada conclusão.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Depois da prova</h2>
+  <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li><strong>Entrega:</strong> valor da Avaliação 2 entra na composição da nota
-        semestral, junto das Atividades 1 e 3 e da prova final;</li>
-    <li><strong>Próximo encontro (13):</strong> correlação de Pearson e regressão linear
-        simples, dados de SGS e CVM;</li>
-    <li><strong>Projeto:</strong> quem não aplicou ainda inferência sobre a base própria
-        pode usar os resultados de hoje como repertório.</li>
+    <li><strong>Mais de dois grupos pedem um teste só</strong>: a ANOVA de um fator. Vários testes t
+        multiplicam os alarmes falsos — quase metade das vezes, com sete grupos iguais;</li>
+    <li><strong>F compara a variação entre os grupos com a variação dentro deles</strong>, e o η²
+        diz o tamanho do efeito: 74% da variação do preço da gasolina está entre os municípios;</li>
+    <li><strong>A ANOVA diz que há diferença, não onde.</strong> Para saber onde, comparam-se os
+        pares com o α corrigido;</li>
+    <li><strong>Quando a média não representa o grupo</strong> — assimetria forte, variável ordinal
+        ou n pequeno —, compare os <strong>postos</strong>: Mann-Whitney, Wilcoxon e
+        Kruskal-Wallis;</li>
+    <li><strong>Concordância é robustez; discordância é aviso.</strong> Na margem da CVM, a ANOVA e
+        o Kruskal-Wallis discordam porque uma companhia arrasta a média;</li>
+    <li><strong>O teste se escolhe antes de olhar o p</strong>, por três perguntas: que tipo de
+        variável, quantos grupos e se são pareados, e se a média representa os grupos.</li>
   </ul>
-  <p class="menor">Avaliação 2 encerra o ciclo prático da Unidade III, do dado bruto à
-  decisão inferencial com medida de incerteza.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
+<section class="slide leitura">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
+  <ul>
+    <li><strong>SILVA e SAMÁ (2021)</strong>, <em>Estatística</em>, volume II: os capítulos de
+        análise de variância e de testes não paramétricos. Acesso aberto pela Editora da FURG.</li>
+    <li><strong>ANDERSON, SWEENEY e WILLIAMS (2013)</strong>: o capítulo de ANOVA, para o
+        exemplo com dados de Administração.</li>
+    <li><strong>O notebook do encontro</strong>: reexecute a célula de escolha trocando a base e o
+        mínimo por grupo. É o resumo do Módulo III em uma célula.</li>
+    <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai em
+        duas partes.</li>
+  </ul>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Diga, para o <strong>seu</strong> projeto: qual linha do fluxograma corresponde à sua
+        pergunta, e qual coluna — médias ou postos;</li>
+    <li>O próximo encontro abre o Módulo IV: <strong>correlação, regressão linear e regressão
+        logística</strong>. Traga o par de variáveis quantitativas do seu projeto.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
+</section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 12</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 2</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a></p>
+    <h2>Abertura: o que falta ao Módulo III <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) explicar por que três ou
+            mais grupos pedem um único teste, e não uma fila de testes t; (ii) ler a estatística F,
+            o valor-p e o η² de uma ANOVA de um fator; (iii) reconhecer os três sinais de que o
+            teste paramétrico não cabe; (iv) escolher entre Mann-Whitney, Wilcoxon e
+            Kruskal-Wallis e ler cada um; (v) percorrer o fluxograma completo de escolha do teste
+            do Módulo III e aplicá-lo à base do próprio projeto.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura e retomada</td><td>15</td></tr>
+      <tr><td>Parte 1: ANOVA e quando o paramétrico não cabe</td><td>45</td></tr>
+      <tr><td>Parte 2: testes de postos e o fluxograma do módulo</td><td>45</td></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>Prática guiada no projeto individual</td><td>105</td></tr>
+      <tr><td>Síntese e tarefa</td><td>15</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A retomada que abre o dia</span>
+            <p>Recuperar em dois minutos o que o módulo já tem: o encontro 10 deu a lógica do teste
+            (H0, H1, α, valor-p) e o intervalo de confiança; o encontro 11 deu os erros tipo I e II e
+            os testes t de uma amostra, de duas amostras (Welch) e pareado, mais o qui-quadrado.
+            Escrever no quadro as duas perguntas que ficaram sem resposta:</p>
+            <ol>
+              <li><em>“E se forem três grupos, ou sete?”</em></li>
+              <li><em>“E se a média não representar o grupo?”</em></li>
+            </ol>
+            <p>São as duas partes do dia. A prática junta as duas numa célula que escolhe o teste.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 3 a 11</b> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a></p>
+    <h2>Parte 1: a ANOVA de um fator e quando o paramétrico não cabe <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta e o gráfico dos sete municípios</td><td>5</td></tr>
+      <tr><td>Por que não 21 testes t: a simulação</td><td>8</td></tr>
+      <tr><td>A ideia de F, as hipóteses e o η²</td><td>10</td></tr>
+      <tr><td>A ANOVA nos preços e os pressupostos</td><td>8</td></tr>
+      <tr><td>Os três sinais e o caso da margem</td><td>6</td></tr>
+      <tr><td>Exercício em duplas</td><td>8</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Começar pelo gráfico, e não pela fórmula</span>
+            <p>A tela do gráfico dos sete municípios é a porta de entrada. Perguntar à turma, antes
+            de qualquer conta: <em>“o preço muda de município para município?”</em>. Todo mundo dirá
+            que sim. A pergunta da estatística é outra: <strong>a diferença é maior do que a que o
+            acaso produziria?</strong> Com 210 postos e médias de R$ 5,73 a R$ 6,87, a resposta vai
+            ser um sim enfático — e é bom que o primeiro exemplo seja fácil.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pedir a previsão antes da simulação</span>
+            <p>Perguntar: <em>“se eu fizer 21 testes t, cada um com 5% de alarme falso, qual a chance
+            de pelo menos um dar falso?”</em>. A intuição dirá 5% ou “um pouco mais”. A fórmula dá o
+            teto de <strong>65,9%</strong>; a simulação do notebook, com sete grupos iguais e semente
+            fixa, dá <strong>45,7%</strong>. A diferença entre os dois existe porque os 21 testes não
+            são independentes (cada grupo entra em seis deles) — não vale a pena aprofundar, basta
+            dizer que os dois números estão muito longe de 5%.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Como explicar F sem fórmula de soma de quadrados</span>
+            <p>F é uma razão: o quanto os grupos se afastam uns dos outros, dividido pelo quanto os
+            casos se afastam dentro de cada grupo. No gráfico, os traços vinho (as médias) estão
+            longe uns dos outros, e as nuvens de pontos de cada município são estreitas: F grande.
+            Desenhar no quadro o caso oposto — médias próximas, nuvens largas — e perguntar o que
+            acontece com F.</p>
+            <p>O η² entra como o tamanho do efeito: 0,742 quer dizer que três quartos da variação do
+            preço estão <em>entre</em> os municípios. Repetir o mantra do encontro 11: o p diz se a
+            diferença existe; o tamanho do efeito diz se ela importa.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do exercício em duplas</span>
+            <ol>
+              <li><strong>Satisfação de 1 a 5 em três agências:</strong> variável ordinal → postos
+              (Kruskal-Wallis). A média de uma escala Likert não tem unidade;</li>
+              <li><strong>Tempo de entrega, 400 por transportadora, poucos atrasos longos:</strong>
+              depende da pergunta. Se interessa o tempo <em>típico</em>, a mediana e o
+              Mann-Whitney; se interessa o tempo <em>médio</em> (por exemplo, para custo), com 400
+              casos o teste t de Welch é válido. É a resposta que mostra que a escolha é decisão de
+              pesquisa;</li>
+              <li><strong>Faturamento de quatro filiais, 12 meses cada:</strong> n pequeno → postos
+              (Kruskal-Wallis). Vale mencionar, sem aprofundar, que meses da mesma filial não são
+              independentes — é série temporal, e o problema volta no Módulo IV;</li>
+              <li><strong>Gasolina em sete municípios:</strong> a média representa a maioria dos
+              grupos, mas há municípios com 10 a 12 postos e variâncias muito diferentes → rodar a
+              ANOVA <em>e</em> o Kruskal-Wallis. Eles concordam: conclusão robusta.</li>
+            </ol>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Achar que a ANOVA diz quais grupos diferem.</strong> Ela diz que pelo menos
+              um difere. O “onde” exige comparações par a par com α corrigido;</li>
+              <li><strong>Achar que “não paramétrico” é “sem hipótese”.</strong> Os testes de postos
+              têm H0 e H1 como qualquer teste; a diferença é que comparam a posição típica, e não a
+              média;</li>
+              <li><strong>Usar o teste de postos sempre, “por segurança”.</strong> Quando a média
+              representa os grupos, o paramétrico é mais preciso — e responde a pergunta sobre a
+              média, que às vezes é a que interessa.</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 12 a 23</b> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a></p>
+    <h2>Parte 2: os testes de postos e a revisão do Módulo III <span class="min">(45 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta: ANOVA diz não, Kruskal-Wallis diz sim</td><td>4</td></tr>
+      <tr><td>O conceito de posto e os três testes</td><td>7</td></tr>
+      <tr><td>A fórmula e o exemplo passo a passo</td><td>9</td></tr>
+      <tr><td>A leitura, o Colab e a frase</td><td>8</td></tr>
+      <tr><td>Erro comum e ficha de revisão</td><td>5</td></tr>
+      <tr><td>O fluxograma completo e a tabela do módulo</td><td>12</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir: <strong>“quando a média não representa o grupo, compare os postos”</strong>.
+            O exemplo é escolhido para provocar: os mesmos 111 dados, a ANOVA diz que não há
+            diferença e o Kruskal-Wallis diz que há. A turma precisa sair entendendo que nenhum dos
+            dois “errou a conta” — eles respondem a perguntas diferentes, e só um deles combina com
+            dados em que uma companhia tem margem de −452%.</p>
+            <p>Dizer em voz alta a regra que impede o uso oportunista: <strong>o teste se escolhe
+            antes de olhar o p</strong>. Escolher o de postos porque a ANOVA “não deu” é o mesmo
+            erro de mudar a pergunta depois de ver a resposta.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Fazer a fila no quadro</span>
+            <p>Antes da fórmula, pedir a cinco estudantes que digam um número qualquer, escrevê-los
+            no quadro e trocar cada um pelo posto. Depois trocar o maior por um número absurdo (um
+            milhão) e perguntar: <em>“o que mudou na média? E no posto?”</em>. A média dispara; o
+            posto continua 5. É a ideia inteira do bloco em um minuto, e sem conta à mão: quem ordena
+            é a turma, quem calcula é o notebook.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Relatar a média junto com o teste de postos.</strong> Se o teste é de postos
+              porque a média não representa, a frase traz a <strong>mediana</strong>;</li>
+              <li><strong>Usar Mann-Whitney em dado pareado.</strong> O mesmo posto em janeiro e em
+              dezembro não são dois grupos independentes: é Wilcoxon (ou t pareado);</li>
+              <li><strong>Ler o p da ANOVA (0,20) como “os setores são iguais”.</strong> É o erro da
+              tela, e o mais grave: não rejeitar H0 não prova igualdade;</li>
+              <li><strong>Confundir o fluxograma com uma ordem de tentativa.</strong> Não se “tenta”
+              a ANOVA e depois o Kruskal-Wallis: responde-se às três perguntas e roda-se o indicado
+              (o outro vem ao lado, como verificação de robustez).</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Medida</th><th>Valor</th></tr>
+              <tr><td>ANP: postos e municípios na ANOVA</td><td>210 postos, 7 municípios (10 ou mais postos)</td></tr>
+              <tr><td>ANOVA, preço por município</td><td>F = 97,38 (gl 6 e 203), p &lt; 0,001, η² = 0,742</td></tr>
+              <tr><td>Kruskal-Wallis, preço por município</td><td>H = 136,64, p &lt; 0,001</td></tr>
+              <tr><td>21 testes t: teto e simulação</td><td>65,9% e 45,7% (semente 12, 1.000 repetições)</td></tr>
+              <tr><td>Pares reais com p &lt; 0,05 / com Bonferroni</td><td>15 e 14, de 21</td></tr>
+              <tr><td>CVM: três setores com 30 ou mais companhias</td><td>111 (39 + 42 + 30)</td></tr>
+              <tr><td>Medianas: comércio, construção, energia</td><td>2,1% · 5,7% · 14,8%</td></tr>
+              <tr><td>Médias: comércio, construção, energia</td><td>−13,6% · 2,9% · 14,1%</td></tr>
+              <tr><td>Postos médios (centro da fila: 56,0)</td><td>44,6 · 55,4 · 71,7</td></tr>
+              <tr><td>ANOVA × Kruskal-Wallis, margem</td><td>F = 1,62, p = 0,2017 × H = 12,05, p = 0,0024</td></tr>
+              <tr><td>Welch × Mann-Whitney, comércio × energia</td><td>t = −1,60, p = 0,1150 × U = 305, p = 0,0007</td></tr>
+              <tr><td>U ÷ (n1 × n2)</td><td>0,26</td></tr>
+              <tr><td>Pareado: 88 postos, janeiro × dezembro</td><td>diferença média −0,149; mediana −0,189</td></tr>
+              <tr><td>t pareado × Wilcoxon</td><td>t = −7,99 × W = 385, ambos p &lt; 0,001</td></tr>
+              <tr><td>Postos que baixaram / subiram / iguais</td><td>67 / 20 / 1</td></tr>
+            </table>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O fluxograma: conduzir pelas três perguntas</span>
+            <p>Os doze minutos finais são a revisão do módulo. Projetar o fluxograma e percorrê-lo
+            com dois exemplos ditados pela turma — de preferência perguntas de projetos reais. Para
+            cada um, as três perguntas em voz alta: <em>que tipo de variável? quantos grupos, e são
+            pareados? a média representa os grupos?</em>. Depois, a tabela do módulo, com o encontro
+            em que cada teste foi ensinado: é a tela que a turma vai fotografar.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 24 a 26</b> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a></p>
+    <h2>Intervalo e prática guiada no projeto individual <span class="min">(120 min)</span></h2>
+    <h3>Minutagem</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>Executar o notebook e conferir</td><td>15</td></tr>
+      <tr><td>Trocar a base: ANP com mínimo 30 e 10</td><td>15</td></tr>
+      <tr><td>Levar ao projeto: upload e as três variáveis</td><td>35</td></tr>
+      <tr><td>Escrever a frase do teste indicado</td><td>25</td></tr>
+      <tr><td>Revisão: a pergunta do projeto no fluxograma</td><td>15</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Como conduzir a prática</span>
+            <p>A prática é a mais longa do módulo, e é deliberado: é o ensaio da seção de resultados
+            do relatório da AV3. O estudante não escreve código. Muda <strong>valores</strong> no
+            bloco de configuração e escreve <strong>frases</strong>.</p>
+            <ol>
+              <li>Primeiro, todos executam a configuração original e mostram o <code>[ok]</code> da
+              célula de escolha (Kruskal-Wallis, H = 12,05). Ninguém avança sem isso;</li>
+              <li>Depois, a troca de base. Com <code>BASE = "ANP"</code> e mínimo 30 sobram dois
+              municípios, simétricos e com 30 ou mais postos: a célula indica o <strong>t de
+              Welch</strong> (t = −2,39, p = 0,0202; o Mann-Whitney dá p = 0,0175). Com mínimo 10,
+              volta a indicar <strong>Kruskal-Wallis</strong>, porque há grupos com menos de 15
+              postos e Açailândia tem assimetria de −2,2;</li>
+              <li>Por fim, o projeto. Circular priorizando quem ainda não rodou nenhum teste sobre a
+              base própria.</li>
+            </ol>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para quem termina antes</span>
+            <p><em>“Com <code>BASE = "ANP"</code> e mínimo 30, os dois testes concordam. Com
+            <code>BASE = "CVM"</code>, discordam. O que, nos dados, explica a diferença?”</em> A
+            resposta esperada cita a assimetria: −4,9 no comércio contra 0,1 a 0,2 nos dois
+            municípios.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">O que não fazer na circulação</span>
+            <ul>
+              <li>Não corrigir código do estudante: se a célula falhou na base do projeto, o caminho
+              é conferir o nome do arquivo e das colunas no bloco de configuração — e, se não
+              resolver, usar a base da CVM ou da ANP e escrever a frase sobre ela;</li>
+              <li>Não aceitar frase sem a mediana (ou a média) de cada grupo, sem o n e sem o motivo
+              da escolha do teste. É o critério da AV3, antecipado aqui.</li>
+            </ul>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 27 a 28</b> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os aprendizados do dia</span>
+            <ol>
+              <li><strong>Mais de dois grupos pedem um teste só</strong>: a ANOVA. Vários testes t
+              multiplicam o alarme falso;</li>
+              <li><strong>A ANOVA diz se há diferença, não onde</strong>; o η² diz o tamanho;</li>
+              <li><strong>Quando a média não representa o grupo, compare os postos</strong>:
+              Mann-Whitney, Wilcoxon, Kruskal-Wallis — e relate a mediana;</li>
+              <li><strong>O teste se escolhe antes de olhar o p</strong>, pelas três perguntas do
+              fluxograma.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Feche no notebook a frase do teste indicado para a base do seu projeto, com o
+              motivo da escolha. Ela entra no relatório da AV3;</li>
+              <li>Leia SILVA e SAMÁ (2021), volume II, os capítulos de análise de variância e de
+              testes não paramétricos;</li>
+              <li>Escolha o <strong>par de variáveis quantitativas</strong> do seu projeto: o próximo
+              encontro abre o Módulo IV com correlação, regressão linear e regressão logística.</li>
+            </ol>
+            <p>O Módulo III não tem avaliação própria: o que se produziu nele — o intervalo, o teste
+            escolhido e a frase — vai para a AV3, no encontro 14.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>

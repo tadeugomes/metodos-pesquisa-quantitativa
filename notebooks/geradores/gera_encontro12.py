@@ -1,472 +1,691 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook único do Encontro 12 (Avaliação 2), modo prova, com lacunas para o
-aluno responder. O gabarito (células professor + notas) permanece apenas neste gerador e
-não vai para o arquivo .ipynb."""
-from nb_helper import gera_notebooks
+"""Gera o notebook do encontro 12 (Modulo III — ANOVA, testes nao parametricos e revisao).
 
-C = []
+E12 fecha o Modulo III. A Parte 1 compara MAIS DE DOIS grupos (ANOVA de um fator) e
+mostra quando o teste parametrico nao cabe. A Parte 2 ensina os tres testes de postos
+(Mann-Whitney, Wilcoxon e Kruskal-Wallis) ao lado dos equivalentes parametricos, e
+fecha com o fluxograma completo de escolha do teste. A pratica e a celula de escolha
+do teste, com a base trocavel no bloco de configuracao.
 
-C.append({"tipo": "md", "texto": """\
-# Avaliação 2: Prática individual · Encontro 12
+Duas bases do modulo:
+  ANP, SHPC 2025 — o cadastro de 236 postos do Maranhao (gasolina comum; o preco do
+                   posto e o do primeiro mes em que ele aparece, como nos encontros 6 a 11)
+  CVM, DFP 2024  — 449 companhias com receita positiva; margem liquida = lucro / receita
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
+Numeros verificados na geracao (14/10/2026):
 
-**Instruções: leia antes de começar**
-- Duração: **150 minutos**. Consulta ao material da disciplina e à **IA generativa**
-(ChatGPT, Claude, Gemini, Copilot) **permitida**; comunicação com colegas, **não**;
-- **Usou IA? Registre o prompt** na célula "Registro de uso de IA", ao final, e diga como
-conferiu a resposta. Usar sem registrar é falta de honestidade acadêmica;
-- Preencha seu nome e matrícula abaixo e execute as células de preparação;
-- Esta avaliação cobre os encontros **9, 10 e 11** (descritivas, gráficos, inferência);
-- As três tarefas valem **100 pontos** (20 + 25 + 30 + 25);
-- **Exigência desta prova:** cada número calculado vem acompanhado de uma **frase de leitura**
-em linguagem corrente, que um leitor leigo entenda. Tarefa com o código certo e sem a frase
-perde metade dos pontos;
-- Modelo de frase de leitura: *"A margem líquida mediana do setor X é de Y%, com metade das
-companhias entre Q1% e Q3%"*; *"a diferença entre os grupos é de Z pontos e o teste t indica que
-ela não se explica pelo acaso (t = _; gl = _; p = _)"*;
-- Ao final: salve, compartilhe o link com o professor e verifique se **todas as células
-executadas** aparecem com resultado."""})
+  ANOVA, preco por municipio (7 municipios com 10 ou mais postos, 210 postos)
+    F = 97,38 (gl 6 e 203), p < 0,001 | eta2 = 0,742 | Kruskal-Wallis H = 136,64, p < 0,001
+    medias: Sao Jose de Ribamar R$ 5,731 (a menor) ... Balsas R$ 6,869 (a maior)
+  Varios testes t: 21 comparacoes; 1 - 0,95^21 = 65,9% (teto);
+    simulacao (semente 12, 1.000 repeticoes, 7 grupos iguais de 30): 45,7% com algum "achado"
+    nos 7 municipios reais: 15 dos 21 pares com p < 0,05; 14 sobrevivem a Bonferroni (0,0024)
+  Kruskal-Wallis x ANOVA, margem por setor (os 3 setores com 30 ou mais companhias, 111)
+    ANOVA F = 1,62, p = 0,2017 | Kruskal-Wallis H = 12,05, p = 0,0024
+    medianas: Comercio 2,1% | Construcao 5,7% | Energia 14,8%
+    medias:   Comercio -13,6% | Construcao 2,9% | Energia 14,1%
+    postos medios: Comercio 44,6 | Construcao 55,4 | Energia 71,7 (o centro seria 56,0)
+  Mann-Whitney x Welch, Comercio (39) x Energia Eletrica (30)
+    Welch t = -1,60, p = 0,1150 | Mann-Whitney U = 305, p = 0,0007 | U/(n1 n2) = 0,26
+  Wilcoxon x t pareado, o mesmo posto em janeiro e em dezembro (88 postos)
+    media jan R$ 6,1164 | dez R$ 5,9672 | diferenca media -0,149 | mediana -0,189
+    67 postos baixaram, 20 subiram, 1 igual
+    t pareado = -7,99, p < 0,001 | Wilcoxon W = 385, p < 0,001
+  Celula de escolha (configuracao original: BASE = "CVM", MIN_POR_GRUPO = 30)
+    indica Kruskal-Wallis, H = 12,05, p = 0,0024
+  (com BASE = "ANP" e MIN_POR_GRUPO = 30: Sao Jose de Ribamar x Sao Luis, indica t
+   de Welch, t = -2,39, p = 0,0202; Mann-Whitney p = 0,0175)
 
-C.append({"tipo": "code", "aluno": """\
-# === PREENCHA seus dados ===
-nome = ""
-matricula = ""
+Os mesmos numeros estao no deck (slides/encontro-12.html) e na conducao
+(gera_slide_12.py). Execute de dentro de notebooks/geradores:
 
-print("Estudante:", nome, "| Matrícula:", matricula)""", "professor": """\
-nome = "GABARITO (Prof. Tadeu)"
-matricula = "2026"
+    python gera_encontro12.py
+"""
+import nb_helper as nb
 
-print("Estudante:", nome, "| Matrícula:", matricula)"""})
+PAINEL = """# Encontro 12. ANOVA, testes não paramétricos e a revisão do Módulo III
 
-C.append({"tipo": "md", "texto": """\
-## Preparação: base CVM (execute, não altere)
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
-As células abaixo constroem a base com a qual você trabalhará: receita, lucro líquido,
-margem e log-receita das companhias abertas (DFP 2024). Se o download falhar, a célula de
-contingência carrega o arquivo local."""})
+> **O que você vai fazer hoje, em três passos**
+> 1. **Executar** as células de cima para baixo, uma de cada vez.
+> 2. **Mudar valores** no bloco de configuração: a base da célula de escolha do teste e,
+>    na prática, o arquivo do seu projeto.
+> 3. **Escrever** a frase de leitura do teste escolhido, no fim.
+>
+> Você não vai escrever código. Se algo não funcionar, **chame o professor**.
 
-C.append({"tipo": "code", "texto": """\
-import io
-import zipfile
+---
+
+## Painel do encontro
+
+O Módulo III termina hoje com duas perguntas que os encontros 10 e 11 deixaram abertas:
+
+- **E se forem mais de dois grupos?** O teste t compara dois. Para três ou mais, a
+  ferramenta é a **ANOVA de um fator**, e não uma fila de testes t.
+- **E se a média não representar o grupo?** Com assimetria forte, variável ordinal ou
+  amostra pequena, a comparação passa a ser feita pelos **postos** (a ordem dos valores):
+  são os testes **não paramétricos**.
+
+**As duas bases do módulo**
+
+| Base | O que é | Recorte | Casos |
+|---|---|---|---|
+| **ANP — SHPC** | O cadastro de postos: o preço da gasolina comum em cada posto | Maranhão, 2025 | **236 postos**, 11 municípios |
+| **CVM — DFP** | Demonstrações financeiras das companhias abertas | Exercício de 2024 | **449 companhias** com receita positiva |
+
+| Coluna | Base | Significado |
+|---|---|---|
+| `municipio` | ANP | O município do posto |
+| `preco` | ANP | R$ por litro: o preço do posto no primeiro mês em que ele aparece no ano |
+| `setor` | CVM | O setor de atividade declarado à CVM |
+| `margem` | CVM | Margem líquida, em %: lucro líquido ÷ receita × 100 |
+
+**Glossário do dia**
+
+| Termo | Em uma linha |
+|---|---|
+| **ANOVA de um fator** | Compara as médias de três ou mais grupos com um único teste |
+| **Estatística F** | A variação **entre** os grupos dividida pela variação **dentro** deles |
+| **Eta ao quadrado (η²)** | A parte da variação total que está entre os grupos: o tamanho do efeito |
+| **Posto** | A posição do valor na fila ordenada: o menor é 1, o seguinte é 2... |
+| **Mann-Whitney** | Compara dois grupos independentes pelos postos |
+| **Wilcoxon** | Compara duas medidas do mesmo caso (pareadas) pelos postos |
+| **Kruskal-Wallis** | Compara três ou mais grupos pelos postos: a "ANOVA dos postos" |
+| **Não paramétrico** | Teste que não usa a média nem supõe distribuição normal |
+
+> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+
+CONFIG = """## Bloco de configuração
+
+**O único lugar do notebook onde se mexe em código.** Os três primeiros valores mudam a
+**célula de escolha do teste** (Seção 4). Os três últimos são para o **seu projeto**.
+
+```python
+# --- o que você pode mudar ---
+BASE          = "CVM"   # "CVM" = margem líquida por setor | "ANP" = preço da gasolina por município
+MIN_POR_GRUPO = 30      # só entram os grupos com pelo menos este número de casos
+ALFA          = 0.05    # o nível de significância
+
+ARQUIVO_PROJETO  = ""   # vazio = usa a BASE acima; ou o nome do CSV do seu projeto (upload)
+VARIAVEL_PROJETO = ""   # a coluna quantitativa do seu projeto
+GRUPO_PROJETO    = ""   # a coluna que define os grupos do seu projeto
+```
+
+> Os `conferir` da Seção 4 valem para a configuração original (`BASE = "CVM"`,
+> `MIN_POR_GRUPO = 30`). Ao trocar a base, o `[X]` só quer dizer que o número mudou —
+> e era isso que se queria ver."""
+
+CONFIG_CODIGO = '''BASE          = "CVM"   # "CVM" = margem líquida por setor | "ANP" = preço da gasolina por município
+MIN_POR_GRUPO = 30      # só entram os grupos com pelo menos este número de casos
+ALFA          = 0.05    # o nível de significância
+
+ARQUIVO_PROJETO  = ""   # vazio = usa a BASE acima; ou o nome do CSV do seu projeto (upload)
+VARIAVEL_PROJETO = ""   # a coluna quantitativa do seu projeto
+GRUPO_PROJETO    = ""   # a coluna que define os grupos do seu projeto
+
+print(f"Célula de escolha: base {BASE}, grupos com pelo menos {MIN_POR_GRUPO} casos, α = {ALFA}")'''
+
+UTILITARIOS_NOTA = """## Utilitários da disciplina
+
+As células abaixo carregam as funções usadas no resto do notebook. **Não precisa
+alterá-las.** `conferir` compara o seu resultado com o número do slide; as funções do
+encontro montam a comparação de grupos e a escolha do teste."""
+
+UTIL_ENCONTRO = '''# =====================================================================
+#  UTILITARIOS DO ENCONTRO 12 - nao precisa alterar nada aqui
+#  compara_grupos, escolhe_teste, escolhe_base, conta_pares_t e
+#  simula_varios_testes_t
+# =====================================================================
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import requests
 from scipy import stats
 
-url_dfp = "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DADOS/dfp_cia_aberta_2024.zip"
-try:
-    resposta = requests.get(url_dfp, timeout=300)
-    pacote = zipfile.ZipFile(io.BytesIO(resposta.content))
-    dre = pd.read_csv(pacote.open("dfp_cia_aberta_DRE_con_2024.csv"),
-                      sep=";", encoding="latin-1", dtype=str)
-    dre_ultimo = dre[dre["ORDEM_EXERC"] == "ÚLTIMO"].copy()
-    dre_ultimo["VL_CONTA"] = pd.to_numeric(dre_ultimo["VL_CONTA"], errors="coerce")
-    receita = dre_ultimo[dre_ultimo["CD_CONTA"] == "3.01"][["CD_CVM", "VL_CONTA"]].rename(
-        columns={"VL_CONTA": "receita"})
-    lucro = dre_ultimo[dre_ultimo["CD_CONTA"] == "3.11"][["CD_CVM", "VL_CONTA"]].rename(
-        columns={"VL_CONTA": "lucro_liquido"})
-    base = receita.merge(lucro, on="CD_CVM", how="inner").drop_duplicates(subset="CD_CVM")
-    url_cad = "https://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.csv"
-    cadastro_cvm = pd.read_csv(url_cad, sep=";", encoding="latin-1", dtype=str)
-    cadastro_cvm = cadastro_cvm[cadastro_cvm["SIT"] == "ATIVO"][["CD_CVM", "SETOR_ATIV"]]
-    base["chave"] = base["CD_CVM"].astype(float).astype(int)
-    cadastro_cvm["chave"] = cadastro_cvm["CD_CVM"].astype(float).astype(int)
-    base = base.merge(cadastro_cvm[["chave", "SETOR_ATIV"]], on="chave", how="left")
-    base = base.rename(columns={"SETOR_ATIV": "setor"}).drop(columns="chave")
-    print("Base CVM baixada:", base.shape)
-except Exception as e:
-    print("Download falhou, use a célula de contingência abaixo.")
-    raise
-
-base = base[base["receita"].notna() & (base["receita"] != 0)]
-base["margem"] = base["lucro_liquido"] / base["receita"]
-base["log_receita"] = np.log(base["receita"])
-base.head()"""})
-
-
-C.append({"tipo": "code", "texto": """\
-import os
-if "base" not in dir():
-    for caminho in ("../../dados/cvm_dre_2024.csv", "cvm_dre_2024.csv"):
-        if os.path.exists(caminho):
-            base = pd.read_csv(caminho)
-            base = base[base["receita"].notna() & (base["receita"] != 0)]
-            base["margem"] = base["lucro_liquido"] / base["receita"]
-            base["log_receita"] = np.log(base["receita"])
-            print("Carregado do arquivo local:", caminho)
-            break
-print("Base:", base.shape)"""})
-
-C.append({"tipo": "code", "texto": """\
-# Escopo da avaliação: três setores empresariais com cadastro suficiente
-trab = base[base["setor"].str.contains(
-    "Constru|Atacado e Varejo|Energia El", na=False, regex=True)].copy()
-trab["setor_curto"] = np.select(
-    [trab["setor"].str.contains("Constru", na=False),
-     trab["setor"].str.contains("Atacado e Varejo", na=False),
-     trab["setor"].str.contains("Energia El", na=False)],
-    ["Construção Civil", "Comércio", "Energia Elétrica"],
-    default="Outro")
-trab = trab[trab["setor_curto"] != "Outro"]
-print("Escopo:", trab.shape)
-trab["setor_curto"].value_counts()"""})
-
-
-C.append({"tipo": "md", "texto": """\
----
-## Tarefa 1: Estatística descritiva (20 pontos)
-
-> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
-> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
-
-**Objetivo:** resumir a **receita** (em milhões de reais) dos três setores e decidir, com
-justificativa, entre média e mediana.
-
-**(a)** Complete a função `descritivas` (média, mediana, desvio padrão e coeficiente de
-variação) e monte a tabela por setor, na escala de **R$ milhões**."""})
-
-C.append({"tipo": "code", "aluno": """\
-def descritivas(serie):
-    # === COMPLETE AQUI: média, mediana, desvio padrão (ddof=1) e CV ===
-    return pd.Series({
-        "n": len(serie),
-        "media_milhoes": ...,
-        "mediana_milhoes": ...,
-        "desvio_milhoes": ...,
-        "cv": ...,
-    })
-
-tabela = pd.DataFrame()
-# === COMPLETE AQUI: aplicar descritivas() à receita (÷1e6) de CADA setor e empilhar ===
-...
-tabela.round(2)""", "professor": """\
-def descritivas(serie):
-    return pd.Series({
-        "n": len(serie),
-        "media_milhoes": serie.mean() / 1e6,
-        "mediana_milhoes": serie.median() / 1e6,
-        "desvio_milhoes": serie.std(ddof=1) / 1e6,
-        "cv": serie.std(ddof=1) / serie.mean(),
-    })
-
-tabela = pd.DataFrame()
-for nome, grupo in trab.groupby("setor_curto"):
-    tabela = pd.concat([tabela, descritivas(grupo["receita"]).to_frame(nome).T])
-tabela.round(2)"""})
-
 
-C.append({"tipo": "md", "texto": """\
-**(b)** Responda **no texto abaixo** (edite esta célula com suas respostas):
-
-1. Em qual setor a distância entre média e mediana é maior? O que isso revela sobre a
-presença de valores extremos?
-2. Para **comparar a receita típica** das companhias entre setores, você usaria média ou
-mediana? Justifique.
-3. O **coeficiente de variação** de qual setor é o maior? O que um CV acima de 5, ou seja,
-um desvio padrão cinco vezes maior que a média, sugere sobre a confiabilidade da média como
-resumo desse setor?
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "nota", "texto": (
-    "GABARITO T1 (20 pts = 8 código + 12 texto): receita no escopo (R$ mi): Construção, "
-    "média 2,3 / mediana 1,1 / CV 1,9; Comércio, média 55,3 / mediana 2,8 / CV 6,0; "
-    "Energia, média 9,1 / mediana 3,7 / CV 1,5. (1) Comércio tem a maior distância: a "
-    "média 55 M é ~20× a mediana 2,8 M, sinal de gigantes puxando a média. "
-    "(2) Para 'típica', a MEDIANA (robusta a extremos); a média é sensível aos gigantes. "
-    "(3) CV maior também no Comércio (≈ 6,0), o desvio é ~6× a média, então a média é um "
-    "resumo instável. Aceitar variações de arredondamento e DQ bem justificadas.")})
-
-C.append({"tipo": "md", "texto": """\
----
-## Tarefa 2: Gráficos (25 pontos)
-
-> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
-> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
-
-**(a)** Produza um **boxplot** da margem líquida por setor (com título, rótulos de eixos e
-limite de y em [−1,5; 1,5] para a leitura dos extremos):"""})
-
-C.append({"tipo": "code", "aluno": """\
-fig, ax = plt.subplots(figsize=(8, 5))
-# === COMPLETE AQUI: boxplot da margem por setor_curto, ylim [-1.5; 1.5] ===
-...
-ax.set_title("Margem líquida por setor (2024)")
-plt.show()""", "professor": """\
-fig, ax = plt.subplots(figsize=(8, 5))
-agrupado = [grupo["margem"].dropna() for _, grupo in trab.groupby("setor_curto")]
-ax.boxplot(agrupado, labels=trab["setor_curto"].unique())
-ax.axhline(0, color="gray", lw=0.8)
-ax.set_ylabel("Margem líquida (lucro/receita)")
-ax.set_ylim(-1.5, 1.5)
-ax.set_title("Margem líquida por setor (2024)")
-plt.show()"""})
-
-
-C.append({"tipo": "md", "texto": """\
-**(b)** Produza um **histograma** do log-receita de **todas** as companhias do escopo, com
-título e rótulos corretos."""})
-
-C.append({"tipo": "code", "aluno": """\
-fig, ax = plt.subplots(figsize=(8, 5))
-# === COMPLETE AQUI: histograma de log_receita (bins=40), títulos e rótulos ===
-...
-plt.show()""", "professor": """\
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.hist(trab["log_receita"], bins=40)
-ax.set_xlabel("log(receita)")
-ax.set_ylabel("Frequência")
-ax.set_title("Distribuição do log-receita, escopo CVM 2024")
-plt.show()"""})
-
-
-C.append({"tipo": "md", "texto": """\
-**(c)** Responda **no texto abaixo** (edite esta célula):
-
-1. O que o boxplot revela sobre os extremos da margem? Como isso conversa com a Tarefa 1?
-2. Por que a transformação logarítmica *parece* normalizar a distribuição da receita?
-3. Em um relatório, você apresentaria as margens na escala bruta ou no log? Por quê?
-
-*Sua resposta:*"""})
-
-
-C.append({"tipo": "nota", "texto": (
-    "GABARITO T2 (25 pts = 8+6 código + 11 texto): (1) boxplot mostra margens estendendo-se "
-    "além de ±1 (extremas fora da caixa) nos três setores, coerente com o CV enorme da "
-    "Tarefa 1 e com a distância média/mediana. (2) log transforma assimetria à direita em "
-    "distribuição aproximadamente simétrica (verificável no histograma); a normalidade "
-    "empírica aproxima os dados de uma condição útil para inferência (encontro 11). "
-    "(3) aceitar ambas com justificativa técnica; esperar: apresentar mediana na escala "
-    "bruta e notar que a inferência (IC/teste t) é feita no log. Sem justificativa: metade "
-    "dos pontos.")})
-
-C.append({"tipo": "md", "texto": """\
----
-## Tarefa 3: Inferência estatística (30 pontos)
-
-> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
-> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
-
-**Questão de pesquisa:** a **margem líquida média** das companhias de **Energia Elétrica** é
-diferente de zero? E a **receita** do **Comércio** difere da da **Construção Civil**?
-
-**(a) Intervalo de confiança**: calcule (passo a passo e via `scipy`) o IC de 95% para a
-média da margem de Energia Elétrica:"""})
-
-C.append({"tipo": "code", "aluno": """\
-energia = trab[trab["setor_curto"] == "Energia Elétrica"]["margem"].dropna()
-n = len(energia)
-media = energia.mean()
-desvio = energia.std(ddof=1)
-# === COMPLETE AQUI: t crítico (95%, duas caudas, df = n-1) e margem de erro ===
-t_critico = ...
-margem_erro = ...
-print(f"n = {n} | média = {media:.4f} | desvio = {desvio:.4f}")
-print(f"IC (manual) = [{media - margem_erro:.4f} ; {media + margem_erro:.4f}]")
-
-# === COMPLETE AQUI: IC via scipy.stats.t.interval ===
-ic = ...
-print(f"IC (scipy)  = [{ic[0]:.4f} ; {ic[1]:.4f}]")""", "professor": """\
-energia = trab[trab["setor_curto"] == "Energia Elétrica"]["margem"].dropna()
-n = len(energia)                      # 50
-media = energia.mean()                # 0,0771
-desvio = energia.std(ddof=1)          # 0,2885
-t_critico = stats.t.ppf(0.975, df=n - 1)
-margem_erro = t_critico * desvio / np.sqrt(n)     # 0,2522
-print(f"n = {n} | média = {media:.4f} | desvio = {desvio:.4f}")
-print(f"IC (manual) = [{media - margem_erro:.4f} ; {media + margem_erro:.4f}]")
-
-ic = stats.t.interval(0.95, df=n - 1, loc=media, scale=desvio / np.sqrt(n))
-print(f"IC (scipy)  = [{ic[0]:.4f} ; {ic[1]:.4f}]")"""})
-
-
-C.append({"tipo": "md", "texto": """\
-**(b)** Ao lado do IC, responda:
-
-1. O intervalo contém o zero? O que isso permite concluir sobre a margem média
-(positiva/negativa/não é possível afirmar)?
-2. Escreva a **interpretação correta** do que "95% de confiança" significa, sem o erro
-comum de dizer que a probabilidade é do parâmetro estar *neste* intervalo.
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "nota", "texto": (
-    "GABARITO T3a/T3b (8 pts código + 6 pts texto): IC = [−0,175 ; 0,329] contém o zero, "
-    "não é possível afirmar, ao nível de 95%, que a margem média da Energia seja diferente "
-    "de zero (a variabilidade da margem é enorme). Interpretação correta: em repetidas "
-    "amostras do mesmo processo, ~95% dos intervalos construídos assim contêm o parâmetro "
-    "verdadeiro, a confiança é do método, não de este intervalo particular.")})
-
-C.append({"tipo": "md", "texto": """\
-**(c) Teste t de Student**: compare a **receita** (na escala log, o motivo é o da Tarefa 2)
-das companhias de **Comércio** e **Construção Civil**. Formule H0 e H1, rode o teste com
-`scipy.stats.ttest_ind`, decida usando α = 0,05 e **interprete o resultado**."""})
-
-C.append({"tipo": "code", "aluno": """\
-comercio = trab[trab["setor_curto"] == "Comércio"]["log_receita"]
-construcao = trab[trab["setor_curto"] == "Construção Civil"]["log_receita"]
-
-# === COMPLETE AQUI: teste t de Student entre os dois grupos ===
-t_stat, p_valor = ...
-print(f"t = {t_stat:.3f} | p = {p_valor:.4f}")""", "professor": """\
-comercio = trab[trab["setor_curto"] == "Comércio"]["log_receita"]
-construcao = trab[trab["setor_curto"] == "Construção Civil"]["log_receita"]
-
-t_stat, p_valor = stats.ttest_ind(comercio, construcao)
-print(f"t = {t_stat:.3f} | p = {p_valor:.4f}")"""})
-
-
-C.append({"tipo": "code", "aluno": """\
-# COMPLETE o texto: decida com α = 0,05: a diferença é significativa?
-decisao = "..."   # 'rejeita H0' ou 'não rejeita H0'
-print("Decisão:", decisao)""", "professor": """\
-# t = −4,38 | p = 0,000034 → p < 0,05 → rejeita H0
-decisao = "rejeita H0"
-print("Decisão:", decisao)"""})
-
-
-C.append({"tipo": "md", "texto": """\
-**(d)** Responda **no texto abaixo** (edite esta célula):
-
-1. Enuncie H0 e H1 do teste da parte (c).
-2. Com base no p-valor, o que você conclui sobre a receita típica dos dois setores?
-3. O teste foi feito na escala log. Se fosse feito na **receita bruta**, por que o
-resultado poderia ser enganoso? (Dica: lembre-se da Tarefa 1 e dos extremos.)
-4. "Não rejeitar H0" equivale a "provar H0"? Explique em uma linha.
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "nota", "texto": (
-    "GABARITO T3c/T3d (12 pts código + 4 pts texto): H0: média do log-receita igual nos dois "
-    "setores (diferença 0); H1: diferente. t = −4,38, p = 0,000034 < 0,05 → rejeita H0: "
-    "evidência forte de que a receita típica difere (Comércio com log-receita maior). Na "
-    "escala bruta o teste seria inutilizado pelos gigantes, uma companhia de varejo gigante "
-    "domina a média (Tarefa 1) e a variância, inflando o desvio e apagando a diferença; na "
-    "log, extremos são amortecidos. Não rejeitar H0 ≠ provar H0: é não ter evidência contra "
-    ", o teste não demonstra igualdade, apenas falta de evidência de diferença.")})
-
-
-C.append({"tipo": "md", "texto": """\
----
-## Tarefa 4: Qui-quadrado de independência (25 pontos)
-
-> **Frase de leitura obrigatória.** Ao final desta tarefa, escreva em uma célula de texto
-> a leitura do resultado em linguagem corrente. Sem ela, a tarefa vale metade.
-
-**Questão de pesquisa:** a **sobrevivência de empresas** de 1 ano (CEMPRE/IBGE, tabela 9949)
-é associada ao **porte** (faixa de pessoal ocupado)? Execute a preparação dos dados:"""})
-
-C.append({"tipo": "code", "texto": """\
-import sidrapy
-
-def limpa_sidra(df):
-    df = df.copy()
-    df.columns = df.iloc[0]
-    df = df.iloc[1:].reset_index(drop=True)
-    df["Valor"] = pd.to_numeric(df["Valor"], errors="coerce")
-    return df
-
-try:
-    bruto = sidrapy.get_table(
-        table_code="9949", territorial_level="1", ibge_territorial_code="all",
-        variable="all", classifications={"12762": "all", "370": "all"}, period="all")
-    demo = limpa_sidra(bruto)
-except Exception:
-    for caminho in ("../../dados/demografia_sobrevivencia_empresas.csv",
-                    "demografia_sobrevivencia_empresas.csv"):
-        if os.path.exists(caminho):
-            demo = pd.read_csv(caminho, dtype=str)
-            demo = limpa_sidra(demo)
-            break
-
-demo["D3N"] = demo["D3N"].astype(str).str.replace(",", ".")
-demo["D4N"] = demo["D4N"].astype(str).str.replace(",", ".")
-demo = demo.sort_values("Ano")"""})
-
-
-C.append({"tipo": "md", "texto": """\
-**(a)** Monte a tabela de contingência **sobreviventes × não sobreviventes por faixa de
-pessoal** para o ano mais recente, com as colunas `D5N` (faixa), `nascimentos`,
-`taxa_sobrev` (a taxa já vem em %), `sobreviveram = nascimentos × taxa / 100` e
-`nao_sobreviveram`."""})
-
-C.append({"tipo": "code", "aluno": """\
-# === COMPLETE AQUI: filtrar variável de nascimentos (D2N) do ano mais recente e calcular
-#     sobreviveram / nao_sobreviveram por faixa D5N ===
-tabela4 = ...
-tabela4""", "professor": """\
-trecho = demo[(demo["D2N"] == "Número de nascimentos de empresas empregadoras") &
-              (demo["D3N"] == "Total") & (demo["D5N"] != "Total")].copy()
-trecho = trecho[trecho["Ano"] == trecho["Ano"].max()]
-# a taxa de sobrevivência vem de outra variável da mesma tabela:
-sobrev = demo[(demo["D2N"] == "Taxa de sobrevivência das empresas empregadoras") &
-              (demo["D3N"] == "Total") & (demo["D5N"] != "Total")]
-sobrev = sobrev[sobrev["Ano"] == sobrev["Ano"].max()][["D5N", "V"]].rename(
-    columns={"V": "taxa_pct"})
-sobrev["taxa_pct"] = pd.to_numeric(sobrev["taxa_pct"], errors="coerce")
-
-nasc = trecho[["D5N", "V"]].rename(columns={"V": "nascimentos"})
-nasc["nascimentos"] = pd.to_numeric(nasc["nascimentos"], errors="coerce")
-
-tabela4 = nasc.merge(sobrev, on="D5N")
-tabela4["sobreviveram"] = tabela4["nascimentos"] * tabela4["taxa_pct"] / 100
-tabela4["nao_sobreviveram"] = tabela4["nascimentos"] - tabela4["sobreviveram"]
-tabela4 = tabela4[["D5N", "nascimentos", "taxa_pct", "sobreviveram", "nao_sobreviveram"]]
-tabela4.round(0)"""})
-
-
-C.append({"tipo": "md", "texto": """\
-**(b)** Rode o **teste qui-quadrado de independência** (`scipy.stats.chi2_contingency`)
-sobre a tabela de contingência e responda no texto:
-
-1. Qual a estatística (χ²), quantos graus de liberdade e o p-valor?
-2. Qual a conclusão, com α = 0,05, sobre a associação entre porte e sobrevivência?
-3. Que **limitação** esse teste carrega aqui? (O que os dados permitem afirmar, e o que
-não permitem?)"""})
-
-
-C.append({"tipo": "code", "aluno": """\
-# === COMPLETE AQUI: matriz de contingência (sobreviveram, nao_sobreviveram) e chi2 ===
-contingencia = ...
-chi2, p, dof, _ = stats.chi2_contingency(contingencia)
-print(f"χ² = {chi2:.1f} | dof = {dof} | p = {p:.2e}")""", "professor": """\
-contingencia = tabela4[["sobreviveram", "nao_sobreviveram"]].values
-chi2, p, dof, _ = stats.chi2_contingency(contingencia)
-print(f"χ² = {chi2:.1f} | dof = {dof} | p = {p:.2e}")"""})
-
-
-C.append({"tipo": "nota", "texto": (
-    "GABARITO T4 (25 pts = 12 código + 13 texto): ano 2021, χ² ≈ 2178, dof = 2, p ≈ 0, "
-    "rejeita H0: sobrevivência e porte são fortemente associadas (1 a 9 pessoas ≈ 78,7%; "
-    "10–49 ≈ 91,3%; 50 ou mais ≈ 92,4%). Limitação central: os dados são AGREGADOS por "
-    "faixa (nascimentos × taxa), não é o rastro individual de cada empresa; o teste fala "
-    "de associação entre faixa e sobrevivência na tabela, não de causalidade (porte não "
-    "'prova' sobrevivência), e taxas são o resultado líquido de nascimentos no ano, sem "
-    "controlar setor ou região.")})
-
-C.append({"tipo": "md", "texto": """\
----
-## Antes de entregar
-
-1. **Ambiente de execução → Reiniciar e executar tudo**: confirme que nada quebra;
-2. Confira as **três tarefas** (células completadas, gabaritos de resposta escritos);
-3. Salve e **compartilhe o link** com o professor com permissão de edição;
-4. Revise a interpretação de cada resultado, ela vale metade dos pontos."""})
-
-C.append({"tipo": "md", "texto": """\
-## Registro de uso de IA
-
-Se você usou IA generativa em qualquer tarefa, preencha abaixo. O uso é permitido; a
-omissão, não. Este registro **não desconta pontos**: ele faz parte do método.
-
-| Tarefa | O que você pediu (prompt, resumido) | Como conferiu a resposta |
+def _grupos(base, variavel, grupo, minimo):
+    dados = base[[variavel, grupo]].dropna()
+    contagem = dados[grupo].value_counts()
+    validos = sorted(contagem[contagem >= minimo].index)
+    return {g: dados.loc[dados[grupo] == g, variavel] for g in validos}
+
+
+def _decisao(p, alfa):
+    return "rejeita H0" if p < alfa else "não rejeita H0"
+
+
+def compara_grupos(base, variavel, grupo, minimo=1, alfa=0.05, mostrar=True):
+    """Roda o teste parametrico e o nao parametrico lado a lado.
+
+    Dois grupos: t de Welch e Mann-Whitney. Tres ou mais: ANOVA e Kruskal-Wallis.
+    """
+    g = _grupos(base, variavel, grupo, minimo)
+    series = list(g.values())
+    if len(series) < 2:
+        print("Menos de dois grupos com casos suficientes: diminua MIN_POR_GRUPO.")
+        return None
+    if len(series) == 2:
+        t = stats.ttest_ind(series[0], series[1], equal_var=False)
+        u = stats.mannwhitneyu(series[0], series[1], alternative="two-sided")
+        linhas = [("t de Welch", t.statistic, t.pvalue),
+                  ("Mann-Whitney", u.statistic, u.pvalue)]
+    else:
+        f = stats.f_oneway(*series)
+        h = stats.kruskal(*series)
+        linhas = [("ANOVA de um fator", f.statistic, f.pvalue),
+                  ("Kruskal-Wallis", h.statistic, h.pvalue)]
+    tabela = pd.DataFrame(linhas, columns=["teste", "estatistica", "valor_p"])
+    tabela["decisao"] = [_decisao(p, alfa) for p in tabela["valor_p"]]
+    tabela["estatistica"] = tabela["estatistica"].round(2)
+    tabela["valor_p"] = tabela["valor_p"].map(lambda p: "< 0.0001" if p < 0.0001 else f"{p:.4f}")
+    if mostrar:
+        print(tabela.to_string(index=False))
+    return {"grupos": g, "tabela": tabela, "linhas": linhas}
+
+
+def escolhe_teste(base, variavel, grupo, minimo=30, alfa=0.05):
+    """A celula de escolha do teste: o fluxograma do modulo, passo a passo."""
+    g = _grupos(base, variavel, grupo, minimo)
+    print("A ESCOLHA DO TESTE, passo a passo")
+    print(f"  variável: {variavel}   |   grupos definidos por: {grupo}")
+    print()
+    print(f"  1. Quantos grupos têm pelo menos {minimo} casos?  {len(g)}")
+    if len(g) < 2:
+        print("     Menos de dois grupos: diminua MIN_POR_GRUPO no bloco de configuração.")
+        return None
+    assim = {}
+    for nome, s in g.items():
+        assim[nome] = s.skew()
+        print(f"       {str(nome)[:42]:<42} n = {len(s):4d}   assimetria = {assim[nome]:+.2f}")
+    print("  2. Os grupos são independentes?  sim: cada caso está em um grupo só")
+    print("     (para duas medidas do MESMO caso, o caminho é o pareado: t pareado ou Wilcoxon)")
+    forte = [n for n, a in assim.items() if abs(a) > 1]
+    pequeno = [n for n, s in g.items() if len(s) < 15]
+    print("  3. A média representa cada grupo?")
+    print(f"       algum grupo com assimetria forte (além de ±1)?  {'sim' if forte else 'não'}")
+    print(f"       algum grupo com menos de 15 casos?              {'sim' if pequeno else 'não'}")
+    nao_param = bool(forte or pequeno)
+    res = compara_grupos(base, variavel, grupo, minimo, alfa, mostrar=False)
+    linhas = res["linhas"]
+    indicado = linhas[1] if nao_param else linhas[0]
+    print()
+    print(f"  => o teste indicado: {indicado[0]} "
+          f"({'não paramétrico' if nao_param else 'paramétrico'})")
+    print()
+    tabela = res["tabela"].copy()
+    tabela["indicado"] = ["<==" if t == indicado[0] else "" for t in tabela["teste"]]
+    print(tabela.to_string(index=False))
+    print()
+    p_txt = "p < 0.0001" if indicado[2] < 0.0001 else f"p = {indicado[2]:.4f}"
+    print(f"  Leitura: com α = {alfa}, o {indicado[0]} {_decisao(indicado[2], alfa)} "
+          f"(estatística {indicado[1]:.2f}, {p_txt}).")
+    return {"teste": indicado[0], "estatistica": indicado[1], "valor_p": indicado[2]}
+
+
+def escolhe_base(base_nome, arquivo, variavel, grupo, cadastro, cvm):
+    """Devolve (base, variavel, grupo) conforme o bloco de configuracao."""
+    if arquivo:
+        dados = pd.read_csv(arquivo)
+        print(f"Base do projeto: {arquivo} | {len(dados)} linhas")
+        return dados, variavel, grupo
+    if base_nome == "ANP":
+        print("Base: ANP — preço da gasolina por município (236 postos)")
+        return cadastro, "preco", "municipio"
+    print("Base: CVM — margem líquida por setor (449 companhias)")
+    return cvm, "margem", "setor"
+
+
+def conta_pares_t(base, variavel, grupo, alfa=0.05):
+    """Testes t de Welch em todos os pares, com e sem a correcao de Bonferroni."""
+    g = _grupos(base, variavel, grupo, 1)
+    nomes = list(g)
+    ps = [stats.ttest_ind(g[a], g[b], equal_var=False).pvalue
+          for i, a in enumerate(nomes) for b in nomes[i + 1:]]
+    corrigido = alfa / len(ps)
+    sem = sum(p < alfa for p in ps)
+    com = sum(p < corrigido for p in ps)
+    print(f"pares comparados: {len(ps)}")
+    print(f"  com p < {alfa} (sem correção): {sem}")
+    print(f"  com p < {corrigido:.4f} (Bonferroni: {alfa} ÷ {len(ps)}): {com}")
+    return {"pares": len(ps), "sem_correcao": sem, "bonferroni": com}
+
+
+def simula_varios_testes_t(k=7, n=30, repeticoes=1000, semente=12, alfa=0.05):
+    """Simula k grupos IGUAIS e conta quantas vezes algum teste t 'acha' diferenca."""
+    rng = np.random.default_rng(semente)
+    achou = 0
+    for _ in range(repeticoes):
+        gs = [rng.normal(6, 0.3, n) for _ in range(k)]
+        ps = [stats.ttest_ind(gs[i], gs[j]).pvalue
+              for i in range(k) for j in range(i + 1, k)]
+        achou += min(ps) < alfa
+    return achou / repeticoes
+
+
+print("Utilitários do encontro carregados: compara_grupos(), escolhe_teste(),")
+print("escolhe_base(), conta_pares_t() e simula_varios_testes_t() estão prontas para uso.")'''
+
+CELULA_A = '''# ================= CÉLULA A: as duas bases do módulo, pelo repositório =================
+# Se esta célula falhar, peça ao professor para usar a CÉLULA B.
+#
+# Os dois arquivos são a extração congelada da disciplina (dados/FONTES.md, seções 3.7
+# e 3.8): o preço de revenda da ANP (SHPC, 2025) e a DRE consolidada da CVM (DFP 2024).
+# Congelada de propósito: a CVM aceita reapresentações, e uma base que muda depois da
+# aula faria os números do slide deixarem de bater.
+
+import pandas as pd
+
+REPO = ("https://raw.githubusercontent.com/tadeugomes/"
+        "metodos-pesquisa-quantitativa/main/dados/")
+
+anp = pd.read_csv(REPO + "anp_precos_revenda_ma_2025.csv")
+cvm = pd.read_csv(REPO + "cvm_dre_2024.csv", dtype={"CD_CVM": str})
+
+# ANP: o cadastro de postos — um registro por posto (a chave é o CNPJ), com o preço do
+# primeiro mês em que ele aparece. É o mesmo cadastro dos encontros 6 a 11.
+gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
+cadastro = (gas.sort_values("mes_arquivo")
+               .drop_duplicates("cnpj_da_revenda", keep="first")
+               [["cnpj_da_revenda", "municipio", "valor_venda"]]
+               .rename(columns={"valor_venda": "preco"})
+               .reset_index(drop=True))
+
+# CVM: só companhias com receita positiva; margem líquida em %
+cvm = cvm[cvm["receita"] > 0].copy()
+cvm["margem"] = cvm["lucro_liquido"] / cvm["receita"] * 100
+
+print(f"ANP: {len(cadastro)} postos, em {cadastro['municipio'].nunique()} municípios")
+print(f"CVM: {len(cvm)} companhias com receita positiva, {cvm['setor'].nunique()} setores")'''
+
+CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+# NÃO EXECUTE AGORA. Só se o professor mandar, e depois de fazer upload dos arquivos
+# dados/anp_precos_revenda_ma_2025.csv e dados/cvm_dre_2024.csv.
+#
+# Esta célula produz exatamente as mesmas bases que a Célula A.
+
+import pandas as pd
+
+anp = pd.read_csv("anp_precos_revenda_ma_2025.csv")
+cvm = pd.read_csv("cvm_dre_2024.csv", dtype={"CD_CVM": str})
+
+gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
+cadastro = (gas.sort_values("mes_arquivo")
+               .drop_duplicates("cnpj_da_revenda", keep="first")
+               [["cnpj_da_revenda", "municipio", "valor_venda"]]
+               .rename(columns={"valor_venda": "preco"})
+               .reset_index(drop=True))
+
+cvm = cvm[cvm["receita"] > 0].copy()
+cvm["margem"] = cvm["lucro_liquido"] / cvm["receita"] * 100
+
+print(f"ANP: {len(cadastro)} postos | CVM: {len(cvm)} companhias (arquivos locais)")'''
+
+CELULAS = [
+    {"tipo": "md", "texto": PAINEL},
+    {"tipo": "md", "texto": CONFIG},
+    {"tipo": "code", "texto": CONFIG_CODIGO},
+    {"tipo": "md", "texto": UTILITARIOS_NOTA},
+    {"tipo": "util"},
+    {"tipo": "code", "texto": UTIL_ENCONTRO},
+
+    # ------------------------------------------------------------ dados
+    {"tipo": "md", "texto": """## Seção 1. As duas bases do módulo
+
+Cada base tem uma **Célula A** (a carga pela internet) e uma **Célula B** (contingência, por
+upload). Execute a A. Se aparecer *could not resolve host* ou *HTTP Error*, o professor
+manda você executar a B."""},
+    {"tipo": "code", "texto": CELULA_A},
+    {"tipo": "contingencia", "texto": CELULA_B},
+
+    # ------------------------------------------------------------ Parte 1: ANOVA
+    {"tipo": "md", "texto": """## Seção 2. Parte 1: mais de dois grupos — a ANOVA de um fator
+
+**A pergunta.** O preço da gasolina muda de município para município no Maranhão?
+
+São **sete** municípios com pelo menos 10 postos no cadastro. O teste t do encontro 11
+compara **dois** grupos. Com sete, seriam **21 testes t**, um para cada par — e é aí que
+mora o problema."""},
+    {"tipo": "code", "texto": '''# Os sete municípios com pelo menos 10 postos, e o resumo de cada um.
+contagem = cadastro["municipio"].value_counts()
+municipios = contagem[contagem >= 10].index
+sete = cadastro[cadastro["municipio"].isin(municipios)]
+
+resumo = (sete.groupby("municipio")["preco"]
+              .agg(n="count", media="mean", mediana="median", desvio="std")
+              .round(3)
+              .sort_values("media"))
+print(f"{len(municipios)} municípios, {len(sete)} postos | média geral R$ {sete['preco'].mean():.2f}")
+resumo'''},
+    {"tipo": "md", "texto": """### Por que não fazer 21 testes t
+
+Cada teste t tem 5% de chance de acusar uma diferença que não existe (o erro tipo I do
+encontro 11). Com 21 testes, a chance de **pelo menos um** alarme falso cresce muito. A
+célula abaixo simula sete grupos **iguais** — sem diferença nenhuma — mil vezes, e conta
+em quantas das mil alguma comparação deu "significativa"."""},
+    {"tipo": "code", "texto": '''# Sete grupos IGUAIS, 21 testes t, mil repetições (semente fixa: o resultado não muda).
+pares = 7 * 6 // 2
+teto = 1 - 0.95 ** pares
+achou = simula_varios_testes_t(k=7, n=30, repeticoes=1000, semente=12)
+
+print(f"comparações par a par entre 7 grupos: {pares}")
+print(f"chance de ao menos um alarme falso, se os testes fossem independentes: {teto:.1%}")
+print(f"na simulação (7 grupos iguais, 1.000 repetições): {achou:.1%}")
+print()
+print("Em vez de 5%, quase metade das vezes alguém 'acharia' uma diferença que não existe.")
+print("A ANOVA faz UMA pergunta só — há diferença entre alguma das médias? — com α = 5%.")
+
+conferir("chance de alarme falso (teto, 21 testes)", teto * 100, 65.9, tolerancia=0.05)
+conferir("alarme falso na simulação", achou * 100, 45.7, tolerancia=0.05)'''},
+    {"tipo": "md", "texto": """### A ANOVA: a variação entre os grupos contra a variação dentro deles
+
+$$F = \\frac{\\text{variação entre os grupos}}{\\text{variação dentro dos grupos}}$$
+
+Se os municípios cobram preços muito diferentes **e** os postos de um mesmo município
+cobram preços parecidos, F é grande. Se a diferença entre municípios é do tamanho da
+variação interna, F fica perto de 1.
+
+- **H0:** as sete médias são iguais.
+- **H1:** pelo menos uma média é diferente.
+
+E o **tamanho do efeito**, o η² (eta ao quadrado): a parte da variação total que está
+**entre** os municípios."""},
+    {"tipo": "code", "texto": '''# A ANOVA de um fator e o Kruskal-Wallis, lado a lado, nos sete municípios.
+anova_anp = compara_grupos(sete, "preco", "municipio", alfa=ALFA)
+
+F_anp = anova_anp["linhas"][0][1]
+H_anp = anova_anp["linhas"][1][1]
+k, N = len(municipios), len(sete)
+eta2 = F_anp * (k - 1) / (F_anp * (k - 1) + (N - k))
+
+print()
+print(f"graus de liberdade: {k - 1} (entre) e {N - k} (dentro)")
+print(f"η² = {eta2:.3f}: {eta2:.0%} da variação do preço está ENTRE os municípios")
+
+conferir("F da ANOVA (preço por município)", F_anp, 97.38, tolerancia=0.01, unidade="")
+conferir("eta ao quadrado", eta2, 0.742, tolerancia=0.001, unidade="")
+conferir("H de Kruskal-Wallis (ANP)", H_anp, 136.64, tolerancia=0.01, unidade="")'''},
+    {"tipo": "md", "texto": """**A leitura.** A ANOVA rejeita H0 com folga: o preço médio da gasolina **não** é o mesmo nos
+sete municípios, e 74% da variação está entre eles. E o Kruskal-Wallis diz o mesmo. Quando
+o teste paramétrico e o não paramétrico **concordam**, a conclusão é robusta.
+
+**O que a ANOVA não diz.** **Quais** municípios diferem. Ela responde se há diferença, não
+onde. Para saber onde, comparam-se os pares com um α corrigido (Bonferroni: 0,05 ÷ 21 =
+0,0024), e é o que a célula abaixo faz. O resumo da Seção 2 já mostra o desenho: a Grande
+São Luís (São Luís e São José de Ribamar) abaixo de R$ 5,81, e Balsas acima de R$ 6,85."""},
+    {"tipo": "code", "texto": '''# Onde estão as diferenças: os 21 pares, com e sem a correção de Bonferroni.
+pares_anp = conta_pares_t(sete, "preco", "municipio", alfa=ALFA)
+
+conferir("pares com p < 0,05 (sem correção)", pares_anp["sem_correcao"], 15,
+         tolerancia=0, unidade="")
+conferir("pares que sobram com Bonferroni", pares_anp["bonferroni"], 14,
+         tolerancia=0, unidade="")'''},
+
+    # ------------------------------------------------------------ quando nao cabe
+    {"tipo": "md", "texto": """## Seção 3. Quando o teste paramétrico não cabe
+
+A ANOVA e o teste t comparam **médias**. Isso só faz sentido se a média representa o grupo.
+Três sinais de que não representa:
+
+| Sinal | Exemplo | Por que a média falha |
 |---|---|---|
-|  |  |  |
-|  |  |  |
+| **Assimetria forte** ou valor extremo | Margem, receita, renda | Um caso arrasta a média para longe da maioria |
+| **Variável ordinal** | Escala Likert, nível de satisfação | "Concordo" menos "neutro" não é um número |
+| **n pequeno** sem normalidade | Menos de 15 casos por grupo | O teorema central do limite ainda não socorre |
 
-*Conferir* significa: o código executou? O resultado faz sentido no tamanho e no sinal?
-Bate com o que a base já mostrou nas células anteriores?"""})
+**O caso da margem líquida.** Os três setores com pelo menos 30 companhias na CVM."""},
+    {"tipo": "code", "texto": '''# Os três setores com pelo menos 30 companhias, e a margem de cada um.
+por_setor = cvm["setor"].value_counts()
+SETORES = por_setor[por_setor >= 30].index
+tres = cvm[cvm["setor"].isin(SETORES)].copy()
 
-gera_notebooks(12, C, versao="aluno")
+resumo_setor = (tres.groupby("setor")["margem"]
+                    .agg(n="count", media="mean", mediana="median",
+                         minimo="min", maximo="max", assimetria="skew")
+                    .round(1))
+print(f"{len(SETORES)} setores, {len(tres)} companhias")
+resumo_setor'''},
+    {"tipo": "md", "texto": """Repare no **Comércio**: a mediana é **+2,1%**, e a média é **−13,6%**. Uma única companhia com
+margem de **−452%** arrasta a média do setor para o prejuízo. A média não representa o
+grupo — e a ANOVA, que compara médias, vai comparar a coisa errada."""},
+
+    # ------------------------------------------------------------ Parte 2
+    {"tipo": "md", "texto": """## Parte 2 · Estatística: os testes não paramétricos
+
+**1. A pergunta.** A margem líquida difere entre comércio, construção e energia elétrica? A
+ANOVA diz que não (p = 0,20). O Kruskal-Wallis diz que sim (p = 0,002). Em quem acreditar?
+
+**2. O conceito.** Os testes de **postos** trocam cada valor pela sua **posição na fila**
+ordenada (o menor vira 1, o seguinte 2...). Um extremo de −452% vira apenas "o último da
+fila" — e deixa de arrastar o resultado.
+
+| Situação | Paramétrico (compara médias) | Não paramétrico (compara postos) |
+|---|---|---|
+| Dois grupos independentes | t de Welch | **Mann-Whitney** |
+| Duas medidas do mesmo caso | t pareado | **Wilcoxon** |
+| Três ou mais grupos | ANOVA de um fator | **Kruskal-Wallis** |
+
+| | |
+|---|---|
+| **Use** | Com assimetria forte, valores extremos, variável ordinal ou n pequeno |
+| **Não use** | Como atalho para "achar" significância: o teste se escolhe **antes** de olhar o p, pelo tipo de dado |
+
+**3. A fórmula (Kruskal-Wallis)**
+
+$$H = \\frac{12}{N(N+1)} \\sum_{j=1}^{k} \\frac{R_j^2}{n_j} - 3(N+1)$$
+
+* $N$ é o total de casos, $k$ o número de grupos, $n_j$ o tamanho do grupo $j$
+* $R_j$ é a **soma dos postos** do grupo $j$
+
+**4. Em receita:** ordene todos os casos juntos, troque cada valor pelo posto, some os postos
+de cada grupo. Se os grupos fossem iguais, cada um teria o posto médio perto de (N + 1) ÷ 2.
+H mede o quanto os postos médios se afastam disso. Mann-Whitney e Wilcoxon são a mesma
+ideia para dois grupos e para pares."""},
+    {"tipo": "code", "texto": '''# 5. O exemplo, passo a passo: a fila única e o posto médio de cada setor.
+tres["posto"] = tres["margem"].rank()
+
+passo = (tres.groupby("setor")
+             .agg(n=("margem", "count"), mediana=("margem", "median"),
+                  soma_postos=("posto", "sum"), posto_medio=("posto", "mean"))
+             .round(1))
+print(f"N = {len(tres)} companhias na fila única; se os setores fossem iguais, "
+      f"o posto médio de cada um seria perto de (N + 1) ÷ 2 = {(len(tres) + 1) / 2:.1f}")
+print()
+print(passo.to_string())
+
+# os três setores, cada um em uma série
+comercio = tres.loc[tres["setor"].str.startswith("Comércio"), "margem"]
+construcao = tres.loc[tres["setor"].str.startswith("Construção"), "margem"]
+energia = tres.loc[tres["setor"] == "Energia Elétrica", "margem"]
+
+F, p_anova = stats.f_oneway(comercio, construcao, energia)
+H, p_kw = stats.kruskal(comercio, construcao, energia)
+print()
+print(f"ANOVA de um fator: F = {F:.2f}   p = {p_anova:.4f}   -> {_decisao(p_anova, ALFA)}")
+print(f"Kruskal-Wallis:    H = {H:.2f}  p = {p_kw:.4f}   -> {_decisao(p_kw, ALFA)}")
+
+conferir("posto médio de Energia Elétrica", passo.loc["Energia Elétrica", "posto_medio"],
+         71.7, tolerancia=0.05, unidade="")
+conferir("p da ANOVA (margem por setor)", p_anova, 0.2017, tolerancia=0.0005, unidade="")
+conferir("H de Kruskal-Wallis (margem por setor)", H, 12.05, tolerancia=0.01, unidade="")
+conferir("p do Kruskal-Wallis", p_kw, 0.0024, tolerancia=0.0001, unidade="")'''},
+    {"tipo": "md", "texto": """**6. A leitura do exemplo.** As medianas (2,1%, 5,7% e 14,8%) e os postos médios (44,6,
+55,4 e 71,7, contra um centro de 56,0) contam a mesma história: energia elétrica tem margem mais alta. A ANOVA não
+enxerga isso porque a variação **dentro** do comércio, inflada por um único extremo, engole a
+diferença **entre** os setores. O Kruskal-Wallis, que só vê a ordem, enxerga.
+
+### Mann-Whitney: dois grupos independentes
+
+Comércio contra energia elétrica, só os dois."""},
+    {"tipo": "code", "texto": '''# 7. Dois grupos independentes: o t de Welch e o Mann-Whitney.
+t = stats.ttest_ind(comercio, energia, equal_var=False)
+u = stats.mannwhitneyu(comercio, energia, alternative="two-sided")
+superioridade = u.statistic / (len(comercio) * len(energia))
+
+print(f"Comércio: n = {len(comercio)}  média = {comercio.mean():6.1f}%  mediana = {comercio.median():5.1f}%")
+print(f"Energia:  n = {len(energia)}  média = {energia.mean():6.1f}%  mediana = {energia.median():5.1f}%")
+print()
+print(f"t de Welch:   t = {t.statistic:.2f}   p = {t.pvalue:.4f}   -> {_decisao(t.pvalue, ALFA)}")
+print(f"Mann-Whitney: U = {u.statistic:.0f}    p = {u.pvalue:.4f}   -> {_decisao(u.pvalue, ALFA)}")
+print()
+print(f"U ÷ (n1 × n2) = {superioridade:.2f}: sorteado um par (uma do comércio, uma de energia),")
+print(f"a do comércio tem a margem maior em só {superioridade:.0%} das vezes.")
+
+conferir("p do t de Welch (comércio x energia)", t.pvalue, 0.1150, tolerancia=0.0005, unidade="")
+conferir("U de Mann-Whitney", u.statistic, 305, tolerancia=0.5, unidade="")
+conferir("p do Mann-Whitney", u.pvalue, 0.0007, tolerancia=0.0001, unidade="")'''},
+    {"tipo": "md", "texto": """### Wilcoxon: duas medidas do mesmo caso
+
+**A pergunta.** O preço da gasolina **no mesmo posto** mudou entre janeiro e dezembro de
+2025? Aqui os grupos não são independentes: cada posto aparece duas vezes. É o caso
+**pareado** do encontro 11, agora com a versão de postos."""},
+    {"tipo": "code", "texto": '''# Wilcoxon e t pareado: o mesmo posto em janeiro e em dezembro.
+por_mes = gas.pivot_table(index="cnpj_da_revenda", columns="mes_arquivo",
+                          values="valor_venda", aggfunc="mean")
+pares_jd = (por_mes[[1, 12]].dropna()
+                            .rename(columns={1: "janeiro", 12: "dezembro"}))
+diferenca = pares_jd["dezembro"] - pares_jd["janeiro"]
+
+tp = stats.ttest_rel(pares_jd["dezembro"], pares_jd["janeiro"])
+w = stats.wilcoxon(pares_jd["dezembro"], pares_jd["janeiro"])
+
+print(f"{len(pares_jd)} postos com preço em janeiro E em dezembro")
+print(f"  média em janeiro R$ {pares_jd['janeiro'].mean():.4f} | em dezembro R$ {pares_jd['dezembro'].mean():.4f}")
+print(f"  diferença: média {diferenca.mean():+.3f} | mediana {diferenca.median():+.3f} "
+      f"| assimetria {diferenca.skew():+.2f}")
+print(f"  {(diferenca < 0).sum()} postos baixaram, {(diferenca > 0).sum()} subiram, "
+      f"{(diferenca == 0).sum()} ficou igual")
+print()
+print(f"t pareado: t = {tp.statistic:.2f}   p = {tp.pvalue:.2e}   -> {_decisao(tp.pvalue, ALFA)}")
+print(f"Wilcoxon:  W = {w.statistic:.0f}     p = {w.pvalue:.2e}   -> {_decisao(w.pvalue, ALFA)}")
+
+conferir("postos pareados", len(pares_jd), 88, tolerancia=0, unidade="")
+conferir("diferença mediana (R$)", diferenca.median(), -0.189, tolerancia=0.001, unidade="")
+conferir("W de Wilcoxon", w.statistic, 385, tolerancia=0.5, unidade="")'''},
+    {"tipo": "md", "texto": """**8. A frase que vai para o relatório**
+
+> "A margem líquida das companhias abertas difere entre os setores de comércio, construção
+> civil e energia elétrica (Kruskal-Wallis, H = 12,05, p = 0,002; n = 111): a margem
+> mediana vai de **2,1%** no comércio a **14,8%** em energia elétrica. Usou-se o teste de
+> postos porque a margem é fortemente assimétrica — uma companhia do comércio tem margem de
+> −452% — e a ANOVA, que compara médias, não detecta a diferença (p = 0,20) (CVM, DFP 2024)."
+
+**O que essa frase não diz.** Que **todos** os pares de setores diferem, nem **por que**
+energia elétrica tem margem maior (regulação, escala, capital?). O teste diz que há diferença
+na posição típica; a explicação é trabalho da teoria e do delineamento.
+
+**9. Erro comum.** Ler o p = 0,20 da ANOVA como "os setores têm a mesma margem". Não rejeitar
+H0 não prova igualdade — e, aqui, o teste nem era o adequado aos dados.
+
+### A revisão do Módulo III: o fluxograma completo
+
+| Pergunta | Tipo de dado | Paramétrico | Não paramétrico | Encontro |
+|---|---|---|---|---|
+| A média de um grupo difere de um valor de referência? | 1 quantitativa | t de uma amostra | Wilcoxon de uma amostra | 10 |
+| Dois grupos independentes diferem? | quantitativa × 2 grupos | t de Welch | Mann-Whitney | 11 e 12 |
+| O mesmo caso mudou entre duas medidas? | quantitativa, pareada | t pareado | Wilcoxon | 11 e 12 |
+| Três ou mais grupos diferem? | quantitativa × k grupos | ANOVA de um fator | Kruskal-Wallis | 12 |
+| Duas categóricas estão associadas? | categórica × categórica | — | qui-quadrado de independência | 11 |
+| Uma categórica segue a proporção esperada? | 1 categórica | — | qui-quadrado de aderência | 11 |
+
+E a pergunta que decide a coluna: **a média representa os grupos?** Se há assimetria forte,
+extremos, variável ordinal ou n pequeno, vá para a coluna dos postos.
+
+**10. Ficha de revisão.** `stats.mannwhitneyu(a, b)` · `stats.wilcoxon(depois, antes)` ·
+`stats.kruskal(g1, g2, g3)`. A frase sempre traz a **mediana** de cada grupo, o teste, a
+estatística, o p e o n — e o motivo de o teste ser de postos."""},
+
+    # ------------------------------------------------------------ pratica
+    {"tipo": "md", "texto": """## Seção 4. Prática guiada: a célula de escolha do teste
+
+A célula abaixo percorre o fluxograma sozinha: conta os grupos, olha a assimetria e o tamanho
+de cada um, **indica** o teste e roda o paramétrico e o não paramétrico lado a lado.
+
+**Roteiro da prática**
+
+1. Execute com a configuração original (`BASE = "CVM"`, `MIN_POR_GRUPO = 30`) e confira.
+2. Troque para `BASE = "ANP"` no bloco de configuração, execute o bloco e esta seção de novo.
+   Com 30 postos por município, sobram dois grupos: qual teste a célula indica agora? E com
+   `MIN_POR_GRUPO = 10`?
+3. Faça upload do CSV do **seu projeto**, preencha `ARQUIVO_PROJETO`, `VARIAVEL_PROJETO` e
+   `GRUPO_PROJETO`, e rode de novo.
+4. Escreva a frase de leitura do teste indicado na célula de texto do fim."""},
+    {"tipo": "code", "texto": '''# A célula de escolha do teste. Muda conforme o bloco de configuração.
+base_pratica, variavel, grupo = escolhe_base(BASE, ARQUIVO_PROJETO, VARIAVEL_PROJETO,
+                                             GRUPO_PROJETO, cadastro, cvm)
+print()
+escolha = escolhe_teste(base_pratica, variavel, grupo, minimo=MIN_POR_GRUPO, alfa=ALFA)
+
+# os conferir abaixo valem para a configuração original (BASE = "CVM", MIN_POR_GRUPO = 30)
+print()
+conferir("estatística do teste indicado", escolha["estatistica"], 12.05,
+         tolerancia=0.01, unidade="")
+conferir("valor-p do teste indicado", escolha["valor_p"], 0.0024,
+         tolerancia=0.0001, unidade="")'''},
+
+    # ------------------------------------------------------------ IA
+    {"tipo": "md", "texto": """## Seção 5. Usando o assistente
+
+A regra: **a IA explica, o código calcula, e você confere e escreve.**
+
+**Modo 1 — Pergunta.** Copie o cartão de contexto e cole no assistente antes de perguntar,
+por exemplo, *"por que o Kruskal-Wallis e a ANOVA discordam nesta base?"*. A resposta tem de
+citar um número que esteja no cartão ou nas saídas acima; se não citar, desconfie."""},
+    {"tipo": "code", "texto": 'cartao(tres[["setor", "margem"]], "setor", nome_base="CVM, DFP 2024 — margem líquida (%), três setores")'},
+    {"tipo": "md", "texto": """**Modo 3 — Ler um resultado errado.** As três leituras abaixo usam números certos e concluem
+errado. Diga, para cada uma, qual é o erro e o que deveria ter sido dito."""},
+    {"tipo": "code", "texto": '''# As três leituras erradas do professor.
+print("LEITURA 1: 'a ANOVA deu p = 0,20, logo comércio, construção e energia têm a mesma")
+print("            margem líquida'")
+print("            (não rejeitar H0 prova igualdade? a ANOVA era o teste certo para estes dados?)")
+print()
+print("LEITURA 2: 'fiz os 21 testes t entre os municípios e 15 deram p < 0,05; logo 15 pares")
+print("            de municípios diferem'")
+print("            (quantos alarmes falsos se espera em 21 testes? com o α corrigido de")
+print("             Bonferroni, quantos pares sobram?)")
+print()
+print("LEITURA 3: 'o Wilcoxon deu p < 0,001, logo todos os postos baixaram o preço")
+print("            entre janeiro e dezembro'")
+print("            (quantos postos subiram? o teste fala de cada posto ou da diferença típica?)")'''},
+    {"tipo": "md", "texto": """**Registro do uso de IA** (preencha se usou o assistente)
+
+| Pergunta ou pedido feito | O que a IA respondeu, em uma linha | Como conferi |
+|---|---|---|
+| | | |
+
+---"""},
+
+    # ------------------------------------------------------------ perguntas
+    {"tipo": "md", "texto": """## Seção 6. As três perguntas do dia
+
+Responda por escrito, editando as células abaixo."""},
+    {"tipo": "md", "texto": """**1. Escreva a frase de leitura do teste que a célula de escolha indicou para a base do
+seu projeto: o teste, a estatística, o p, o n e a mediana (ou a média) de cada grupo.**
+
+---
+"""},
+    {"tipo": "md", "texto": """**2. Por que a ANOVA e o Kruskal-Wallis concordam nos preços da ANP e discordam na margem
+da CVM? Use os números das Seções 2 e 3.**
+
+---
+"""},
+    {"tipo": "md", "texto": """**3. No fluxograma do módulo, qual linha corresponde à pergunta do seu projeto? Que coluna
+você usaria, a paramétrica ou a de postos, e por quê?**
+
+---
+"""},
+    {"tipo": "md", "texto": """## Antes de sair
+
+- [ ] Executei o notebook inteiro de cima para baixo, sem erro
+- [ ] Todos os `conferir` deram `[ok]` na configuração original
+- [ ] Troquei `BASE` para `"ANP"` e vi a célula de escolha indicar outro teste
+- [ ] Rodei a célula de escolha na base do meu projeto
+- [ ] Respondi as três perguntas
+
+> Guarde este notebook. Ele fecha o Módulo III. **No próximo encontro a pergunta muda de
+> "os grupos diferem?" para "as variáveis andam juntas?"**: correlação, regressão linear e
+> regressão logística."""},
+]
+
+if __name__ == "__main__":
+    nb.gera_notebooks(12, CELULAS, versao="autossuficiente", executa_notebook=True,
+                      timeout=1800)

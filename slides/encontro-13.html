@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 13: Correlação e regressão linear simples</title>
+<title>Encontro 13: Correlação, regressão linear e logística</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,11 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 13 · Unidade III</div>
-  <h1>Correlação e regressão</h1>
-  <p class="subtitulo">O par de variáveis quantitativas, da associação à previsão</p>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 13 · Módulo IV · Associação, modelagem e comunicação</div>
+  <h1>Correlação, regressão linear e regressão logística</h1>
+  <p class="subtitulo">Quando duas variáveis andam juntas, quanto uma muda quando a outra muda, e qual a chance de um evento</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -33,537 +37,1432 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>15 min</td><td>Retomada: da inferência (encontro 11) à relação entre duas variáveis</td></tr>
-    <tr><td>85 min</td><td>Correlação de Pearson · defasagem temporal · regressão linear simples</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>85 min</td><td><strong>Prática no Colab:</strong> correlação e heatmap no SGS; regressão na CVM; pressupostos</td></tr>
-    <tr><td>30 min</td><td><strong>Oficina:</strong> o par de variáveis quantitativas do seu projeto</td></tr>
-    <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
-  </table>
-  <p class="menor">Fecha a Unidade III: sabemos descrever, inferir e agora <strong>relacionar</strong>
-  variáveis, com os limites declarados.</p>
+  <p>O Módulo III perguntava <em>“os grupos diferem?”</em>. O Módulo IV pergunta <em>“as variáveis
+  andam juntas — e quanto uma muda quando a outra muda?”</em>. Uma base só, a das companhias
+  abertas da CVM, e três ferramentas.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: correlação</h3>
+      <p>O coeficiente de <strong>Pearson</strong>, o de <strong>Spearman</strong> como alternativa,
+      o <strong>R²</strong> — e o que nenhum deles diz sobre causa. Receita e lucro de 449
+      companhias, em reais e em escala logarítmica.</p>
+    </div>
+    <div>
+      <h3>Parte 2: regressão</h3>
+      <p>A <strong>regressão linear</strong>, simples e múltipla: o coeficiente como efeito na
+      unidade de y. E a <strong>regressão logística</strong>: log-odds, razão de chances e a
+      probabilidade de uma companhia fechar o ano no prejuízo.</p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">O fio que liga os dois blocos</span>
+  A correlação diz <strong>se</strong> as variáveis andam juntas; a regressão diz
+  <strong>quanto</strong> — e prevê. A logística é a mesma ideia para quando a resposta é
+  <strong>sim ou não</strong>. Nenhuma das três, sozinha, diz o que causa o quê.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p>Ao final do encontro, você deverá ser capaz de:</p>
-  <ol>
-    <li><strong>calcular</strong> e <strong>interpretar</strong> o coeficiente de correlação
-        de Pearson, distinguindo alinhamento de causalidade;</li>
-    <li><strong>explicar</strong> por que a escolha da defasagem temporal é uma decisão de
-        pesquisa que altera a força da associação;</li>
-    <li><strong>ler</strong> uma matriz de correlação e seus sinais à luz da teoria do
-        fenômeno;</li>
-    <li><strong>ajustar</strong> uma regressão linear simples com <code>statsmodels</code> e
-        interpretar intercepto, inclinação, R², estatística F e valor-p;</li>
-    <li><strong>usar</strong> transformação logarítmica e interpretar a inclinação como
-        elasticidade;</li>
-    <li><strong>avaliar</strong> os pressupostos (linearidade, resíduos, Jarque–Bera) e
-        <strong>declarar</strong> os limites da análise;</li>
-    <li><strong>aplicar</strong> correlação e regressão a um par de variáveis da base do seu
-        projeto.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Retomada: de uma variável para duas</h2>
-  <div class="afirmacao">No encontro 11 aprendemos a inferir sobre <strong>uma</strong>
-  variável: intervalo de confiança e teste de hipóteses. A pergunta de hoje é relacional.</div>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer (15 min)</span>
-  Hoje o objetivo não é apenas a conta do r e da reta, mas as <strong>leituras e os limites
-  que o relatório exige</strong>. Três frases para guardar desde já: correlação não é
-  causalidade; defasagem é decisão de pesquisa; R² alto não é explicação.</div>
-  <div class="pergunta">Duas variáveis quantitativas <strong>andam juntas</strong>? E o que
-  isso autoriza você a afirmar?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor">
-  <h2>A correlação de Pearson</h2>
-  <p>A associação responde ao alinhamento, não à causa</p>
+  <h2>Parte 1: duas variáveis que andam juntas</h2>
+  <p>Pearson, Spearman, R², e o que nenhum deles diz sobre causa</p>
 </section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O coeficiente r</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  O coeficiente de correlação de Pearson (r) mede <strong>quão alinhadas</strong> duas
-  variáveis quantitativas estão: quando X cresce, Y tende a crescer (r &gt; 0), decrescer
-  (r &lt; 0) ou flutuar sem direção (r ≈ 0).</div>
-  <div class="cartoes">
+  <h2>A pergunta: companhia que vende mais lucra mais?</h2>
+  <div class="pergunta">Entre as companhias abertas brasileiras, quem tem receita maior também tem
+  lucro maior? E, se tem, <strong>o quanto</strong> as duas coisas andam juntas?</div>
+  <table>
+    <tr><th>Item</th><th>Valor</th></tr>
+    <tr><td>Fonte</td><td>CVM — Demonstrações Financeiras Padronizadas (DFP 2024), DRE consolidada</td></tr>
+    <tr><td>Casos</td><td><strong>449 companhias</strong> com receita positiva</td></tr>
+    <tr><td>Com lucro / com prejuízo</td><td>318 / 131 (29,2%)</td></tr>
+    <tr><td>Receita</td><td>de R$ 0,3 milhão a R$ 490,8 bilhões (a Petrobras)</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">Um metadado que muda o número</span>
+  Sete companhias declaram a DFP em <strong>reais</strong>, e não em milhares de reais (a coluna
+  <code>ESCALA_MOEDA</code>). Sem converter, uma varejista de R$ 2,6 bilhões apareceria como a
+  maior companhia do país. O notebook converte tudo para R$ milhões.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O coeficiente de correlação de Pearson</h2>
+  <div class="formula">
+    <span class="expr">r<span class="op">=</span>
+      <span class="frac"><span class="cima">cov(x, y)</span>
+        <span class="baixo">s<sub>x</sub> · s<sub>y</sub></span></span></span>
+    <span class="simbolos">
+      <span><b>cov(x, y)</b>a covariância: a média dos produtos dos dois afastamentos</span>
+      <span><b>s<sub>x</sub>, s<sub>y</sub></b>os desvios padrão de x e de y</span>
+      <span><b>r</b>a correlação, de −1 a +1</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> para cada companhia,
+    multiplique o quanto ela está acima (ou abaixo) da média da receita pelo quanto está acima (ou
+    abaixo) da média do lucro. Se os dois afastamentos costumam ter o mesmo sinal, a soma é positiva
+    e a nuvem sobe. Dividir pelos desvios tira a unidade.</span>
+  </div>
+  <ul>
+    <li><strong>+1</strong>: os pontos numa reta subindo; <strong>−1</strong>: numa reta descendo;
+        <strong>0</strong>: nenhuma reta;</li>
+    <li><strong>Sem unidade:</strong> r não muda se a receita estiver em reais ou em milhões;</li>
+    <li><strong>Simétrico:</strong> r(receita, lucro) = r(lucro, receita). Ele não diz quem puxa quem.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que o r enxerga, e o que ele não enxerga</h2>
+  <div class="cartoes-4">
+    <div class="cartao">
+      <svg class="fig-mini" viewBox="0 0 200 100" aria-hidden="true"><line x1="8" y1="96" x2="196" y2="96" stroke="#bbb"/><line x1="8" y1="4" x2="8" y2="96" stroke="#bbb"/><circle cx="124" cy="44" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="173" cy="25" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="151" cy="44" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="53" cy="73" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="66" cy="72" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="168" cy="32" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="14" cy="78" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="159" cy="36" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="155" cy="32" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="48" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="67" cy="69" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="63" cy="67" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="58" cy="67" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="92" cy="55" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="103" cy="60" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="111" cy="48" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="190" cy="10" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="154" cy="43" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="124" cy="38" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="189" cy="19" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="51" cy="75" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="42" cy="61" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="122" cy="39" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="21" cy="90" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="19" cy="82" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="105" cy="47" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="55" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="176" cy="20" r="4" fill="#0AB0AB" fill-opacity="0.75"/></svg>
+      <h4>r = 0,96: forte</h4>
+      <p>Os pontos quase numa reta. Conhecendo x, erra-se pouco ao prever y.</p>
+    </div>
     <div class="cartao alt-dourado">
-      <h4>Varia de −1 a +1</h4>
-      <p>Adimensional, independe da escala das variáveis.</p>
+      <svg class="fig-mini" viewBox="0 0 200 100" aria-hidden="true"><line x1="8" y1="96" x2="196" y2="96" stroke="#bbb"/><line x1="8" y1="4" x2="8" y2="96" stroke="#bbb"/><circle cx="124" cy="47" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="173" cy="22" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="151" cy="10" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="53" cy="74" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="66" cy="53" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="168" cy="47" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="14" cy="65" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="159" cy="64" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="155" cy="52" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="55" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="67" cy="38" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="63" cy="34" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="58" cy="86" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="92" cy="69" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="103" cy="36" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="111" cy="90" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="190" cy="42" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="154" cy="42" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="124" cy="19" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="189" cy="18" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="51" cy="67" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="42" cy="70" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="122" cy="51" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="21" cy="34" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="19" cy="75" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="105" cy="56" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="44" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="176" cy="38" r="4" fill="#0AB0AB" fill-opacity="0.75"/></svg>
+      <h4>r = 0,49: moderada</h4>
+      <p>A nuvem sobe, mas espalhada. A tendência existe; a previsão erra muito.</p>
     </div>
     <div class="cartao alt-verde">
-      <h4>Mede associação linear</h4>
-      <p>Uma relação curvilínea forte pode ter r próximo de zero.</p>
+      <svg class="fig-mini" viewBox="0 0 200 100" aria-hidden="true"><line x1="8" y1="96" x2="196" y2="96" stroke="#bbb"/><line x1="8" y1="4" x2="8" y2="96" stroke="#bbb"/><circle cx="124" cy="38" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="173" cy="44" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="151" cy="60" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="53" cy="57" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="66" cy="72" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="168" cy="89" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="14" cy="18" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="159" cy="52" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="155" cy="46" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="65" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="67" cy="28" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="63" cy="90" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="58" cy="61" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="92" cy="90" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="103" cy="82" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="111" cy="10" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="190" cy="36" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="154" cy="56" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="124" cy="48" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="189" cy="18" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="51" cy="63" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="42" cy="42" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="122" cy="34" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="21" cy="62" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="19" cy="48" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="105" cy="27" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="15" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="176" cy="79" r="4" fill="#0AB0AB" fill-opacity="0.75"/></svg>
+      <h4>r = 0,03: nenhuma</h4>
+      <p>Saber x não ajuda a prever y. Nenhuma reta descreve a nuvem.</p>
     </div>
     <div class="cartao alt-amarelo">
-      <h4>É simétrico</h4>
-      <p>r(X,Y) = r(Y,X), não diz qual causa qual.</p>
+      <svg class="fig-mini" viewBox="0 0 200 100" aria-hidden="true"><line x1="8" y1="96" x2="196" y2="96" stroke="#bbb"/><line x1="8" y1="4" x2="8" y2="96" stroke="#bbb"/><circle cx="124" cy="82" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="173" cy="38" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="151" cy="61" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="53" cy="65" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="66" cy="71" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="168" cy="46" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="14" cy="10" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="159" cy="53" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="155" cy="57" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="84" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="67" cy="72" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="63" cy="76" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="58" cy="70" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="92" cy="81" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="103" cy="90" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="111" cy="79" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="190" cy="19" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="154" cy="56" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="124" cy="81" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="189" cy="12" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="51" cy="59" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="42" cy="55" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="122" cy="75" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="21" cy="19" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="19" cy="22" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="105" cy="84" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="96" cy="83" r="4" fill="#0AB0AB" fill-opacity="0.75"/><circle cx="176" cy="37" r="4" fill="#0AB0AB" fill-opacity="0.75"/></svg>
+      <h4>r = 0,07: e há relação!</h4>
+      <p>Uma curva em U perfeita, que o r não vê. Ele mede só relação <strong>linear</strong>.</p>
     </div>
   </div>
+  <p class="menor">Regra da disciplina: <strong>antes do r, o gráfico de dispersão</strong>. Os quatro
+  painéis são dados simulados, com 28 pontos cada.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O caso Selic × inadimplência</h2>
-  <div class="exemplo"><span class="rotulo">Exemplo</span>
-  Na base mensal do SGS, a correlação contemporânea é <strong>r ≈ 0,43</strong> com p &lt;
-  0,001: associação moderada e significativa entre juros e inadimplência no mesmo mês.</div>
-  <p class="menor">Mas olhe o gráfico de dispersão: uma nuvem crescente, não uma reta
-  perfeita. E o sinal nada diz sobre direção:</p>
-  <ul>
-    <li>"Selic alta causa inadimplência alta" é uma leitura;</li>
-    <li>"inadimplência alta pressiona o Banco Central a manter juros altos" é outra.</li>
-  </ul>
-  <div class="pergunta">Qual direção vale? Não é o r que responde, é o <strong>desenho da
-  pesquisa</strong>.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O extremo fabrica (e sabota) associação</h2>
-  <p>Um único ponto gigante pode inventar ou esconder um r alto. No mundo empresarial os
-  extremos são a regra:</p>
-  <div class="afirmacao">Dados de receita e lucro têm distribuição assimétrica, o r precisa
-  ser olhado junto com o gráfico de dispersão, nunca sozinho.</div>
-  <p>Encaminhamento prático (encontros 9 e 11): <strong>transformar a variável</strong> (log-receita, log-margem) estabiliza a análise e ainda muda a interpretação (elasticidade).
-  Veremos isso na regressão.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide divisor">
-  <h2>A defasagem: o tempo entre causa e efeito</h2>
-  <p>O desenho temporal quase dobrou a força da associação</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Defasagem de 6 meses</h2>
-  <p>A política monetária não age no mesmo mês: juros mais altos hoje pressionam custos
-  financeiros e inadimplência <strong>daqui a alguns meses</strong>. A comparação justa
-  usa a Selic de hoje contra a inadimplência de seis meses à frente:</p>
-  <table>
-    <tr><th>Comparação</th><th>r</th><th>Leitura</th></tr>
-    <tr><td>Contemporânea (mesmo mês)</td><td>≈ 0,43</td>
-        <td>associação moderada</td></tr>
-    <tr><td>Defasada (inad +6 meses)</td><td>≈ 0,77</td>
-        <td>associação forte</td></tr>
-  </table>
-  <p class="menor">Defasagens, recortes e critérios fazem parte de um <strong>modelo</strong>,
-  e a regra de ouro: modelos são decisões do pesquisador, declaradas no relatório.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A matriz de correlação</h2>
-  <p>Várias associações de uma só vez, cada célula guarda um r. Treinar a leitura de
-  sinais com a teoria:</p>
+  <h2>Receita e lucro, em reais: r = 0,69, puxado pelos gigantes</h2>
   <table>
-    <tr><th>Célula da matriz</th><th>Sinal esperado</th><th>Por quê</th></tr>
-    <tr><td>Selic × crescimento do crédito</td><td><strong>negativo</strong> (≈ −0,7)</td>
-        <td>juro caro comprime o crédito</td></tr>
-    <tr><td>Selic × inadimplência (+6m)</td><td><strong>positivo</strong> (≈ 0,8)</td>
-        <td>juros pressionam o tomador</td></tr>
-    <tr><td>IPCA × Selic</td><td>≈ 0</td>
-        <td>efeito defasado, não é "sem relação"</td></tr>
+    <tr><th>O que se calculou</th><th>Valor</th></tr>
+    <tr><td>Pearson, as 449 companhias</td><td><strong>r = 0,685</strong></td></tr>
+    <tr><td>Pearson, sem a Petrobras (uma companhia a menos)</td><td>r = 0,573</td></tr>
+    <tr><td>Pearson, sem as 5 maiores receitas</td><td>r = 0,483</td></tr>
+    <tr><td>Spearman, as 449 companhias</td><td><strong>ρ = 0,512</strong></td></tr>
   </table>
-  <p class="menor">A matriz é o passo inicial de qualquer análise correlacional: antes de
-  qualquer teste, olhar todas as relações ao mesmo tempo.</p>
+  <p>As cinco maiores receitas — Petrobras, JBS, Banco do Brasil, Raízen e Bradesco — vão de
+  R$ 213 a R$ 491 bilhões. A mediana das 449 é R$ 2,1 bilhões. Em reais, essas cinco ocupam quase
+  todo o gráfico, e o r de Pearson é, em boa parte, a opinião delas.</p>
+  <div class="alerta"><span class="rotulo">O sintoma</span>
+  Tirar <strong>uma</strong> companhia derruba o r de 0,69 para 0,57. Uma medida que muda tanto
+  com um caso não está descrevendo as 449: está descrevendo os extremos — o mesmo problema da média
+  da margem no encontro 12.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Regressão linear simples</h2>
-  <p>Da medida de alinhamento à reta que prediz</p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O modelo</h2>
-  <p style="text-align:center; font-size:3.4vh; margin:1vh 0;">
-    <strong>Y = b₀ + b₁·X + erro</strong>
-  </p>
-  <ul>
-    <li><strong>b₀ (intercepto):</strong> valor previsto de Y quando X = 0;</li>
-    <li><strong>b₁ (inclinação):</strong> variação esperada em Y para cada aumento de uma
-        unidade em X;</li>
-    <li><strong>erro (resíduo):</strong> a parte de Y que a reta não explica.</li>
-  </ul>
-  <p class="menor">A correlação diz <em>quão juntos</em>; a regressão diz <em>quanto</em>.
-  Ela permite prever Y a partir de X, sempre dentro do intervalo observado.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O exemplo CVM: lucro × receita</h2>
-  <p>DRE 2024 (companhias com valores positivos), log nos dois lados,
-  <code>sm.OLS(log_lucro ~ log_receita)</code>:</p>
-  <table>
-    <tr><th>Saída</th><th>Valor</th><th>Interpretação</th></tr>
-    <tr><td>Inclinação b₁</td><td>≈ 0,84</td>
-        <td><strong>elasticidade:</strong> receita 1% maior acompanha lucro ~0,84% maior</td></tr>
-    <tr><td>R²</td><td>≈ 0,57</td>
-        <td>escala explica pouco mais da metade da variação do lucro</td></tr>
-    <tr><td>p(F)</td><td>&lt; 0,001</td>
-        <td>relação estatisticamente significativa</td></tr>
-  </table>
-  <p class="menor">O que falta no R² é tudo o que a reta não captura: eficiência, setor,
-  alavancagem, ciclo, o erro do modelo, que estudaremos em profundidade adiante.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Pressupostos e limites</h2>
-  <div class="definicao"><span class="rotulo">Pressupostos a checar</span>
-  Linearidade (no gráfico) e resíduos sem padrão sistemático, o histograma e o teste de
-  <strong>Jarque–Bera</strong> avaliam a normalidade dos resíduos.</div>
-  <div class="exemplo"><span class="rotulo">O que esperar em dados empresariais</span>
-  O JB costuma <strong>rejeitar</strong> a normalidade: lucros e prejuízos extremos nunca
-  entram no sino. É alerta a registrar, não o fim da análise.</div>
-  <ul>
-    <li><strong>R² alto não é causalidade</strong>, e não é explicação;</li>
-    <li><strong>Não extrapolar</strong> a reta para fora do intervalo observado;</li>
-    <li><strong>Correlação não é a mesma coisa que</strong> regressão: a primeira é
-        simétrica, a segunda é preditiva e exige pressupostos.</li>
-  </ul>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide divisor estat">
-  <h2>Estatística do encontro 13</h2>
-  <p>Covariância, coeficiente de correlação, reta de mínimos quadrados e R²</p>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: da covariância ao coeficiente r</h2>
-
-  <p>Duas variáveis andam juntas quando os casos acima da média em uma tendem a estar acima da
-  média na outra. A <strong>covariância</strong> mede isso; o <strong>coeficiente r</strong> é a
-  covariância padronizada, para ficar entre −1 e +1.</p>
-  <div class="formula">
-    <span class="expr">cov<span class="op">=</span><span class="frac"><span class="cima">Σ(x − x̄)(y − ȳ)</span><span class="baixo">n − 1</span></span><span class="op">          </span>r<span class="op">=</span><span class="frac"><span class="cima">cov</span><span class="baixo">s<sub>x</sub> · s<sub>y</sub></span></span></span>
-    <span class="legenda-formula">Em linguagem corrente: multiplique os dois afastamentos de cada
-    caso. Quando os dois afastamentos têm o mesmo sinal, o produto é positivo; quando têm sinais
-    opostos, é negativo. A soma diz para que lado a nuvem se inclina.</span>
+  <h2>Spearman: a correlação dos postos</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  O coeficiente de <strong>Spearman (ρ)</strong> é o de Pearson calculado sobre os
+  <strong>postos</strong> — a posição de cada companhia na fila da receita e na fila do lucro, como
+  nos testes do encontro 12. Ele mede se as duas sobem juntas, <strong>em qualquer ritmo</strong>, e
+  a Petrobras vira apenas “a primeira da fila”.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Com assimetria forte e extremos (receita, lucro, renda), com variáveis ordinais (Likert), ou
+    quando a relação sobe sempre mas não em linha reta.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Para esconder um gráfico que não foi olhado. Nem quando a relação é em U: o Spearman também
+    só enxerga relações que sobem (ou descem) o tempo todo.</div>
   </div>
-  <p>Dividir pelo produto dos desvios padrão elimina as unidades. Por isso r não muda se você
-  trocar reais por milhares de reais, e por isso r é comparável entre estudos.</p>
+  <p>Na receita e no lucro em reais, <strong>ρ = 0,512</strong> contra r = 0,685: a associação existe,
+  e é moderada — mais fraca do que o Pearson, inflado pelos gigantes, fazia parecer.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A escala logarítmica: de milhão a centenas de bilhões</h2>
+  <p>A receita vai de R$ 0,3 milhão a R$ 490 bilhões: seis ordens de grandeza. O
+  <strong>logaritmo de base 10</strong> troca “quanto” por “quantos zeros”:</p>
+  <table>
+    <tr><th>log10 da receita (R$ mi)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+    <tr><td>Receita</td><td>R$ 10 mi</td><td>R$ 100 mi</td><td>R$ 1 bi</td><td>R$ 10 bi</td><td>R$ 100 bi</td></tr>
+  </table>
+  <div class="colunas">
+    <div class="exemplo"><span class="rotulo">O que se ganha</span>
+    Em log, só as companhias com lucro: <strong>Pearson r = 0,742</strong> e <strong>Spearman
+    ρ = 0,768</strong>. Os dois concordam: a relação é uma reta, e não o efeito de meia dúzia de
+    pontos.</div>
+    <div class="alerta"><span class="rotulo">O que se perde</span>
+    O logaritmo só existe para valores <strong>positivos</strong>. O lucro em log só pode ser lido
+    para as <strong>318 companhias com lucro</strong>: as 131 com prejuízo saem — e voltam na
+    regressão logística.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>R²: quanto da variação a reta acompanha</h2>
+  <div class="formula">
+    <span class="expr">R²<span class="op">=</span>r²<span class="op">=</span>0,742²<span class="op">=</span>0,550</span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> 55% da variação do log do
+    lucro entre as companhias <strong>acompanha</strong> a variação do log da receita; os outros 45%
+    vêm de outras coisas — setor, endividamento, ciclo, gestão.</span>
+  </div>
+  <table>
+    <tr><th>r</th><th>0,9</th><th>0,742</th><th>0,6</th><th>0,4</th><th>0,2</th></tr>
+    <tr><td>R² = r²</td><td>0,81</td><td>0,55</td><td>0,36</td><td>0,16</td><td>0,04</td></tr>
+  </table>
+  <p>O quadrado desinfla o entusiasmo: uma correlação “moderada” de 0,4 acompanha só
+  <strong>16%</strong> da variação. Na regressão simples, o R² é exatamente o r ao quadrado; na
+  múltipla, é a parte que todas as variáveis juntas acompanham.</p>
+  <p class="menor">Atenção à palavra: <strong>acompanha</strong>, e não “é explicada por” no sentido
+  de causa. R² de 0,55 não diz que 55% do lucro “vem” da receita.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que nenhum dos três números diz: causa</h2>
+  <p>r, ρ e R² descrevem o quanto as variáveis andam juntas. Nenhum deles diz que a receita
+  <strong>faz</strong> o lucro subir. As três razões do encontro 6, agora com a base da CVM:</p>
+  <div class="cartoes-3">
+    <div class="cartao">
+      <h4>Variável de confusão</h4>
+      <p>O setor mexe nas duas: energia elétrica tem receita regulada e margem alta. Comparar
+      companhias de setores diferentes mistura o efeito do porte com o do setor.</p>
+    </div>
+    <div class="cartao alt-dourado">
+      <h4>Causa inversa</h4>
+      <p>O lucro de ontem financia a expansão que gera a receita de hoje. A seta pode apontar para
+      o outro lado — e o r é simétrico, não sabe.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Seleção</h4>
+      <p>Só companhias <strong>abertas</strong>, e em log só as <strong>com lucro</strong>. A nuvem
+      descreve um recorte das empresas brasileiras, e não as empresas brasileiras.</p>
+    </div>
+  </div>
+  <p class="menor">Causa exige delineamento (encontro 6), e não um coeficiente maior.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: o que a frase autoriza dizer?</h2>
+  <div class="instrucao"><span class="rotulo">Em duplas, 10 minutos</span>
+  Para cada frase, digam se ela <strong>pode</strong> ir para o relatório, se precisa de
+  <strong>ressalva</strong> ou se está <strong>errada</strong> — e reescrevam as que não podem.</div>
+  <ol>
+    <li>“A correlação entre receita e lucro é de 0,69: aumentar a receita aumenta o lucro.”</li>
+    <li>“Entre as 318 companhias com lucro, a correlação entre o log da receita e o log do lucro é
+        de 0,74: as maiores tendem a lucrar mais.”</li>
+    <li>“O R² de 0,55 mostra que 55% do lucro vem da receita.”</li>
+    <li>“Em reais, o Pearson dá 0,69 e o Spearman, 0,51: a associação é moderada, e o Pearson está
+        inflado pelas maiores companhias.”</li>
+  </ol>
+  <p class="menor">Critério: a frase traz o recorte (quem entrou), o número, e não usa verbo de
+  causa.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
+<section class="slide divisor estat">
+  <h2>Parte 2: estatística</h2>
+  <p>A regressão linear, simples e múltipla, e a regressão logística</p>
+</section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: a reta de mínimos quadrados</h2>
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>A pergunta da regressão linear</h2>
+  <div class="pergunta">Uma companhia com receita de <strong>R$ 1 bilhão</strong>: quanto se espera
+  que ela lucre? E uma de R$ 10 bilhões lucra quantas vezes mais?</div>
+  <p>A correlação de 0,742 diz que o log da receita e o log do lucro andam juntos. Ela não diz
+  <strong>quanto</strong> o lucro muda quando a receita muda, e não faz previsão. A regressão faz as
+  duas coisas: ajusta a <strong>reta</strong> que passa pelo meio da nuvem.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  O <strong>coeficiente</strong> da regressão é um <strong>efeito na unidade de y</strong>: quanto y
+  muda quando x aumenta 1. Ler a regressão é ler o coeficiente nessa unidade — e saber em que
+  escala estão x e y.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>Regressão linear simples e múltipla, em linguagem corrente</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Simples</strong>: uma reta que prevê y a partir de um x. O coeficiente <strong>b</strong>
+  é quanto y muda quando x aumenta 1.<br>
+  <strong>Múltipla</strong>: a mesma ideia com vários x. Cada coeficiente é o efeito daquela
+  variável <strong>com as outras fixas</strong> — por exemplo, o efeito do setor entre companhias
+  com a mesma receita.<br>
+  <strong>Resíduo</strong>: o que a reta errou num caso — o valor observado menos o previsto.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Quando y é <strong>quantitativo</strong> e se quer o tamanho da relação, comparar o efeito de
+    uma variável com as outras fixas, ou prever y num cenário dentro da faixa observada.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Com y <strong>sim ou não</strong>: a reta prevê probabilidades abaixo de 0 e acima de 1 (é a
+    logística). Nem para prever fora da faixa de x observada, nem para afirmar causa.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>A fórmula da reta, com cada símbolo nomeado</h2>
+  <div class="formula">
+    <span class="expr">ŷ<span class="op">=</span>a<span class="op">+</span>b·x<span class="op">&nbsp;&nbsp;&nbsp;</span>b<span class="op">=</span>r<span class="op">·</span><span class="frac"><span class="cima">s<sub>y</sub></span><span class="baixo">s<sub>x</sub></span></span><span class="op">&nbsp;&nbsp;&nbsp;</span>e<span class="op">=</span>y<span class="op">−</span>ŷ</span>
+    <span class="simbolos">
+      <span><b>ŷ</b>o valor previsto de y</span>
+      <span><b>a</b>o intercepto: ŷ quando x = 0; a reta passa pelo ponto das médias, a = ȳ − b·x̄</span>
+      <span><b>b</b>a inclinação: quanto y muda quando x aumenta 1 — o efeito</span>
+      <span><b>r, s<sub>x</sub>, s<sub>y</sub></b>a correlação e os dois desvios padrão</span>
+      <span><b>e</b>o resíduo: o observado menos o previsto</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> a reta escolhida é a que
+    torna a soma dos resíduos ao quadrado a menor possível (mínimos quadrados). Na múltipla,
+    ŷ = a + b₁·x₁ + b₂·x₂, e cada b é o efeito do seu x com o outro fixo.</span>
+  </div>
+  <p class="menor">Com x e y em log10, “x aumenta 1” quer dizer receita <strong>10 vezes</strong>
+  maior, e “y aumenta b” quer dizer lucro <strong>10<sup>b</sup> vezes</strong> maior.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>Exemplo resolvido, passo a passo: receita e lucro em log</h2>
+  <ol class="passos">
+    <li>Os dados: <span class="num">318 companhias</span> com lucro; x = log10 da receita,
+        y = log10 do lucro, os dois em R$ milhões;</li>
+    <li>Os ingredientes: <span class="num">r = 0,742</span>, <span class="num">s<sub>x</sub> =
+        0,788</span>, <span class="num">s<sub>y</sub> = 0,890</span>;</li>
+    <li>A inclinação: <span class="num">b = 0,742 × 0,890 ÷ 0,788 = 0,838</span>. Receita 10 vezes
+        maior, lucro <span class="num">10<sup>0,838</sup> = 6,89 vezes</span> maior;</li>
+    <li>O intercepto: <span class="num">a = 2,384 − 0,838 × 3,453 = −0,510</span>;</li>
+    <li>A previsão para R$ 1 bilhão (log10 = 3): <span class="num">−0,510 + 0,838 × 3 =
+        2,004</span>, ou seja, lucro de <span class="num">10<sup>2,004</sup> = R$ 101,0 milhões</span>.</li>
+  </ol>
+  <p class="menor">Nenhuma dessas contas é feita à mão: o notebook imprime cada passo com o número
+  ao lado, e o <code>conferir</code> verifica. O passo 3 é o que vai para o relatório.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>Como se lê o exemplo: a reta e o resíduo</h2>
   <div class="figura">
-    <svg viewBox="0 0 1000 240" role="img" aria-label="Cinco pontos, a reta de mínimos quadrados e os resíduos de cada ponto">
-      <line x1="100" y1="205" x2="900" y2="205" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="100" y1="26" x2="100" y2="205" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="150.0" y1="170.1" x2="840.0" y2="32.7" stroke="#0AB0AB" stroke-width="3.2"/>
-      <line x1="195.0" y1="177.0" x2="195.0" y2="161.2" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
-      <circle cx="195.0" cy="177.0" r="8" fill="#8D0333"/>
-      <circle cx="195.0" cy="161.2" r="3.5" fill="#0AB0AB"/>
-      <line x1="345.0" y1="108.6" x2="345.0" y2="131.3" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
-      <circle cx="345.0" cy="108.6" r="8" fill="#8D0333"/>
-      <circle cx="345.0" cy="131.3" r="3.5" fill="#0AB0AB"/>
-      <line x1="495.0" y1="115.8" x2="495.0" y2="101.4" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
-      <circle cx="495.0" cy="115.8" r="8" fill="#8D0333"/>
-      <circle cx="495.0" cy="101.4" r="3.5" fill="#0AB0AB"/>
-      <line x1="645.0" y1="47.4" x2="645.0" y2="71.5" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
-      <circle cx="645.0" cy="47.4" r="8" fill="#8D0333"/>
-      <circle cx="645.0" cy="71.5" r="3.5" fill="#0AB0AB"/>
-      <line x1="795.0" y1="58.2" x2="795.0" y2="41.6" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
-      <circle cx="795.0" cy="58.2" r="8" fill="#8D0333"/>
-      <circle cx="795.0" cy="41.6" r="3.5" fill="#0AB0AB"/>
-      <text x="150" y="52" font-size="17" fill="#05635f" font-weight="700">A reta de mínimos quadrados</text>
-      <text x="150" y="74" font-size="15" fill="#555">é a que torna a soma dos resíduos</text>
-      <text x="150" y="94" font-size="15" fill="#555">ao quadrado a menor possível.</text>
-      <text x="410" y="150" font-size="15" fill="#c0392b">tracejado vermelho: o resíduo,</text>
-      <text x="410" y="170" font-size="15" fill="#c0392b">a distância entre o valor observado</text>
-      <text x="410" y="190" font-size="15" fill="#c0392b">e o previsto pela reta</text>
-      <text x="500" y="232" text-anchor="middle" font-size="16" fill="#777">x: gasto com propaganda    ·    y: faturamento</text>
+    <svg viewBox="0 0 1000 300" role="img" aria-label="Log da receita contra log do lucro das 318 companhias com lucro, com a reta de regressão">
+    <line x1="110" y1="250" x2="960" y2="250" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="110" y1="20" x2="110" y2="250" stroke="#bbb" stroke-width="1.6"/>
+    <text x="231.4" y="270" text-anchor="middle" font-size="14" fill="#777">R$ 1 mi</text>
+    <text x="352.9" y="270" text-anchor="middle" font-size="14" fill="#777">10 mi</text>
+    <text x="474.3" y="270" text-anchor="middle" font-size="14" fill="#777">100 mi</text>
+    <text x="595.7" y="270" text-anchor="middle" font-size="14" fill="#777">1 bi</text>
+    <text x="717.1" y="270" text-anchor="middle" font-size="14" fill="#777">10 bi</text>
+    <text x="838.6" y="270" text-anchor="middle" font-size="14" fill="#777">100 bi</text>
+    <text x="100" y="226.2" text-anchor="end" font-size="14" fill="#777">R$ 0,01 mi</text>
+    <text x="100" y="168.8" text-anchor="end" font-size="14" fill="#777">R$ 1 mi</text>
+    <text x="100" y="111.2" text-anchor="end" font-size="14" fill="#777">R$ 100 mi</text>
+    <text x="100" y="53.8" text-anchor="end" font-size="14" fill="#777">R$ 10 bi</text>
+    <circle cx="891.6" cy="35.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="711.1" cy="92.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="790.5" cy="48.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="540.4" cy="96.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="700.3" cy="93.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="660.8" cy="122.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="625.7" cy="99.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="732.1" cy="68.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="670.8" cy="97.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="736.2" cy="51.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="781.2" cy="58.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="598.1" cy="123.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="718.7" cy="70.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="800.9" cy="61.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="698.5" cy="73.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="768.7" cy="76.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="812.8" cy="61.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="565.9" cy="107.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="587.8" cy="102.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="467.3" cy="117.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="576.7" cy="93.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="651.9" cy="83.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="703.7" cy="79.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="783.6" cy="65.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="627.0" cy="100.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="457.0" cy="187.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="597.0" cy="99.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="706.1" cy="79.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="342.8" cy="183.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="570.6" cy="113.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="634.6" cy="93.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="612.3" cy="117.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="793.6" cy="55.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="723.2" cy="59.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="634.3" cy="92.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="807.8" cy="56.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="766.4" cy="66.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="629.8" cy="108.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="651.9" cy="81.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="693.5" cy="77.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="758.2" cy="74.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="913.9" cy="47.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="701.6" cy="73.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="705.2" cy="61.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="610.5" cy="127.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="796.9" cy="60.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="580.9" cy="113.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="658.1" cy="87.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="738.1" cy="71.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="859.6" cy="60.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="681.1" cy="67.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="746.5" cy="66.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="598.4" cy="104.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="716.5" cy="78.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="559.9" cy="124.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="675.3" cy="74.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="724.0" cy="85.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="614.5" cy="112.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="741.8" cy="92.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="651.9" cy="108.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="648.9" cy="80.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="586.4" cy="121.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="802.6" cy="60.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="714.5" cy="85.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="729.5" cy="105.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="619.5" cy="82.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="691.2" cy="61.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="545.0" cy="101.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="715.3" cy="83.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="693.4" cy="76.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="791.6" cy="107.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="832.7" cy="43.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="686.4" cy="87.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="598.7" cy="96.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="606.2" cy="87.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="783.8" cy="69.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="623.2" cy="116.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="537.6" cy="104.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="645.0" cy="73.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="517.0" cy="130.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="665.0" cy="70.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="604.4" cy="110.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="508.8" cy="119.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="557.3" cy="111.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="602.1" cy="106.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="577.5" cy="102.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="667.3" cy="107.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="620.8" cy="79.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="619.2" cy="88.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="645.6" cy="117.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="668.8" cy="69.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="575.0" cy="132.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="715.2" cy="95.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="663.7" cy="75.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="413.0" cy="118.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="538.6" cy="120.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="408.8" cy="126.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="667.8" cy="82.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="611.8" cy="82.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="684.2" cy="90.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="611.4" cy="99.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="735.7" cy="66.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="593.2" cy="113.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="714.4" cy="77.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="743.5" cy="58.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="640.7" cy="54.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="515.8" cy="90.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="617.0" cy="104.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="607.7" cy="112.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="665.6" cy="82.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="737.7" cy="82.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="666.1" cy="97.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="547.4" cy="111.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="720.1" cy="58.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="604.8" cy="101.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="655.5" cy="94.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="555.0" cy="112.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="641.7" cy="107.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="708.6" cy="79.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="522.9" cy="151.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="736.2" cy="48.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="542.5" cy="98.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="627.9" cy="100.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="590.4" cy="109.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="619.9" cy="129.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="619.5" cy="94.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="636.3" cy="123.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="597.2" cy="102.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="699.5" cy="85.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="633.5" cy="96.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="447.4" cy="119.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="500.0" cy="102.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="752.0" cy="88.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="631.8" cy="116.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="655.5" cy="90.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="593.3" cy="143.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="638.2" cy="91.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="735.7" cy="65.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="549.9" cy="121.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="707.8" cy="91.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="659.4" cy="81.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="786.5" cy="70.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="575.3" cy="108.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="699.0" cy="88.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="790.0" cy="53.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="689.4" cy="85.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="597.6" cy="105.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="704.6" cy="74.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="680.7" cy="94.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="637.4" cy="109.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="637.1" cy="122.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="600.8" cy="122.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="592.3" cy="122.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="688.6" cy="67.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="590.4" cy="109.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="535.0" cy="124.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="685.8" cy="101.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="597.0" cy="102.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="635.9" cy="93.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="531.4" cy="105.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="732.9" cy="95.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="749.3" cy="68.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="538.2" cy="101.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="773.2" cy="92.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="615.8" cy="119.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="677.3" cy="89.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="418.0" cy="173.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="645.9" cy="89.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="672.6" cy="138.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="600.0" cy="85.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="548.1" cy="130.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="778.6" cy="73.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="670.0" cy="98.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="618.8" cy="89.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="597.3" cy="157.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="619.7" cy="93.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="589.7" cy="96.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="676.5" cy="88.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="620.2" cy="91.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="705.8" cy="93.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="609.3" cy="153.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="410.0" cy="152.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="497.4" cy="117.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="526.2" cy="84.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="667.1" cy="104.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="922.5" cy="32.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="636.6" cy="89.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="652.3" cy="86.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="500.0" cy="108.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="655.8" cy="103.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="853.8" cy="65.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="690.7" cy="80.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="510.3" cy="130.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="880.3" cy="83.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="532.4" cy="114.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="705.7" cy="64.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="876.7" cy="34.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="817.5" cy="58.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="645.6" cy="82.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="685.0" cy="84.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="867.3" cy="54.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="453.8" cy="123.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="656.3" cy="87.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="567.2" cy="112.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="604.1" cy="89.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="647.8" cy="96.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="454.2" cy="138.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="724.6" cy="71.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="646.1" cy="108.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="611.0" cy="98.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="649.9" cy="114.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="607.8" cy="92.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="670.4" cy="92.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="636.3" cy="102.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="580.2" cy="113.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="784.9" cy="49.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="618.7" cy="99.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="702.9" cy="87.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="583.1" cy="109.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="717.9" cy="103.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="671.1" cy="158.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="694.7" cy="90.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="787.6" cy="87.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="608.3" cy="100.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="601.3" cy="168.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="654.5" cy="84.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="510.9" cy="134.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="594.8" cy="93.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="599.0" cy="89.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="638.8" cy="96.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="697.5" cy="72.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="711.9" cy="97.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="682.9" cy="81.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="648.8" cy="104.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="651.1" cy="97.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="606.2" cy="104.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="639.2" cy="85.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="625.4" cy="96.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="730.7" cy="78.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="586.0" cy="104.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="684.9" cy="91.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="675.7" cy="85.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="606.9" cy="88.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="671.6" cy="91.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="500.1" cy="148.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="878.5" cy="41.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="703.3" cy="83.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="767.3" cy="148.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="616.0" cy="76.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="459.2" cy="137.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="494.4" cy="108.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="670.2" cy="105.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="552.2" cy="109.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="603.6" cy="118.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="739.7" cy="89.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="423.6" cy="114.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="722.0" cy="93.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="509.3" cy="121.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="706.9" cy="43.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="747.8" cy="68.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="788.7" cy="75.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="734.4" cy="70.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="629.3" cy="91.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="645.5" cy="101.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="723.4" cy="90.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="658.4" cy="106.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="756.9" cy="80.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="705.1" cy="69.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="846.2" cy="69.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="695.9" cy="106.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="760.3" cy="64.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="656.7" cy="49.2" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="594.4" cy="97.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="664.5" cy="108.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="633.8" cy="95.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="528.2" cy="99.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="538.2" cy="101.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="576.8" cy="104.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="565.5" cy="111.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="678.0" cy="85.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="720.5" cy="81.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="787.5" cy="54.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="720.5" cy="108.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="528.5" cy="120.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="630.8" cy="94.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="544.8" cy="112.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="559.9" cy="121.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="637.6" cy="121.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="440.7" cy="130.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="647.3" cy="93.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="668.4" cy="89.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="594.1" cy="147.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="709.2" cy="75.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="580.3" cy="119.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="726.4" cy="82.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="704.1" cy="86.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="752.8" cy="68.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="507.5" cy="106.9" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="646.7" cy="81.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="541.1" cy="132.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="855.2" cy="45.1" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="517.4" cy="132.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="620.7" cy="97.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="579.0" cy="105.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="490.7" cy="118.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="680.0" cy="105.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="817.5" cy="58.4" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="635.1" cy="108.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="743.3" cy="81.5" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="634.0" cy="85.7" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="736.5" cy="75.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="622.8" cy="109.6" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="621.4" cy="92.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="730.3" cy="81.0" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="623.5" cy="94.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="647.4" cy="187.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="579.3" cy="118.8" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <circle cx="706.9" cy="99.3" r="3.4" fill="#0AB0AB" fill-opacity="0.5"/>
+    <line x1="342.8" y1="156.3" x2="922.5" y2="41.3" stroke="#8D0333" stroke-width="3.5"/>
+    <line x1="880.3" y1="83.6" x2="880.3" y2="49.7" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="5 3"/>
+    <circle cx="880.3" cy="83.6" r="6" fill="#8D0333"/>
+    <text x="870.3" y="119.6" text-anchor="end" font-size="15" font-weight="700" fill="#c0392b" stroke="#fff" stroke-width="5" paint-order="stroke">Raízen: resíduo −1,18</text>
+    <text x="124" y="36" font-size="16" fill="#8D0333" font-weight="700">log lucro = −0,510 + 0,838 × log receita</text>
+    <text x="124" y="58" font-size="15" fill="#555">318 companhias com lucro · R² = 0,550</text>
+    <text x="535" y="296" text-anchor="middle" font-size="15" fill="#777">receita no eixo horizontal, lucro no vertical, os dois em escala log10</text>
     </svg>
   </div>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  A reta sobe 0,838 a cada “zero” a mais na receita. Os pontos acima dela lucraram mais que o
+  previsto; os de baixo, menos. A <strong>Raízen</strong> (receita de R$ 220 bilhões) lucrou
+  R$ 614 milhões, quando a reta previa R$ 9,3 bilhões: resíduo de <strong>−1,18</strong>, lucro
+  15 vezes menor que o previsto. O resíduo é o que o modelo não explica.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>A leitura em cinco colunas: a simples e a múltipla</h2>
+  <p><strong>Simples</strong>: <code>log_lucro ~ log_receita</code> · n = 318 · R² = 0,550</p>
+  <table>
+    <tr><th>variavel</th><th>estimativa</th><th>erro_padrao</th><th>valor_p</th><th>efeito</th></tr>
+    <tr><td>const</td><td>−0,5096</td><td>0,1509</td><td>0,0008</td><td>nível de partida (x = 0)</td></tr>
+    <tr><td>log_receita</td><td>0,8379</td><td>0,0426</td><td>&lt; 0,0001</td><td>lucro × 6,89 quando receita × 10</td></tr>
+  </table>
+  <p><strong>Múltipla</strong>: <code>log_lucro ~ log_receita + energia</code> · n = 318 · R² = 0,574</p>
+  <table>
+    <tr><th>variavel</th><th>estimativa</th><th>erro_padrao</th><th>valor_p</th><th>efeito</th></tr>
+    <tr><td>const</td><td>−0,5427</td><td>0,1474</td><td>0,0003</td><td>nível de partida (x = 0)</td></tr>
+    <tr><td>log_receita</td><td>0,8321</td><td>0,0416</td><td>&lt; 0,0001</td><td>lucro × 6,79 quando receita × 10</td></tr>
+    <tr><td>energia</td><td>0,4016</td><td>0,0966</td><td>&lt; 0,0001</td><td>lucro × 2,52 com energia +1</td></tr>
+  </table>
+  <p class="menor">Com a <strong>mesma receita</strong>, as companhias de energia elétrica lucram 2,5
+  vezes mais. Previsão para R$ 1 bi: R$ 89,9 mi (outro setor) e R$ 226,6 mi (energia). É a tabela que
+  o notebook entrega — o <code>summary()</code> do pacote nunca aparece.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>Como se faz no Colab: o modelo e a previsão</h2>
+  <pre class="codigo"><span class="cmt"># o modelo: a tabela de cinco colunas, nunca o summary()</span>
+linear = <span class="fn">ajusta_modelo</span>(com_lucro, <span class="str">"log_lucro"</span>, [<span class="str">"log_receita"</span>], tipo=<span class="str">"linear"</span>)
 
+<span class="cmt"># a previsão: célula inteiramente pré-escrita; o cenário vem do bloco de configuração</span>
+cenario = pd.<span class="fn">DataFrame</span>({<span class="str">"const"</span>: [1.0], <span class="str">"log_receita"</span>: [np.<span class="fn">log10</span>(RECEITA_CENARIO)]})
+lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</pre>
+  <p>O estudante não escreve nenhuma das duas células. Muda <code>RECEITA_CENARIO</code> no bloco de
+  configuração (1000 = R$ 1 bilhão) e executa de novo: a previsão muda, a fórmula não. Para a
+  múltipla, a lista de variáveis ganha <code>"energia"</code>, e o cenário ganha
+  <code>ENERGIA_CENARIO</code>.</p>
+  <p class="menor">O <code>10 **</code> desfaz o logaritmo: o modelo prevê o log10 do lucro, e a
+  frase precisa de reais.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>A frase de leitura da regressão linear</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Entre as 318 companhias abertas que tiveram lucro em 2024, uma receita <strong>10 vezes
+  maior</strong> está associada a um lucro <strong>6,9 vezes maior</strong> (b = 0,838 em escala
+  log10; EP = 0,043; p &lt; 0,001), e a receita acompanha <strong>55%</strong> da variação do
+  lucro (R² = 0,550). Com a mesma receita, as companhias de energia elétrica lucram
+  <strong>2,5 vezes</strong> mais que as dos outros setores (CVM, DFP 2024).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que aumentar a receita <strong>faz</strong> o lucro subir — é associação entre companhias, e não
+  o que acontece com uma companhia que cresce. E nada sobre as <strong>131 companhias com
+  prejuízo</strong>: elas não estão no modelo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>Erro comum: ler o coeficiente na escala errada</h2>
   <div class="colunas">
-    <div>
-      <div class="formula">
-        <span class="expr" style="font-size:3.2vh">ŷ<span class="op">=</span>a<span class="op">+</span>b·x<span class="op">          </span>b<span class="op">=</span>r<span class="op">·</span><span class="frac"><span class="cima">s<sub>y</sub></span><span class="baixo">s<sub>x</sub></span></span></span>
-      </div>
-      <p><strong>Resíduo</strong> é a distância vertical entre o ponto observado e a reta: o que o
-      modelo errou naquele caso. O método dos mínimos quadrados escolhe a reta que torna a soma
-      desses erros, elevados ao quadrado, a menor possível.</p>
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “O coeficiente da receita é 0,838. Logo, cada real de receita gera R$ 0,84 de lucro.”<br><br>
+      Seria uma margem de 84%. O número está certo; a <strong>unidade</strong>, errada: x e y estão
+      em <strong>log10</strong>, e não em reais.
     </div>
-    <div>
-      <div class="definicao"><span class="rotulo">Coeficiente de determinação</span>
-      <strong>R² = r²</strong> é a proporção da variação de y que a reta explica. R² de 0,64 quer
-      dizer que 64% da variação do faturamento acompanha a variação do gasto com propaganda, e que
-      36% vêm de outras coisas.</div>
-      <p class="menor">Em regressão simples, R² é literalmente o r ao quadrado. Com r = 0,8, R² é
-      0,64; com r = 0,4, R² cai para 0,16. Correlação moderada explica pouco.</p>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      Em log nos dois lados, b é uma <strong>elasticidade</strong>:<br><br>
+      receita <strong>1% maior</strong> → lucro cerca de <strong>0,84% maior</strong>;<br><br>
+      receita <strong>10 vezes maior</strong> → lucro <strong>10<sup>0,838</sup> = 6,89 vezes</strong>
+      maior.
     </div>
   </div>
+  <p class="menor">A pergunta que evita o erro: <strong>em que unidade está y?</strong> O coeficiente
+  é sempre um efeito nessa unidade. Em reais, b seria reais de lucro por real de receita; em log,
+  é “vezes”.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se faz no Colab</h2>
-
-  <pre class="codigo"><span class="cmt"># 1. correlação entre duas variáveis, e a matriz de todas</span>
-painel[<span class="str">"selic"</span>].<span class="fn">corr</span>(painel[<span class="str">"inadimplencia_pj"</span>]).<span class="fn">round</span>(3)
-painel.<span class="fn">corr</span>().<span class="fn">round</span>(2)
-
-<span class="cmt"># 2. a regressão, com statsmodels (traz o relatório completo)</span>
-<span class="fn">import</span> statsmodels.formula.api <span class="fn">as</span> smf
-
-modelo = smf.<span class="fn">ols</span>(<span class="str">"lucro ~ receita"</span>, data=base).<span class="fn">fit</span>()
-<span class="fn">print</span>(modelo.<span class="fn">summary</span>())
-
-<span class="cmt"># 3. os pedaços que interessam, isolados</span>
-<span class="fn">print</span>(<span class="str">"intercepto:"</span>, modelo.params[<span class="str">"Intercept"</span>].<span class="fn">round</span>(3))
-<span class="fn">print</span>(<span class="str">"inclinação:"</span>, modelo.params[<span class="str">"receita"</span>].<span class="fn">round</span>(3))
-<span class="fn">print</span>(<span class="str">"R²:"</span>, <span class="fn">round</span>(modelo.rsquared, 3), <span class="str">"| p da inclinação:"</span>, <span class="fn">round</span>(modelo.pvalues[<span class="str">"receita"</span>], 4))</pre>
-  <div class="exemplo"><span class="rotulo">A transformação que salva dados empresariais</span>
-  Receita e lucro têm cauda longa. Com <code>"np.log(lucro) ~ np.log(receita)"</code>, a
-  inclinação passa a ser lida como <strong>elasticidade</strong>: 1% a mais de receita associa-se
-  a b% a mais de lucro. É a forma usual de relatar em economia e finanças.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê o resultado</h2>
-
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "Há associação positiva e forte entre receita e lucro líquido (<strong>r = 0,81</strong>). A
-  regressão estima que cada R$ 1 milhão a mais de receita corresponde a
-  <strong>R$ 92 mil</strong> a mais de lucro (b = 0,092; p &lt; 0,001), e o modelo explica
-  <strong>66% da variação</strong> do lucro (R² = 0,66)."</div>
-  <div class="colunas">
-    <div>
-      <h3>Os quatro números que se relatam</h3>
-      <ul>
-        <li><strong>r</strong>: direção e força da associação;</li>
-        <li><strong>b</strong>: o quanto y muda quando x aumenta uma unidade, na unidade original;</li>
-        <li><strong>p</strong> da inclinação: se b é distinguível de zero;</li>
-        <li><strong>R²</strong>: quanto da variação o modelo explica.</li>
-      </ul>
-    </div>
-    <div>
-      <h3>A frase que nunca aparece</h3>
-      <div class="alerta"><span class="rotulo">Proibido</span>
-      "A regressão mostra que o gasto com propaganda <strong>causa</strong> aumento de
-      faturamento."</div>
-      <p>Regressão é uma reta ajustada a dados observacionais. Ela descreve como as duas variáveis
-      se movem juntas. Causa exige delineamento, que é o conteúdo do encontro 2: sorteio,
-      intervenção ou controle explícito das alternativas.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Os erros comuns com correlação e regressão</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 1: r alto com relação não linear</span>
-      O coeficiente r mede alinhamento <strong>reto</strong>. Uma relação em U forte pode dar r
-      próximo de zero. Sempre olhe o gráfico de dispersão antes de acreditar no número.</div>
-      <div class="alerta"><span class="rotulo">Erro 2: um extremo fabrica a correlação</span>
-      Um único ponto muito afastado pode levar r de 0,1 a 0,8. Rode a correlação com e sem o
-      ponto e relate os dois valores.</div>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 3: extrapolar fora do intervalo</span>
-      A reta foi ajustada a receitas entre R$ 1 milhão e R$ 5 bilhões. Usá-la para prever o lucro
-      de uma empresa de R$ 50 bilhões é aplicar o modelo onde não há dado.</div>
-      <div class="alerta"><span class="rotulo">Erro 4: R² alto como prova</span>
-      R² mede ajuste, não verdade. Duas séries temporais que só crescem no tempo dão R² altíssimo
-      sem qualquer relação entre elas. É a correlação espúria, e o remédio é teoria, não
-      estatística.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: correlação e regressão</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão linear</span>
+  <h2>Ficha de revisão: regressão linear</h2>
   <div class="ficha">
     <div>
       <h4>A fórmula</h4>
-      <p><span class="expr">r = cov ÷ (s<sub>x</sub> · s<sub>y</sub>)</span></p>
-      <p>ŷ = a + b·x, com b = r·(s<sub>y</sub>÷s<sub>x</sub>); R² = r² em regressão simples.</p>
+      <span class="expr">ŷ = a + b·x</span>
+      <p>b = r · s<sub>y</sub> ÷ s<sub>x</sub>; resíduo e = y − ŷ; R² = parte da variação
+      acompanhada.</p>
     </div>
     <div>
       <h4>No Colab</h4>
-      <pre class="codigo">painel.corr().round(2)
-import statsmodels.formula.api as smf
-smf.ols("y ~ x", data=d).fit()</pre>
+      <pre class="codigo">ajusta_modelo(base, "y",
+    ["x1", "x2"],
+    tipo="linear")</pre>
     </div>
     <div>
       <h4>A frase de leitura</h4>
-      <p>"r = _; cada unidade a mais de x corresponde a <em>b</em> a mais de y (p = _); o modelo
-      explica _% da variação."</p>
+      <p>“Entre [recorte], x [1 unidade ou 10 vezes] maior está associado a y [b] maior (EP, p;
+      R²; n).”</p>
+      <p>b = 0,838 e R² = 0,550 no exemplo.</p>
     </div>
     <div>
-      <h4>O erro a evitar</h4>
-      <p>Confiar em r sem olhar o gráfico, extrapolar fora do intervalo e ler R² alto como prova
-      de causa.</p>
+      <h4>O erro</h4>
+      <p>Ler b na escala errada; ler b como causa; prever fora da faixa observada de x.</p>
     </div>
   </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Silva e Samá (2021), <em>Estatística</em>,
-  volume II, capítulo 9: regressão linear simples, método dos mínimos quadrados, análise de
-  correlação e coeficiente de determinação.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-
-<section class="slide divisor">
-  <h2>Mão na massa</h2>
-  <p>Correlação e heatmap no SGS · regressão na CVM · o par do seu projeto</p>
-</section>
-
-<section class="slide">
+<section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seções 1 e 2: SGS: do r à matriz (40 min)</h2>
-  <ul>
-    <li>Carregar as séries mensais do SGS (célula de contingência local);</li>
-    <li><code>scipy.stats.pearsonr</code> em Selic × inadimplência + dispersão
-        (r ≈ 0,43);</li>
-    <li>Criar a defasagem <code>inad.shift(-6)</code> e repetir (r ≈ 0,77), perceba o
-        quase dobro;</li>
-    <li>Montar a <strong>matriz de correlação</strong> e exibi-la como heatmap, lendo
-        cada célula com a teoria.</li>
-  </ul>
-  <div class="pergunta">Anote em uma frase o que cada célula diz, sem a palavra
-  "causa".</div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  A defasagem quase dobra o r, mas isso <strong>não prova</strong> que a Selic causa
-  inadimplência: você escolheu o intervalo de 6 meses. Escolha diferente, resultado
-  diferente. Por isso a defasagem precisa ser <strong>justificada e declarada</strong>.</div>
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>A pergunta da regressão logística</h2>
+  <div class="pergunta">Qual a chance de uma companhia com receita de <strong>R$ 1 bilhão</strong>
+  fechar o ano no <strong>prejuízo</strong>?</div>
+  <p>Das 449 companhias, <strong>131 tiveram prejuízo</strong> em 2024: 29,2%. Agora y não é um
+  valor em reais — é <strong>sim ou não</strong> (prejuízo = 1, lucro = 0). E as 131 que a regressão
+  linear em log deixou de fora são justamente o assunto.</p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Na logística, o coeficiente <strong>multiplica a chance</strong> do evento — e não a
+  probabilidade. A probabilidade sai de uma célula de previsão, para um cenário escolhido.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: Regressão na CVM (30 min)</h2>
-  <ul>
-    <li>Carregar a DRE 2024 (download ou <code>dados/cvm_dre_2024.csv</code>);</li>
-    <li>Log em receita e lucro (somente companhias positivas);</li>
-    <li>Ajustar <code>sm.OLS(log_lucro ~ log_receita)</code> e ler o <code>summary()</code>;</li>
-    <li>Interpretar b₁ (elasticidade), R² e p(F);</li>
-    <li>Dispersão com a reta ajustada, o desenho que o encontro 10 treinou.</li>
-  </ul>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  O log só aceita valores <strong>positivos</strong>: companhias com prejuízo saem da
-  amostra, e isso é uma decisão a declarar. E não extrapole a reta para fora do intervalo
-  observado: ela não foi ajustada lá.</div>
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>Chance, log-odds e razão de chances, em linguagem corrente</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Probabilidade</strong>: quantos casos com prejuízo em cada 100 — 29,2 em 100.<br>
+  <strong>Chance (odds)</strong>: quantos com prejuízo para cada um com lucro — 131 ÷ 318 =
+  <strong>0,41</strong>.<br>
+  <strong>Log-odds</strong>: o logaritmo da chance. É a escala em que a logística vira uma reta.<br>
+  <strong>Razão de chances (OR)</strong>: quanto a chance se multiplica quando x aumenta 1.
+  OR = 1: nenhum efeito; abaixo de 1, a chance cai; acima, sobe.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Quando y é binário: prejuízo ou não, inadimplente ou não, cliente que volta ou não, empresa que
+    sobrevive ou não.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    A reta da regressão linear para y binário: ela prevê “probabilidades” de −20% e de 130%. Nem
+    leia a razão de chances como razão de probabilidades.</div>
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide">
+<section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: Pressupostos (10 min)</h2>
-  <ul>
-    <li>Histograma dos resíduos + teste de <strong>Jarque–Bera</strong>;</li>
-    <li>Resultado esperado: rejeição da normalidade, caudas com lucros/prejuízos extremos;</li>
-    <li>Registrar como <strong>alerta e limitação declarada</strong>, não como fim da
-        análise;</li>
-    <li>Pensar as respostas defensivas possíveis (filtros, transformações, robustez).</li>
-  </ul>
-  <p class="menor">A disciplina que fica: pressuposto avaliado se declara no relatório,
-  "o JB rejeitou a normalidade; utilizado X como medida defensiva".</p>
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>As fórmulas da logística, com cada símbolo nomeado</h2>
+  <div class="formula">
+    <span class="expr">log<span class="frac"><span class="cima">p</span><span class="baixo">1 − p</span></span><span class="op">=</span>a<span class="op">+</span>b·x<span class="op">&nbsp;&nbsp;&nbsp;</span>p<span class="op">=</span><span class="frac"><span class="cima">1</span><span class="baixo">1 + e<sup>−(a + b·x)</sup></span></span><span class="op">&nbsp;&nbsp;&nbsp;</span>OR<span class="op">=</span>e<sup>b</sup></span>
+    <span class="simbolos">
+      <span><b>p</b>a probabilidade do evento (o prejuízo)</span>
+      <span><b>p ÷ (1 − p)</b>a chance (odds)</span>
+      <span><b>a + b·x</b>o log-odds: uma reta, como na linear</span>
+      <span><b>e<sup>b</sup></b>a razão de chances: quanto a chance se multiplica com x + 1</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> o modelo dá o log-odds;
+    e elevado a ele dá a chance; a chance dividida por 1 mais ela dá a probabilidade. A curva
+    resultante fica sempre entre 0 e 1 — é o “S” da logística.</span>
+  </div>
+  <p class="menor">O <em>e</em> é o número de Euler (2,718...), a base do logaritmo natural. Quem faz
+  a conta é o computador; o que se lê é a razão de chances e a probabilidade prevista.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Oficina do projeto individual</h2>
-  <p>Duas variáveis quantitativas, e o par que sua hipótese pede</p>
-</section>
-
-<section class="slide">
+<section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5: O par de variáveis do seu projeto (30 min)</h2>
-  <ol>
-    <li>Na base escolhida, identificar um par de variáveis <strong>quantitativas</strong>
-        compatível com a hipótese do projeto;</li>
-    <li>Calcular <strong>r de Pearson</strong> com significância;</li>
-    <li>Se a hipótese pedir previsão, ajustar a regressão e interpretar b₁ e R²;</li>
-    <li>Declarar por escrito: tratamento de extremos (log, recorte), r, coeficientes,
-        R² e limites.</li>
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>Exemplo resolvido, passo a passo: R$ 1 bilhão de receita</h2>
+  <ol class="passos">
+    <li>O modelo ajustado às <span class="num">449 companhias</span>:
+        <span class="num">a = 1,451</span> e <span class="num">b = −0,736</span>, com x = log10 da
+        receita em R$ milhões;</li>
+    <li>O log-odds para R$ 1 bilhão (x = 3): <span class="num">1,451 + (−0,736) × 3 =
+        −0,756</span>;</li>
+    <li>A chance: <span class="num">e<sup>−0,756</sup> = 0,470</span> — 0,47 companhia com prejuízo
+        para cada uma com lucro;</li>
+    <li>A probabilidade: <span class="num">0,470 ÷ (1 + 0,470) = 0,320</span>, ou
+        <span class="num">32,0%</span>;</li>
+    <li>A razão de chances: <span class="num">e<sup>−0,736</sup> = 0,479</span>. A cada receita
+        10 vezes maior, a chance de prejuízo se multiplica por 0,48: <strong>cai à metade</strong>.</li>
   </ol>
-  <p class="menor">Quem trabalha com variáveis categóricas (qui-quadrado do encontro 11)
-  também apresenta a média/mediana do indicador por grupo, na prática quase toda base
-  permite.</p>
-  <div class="instrucao"><span class="rotulo">Use a função pronta</span>
-  O notebook traz <code>correlacao_regressao(df, x, y)</code>: aplique-a ao seu par de
-  variáveis (ou à base CVM de exemplo) e anote a interpretação completa. Compartilhe o link
-  do notebook ao final da oficina.</div>
+  <p class="menor">Os cinco números saem da célula do notebook, impressos passo a passo, e o
+  <code>conferir</code> verifica o b e a razão de chances.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>Como se lê o exemplo: a curva e as faixas de receita</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 280" role="img" aria-label="Curva logística da probabilidade de prejuízo pela receita, com a taxa observada em quatro faixas">
+    <line x1="90" y1="230" x2="960" y2="230" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="90" y1="20" x2="90" y2="230" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="90" y1="177.5" x2="960" y2="177.5" stroke="#eee" stroke-width="1"/>
+    <line x1="90" y1="125.0" x2="960" y2="125.0" stroke="#eee" stroke-width="1"/>
+    <line x1="90" y1="72.5" x2="960" y2="72.5" stroke="#eee" stroke-width="1"/>
+    <line x1="90" y1="20.0" x2="960" y2="20.0" stroke="#eee" stroke-width="1"/>
+    <text x="80" y="235.0" text-anchor="end" font-size="14" fill="#777">0%</text>
+    <text x="80" y="182.5" text-anchor="end" font-size="14" fill="#777">25%</text>
+    <text x="80" y="130.0" text-anchor="end" font-size="14" fill="#777">50%</text>
+    <text x="80" y="77.5" text-anchor="end" font-size="14" fill="#777">75%</text>
+    <text x="80" y="25.0" text-anchor="end" font-size="14" fill="#777">100%</text>
+    <text x="214.3" y="250" text-anchor="middle" font-size="14" fill="#777">R$ 1 mi</text>
+    <text x="338.6" y="250" text-anchor="middle" font-size="14" fill="#777">10 mi</text>
+    <text x="462.9" y="250" text-anchor="middle" font-size="14" fill="#777">100 mi</text>
+    <text x="587.1" y="250" text-anchor="middle" font-size="14" fill="#777">1 bi</text>
+    <text x="711.4" y="250" text-anchor="middle" font-size="14" fill="#777">10 bi</text>
+    <text x="835.7" y="250" text-anchor="middle" font-size="14" fill="#777">100 bi</text>
+    <polyline fill="none" stroke="#0AB0AB" stroke-width="3.5" points="139.7,47.5 146.3,48.4 152.9,49.4 159.5,50.4 166.0,51.4 172.6,52.5 179.2,53.6 185.8,54.7 192.4,55.8 198.9,57.0 205.5,58.2 212.1,59.4 218.7,60.7 225.3,62.0 231.8,63.3 238.4,64.7 245.0,66.1 251.6,67.5 258.2,68.9 264.7,70.4 271.3,71.9 277.9,73.4 284.5,75.0 291.1,76.6 297.6,78.2 304.2,79.9 310.8,81.6 317.4,83.3 323.9,85.0 330.5,86.8 337.1,88.6 343.7,90.4 350.3,92.2 356.8,94.1 363.4,95.9 370.0,97.8 376.6,99.7 383.2,101.7 389.7,103.6 396.3,105.6 402.9,107.6 409.5,109.6 416.1,111.6 422.6,113.6 429.2,115.6 435.8,117.7 442.4,119.7 449.0,121.7 455.5,123.8 462.1,125.8 468.7,127.9 475.3,129.9 481.9,131.9 488.4,134.0 495.0,136.0 501.6,138.0 508.2,140.0 514.8,142.0 521.3,144.0 527.9,146.0 534.5,147.9 541.1,149.9 547.7,151.8 554.2,153.7 560.8,155.6 567.4,157.4 574.0,159.3 580.6,161.1 587.1,162.9 593.7,164.7 600.3,166.4 606.9,168.1 613.5,169.8 620.0,171.5 626.6,173.1 633.2,174.7 639.8,176.3 646.4,177.8 652.9,179.3 659.5,180.8 666.1,182.3 672.7,183.7 679.3,185.1 685.8,186.4 692.4,187.8 699.0,189.1 705.6,190.3 712.2,191.6 718.7,192.8 725.3,193.9 731.9,195.1 738.5,196.2 745.1,197.3 751.6,198.4 758.2,199.4 764.8,200.4 771.4,201.4 778.0,202.3 784.5,203.2 791.1,204.1 797.7,205.0 804.3,205.9 810.9,206.7 817.4,207.5 824.0,208.2 830.6,209.0 837.2,209.7 843.8,210.4 850.3,211.1 856.9,211.8 863.5,212.4 870.1,213.0 876.7,213.6 883.2,214.2 889.8,214.8 896.4,215.3 903.0,215.8 909.6,216.3 916.1,216.8 922.7,217.3"/>
+    <circle cx="401.7" cy="111.0" r="8" fill="#8D0333"/>
+    <text x="413.7" y="101.0" font-size="14" fill="#8D0333">56,7%</text>
+    <circle cx="533.7" cy="138.7" r="8" fill="#8D0333"/>
+    <text x="545.7" y="128.7" font-size="14" fill="#8D0333">43,5%</text>
+    <circle cx="640.0" cy="184.9" r="8" fill="#8D0333"/>
+    <text x="652.0" y="174.9" font-size="14" fill="#8D0333">21,5%</text>
+    <circle cx="762.3" cy="188.0" r="8" fill="#8D0333"/>
+    <text x="774.3" y="178.0" font-size="14" fill="#8D0333">20,0%</text>
+    <line x1="587.1" y1="230" x2="587.1" y2="162.9" stroke="#a67c2e" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="577.1" y="206.9" text-anchor="end" font-size="15" fill="#a67c2e" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">R$ 1 bi: 32,0%</text>
+    <text x="960" y="36" text-anchor="end" font-size="15" fill="#0AB0AB" font-weight="700">— probabilidade prevista pelo modelo</text>
+    <text x="960" y="58" text-anchor="end" font-size="15" fill="#8D0333" font-weight="700">● taxa observada na faixa de receita</text>
+    <text x="525" y="276" text-anchor="middle" font-size="15" fill="#777">receita (escala log10) · eixo vertical: probabilidade de prejuízo</text>
+    </svg>
+  </div>
+  <table>
+    <tr><th>Receita</th><th>até R$ 100 mi</th><th>R$ 100 mi a 1 bi</th><th>R$ 1 a 10 bi</th><th>acima de R$ 10 bi</th></tr>
+    <tr><td>Companhias</td><td>30</td><td>115</td><td>214</td><td>90</td></tr>
+    <tr><td>Com prejuízo (observado)</td><td>56,7%</td><td>43,5%</td><td>21,5%</td><td>20,0%</td></tr>
+  </table>
+  <p class="menor">A curva é o modelo; os pontos, o dado. A curva desce, e acompanha as faixas: quanto
+  maior a receita, menor a probabilidade de prejuízo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>A leitura em cinco colunas: a logística</h2>
+  <p><code>prejuizo ~ log_receita</code> · n = 449 · 131 com prejuízo</p>
+  <table>
+    <tr><th>variavel</th><th>estimativa</th><th>erro_padrao</th><th>valor_p</th><th>efeito</th></tr>
+    <tr><td>const</td><td>1,4514</td><td>0,4131</td><td>0,0004</td><td>nível de partida (x = 0)</td></tr>
+    <tr><td>log_receita</td><td>−0,7357</td><td>0,1285</td><td>&lt; 0,0001</td><td>chance × 0,479 quando receita × 10</td></tr>
+  </table>
+  <p>A <strong>célula de previsão</strong>, pré-escrita, em quatro cenários:</p>
+  <table>
+    <tr><th>Receita</th><th>R$ 100 mi</th><th>R$ 1 bi</th><th>R$ 10 bi</th><th>R$ 100 bi</th></tr>
+    <tr><td>P(prejuízo) prevista</td><td>49,5%</td><td><strong>32,0%</strong></td><td>18,4%</td><td>9,7%</td></tr>
+  </table>
+  <p class="menor">Repare: de R$ 100 mi para R$ 1 bi a <strong>chance</strong> se multiplica por 0,48,
+  mas a <strong>probabilidade</strong> vai de 49,5% para 32,0% — não cai à metade.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>Como se faz no Colab: a logística e a previsão</h2>
+  <pre class="codigo"><span class="cmt"># o modelo: a mesma função, com tipo="logistica"; a coluna efeito traz a razão de chances</span>
+logit = <span class="fn">ajusta_modelo</span>(cvm, <span class="str">"prejuizo"</span>, [<span class="str">"log_receita"</span>], tipo=<span class="str">"logistica"</span>)
 
+<span class="cmt"># a previsão: célula pré-escrita; o cenário vem do bloco de configuração</span>
+cenario = pd.<span class="fn">DataFrame</span>({<span class="str">"const"</span>: [1.0], <span class="str">"log_receita"</span>: [np.<span class="fn">log10</span>(RECEITA_CENARIO)]})
+p_cenario = logit.<span class="fn">predict</span>(cenario).iloc[0]   <span class="cmt"># já é a probabilidade</span></pre>
+  <p>É a mesma célula da linear, com <code>tipo="logistica"</code>. O <code>predict</code> da
+  logística já devolve a <strong>probabilidade</strong>: o caminho log-odds → chance → probabilidade
+  está dentro dele, e o notebook o imprime passo a passo uma vez, para que se veja.</p>
+  <p class="menor">Na prática, a mesma função ajusta a logística múltipla, com <code>"energia"</code>
+  ao lado da receita, na base do projeto.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>A frase de leitura da regressão logística</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Das 449 companhias abertas com receita em 2024, 29% fecharam o ano no prejuízo, e a chance de
+  prejuízo cai com o porte: a cada receita <strong>10 vezes maior</strong>, a chance se multiplica
+  por <strong>0,48</strong> (regressão logística; b = −0,736; EP = 0,128; p &lt; 0,001). Para uma
+  companhia com receita de <strong>R$ 1 bilhão</strong>, a probabilidade prevista de prejuízo é de
+  <strong>32%</strong>; com R$ 100 milhões, de <strong>49%</strong> (CVM, DFP 2024).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que crescer <strong>protege</strong> do prejuízo: as grandes podem ser as que sobreviveram, e o
+  setor e o endividamento pesam. Nem que uma companhia de R$ 1 bi <strong>vai</strong> ter prejuízo
+  com 32%: é a proporção esperada entre muitas companhias desse porte.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>Erro comum: confundir chance com probabilidade</h2>
+  <div class="colunas">
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “A razão de chances é 0,48. Logo, a cada receita 10 vezes maior, a
+      <strong>probabilidade</strong> de prejuízo cai à metade.”<br><br>
+      De R$ 100 mi para R$ 1 bi, a probabilidade prevista vai de <strong>49,5%</strong> para
+      <strong>32,0%</strong>. Metade de 49,5% seria 24,8%.
+    </div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      Quem se multiplica por 0,48 é a <strong>chance</strong>:<br><br>
+      R$ 100 mi: chance 0,98 (quase uma com prejuízo para cada uma com lucro);<br>
+      R$ 1 bi: chance 0,47 — <strong>0,98 × 0,48</strong>.<br><br>
+      A probabilidade se lê na célula de previsão, cenário a cenário.
+    </div>
+  </div>
+  <p class="menor">Chance e probabilidade só ficam parecidas quando o evento é raro (abaixo de uns
+  10%). Com 29% de prejuízo, a diferença é grande.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
+  <h2>Ficha de revisão: regressão logística</h2>
+  <div class="ficha">
+    <div>
+      <h4>A fórmula</h4>
+      <span class="expr">log[p ÷ (1 − p)] = a + b·x</span>
+      <p>OR = e<sup>b</sup>; p = 1 ÷ (1 + e<sup>−(a + b·x)</sup>).</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">ajusta_modelo(base, "y01",
+    ["x1", "x2"],
+    tipo="logistica")</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>“A cada [x + 1 ou x × 10], a chance de [evento] se multiplica por [OR] (b, EP, p; n). Num
+      cenário de [x], a probabilidade prevista é [p].”</p>
+      <p>OR = 0,479 e p = 32,0% no exemplo.</p>
+    </div>
+    <div>
+      <h4>O erro</h4>
+      <p>Ler a razão de chances como razão de probabilidades; usar a reta linear para y binário.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese do encontro</h2>
-  <ol>
-    <li><strong>Correlação diz alinhamento, não causa:</strong> a direção vem do desenho da
-        pesquisa;</li>
-    <li><strong>A escala importa:</strong> log muda a interpretação para elasticidade e
-        estabiliza a análise de dados empresariais;</li>
-    <li><strong>R² alto não é explicação:</strong> correlacionar é o passo inicial; o erro
-        do modelo é o que a pesquisa segue investigando;</li>
-    <li><strong>Modelo se declara:</strong> defasagem, recorte, transformação e pressupostos
-        avaliados são parte do resultado.</li>
-  </ol>
+  <h2>As três ferramentas, lado a lado</h2>
+  <table>
+    <tr><th></th><th>Correlação</th><th>Regressão linear</th><th>Regressão logística</th></tr>
+    <tr><td><strong>A pergunta</strong></td><td>As duas andam juntas?</td><td>Quanto y muda quando x muda?</td><td>Qual a chance do evento?</td></tr>
+    <tr><td><strong>y</strong></td><td>quantitativa (ou ordinal, no Spearman)</td><td>quantitativa</td><td>sim ou não (1 ou 0)</td></tr>
+    <tr><td><strong>O número</strong></td><td>r ou ρ, de −1 a +1</td><td>b, na unidade de y; R²</td><td>razão de chances e<sup>b</sup></td></tr>
+    <tr><td><strong>No exemplo</strong></td><td>r = 0,742 (em log)</td><td>b = 0,838: lucro × 6,89</td><td>OR = 0,479: chance cai à metade</td></tr>
+    <tr><td><strong>Previsão</strong></td><td>não faz</td><td>R$ 101,0 mi para R$ 1 bi</td><td>32,0% para R$ 1 bi</td></tr>
+    <tr><td><strong>O cuidado</strong></td><td>extremos e relação não linear</td><td>a escala de y; fora da faixa de x</td><td>chance não é probabilidade</td></tr>
+  </table>
+  <p class="menor">E o cuidado comum às três: <strong>nenhuma diz causa</strong>. Causa vem do
+  delineamento.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
-
-<section class="slide">
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
+<section class="slide divisor">
+  <h2>Prática no projeto</h2>
+  <p>O modelo na base do seu projeto, trocável no bloco de configuração</p>
+</section>
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
-  <ul>
-    <li><strong>Revisar:</strong> encontros 9 a 13, descritivas, gráficos, inferência,
-        correlação e regressão fecham a Unidade III;</li>
-    <li><strong>Próximo encontro (14):</strong> comunicação de resultados e a Avaliação 3,
-        relatório final + notebook completo + slide único sintético;</li>
-    <li><strong>Projeto:</strong> escrever já o parágrafo de análise correlacional/regressiva
-        com os resultados da aula, se a hipótese envolver relação quantitativa.</li>
-  </ul>
-  <p><strong>Síntese do dia:</strong> a estatística liga variáveis; o pesquisador declara
-  os critérios dessa ligação, e os limites do que ela pode afirmar.</p>
+  <h2>O bloco de configuração da prática</h2>
+  <pre class="codigo">RECEITA_CENARIO = 1000   <span class="cmt"># a receita do cenário, em R$ milhões (1000 = R$ 1 bilhão)</span>
+ENERGIA_CENARIO = 0      <span class="cmt"># 1 = energia elétrica | 0 = outro setor</span>
+
+ARQUIVO_PROJETO = <span class="str">""</span>                         <span class="cmt"># vazio = base da CVM; ou o CSV do projeto</span>
+Y_PROJETO       = <span class="str">"prejuizo"</span>                 <span class="cmt"># a variável resposta</span>
+X_PROJETO       = [<span class="str">"log_receita"</span>, <span class="str">"energia"</span>] <span class="cmt"># as variáveis explicativas</span>
+MODELO_PROJETO  = <span class="str">"logistica"</span>                <span class="cmt"># "linear" ou "logistica"</span></pre>
+  <p>Na configuração original, a prática é a <strong>logística múltipla</strong>: a chance de prejuízo
+  pela receita <em>e</em> pelo setor.</p>
+  <table>
+    <tr><th>variavel</th><th>estimativa</th><th>erro_padrao</th><th>valor_p</th><th>efeito</th></tr>
+    <tr><td>log_receita</td><td>−0,7423</td><td>0,1300</td><td>&lt; 0,0001</td><td>chance × 0,476 quando receita × 10</td></tr>
+    <tr><td>energia</td><td>−0,8839</td><td>0,4173</td><td>0,0341</td><td>chance × 0,413 com energia +1</td></tr>
+  </table>
+  <p class="menor">Para R$ 1 bi, a probabilidade prevista é de 33,8% fora do setor de energia e de
+  17,4% dentro dele.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Roteiro da prática (75 minutos no Colab)</h2>
+  <ol>
+    <li><strong>Executar o notebook</strong> junto com a Parte 2A e conferir: todos os
+        <code>conferir</code> devem dar <code>[ok]</code>;</li>
+    <li><strong>Mexer no cenário</strong> junto com a Parte 2B: <code>ENERGIA_CENARIO = 1</code> e
+        outra receita; rodar de novo as células de previsão e anotar o que muda;</li>
+    <li><strong>Trocar o modelo:</strong> <code>MODELO_PROJETO = "linear"</code> e
+        <code>Y_PROJETO = "log_lucro"</code> — é a múltipla da Parte 2;</li>
+    <li><strong>Levar ao projeto</strong>, nos 15 minutos finais: upload do CSV; y quantitativo →
+        <code>"linear"</code>; y de 0 e 1 → <code>"logistica"</code>; ler as cinco colunas;</li>
+    <li><strong>Escrever a frase</strong>: o coeficiente como efeito (ou razão de chances), o p, o n
+        e uma previsão num cenário. O que não fechar em aula vira tarefa.</li>
+  </ol>
+  <div class="instrucao"><span class="rotulo">Se a base do projeto não tiver o par de variáveis</span>
+  Use a base da CVM, escolha outro cenário e escreva a frase sobre ela. O que se avalia hoje é a
+  <strong>leitura</strong> do modelo, que vai direto para a AV3.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li><strong>A correlação diz se as variáveis andam juntas</strong>, de −1 a +1, e só enxerga
+        relação linear. Antes do r, o gráfico de dispersão;</li>
+    <li><strong>Com extremos, Spearman ou escala log</strong>: em reais, uma companhia derruba o r de
+        0,69 para 0,57; em log, Pearson e Spearman concordam (0,74 e 0,77);</li>
+    <li><strong>R² = r²</strong> na regressão simples: a parte da variação que a reta acompanha — e um
+        r de 0,4 acompanha só 16%;</li>
+    <li><strong>O coeficiente da regressão linear é um efeito na unidade de y</strong>: em log10,
+        receita 10 vezes maior, lucro 6,9 vezes maior. Na múltipla, cada efeito vale com as outras
+        variáveis fixas;</li>
+    <li><strong>A logística é a regressão de y binário</strong>: o coeficiente multiplica a chance
+        (e<sup>b</sup> = 0,48), e a probabilidade sai da célula de previsão (32% para R$ 1 bi);</li>
+    <li><strong>Nenhuma das três diz causa.</strong> Confusão, causa inversa e seleção continuam lá.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+<section class="slide leitura">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
+  <ul>
+    <li><strong>SILVA e SAMÁ (2021)</strong>, <em>Estatística</em>, volume II: os capítulos de
+        correlação e de regressão linear. Acesso aberto pela Editora da FURG.</li>
+    <li><strong>ANDERSON, SWEENEY e WILLIAMS (2013)</strong>: os capítulos de regressão linear
+        simples e múltipla e a seção de regressão logística, com exemplos de Administração.</li>
+    <li><strong>O notebook do encontro</strong>: reexecute as duas células de previsão com outros
+        cenários, e a prática com o modelo trocado. É o material da seção de resultados da AV3.</li>
+    <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai em
+        duas partes.</li>
+  </ul>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Diga, para o <strong>seu</strong> projeto: a variável resposta é quantitativa (linear) ou de
+        sim e não (logística)? Qual coeficiente vai para a frase?</li>
+    <li>O próximo encontro é a <strong>AV3</strong>: relatório, notebook reprodutível e apresentação.
+        A tabela de cinco colunas e a frase de hoje entram na seção de resultados.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
+</section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 13</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 2</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a></p>
+    <h2>Abertura: do Módulo III ao Módulo IV <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) ler um coeficiente de
+            correlação de Pearson e dizer quando o de Spearman é o adequado; (ii) interpretar o R²
+            como a parte da variação acompanhada, e não como causa; (iii) ler o coeficiente de uma
+            regressão linear simples e múltipla como efeito na unidade de y, inclusive em escala
+            log; (iv) ler o resíduo; (v) ler uma regressão logística pela razão de chances e pela
+            probabilidade prevista, sem confundir as duas; (vi) ajustar um modelo sobre a base do
+            projeto e escrever a frase de leitura.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura e retomada</td><td>15</td></tr>
+      <tr><td>Parte 1: correlação, Spearman, R² e causa (exposição)</td><td>90</td></tr>
+      <tr><td>Intervalo</td><td>30</td></tr>
+      <tr><td>Parte 2A: regressão linear, com o notebook aberto</td><td>40</td></tr>
+      <tr><td>Parte 2B: regressão logística, com o notebook aberto</td><td>35</td></tr>
+      <tr><td>Prática no projeto individual</td><td>15</td></tr>
+      <tr><td>Síntese e tarefa</td><td>15</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
+  </table>
+    <div class="caixa alerta"><span class="rotulo">Por que a prática aparece dentro da Parte 2</span>
+            <p>A seção 6.3 do plano lista, para o encontro 13, estatística 90 e prática 75 como
+            blocos separados; somados aos outros (15 + 90 + 30 + 15), dariam 315 minutos. A conta
+            fecha em 240 porque os <strong>75 minutos de prática acontecem dentro dos 90 da Parte
+            2</strong>: cada bloco de estatística é exposto com a célula correspondente aberta no
+            Colab, e a turma executa junto — o passo a passo, a tabela de cinco colunas e as duas
+            células de previsão. Os últimos 15 minutos do bloco são só do projeto.</p>
+            <p>Se a aula correr atrás, o que encolhe é a Parte 1 (o exercício de frases pode virar
+            tarefa), nunca a logística, que é conteúdo novo da ementa.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A retomada que abre o dia</span>
+            <p>Dois minutos para fechar o Módulo III: o fluxograma do encontro 12 terminava em
+            <em>“os grupos diferem?”</em>. A pergunta muda: <em>“as variáveis andam juntas — e
+            quanto?”</em>. Anunciar que a base é uma só, a da CVM, e que o dia tem um fio: a
+            regressão linear vai deixar 131 companhias de fora, e a logística vai trazê-las de
+            volta.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 3 a 12</b> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a></p>
+    <h2>Parte 1: correlação, Spearman, R² e o que nenhum deles diz sobre causa <span class="min">(90 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta e a base (o metadado da escala)</td><td>8</td></tr>
+      <tr><td>O coeficiente de Pearson e os quatro padrões</td><td>15</td></tr>
+      <tr><td>Receita e lucro em reais: os gigantes</td><td>12</td></tr>
+      <tr><td>Spearman: a correlação dos postos</td><td>10</td></tr>
+      <tr><td>A escala logarítmica</td><td>12</td></tr>
+      <tr><td>R² e o que nenhum dos três diz sobre causa</td><td>15</td></tr>
+      <tr><td>Exercício em duplas e correção</td><td>18</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Começar pelo metadado, e não pela fórmula</span>
+            <p>A tela da pergunta tem um alerta que vale cinco minutos: sete companhias declaram a
+            DFP em reais, e não em milhares. Mostrar que, sem a conversão, a Vivara (R$ 2,6 bilhões
+            de receita) apareceria com R$ 2,6 <em>trilhões</em> e seria “a maior companhia do
+            país”. É a lição do encontro 4 (o metadado é parte do dado) aplicada a um número que
+            mudaria a regressão inteira.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pedir a previsão antes do número</span>
+            <p>Antes de mostrar a tabela dos gigantes, perguntar: <em>“se eu tirar uma única
+            companhia das 449, o r muda muito?”</em>. A intuição diz que não. Tirando a Petrobras,
+            o r cai de <strong>0,685</strong> para <strong>0,573</strong>; tirando as cinco maiores,
+            para <strong>0,483</strong>. O Spearman, com as 449, dá <strong>0,512</strong>. É o mesmo
+            fenômeno da média da margem no encontro 12, e vale dizer isso em voz alta: o Pearson é
+            uma média de produtos, e médias se deixam arrastar.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A escala log, sem medo</span>
+            <p>Apresentar o log10 como “quantos zeros”: 1 = R$ 10 mi, 3 = R$ 1 bi, 5 = R$ 100 bi.
+            Nenhuma conta de logaritmo à mão. O ponto a fixar é o custo: o log só existe para
+            positivos, e o lucro em log descarta as <strong>131 companhias com prejuízo</strong>.
+            Anotar o 131 no quadro: ele volta na Parte 2B.</p>
+            <p>Em log, Pearson e Spearman concordam (<strong>0,742</strong> e
+            <strong>0,768</strong>): quando os dois concordam, a relação é linear e não é efeito de
+            extremos — a mesma regra de leitura da ANOVA com o Kruskal-Wallis.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do exercício de frases</span>
+            <ol>
+              <li><strong>Errada.</strong> Verbo de causa (“aumentar... aumenta”) e um r inflado
+              pelos gigantes. Reescrita: “em reais, a correlação é de 0,69, mas cai para 0,57 sem a
+              Petrobras; pelos postos (Spearman), é de 0,51 — associação moderada”;</li>
+              <li><strong>Pode ir</strong>, porque declara o recorte (318 com lucro) e usa
+              “tendem”. Ressalva desejável: só companhias abertas;</li>
+              <li><strong>Errada.</strong> R² não diz de onde o lucro “vem”, e se refere ao
+              <em>log</em> do lucro. Reescrita: “a variação do log da receita acompanha 55% da
+              variação do log do lucro entre as companhias com lucro”;</li>
+              <li><strong>Pode ir.</strong> É a leitura correta dos dois coeficientes.</li>
+            </ol>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>r = 0 quer dizer “sem relação”.</strong> Quer dizer “sem relação
+              linear” — o painel em U da tela dos quatro padrões é o contraexemplo;</li>
+              <li><strong>r alto quer dizer causa.</strong> As três razões (confusão, causa inversa,
+              seleção) com exemplos da própria base;</li>
+              <li><strong>R² como “nota” do modelo.</strong> R² baixo não invalida um coeficiente, e
+              R² alto não prova nada sobre causa. É a parte da variação acompanhada, e só.</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 13 a 23</b> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a></p>
+    <h2>Parte 2A: a regressão linear, simples e múltipla <span class="min">(40 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Antes do bloco: intervalo de 30 minutos</span>
+            <p>O intervalo longo do dia fica entre a Parte 1 e a Parte 2. Pedir que, na volta, todos
+            estejam com o notebook aberto e a Célula A executada: a Parte 2 inteira corre com o
+            Colab na tela.</p>
+            </div>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta e o conceito (simples e múltipla)</td><td>6</td></tr>
+      <tr><td>A fórmula e o exemplo passo a passo, executando a célula</td><td>9</td></tr>
+      <tr><td>A reta, o resíduo e as cinco colunas</td><td>11</td></tr>
+      <tr><td>O Colab: o modelo e a previsão, com o cenário trocado pela turma</td><td>7</td></tr>
+      <tr><td>A frase, o erro comum e a ficha</td><td>7</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir: <strong>“o coeficiente é um efeito na unidade de y”</strong>. Toda a
+            leitura da regressão depende de saber em que unidade y está. No exemplo, y está em
+            log10, e por isso b = 0,838 se lê como “receita 10 vezes maior, lucro 6,89 vezes maior”
+            — ou, como elasticidade, “1% a mais de receita, 0,84% a mais de lucro”.</p>
+            <p>A regra operacional do plano vale aqui pela primeira vez: <strong>nada de
+            <code>summary()</code></strong>. A célula entrega a tabela de cinco colunas, e a coluna
+            <code>efeito</code> já traz a tradução. Se algum estudante abrir o
+            <code>summary()</code> por conta própria, a resposta é: “tudo o que se relata está nas
+            cinco colunas”.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A previsão: mudar o cenário com a turma</span>
+            <p>Com o notebook aberto, pedir a três estudantes que digam uma receita (R$ 100 mi,
+            R$ 1 bi, R$ 50 bi), trocar <code>RECEITA_CENARIO</code> e rodar a célula de previsão.
+            Perguntar: <em>“a previsão para R$ 50 bilhões é tão confiável quanto a de R$ 1
+            bilhão?”</em>. Há poucas companhias desse porte: o erro da previsão cresce nas pontas, e
+            fora da faixa observada (acima de R$ 490 bi) não se prevê.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A múltipla: o efeito com a outra fixa</span>
+            <p>O coeficiente de <code>energia</code> (0,402) compara companhias <strong>com a mesma
+            receita</strong>: as de energia elétrica lucram 10<sup>0,402</sup> = 2,52 vezes mais. E o
+            coeficiente da receita mal se mexe (0,838 → 0,832): o efeito do porte não era efeito do
+            setor disfarçado. É a primeira vez que a turma vê o “com as outras fixas” funcionando.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Ler b = 0,838 como R$ 0,84 de lucro por real.</strong> É o erro da tela;</li>
+              <li><strong>Esquecer o <code>10 **</code></strong> e relatar “lucro previsto de 2,004”.
+              A previsão está em log; a frase precisa de reais;</li>
+              <li><strong>Esquecer as 131 companhias com prejuízo.</strong> A frase precisa dizer
+              “entre as 318 com lucro”;</li>
+              <li><strong>Ler o intercepto.</strong> a = −0,510 é o log do lucro com receita de R$ 1
+              milhão (x = 0): não tem leitura de gestão, e a tabela diz só “nível de partida”.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Medida</th><th>Valor</th></tr>
+              <tr><td>Companhias com lucro</td><td>318 (de 449)</td></tr>
+              <tr><td>r, s<sub>x</sub>, s<sub>y</sub></td><td>0,742 · 0,788 · 0,890</td></tr>
+              <tr><td>Médias de x e de y (log10)</td><td>3,453 e 2,384</td></tr>
+              <tr><td>Simples: b (EP) e a (EP)</td><td>0,838 (0,043) e −0,510 (0,151)</td></tr>
+              <tr><td>R² da simples</td><td>0,550</td></tr>
+              <tr><td>10<sup>b</sup></td><td>6,89</td></tr>
+              <tr><td>Previsão para R$ 1 bi</td><td>log 2,004 → R$ 101,0 mi</td></tr>
+              <tr><td>Resíduo da Raízen</td><td>−1,18 (R$ 614 mi contra R$ 9.283 mi previstos; 15,1 vezes menor)</td></tr>
+              <tr><td>Múltipla: b receita, b energia (EP)</td><td>0,832 e 0,402 (0,097), p &lt; 0,001</td></tr>
+              <tr><td>R² da múltipla; 10<sup>0,402</sup></td><td>0,574; 2,52</td></tr>
+              <tr><td>Previsão múltipla para R$ 1 bi</td><td>R$ 89,9 mi (outro setor) · R$ 226,6 mi (energia)</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 24 a 34</b> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
+    <h2>Parte 2B: a regressão logística <span class="min">(35 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta: as 131 que ficaram de fora</td><td>4</td></tr>
+      <tr><td>Chance, log-odds e razão de chances</td><td>8</td></tr>
+      <tr><td>As fórmulas e o exemplo passo a passo, executando a célula</td><td>8</td></tr>
+      <tr><td>A curva, as faixas e as cinco colunas</td><td>7</td></tr>
+      <tr><td>O Colab, a frase e o erro comum</td><td>5</td></tr>
+      <tr><td>Ficha e as três ferramentas lado a lado</td><td>3</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Conteúdo novo da ementa: ir devagar na chance</span>
+            <p>A regressão logística entra na disciplina por decisão do professor (decisão 5 do
+            plano), e o ponto em que a turma tropeça é a <strong>chance</strong>. Antes de qualquer
+            fórmula, a conta com os números da base: 131 com prejuízo e 318 com lucro. Probabilidade:
+            131 em 449, 29,2%. Chance: 131 para 318, <strong>0,41</strong> — “0,41 companhia com
+            prejuízo para cada uma com lucro”. Usar a linguagem das apostas (“a chance é de 2 para
+            1”) ajuda.</p>
+            <p>Depois, o log-odds como “a escala em que a curva vira reta”, e a razão de chances como
+            o “b da logística, já traduzido”. A ordem do passo a passo (log-odds → chance →
+            probabilidade) é a ordem em que o <code>predict</code> faz a conta.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para a turma</span>
+            <p>Com a tabela dos quatro cenários na tela: <em>“de R$ 100 milhões para R$ 1 bilhão, a
+            razão de chances diz que a chance cai à metade. A probabilidade caiu à metade?”</em>. A
+            resposta (49,5% → 32,0%, e não 24,8%) é o erro comum do bloco, descoberto pela turma
+            antes de ser mostrado. As chances, que o notebook imprime ao lado, fecham a conta: 0,98 ×
+            0,48 = 0,47.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Razão de chances lida como razão de probabilidades.</strong> É o erro da
+              tela;</li>
+              <li><strong>Ler o b (−0,736) direto.</strong> Na logística, b está em log-odds e não tem
+              leitura de gestão: lê-se e<sup>b</sup> (a coluna <code>efeito</code>) e a probabilidade
+              prevista;</li>
+              <li><strong>Ler a probabilidade como destino individual.</strong> 32% não diz que uma
+              companhia de R$ 1 bi “tem 32% de chance de quebrar”: diz que, entre muitas desse porte,
+              cerca de 32% fecharam no prejuízo;</li>
+              <li><strong>Esquecer que OR abaixo de 1 é proteção e acima de 1 é risco.</strong>
+              Energia: 0,413, a chance de prejuízo cai a 41% da dos outros setores.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Medida</th><th>Valor</th></tr>
+              <tr><td>Companhias / com prejuízo</td><td>449 / 131 (29,2%); chance geral 0,41</td></tr>
+              <tr><td>a (EP) e b (EP)</td><td>1,451 (0,413) e −0,736 (0,128), p &lt; 0,001</td></tr>
+              <tr><td>Razão de chances (receita × 10)</td><td>0,479</td></tr>
+              <tr><td>R$ 1 bi: log-odds, chance, probabilidade</td><td>−0,756 · 0,470 · 32,0%</td></tr>
+              <tr><td>Probabilidade em R$ 100 mi · 10 bi · 100 bi</td><td>49,5% · 18,4% · 9,7%</td></tr>
+              <tr><td>Chance em R$ 100 mi</td><td>0,98</td></tr>
+              <tr><td>Taxa observada por faixa</td><td>56,7% (17 de 30) · 43,5% · 21,5% · 20,0%</td></tr>
+              <tr><td>Logística múltipla: OR receita, OR energia</td><td>0,476 e 0,413 (p = 0,034)</td></tr>
+              <tr><td>Múltipla, R$ 1 bi: outro setor · energia</td><td>33,8% · 17,4%</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 35 a 37</b> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a></p>
+    <h2>Prática no projeto individual <span class="min">(15 min)</span></h2>
+    <h3>Onde estão os 75 minutos de prática</h3>
+  <table class="minutagem">
+    <tr><th>Prática</th><th>Minutos</th></tr>
+      <tr><td>Executar o notebook e conferir (durante a Parte 2A)</td><td>25</td></tr>
+      <tr><td>Mexer no cenário e trocar o modelo (durante a Parte 2B)</td><td>20</td></tr>
+      <tr><td>O exercício de frases da Parte 1 (com a base na tela)</td><td>15</td></tr>
+      <tr><td>Levar ao projeto e escrever a frase (este bloco)</td><td>15</td></tr>
+      <tr><td><strong>Total de prática no Colab</strong></td><td><strong>75</strong></td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Como conduzir a prática</span>
+            <p>O estudante não escreve código: muda valores no bloco de configuração e escreve a
+            frase. A decisão que ele precisa tomar sozinho é uma só, e é de pesquisa: <strong>y é
+            quantitativo ou de sim e não?</strong> Quantitativo → <code>"linear"</code>; 0 e 1 →
+            <code>"logistica"</code>.</p>
+            <p>Os passos 1 a 3 do roteiro da tela já aconteceram durante a Parte 2; estes 15
+            minutos são do passo 4 e do 5.</p>
+            <ol>
+              <li>Na configuração original (logística múltipla), os <code>[ok]</code> da prática: OR
+              da receita 0,476, OR de energia 0,413, e P = 33,8% no cenário;</li>
+              <li>Com <code>ENERGIA_CENARIO = 1</code>, a probabilidade cai para 17,4% — é a mesma
+              receita, outro setor;</li>
+              <li>Com <code>MODELO_PROJETO = "linear"</code> e <code>Y_PROJETO = "log_lucro"</code>,
+              aparece a múltipla da Parte 2A (b de energia 0,402). O <code>conferir</code> da prática
+              dá <code>[X]</code>, e é o esperado: o número mudou porque o modelo mudou;</li>
+              <li>Agora o projeto: upload, y, x e o tipo do modelo. Circular priorizando quem ainda
+              não tem o par de variáveis. A frase que não fechar em aula vira tarefa.</li>
+            </ol>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para quem termina antes</span>
+            <p><em>“A regressão linear usou 318 companhias e a logística, 449. Se você só pudesse
+            relatar um dos dois modelos sobre ‘porte e resultado’, qual seria, e por quê?”</em> A
+            resposta esperada: a logística, porque não descarta quem teve prejuízo — ou os dois, com
+            o recorte de cada um declarado.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">O que não fazer na circulação</span>
+            <ul>
+              <li>Não corrigir código: se a base do projeto falhou, conferir o nome do arquivo e das
+              colunas no bloco de configuração; se não resolver, a frase sai sobre a base da CVM;</li>
+              <li>Não aceitar frase com verbo de causa, sem o n, sem o recorte, ou com a razão de
+              chances lida como probabilidade. É o critério da AV3.</li>
+            </ul>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-6">
+    <p class="telas-da-secao"><b>telas 38 a 39</b> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os aprendizados do dia</span>
+            <ol>
+              <li><strong>A correlação diz se as variáveis andam juntas</strong>, e se deixa arrastar
+              por extremos: Spearman ou escala log;</li>
+              <li><strong>R² é a parte da variação acompanhada</strong>, não a parte “causada”;</li>
+              <li><strong>O coeficiente linear é um efeito na unidade de y</strong> — e em log, é
+              “vezes”;</li>
+              <li><strong>Na logística, e<sup>b</sup> multiplica a chance</strong>; a probabilidade
+              sai da célula de previsão;</li>
+              <li><strong>Nenhuma das três diz causa.</strong></li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Feche no notebook a frase do modelo ajustado à base do seu projeto, com a tabela de
+              cinco colunas. As duas entram na seção de resultados do relatório da AV3;</li>
+              <li>Releia as frases de leitura dos encontros 10 a 13 (intervalo, teste escolhido,
+              modelo): o relatório usa as três;</li>
+              <li>Prepare a apresentação de três a cinco minutos: problema, método, um resultado com
+              a frase, um limite declarado.</li>
+            </ol>
+            <p>O próximo encontro é a <strong>AV3</strong>, o dia inteiro: relatório, notebook
+            reprodutível e apresentação.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>
