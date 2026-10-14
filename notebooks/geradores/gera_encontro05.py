@@ -9,9 +9,12 @@ A Parte A e conceitual, respondida em celulas de texto, com as telas fechadas. A
 e pratica: a base da CVM, que tem extremos reais e por isso testa a escolha da medida.
 
 Numeros da base (verificados em 28/09/2026):
-  n=451 companhias | receita: media 21.154.317 | mediana 2.171.344
-  desvio 134.023.175 | CV 633,55% | Q1 614.907 | Q3 8.051.741 | IQR 7.436.834
-  assimetria 16,14 | 59 companhias acima de Q3 + 1,5 IQR (13,1%)
+  451 companhias no arquivo; 7 declaram em reais (ESCALA_MOEDA = UNIDADE) e sao
+  convertidas para milhares na celula B0; 2 com receita negativa saem da base.
+  n=449 companhias | receita: media 12.348.764 | mediana 2.109.725
+  desvio 40.915.645 | CV 331,33% | Q1 581.866 | Q3 7.750.616 | IQR 7.168.750
+  assimetria 7,56 | 55 companhias acima de Q3 + 1,5 IQR (12,2%)
+  Os mesmos numeros, em R$ milhoes, sao os da prova final (gera_encontro15.py).
 """
 import nb_helper as nb
 
@@ -61,7 +64,7 @@ PARTE_A = [
      "disso é uma contagem, e por isso permite tudo: ordenar, somar, média, mediana e razão "
      "(“tem o dobro de funcionários”)."),
 
-    ("**A3.** Você tem a **receita anual** de 451 companhias abertas e precisa escolher "
+    ("**A3.** Você tem a **receita anual** de 449 companhias abertas e precisa escolher "
      "**uma** medida para representar o conjunto. Qual você escolhe, e por quê?",
      "A **mediana**. Receita de companhias abertas tem distribuição **fortemente assimétrica à "
      "direita** (poucas empresas gigantes). A média é puxada por esses extremos e deixa de "
@@ -97,7 +100,7 @@ PARTE_A = [
 PARTE_B = """## Parte B — prática (120 minutos, com consulta)
 
 A base é o **cadastro de companhias abertas com demonstrações financeiras de 2024**
-(CVM) — 451 companhias, com receita, lucro líquido e setor.
+(CVM) — 449 companhias, com receita, lucro líquido e setor, em milhares de reais.
 
 A célula abaixo carrega a base. **Execute-a.**
 
@@ -107,15 +110,15 @@ A célula abaixo carrega a base. **Execute-a.**
 GABARITO_B = """## Gabarito da Parte B (este texto não vai para o aluno)
 
 **B1.** O setor mais frequente é **Construção Civil, Mat. Constr. e Decoração**, com 42
-companhias (9,3% do total). E a leitura precisa dizer o recorte: “das 451 companhias
-abertas com demonstrações de 2024, 42 são do setor X, ou 9,3%”.
+companhias (9,4% do total). E a leitura precisa dizer o recorte: “das 449 companhias
+abertas com demonstrações de 2024, 42 são do setor X, ou 9,4%”.
 
 **B2.** A medida de posição adequada é a **mediana**. A média da receita é
-**21.154.317** e a mediana é **2.171.344** — a média é **9,7 vezes** a mediana. Isso
-mostra uma distribuição com assimetria extrema (assimetria calculada: **16,14**), e a
+**12.348.764** e a mediana é **2.109.725** — a média é **5,9 vezes** a mediana. Isso
+mostra uma distribuição com assimetria extrema (assimetria calculada: **7,56**), e a
 média deixa de representar o conjunto.
 
-**B3.** Desvio padrão **134.023.175**; CV **633,55%**; IQR **7.436.834**. O CV acima de
+**B3.** Desvio padrão **40.915.645**; CV **331,33%**; IQR **7.168.750**. O CV acima de
 100% é o sinal numérico da assimetria: o desvio é maior que a própria média.
 
 **B4.** O histograma mostra uma **cauda à direita** muito longa: quase todas as
@@ -123,7 +126,7 @@ companhias se concentram nos valores baixos, e algumas poucas alcançam valores
 centenas de vezes maiores. A forma justifica a escolha da mediana em B2.
 
 **B5.** A resposta certa diz: **mediana**, porque a distribuição é assimétrica; e o
-**porquê** citando os números (média 9,7× a mediana, CV 633%)."""
+**porquê** citando os números (média 5,9× a mediana, CV 331%)."""
 
 # os gabaritos da Parte A, um a um
 GAB = [g for _, g in PARTE_A]
@@ -148,7 +151,15 @@ except Exception:
     # dados/cvm_dre_2024.csv para o Colab e execute esta célula de novo.
     base = pd.read_csv("cvm_dre_2024.csv")
 
+# Sete companhias declaram os valores em REAIS, e não em milhares como as outras
+# (coluna ESCALA_MOEDA = "UNIDADE"). Sem esta conversão, uma delas apareceria com
+# receita de trilhões. E duas declaram receita negativa: saem da base.
+em_reais = base["ESCALA_MOEDA"] == "UNIDADE"
+base.loc[em_reais, ["receita", "lucro_liquido"]] = base.loc[em_reais, ["receita", "lucro_liquido"]] / 1000
+base = base[base["receita"] > 0].reset_index(drop=True)
+
 print(f"Base carregada: {len(base)} companhias abertas, {base['setor'].nunique()} setores")
+print(f"  ({em_reais.sum()} convertidas de reais para milhares de reais)")
 print("colunas:", list(base.columns))
 base.head(3)'''},
 
@@ -164,7 +175,7 @@ tabela_setor["pct"] = (tabela_setor["companhias"] / len(base) * 100).round(1)
 n_total = len(base)
 tabela_setor.head(5)'''},
     {"tipo": "nota", "texto": "Gabarito B1: o setor mais frequente tem 42 companhias, "
-                              "9,3% de 451. O aluno deve escrever a frase com o recorte "
+                              "9,4% de 449. O aluno deve escrever a frase com o recorte "
                               "e o total declarado."},
     {"tipo": "md", "texto": "_(escreva aqui a frase de leitura do setor mais frequente)_\n\n---\n"},
 
@@ -179,8 +190,8 @@ print(f"n = {len(receita)}")
 print(f"média   = {receita.mean():,.0f} milhares de reais".replace(",", "."))
 print(f"mediana = {receita.median():,.0f} milhares de reais".replace(",", "."))
 print(f"razão média/mediana = {receita.mean() / receita.median():.1f} vezes")'''},
-    {"tipo": "nota", "texto": "Gabarito B2: mediana. Média 21.154.317 e mediana 2.171.344 — "
-                              "a média é 9,7 vezes a mediana, sinal de assimetria extrema."},
+    {"tipo": "nota", "texto": "Gabarito B2: mediana. Média 12.348.764 e mediana 2.109.725 — "
+                              "a média é 5,9 vezes a mediana, sinal de assimetria extrema."},
     {"tipo": "md", "texto": """_(qual medida você escolhe, e por quê? cite os números)_
 
 ---
@@ -204,7 +215,7 @@ print("O CV acima de 100% é o sinal numérico da assimetria:")
 print("o desvio é maior que a própria média.")
 print()
 print("Conferência (o valor esperado está no gabarito do professor):")'''},
-    {"tipo": "nota", "texto": "Gabarito B3: desvio 134.023.175; CV 633,55%; IQR 7.436.834. "
+    {"tipo": "nota", "texto": "Gabarito B3: desvio 40.915.645; CV 331,33%; IQR 7.168.750. "
                               "O CV acima de 100% indica que o desvio supera a média."},
     {"tipo": "md", "texto": "_(escreva aqui a frase sobre a dispersão)_\n\n---\n"},
 
@@ -230,24 +241,24 @@ plt.show()
 print(f"assimetria calculada: {receita.skew():.2f}")'''},
     {"tipo": "nota", "texto": "Gabarito B4: cauda à direita longa; quase todas as companhias "
                               "nos valores baixos, poucas centenas de vezes maiores. "
-                              "Assimetria 16,14."},
+                              "Assimetria 7,56."},
     {"tipo": "md", "texto": "_(descreva a forma em uma frase)_\n\n---\n"},
 
     {"tipo": "md", "texto": """### B5. A conclusão
 
-Você tem uma companhia com receita de **R$ 2 milhões** (2.000.000 em milhares). Ela
+Você tem uma companhia com receita de **R$ 2 bilhões** (2.000.000 em milhares de reais). Ela
 está **acima** ou **abaixo** do típico? Que medida responde a essa pergunta, e por quê?"""},
 
-    {"tipo": "code", "texto": '''# CÉLULA B5: onde R$ 2 milhões cai na distribuição.
+    {"tipo": "code", "texto": '''# CÉLULA B5: onde R$ 2 bilhões cai na distribuição.
 alvo = 2_000_000
 abaixo = (receita < alvo).mean() * 100
-print(f"receita de R$ 2 milhões: {abaixo:.1f}% das companhias faturam menos que isso")
+print(f"receita de R$ 2 bilhões: {abaixo:.1f}% das companhias faturam menos que isso")
 print(f"mediana = {receita.median():,.0f}".replace(",", "."))
 print(f"média   = {receita.mean():,.0f}".replace(",", "."))
 print()
 print("A medida que responde é a MEDIANA: ela divide o conjunto ao meio.")'''},
-    {"tipo": "nota", "texto": "Gabarito B5: a mediana (2.171.344). R$ 2 milhões está um pouco "
-                              "abaixo dela, e cerca de metade das companhias fatura menos."},
+    {"tipo": "nota", "texto": "Gabarito B5: a mediana (2.109.725). R$ 2 bilhões está um pouco "
+                              "abaixo dela: 48,6% das companhias faturam menos."},
     {"tipo": "md", "texto": "_(responda aqui: acima ou abaixo, e com que medida)_\n\n---\n"},
 
     {"tipo": "md", "texto": """## Registro de uso de IA
