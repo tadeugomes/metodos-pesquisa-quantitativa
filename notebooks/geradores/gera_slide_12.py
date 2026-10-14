@@ -157,7 +157,7 @@ SECOES = [
             <p>Antes da fórmula, pedir a cinco estudantes que digam um número qualquer, escrevê-los
             no quadro e trocar cada um pelo posto. Depois trocar o maior por um número absurdo (um
             milhão) e perguntar: <em>“o que mudou na média? E no posto?”</em>. A média dispara; o
-            posto continua 5. É a ideia inteira do bloco em um minuto, e sem conta à mão: quem ordena
+            posto continua 5. É a ideia inteira do bloco em um minuto e sem conta à mão: quem ordena
             é a turma, quem calcula é o notebook.</p>
             """, "pergunta-aula"),
             ("Erros que vão aparecer na turma", """
@@ -167,7 +167,7 @@ SECOES = [
               <li><strong>Usar Mann-Whitney em dado pareado.</strong> O mesmo posto em janeiro e em
               dezembro não são dois grupos independentes: é Wilcoxon (ou t pareado);</li>
               <li><strong>Ler o p da ANOVA (0,20) como “os setores são iguais”.</strong> É o erro da
-              tela, e o mais grave: não rejeitar H0 não prova igualdade;</li>
+              tela e o mais grave: não rejeitar H0 não prova igualdade;</li>
               <li><strong>Confundir o fluxograma com uma ordem de tentativa.</strong> Não se “tenta”
               a ANOVA e depois o Kruskal-Wallis: responde-se às três perguntas e roda-se o indicado
               (o outro vem ao lado, como verificação de robustez).</li>

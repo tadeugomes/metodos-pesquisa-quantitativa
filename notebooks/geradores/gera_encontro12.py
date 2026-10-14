@@ -3,7 +3,7 @@
 
 E12 fecha o Modulo III. A Parte 1 compara MAIS DE DOIS grupos (ANOVA de um fator) e
 mostra quando o teste parametrico nao cabe. A Parte 2 ensina os tres testes de postos
-(Mann-Whitney, Wilcoxon e Kruskal-Wallis) ao lado dos equivalentes parametricos, e
+(Mann-Whitney, Wilcoxon e Kruskal-Wallis) ao lado dos equivalentes parametricos e
 fecha com o fluxograma completo de escolha do teste. A pratica e a celula de escolha
 do teste, com a base trocavel no bloco de configuracao.
 
@@ -95,7 +95,7 @@ O Módulo III termina hoje com duas perguntas que os encontros 10 e 11 deixaram 
 | **Kruskal-Wallis** | Compara três ou mais grupos pelos postos: a "ANOVA dos postos" |
 | **Não paramétrico** | Teste que não usa a média nem supõe distribuição normal |
 
-> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+> **A regra do semestre:** a IA explica, o código calcula e você confere e escreve."""
 
 CONFIG = """## Bloco de configuração
 
@@ -298,7 +298,7 @@ print(f"ANP: {len(cadastro)} postos, em {cadastro['municipio'].nunique()} munic�
 print(f"CVM: {len(cvm)} companhias com receita positiva, {cvm['setor'].nunique()} setores")'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Só se o professor mandar, e depois de fazer upload dos arquivos
+# NÃO EXECUTE AGORA. Só se o professor mandar e depois de fazer upload dos arquivos
 # dados/anp_precos_revenda_ma_2025.csv e dados/cvm_dre_2024.csv.
 #
 # Esta célula produz exatamente as mesmas bases que a Célula A.
@@ -345,7 +345,7 @@ manda você executar a B."""},
 São **sete** municípios com pelo menos 10 postos no cadastro. O teste t do encontro 11
 compara **dois** grupos. Com sete, seriam **21 testes t**, um para cada par — e é aí que
 mora o problema."""},
-    {"tipo": "code", "texto": '''# Os sete municípios com pelo menos 10 postos, e o resumo de cada um.
+    {"tipo": "code", "texto": '''# Os sete municípios com pelo menos 10 postos e o resumo de cada um.
 contagem = cadastro["municipio"].value_counts()
 municipios = contagem[contagem >= 10].index
 sete = cadastro[cadastro["municipio"].isin(municipios)]
@@ -360,7 +360,7 @@ resumo'''},
 
 Cada teste t tem 5% de chance de acusar uma diferença que não existe (o erro tipo I do
 encontro 11). Com 21 testes, a chance de **pelo menos um** alarme falso cresce muito. A
-célula abaixo simula sete grupos **iguais** — sem diferença nenhuma — mil vezes, e conta
+célula abaixo simula sete grupos **iguais** — sem diferença nenhuma — mil vezes e conta
 em quantas das mil alguma comparação deu "significativa"."""},
     {"tipo": "code", "texto": '''# Sete grupos IGUAIS, 21 testes t, mil repetições (semente fixa: o resultado não muda).
 pares = 7 * 6 // 2
@@ -433,7 +433,7 @@ Três sinais de que não representa:
 | **n pequeno** sem normalidade | Menos de 15 casos por grupo | O teorema central do limite ainda não socorre |
 
 **O caso da margem líquida.** Os três setores com pelo menos 30 companhias na CVM."""},
-    {"tipo": "code", "texto": '''# Os três setores com pelo menos 30 companhias, e a margem de cada um.
+    {"tipo": "code", "texto": '''# Os três setores com pelo menos 30 companhias e a margem de cada um.
 por_setor = cvm["setor"].value_counts()
 SETORES = por_setor[por_setor >= 30].index
 tres = cvm[cvm["setor"].isin(SETORES)].copy()
@@ -625,7 +625,7 @@ conferir("valor-p do teste indicado", escolha["valor_p"], 0.0024,
     # ------------------------------------------------------------ IA
     {"tipo": "md", "texto": """## Seção 5. Usando o assistente
 
-A regra: **a IA explica, o código calcula, e você confere e escreve.**
+A regra: **a IA explica, o código calcula e você confere e escreve.**
 
 **Modo 1 — Pergunta.** Copie o cartão de contexto e cole no assistente antes de perguntar,
 por exemplo, *"por que o Kruskal-Wallis e a ANOVA discordam nesta base?"*. A resposta tem de

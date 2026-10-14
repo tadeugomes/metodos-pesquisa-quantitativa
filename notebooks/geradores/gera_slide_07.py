@@ -31,7 +31,7 @@ SECOES = [
             técnicas probabilísticas e dizer quando cada uma cabe; (ii) escolher a técnica pelo
             formato do cadastro, e não por preferência; (iii) explicar por que uma estimativa é
             uma variável aleatória; (iv) calcular e interpretar o erro padrão; (v) explicar o
-            que o teorema central do limite garante, e o que ele não garante.</p>
+            que o teorema central do limite garante e o que ele não garante.</p>
             """, "bruto"),
             ("O fio que liga as duas partes do dia", """
             <p>Anunciar na abertura, para que a turma ouça duas vezes: a Parte 1 diz
@@ -42,7 +42,7 @@ SECOES = [
             ("Minutagem das técnicas", sb.tabela_minutagem([
                 ("Aleatória simples e sistemática", "15"),
                 ("Estratificada e por conglomerados", "15"),
-                ("As quatro lado a lado, e o exercício de escolha", "10"),
+                ("As quatro lado a lado e o exercício de escolha", "10"),
             ]), "bruto"),
             ("Conduzir a técnica pelo formato do cadastro", """
             <p>O critério de escolha não é a preferência do pesquisador, e sim o
@@ -84,7 +84,7 @@ SECOES = [
             <p>Repetir: <strong>“a estimativa é uma variável aleatória”</strong>. Ela tem
             distribuição, centro e largura — e é a <em>largura dessa distribuição</em> que vira a
             margem de erro de uma pesquisa, e não a largura dos dados originais.</p>
-            <p>É o conceito mais difícil do Módulo II, e o mais importante: sem ele, o intervalo
+            <p>É o conceito mais difícil do Módulo II e o mais importante: sem ele, o intervalo
             de confiança do encontro seguinte é fórmula decorada.</p>
             """, "falar"),
             ("O momento em que a simulação ensina mais que a fórmula", """
@@ -111,7 +111,7 @@ SECOES = [
             """, "falar"),
             ("Erros que vão aparecer na turma", """
             <ol>
-              <li><strong>Confundir desvio padrão com erro padrão.</strong> É o erro do slide, e
+              <li><strong>Confundir desvio padrão com erro padrão.</strong> É o erro do slide e
               o mais comum. O desvio descreve <em>os casos</em>; o erro padrão, <em>a
               estimativa</em>;</li>
               <li><strong>Achar que o erro padrão é um erro cometido.</strong> Ele é a variação
@@ -166,7 +166,7 @@ SECOES = [
               acontece com a largura das estimativas. <strong>Quadruplicou o n: o erro caiu pela
               metade?</strong> Anote o que você observou;</li>
               <li>Leia o capítulo de BABBIE (1999) sobre <strong>erro amostral e tamanho da
-              amostra</strong>, e o de GIL (2019) sobre construção de questionários;</li>
+              amostra</strong> e o de GIL (2019) sobre construção de questionários;</li>
               <li>Traga a sua matriz de amarração atualizada: o próximo encontro fecha o Módulo II
               com o tamanho da amostra e os instrumentos de coleta.</li>
             </ol>

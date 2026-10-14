@@ -63,7 +63,7 @@
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <p>Este é o <strong>último encontro de conteúdo do Módulo I</strong>. No próximo é a AV1, e
+  <p>Este é o <strong>último encontro de conteúdo do Módulo I</strong>. No próximo é a AV1 e
   ela exige a base do projeto já carregada e descrita.</p>
   <div class="colunas">
     <div>
@@ -94,7 +94,7 @@
     <li><strong>Construir</strong> a matriz de amarração metodológica de um projeto, verificando a coerência entre problema, objetivos, hipóteses, variáveis, base e técnica de análise;</li>
     <li><strong>Aplicar</strong> os seis critérios de escolha de uma fonte de dados à base do seu projeto;</li>
     <li><strong>Reconhecer</strong> os quatro defeitos de qualidade do dado e o que se faz com cada um;</li>
-    <li><strong>Explicar</strong> o risco de reidentificação em dado anonimizado, e o que a ética exige de quem usa dado secundário.</li>
+    <li><strong>Explicar</strong> o risco de reidentificação em dado anonimizado e o que a ética exige de quem usa dado secundário.</li>
   </ol>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -144,8 +144,8 @@
   <div class="definicao"><span class="rotulo">4 · População, amostra e fontes</span>
   <strong>População:</strong> o conjunto sobre o qual se quer concluir (ex.: todas as MPEs
   do varejo de São Luís). <strong>Amostra:</strong> a parte que será efetivamente estudada.
-  Quem entra, como se seleciona e <strong>quantos são necessários</strong> é o tema do
-  encontro 6, e quantos são necessários, o do encontro 8.</div>
+  Quem entra e como se seleciona é o tema do encontro 6, e <strong>quantos são
+  necessários</strong>, o do encontro 8.</div>
   <div class="exemplo"><span class="rotulo">Erro típico</span>
   Concluir sobre "as empresas maranhenses" tendo ouvido só os conhecidos do pesquisador,
   amostra de conveniência tratada como se representasse a população.</div>
@@ -216,7 +216,7 @@
     <li><strong>Vantagem central:</strong> medem exatamente o conceito de interesse, na
         população de interesse;</li>
     <li><strong>Custos:</strong> tempo, dinheiro, acesso aos respondentes, taxa de resposta
-        baixa, e todo o trabalho de validar o instrumento;</li>
+        baixa e todo o trabalho de validar o instrumento;</li>
     <li><strong>Risco:</strong> amostra pequena ou enviesada compromete a generalização.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
@@ -283,7 +283,7 @@
     <tr><td>3</td><td><strong>Cobertura</strong></td>
         <td>Quais territórios e quais anos existem de fato?</td></tr>
     <tr><td>4</td><td><strong>Metadado</strong></td>
-        <td>Quem produz, com que metodologia, e a base é revisada?</td></tr>
+        <td>Quem produz, com que metodologia e a base é revisada?</td></tr>
     <tr><td>5</td><td><strong>Licença e citação</strong></td>
         <td>O que posso publicar? Como cito a fonte no relatório?</td></tr>
     <tr><td>6</td><td><strong>Acesso</strong></td>
@@ -298,9 +298,9 @@
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>As codificações das fontes, e por que isso importa</h2>
+  <h2>As codificações das fontes e por que isso importa</h2>
   <p>Ler um CSV com a codificação errada <strong>não dá erro</strong>: dá resultado errado,
-  com acentos quebrados. É o erro mais silencioso da disciplina, e a razão pela qual o
+  com acentos quebrados. É o erro mais silencioso da disciplina e a razão pela qual o
   notebook sempre declara a codificação de modo explícito.</p>
   <table>
     <tr><th>Fonte</th><th>Codificação</th><th>Separador</th></tr>
@@ -323,7 +323,7 @@
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Qualidade do dado: quatro defeitos, e o que se faz com cada um</h2>
+  <h2>Qualidade do dado: quatro defeitos e o que se faz com cada um</h2>
   <p>Nenhum destes defeitos <strong>dá erro</strong> no Python: o resultado sai, só que errado.
   É isso que os torna perigosos.</p>
   <table>
@@ -331,13 +331,13 @@
     <tr><td><strong>Célula ou coluna vazia</strong></td>
         <td>Na ANP, a coluna <code>Valor de Compra</code> está vazia nas 12 planilhas; na CVM,
         35 das 451 companhias não têm setor</td>
-        <td>Contar quantos são, declarar no relatório, e <strong>nunca preencher por conta
+        <td>Contar quantos são, declarar no relatório e <strong>nunca preencher por conta
         própria</strong></td></tr>
     <tr><td><strong>Escala e unidade</strong></td>
         <td>Na CVM, 444 companhias declaram a receita em <code>MIL</code> e 7 em
         <code>UNIDADE</code> — misturar as duas faz a mediana das segundas parecer
         <strong>34 vezes</strong> maior</td>
-        <td>Normalizar a unidade antes de qualquer conta, e registrar a conversão</td></tr>
+        <td>Normalizar a unidade antes de qualquer conta e registrar a conversão</td></tr>
     <tr><td><strong>Número no padrão nacional</strong></td>
         <td>Na ANP, o preço chega como <code>6,29</code> e a data como <code>DD/MM/AAAA</code>:
         sem <code>decimal=","</code>, a coluna chega como texto</td>
@@ -382,7 +382,7 @@
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que é, e para que serve</h2>
+  <h2>O que é e para que serve</h2>
   <div class="definicao"><span class="rotulo">Definição</span>
   Tabela de <strong>verificação de coerência interna</strong> do projeto: cada linha
   conecta problema → objetivo específico → hipótese → variáveis (e níveis) → base →
@@ -460,7 +460,7 @@
   aos extremos.</div>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
-    O <strong>desvio padrão</strong> para descrever a dispersão de uma variável só, e o
+    O <strong>desvio padrão</strong> para descrever a dispersão de uma variável só e o
     <strong>CV</strong> quando for comparar duas variáveis medidas em escalas diferentes.</div>
     <div class="nao-usa"><span class="rotulo">Não use</span>
     A <strong>amplitude</strong> como medida principal: ela depende de dois valores apenas, e
@@ -492,7 +492,7 @@
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>Por que elevar ao quadrado, e por que tirar a raiz</h2>
+  <h2>Por que elevar ao quadrado e por que tirar a raiz</h2>
   <div class="definicao"><span class="rotulo">Por que o quadrado</span>
   Se somássemos os desvios <em>como eles são</em>, os positivos e os negativos se
   cancelariam e a soma daria sempre perto de zero. Elevar ao quadrado resolve isso e
@@ -677,7 +677,7 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
     variáveis diferentes.</div>
     <div class="nao-usa"><span class="rotulo">Não use</span>
     O escore z como se fosse uma régua infalível quando a distribuição é assimétrica: foi
-    construído para a normal, e ali é que ele é exato.</div>
+    construído para a normal e ali é que ele é exato.</div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -695,7 +695,7 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
       <span><b>z</b>quantos desvios o valor está da média</span>
     </span>
     <span class="legenda-formula"><strong>Em linguagem corrente:</strong> tire a média do valor
-    (isso diz “quanto acima ou abaixo”), e divida pelo desvio (isso diz “em quantas unidades de
+    (isso diz “quanto acima ou abaixo”) e divida pelo desvio (isso diz “em quantas unidades de
     oscilação”). O resultado é <strong>adimensional</strong> — e é por isso que permite comparar
     grandezas diferentes.</span>
   </div>
@@ -727,7 +727,7 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
 <section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>Como se lê o exemplo, e a forma da distribuição</h2>
+  <h2>Como se lê o exemplo e a forma da distribuição</h2>
   <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
   Metade dos postos do Maranhão praticou preço entre <strong>R$ 5,79 e R$ 6,45</strong> em
   2025, com o posto mais caro a <strong>2,5 desvios</strong> acima da média — um valor
@@ -811,7 +811,7 @@ serie.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
     <div>
       <h4>A fórmula do z</h4>
       <span class="expr">z = (x − x&#772;) ÷ s</span>
-      <p>Quantos desvios o valor está da média. Adimensional, e por isso comparável.</p>
+      <p>Quantos desvios o valor está da média. Adimensional e por isso comparável.</p>
     </div>
     <div>
       <h4>No Colab</h4>
@@ -881,7 +881,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
   <p>Os cinco números, o histograma e o escore z sobre a mesma série. E a comparação com a
   regra 68-95-99,7, que revela a assimetria.</p>
   <div class="instrucao"><span class="rotulo">A leitura que o professor quer da turma</span>
-  <em>“A média é maior que a mediana, a cauda é à direita, e a regra da normal não fecha em
+  <em>“A média é maior que a mediana, a cauda é à direita e a regra da normal não fecha em
   nenhum dos três intervalos: 59,3% em |z|&lt;1, contra 68,3% previstos.”</em> Isso é a
   conclusão do bloco inteiro, e ela é verbalizada antes de ser escrita.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
@@ -913,7 +913,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
     <li>Escolha uma <strong>variável</strong> do seu trabalho ou da sua área e diga o que uma
     <strong>média</strong> esconderia sobre ela;</li>
     <li>Você tem dois conjuntos com a <strong>mesma média</strong>. Que medida você pediria para
-    distingui-los, e por quê?</li>
+    distingui-los e por quê?</li>
     <li>Olhe o histograma da gasolina. Descreva a <strong>forma</strong> em uma frase, sem usar
     nenhum número.</li>
   </ol></div>
@@ -950,7 +950,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
     <li>O limite dos secundários se enfrenta com <strong>operacionalização
         justificada</strong>;</li>
     <li>A <strong>matriz de amarração</strong> conecta problema → objetivo → hipótese →
-        variáveis → base → técnica, e revela os buracos antes que custem caro;</li>
+        variáveis → base → técnica e revela os buracos antes que custem caro;</li>
     <li>Todo dado real chega com <strong>defeito</strong> — vazio, escala, formato ou
         codificação — e o que se exige não é a base perfeita, e sim que o defeito seja
         <strong>declarado</strong>;</li>
@@ -1017,7 +1017,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             distribuição pelos cinco números e pelo escore z.</p>
                 <div class="caixa falar"><span class="rotulo">O fecho do Módulo I</span>
             <p>Marcar com clareza: este é o <strong>último encontro de conteúdo do Módulo I</strong>.
-            No próximo é a AV1, e ela exige a base do projeto já carregada e descrita. Tudo o que
+            No próximo é a AV1 e ela exige a base do projeto já carregada e descrita. Tudo o que
             a disciplina ensinou sobre descrever um conjunto de dados fecha hoje.</p>
             </div>
   </section>
@@ -1058,7 +1058,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
               O que se faz: contar e declarar — nunca preencher por conta própria.</li>
               <li><strong>Escala e unidade.</strong> Na CVM, 444 companhias declaram em
               <code>MIL</code> e 7 em <code>UNIDADE</code>. Misturar as duas faz a mediana das
-              segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro, e volta na
+              segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro e volta na
               AV1.</li>
               <li><strong>Número no padrão nacional.</strong> O <code>6,29</code> da ANP e a data
               <code>DD/MM/AAAA</code>: sem <code>decimal=","</code> a coluna chega como texto, e
@@ -1078,7 +1078,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             <p>Vale dizer que é a mesma exigência da pesquisa com seres humanos, aplicada a dado
             que já existe: não é burocracia, é o que permite publicar sem expor.</p>
             </div>
-    <div class="caixa gabarito"><span class="rotulo">A matriz de amarração, e a coluna que ela ganha</span>
+    <div class="caixa gabarito"><span class="rotulo">A matriz de amarração e a coluna que ela ganha</span>
             <p>Fechar o bloco ligando matriz e estatística: a matriz amarra objetivo, variável e
             <strong>técnica de análise</strong>. É a coluna que o Módulo I passou a permitir
             preencher — e é ela que a AV1 vai cobrar.</p>
@@ -1092,7 +1092,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
     <tr><th>Bloco</th><th>Minutos</th></tr>
       <tr><td>A pergunta: dois grupos, a mesma média</td><td>8</td></tr>
       <tr><td>As cinco medidas de dispersão</td><td>16</td></tr>
-      <tr><td>Por que o quadrado, e por que a raiz</td><td>12</td></tr>
+      <tr><td>Por que o quadrado e por que a raiz</td><td>12</td></tr>
       <tr><td>O exemplo resolvido: a gasolina no Maranhão</td><td>14</td></tr>
       <tr><td>Erro comum e ficha</td><td>5</td></tr>
   </table>
@@ -1109,14 +1109,14 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             <p>Em seguida, a segunda pergunta: <em>“e por que tirar a raiz depois?”</em>. Aí é a
             interpretação: sem a raiz, o número fica em R$ ao quadrado, que não se lê.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">O exemplo, e a frase que sai dele</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">O exemplo e a frase que sai dele</span>
             <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
             com oscilação típica de R$ 0,42 — 6,9% da média”</em>. A disciplina quer que essa
             forma de dizer vire hábito: <strong>centro e dispersão na mesma frase</strong>.</p>
             </div>
     <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
             <ol>
-              <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide, e
+              <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide e
               o mais comum em relatório que compara dois indicadores.</li>
               <li><strong>Achar que desvio alto significa problema.</strong> Desvio alto é
               <em>variação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
@@ -1148,7 +1148,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
       <tr><td>A pergunta: R$ 6,20 foi caro ou barato?</td><td>8</td></tr>
       <tr><td>Quartis, cinco números, histograma e escore z</td><td>16</td></tr>
       <tr><td>O exemplo resolvido: onde o posto cai</td><td>12</td></tr>
-      <tr><td>A forma da distribuição, e o encontro com o bloco anterior</td><td>14</td></tr>
+      <tr><td>A forma da distribuição e o encontro com o bloco anterior</td><td>14</td></tr>
       <tr><td>Erro comum e ficha</td><td>5</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
@@ -1158,7 +1158,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
     <div class="caixa falar"><span class="rotulo">O momento em que os dois blocos do dia se encontram</span>
             <p>Este é o ponto mais importante da tarde, e vale conduzir devagar: na
-            <strong>tela “Como se lê o exemplo, e a forma da distribuição”</strong>, a média
+            <strong>tela “Como se lê o exemplo e a forma da distribuição”</strong>, a média
             (6,13) maior que a mediana (6,08) do primeiro bloco <em>explica</em> a assimetria que
             o segundo bloco mede. Não são dois assuntos: são o mesmo, visto por dois ângulos.</p>
             <p>E a <strong>regra 68-95-99,7</strong> fecha o argumento com dado: 59,3% dos postos
@@ -1233,9 +1233,9 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">A dispersão e a forma, sobre a mesma série (24 min)</span>
             <p>O ponto de chegada da prática: o aluno vê média, desvio, CV, IQR, cinco números e
-            escore z <strong>sobre a mesma série</strong>, e depois o histograma com a média e a
+            escore z <strong>sobre a mesma série</strong> e depois o histograma com a média e a
             mediana desenhadas. A leitura que se quer ouvir:</p>
-            <p><em>“a média é maior que a mediana, a assimetria é positiva, e a regra da normal
+            <p><em>“a média é maior que a mediana, a assimetria é positiva e a regra da normal
             não fecha em nenhum dos três intervalos.”</em></p>
             </div>
     <div class="caixa gabarito"><span class="rotulo">A oficina do projeto: os seis critérios (12 min)</span>
@@ -1257,7 +1257,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             <p>As três telas finais fazem o balanço do módulo. Vale construir junto com a turma, no
             quadro, a lista do que ela já sabe: contar e dividir; identificar o nível de
             mensuração; escolher entre média e mediana; medir dispersão; ler a forma. <strong>É
-            esse o repertório da AV1</strong>, e ele é suficiente para descrever qualquer conjunto
+            esse o repertório da AV1</strong> e ele é suficiente para descrever qualquer conjunto
             de dados.</p>
             </div>
   </section>

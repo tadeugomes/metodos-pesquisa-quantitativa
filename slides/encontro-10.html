@@ -25,7 +25,7 @@
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 10 · Módulo III · Inferência estatística</div>
   <h1>Do intervalo de confiança à lógica do teste</h1>
-  <p class="subtitulo">O que uma amostra autoriza dizer sobre a população, e com que risco</p>
+  <p class="subtitulo">O que uma amostra autoriza dizer sobre a população e com que risco</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -202,7 +202,7 @@
   <h2>O que “95%” não significa</h2>
   <div class="colunas">
     <div class="alerta">
-      <span class="rotulo">A leitura errada, e muito comum</span>
+      <span class="rotulo">A leitura errada e muito comum</span>
       “Há 95% de probabilidade de o preço médio estar entre R$ 5,93 e R$ 6,12.”<br><br>
       O preço médio verdadeiro <strong>não é sorteado</strong>: é um número só, fixo. O
       intervalo já calculado <strong>ou o contém, ou não o contém</strong>. Não sobra
@@ -604,7 +604,7 @@ r = stats.<span class="fn">ttest_1samp</span>(amostra[<span class="str">"preco"<
   <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
   Que a diferença é <em>grande</em> ou <em>importante</em>: isso é julgamento de gestão,
   feito em centavos, e não em valor-p. Nem que há 0,14% de chance de H0 ser verdadeira: o
-  valor-p é calculado <strong>supondo</strong> H0 verdadeira, e não é a probabilidade
+  valor-p é calculado <strong>supondo</strong> H0 verdadeira e não é a probabilidade
   dela. E nem por que o Maranhão é mais barato: o teste mede, não explica.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
@@ -617,7 +617,7 @@ r = stats.<span class="fn">ttest_1samp</span>(amostra[<span class="str">"preco"<
       <span class="rotulo">O caso errado</span>
       “Contra R$ 6,00 o teste deu p = 0,57. <strong>Está provado</strong> que o preço médio
       do Maranhão é R$ 6,00.”<br><br>
-      Mas contra R$ 6,10 a mesma amostra dá p = 0,12, e também não rejeita. Se não rejeitar
+      Mas contra R$ 6,10 a mesma amostra dá p = 0,12 e também não rejeita. Se não rejeitar
       fosse provar, a média seria R$ 6,00 <strong>e</strong> R$ 6,10 ao mesmo tempo.
     </div>
     <div class="exemplo">
@@ -657,7 +657,7 @@ teste_t_uma(x, valor_ref=6.19)</pre>
     </div>
     <div>
       <h4>O erro</h4>
-      <p>Ler “não rejeitar” como “provar H0”, e ler o valor-p como a probabilidade de H0. O
+      <p>Ler “não rejeitar” como “provar H0” e ler o valor-p como a probabilidade de H0. O
       teste só derruba; a probabilidade é dos dados, supondo H0.</p>
     </div>
   </div>
@@ -679,7 +679,7 @@ teste_t_uma(x, valor_ref=6.19)</pre>
   </table>
   <p class="menor">Depois, mude <code>NIVEL_CONFIANCA</code> para 0.99 e veja o intervalo
   alargar. Se usar IA para redigir, use o <strong>cartão de contexto</strong> e registre o
-  prompt e a checagem na tabela do notebook: a IA explica, o código calcula, e você confere
+  prompt e a checagem na tabela do notebook: a IA explica, o código calcula e você confere
   e escreve.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
@@ -747,7 +747,7 @@ teste_t_uma(x, valor_ref=6.19)</pre>
             (iii) dizer o que torna um intervalo mais largo ou mais estreito; (iv) formular H0
             e H1 e decidir pelo valor-p diante de α; (v) ligar o intervalo ao teste: o valor
             fora do IC de 95% é rejeitado a 5%; (vi) escrever a frase de leitura de um teste t
-            de uma amostra, e o que ela não diz.</p>
+            de uma amostra e o que ela não diz.</p>
                 <h3>Minutagem do dia</h3>
   <table class="minutagem">
     <tr><th>Bloco</th><th>Minutos</th></tr>
@@ -760,7 +760,7 @@ teste_t_uma(x, valor_ref=6.19)</pre>
       <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">O fio que liga as duas partes do dia</span>
-            <p>Anunciar na abertura, e repetir no fim da Parte 2: <strong>o intervalo e o
+            <p>Anunciar na abertura e repetir no fim da Parte 2: <strong>o intervalo e o
             teste usam o mesmo erro padrão e nunca se contradizem</strong>. O valor que fica
             fora do intervalo de 95% é o valor que o teste rejeita a 5%. Quem entende um,
             entende o outro — e por isso a aula começa pelo intervalo, que é mais
@@ -804,7 +804,7 @@ teste_t_uma(x, valor_ref=6.19)</pre>
     <div class="caixa pergunta-aula"><span class="rotulo">O momento central da Parte 1: os cem intervalos</span>
             <p>Antes de mostrar a figura, perguntar: <em>“se eu sortear cem amostras e calcular
             cem intervalos de 95%, quantos vão cobrir o preço médio verdadeiro?”</em> A
-            maioria dirá 95, e está certa — aproximadamente. Mostrar: <strong>94</strong>. Com
+            maioria dirá 95 e está certa — aproximadamente. Mostrar: <strong>94</strong>. Com
             mil amostras, 959.</p>
             <p>A pergunta seguinte é a que ensina: <em>“olhando só o intervalo da amostra 19,
             sem a linha preta, dá para saber que ele errou?”</em> Não dá. Por isso a confiança
@@ -873,7 +873,7 @@ teste_t_uma(x, valor_ref=6.19)</pre>
             <p>Repetir até virar reflexo: <strong>o teste não pergunta se a diferença
             existe; pergunta quão rara seria a amostra se ela não existisse.</strong> O valor-p
             é a resposta a essa pergunta hipotética. Por isso ele é calculado
-            <em>supondo</em> H0 verdadeira, e por isso não é a probabilidade de H0.</p>
+            <em>supondo</em> H0 verdadeira e por isso não é a probabilidade de H0.</p>
             <p>Uma analogia que funciona com a turma: o júri. H0 é “o réu é inocente”; a
             amostra é a prova; rejeitar H0 é condenar. O júri nunca declara o réu
             <em>inocente</em> — declara “não culpado”, por falta de provas. É exatamente o

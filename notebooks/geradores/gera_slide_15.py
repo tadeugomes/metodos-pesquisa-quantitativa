@@ -8,7 +8,7 @@ preve, e a pausa individual acontece dentro da Parte B.
 
 Os numeros da Parte B sao os do `conferir` do notebook (gera_encontro15.py), verificados
 ao executa-lo com as respostas do professor. Eles ja estao visiveis para o estudante no
-proprio `conferir`, e por isso podem ficar nesta camada. O gabarito da PARTE A, que e
+proprio `conferir` e por isso podem ficar nesta camada. O gabarito da PARTE A, que e
 conceitual e sem consulta, NAO entra aqui: este HTML e publico, e o gabarito completo
 fica so nas celulas `nota` do gerador do notebook.
 """
@@ -74,13 +74,13 @@ SECOES = [
         "minutos": 60,
         "entre": ["Parte A", "Parte B"],
         "blocos": [
-            ("O que se cobra, e o que não se cobra", """
+            ("O que se cobra e o que não se cobra", """
             <p>Diga antes de começar: <strong>não há conta na Parte A</strong> — a disciplina
             não faz conta à mão em nenhum encontro. Cobra-se a decisão e o porquê. Resposta
             certa sem justificativa vale metade.</p>
             """, "falar"),
             ("A supervisão que importa", """
-            <p>Telas com uma única aba, celular fora da mesa, e caminhar pela sala. Se alguém
+            <p>Telas com uma única aba, celular fora da mesa e caminhar pela sala. Se alguém
             travar, o empurrão é de <strong>método</strong>, nunca de conteúdo: <em>“qual é o
             nível dessa variável?”</em>, <em>“qual é o denominador?”</em>, <em>“isso é sobre
             os casos ou sobre a estimativa?”</em>.</p>
@@ -191,9 +191,9 @@ SECOES = [
             ("A síntese da disciplina", """
             <p>Feche com a última tela: os quatro módulos e o que cada um entregou —
             <strong>descrever, sortear, inferir e modelar</strong>. E a regra que fica para além
-            da disciplina: <strong>a IA explica, o código calcula, e o estudante confere e
+            da disciplina: <strong>a IA explica, o código calcula e o estudante confere e
             escreve</strong>. Nenhum número vai para um relatório sem ter saído de uma célula
-            executada, e sem a frase que diz o que ele não autoriza.</p>
+            executada e sem a frase que diz o que ele não autoriza.</p>
             """, "falar"),
             ("A devolutiva", """
             <p>As notas e os comentários voltam individualmente, pelo próprio notebook, no prazo

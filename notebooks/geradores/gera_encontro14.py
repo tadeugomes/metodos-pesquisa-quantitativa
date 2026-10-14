@@ -77,7 +77,7 @@ CABECALHO = """# Encontro 14. O relatório final: modelo pronto para a sua base 
 | `vende_etanol` | 1 se a ANP registrou preço de etanol no posto em 2025 | nominal (0/1) |
 | `municipio`, `meses_com_preco` | o município e quantos meses o posto foi pesquisado | — |
 
-> **A regra do semestre vale no relatório.** A IA explica, o código calcula, e o
+> **A regra do semestre vale no relatório.** A IA explica, o código calcula e o
 > estudante confere e escreve. **Nenhum número entra no relatório sem ter saído de uma
 > célula executada.**"""
 
@@ -278,7 +278,7 @@ def modelo_linear(base, resposta, explicativas):
 
 
 def modelo_logistico(base, evento, explicativas):
-    """Regressao logistica em cinco colunas, e a probabilidade prevista em cenarios."""
+    """Regressao logistica em cinco colunas e a probabilidade prevista em cenarios."""
     if not evento:
         print("EVENTO vazio na CONFIG: a seção da regressão logística foi pulada.")
         return (pd.DataFrame(), pd.Series(dtype=float),
@@ -313,7 +313,7 @@ SECAO0_MD = """## Seção 0. A base
 | **Razão de chances** | quantas vezes a chance do evento se multiplica quando a explicativa sobe uma unidade |
 | **Probabilidade prevista** | a probabilidade do evento num cenário concreto, que é a leitura que o gestor entende |
 | **Reprodutível** | outra pessoa executa o notebook do início ao fim e obtém os mesmos números |
-| **Frase de leitura** | quanto, em quem, com que incerteza, e o que o resultado **não** autoriza |
+| **Frase de leitura** | quanto, em quem, com que incerteza e o que o resultado **não** autoriza |
 
 Execute a carga. Se a internet falhar, use a célula de contingência logo abaixo."""
 
@@ -450,7 +450,7 @@ INF_FRASE = """**A frase de leitura do exemplo**
 **O que essa frase não diz.** Que a região **causa** o preço: o interior tem frete
 maior, menos concorrência e outros fornecedores, e o dado não separa essas razões.
 
-**A sua frase** _(o teste que você escolheu, e por quê; a diferença na unidade original)_
+**A sua frase** _(o teste que você escolheu e por quê; a diferença na unidade original)_
 
 ---"""
 
@@ -504,7 +504,7 @@ print(f"n = {int(ajuste_cru.nobs)} | R² = {ajuste_cru.rsquared:.4f}")
 confere("coeficiente sem controle", item(ajuste_cru.params, 1), 0.0085, tolerancia=0.0001)
 confere("valor-p sem controle", item(ajuste_cru.pvalues, 1), 0.8630, tolerancia=0.0001)'''
 
-CRITICA_FRASE = """**O que muda, e por quê.** Sem controlar a região, a diferença por bandeira é de
+CRITICA_FRASE = """**O que muda e por quê.** Sem controlar a região, a diferença por bandeira é de
 **R$ 0,01** (p = 0,863): parece não haver diferença nenhuma. Com a região no modelo, ela
 sobe para **R$ 0,05** (p = 0,079). A razão é que os postos com marca estão mais na Ilha,
 onde a gasolina é mais barata (70 de 117 postos com marca, contra 61 de 119 de bandeira
@@ -554,7 +554,7 @@ LOG_FRASE = """**A frase de leitura do exemplo**
 probabilidade dobra: **razão de chances não é razão de probabilidades** (50,0% → 66,96%
 na Ilha, mantida a bandeira branca, não 100%).
 
-**A sua frase** _(a razão de chances com o “mantidas as demais”, e uma probabilidade prevista)_
+**A sua frase** _(a razão de chances com o “mantidas as demais” e uma probabilidade prevista)_
 
 ---"""
 
@@ -625,7 +625,7 @@ minuto cada.
 | 5. **A implicação** | o que um gestor faria com isso | “Na compra para a frota, a região pesa mais que a bandeira” |
 
 > **Quem lê o slide não está apresentando.** O slide organiza; a fala comunica. Números
-> grandes, uma figura só, e nenhuma tabela de cinco colunas projetada inteira."""
+> grandes, uma figura só e nenhuma tabela de cinco colunas projetada inteira."""
 
 RUBRICA_MD = """# Como a AV3 é avaliada
 
@@ -662,7 +662,7 @@ O registro **não desconta pontos**; a omissão é falta de honestidade acadêmi
 | Modo | O que você faz | Como se confere |
 |---|---|---|
 | **Pergunta** | uma pergunta conceitual, com o cartão de contexto colado | a resposta tem de citar um número que está no cartão |
-| **Encomenda** | pede, em uma frase, uma mudança de coluna, filtro ou agrupamento, e cola o código na célula indicada | o número bate com o esperado; os grupos somam o total; o gráfico é o pedido |
+| **Encomenda** | pede, em uma frase, uma mudança de coluna, filtro ou agrupamento e cola o código na célula indicada | o número bate com o esperado; os grupos somam o total; o gráfico é o pedido |
 | **Leitura de resultado** | pede ajuda para ler uma saída do notebook | a frase final é sua, e cada número dela está numa saída executada |"""
 
 CHECKLIST_MD = """# Checklist de entrega da AV3
@@ -674,7 +674,7 @@ CHECKLIST_MD = """# Checklist de entrega da AV3
 - [ ] Cada número do relatório está numa saída executada deste notebook
 
 **O relatório**
-- [ ] Introdução com a pergunta em forma de pergunta, e as hipóteses
+- [ ] Introdução com a pergunta em forma de pergunta e as hipóteses
 - [ ] Método com fonte, recorte, unidade de observação, n e o nível de cada variável
 - [ ] Resultados nas quatro peças, nesta ordem: Tabela 1, Figura 1, inferência, modelo
 - [ ] Cada resultado com a frase de leitura que passa no teste das quatro perguntas

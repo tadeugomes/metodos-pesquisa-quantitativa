@@ -114,7 +114,7 @@ SECOES = [
               Petrobras; pelos postos (Spearman), é de 0,51 — associação moderada”;</li>
               <li><strong>Pode ir</strong>, porque declara o recorte (318 com lucro) e usa
               “tendem”. Ressalva desejável: só companhias abertas;</li>
-              <li><strong>Errada.</strong> R² não diz de onde o lucro “vem”, e se refere ao
+              <li><strong>Errada.</strong> R² não diz de onde o lucro “vem” e se refere ao
               <em>log</em> do lucro. Reescrita: “a variação do log da receita acompanha 55% da
               variação do log do lucro entre as companhias com lucro”;</li>
               <li><strong>Pode ir.</strong> É a leitura correta dos dois coeficientes.</li>
@@ -224,7 +224,7 @@ SECOES = [
             131 em 449, 29,2%. Chance: 131 para 318, <strong>0,41</strong> — “0,41 companhia com
             prejuízo para cada uma com lucro”. Usar a linguagem das apostas (“a chance é de 2 para
             1”) ajuda.</p>
-            <p>Depois, o log-odds como “a escala em que a curva vira reta”, e a razão de chances como
+            <p>Depois, o log-odds como “a escala em que a curva vira reta” e a razão de chances como
             o “b da logística, já traduzido”. A ordem do passo a passo (log-odds → chance →
             probabilidade) é a ordem em que o <code>predict</code> faz a conta.</p>
             """, "falar"),
@@ -280,14 +280,14 @@ SECOES = [
             ], cabecalho=("Prática", "Minutos")), "bruto"),
             ("Como conduzir a prática", """
             <p>O estudante não escreve código: muda valores no bloco de configuração e escreve a
-            frase. A decisão que ele precisa tomar sozinho é uma só, e é de pesquisa: <strong>y é
+            frase. A decisão que ele precisa tomar sozinho é uma só e é de pesquisa: <strong>y é
             quantitativo ou de sim e não?</strong> Quantitativo → <code>"linear"</code>; 0 e 1 →
             <code>"logistica"</code>.</p>
             <p>Os passos 1 a 3 do roteiro da tela já aconteceram durante a Parte 2; estes 15
             minutos são do passo 4 e do 5.</p>
             <ol>
               <li>Na configuração original (logística múltipla), os <code>[ok]</code> da prática: OR
-              da receita 0,476, OR de energia 0,413, e P = 33,8% no cenário;</li>
+              da receita 0,476, OR de energia 0,413 e P = 33,8% no cenário;</li>
               <li>Com <code>ENERGIA_CENARIO = 1</code>, a probabilidade cai para 17,4% — é a mesma
               receita, outro setor;</li>
               <li>Com <code>MODELO_PROJETO = "linear"</code> e <code>Y_PROJETO = "log_lucro"</code>,
@@ -299,7 +299,7 @@ SECOES = [
             """, "falar"),
             ("Pergunta para quem termina antes", """
             <p><em>“A regressão linear usou 318 companhias e a logística, 449. Se você só pudesse
-            relatar um dos dois modelos sobre ‘porte e resultado’, qual seria, e por quê?”</em> A
+            relatar um dos dois modelos sobre ‘porte e resultado’, qual seria e por quê?”</em> A
             resposta esperada: a logística, porque não descarta quem teve prejuízo — ou os dois, com
             o recorte de cada um declarado.</p>
             """, "pergunta-aula"),
@@ -321,7 +321,7 @@ SECOES = [
         "blocos": [
             ("Os aprendizados do dia", """
             <ol>
-              <li><strong>A correlação diz se as variáveis andam juntas</strong>, e se deixa arrastar
+              <li><strong>A correlação diz se as variáveis andam juntas</strong> e se deixa arrastar
               por extremos: Spearman ou escala log;</li>
               <li><strong>R² é a parte da variação acompanhada</strong>, não a parte “causada”;</li>
               <li><strong>O coeficiente linear é um efeito na unidade de y</strong> — e em log, é

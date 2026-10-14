@@ -78,7 +78,7 @@ IDENTIFICACAO = """# Prova final — Métodos e Técnicas de Pesquisa Quantitati
 6. Antes de entregar: *Ambiente de execução → Reiniciar e executar tudo*, salve e
    compartilhe o link com o professor.
 
-> **A regra da disciplina vale na prova.** A IA explica, o código calcula, e o
+> **A regra da disciplina vale na prova.** A IA explica, o código calcula e o
 > estudante confere e escreve. **Número sem frase de leitura vale menos da metade.**
 
 ---
@@ -100,7 +100,7 @@ PARTE_A = [
      "que divide as empresas ao meio), além da moda. (c) **Razão**: o zero é ausência real "
      "de faturamento; permite média, mas a distribuição é **assimétrica à direita**, então a "
      "medida que descreve o típico é a **mediana**, com o intervalo interquartílico. Descontar "
-     "quem der média para (c) sem olhar a forma, e quem der média para (b)."),
+     "quem der média para (c) sem olhar a forma e quem der média para (b)."),
 
     ("**A2. O denominador (Módulo I).** Uma reportagem diz: *“30% das empresas com prejuízo "
      "são do comércio”*. Outra diz: *“30% das empresas do comércio tiveram prejuízo”*. As "
@@ -125,7 +125,7 @@ PARTE_A = [
 
     ("**A4. Margem de erro e tamanho da amostra (Módulo II).** Uma pesquisa com 400 empresas "
      "sorteadas tem margem de erro de 5 pontos percentuais, a 95% de confiança. (a) Para "
-     "**reduzir a margem à metade**, o que acontece com o tamanho da amostra, e por quê? "
+     "**reduzir a margem à metade**, o que acontece com o tamanho da amostra e por quê? "
      "(b) Se a população fosse de 10 milhões de empresas, e não de 100 mil, o tamanho "
      "necessário mudaria muito? (c) Se as 400 empresas tivessem sido escolhidas **por "
      "conveniência**, a margem de 5 pontos continuaria valendo?",
@@ -161,7 +161,7 @@ PARTE_A = [
 
     ("**A7. Os dois erros (Módulo III).** Um banco testa se um novo processo de cobrança "
      "**reduz a inadimplência**, com α = 0,05. Descreva, **neste contexto**, o erro tipo I e o "
-     "erro tipo II, e diga qual deles o α controla.",
+     "erro tipo II e diga qual deles o α controla.",
      "GABARITO A7 (4 pts). **Erro tipo I**: concluir que o processo reduz a inadimplência "
      "quando, na verdade, não reduz (rejeitar uma H0 verdadeira) — o banco troca de processo à "
      "toa. **Erro tipo II**: não detectar uma redução que existe (não rejeitar uma H0 falsa) "
@@ -170,7 +170,7 @@ PARTE_A = [
      "amostra e do efeito (o poder do teste)."),
 
     ("**A8. A escolha do teste (Módulo III).** Pelo fluxograma, diga qual teste usar em cada "
-     "caso, e por quê: (a) a proporção de clientes satisfeitos (sim/não) difere entre **três "
+     "caso e por quê: (a) a proporção de clientes satisfeitos (sim/não) difere entre **três "
      "filiais**? (b) o tempo de atendimento **antes e depois** de um treinamento, medido nos "
      "**mesmos** 30 atendentes, com distribuição aproximadamente simétrica? (c) a nota de "
      "satisfação, numa escala de **1 a 5**, difere entre clientes de **duas** lojas? (d) o "
@@ -186,7 +186,7 @@ PARTE_A = [
     ("**A9. Correlação não é causa (Módulo IV).** Uma consultoria encontra **r = 0,74** entre o "
      "gasto com treinamento e o lucro de 300 empresas, com **R² = 0,55**, e conclui: "
      "*“treinar aumenta o lucro”*. (a) Dê **dois motivos** pelos quais essa conclusão não "
-     "decorre do r. (b) O que o R² = 0,55 informa, e o que ele **não** informa?",
+     "decorre do r. (b) O que o R² = 0,55 informa e o que ele **não** informa?",
      "GABARITO A9 (4 pts). (a) Quaisquer dois: **variável de confusão** (o porte: empresas "
      "grandes gastam mais com treinamento **e** lucram mais); **causa inversa** (empresas que "
      "lucram mais podem gastar mais com treinamento); dado **observacional**, sem sorteio de "
@@ -230,7 +230,7 @@ a mesma dos encontros 4 e 5. Cada questão vale **10 pontos**: 4 pela decisão e
 3. **Leia o `conferir`**: `[ok]` quer dizer que a sua decisão produziu o número certo;
    `[X ]` quer dizer que ela produziu outro número. Repense a decisão e execute de novo.
 4. **Escreva** a frase de leitura na célula de texto logo abaixo: quanto, em quem, com que
-   incerteza, e o que o resultado **não** autoriza.
+   incerteza e o que o resultado **não** autoriza.
 
 > As células de decisão já vêm executadas **em branco**, e por isso o `conferir` aparece
 > com `[X ] nao deu para comparar`. Isso é o esperado antes de você decidir.
@@ -438,7 +438,7 @@ B2_NOTA = ("GABARITO B2 (10 pts = 4 decisão + 6 frase). **Mediana** (R$ 2.109,7
            "gigantes puxam a média e o desvio. Frase: “A receita típica das 449 companhias "
            "abertas foi de R$ 2,1 bilhões em 2024 (mediana); metade delas faturou entre R$ 0,6 "
            "bilhão e R$ 7,8 bilhões (CVM, DFP 2024)”. Descontar quem escolher a média sem "
-           "olhar o histograma, e quem não disser o recorte.")
+           "olhar o histograma e quem não disser o recorte.")
 
 # ---------------------------------------------------------------------- B3
 B3_MD = """---
@@ -461,7 +461,7 @@ B3_DEC_PROF = '''# CÉLULA DE DECISÃO B3 — escreva os dois números, como pro
 MARGEM_B3 = 0.05       # a margem de erro desejada
 CONFIANCA_B3 = 0.95    # o nível de confiança'''
 
-B3_CALC = '''# CÉLULA B3: o tamanho da amostra, e uma amostra sorteada. Execute.
+B3_CALC = '''# CÉLULA B3: o tamanho da amostra e uma amostra sorteada. Execute.
 # (a) o tamanho: proporção planejada de 0,5, a que exige a maior amostra
 z = stats.norm.ppf(1 - (1 - (CONFIANCA_B3 or np.nan)) / 2)
 n0 = z ** 2 * 0.5 * 0.5 / (MARGEM_B3 or np.nan) ** 2
@@ -515,7 +515,7 @@ Duas perguntas, dois testes. A célula de cálculo executa **todos** os candidat
 construção civil e energia elétrica?
 
 **(b)** A **receita** difere entre as companhias do **comércio** e as da **construção
-civil**? (Olhe a forma da receita na questão B2, e o tamanho de cada grupo.)"""
+civil**? (Olhe a forma da receita na questão B2 e o tamanho de cada grupo.)"""
 
 B4_DEC_ALUNO = '''# CÉLULA DE DECISÃO B4 — escreva entre as aspas o teste de cada pergunta:
 #   (a) "qui-quadrado"  ou  "anova"
@@ -684,7 +684,7 @@ B6_NOTA = ("GABARITO B6 (10 pts = 4 decisão + 6 frase). RECEITA_B6 = 100. Razã
            "bilhões”. Descontar quem escrever “a probabilidade cai 52%” (chance não é "
            "probabilidade) e quem ler a associação como causa.")
 
-FRASE = "_(escreva aqui a frase de leitura: quanto, em quem, com que incerteza, e o que não autoriza)_\n\n---\n"
+FRASE = "_(escreva aqui a frase de leitura: quanto, em quem, com que incerteza e o que não autoriza)_\n\n---\n"
 
 REGISTRO_IA = """## Registro de uso de IA (Parte B)
 
@@ -709,8 +709,8 @@ ANTES_DE_ENTREGAR = """## Antes de entregar
 - [ ] O **registro de IA** está preenchido, ou marcado “não usei”
 - [ ] **Compartilhei o link** do notebook com o professor
 
-> **A IA explica, o código calcula, e o estudante confere e escreve.** Foi a regra do
-> semestre, e é a regra desta prova."""
+> **A IA explica, o código calcula e o estudante confere e escreve.** Foi a regra do
+> semestre e é a regra desta prova."""
 
 # ====================================================================== montagem
 

@@ -71,7 +71,7 @@ preciso sortear para errar no máximo tanto, com tanta confiança?**
 | Termo | Em uma linha |
 |---|---|
 | **Erro de amostragem** | A diferença entre a estimativa da amostra e o valor verdadeiro da população |
-| **Viés** | Erro sistemático: empurra a estimativa sempre para o mesmo lado, e não diminui com n |
+| **Viés** | Erro sistemático: empurra a estimativa sempre para o mesmo lado e não diminui com n |
 | **Erro padrão (EP)** | O quanto a estimativa costuma variar de amostra para amostra: s ÷ √n |
 | **Nível de confiança** | A proporção de amostras, entre todas as possíveis, cujo erro fica dentro da margem |
 | **Margem de erro (E)** | O erro máximo aceito, ao nível de confiança escolhido: E = z × EP |
@@ -79,7 +79,7 @@ preciso sortear para errar no máximo tanto, com tanta confiança?**
 | **Correção para população finita** | O ajuste que reduz o n quando a amostra é uma fatia grande do cadastro |
 | **Alfa de Cronbach** | O quanto os itens de uma escala “andam juntos”; vai de 0 a 1, com 0,7 como piso usual |
 
-> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+> **A regra do semestre:** a IA explica, o código calcula e você confere e escreve."""
 
 CONFIG_MD = """## Bloco de configuração
 
@@ -593,11 +593,11 @@ mil vezes** com o n calculado e contar quantas amostras ficaram dentro da margem
     {"tipo": "code", "texto": COD_GRAFICO},
     {"tipo": "md", "texto": FRASE_N},
 
-    {"tipo": "md", "texto": """### 5. O tamanho da amostra para uma proporção, e o tamanho da população
+    {"tipo": "md", "texto": """### 5. O tamanho da amostra para uma proporção e o tamanho da população
 
 Para uma proporção (que parte das empresas exporta? que parte dos municípios tem sala do
 empreendedor?) a fórmula usa **p = 0,5** quando não se sabe nada antes: é o valor que exige
-o maior n, e por isso é o **conservador**."""},
+o maior n e por isso é o **conservador**."""},
     {"tipo": "code", "texto": COD_N_PROP},
     {"tipo": "code", "texto": COD_SIMULA_PROP},
     {"tipo": "nota", "texto": "no cadastro da ANP, metade dos postos é de bandeira branca: o p "

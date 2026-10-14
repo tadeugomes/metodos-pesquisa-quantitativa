@@ -67,7 +67,7 @@ As três bases de hoje, todas do IBGE, cada uma escolhida por trazer um nível d
 CONFIG = """## Bloco de configuração
 
 **Este é o único lugar do notebook onde se mexe em código.** Troque o valor abaixo,
-execute esta célula de novo, e só então execute as células seguintes.
+execute esta célula de novo e só então execute as células seguintes.
 
 ```python
 # --- o que você pode mudar ---
@@ -80,7 +80,7 @@ As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá
 não precisa entender o que fazem para seguir. `conferir` é a que mais importa: ela
 compara o seu resultado com o número que já estava resolvido no slide e diz se bateu.
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.* Nenhum número vai para o relatório que não tenha saído de uma célula
 > executada na sua frente."""
 
@@ -171,7 +171,7 @@ razao'''
 
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload dos três arquivos de dados/ indicados no enunciado.
 #
 # Esta célula produz exatamente as mesmas três tabelas que a Célula A.
@@ -204,7 +204,7 @@ CELULAS = [
 
     {"tipo": "md", "texto": """## Seção 1. Como se usa um notebook
 
-Bloco de **texto** é explicação. Bloco de **código** é instrução para o computador, e
+Bloco de **texto** é explicação. Bloco de **código** é instrução para o computador e
 precisa ser executado. Clique na célula e aperte **Shift + Enter**.
 
 | Se isso aconteceu | Faça isso |
@@ -247,8 +247,8 @@ nada, você precisa saber em que nível a variável está.
 |---|---|---|
 | **Nominal** | Categorias **sem** ordem natural | Seção da CNAE: A, B, C… U |
 | **Ordinal** | Categorias **com** ordem definida | Faixa de pessoal: 1 a 9, 10 a 49, 50 ou mais |
-| **Intervalo** | Ordem, e intervalos iguais, mas o **zero não é ausência** | Escala de satisfação de 0 a 10 |
-| **Razão** | Ordem, intervalos iguais, e o **zero é ausência real** | Receita, pessoal ocupado, nº de empresas |
+| **Intervalo** | Ordem e intervalos iguais, mas o **zero não é ausência** | Escala de satisfação de 0 a 10 |
+| **Razão** | Ordem, intervalos iguais e o **zero é ausência real** | Receita, pessoal ocupado, nº de empresas |
 
 **O que cada nível permite — esta é a tabela que importa**
 
@@ -362,7 +362,7 @@ if BASE == "razao":
     {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número
 > do slide. Se apareceu `[X]` em um número que ontem batia, quase sempre é que a
 > base foi atualizada: o IBGE divulga dados novos todo ano. Nesse caso, copie o
-> número novo, anote o ano ao lado, e siga. **O número que vale é o que saiu do
+> número novo, anote o ano ao lado e siga. **O número que vale é o que saiu do
 > código, não o do slide.** É assim que se trabalha com dado real."""},
 
     {"tipo": "md", "texto": """### A frequência acumulada, que só existe em ordinal
@@ -408,7 +408,7 @@ delineamento vem no Módulo II."""},
     {"tipo": "md", "texto": """## Seção 3. Usando o assistente
 
 Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
-explica, o código calcula, e você confere e escreve.**
+explica, o código calcula e você confere e escreve.**
 
 ### Modo 1 — Pergunta
 
@@ -420,12 +420,12 @@ IA inventa número — e você não tem como perceber."""},
     {"tipo": "md", "texto": """Sugestões de pergunta:
 
 1. "Por que a frequência acumulada só existe em variável ordinal?"
-2. "Neste cartão, o que a coluna `pct_acumulado` está somando, e a partir de quê?"
+2. "Neste cartão, o que a coluna `pct_acumulado` está somando e a partir de quê?"
 3. "Se a base fosse de CNAE em vez de faixa de pessoal, a acumulada faria sentido?"
 
 ### Modo 2 — Encomenda
 
-Escreva o que você quer, peça o código, e cole na **célula cinza** abaixo. Só mude os
+Escreva o que você quer, peça o código e cole na **célula cinza** abaixo. Só mude os
 **parâmetros de consulta**: qual base, qual recorte, qual ordenação. **Nunca** peça
 para mudar a lógica do cálculo — os números do slide foram conferidos, e trocar a
 lógica quebra a conferência.
@@ -433,7 +433,7 @@ lógica quebra a conferência.
 ### Modo 3 — Ler um resultado errado
 
 O professor preparou três classificações de nível de mensuração **erradas**. Todas as
-variáveis são reais. O erro está no nível atribuído. Diga qual é o erro, e qual é o
+variáveis são reais. O erro está no nível atribuído. Diga qual é o erro e qual é o
 nível certo."""},
 
     {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
@@ -448,7 +448,7 @@ sua_analise = None   # <-- o assistente escreve aqui embaixo
 
 # ====================================================================================='''},
 
-    {"tipo": "md", "texto": "Rode a célula abaixo e responda: **qual é o erro, e qual é o nível certo?**"},
+    {"tipo": "md", "texto": "Rode a célula abaixo e responda: **qual é o erro e qual é o nível certo?**"},
 
     {"tipo": "code", "texto": '''# As três classificações erradas do professor.
 print("ANÁLISE 1: 'número de funcionários da empresa' foi classificado como ORDINAL")
@@ -468,7 +468,7 @@ print("           (o zero numa escala de satisfação significa ausência de sat
 |---|---|
 | **1** | "Número de funcionários" tem valor numérico exato, não é categoria: entra em contagem, que é **razão**. Uma empresa com 0 funcionários não tem nenhum funcionário, e esse zero é ausência real. Com contagem, a média faz sentido. |
 | **2** | **O erro mais sutil do dia.** As letras A a U estão em ordem alfabética, mas essa ordem é do **código**, não do mundo. Não existe "Comércio antes de Indústria". Por isso a CNAE é **nominal**: dá para contar, e a média da letra não significa nada. |
-| **3** | Numa escala de 0 a 10, o zero é um ponto **escolhido por quem montou a escala**, e não ausência de satisfação. Quem marca 0 respondeu, e está muito insatisfeito, e não sem satisfação nenhuma. Por isso não se pode dizer que 8 pontos são "o dobro" de 4. A variável é **intervalo**, e não razão. |
+| **3** | Numa escala de 0 a 10, o zero é um ponto **escolhido por quem montou a escala**, e não ausência de satisfação. Quem marca 0 respondeu e está muito insatisfeito, e não sem satisfação nenhuma. Por isso não se pode dizer que 8 pontos são "o dobro" de 4. A variável é **intervalo**, e não razão. |
 
 Repare que a análise 2 é a mais instrutiva: **a ordem do código não é a ordem do
 fenômeno.** A letra identifica a categoria, e não a coloca antes ou depois de outra."""},

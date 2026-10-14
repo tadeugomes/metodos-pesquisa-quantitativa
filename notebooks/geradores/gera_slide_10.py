@@ -40,7 +40,7 @@ SECOES = [
             (iii) dizer o que torna um intervalo mais largo ou mais estreito; (iv) formular H0
             e H1 e decidir pelo valor-p diante de α; (v) ligar o intervalo ao teste: o valor
             fora do IC de 95% é rejeitado a 5%; (vi) escrever a frase de leitura de um teste t
-            de uma amostra, e o que ela não diz.</p>
+            de uma amostra e o que ela não diz.</p>
             """, "bruto"),
             ("Minutagem do dia", sb.tabela_minutagem([
                 ("Abertura e retomada do Módulo II", "15"),
@@ -52,7 +52,7 @@ SECOES = [
                 ("<strong>Total</strong>", "<strong>240</strong>"),
             ]), "bruto"),
             ("O fio que liga as duas partes do dia", """
-            <p>Anunciar na abertura, e repetir no fim da Parte 2: <strong>o intervalo e o
+            <p>Anunciar na abertura e repetir no fim da Parte 2: <strong>o intervalo e o
             teste usam o mesmo erro padrão e nunca se contradizem</strong>. O valor que fica
             fora do intervalo de 95% é o valor que o teste rejeita a 5%. Quem entende um,
             entende o outro — e por isso a aula começa pelo intervalo, que é mais
@@ -98,7 +98,7 @@ SECOES = [
             ("O momento central da Parte 1: os cem intervalos", """
             <p>Antes de mostrar a figura, perguntar: <em>“se eu sortear cem amostras e calcular
             cem intervalos de 95%, quantos vão cobrir o preço médio verdadeiro?”</em> A
-            maioria dirá 95, e está certa — aproximadamente. Mostrar: <strong>94</strong>. Com
+            maioria dirá 95 e está certa — aproximadamente. Mostrar: <strong>94</strong>. Com
             mil amostras, 959.</p>
             <p>A pergunta seguinte é a que ensina: <em>“olhando só o intervalo da amostra 19,
             sem a linha preta, dá para saber que ele errou?”</em> Não dá. Por isso a confiança
@@ -169,7 +169,7 @@ SECOES = [
             <p>Repetir até virar reflexo: <strong>o teste não pergunta se a diferença
             existe; pergunta quão rara seria a amostra se ela não existisse.</strong> O valor-p
             é a resposta a essa pergunta hipotética. Por isso ele é calculado
-            <em>supondo</em> H0 verdadeira, e por isso não é a probabilidade de H0.</p>
+            <em>supondo</em> H0 verdadeira e por isso não é a probabilidade de H0.</p>
             <p>Uma analogia que funciona com a turma: o júri. H0 é “o réu é inocente”; a
             amostra é a prova; rejeitar H0 é condenar. O júri nunca declara o réu
             <em>inocente</em> — declara “não culpado”, por falta de provas. É exatamente o

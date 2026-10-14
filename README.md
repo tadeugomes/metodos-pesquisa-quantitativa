@@ -92,7 +92,7 @@ reconheça o padrão:
 | 5 | Um exemplo **resolvido passo a passo**, com dado real |
 | 6 | A leitura do exemplo: a frase |
 | 7 | O código no Colab, com o argumento nomeado |
-| 8 | A frase de leitura, e **o que ela não diz** |
+| 8 | A frase de leitura e **o que ela não diz** |
 | 9 | O erro comum, com o caso errado e o caso certo lado a lado |
 | 10 | A ficha de revisão |
 
@@ -127,7 +127,7 @@ Três atividades individuais, todas no Colab, mais a prova final:
 A disciplina **incentiva** o uso de assistentes, com uma exigência: **registro do prompt e da
 checagem feita**. A regra de ouro, impressa em todos os notebooks e blocos de estatística:
 
-> **A IA explica, o código calcula, e o estudante confere e escreve.**
+> **A IA explica, o código calcula e o estudante confere e escreve.**
 
 Nenhum número vai para o relatório que não tenha saído de uma célula executada na frente do
 aluno. Nos três modos de uso — *Pergunta*, *Encomenda* e *Leitura de um resultado errado* — há

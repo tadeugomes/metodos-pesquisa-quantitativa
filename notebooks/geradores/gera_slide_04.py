@@ -40,7 +40,7 @@ SECOES = [
             """, "bruto"),
             ("O fecho do Módulo I", """
             <p>Marcar com clareza: este é o <strong>último encontro de conteúdo do Módulo I</strong>.
-            No próximo é a AV1, e ela exige a base do projeto já carregada e descrita. Tudo o que
+            No próximo é a AV1 e ela exige a base do projeto já carregada e descrita. Tudo o que
             a disciplina ensinou sobre descrever um conjunto de dados fecha hoje.</p>
             """, "falar"),
         ],
@@ -83,7 +83,7 @@ SECOES = [
               O que se faz: contar e declarar — nunca preencher por conta própria.</li>
               <li><strong>Escala e unidade.</strong> Na CVM, 444 companhias declaram em
               <code>MIL</code> e 7 em <code>UNIDADE</code>. Misturar as duas faz a mediana das
-              segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro, e volta na
+              segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro e volta na
               AV1.</li>
               <li><strong>Número no padrão nacional.</strong> O <code>6,29</code> da ANP e a data
               <code>DD/MM/AAAA</code>: sem <code>decimal=","</code> a coluna chega como texto, e
@@ -103,7 +103,7 @@ SECOES = [
             <p>Vale dizer que é a mesma exigência da pesquisa com seres humanos, aplicada a dado
             que já existe: não é burocracia, é o que permite publicar sem expor.</p>
             """, "falar"),
-            ("A matriz de amarração, e a coluna que ela ganha", """
+            ("A matriz de amarração e a coluna que ela ganha", """
             <p>Fechar o bloco ligando matriz e estatística: a matriz amarra objetivo, variável e
             <strong>técnica de análise</strong>. É a coluna que o Módulo I passou a permitir
             preencher — e é ela que a AV1 vai cobrar.</p>
@@ -119,7 +119,7 @@ SECOES = [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("A pergunta: dois grupos, a mesma média", "8"),
                 ("As cinco medidas de dispersão", "16"),
-                ("Por que o quadrado, e por que a raiz", "12"),
+                ("Por que o quadrado e por que a raiz", "12"),
                 ("O exemplo resolvido: a gasolina no Maranhão", "14"),
                 ("Erro comum e ficha", "5"),
             ]), "bruto"),
@@ -136,14 +136,14 @@ SECOES = [
             <p>Em seguida, a segunda pergunta: <em>“e por que tirar a raiz depois?”</em>. Aí é a
             interpretação: sem a raiz, o número fica em R$ ao quadrado, que não se lê.</p>
             """, "pergunta-aula"),
-            ("O exemplo, e a frase que sai dele", """
+            ("O exemplo e a frase que sai dele", """
             <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
             com oscilação típica de R$ 0,42 — 6,9% da média”</em>. A disciplina quer que essa
             forma de dizer vire hábito: <strong>centro e dispersão na mesma frase</strong>.</p>
             """, "pergunta-aula"),
             ("Erros que vão aparecer na turma", """
             <ol>
-              <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide, e
+              <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide e
               o mais comum em relatório que compara dois indicadores.</li>
               <li><strong>Achar que desvio alto significa problema.</strong> Desvio alto é
               <em>variação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
@@ -177,7 +177,7 @@ SECOES = [
                 ("A pergunta: R$ 6,20 foi caro ou barato?", "8"),
                 ("Quartis, cinco números, histograma e escore z", "16"),
                 ("O exemplo resolvido: onde o posto cai", "12"),
-                ("A forma da distribuição, e o encontro com o bloco anterior", "14"),
+                ("A forma da distribuição e o encontro com o bloco anterior", "14"),
                 ("Erro comum e ficha", "5"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
@@ -187,7 +187,7 @@ SECOES = [
             """, "falar"),
             ("O momento em que os dois blocos do dia se encontram", """
             <p>Este é o ponto mais importante da tarde, e vale conduzir devagar: na
-            <strong>tela “Como se lê o exemplo, e a forma da distribuição”</strong>, a média
+            <strong>tela “Como se lê o exemplo e a forma da distribuição”</strong>, a média
             (6,13) maior que a mediana (6,08) do primeiro bloco <em>explica</em> a assimetria que
             o segundo bloco mede. Não são dois assuntos: são o mesmo, visto por dois ângulos.</p>
             <p>E a <strong>regra 68-95-99,7</strong> fecha o argumento com dado: 59,3% dos postos
@@ -264,9 +264,9 @@ SECOES = [
             """, "falar"),
             ("A dispersão e a forma, sobre a mesma série (24 min)", """
             <p>O ponto de chegada da prática: o aluno vê média, desvio, CV, IQR, cinco números e
-            escore z <strong>sobre a mesma série</strong>, e depois o histograma com a média e a
+            escore z <strong>sobre a mesma série</strong> e depois o histograma com a média e a
             mediana desenhadas. A leitura que se quer ouvir:</p>
-            <p><em>“a média é maior que a mediana, a assimetria é positiva, e a regra da normal
+            <p><em>“a média é maior que a mediana, a assimetria é positiva e a regra da normal
             não fecha em nenhum dos três intervalos.”</em></p>
             """, "pergunta-aula"),
             ("A oficina do projeto: os seis critérios (12 min)", """
@@ -288,7 +288,7 @@ SECOES = [
             <p>As três telas finais fazem o balanço do módulo. Vale construir junto com a turma, no
             quadro, a lista do que ela já sabe: contar e dividir; identificar o nível de
             mensuração; escolher entre média e mediana; medir dispersão; ler a forma. <strong>É
-            esse o repertório da AV1</strong>, e ele é suficiente para descrever qualquer conjunto
+            esse o repertório da AV1</strong> e ele é suficiente para descrever qualquer conjunto
             de dados.</p>
             """, "falar"),
         ],

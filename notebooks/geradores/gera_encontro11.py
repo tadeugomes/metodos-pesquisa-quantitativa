@@ -100,7 +100,7 @@ tipo I e II.
 | **Qui-quadrado de independência** | Testa se duas variáveis categóricas estão associadas |
 | **Qui-quadrado de aderência** | Testa se as contagens de uma variável seguem proporções conhecidas |
 
-> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+> **A regra do semestre:** a IA explica, o código calcula e você confere e escreve."""
 
 CONFIG_MD = """## Bloco de configuração
 
@@ -137,7 +137,7 @@ UTILITARIOS_NOTA = """## Utilitários da disciplina
 devolve uma **leitura arrumada em poucas linhas** — a estatística, os graus de liberdade,
 o valor-p e a decisão —, no lugar da saída bruta do pacote. Também não precisa alterá-las.
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.*"""
 
 UTILITARIOS_ENCONTRO = '''# =====================================================================
@@ -272,7 +272,7 @@ anp["valor_venda"] = pd.to_numeric(anp["valor_venda"], errors="coerce")
 print(f"ANP: {len(anp)} posto-mês do Maranhão carregados")'''
 
 CELULA_B_ANP = '''# ================= CÉLULA B: CONTINGÊNCIA DA ANP — leia antes =================
-# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv.
 
 import pandas as pd
@@ -350,7 +350,7 @@ cvm = (cvm.merge(cad_cvm.drop_duplicates("chave")[["chave", "SETOR_ATIV"]],
 print(f"CVM: {len(cvm)} companhias com receita e lucro em 2024")'''
 
 CELULA_B_CVM = '''# ================= CÉLULA B: CONTINGÊNCIA DA CVM — leia antes =================
-# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/cvm_dre_2024.csv.
 
 import pandas as pd
@@ -646,7 +646,7 @@ t_{pareado} = \\frac{\\bar{d}}{s_d / \\sqrt{n}} \\qquad
 diferença em erros padrão. O que muda é o erro padrão — no de duas amostras, ele soma a
 incerteza dos dois grupos; no pareado, ele olha só para a diferença dentro de cada par. O
 qui-quadrado compara, célula a célula, o que se observou com o que se esperaria se H0
-fosse verdadeira, e soma as distâncias.
+fosse verdadeira e soma as distâncias.
 
 **Quando usar e quando não usar**
 
@@ -688,7 +688,7 @@ municípios do estado: a ANP pesquisou 11."""},
     {"tipo": "md", "texto": """### Teste 3. t pareado: gasolina × etanol no mesmo posto
 
 Aqui cada posto aparece **duas vezes**, uma com o preço da gasolina e outra com o do
-etanol. O teste olha para a **diferença dentro de cada posto**, e por isso tira da conta
+etanol. O teste olha para a **diferença dentro de cada posto** e por isso tira da conta
 a variação de preço entre postos — que não interessa à pergunta."""},
     {"tipo": "code", "texto": T_PAR},
     {"tipo": "md", "texto": """> "No mesmo posto e no mesmo mês, a gasolina comum custou em média **R\\$ 1,20 a mais**
@@ -803,7 +803,7 @@ valor-p e a decisão) **e o que ela não diz.**
    ajuda ao professor — antes de confiar no valor-p.
 
 Se o seu projeto não tem duas variáveis categóricas, escreva qual teste do fluxograma a
-sua hipótese pede, e por quê.
+sua hipótese pede e por quê.
 
 *A frase de leitura do teste na minha base (ou o teste que a minha hipótese pede):*
 

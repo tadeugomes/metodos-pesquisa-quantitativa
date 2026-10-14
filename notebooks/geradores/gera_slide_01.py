@@ -80,10 +80,10 @@ SECOES = [
             ]), "bruto"),
             ("Como conduzir a provocação", """
             <p>Escrever as três afirmações no quadro — ou no chat da sala — antes de falar
-            qualquer coisa. Perguntar à turma como se saberia se cada uma é verdadeira, e
+            qualquer coisa. Perguntar à turma como se saberia se cada uma é verdadeira e
             <strong>deixar o silêncio durar</strong>. É nessa hesitação que o sentido comum
             aparece em operação.</p>
-            <p>Registrar no quadro os três critérios de julgamento que a turma levantar, e só
+            <p>Registrar no quadro os três critérios de julgamento que a turma levantar e só
             então nomear: <em>esses são os mecanismos do sentido comum</em>. Não antecipar a
             resposta.</p>
             """, "falar"),
@@ -131,20 +131,20 @@ SECOES = [
             ("Tratar o exemplo sem ironia", """
             <p>Porcentagem parece elementar e não é. O diagnóstico inicial da disciplina
             mostrou que a turma erra a divisão. Tratar o assunto com vagar e sem piada: é a
-            operação mais usada em pesquisa aplicada, e a que mais aparece errada em
+            operação mais usada em pesquisa aplicada e a que mais aparece errada em
             relatório.</p>
             """, "falar"),
             ("O ponto de maior impacto do encontro", """
             <p>A tabela de <strong>dois denominadores</strong> (30%, 60% e 67% a partir dos
             mesmos 60 casos). Essa tela costuma provocar a reação mais forte da aula, porque as
             três leituras parecem iguais e não são. Condução sugerida: escrever as três no
-            quadro sem dizer o que são, e pedir que a turma diga qual responde à pergunta do
+            quadro sem dizer o que são e pedir que a turma diga qual responde à pergunta do
             dia. Se sobrar tempo, fazer a turma dizer em voz alta “entre quem?” antes de cada
             divisão — é o hábito que se quer instalar.</p>
             """, "pergunta-aula"),
             ("O terceiro slide, no projetor, com a base aberta", """
             <p>Mostrar as três variações de <code>value_counts()</code> com a base do CEMPRE já
-            aberta, e apontar que <code>normalize=True</code> é literalmente a divisão da
+            aberta e apontar que <code>normalize=True</code> é literalmente a divisão da
             fórmula, escrita em Python.</p>
             """, "falar"),
             ("O slide da frase de leitura", """
@@ -155,7 +155,7 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>Soma 102% ou 98%.</strong> Arredondamento de cada linha. Explicar que é
-              esperado, e que por isso a conferência é “da soma” e não “de cada linha”.</li>
+              esperado e que por isso a conferência é “da soma” e não “de cada linha”.</li>
               <li><strong>Confundir 35% com 35 pontos percentuais.</strong> Voltar à tela de
               ponto percentual quando aparecer.</li>
               <li><strong>“Comércio é 35% da economia do Maranhão”.</strong> Erro de leitura, não
@@ -216,7 +216,7 @@ SECOES = [
             """, "falar"),
             ("Seção 4 — as três perguntas (10 min)", """
             <p>Três perguntas em célula de texto, respondidas por escrito no próprio notebook: o
-            que os dados mostram, o que eles não permitem afirmar, e uma pergunta de pesquisa
+            que os dados mostram, o que eles não permitem afirmar e uma pergunta de pesquisa
             que o estudante gostaria de responder com dados ao longo do semestre. A terceira
             resposta é o embrião do projeto individual.</p>
             """, "falar"),

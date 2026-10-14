@@ -45,7 +45,7 @@ PAINEL = """# Encontro 10. Do intervalo de confiança à lógica do teste
 > **O que você vai fazer hoje**
 > 1. **Executar** as células de cima para baixo.
 > 2. **Mudar valores** no bloco de configuração: o nível de confiança e o valor de referência.
-> 3. **Escrever** a frase de leitura de cada teste, e o que ela **não** diz.
+> 3. **Escrever** a frase de leitura de cada teste e o que ela **não** diz.
 >
 > Você não vai escrever código. Se algo não funcionar, **chame o professor**.
 
@@ -89,7 +89,7 @@ que risco?** A Parte 1 responde com um **intervalo**; a Parte 2, com um **teste*
 | **Valor-p** | A chance de uma amostra tão afastada de H0 quanto a nossa, **se H0 fosse verdadeira** |
 | **Estatística t** | A distância entre a média da amostra e o valor de referência, medida em erros padrão |
 
-> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+> **A regra do semestre:** a IA explica, o código calcula e você confere e escreve."""
 
 CONFIG_MD = """## Bloco de configuração
 
@@ -123,7 +123,7 @@ UTILITARIOS_NOTA = """## Utilitários da disciplina
 devolve uma **leitura arrumada em poucas linhas**, no lugar da saída bruta do pacote
 estatístico. Também não precisa alterá-las — só executar.
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.*"""
 
 UTILITARIOS_ENCONTRO = '''# =====================================================================
@@ -258,7 +258,7 @@ anp = brasil[brasil["uf"] == "MA"].copy()
 print(f"Maranhão: {len(anp)} posto-mês carregados")'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv.
 # O arquivo só tem o Maranhão: a referência nacional fica fixa na configuração.
 
@@ -494,7 +494,7 @@ para uma margem de 5 pontos."""},
 
 ### O que o "95%" **não** significa
 
-A frase errada, e muito comum: *"há 95% de probabilidade de o preço médio estar entre
+A frase errada e muito comum: *"há 95% de probabilidade de o preço médio estar entre
 R\\$ 5,93 e R\\$ 6,12"*. O preço médio verdadeiro não é sorteado: ele é um só, e o
 intervalo calculado **ou o contém, ou não o contém**. O 95% é a **taxa de acerto do
 procedimento**: de cada cem amostras, cerca de 95 produzem um intervalo que cobre o valor
@@ -574,8 +574,8 @@ resultado do teste para qualquer valor de referência.
 > significativa a 5% (ANP, SHPC, 2025)."
 
 **O que essa frase não diz.** Que a diferença é *grande* ou *importante* — isso é
-julgamento de gestão, e se faz em centavos, não em valor-p. Nem que há 0,14% de chance de
-H0 ser verdadeira: o valor-p é calculado **supondo** H0 verdadeira, e não é a
+julgamento de gestão e se faz em centavos, não em valor-p. Nem que há 0,14% de chance de
+H0 ser verdadeira: o valor-p é calculado **supondo** H0 verdadeira e não é a
 probabilidade dela.
 
 **O erro comum: "não rejeitar" lido como "provar".** Contra R\\$ 6,00, o teste dá
@@ -617,7 +617,7 @@ que "não rejeitar H0" não é o mesmo que "provar H0"?**
 ---
 """},
     {"tipo": "md", "texto": """**Questão 4. A mesma conclusão pelo intervalo.** Olhe o IC de 95% calculado na Parte 1.
-Sem rodar nenhum teste, diga se R\\$ 6,25 seria rejeitado a 5%, e por quê.
+Sem rodar nenhum teste, diga se R\\$ 6,25 seria rejeitado a 5% e por quê.
 
 *Sua resposta:*
 
@@ -637,7 +637,7 @@ imprime o cartão de contexto e o resultado do teste para colar no pedido. Depoi
 
 - [ ] Executei o notebook inteiro de cima para baixo, e todos os `conferir` deram `[ok]`
 - [ ] Mudei `NIVEL_CONFIANCA` para 0.99 e vi o intervalo alargar
-- [ ] Sei dizer o que o "95%" quer dizer, e o que ele **não** quer dizer
+- [ ] Sei dizer o que o "95%" quer dizer e o que ele **não** quer dizer
 - [ ] Escrevi as frases das três questões, cada uma com o que ela não diz
 - [ ] Sei por que um valor fora do IC de 95% é rejeitado a 5%
 

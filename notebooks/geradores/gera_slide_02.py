@@ -31,7 +31,7 @@ SECOES = [
             ("Objetivos de aprendizagem", """
             <p>Ao final do encontro o estudante deverá ser capaz de: (i) explicar o que é uma
             variável e distinguir o papel dela na hipótese; (ii) classificar uma variável quanto
-            ao tipo e ao nível de mensuração; (iii) aplicar a regra que decorre do nível, e dizer
+            ao tipo e ao nível de mensuração; (iii) aplicar a regra que decorre do nível e dizer
             qual medida de resumo cabe em cada variável; (iv) usar o teste do zero para decidir
             entre intervalo e razão; (v) operacionalizar um conceito de gestão em uma variável
             mensurável.</p>
@@ -39,7 +39,7 @@ SECOES = [
             ("A retomada que faz a ponte", """
             <p>Retomar a frase do encontro 1 que organiza o dia: <strong>mensurar é atribuir
             números a conceitos</strong>. Hoje vamos ao passo seguinte — decidir <em>o que
-            exatamente</em> medir, e <em>como</em> o número que resultar da medição poderá ser
+            exatamente</em> medir e <em>como</em> o número que resultar da medição poderá ser
             usado.</p>
             """, "falar"),
             ("Onde está a minutagem", """
@@ -56,7 +56,7 @@ SECOES = [
         "entre": ["Variáveis", "Parte 2"],
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
-                ("O que é uma variável, e seu papel na hipótese", "8"),
+                ("O que é uma variável e seu papel na hipótese", "8"),
                 ("Os quatro níveis de mensuração, um a um", "18"),
                 ("A síntese: o nível decide a análise", "6"),
                 ("O exercício de classificação e os casos traiçoeiros", "8"),
@@ -74,7 +74,7 @@ SECOES = [
             <em>de propósito</em>.</p>
             """, "falar"),
             ("O exercício que mais rende", """
-            <p>“Classifique o nível”: a turma classifica variáveis reais em voz alta, e justifica.
+            <p>“Classifique o nível”: a turma classifica variáveis reais em voz alta e justifica.
             Depois, os <strong>casos traiçoeiros</strong> — e o melhor deles é a seção da CNAE:
             as letras vão de A a U, e mesmo assim a variável é nominal.</p>
             <p>A frase que fecha: <em>“a ordem do código não é a ordem do mundo”</em>. É a mesma
@@ -118,13 +118,13 @@ SECOES = [
             ferramenta. E é a primeira coisa que impede um erro caro — a média de uma
             categoria.</p>
             """, "falar"),
-            ("Um exemplo real por nível, e a honestidade do intervalo", """
+            ("Um exemplo real por nível e a honestidade do intervalo", """
             <p>As três bases do notebook foram escolhidas por trazerem um nível cada:</p>
             <ul>
               <li><strong>Nominal</strong> — a seção da CNAE, letras de A a U. 10.607.110
               empresas, comércio 27,42%;</li>
               <li><strong>Ordinal</strong> — a faixa de pessoal assalariado. 337.330 nascimentos,
-              93,01% na menor faixa, e 99,35% até 49 pessoas;</li>
+              93,01% na menor faixa e 99,35% até 49 pessoas;</li>
               <li><strong>Razão</strong> — receita, pessoal ocupado, número de empresas. 281.133
               empresas e 1.420.230 pessoas no alojamento e alimentação.</li>
             </ul>
@@ -140,7 +140,7 @@ SECOES = [
             de pesquisa aplicada.</p>
             """, "pergunta-aula"),
             ("A acumulada, que só existe em ordinal", """
-            <p>É a única novidade em relação ao encontro 1, e existe por causa da ordem. Vale
+            <p>É a única novidade em relação ao encontro 1 e existe por causa da ordem. Vale
             perguntar antes de mostrar: <em>“por que acumular não faz sentido na base da
             CNAE?”</em>. A resposta é a lição do dia em forma de operação.</p>
             """, "pergunta-aula"),
@@ -189,7 +189,7 @@ SECOES = [
             <code>"nominal"</code> e <code>"razao"</code>. Nada além disso.</p>
             """, "falar"),
             ("Seção 2 — as três bases (18 min)", """
-            <p>Antes de executar, perguntar: <em>“qual delas vocês acham que é ordinal, e por
+            <p>Antes de executar, perguntar: <em>“qual delas vocês acham que é ordinal e por
             quê?”</em>. A resposta sai da base, não da opinião.</p>
             <p>Chamar atenção para o detalhe novo em relação ao encontro 1: a API do IBGE
             <strong>não traz os nomes das categorias da faixa de pessoal</strong> — o notebook
@@ -209,7 +209,7 @@ SECOES = [
             <code>"nominal"</code>. A diferença no comportamento do notebook é o argumento: com
             ordem, acumula; sem ordem, “até” não quer dizer nada.</p>
             """, "falar"),
-            ("Seção 6 — o modo 3, e por que ele é o mais importante", """
+            ("Seção 6 — o modo 3 e por que ele é o mais importante", """
             <p>As três classificações erradas do professor. A segunda é a pérola do encontro: a
             CNAE classificada como ordinal “porque as letras vão de A a U”. Pedir que a turma
             argumente <strong>contra</strong> antes de revelar o gabarito.</p>
@@ -220,7 +220,7 @@ SECOES = [
             """, "alerta"),
             ("O que coletar antes do fim da aula", """
             <p>O link do notebook e as respostas da primeira pergunta de interpretação. Elas
-            dizem de que variável a turma fala, e alimentam o problema e a hipótese do encontro
+            dizem de que variável a turma fala e alimentam o problema e a hipótese do encontro
             3.</p>
             """, "gabarito"),
         ],

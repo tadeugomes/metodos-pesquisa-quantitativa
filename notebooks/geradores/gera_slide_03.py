@@ -50,7 +50,7 @@ SECOES = [
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("Retomada: as perguntas que a turma trouxe", "6"),
-                ("Tema não é problema, e as seis regras de Gil", "12"),
+                ("Tema não é problema e as seis regras de Gil", "12"),
                 ("Objetivos: geral e específicos, e os verbos", "8"),
                 ("Hipóteses: níveis, relações e os seis requisitos", "14"),
                 ("Os três defeitos clássicos de hipótese", "5"),
@@ -68,7 +68,7 @@ SECOES = [
             voltar a ela ao fim de cada tela.</p>
             """, "falar"),
             ("O ponto que mais rende: hipótese é uma frase sobre um número", """
-            <p>É a articulação entre os dois blocos do dia, e a frase que a turma deve levar:
+            <p>É a articulação entre os dois blocos do dia e a frase que a turma deve levar:
             <em>“a mediana do setor A é maior que a do setor B”</em> é hipótese; <em>“o setor A é
             melhor que o B”</em> não é, porque não diz sobre que número se está falando. Pedir
             que a turma reescreva uma hipótese vaga nesse formato.</p>
@@ -177,7 +177,7 @@ SECOES = [
             mão.</p>
             <p>Falar também da <strong>retentativa</strong>: a função tenta três vezes antes de
             desistir, porque a API do Banco Central devolve 502 de vez em quando. É comportamento
-            de quem usa API de verdade, e não esconde nada — se as três falharem, a Célula B
+            de quem usa API de verdade e não esconde nada — se as três falharem, a Célula B
             entra em cena.</p>
             """, "falar"),
             ("Seções 3 e 4 — as medidas e o exemplo (24 min)", """
@@ -188,7 +188,7 @@ SECOES = [
             a média dos seis valores na mão, e o notebook confirma. Em seguida o valor extremo
             entra, e o efeito aparece na tela.</p>
             """, "pergunta-aula"),
-            ("Seção 6 — o modo 3, e por que ele é o mais perigoso", """
+            ("Seção 6 — o modo 3 e por que ele é o mais perigoso", """
             <p>A segunda leitura errada é a que merece mais tempo: um número <strong>certo</strong>
             (a média de 3,54%) usado para afirmar algo que ele não sustenta. É o mesmo cuidado da
             tela de leitura do encontro 1, agora aplicado a uma série temporal.</p>
@@ -227,7 +227,7 @@ SECOES = [
               traga a sua rascunhada: problema, objetivo, hipótese e as variáveis com o nível
               declarado.</li>
               <li>Escreva <strong>uma frase</strong> dizendo, para cada variável quantitativa do
-              seu projeto, se usaria média ou mediana, e por quê.</li>
+              seu projeto, se usaria média ou mediana e por quê.</li>
               <li>Reexecute o notebook em casa, com as duas séries.</li>
             </ol>
             <p>O próximo encontro é o mais denso do Módulo I: a estatística passa a ter duas

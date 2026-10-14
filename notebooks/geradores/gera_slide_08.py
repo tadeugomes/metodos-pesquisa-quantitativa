@@ -35,7 +35,7 @@ SECOES = [
         "blocos": [
             ("Objetivos de aprendizagem", """
             <p>Ao final do encontro o estudante deverá ser capaz de: (i) distinguir erro
-            aleatório de erro sistemático, e nomear os vieses de cobertura, de não resposta e
+            aleatório de erro sistemático e nomear os vieses de cobertura, de não resposta e
             de mensuração; (ii) reconhecer os defeitos clássicos de redação de um item de
             questionário; (iii) explicar a escala Likert, a diferença entre validade e
             confiabilidade, e o que o alfa de Cronbach mede e não mede; (iv) calcular e
@@ -116,7 +116,7 @@ SECOES = [
               <li><strong>Confundir validade com confiabilidade.</strong> A escala confiável
               pode medir, com muita consistência, a coisa errada;</li>
               <li><strong>Ler alfa alto como prova de qualidade.</strong> Ele sobe com o número de
-              itens, e não diz o que a escala mede;</li>
+              itens e não diz o que a escala mede;</li>
               <li><strong>Somar item invertido sem recodificar.</strong> O alfa despenca, e o
               estudante conclui que a escala é ruim;</li>
               <li><strong>Tratar o item Likert isolado como intervalar.</strong> O item é
@@ -151,7 +151,7 @@ SECOES = [
             de 236, quantas empresas bastam para o Brasil, com 10,6 milhões?”</em>. A turma
             chuta milhares. A resposta é 385 — e o cadastro cresce 45 mil vezes enquanto o n
             cresce 2,6 vezes.</p>
-            <p>É a tela que desmonta a regra dos 10%, e que o erro comum retoma.</p>
+            <p>É a tela que desmonta a regra dos 10% e que o erro comum retoma.</p>
             """, "pergunta-aula"),
             ("O mistério do encontro 7, resolvido", """
             <p>No encontro 7 a largura observada das mil médias (R$ 0,0418) saiu menor que a da
@@ -169,7 +169,7 @@ SECOES = [
               <li><strong>Arredondar para baixo.</strong> 101,7 vira 102, e não 101: com menos,
               a margem fica um pouco maior que a pedida;</li>
               <li><strong>Usar p = 0,5 sem saber por quê.</strong> É o caso conservador: o valor
-              de p que maximiza p(1 − p), e portanto o n;</li>
+              de p que maximiza p(1 − p) e portanto o n;</li>
               <li><strong>Esquecer a correção num cadastro pequeno.</strong> Sem ela, a fórmula
               pede 385 postos de um cadastro de 236;</li>
               <li><strong>Dar margem de erro a amostra por conveniência.</strong> A fórmula supõe
@@ -255,7 +255,7 @@ SECOES = [
             <p>Primeiro, todos executam o notebook inteiro com a configuração do slide e
             conferem os <code>[ok]</code>. Só depois liberar as rodadas, <strong>uma mudança de
             cada vez</strong>, voltando ao valor original antes da seguinte. Avise que, com a
-            configuração mudada, o <code>conferir</code> mostra <code>[X ]</code>, e que isso é
+            configuração mudada, o <code>conferir</code> mostra <code>[X ]</code> e que isso é
             esperado — o número mudou porque a pergunta mudou.</p>
             <p>Se a CÉLULA A2 (Receita Federal) falhar — “could not resolve host”, 401 ou tempo
             esgotado —, a turma faz upload de <code>dados/rf_cnpj_municipios.csv</code> e

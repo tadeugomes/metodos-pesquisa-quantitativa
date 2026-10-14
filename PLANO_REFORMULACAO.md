@@ -50,7 +50,7 @@ apresentam estatística nova sem que o estudante já a tenha visto antes em cont
 
 1. **Quatro módulos com uma promessa cada.** I: descrever. II: sortear. III: inferir. IV: modelar
    e comunicar. A ordem é a ordem lógica do fazer pesquisa, não a ordem de capítulos de livro.
-2. **A descritiva é ensinada inteira, item a item, e só uma vez.** Os 41 itens de estatística do Módulo I (seção
+2. **A descritiva é ensinada inteira, item a item e só uma vez.** Os 41 itens de estatística do Módulo I (seção
    4.3) formam a base; os módulos seguintes só aplicam e aprofundam.
 3. **Toda estatística nasce de uma pergunta de pesquisa e morre numa frase.** Nenhum item entra
    pela fórmula. A fórmula é o meio; a frase de leitura é o produto.
@@ -186,7 +186,7 @@ mesma estrutura de dez elementos (seção 8.2).
 |---|---|
 | 4.8 | Distribuição de frequência e classes: de onde vem a classe |
 | 4.9 | Amplitude de classe e número de classes: a escolha que muda o desenho |
-| 4.10 | Histograma: a forma, e o que muda quando se muda o número de classes |
+| 4.10 | Histograma: a forma e o que muda quando se muda o número de classes |
 | 4.11 | Quartis e o esquema dos cinco números |
 | 4.12 | Boxplot: anatomia e o que cada elemento afirma |
 | 4.13 | Escore z: a régua que compara grandezas de escalas diferentes |
@@ -260,15 +260,15 @@ Aula de sorteio com resultado verificável é o gancho do módulo: o estudante s
 
 | Enc. | Exposição (45 min) | Estatística (60 min) | Prática (75 min) |
 |---|---|---|---|
-| 10 | O intervalo de confiança em linguagem corrente, e o que "95%" **não** significa | Hipótese nula, hipótese alternativa, nível de significância, valor-p | Testes t com leitura escrita de cada resultado |
-| 11 | Erros tipo I e II, poder do teste, e a tabela de decisão do teste | Testes t de uma amostra, de duas amostras e pareado; qui-quadrado de independência e de bondade de ajuste | Fluxograma de escolha; teste qui-quadrado sobre a base do projeto |
+| 10 | O intervalo de confiança em linguagem corrente e o que "95%" **não** significa | Hipótese nula, hipótese alternativa, nível de significância, valor-p | Testes t com leitura escrita de cada resultado |
+| 11 | Erros tipo I e II, poder do teste e a tabela de decisão do teste | Testes t de uma amostra, de duas amostras e pareado; qui-quadrado de independência e de bondade de ajuste | Fluxograma de escolha; teste qui-quadrado sobre a base do projeto |
 | 12 | ANOVA e quando o teste paramétrico não cabe | Mann-Whitney, Wilcoxon, qui-quadrado; revisão cumulativa pelos guias e pelos fluxogramas | Prática guiada no projeto individual |
 
 ### 6.2 Módulo IV: associação, modelagem e comunicação
 
 | Enc. | Exposição | Estatística | Prática e avaliação |
 |---|---|---|---|
-| 13 | Correlação de Pearson, R², e o que nenhum dos três diz sobre causa | Regressão linear simples e múltipla; **regressão logística**: log-odds, odds ratio, probabilidade prevista | Leitura em 5 colunas; ajuste sobre a base do projeto |
+| 13 | Correlação de Pearson, R² e o que nenhum dos três diz sobre causa | Regressão linear simples e múltipla; **regressão logística**: log-odds, odds ratio, probabilidade prevista | Leitura em 5 colunas; ajuste sobre a base do projeto |
 | 14 | — | — | **Dia inteiro de AV3**: comunicação, leitura crítica, relatório e apresentação |
 | 15 | — | — | Prova final |
 
@@ -448,7 +448,7 @@ geração é **cirúrgica e idempotente**: o gerador nunca reescreve o que não 
   marcadores SVG inline (`#sv`, `#sg`, `#sd`, `#sc`), o logo e o rodapé de cada tela, e o
   conteúdo de cada `<section class="slide">`. Só acrescenta o que é seu: `<div id="deck">`
   em volta das telas, agrupadas em `<section class="secao-projecao">` nos cortes dos
-  divisores, e o `<main id="conducao">` depois do deck.
+  divisores e o `<main id="conducao">` depois do deck.
 - `notebooks/geradores/gera_slide_NN.py`: um por encontro, contendo **só a condução** —
   minutagem, condução sugerida, o que evitar, perguntas para a turma, gabarito e tarefa.
   É esse arquivo que se edita para mudar a condução; as telas se editam no HTML, à mão.
@@ -488,10 +488,10 @@ catorze serem produzidos.
 8. **Sem `def` e sem `for` na frente do aluno.** As utilidades ficam **logo depois da `CONFIG`**,
    num bloco marcado como intocável, e não no fim do arquivo: o estudante executa de cima para
    baixo, e uma função usada na seção 3 que só é definida na seção 9 quebraria a primeira
-   passada. `conferir` é a única delas que o aluno precisa conhecer, e aparece no painel.
+   passada. `conferir` é a única delas que o aluno precisa conhecer e aparece no painel.
 9. **`conferir` em toda questão prática**, com o valor esperado preenchido pelo gerador, de modo
    que o gabarito é publicado junto com o exercício. A função não devolve valor: imprime `[ok]` ou
-   `[X]`, e nada mais, para que a última linha da célula seja sempre a leitura do resultado.
+   `[X]` e nada mais, para que a última linha da célula seja sempre a leitura do resultado.
 10. **Toda estatística tem seção própria**, entre a carga dos dados e a prática, com a mesma
     estrutura de dez elementos dos slides, para que o notebook e o deck ensinem a mesma coisa.
 
@@ -523,10 +523,10 @@ hipóteses, variáveis) fica como formativa no encontro 7 e é reescrita no enco
 | `slides/ufma-slides.js` | Modo detalhe: tecla `D`, âncoras, impressão em duas partes |
 | `notebooks/geradores/slide_builder.py` | Novo; a transformação, cirúrgica e idempotente |
 | `notebooks/geradores/gera_slide_NN.py` | Novos; contêm só a condução de cada encontro |
-| `notebooks/geradores/nb_helper.py` | `cartao`, `conferir`, `CONFIG`, painel do encontro, e execução do notebook na geração para salvar as saídas |
+| `notebooks/geradores/nb_helper.py` | `cartao`, `conferir`, `CONFIG`, painel do encontro e execução do notebook na geração para salvar as saídas |
 | `notebooks/encontro-NN/encontroNN.ipynb` | Pré-executados; `CONFIG`; painel; glossário do dia; sem diagnóstico; caminhos de contingência por upload |
 | `notebooks/modulo-I/guia_descritiva.ipynb` | Novo; acumulado nos encontros 1 a 4 |
-| `dados/FONTES.md` | Reescrito como material didático: mapa de fontes, critério de escolha, chamadas validadas com data, e as contingências |
+| `dados/FONTES.md` | Reescrito como material didático: mapa de fontes, critério de escolha, chamadas validadas com data e as contingências |
 | `dados/` | Novos CSVs de contingência das fontes acrescentadas |
 | `roteiros/` | Conteúdo migrado para a camada de condução e diretório removido |
 | `README.md` | Coluna "Roteiro" removida; quatro tabelas de encontros por módulo; seção de avaliação com o novo calendário |
@@ -561,7 +561,7 @@ encontro 4.
 | IPEA | Ipeadata | API `ipeadatapy` | Séries macroeconômicas e setoriais |
 | CVM | Cadastro de companhias e DFP/ITR | CSV abertos com `pandas` | Receita, lucro, margem e endividamento por setor |
 | **ANP** | SHPC (preços de revenda) e processamento de petróleo | CSV mensal, `sep=";"`, `utf-8-sig` | **Preço de combustível por posto no Maranhão**: 10.641 linhas posto-mês, 11 municípios, 3 produtos, ano de 2025 completo. É a base do bloco de tendência central (média × mediana) e dos blocos de dispersão e de forma |
-| **ANTT** | Catálogo aberto CKAN e cadastro CIOT | API CKAN pública, **sem chave** | A **busca em catálogo** como lição de como achar fonte aberta, e o CIOT como exemplo de fluxo entre municípios |
+| **ANTT** | Catálogo aberto CKAN e cadastro CIOT | API CKAN pública, **sem chave** | A **busca em catálogo** como lição de como achar fonte aberta e o CIOT como exemplo de fluxo entre municípios |
 | **DNIT** | Catálogo aberto CKAN | API CKAN pública, **sem chave** | Pavimentação, pesagem, contagem de tráfego |
 | **Receita Federal** | Base CNPJ: municípios e CNAEs | WebDAV com token público de link | **O universo do plano amostral do Módulo II**: 5.572 municípios e 1.359 atividades, 65 KB no total |
 
@@ -570,13 +570,13 @@ empacota Sidra, CVM e MTE em SQL, e Our World in Data, para séries internaciona
 
 ### 12.3 O que a validação mudou no plano
 
-Cinco resultados de teste que contrariam a expectativa, e que entram no material como conteúdo
+Cinco resultados de teste que contrariam a expectativa e que entram no material como conteúdo
 do encontro 4, não como nota de rodapé:
 
 **O Portal Brasileiro de Dados Abertos não tem API pública.** `dados.gov.br/api/3/action/...`
 responde **401**: a API passou a exigir OAuth2 e cadastro no gov.br. Em aula isso é uma lição útil,
 porque "dado aberto" e "API pública" não são a mesma coisa. As instâncias institucionais do CKAN,
-da ANTT e do DNIT, respondem sem chave nenhuma, e são elas que ensinam a busca.
+da ANTT e do DNIT, respondem sem chave nenhuma e são elas que ensinam a busca.
 
 **Duas fontes foram descartadas por escala, e isso é conteúdo.** A RAIS do MTE tem o arquivo de
 vínculos da região Nordeste com 610 MB; o CAGED tem 55 MB por mês. As duas continuam no mapa como
@@ -609,7 +609,7 @@ descartado e por quê faz parte de ensinar a escolher fonte.
    CSVs de contingência novos gravados em `dados/`.
 3. `nb_helper.py` com `cartao`, `conferir`, `CONFIG`, painel do encontro e execução na geração.
    **Feito.**
-4. **Encontro 1 como implementação de referência**: gerador de slide com camada de detalhe, e
+4. **Encontro 1 como implementação de referência**: gerador de slide com camada de detalhe e
    notebook com `CONFIG`, painel, glossário e saídas salvas. Revisão do padrão travada aqui.
    **Feito.**
 5. Encontros 2 a 15, em três levas: Módulo I (2 a 4), Módulos II e III (6 a 12), Módulo IV (13 a 15).

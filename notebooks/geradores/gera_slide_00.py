@@ -207,7 +207,7 @@ SECOES = [
               significado aos dados;</li>
               <li><strong>Metodologia</strong>: como os dados serão obtidos e analisados
               (delineamento, população e amostra, instrumentos, técnicas);</li>
-              <li><strong>Cronograma e bibliografia</strong>: quando cada etapa entrega, e com
+              <li><strong>Cronograma e bibliografia</strong>: quando cada etapa entrega e com
               base em que fontes.</li>
             </ol>
             """, "falar"),
@@ -382,7 +382,7 @@ SECOES = [
             ("A anatomia do DataFrame (tela 30)", """
             <p>Não há notebook nesta aula, então o código é mostrado no projetor. O objetivo é
             só que a turma <strong>reconheça</strong> as linhas quando elas aparecerem no
-            encontro 1: linha é caso, coluna é variável, e o tipo da coluna (<code>object</code>
+            encontro 1: linha é caso, coluna é variável e o tipo da coluna (<code>object</code>
             ou <code>int64</code>/<code>float64</code>) é a forma como o pandas lê o tipo de
             variável.</p>
             """, "falar"),
@@ -400,7 +400,7 @@ SECOES = [
             <p>A turma confunde “amostra” com “uma parte dos dados que eu baixei”. A correção é
             sempre a mesma pergunta: <strong>houve sorteio?</strong> Sem sorteio há um recorte,
             e não uma amostra probabilística, e nada pode ser generalizado. É o erro 1 da
-            tela 31, e é o tema do Módulo II.</p>
+            tela 31 e é o tema do Módulo II.</p>
             """, "alerta"),
             ("Gabarito dos dois erros (tela 31)", """
             <table>
@@ -528,7 +528,7 @@ SECOES = [
             <p>A IA generativa é <strong>permitida e incentivada</strong>, com uma exigência:
             <strong>registro do prompt e da checagem feita</strong>. O registro não desconta
             pontos; a omissão é falta de honestidade acadêmica. A regra de ouro, que aparece em
-            todos os notebooks: <em>a IA explica, o código calcula, e o estudante confere e
+            todos os notebooks: <em>a IA explica, o código calcula e o estudante confere e
             escreve</em>.</p>
             <table>
               <tr><th>Contexto</th><th>Regra</th></tr>

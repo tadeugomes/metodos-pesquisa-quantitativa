@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Blocos de estatistica de 11 telas, um por encontro, como sequencias de telas prontas.
 
-Mesma estrutura do encontro 1 (PLANO_REFORMULACAO.md, secao 8.2), e os mesmos
+Mesma estrutura do encontro 1 (PLANO_REFORMULACAO.md, secao 8.2) e os mesmos
 numeros que a funcao conferir dos notebooks do encontro 2 e do encontro 3, para
 que o slide e o notebook nunca discordem.
 """
@@ -121,7 +121,7 @@ BLOCO_D1 = {
               <h2>Exemplo resolvido, passo a passo: nascimentos por faixa de pessoal</h2>
               <ol class="passos">
                 <li>A pergunta: <span class="num">quantas empresas nasceram no Brasil em
-                    2021, e por tamanho?</span> A base é o IBGE, Demografia das Empresas;</li>
+                    2021 e por tamanho?</span> A base é o IBGE, Demografia das Empresas;</li>
                 <li>O total: <span class="num">n = 337.330</span> nascimentos em três
                     faixas;</li>
                 <li>A primeira faixa, 1 a 9 pessoas: <span class="num">313.749</span>
@@ -204,7 +204,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
                   Um analista classificou a <strong>seção da CNAE</strong> como
                   <strong>ordinal</strong>, escreveu que “as letras vão de A a U, logo há
                   ordem”.<br><br>
-                  Com essa classificação, sentiu que podia calcular a média da seção, e
+                  Com essa classificação, sentiu que podia calcular a média da seção e
                  publicou que “a empresa mediana está na seção N”.
                 </div>
                 <div class="exemplo">
@@ -212,7 +212,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
                   A CNAE é <strong>nominal</strong>. A ordem de A a U é a ordem do
                   <strong>código</strong>, não do fenômeno: não existe “comércio antes de
                   indústria”.<br><br>
-                  O que dá para fazer: contar, e ver a frequência de cada seção.<br><br>
+                  O que dá para fazer: contar e ver a frequência de cada seção.<br><br>
                   O que não dá: somar as letras, ou dizer qual seção é a “do meio”.
                 </div>
               </div>
@@ -244,7 +244,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
                 <div>
                   <h4>O erro</h4>
                   <p>Confundir a ordem do <strong>código</strong> com a ordem do
-                  <strong>fenômeno</strong>, e promover nominal a ordinal.</p>
+                  <strong>fenômeno</strong> e promover nominal a ordinal.</p>
                   <p>Os números de hoje: 10.607.110 empresas (CNAE) · 337.330 nascimentos (2021) · 281.133 empresas e 1.420.230 pessoas (PAS, 2001)</p>
                 </div>
               </div>
@@ -337,7 +337,7 @@ BLOCO_D2 = {
                   <span><b>Σw</b>a soma dos pesos</span>
                 </span>
                 <span class="legenda-formula">Em linguagem corrente: <strong>multiplique cada
-                valor pelo peso, some tudo, e divida pela soma dos pesos.</strong> Se todos os
+                valor pelo peso, some tudo e divida pela soma dos pesos.</strong> Se todos os
                 pesos forem iguais, a ponderada vira a média simples — é por isso que a fórmula
                 é a mesma.</span>
               </div>

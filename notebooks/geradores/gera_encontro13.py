@@ -112,7 +112,7 @@ sobre uma única base:
 | **Log-odds** | O logaritmo da chance: a escala em que a logística é uma reta |
 | **Razão de chances (OR)** | Quanto a chance se multiplica quando x aumenta 1: e elevado a b |
 
-> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+> **A regra do semestre:** a IA explica, o código calcula e você confere e escreve."""
 
 CONFIG = """## Bloco de configuração
 
@@ -255,7 +255,7 @@ print(f"  com lucro: {cvm['log_lucro'].notna().sum()} | com prejuízo: {cvm['pre
 cvm[["DENOM_CIA", "receita_mi", "lucro_mi", "log_receita", "prejuizo", "energia"]].head(4)'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Só se o professor mandar, e depois de fazer upload do arquivo
+# NÃO EXECUTE AGORA. Só se o professor mandar e depois de fazer upload do arquivo
 # dados/cvm_dre_2024.csv.
 #
 # Esta célula produz exatamente a mesma base que a Célula A.
@@ -300,7 +300,7 @@ manda você executar a **Célula B**, depois do upload do CSV."""},
 
 A **correlação de Pearson** mede o quanto os pontos de um gráfico de dispersão se alinham
 numa **reta**: +1 é uma reta subindo, −1 uma reta descendo, 0 é nenhuma reta. Ela não tem
-unidade, e por isso não muda se a receita estiver em reais ou em milhões.
+unidade e por isso não muda se a receita estiver em reais ou em milhões.
 
 $$r = \\frac{\\text{cov}(x, y)}{s_x \\cdot s_y}$$
 
@@ -343,7 +343,7 @@ reais, 440 companhias se espremem num canto e cinco gigantes ocupam o resto. O *
 de base 10** troca "quanto" por "quantos zeros": 1 = R$ 10 mi, 2 = R$ 100 mi, 3 = R$ 1 bi.
 
 O preço: o logaritmo só existe para valores **positivos**. Na escala log, o lucro só pode
-ser lido para as companhias que **tiveram lucro** — as 131 com prejuízo ficam de fora, e
+ser lido para as companhias que **tiveram lucro** — as 131 com prejuízo ficam de fora e
 voltam na regressão logística."""},
     {"tipo": "code", "texto": '''# Em escala log10, só as companhias com lucro.
 com_lucro = cvm.dropna(subset=["log_lucro"])
@@ -431,7 +431,7 @@ conferir("b de log_receita (statsmodels)", linear.params["log_receita"], 0.838,
          tolerancia=0.001, unidade="")
 conferir("erro padrão de b", linear.bse["log_receita"], 0.043, tolerancia=0.001, unidade="")
 conferir("R² da regressão simples", linear.rsquared, 0.550, tolerancia=0.001, unidade="")'''},
-    {"tipo": "md", "texto": """**A célula de previsão.** Inteiramente pré-escrita: só o cenário muda, e ele está no bloco
+    {"tipo": "md", "texto": """**A célula de previsão.** Inteiramente pré-escrita: só o cenário muda e ele está no bloco
 de configuração (`RECEITA_CENARIO`)."""},
     {"tipo": "code", "texto": '''# A PREVISÃO DA REGRESSÃO LINEAR — não altere esta célula; mude o cenário no bloco de configuração.
 x_cenario = np.log10(RECEITA_CENARIO)
@@ -502,7 +502,7 @@ em log, b é uma **elasticidade**: receita 1% maior, lucro cerca de 0,84% maior.
 receita gera, em média, alguns centavos de lucro — a margem.
 
 **10. Ficha.** `ajusta_modelo(base, "y", ["x1", "x2"], tipo="linear")` → tabela de cinco
-colunas; leia **b** como efeito na unidade de y, **R²** como a parte acompanhada, e o
+colunas; leia **b** como efeito na unidade de y, **R²** como a parte acompanhada e o
 **resíduo** como o que sobrou."""},
 
     # ------------------------------------------------------------ Parte 2B
@@ -662,7 +662,7 @@ conferir("P(prejuízo), R$ 1 bi, outro setor", p_proj * 100, 33.8, tolerancia=0.
     # ------------------------------------------------------------ IA
     {"tipo": "md", "texto": """## Seção 6. Usando o assistente
 
-A regra: **a IA explica, o código calcula, e você confere e escreve.**
+A regra: **a IA explica, o código calcula e você confere e escreve.**
 
 **Modo 1 — Pergunta.** Copie o cartão e cole no assistente antes de perguntar, por exemplo,
 *"o que quer dizer uma razão de chances de 0,41 para a variável energia?"*. A resposta tem
@@ -705,7 +705,7 @@ de Spearman quase não se mexe? O que isso ensina sobre o seu próprio dado?**
 
 ---
 """},
-    {"tipo": "md", "texto": """**3. O modelo linear usou 318 companhias e o logístico, 449. Quem ficou de fora do primeiro,
+    {"tipo": "md", "texto": """**3. O modelo linear usou 318 companhias e o logístico, 449. Quem ficou de fora do primeiro
 e por que a logística é a ferramenta para elas?**
 
 ---

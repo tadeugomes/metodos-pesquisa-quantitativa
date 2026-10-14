@@ -3,7 +3,7 @@
 
 E6 — o sorteio: a base de precos da ANP e, na verdade, um CADASTRO de postos (tem CNPJ,
 municipio e bandeira). E o unico cadastro de estabelecimentos que a disciplina tem em
-maos, e serve para ensinar sorteio com dado real.
+maos e serve para ensinar sorteio com dado real.
 
   N = 236 postos unicos | 11 municipios | 9 bandeiras
   populacao: media R$ 6,0087 | desvio R$ 0,3402
@@ -42,7 +42,7 @@ PAINEL_E6 = """# Encontro 6. População, amostra e o sorteio
 ## Painel do encontro
 
 Hoje a pergunta é **“de quem esses dados falam?”**. E, pela primeira vez, a resposta
-depende de uma decisão sua: **quais casos entram na amostra, e como eles foram escolhidos.**
+depende de uma decisão sua: **quais casos entram na amostra e como eles foram escolhidos.**
 
 A base de hoje tem uma particularidade: ela é, ao mesmo tempo, **a população** e **o
 cadastro** do exercício. É a lista de postos de combustível do Maranhão que a ANP
@@ -115,7 +115,7 @@ print(f"  desvio padrão da POPULAÇÃO: R$ {cadastro['preco_medio'].std():.4f}"
 cadastro.head(4)'''
 
 CELULA_B_E6 = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Só se o professor mandar, e depois de fazer upload do arquivo
+# NÃO EXECUTE AGORA. Só se o professor mandar e depois de fazer upload do arquivo
 # dados/anp_precos_revenda_ma_2025.csv.
 
 import pandas as pd
@@ -157,7 +157,7 @@ Antes de sortear, três definições que a disciplina vai usar o semestre inteir
 > **População-alvo ≠ cadastro**, e é aí que nasce o primeiro viés. Aqui os dois
 > coincidem de propósito, para que se veja o sorteio funcionando. Em um cadastro de
 > empresas, eles quase nunca coincidem: o cadastro inclui só as formais, só as que
-> declararam, e às vezes só as que estão ativas."""},
+> declararam e às vezes só as que estão ativas."""},
     {"tipo": "code", "texto": CELULA_A_E6},
     {"tipo": "contingencia", "texto": CELULA_B_E6},
 
@@ -165,7 +165,7 @@ Antes de sortear, três definições que a disciplina vai usar o semestre inteir
 
 **A ideia do bloco.** Uma amostra sorteada é uma **estimativa** de um valor que existe
 na população, e essa estimativa **erra**. A pergunta do bloco é: quanto ela costuma
-errar, e o que se pode fazer para errar menos.
+errar e o que se pode fazer para errar menos.
 
 **As quatro técnicas probabilísticas, em uma linha cada**
 
@@ -199,7 +199,7 @@ conferir("média da amostra de 100", estimativa, 5.9753, tolerancia=0.001, unida
 
     {"tipo": "md", "texto": """### As três técnicas, lado a lado
 
-Cada técnica constrói a amostra de um jeito, e cada uma dá uma estimativa diferente. O
+Cada técnica constrói a amostra de um jeito e cada uma dá uma estimativa diferente. O
 exercício é comparar as três **com o mesmo valor verdadeiro ao lado**."""},
 
     {"tipo": "code", "texto": '''# As três probabilísticas, com o mesmo n, sobre o mesmo cadastro.
@@ -228,7 +228,7 @@ print(f"  sistemática (k={k})  n={len(sist):3d}  estimativa = R$ {sist['preco_m
 print(f"  estratificada      n={len(estrat):3d}  estimativa = R$ {estrat['preco_medio'].mean():.4f}  "
       f"erro = {estrat['preco_medio'].mean() - parametro:+.4f}")
 print()
-print("As três estimativas são diferentes, e as três erram um pouco.")
+print("As três estimativas são diferentes e as três erram um pouco.")
 print("É isso que a margem de erro de uma pesquisa mede.")'''},
 
     {"tipo": "code", "texto": '''# A amostra por conveniência: pegar os primeiros da lista, sem sortear.
@@ -239,7 +239,7 @@ print(f"  conveniência (os {N_AMOSTRA} primeiros)  estimativa = "
       f"erro = {conveniencia['preco_medio'].mean() - parametro:+.4f}")
 print()
 print("Repare no erro. Os primeiros da lista são os de um município, e o preço varia")
-print("por município: o erro da conveniência é o maior dos quatro, e ele NÃO é aleatório.")
+print("por município: o erro da conveniência é o maior dos quatro e ele NÃO é aleatório.")
 print("É um viés — e viés não se conserta aumentando a amostra.")'''},
 
     {"tipo": "md", "texto": """**A frase que vai para o relatório**
@@ -250,7 +250,7 @@ print("É um viés — e viés não se conserta aumentando a amostra.")'''},
 > (ANP, SHPC, 2025)."
 
 **O que essa frase não diz.** Que a amostra "acertou". Ela errou, e o erro está declarado.
-Uma amostra não é boa por acertar o valor verdadeiro — é boa por ter sido **sorteada**, e
+Uma amostra não é boa por acertar o valor verdadeiro — é boa por ter sido **sorteada** e
 por isso ter um erro que se pode **medir e declarar**."""},
 
     {"tipo": "md", "texto": """## Seção 2. As três perguntas do dia

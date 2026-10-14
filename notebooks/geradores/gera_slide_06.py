@@ -59,7 +59,7 @@ SECOES = [
         "entre": ["Quatro tipos de pesquisa", "Síntese teórica"],
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
-                ("O que é delineamento, e por que a pergunta manda", "12"),
+                ("O que é delineamento e por que a pergunta manda", "12"),
                 ("Descritiva e correlacional, com as telas de detalhe", "18"),
                 ("Correlação não é causalidade: as três razões", "10"),
                 ("Experimental e quase-experimental", "18"),
@@ -77,23 +77,23 @@ SECOES = [
             ("O ponto que mais rende da manhã", """
             <p><strong>Correlação não é causalidade</strong>, com as três razões: variável de
             confusão, causa inversa e coincidência. Este é o ponto que mais aparece em relatório
-            malfeito, e ele volta no Módulo IV, quando a correlação virar regressão. Não por
+            malfeito e ele volta no Módulo IV, quando a correlação virar regressão. Não por
             acaso: é a mesma advertência, em dois níveis de dificuldade.</p>
             <p>Pedir exemplos à turma, do mundo da gestão. Quase sempre aparece alguém com um
             caso de confusão — “empresas com mais treinamento têm mais lucro” é o clássico.</p>
             """, "pergunta-aula"),
             ("O exercício que funciona melhor", """
             <p>Pedir que a turma classifique seis perguntas como descritiva, correlacional ou
-            experimental, e justifique. O ponto é que perguntas parecidas admitem desenhos
-            diferentes, e que a escolha muda o que se pode concluir.</p>
+            experimental e justifique. O ponto é que perguntas parecidas admitem desenhos
+            diferentes e que a escolha muda o que se pode concluir.</p>
             """, "pergunta-aula"),
-            ("A tela de coorte, e por que ela é aqui", """
+            ("A tela de coorte e por que ela é aqui", """
             <p>A base do IBGE da tabela 9949 serve a dois propósitos: ela <strong>define</strong>
             coorte e taxa de sobrevivência, e ela vai ser usada de novo quando o Módulo II
             chegar à amostragem. Vale dizer isso em voz alta: a mesma base volta, o que muda é
             a pergunta.</p>
             <p>Aproveitar para apresentar as <strong>três perguntas</strong> de um estudo de
-            coorte, e para a advertência: uma coorte compara grupos que já existiam, e por isso
+            coorte e para a advertência: uma coorte compara grupos que já existiam e por isso
             mostra <em>associação</em>, não efeito.</p>
             """, "falar"),
             ("Erros que vão aparecer na turma", """
@@ -157,7 +157,7 @@ SECOES = [
               <li>Diga, para o <strong>seu projeto</strong>, que delineamento ele tem. A
               resposta condiciona a amostra, o instrumento e a análise — e você vai precisar
               dela no encontro seguinte.</li>
-              <li>Leia o capítulo de GIL (2019) sobre <strong>amostragem</strong>, e traga o
+              <li>Leia o capítulo de GIL (2019) sobre <strong>amostragem</strong> e traga o
               cadastro de empresas que você pensa usar no projeto: é sobre ele que o sorteio
               será feito.</li>
               <li>Refaça o fluxograma de decisão do slide, sem olhar o gabarito.</li>

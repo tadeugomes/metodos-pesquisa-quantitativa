@@ -61,7 +61,7 @@ o centro de um conjunto de dados; hoje aprende que **uma medida só não descrev
 CONFIG = """## Bloco de configuração
 
 **Este é o único lugar do notebook onde se mexe em código.** Troque o valor abaixo,
-execute esta célula de novo, e só então execute as células seguintes.
+execute esta célula de novo e só então execute as células seguintes.
 
 ```python
 # --- o que você pode mudar ---
@@ -73,7 +73,7 @@ UTILITARIOS_NOTA = """## Utilitários da disciplina
 `conferir` compara o seu resultado com o número que já estava resolvido no slide.
 **Não precisa alterá-la.**
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.*"""
 
 CELULA_A = '''# ================= CÉLULA A: os 12 arquivos mensais da ANP =================
@@ -129,7 +129,7 @@ print(f"  colunas inteiramente vazias: {vazias}")
 anp.head(4)'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv.
 
 import pandas as pd
@@ -152,7 +152,7 @@ CELULAS = [
 
     {"tipo": "md", "texto": """## Seção 1. Como se usa um notebook
 
-Bloco de **texto** é explicação; bloco de **código** é instrução, e precisa ser executado
+Bloco de **texto** é explicação; bloco de **código** é instrução e precisa ser executado
 com **Shift + Enter**.
 
 | Se isso aconteceu | Faça isso |
@@ -163,7 +163,7 @@ com **Shift + Enter**.
 
     {"tipo": "md", "texto": """## Seção 2. A base de hoje: preços de revenda da ANP
 
-A primeira base do semestre que **não** vem do IBGE nem do Banco Central, e a primeira
+A primeira base do semestre que **não** vem do IBGE nem do Banco Central e a primeira
 no nível do **posto**. O notebook baixa os 12 meses de 2025 e recorta o Maranhão."""},
     {"tipo": "code", "texto": CELULA_A},
     {"tipo": "contingencia", "texto": CELULA_B},
@@ -281,8 +281,8 @@ $$z = \\frac{x - \\bar{x}}{s}$$
 * $\\bar{x}$ é a média e $s$ o desvio padrão
 * $z$ diz **quantos desvios** o valor está acima ou abaixo da média
 
-Em corrente: **tire a média do valor, e divida pelo desvio.** O resultado é
-adimensional, e é por isso que permite comparar grandezas medidas em escalas
+Em corrente: **tire a média do valor e divida pelo desvio.** O resultado é
+adimensional e é por isso que permite comparar grandezas medidas em escalas
 diferentes.
 
 **Referência de leitura:** cerca de dois terços dos dados ficam entre $z=-1$ e $z=+1$, e
@@ -377,7 +377,7 @@ diferentes, e a segunda exigiria comparar com outros estados."""},
     # ------------------------------------------------------------ IA
     {"tipo": "md", "texto": """## Seção 3. Usando o assistente
 
-Três modos de uso, todos verificados. A regra: **a IA explica, o código calcula, e você
+Três modos de uso, todos verificados. A regra: **a IA explica, o código calcula e você
 confere e escreve.**
 
 ### Modo 1 — Pergunta
@@ -443,7 +443,7 @@ _(pense no que a dispersão revelaria)_
 ---
 """},
 
-    {"tipo": "md", "texto": """**2. Você tem dois conjuntos com a mesma média. Que medida você pediria para distingui-los, e por quê?**
+    {"tipo": "md", "texto": """**2. Você tem dois conjuntos com a mesma média. Que medida você pediria para distingui-los e por quê?**
 
 ---
 """},
@@ -474,7 +474,7 @@ você escolheu, e ela será conferida na AV1 do encontro 5.
 > você quer, mas para outro período ou outro território. Descobrir isso agora custa uma
 > tarde; descobrir depois custa o projeto."""},
 
-    {"tipo": "md", "texto": """**Escreva abaixo a frase de leitura da sua base: o que ela mostra, e o que ela não permite afirmar.**
+    {"tipo": "md", "texto": """**Escreva abaixo a frase de leitura da sua base: o que ela mostra e o que ela não permite afirmar.**
 
 ---
 """},

@@ -267,7 +267,7 @@ SECOES = [
             """, "falar"),
             ("Para quem não tem duas categóricas no projeto", """
             <p>Muitos projetos têm só variáveis quantitativas (séries do BCB, receitas da CVM).
-            Para eles, a Prática 3 é escrita: qual teste do fluxograma a hipótese pede, e por
+            Para eles, a Prática 3 é escrita: qual teste do fluxograma a hipótese pede e por
             quê. Perguntar: <em>“a sua comparação é com um valor de fora, entre dois grupos,
             ou entre os mesmos casos em dois momentos?”</em> Quem tiver uma variável
             quantitativa e um grupo pode criar a categórica no encontro 12, com o professor.</p>

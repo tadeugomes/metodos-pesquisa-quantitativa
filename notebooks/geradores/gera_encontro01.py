@@ -31,7 +31,7 @@ import nb_helper as nb
 
 # ------------------------------------------------------------------ painel e config
 
-PAINEL = """# Encontro 1. O que é pesquisa quantitativa, e como se mede
+PAINEL = """# Encontro 1. O que é pesquisa quantitativa e como se mede
 
 **Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
@@ -77,7 +77,7 @@ Tudo o que você precisa saber sobre os dados, escrito aqui. Não precisa descob
 CONFIG = """## Bloco de configuração
 
 **Este é o único lugar do notebook onde se mexe em código.** Troque os valores abaixo,
-execute esta célula de novo, e só então execute as células seguintes.
+execute esta célula de novo e só então execute as células seguintes.
 
 ```python
 # --- o que você pode mudar ---
@@ -87,7 +87,7 @@ SECAO   = "G"          # a LETRA do código da seção da CNAE, não o nome
 
 > **Por que a letra e não o nome?** O nome pode ter acento, maiúscula e pontuação
 > diferentes: `Comércio`, `comercio`, `Comércio; reparação...` são três textos
-> diferentes para a mesma seção. **A letra `G` é o código, e é o código que não muda.**
+> diferentes para a mesma seção. **A letra `G` é o código e é o código que não muda.**
 > É a mesma lição da tabela de municípios da Receita, que escreve `SAO LUIS` sem
 > acento. Salve esta: em dado de verdade, case sempre pelo código, nunca pelo nome."""
 
@@ -97,7 +97,7 @@ As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá
 não precisa entender o que fazem para seguir. `conferir` é a que mais importa: ela
 compara o seu resultado com o número que já estava resolvido no slide e diz se bateu.
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.* Nenhum número vai para o relatório que não tenha saído de uma célula
 > executada na sua frente."""
 
@@ -133,7 +133,7 @@ CELULAS = [
     {"tipo": "md", "texto": """## Seção 1. Como se usa um notebook
 
 Um notebook é uma lista de blocos. Blocos de **texto** são explicação. Blocos de
-**código** são instruções para o computador, e precisam ser executados.
+**código** são instruções para o computador e precisam ser executados.
 
 Para executar um bloco: clique nele e aperte **Shift + Enter**. A célula de código
 transforma em texto, e o resultado aparece embaixo.
@@ -279,7 +279,7 @@ conferir("frequência do comércio (seção G)", float(tabela.loc[
     {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número do
 > slide. Se apareceu `[X]` em um número que ontem batia, quase sempre é que o IBGE
 > divulgou um **corte novo** da base: o CEMPRE é atualizado todo ano. Nesse caso, copie
-> o número novo, anote o ano ao lado, e siga — o número que vale é o que saiu do código,
+> o número novo, anote o ano ao lado e siga — o número que vale é o que saiu do código,
 > não o do slide. É assim que se trabalha com dado real."""},
 
     {"tipo": "md", "texto": """### O mesmo número, três denominadores
@@ -361,7 +361,7 @@ plt.show()'''},
 **Volte ao bloco de configuração** e troque `RECORTE = "Maranhao"` por
 `RECORTE = "Brasil"`. Execute de novo, **de cima para baixo** (menu *Runtime → Run all*).
 
-Faça isso agora, e depois volte a linha para `"Maranhao"` antes de seguir."""},
+Faça isso agora e depois volte a linha para `"Maranhao"` antes de seguir."""},
 
     {"tipo": "md", "texto": """### O achado
 
@@ -397,7 +397,7 @@ conferir("participação do comércio no Brasil", com_br, 27.42, tolerancia=0.02
     {"tipo": "md", "texto": """## Seção 5. Usando o assistente de IA
 
 Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
-explica, o código calcula, e você confere e escreve.**
+explica, o código calcula e você confere e escreve.**
 
 ### Modo 1 — Pergunta
 
@@ -424,7 +424,7 @@ Escreva o que você quer, peça o código e cole na **célula cinza** abaixo.
 > conferido, e trocar a lógica quebra a conferência.
 
 Depois de executar, confirme os três passos: o número bate com o esperado, os grupos somam
-o total, e o gráfico é o que você pediu."""},
+o total e o gráfico é o que você pediu."""},
 
     {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
 # Sugestão de pedido: "liste as dez seções da CNAE com mais empresas no Maranhão,
@@ -443,7 +443,7 @@ sua_analise = None   # <-- o assistente escreve aqui embaixo
 O professor preparou três análises que **contêm um erro de estatística**. Todas usam os
 dados certainíssimos. O erro está no que foi feito com eles.
 
-Rode a célula abaixo e responda, para cada linha: **qual é o erro, e o que deveria ter
+Rode a célula abaixo e responda, para cada linha: **qual é o erro e o que deveria ter
 sido dividido?**"""},
 
     {"tipo": "code", "texto": '''# As três análises do professor. Roda e leia os três resultados.

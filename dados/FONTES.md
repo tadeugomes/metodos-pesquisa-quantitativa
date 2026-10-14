@@ -42,10 +42,10 @@ As duas continuam no mapa da seção 2 como referência de onde buscar, e a pró
 de baixar é uma lição: **escala de dado é parte do método**, e o adequado para um TCC nem sempre
 é o adequado para uma aula de quatro horas.
 
-### 1.2 As codificações das fontes, e por que isso importa
+### 1.2 As codificações das fontes e por que isso importa
 
 Ler um CSV com a codificação errada não dá erro: dá resultado errado, com acentos quebrados. É o
-erro mais silencioso da aula, e a razão pela qual o notebook **sempre** declara a codificação de
+erro mais silencioso da aula e a razão pela qual o notebook **sempre** declara a codificação de
 modo explícito. Estas são as da disciplina:
 
 | Fonte | Codificação | Separador |
@@ -83,7 +83,7 @@ reformulação.
 `dados.gov.br/api/3/action/package_search` responde **401 Unauthorized**: a API passou a exigir
 autenticação OAuth2, e a própria página do portal avisa que é preciso cadastro no gov.br. Em aula
 isso é útil, porque mostra que "dado aberto" e "API pública" são coisas diferentes. As instâncias
-**institucionais** do CKAN, da ANTT e do DNIT, respondem sem chave nenhuma, e são elas que o
+**institucionais** do CKAN, da ANTT e do DNIT, respondem sem chave nenhuma e são elas que o
 material usa para ensinar a busca em catálogo.
 
 **A base CNPJ usa token público, mas token é o termo técnico para o que leigo chamaria de
@@ -120,7 +120,7 @@ existem mais. Os códigos validados hoje:
 | Câmbio comercial venda, média | `BM_ERV` | mensal, 84 obs. |
 | Câmbio comercial venda, fim do período | `BM_ERVF` | mensal, 84 obs., última obs. em 2025-01 |
 
-`BM_ERVF` é a série usada no encontro 4, e ela **termina em janeiro de 2025**: para câmbio
+`BM_ERVF` é a série usada no encontro 4 e ela **termina em janeiro de 2025**: para câmbio
 diário, o material usa a série 1 do SGS (Banco Central), que é atualizada todo dia.
 
 ## 3. Chamadas validadas
@@ -166,7 +166,7 @@ antes de usar as proporções.
 As variáveis disponíveis na 9949 são: número de nascimentos de empresas empregadoras e as taxas
 de sobrevivência de 1 a 5 anos. As faixas de pessoal assalariado são **três, ordenadas**:
 `1 a 9 pessoas`, `10 a 49 pessoas`, `50 ou mais pessoas` — é essa ordem que faz da variável um
-**ordinal**, e é o que permite a frequência acumulada que o bloco de estatística do encontro 2 ensina.
+**ordinal** e é o que permite a frequência acumulada que o bloco de estatística do encontro 2 ensina.
 
 #### 3.1.2 Os números do encontro 2 (encontro 2)
 
@@ -205,7 +205,7 @@ extremo). A tabela 8882 continua no mapa como fonte de *volume de vendas* e deve
 antes de voltar: se o `..` persistir, é indisponibilidade da fonte, não erro de chamada.
 
 **Números validados da 9582, corte de 28/09/2026** (20 seções, sem a linha "Total"). São os
-valores esperados da função `conferir` do encontro 1, e os números dos slides do bloco de estatística do encontro 1:
+valores esperados da função `conferir` do encontro 1 e os números dos slides do bloco de estatística do encontro 1:
 
 | Recorte | Total de empresas | Comércio (G) | Participação |
 |---|---|---|---|
@@ -262,7 +262,7 @@ df = pd.read_csv(url, sep=";", encoding="utf-8-sig", decimal=",")
 ```
 
 23.367 linhas, 1990 a 2025, mensal, por refinaria e por UF, 21 refinarias em 10 UFs.
-**Não há refinaria no Maranhão**: Itaqui é terminal de transferência, não refinaria, e por isso
+**Não há refinaria no Maranhão**: Itaqui é terminal de transferência, não refinaria e por isso
 não aparece. A série serve para o exercício comparativo entre UFs, não para o recorte local.
 Metadados em PDF: `.../arquivos/pppd/metadados-processamento-petroleo.pdf` (200, mas só
 responde a `GET`, não a `HEAD`).
@@ -382,7 +382,7 @@ esperados da função `conferir`:
 | IPCA mensal (433) | 36 | **0,37** | **0,35** | −0,32 | 1,31 (fev/2025) |
 | Inadimplência PJ (21086) | 36 | **3,54** | **3,53** | 2,77 | 4,19 (jul/2026) |
 
-O exemplo que organiza o bloco de estatística do encontro 3, e que o slide mostra passo a passo: os seis primeiros
+O exemplo que organiza o bloco de estatística do encontro 3 e que o slide mostra passo a passo: os seis primeiros
 meses do IPCA são **0,26 · 0,24 · 0,28 · 0,56 · 0,42 · 0,83** (média 0,4317, mediana 0,35);
 acrescentando o 1,31, a média vai a **0,5571** — sobe 0,1255 — e a mediana a **0,42**. Um
 único valor extremo e a média desloca; a mediana quase não se move.

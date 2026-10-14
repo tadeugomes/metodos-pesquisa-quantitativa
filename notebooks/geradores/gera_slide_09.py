@@ -63,7 +63,7 @@ SECOES = [
             <p>Na AV2 o assistente é <strong>permitido em todas as partes</strong>, com registro
             do pedido e da checagem (PLANO_REFORMULACAO.md, seção 7.5). Diferente da AV1, não
             há parte de telas fechadas. Diga as três coisas que a IA não faz: não escolhe o
-            denominador, não escolhe a técnica pelo cadastro, e não escreve a frase de leitura.
+            denominador, não escolhe a técnica pelo cadastro e não escreve a frase de leitura.
             É ali que está a nota.</p>
             """, "falar"),
         ],
@@ -112,7 +112,7 @@ SECOES = [
             <p>A Q9 usa o n da pergunta principal (66). Quem justificou 108 na Q8 não perde ponto
             na Q9: a pergunta da Q8 é a decisão, e a da Q9 é o sorteio reprodutível.</p>
             """, "gabarito"),
-            ("Erros que vão aparecer, e quanto custam", """
+            ("Erros que vão aparecer e quanto custam", """
             <ol>
               <li><strong>Escolher 18,9% na Q1</strong>, dividindo pelo cadastro inteiro. É o erro
               do denominador, o mais caro da Parte 1;</li>
@@ -144,7 +144,7 @@ SECOES = [
             </ol>
             <p class="aviso">Quem não entregou o relatório no tempo sai com uma tarefa clara:
             reenviar até o fim do dia. O relatório é o primeiro método escrito do relatório
-            final, e não pode acumular.</p>
+            final e não pode acumular.</p>
             """, "gabarito"),
             ("O balanço que se anuncia", """
             <p>Fechar dizendo o que os Módulos I e II entregaram: o estudante <strong>descreve
@@ -162,7 +162,7 @@ SECOES = [
               revisão na abertura do Módulo III.</li>
             </ol>
             <p>O próximo encontro abre o <strong>Módulo III</strong>: o intervalo de confiança em
-            linguagem corrente, e o que “95%” não significa.</p>
+            linguagem corrente e o que “95%” não significa.</p>
             """, "bruto"),
         ],
     },

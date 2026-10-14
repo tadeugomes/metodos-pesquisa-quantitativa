@@ -58,7 +58,7 @@ IDENTIFICACAO = """# Avaliação 2 — Métodos e Técnicas de Pesquisa Quantita
 | **1. Descrever** | A descrição completa da base: frequência, posição, dispersão, gráfico e frase | Q1 a Q5 | 80 min |
 | **2. Planejar** | A técnica de amostragem e o tamanho da amostra | Q6 a Q8 | 60 min |
 | **3. Sortear** | O sorteio e o **relatório de sorteio** | Q9 | 40 min |
-| **Registro de IA** | O que você pediu ao assistente, e como conferiu | — | 15 min |
+| **Registro de IA** | O que você pediu ao assistente e como conferiu | — | 15 min |
 
 3. **Consulta liberada** (slides, notebooks, anotações) e **IA permitida, com registro** do
    pedido e da checagem, na célula própria. O registro não desconta pontos; a omissão é falta
@@ -71,7 +71,7 @@ IDENTIFICACAO = """# Avaliação 2 — Métodos e Técnicas de Pesquisa Quantita
 6. Antes de entregar: *Runtime → Run all*, confira as saídas e compartilhe o link com o
    professor.
 
-> **A regra do semestre:** a IA explica, o código calcula, e você confere e escreve."""
+> **A regra do semestre:** a IA explica, o código calcula e você confere e escreve."""
 
 CONFIG_MD = """## Bloco de configuração
 
@@ -170,7 +170,7 @@ A célula mostra primeiro a tabela de frequências da bandeira no cadastro intei
 mostra **a mesma contagem dividida por três denominadores diferentes**. Só um deles responde
 à pergunta."""
 
-Q1_COD = '''# CÉLULA Q1: a frequência da bandeira, e três denominadores para a mesma contagem.
+Q1_COD = '''# CÉLULA Q1: a frequência da bandeira e três denominadores para a mesma contagem.
 freq = cadastro["bandeira"].value_counts()
 tabela_bandeira = pd.DataFrame({"postos": freq, "%": (freq / N * 100).round(1)})
 print("Bandeira dos postos de etanol — cadastro inteiro (N = 148):")
@@ -203,7 +203,7 @@ Q1_GAB = ("Gabarito Q1: a resposta é a linha (a), **39,4%** — 28 dos 71 posto
           "postos de São Luís que vendem etanol, 39,4% (28) são de bandeira branca (ANP, SHPC, "
           "2025).” No cadastro inteiro, a bandeira branca é 46,6% (69 de 148).")
 
-Q2_MD = """### Q2. A medida de posição, e a justificativa
+Q2_MD = """### Q2. A medida de posição e a justificativa
 
 O preço é uma variável quantitativa contínua, de **razão**. Calcule as medidas de posição e
 **decida qual delas** descreve melhor o preço típico do etanol. **Justifique com os números.**"""
@@ -340,7 +340,7 @@ conferir("preço médio no Interior (R$)", por_estrato.loc["Interior", "média"]
          tolerancia=0.0001, unidade="")'''
 
 Q6_GAB = ("Gabarito Q6: **estratificada**, com dois estratos (Ilha: 92 postos, média R$ 4,6542, "
-          "desvio 0,1812; Interior: 56 postos, média R$ 5,0009, desvio 0,2653), e alocação "
+          "desvio 0,1812; Interior: 56 postos, média R$ 5,0009, desvio 0,2653) e alocação "
           "proporcional. Justificativa: o cadastro traz a variável de estrato (município), os "
           "grupos são diferentes entre si (R$ 0,35 de diferença de média) e a Ilha, com 62% "
           "dos postos, é bem mais homogênea por dentro (desvio 0,18 contra 0,27 do cadastro "
@@ -383,13 +383,13 @@ Q7_GAB = ("Gabarito Q7: n0 = (1,960 × 0,2741 ÷ 0,05)² = 115,4 → 116; com a 
           "postos do cadastro (desvio de R$ 0,27; com correção para população finita).” "
           "Perde ponto quem arredonda para baixo (65).")
 
-Q8_MD = """### Q8. O tamanho da amostra para a proporção, e a decisão
+Q8_MD = """### Q8. O tamanho da amostra para a proporção e a decisão
 
 A pergunta secundária é a **proporção de postos de bandeira branca**, com margem de **5 pontos
 percentuais** e 95% de confiança. Use **p = 0,5**.
 
 Responda: (a) **por que p = 0,5**, se a Q1 já mostrou que a proporção é 46,6%?; (b) a pesquisa
-tem as duas perguntas, e as duas pedem um n diferente: **qual n você adota, e por quê?**"""
+tem as duas perguntas, e as duas pedem um n diferente: **qual n você adota e por quê?**"""
 
 Q8_COD = '''# CÉLULA Q8: o tamanho da amostra para a proporção.
 P = 0.5
@@ -419,7 +419,7 @@ Q8_GAB = ("Gabarito Q8: n0 = 384,1 → 385; com a correção para N = 148, n = 1
 # ------------------------------------------------------------------ Parte 3
 P3_MD = """---
 
-# Parte 3 — Sortear, e o relatório de sorteio
+# Parte 3 — Sortear e o relatório de sorteio
 
 ### Q9. O sorteio estratificado proporcional
 
@@ -472,13 +472,13 @@ RELATORIO = """**Relatório de sorteio** — preencha a segunda coluna
 | Campo | O seu sorteio |
 |---|---|
 | 1. Cadastro (fonte, ano, N) | |
-| 2. População-alvo, e a diferença para o cadastro | |
+| 2. População-alvo e a diferença para o cadastro | |
 | 3. Técnica e estratos | |
-| 4. Tamanho da amostra, e de onde ele saiu | |
+| 4. Tamanho da amostra e de onde ele saiu | |
 | 5. Semente | |
 | 6. Alocação por estrato | |
 | 7. Estimativa e erro de amostragem | |
-| 8. O que este sorteio autoriza concluir, e o que não autoriza | |
+| 8. O que este sorteio autoriza concluir e o que não autoriza | |
 
 ---
 """
@@ -488,7 +488,7 @@ REGISTRO_IA = """## Registro de uso de IA
 **Obrigatório para quem usou o assistente.** Preencha a tabela, ou escreva “não usei”. O
 registro não desconta pontos; a omissão é falta de honestidade acadêmica.
 
-| Questão | O que eu pedi (o prompt) | O que eu conferi, e como | O que eu mudei na resposta |
+| Questão | O que eu pedi (o prompt) | O que eu conferi e como | O que eu mudei na resposta |
 |---|---|---|---|
 | | | | |
 | | | | |
@@ -535,13 +535,13 @@ assistente de IA. **Não precisa alterar.**"""},
     {"tipo": "md", "texto": Q1_MD},
     {"tipo": "code", "texto": Q1_COD},
     {"tipo": "nota", "texto": Q1_GAB},
-    resposta("_(qual linha responde à pergunta, e por quê? Escreva a frase de leitura com o "
+    resposta("_(qual linha responde à pergunta e por quê? Escreva a frase de leitura com o "
              "percentual, a contagem e o denominador declarado)_"),
 
     {"tipo": "md", "texto": Q2_MD},
     {"tipo": "code", "texto": Q2_COD},
     {"tipo": "nota", "texto": Q2_GAB},
-    resposta("_(qual medida você escolhe, e por quê? cite os números)_"),
+    resposta("_(qual medida você escolhe e por quê? cite os números)_"),
 
     {"tipo": "md", "texto": Q3_MD},
     {"tipo": "code", "texto": Q3_COD},
@@ -572,7 +572,7 @@ assistente de IA. **Não precisa alterar.**"""},
     {"tipo": "md", "texto": Q8_MD},
     {"tipo": "code", "texto": Q8_COD},
     {"tipo": "nota", "texto": Q8_GAB},
-    resposta("_(a) por que p = 0,5; (b) qual n você adota, e por quê)_"),
+    resposta("_(a) por que p = 0,5; (b) qual n você adota e por quê)_"),
 
     {"tipo": "md", "texto": P3_MD},
     {"tipo": "code", "texto": Q9_COD},

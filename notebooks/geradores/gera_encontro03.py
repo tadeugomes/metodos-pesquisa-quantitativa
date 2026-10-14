@@ -60,7 +60,7 @@ aritmética e vira decisão.
 CONFIG = """## Bloco de configuração
 
 **Este é o único lugar do notebook onde se mexe em código.** Troque o valor abaixo,
-execute esta célula de novo, e só então execute as células seguintes.
+execute esta célula de novo e só então execute as células seguintes.
 
 ```python
 # --- o que você pode mudar ---
@@ -73,7 +73,7 @@ As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá
 `conferir` compara o seu resultado com o número que já estava resolvido no slide e
 diz se bateu.
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.*"""
 
 CELULA_A = '''# ================= CÉLULA A: as séries do Banco Central, por API =================
@@ -95,7 +95,7 @@ def baixa_sgs(codigo, ultimos=36, tentativas=3):
     """Baixa uma série do SGS do Banco Central por URL e devolve um DataFrame.
 
     A API do Banco Central devolve 502 de vez em quando. Repetir a chamada é
-    comportamento normal de quem usa API de verdade, e não esconde nada: se as três
+    comportamento normal de quem usa API de verdade e não esconde nada: se as três
     tentativas falharem, o erro aparece, e a célula B de contingência entra em cena.
     """
     url = ("https://api.bcb.gov.br/dados/serie/bcdata.sgs."
@@ -143,7 +143,7 @@ print("   e a base reúne os dois períodos)")
 base.head(6)'''
 
 CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
-# NÃO EXECUTE AGORA. Execute apenas se o professor mandar, e só depois de fazer
+# NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload dos dois arquivos de dados/ indicados no enunciado.
 #
 # Esta célula produz exatamente a mesma base que a Célula A.
@@ -159,7 +159,7 @@ ipca["data"] = pd.to_datetime(ipca["data"], format="%Y-%m")
 inad["data"] = pd.to_datetime(inad["data"], format="%Y-%m")
 
 # o join é EXTERNO, igual ao da Célula A: as duas séries não terminam no mesmo
-# mês, e um join interno apagaria as pontas — deixando 35 meses em vez de 36, e
+# mês, e um join interno apagaria as pontas — deixando 35 meses em vez de 36 e
 # fazendo a conferência da quantidade de meses falhar
 base = (ipca.merge(inad, on="data", how="outer")
             .sort_values("data").reset_index(drop=True))
@@ -183,7 +183,7 @@ CELULAS = [
 
     {"tipo": "md", "texto": """## Seção 1. Como se usa um notebook
 
-Bloco de **texto** é explicação; bloco de **código** é instrução, e precisa ser
+Bloco de **texto** é explicação; bloco de **código** é instrução e precisa ser
 executado com **Shift + Enter**.
 
 | Se isso aconteceu | Faça isso |
@@ -304,7 +304,7 @@ serie.tail(8)'''},
 
     {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número do
 > slide. Se apareceu `[X]`, quase sempre é que o Banco Central divulgou um
-> valor novo. Copie o número novo, anote o mês, e siga. **O número que vale é o que
+> valor novo. Copie o número novo, anote o mês e siga. **O número que vale é o que
 > saiu do código, não o do slide.**"""},
 
     {"tipo": "md", "texto": """### A média ponderada, que aparece em todo relatório
@@ -318,7 +318,7 @@ $$\\bar{x}_p = \\frac{\\sum w_i x_i}{\\sum w_i}$$
 * $w_i$ é o **peso** do mês $i$
 * $\\sum w_i$ é a soma dos pesos
 
-Em corrente: **multiplique cada valor pelo peso, some tudo, e divida pela soma dos
+Em corrente: **multiplique cada valor pelo peso, some tudo e divida pela soma dos
 pesos.** Se todos os pesos forem iguais, a ponderada vira a média simples — é por isso
 que a fórmula é a mesma."""},
 
@@ -359,7 +359,7 @@ uma afirmação sobre o período, e quem lê precisa saber qual é ele."""},
     {"tipo": "md", "texto": """## Seção 3. Usando o assistente
 
 Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
-explica, o código calcula, e você confere e escreve.**
+explica, o código calcula e você confere e escreve.**
 
 ### Modo 1 — Pergunta
 
@@ -368,7 +368,7 @@ IA inventa número — e você não tem como perceber.
 
 ### Modo 2 — Encomenda
 
-Escreva o que você quer, peça o código, e cole na **célula cinza**. Só mude os
+Escreva o que você quer, peça o código e cole na **célula cinza**. Só mude os
 **parâmetros de consulta**: qual série, qual recorte, quantos meses. **Nunca** peça
 para mudar a lógica do cálculo — os números do slide foram conferidos.
 
@@ -394,7 +394,7 @@ sua_analise = None   # <-- o assistente escreve aqui embaixo
     {"tipo": "md", "texto": "Rode a célula abaixo e responda: **qual é o erro, e o que deveria ter sido dito?**"},
 
     {"tipo": "code", "texto": '''# As três leituras erradas do professor.
-print("ANÁLISE 1: 'a inadimplência média do período foi de 3,54%, e hoje segue")
+print("ANÁLISE 1: 'a inadimplência média do período foi de 3,54% e hoje segue")
 print("           nos mesmos 3,54%'")
 print("           (o valor de hoje é o mesmo da média? confira o último mês da série)")
 print()
@@ -463,7 +463,7 @@ _(pense num exemplo de gestão real: preço, notas, produção, movimento)_
 ---
 """},
 
-    {"tipo": "md", "texto": """**3. A série de hoje tem média e mediana quase iguais. O que isso permite dizer, e o que não permite dizer?**
+    {"tipo": "md", "texto": """**3. A série de hoje tem média e mediana quase iguais. O que isso permite dizer e o que não permite dizer?**
 
 _(a diferença entre sugerir e demonstrar)_
 
@@ -479,7 +479,7 @@ _(a diferença entre sugerir e demonstrar)_
 - [ ] Compartilhei o link do notebook
 
 **Para o próximo encontro:** leia o capítulo de GIL (2022) sobre a matriz de
-amarração metodológica, e traga a sua rascunhada. No próximo encontro a estatística
+amarração metodológica e traga a sua rascunhada. No próximo encontro a estatística
 passa a ter duas medidas: tendência central e **dispersão** — e você vai ver por que
 uma medida só não basta.
 

@@ -20,7 +20,7 @@ para que guia, slides e notebooks não discordem:
               Q1 5,79, Q3 6,45, IQR 0,66, faixas 1.409 e 370, assimetria 0,40
 
 Uma divergência registrada de propósito: o total de NASCIMENTOS da base ordinal. Aqui
-ele é lido da tabela 9949 com a linha "Total" da CNAE, e dá 337.330 empresas
+ele é lido da tabela 9949 com a linha "Total" da CNAE e dá 337.330 empresas
 empregadoras nascidas em 2021. As porcentagens (93,01%, 99,35%, 0,65%) são as mesmas
 do encontro 2.
 
@@ -115,7 +115,7 @@ denominador · 1.7 Razão, proporção e taxa · 1.8 Ponto percentual e variaç�
 
 **Seção 2 · Tipos de dado e a regra da medida (encontro 2)**
 2.1 Qualitativa nominal · 2.2 Qualitativa ordinal · 2.3 Quantitativa discreta ·
-2.4 Quantitativa contínua · 2.5 Os níveis de Stevens · 2.6 O que cada nível permite, e o
+2.4 Quantitativa contínua · 2.5 Os níveis de Stevens · 2.6 O que cada nível permite e o
 zero que não é zero · 2.7 A tabela de decisão · 2.8 Codificar no pandas · 2.9 Frequência
 acumulada em ordinal
 
@@ -132,7 +132,7 @@ extremo · 4.8 Distribuição de frequência e classes · 4.9 Amplitude e númer
 
 **Fecho · A tabela de decisão: nível → posição → dispersão → gráfico**
 
-> **Regra de ouro do semestre:** *a IA explica, o código calcula, e você confere e
+> **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.* Nenhum número vai para o relatório sem ter saído de uma célula executada.
 """
 
@@ -459,7 +459,7 @@ $$\text{diferença em p.p.} = \%_A - \%_B \qquad
 \text{variação em \%} = \left(\frac{\%_A}{\%_B} - 1\right) \times 100$$
 
 **Em linguagem corrente.** A diferença entre duas porcentagens se diz em **pontos
-percentuais**: 41,36 − 27,42 = **13,94 p.p.** A variação relativa (50,8%) é outra conta, e
+percentuais**: 41,36 − 27,42 = **13,94 p.p.** A variação relativa (50,8%) é outra conta e
 responde a outra pergunta. “O comércio é 51% maior no Maranhão” é a leitura errada.
 
 **Frase.** “O comércio reúne 41,4% das empresas do Maranhão, 13,9 pontos percentuais acima
@@ -685,7 +685,7 @@ conferir("níveis de mensuração distintos", niveis["nivel"].nunique(), 4, tole
 '''),
 
     *item(r"""
-### 2.6 O que cada nível permite, e o zero que não é zero
+### 2.6 O que cada nível permite e o zero que não é zero
 
 **Pergunta.** Por que 8 não é “o dobro” de 4 numa escala de satisfação?
 
@@ -917,7 +917,7 @@ conferir("acumulado na faixa mediana", acum_mediana, 93.01, tolerancia=0.01)
     *item(r"""
 ### 3.5 Moda: o valor mais frequente
 
-**Pergunta.** O que mais se repete, e o que isso informa?
+**Pergunta.** O que mais se repete e o que isso informa?
 
 **Em linguagem corrente.** A moda é a categoria (ou o valor) mais frequente. É a **única**
 medida de posição da variável nominal. Em variável contínua ela informa pouco: o IPCA tem
@@ -1243,7 +1243,7 @@ conferir("largura da classe (Sturges)", h, 0.14, tolerancia=0.005, unidade=" R$"
 '''),
 
     *item(r"""
-### 4.10 Histograma: a forma, e o que muda com o número de classes
+### 4.10 Histograma: a forma e o que muda com o número de classes
 
 **Em linguagem corrente.** O histograma é a distribuição de frequência **desenhada**: cada
 barra é uma classe, e a altura é a contagem. Com poucas classes, a forma some; com classes
@@ -1333,7 +1333,7 @@ $$z = \frac{x - \bar{x}}{s}$$
 * $x$ é o valor; $\bar{x}$ a média; $s$ o desvio padrão; $z$ é **quantos desvios** o valor
   está acima (positivo) ou abaixo (negativo) da média
 
-**Em linguagem corrente.** Tire a média e divida pelo desvio. O resultado não tem unidade,
+**Em linguagem corrente.** Tire a média e divida pelo desvio. O resultado não tem unidade
 e por isso compara grandezas diferentes. Referência: cerca de dois terços dos casos entre
 −1 e +1, 95% entre −2 e +2; acima de 2 é incomum (exato na curva normal).
 
@@ -1358,7 +1358,7 @@ conferir("z do IPCA de fevereiro de 2025", z_ipca, 3.18, tolerancia=0.005, unida
 ### 4.14 Assimetria e sua assinatura: média, mediana e cauda
 
 **A assinatura.** Numa distribuição **assimétrica à direita**, a cauda se estende para os
-valores altos, os casos distantes puxam a média, e **média > mediana**. À esquerda, o
+valores altos, os casos distantes puxam a média e **média > mediana**. À esquerda, o
 contrário. O coeficiente de assimetria resume isso: 0 é simétrica; positivo, cauda à
 direita.
 

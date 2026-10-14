@@ -113,10 +113,10 @@ Exemplo da disciplina: a variável **receita bruta** é *quantitativa contínua*
 Use `>` no início da linha:
 
 ```markdown
-> A IA explica, o código calcula, e o estudante confere e escreve.
+> A IA explica, o código calcula e o estudante confere e escreve.
 ```
 
-> A IA explica, o código calcula, e o estudante confere e escreve.
+> A IA explica, o código calcula e o estudante confere e escreve.
 
 Citações aninhadas usam `>>`:
 

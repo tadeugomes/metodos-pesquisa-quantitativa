@@ -64,7 +64,7 @@ print(f"{N_VEZES} amostras de {N_AMOSTRA} postos")'''},
     {"tipo": "md", "texto": '''## Seção 1. O cadastro e o valor verdadeiro
 
 A base é a mesma do encontro 6. O que muda é o uso: agora não vamos apenas sortear
-<em>uma</em> amostra — vamos sortear **mil**, e olhar a distribuição das estimativas.
+<em>uma</em> amostra — vamos sortear **mil** e olhar a distribuição das estimativas.
 
 > **O valor verdadeiro está ao lado, e isso é uma raridade.** Em pesquisa real, ninguém
 > sabe o preço médio da população: é ele que se estima. Aqui ele é conhecido, e é o que
@@ -107,7 +107,7 @@ $$EP = \\frac{s}{\\sqrt{n}}$$
 * $n$ é o tamanho da amostra
 * $EP$ é o erro padrão da média
 
-Em corrente: **a estimativa varia menos que os dados**, e varia menos ainda conforme a
+Em corrente: **a estimativa varia menos que os dados** e varia menos ainda conforme a
 amostra cresce — mas pela **raiz** de n. Para reduzir o erro pela metade, quadruplique a
 amostra.
 
@@ -190,7 +190,7 @@ verdadeiro é o comportamento normal — só acima de dois é que se estranha.''
 Responda por escrito, editando as células abaixo.'''},
     {"tipo": "md", "texto": '''**1. Se você quadruplicar o tamanho da amostra, o que acontece com o erro padrão? E por quê?**
 
-_(dica: olhe a fórmula, e depois teste no notebook)_
+_(dica: olhe a fórmula e depois teste no notebook)_
 
 ---
 '''},

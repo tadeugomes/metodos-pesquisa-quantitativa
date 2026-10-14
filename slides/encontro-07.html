@@ -25,7 +25,7 @@
 <section class="slide capa">
   <div class="marcador-encontro">Encontro 7 · Módulo II · População, amostra e mensuração</div>
   <h1>População, amostra e as técnicas de sorteio</h1>
-  <p class="subtitulo">De quem os dados falam, e como eles foram escolhidos</p>
+  <p class="subtitulo">De quem os dados falam e como eles foram escolhidos</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -52,7 +52,7 @@
     </div>
     <div>
       <h3>Parte 2: a distribuição amostral</h3>
-      <p>Por que uma estimativa é uma <em>variável aleatória</em>, e o que acontece quando se
+      <p>Por que uma estimativa é uma <em>variável aleatória</em> e o que acontece quando se
       sorteiam <strong>mil amostras</strong>. É o teorema central do limite, por simulação,
       sobre o mesmo cadastro de postos de ontem.</p>
     </div>
@@ -170,7 +170,7 @@
   <div class="pergunta">O preço médio dos postos do Maranhão é R$ 6,01. Se eu sortear
   uma amostra de 50 postos, a média dela vai dar quanto?</div>
   <p>Na aula passada a resposta foi: <em>depende do sorteio</em> — cada amostra dá um
-  número diferente. Hoje a pergunta é outra, e é mais interessante: <strong>se eu
+  número diferente. Hoje a pergunta é outra e é mais interessante: <strong>se eu
   sorteasse mil vezes, como esses mil números se distribuíram?</strong></p>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
   Uma estimativa é uma <strong>variável aleatória</strong>: ela tem distribuição, centro e
@@ -214,7 +214,7 @@
       <span><b>EP</b>o erro padrão da média</span>
     </span>
     <span class="legenda-formula"><strong>Em linguagem corrente:</strong> a estimativa varia
-    <strong>menos</strong> que os dados, e varia menos ainda conforme a amostra cresce — mas
+    <strong>menos</strong> que os dados e varia menos ainda conforme a amostra cresce — mas
     não proporcionalmente a n, e sim à sua <strong>raiz</strong>. Para reduzir o erro pela
     metade, é preciso <strong>quadruplicar</strong> a amostra.</span>
   </div>
@@ -226,7 +226,7 @@
 <section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>O que o teorema garante, e o que ele não garante</h2>
+  <h2>O que o teorema garante e o que ele não garante</h2>
   <div class="definicao"><span class="rotulo">O que ele garante</span>
   Se as amostras são <strong>sorteadas com independência</strong>, a distribuição das médias
   tem centro na média da população (a estimativa é <em>não viciada</em>) e forma
@@ -251,7 +251,7 @@
     <li>A população: <span class="num">236 postos</span> do Maranhão, com preço médio de
         <span class="num">R$ 6,0087</span> e desvio de <span class="num">R$ 0,3402</span>;</li>
     <li>Sorteamos <span class="num">1.000 amostras</span> de <span class="num">50
-        postos</span> cada, e guardamos as 1.000 médias;</li>
+        postos</span> cada e guardamos as 1.000 médias;</li>
     <li>A média dessas 1.000 médias: <span class="num">R$ 6,0082</span> — a
         <span class="num">0,0005</span> da média da população. A estimativa é
         <strong>centrada</strong> no valor verdadeiro;</li>
@@ -298,7 +298,7 @@ erro_padrao = cadastro[<span class="str">"preco_medio"</span>].std() / 50 ** 0.5
 <span class="fn">print</span>(<span class="str">f"largura observada: {pd.Series(estimar).std():.4f}"</span>)
 <span class="fn">print</span>(<span class="str">f"largura prevista:  {erro_padrao:.4f}"</span>)</pre>
   <p>São três linhas, e cada uma responde a uma pergunta: quanto deu o centro, quanto deu a
-  largura, e quanto a fórmula previa. A comparação entre as <strong>duas últimas linhas</strong>
+  largura e quanto a fórmula previa. A comparação entre as <strong>duas últimas linhas</strong>
   é o teorema central do limite sendo verificado na frente do aluno.</p>
   <p class="menor">Uma observação de honestidade: as mil amostras não são <em>todas</em> as
   amostras possíveis — são mil entre trilhões. A simulação reproduz a distribuição amostral,
@@ -355,7 +355,7 @@ erro_padrao = cadastro[<span class="str">"preco_medio"</span>].std() / 50 ** 0.5
     <div>
       <h4>A fórmula</h4>
       <span class="expr">EP = s ÷ √n</span>
-      <p>A estimativa varia menos que os dados, e menos ainda conforme n cresce — pela
+      <p>A estimativa varia menos que os dados e menos ainda conforme n cresce — pela
       raiz de n.</p>
     </div>
     <div>
@@ -419,7 +419,7 @@ ep = s.std() / n ** 0.5</pre>
   <h3>Antes de sair</h3>
   <ul>
     <li>Diga, para o <strong>seu</strong> projeto: qual é a população-alvo, qual é o cadastro
-        disponível, e qual técnica de amostragem caberia;</li>
+        disponível e qual técnica de amostragem caberia;</li>
     <li>O próximo encontro fecha o módulo: <strong>erro padrão, tamanho da amostra e os
         instrumentos de coleta</strong>. Traga a sua matriz de amarração atualizada.</li>
   </ul>
@@ -445,7 +445,7 @@ ep = s.std() / n ** 0.5</pre>
             técnicas probabilísticas e dizer quando cada uma cabe; (ii) escolher a técnica pelo
             formato do cadastro, e não por preferência; (iii) explicar por que uma estimativa é
             uma variável aleatória; (iv) calcular e interpretar o erro padrão; (v) explicar o
-            que o teorema central do limite garante, e o que ele não garante.</p>
+            que o teorema central do limite garante e o que ele não garante.</p>
                 <div class="caixa falar"><span class="rotulo">O fio que liga as duas partes do dia</span>
             <p>Anunciar na abertura, para que a turma ouça duas vezes: a Parte 1 diz
             <strong>como sortear</strong>; a Parte 2 diz <strong>o que esperar</strong> do
@@ -457,7 +457,7 @@ ep = s.std() / n ** 0.5</pre>
     <tr><th>Bloco</th><th>Minutos</th></tr>
       <tr><td>Aleatória simples e sistemática</td><td>15</td></tr>
       <tr><td>Estratificada e por conglomerados</td><td>15</td></tr>
-      <tr><td>As quatro lado a lado, e o exercício de escolha</td><td>10</td></tr>
+      <tr><td>As quatro lado a lado e o exercício de escolha</td><td>10</td></tr>
   </table>
     <div class="caixa pergunta-aula"><span class="rotulo">Conduzir a técnica pelo formato do cadastro</span>
             <p>O critério de escolha não é a preferência do pesquisador, e sim o
@@ -497,7 +497,7 @@ ep = s.std() / n ** 0.5</pre>
             <p>Repetir: <strong>“a estimativa é uma variável aleatória”</strong>. Ela tem
             distribuição, centro e largura — e é a <em>largura dessa distribuição</em> que vira a
             margem de erro de uma pesquisa, e não a largura dos dados originais.</p>
-            <p>É o conceito mais difícil do Módulo II, e o mais importante: sem ele, o intervalo
+            <p>É o conceito mais difícil do Módulo II e o mais importante: sem ele, o intervalo
             de confiança do encontro seguinte é fórmula decorada.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O momento em que a simulação ensina mais que a fórmula</span>
@@ -524,7 +524,7 @@ ep = s.std() / n ** 0.5</pre>
             </div>
     <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
             <ol>
-              <li><strong>Confundir desvio padrão com erro padrão.</strong> É o erro do slide, e
+              <li><strong>Confundir desvio padrão com erro padrão.</strong> É o erro do slide e
               o mais comum. O desvio descreve <em>os casos</em>; o erro padrão, <em>a
               estimativa</em>;</li>
               <li><strong>Achar que o erro padrão é um erro cometido.</strong> Ele é a variação
@@ -576,7 +576,7 @@ ep = s.std() / n ** 0.5</pre>
               acontece com a largura das estimativas. <strong>Quadruplicou o n: o erro caiu pela
               metade?</strong> Anote o que você observou;</li>
               <li>Leia o capítulo de BABBIE (1999) sobre <strong>erro amostral e tamanho da
-              amostra</strong>, e o de GIL (2019) sobre construção de questionários;</li>
+              amostra</strong> e o de GIL (2019) sobre construção de questionários;</li>
               <li>Traga a sua matriz de amarração atualizada: o próximo encontro fecha o Módulo II
               com o tamanho da amostra e os instrumentos de coleta.</li>
             </ol>

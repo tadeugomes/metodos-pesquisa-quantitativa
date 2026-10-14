@@ -33,7 +33,7 @@ IDENTIFICACAO = """# Avaliação 1 — Métodos e Técnicas de Pesquisa Quantita
 3. A Parte A é feita **sem consulta e com as telas fechadas**. As Partes B e o Projeto
    admitem consulta.
 4. Responda **nas células indicadas**, que já vêm com as linhas `---`. Não apague os
-   enunciados, e não crie células novas.
+   enunciados e não crie células novas.
 5. Salve com as saídas visíveis: rode *Runtime → Run all* antes de entregar.
 6. Compartilhe o link do notebook com o professor ao final.
 
@@ -51,7 +51,7 @@ fórmula. Não há conta a fazer."""
 
 PARTE_A = [
     ("**A1.** Uma variável registra o **nível de satisfação do cliente**, em uma escala de "
-     "0 a 10. Em que nível de mensuração ela está? **O que isso permite** calcular, e o que "
+     "0 a 10. Em que nível de mensuração ela está? **O que isso permite** calcular e o que "
      "**não** permite?",
      "Escala de 0 a 10 é **intervalo**: a ordem existe e os intervalos são iguais, mas o zero "
      "significa “ninguém respondeu”, e não “nenhuma satisfação”. Permite **média, mediana e "
@@ -61,11 +61,11 @@ PARTE_A = [
     ("**A2.** Aplique o **teste do zero** à variável **“número de funcionários de uma "
      "empresa”** e diga em que nível ela está.",
      "O zero significa **ausência real** — empresa sem funcionários. Logo é **razão**. Além "
-     "disso é uma contagem, e por isso permite tudo: ordenar, somar, média, mediana e razão "
+     "disso é uma contagem e por isso permite tudo: ordenar, somar, média, mediana e razão "
      "(“tem o dobro de funcionários”)."),
 
     ("**A3.** Você tem a **receita anual** de 449 companhias abertas e precisa escolher "
-     "**uma** medida para representar o conjunto. Qual você escolhe, e por quê?",
+     "**uma** medida para representar o conjunto. Qual você escolhe e por quê?",
      "A **mediana**. Receita de companhias abertas tem distribuição **fortemente assimétrica à "
      "direita** (poucas empresas gigantes). A média é puxada por esses extremos e deixa de "
      "representar o conjunto; a mediana não se desloca."),
@@ -77,11 +77,11 @@ PARTE_A = [
      "mais os desvios grandes, que é o que se quer."),
 
     ("**A5.** Você precisa comparar a **dispersão do preço da gasolina**, medido em R$ por "
-     "litro, com a **dispersão do IPCA**, medido em pontos percentuais. Que medida você usa, "
+     "litro, com a **dispersão do IPCA**, medido em pontos percentuais. Que medida você usa "
      "e por quê?",
      "O **coeficiente de variação** (desvio ÷ média). Os desvios não são comparáveis porque "
-     "estão em **unidades diferentes**, e porque o desvio acompanha a média. O CV é "
-     "adimensional, e por isso permite a comparação."),
+     "estão em **unidades diferentes** e porque o desvio acompanha a média. O CV é "
+     "adimensional e por isso permite a comparação."),
 
     ("**A6.** A média de uma variável é R$ 6,13 e a mediana é R$ 6,08. **O que essa "
      "diferença sugere** sobre a forma da distribuição — e o que ela **não** permite "
@@ -163,7 +163,7 @@ print(f"  ({em_reais.sum()} convertidas de reais para milhares de reais)")
 print("colunas:", list(base.columns))
 base.head(3)'''},
 
-    {"tipo": "md", "texto": """### B1. A tabela de frequências, e a leitura
+    {"tipo": "md", "texto": """### B1. A tabela de frequências e a leitura
 
 Monte a tabela de frequências do **setor** e escreva, embaixo, a **frase de leitura** do
 setor mais frequente: **o percentual, a contagem entre parênteses e o total declarado**."""},
@@ -179,7 +179,7 @@ tabela_setor.head(5)'''},
                               "e o total declarado."},
     {"tipo": "md", "texto": "_(escreva aqui a frase de leitura do setor mais frequente)_\n\n---\n"},
 
-    {"tipo": "md", "texto": """### B2. A medida de posição, e a justificativa
+    {"tipo": "md", "texto": """### B2. A medida de posição e a justificativa
 
 A variável `receita` está em milhares de reais. Calcule **as três medidas de posição** e
 decida **qual delas** descreve melhor o conjunto. **Justifique com os números.**"""},
@@ -192,7 +192,7 @@ print(f"mediana = {receita.median():,.0f} milhares de reais".replace(",", "."))
 print(f"razão média/mediana = {receita.mean() / receita.median():.1f} vezes")'''},
     {"tipo": "nota", "texto": "Gabarito B2: mediana. Média 12.348.764 e mediana 2.109.725 — "
                               "a média é 5,9 vezes a mediana, sinal de assimetria extrema."},
-    {"tipo": "md", "texto": """_(qual medida você escolhe, e por quê? cite os números)_
+    {"tipo": "md", "texto": """_(qual medida você escolhe e por quê? cite os números)_
 
 ---
 
@@ -247,7 +247,7 @@ print(f"assimetria calculada: {receita.skew():.2f}")'''},
     {"tipo": "md", "texto": """### B5. A conclusão
 
 Você tem uma companhia com receita de **R$ 2 bilhões** (2.000.000 em milhares de reais). Ela
-está **acima** ou **abaixo** do típico? Que medida responde a essa pergunta, e por quê?"""},
+está **acima** ou **abaixo** do típico? Que medida responde a essa pergunta e por quê?"""},
 
     {"tipo": "code", "texto": '''# CÉLULA B5: onde R$ 2 bilhões cai na distribuição.
 alvo = 2_000_000
@@ -259,7 +259,7 @@ print()
 print("A medida que responde é a MEDIANA: ela divide o conjunto ao meio.")'''},
     {"tipo": "nota", "texto": "Gabarito B5: a mediana (2.109.725). R$ 2 bilhões está um pouco "
                               "abaixo dela: 48,6% das companhias faturam menos."},
-    {"tipo": "md", "texto": "_(responda aqui: acima ou abaixo, e com que medida)_\n\n---\n"},
+    {"tipo": "md", "texto": "_(responda aqui: acima ou abaixo e com que medida)_\n\n---\n"},
 
     {"tipo": "md", "texto": """## Registro de uso de IA
 
@@ -282,9 +282,9 @@ Preencha os três itens e **verifique que a base carrega sem erro**.
 
 ---
 """},
-    {"tipo": "md", "texto": """**2. A base escolhida, e a célula que a carrega**
+    {"tipo": "md", "texto": """**2. A base escolhida e a célula que a carrega**
 
-_(cole abaixo o código que carrega a sua base, e execute-o)_
+_(cole abaixo o código que carrega a sua base e execute-o)_
 """},
     {"tipo": "resposta", "texto": '''# A célula que carrega a base do MEU projeto.
 # Substitua o endereço pelo da sua fonte, ajuste a codificação e o separador,
@@ -312,7 +312,7 @@ url = "COLE AQUI O ENDEREÇO DA SUA FONTE"
 ---
 
 **Antes de entregar:** rode *Runtime → Run all*, confirme que a Parte A está respondida
-nas células de texto, e compartilhe o link com o professor.
+nas células de texto e compartilhe o link com o professor.
 
 ---
 

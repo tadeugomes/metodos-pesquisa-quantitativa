@@ -53,7 +53,7 @@ SECOES = [
               <li>O notebook do encontro <strong>publicado e compartilhado</strong>, já
               executado: o estudante abre e vê o relatório de exemplo pronto;</li>
               <li>A lista da turma pronta para o <strong>sorteio da ordem</strong> das
-              apresentações, e um cronômetro visível;</li>
+              apresentações e um cronômetro visível;</li>
               <li>Um CSV de teste no seu Drive, para mostrar em um minuto como se troca a base:
               upload, <code>ARQUIVO = "nome.csv"</code>, executar tudo.</li>
             </ol>
@@ -158,7 +158,7 @@ SECOES = [
             """, "falar"),
             ("Quando a base do projeto não carrega", """
             <p>A troca da base é o ponto de maior risco do dia, e <strong>não é tarefa do
-            estudante descobrir o que quebrou</strong>. Os casos que vão aparecer, e o que
+            estudante descobrir o que quebrou</strong>. Os casos que vão aparecer e o que
             você faz:</p>
             <ol>
               <li><strong>Nome de coluna digitado diferente</strong> do da base: mostre o
@@ -181,9 +181,9 @@ SECOES = [
             """, "falar"),
             ("O que é um relatório de nota cheia", """
             <ul>
-              <li>Pergunta em forma de pergunta, e o nível de cada variável no método;</li>
+              <li>Pergunta em forma de pergunta e o nível de cada variável no método;</li>
               <li>As quatro peças na ordem, com n, unidade e fonte em cada uma;</li>
-              <li>O teste justificado pelo fluxograma, e o valor-p lido sem dizer “prova”;</li>
+              <li>O teste justificado pelo fluxograma e o valor-p lido sem dizer “prova”;</li>
               <li>O modelo em cinco colunas, com o efeito na unidade da resposta e o “mantidas
               as demais”;</li>
               <li>As limitações: causa, generalização, o que a medida não mede.</li>
@@ -220,7 +220,7 @@ SECOES = [
             """, "gabarito"),
             ("Se a turma for maior que o tempo", """
             <p>Com mais de 25 estudantes, reduza para <strong>3 minutos e meio com 30 segundos
-            de pergunta</strong>, e anuncie antes do sorteio. O que nunca se corta é o
+            de pergunta</strong> e anuncie antes do sorteio. O que nunca se corta é o
             <strong>bloco 4, o limite</strong>: é ele que a disciplina inteira treinou.</p>
             """, "alerta"),
             ("Erros que vão aparecer", """
@@ -231,7 +231,7 @@ SECOES = [
               número; a tabela fica no relatório;</li>
               <li><strong>Dizer “o resultado prova”.</strong> Peça a reformulação com
               “os dados indicam” e o valor-p;</li>
-              <li><strong>Esquecer o n e a fonte.</strong> É o bloco 2, e custa pontos.</li>
+              <li><strong>Esquecer o n e a fonte.</strong> É o bloco 2 e custa pontos.</li>
             </ol>
             """, "nao-falar"),
         ],
