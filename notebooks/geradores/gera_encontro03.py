@@ -9,8 +9,8 @@ A base de hoje e uma serie mensal real do Banco Central, baixada pela API do SGS
 URL -- sem biblioteca, o que deixa a chamada visivel no codigo e ensina o aluno a ler
 uma API de verdade.
 
-  IPCA, variacao mensal (%), serie 433   -> media 0,38 | mediana 0,36
-  Inadimplencia da carteira PJ (%), 21086 -> media 3,56 | mediana 3,54
+  IPCA, variacao mensal (%), serie 433   -> media 0,37 | mediana 0,35
+  Inadimplencia da carteira PJ (%), 21086 -> media 3,54 | mediana 3,53
 
 O exemplo que organiza o bloco sao seis valores do IPCA e, a seguir, UM valor
 extremo acrescentado: a media salta de 0,44 para 0,56 e a mediana quase nao se move.

@@ -1,331 +1,218 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook único e autossuficiente do Encontro 7."""
-from nb_helper import gera_notebooks
+"""Gera o notebook do encontro 7 (Modulo II — Parte 2: a distribuicao amostral).
 
-C = []
+E7 — mil amostras de n=50 sorteadas do mesmo cadastro de postos do encontro 6
+(ANP, SHPC 2025, gasolina comum, Maranhao).
 
-C.append({"tipo": "md", "texto": """\
-# Encontro 7: Registros documentais e ética em pesquisa
+  populacao: 236 postos | media R$ 6,0087 | desvio R$ 0,3402
+  centro das 1000 medias: R$ 6,0082 (a 0,0005 do parametro)
+  largura observada: R$ 0,0418  vs  erro padrao teorico s/raiz(n) = R$ 0,0481
+  a dispersao dos precos e 8,1 vezes a das estimativas
+  74,8% das medias a 1 erro padrao; 98,2% a 2; 99,9% a 3
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
+Os mesmos numeros estao no deck (slides/encontro-07.html) e na conducao
+(gera_slide_07.py). Execute de dentro de notebooks/geradores:
 
-Neste notebook você vai:
-1. Importar as **demonstrações financeiras** que as companhias abertas depositam na CVM,
-o exemplo perfeito de **registro documental** como dado quantitativo;
-2. Transformar contas contábeis em **variáveis de pesquisa** (receita, lucro, margem);
-3. Discutir os **limites** dessa fonte documental;
-4. Executar o **pré-teste** do seu questionário e importar as respostas;
-5. Registrar as implicações **éticas** do seu projeto."""})
+    python gera_encontro07.py
+"""
+import nb_helper as nb
 
-C.append({"tipo": "md", "texto": """\
-## Seção 1. A fonte: dados abertos da CVM
+CELULAS = [    {"tipo": "md", "texto": '''# Encontro 7. As quatro técnicas de sorteio e a distribuição amostral
 
-Companhias abertas são obrigadas a publicar suas **Demonstrações Financeiras Padronizadas
-(DFP)**, e a CVM as disponibiliza em dados abertos. Vamos baixar o pacote de 2024 e ler a
-**DRE consolidada** (Demonstração do Resultado do Exercício).
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
-Repare na natureza do dado: ninguém respondeu questionário, as empresas **produziram
-esses registros** no seu funcionamento, sob norma contábil que os padroniza. É isso que
-faz do documento um dado de pesquisa: **padronização + acesso + documentação**.
+> **O que você vai fazer hoje**
+> 1. **Executar** as células de cima para baixo.
+> 2. **Mudar dois valores**: o tamanho da amostra e o número de amostras simuladas.
+> 3. **Escrever** a frase da estimativa, no fim.
 
-*(O download tem ~13 MB e pode levar um minuto.)*"""})
+---
 
-C.append({"tipo": "code", "texto": """\
-import io
-import zipfile
+## Painel do encontro
+
+A **Parte 1** ensina as quatro técnicas probabilísticas sobre o mesmo cadastro de ontem.
+A **Parte 2** responde a pergunta que fica: se eu sortear **mil** amostras, como as
+estimativas se distribuíram?
+
+| Item | Valor |
+|---|---|
+| **Fonte** | ANP — Série Histórica de Preços de Combustíveis (SHPC) |
+| **Cadastro** | Maranhão, 2025, gasolina comum: **236 postos** |
+| **Preço médio da população** | **R$ 6,0087** (o valor verdadeiro, aqui conhecido) |
+| **Desvio padrão da população** | **R$ 0,3402** |
+
+> **Por que este exercício é raro.** Em pesquisa de verdade, o valor verdadeiro da
+> população é **desconhecido** — é justamente ele que se quer estimar. Aqui ele é
+> conhecido, e por isso a turma consegue **ver** o erro de amostragem acontecer. É o
+> único momento do semestre em que isso é possível.'''},
+    {"tipo": "md", "texto": '''## Bloco de configuração
+
+```python
+# --- o que você pode mudar ---
+N_AMOSTRA = 50     # o tamanho de cada amostra
+N_VEZES   = 1000   # quantas amostras simular
+```'''},
+    {"tipo": "code", "texto": '''N_AMOSTRA = 50     # o tamanho de cada amostra
+N_VEZES   = 1000   # quantas amostras simular
+
+print(f"{N_VEZES} amostras de {N_AMOSTRA} postos")'''},
+    {"tipo": "md", "texto": '''## Utilitários da disciplina
+
+`conferir` compara o seu resultado com o número do slide. **Não precisa alterá-la.**'''},
+    {"tipo": "util"},
+    {"tipo": "md", "texto": '''## Seção 1. O cadastro e o valor verdadeiro
+
+A base é a mesma do encontro 6. O que muda é o uso: agora não vamos apenas sortear
+<em>uma</em> amostra — vamos sortear **mil**, e olhar a distribuição das estimativas.
+
+> **O valor verdadeiro está ao lado, e isso é uma raridade.** Em pesquisa real, ninguém
+> sabe o preço médio da população: é ele que se estima. Aqui ele é conhecido, e é o que
+> permite medir o erro.'''},
+    {"tipo": "code", "texto": '''# ================= O cadastro e a população do exercício =================
+# O mesmo cadastro do encontro 6: um registro por posto, com o preço do ano.
 
 import pandas as pd
-import requests
 
-url_dfp = "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DADOS/dfp_cia_aberta_2024.zip"
-resposta = requests.get(url_dfp, timeout=300)
-pacote = zipfile.ZipFile(io.BytesIO(resposta.content))
+URL = ("https://raw.githubusercontent.com/tadeugomes/"
+       "metodos-pesquisa-quantitativa/main/dados/anp_precos_revenda_ma_2025.csv")
 
-dre = pd.read_csv(pacote.open("dfp_cia_aberta_DRE_con_2024.csv"),
-                  sep=";", encoding="latin-1", dtype=str)
-print("DRE consolidada:", dre.shape)
-dre[["DENOM_CIA", "CD_CONTA", "DS_CONTA", "VL_CONTA"]].head(8)"""})
+try:
+    anp = pd.read_csv(URL)
+except Exception:
+    # enquanto o repositório não tem o arquivo, ou se a internet falhar:
+    # o caminho local do repositório. No Colab, faça upload do CSV se precisar.
+    anp = pd.read_csv("dados/anp_precos_revenda_ma_2025.csv")
 
-C.append({"tipo": "md", "texto": """\
-Cada linha é **uma conta contábil de uma companhia**. As contas seguem um plano
-padronizado, e é pelo **código da conta**, não pelo nome, que filtramos:
+gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
+cadastro = (gas.sort_values("mes_arquivo")
+               .drop_duplicates("cnpj_da_revenda", keep="first")
+               [["cnpj_da_revenda", "municipio", "valor_venda"]]
+               .rename(columns={"valor_venda": "preco_medio"})
+               .reset_index(drop=True))
 
-| Código | Conta |
+populacao = cadastro["preco_medio"]
+print(f"População: {len(populacao)} postos")
+print(f"  média (o parâmetro) = R$ {populacao.mean():.4f}")
+print(f"  desvio padrão        = R$ {populacao.std():.4f}")'''},
+    {"tipo": "md", "texto": '''## Parte 2 · Estatística: a distribuição amostral
+
+**A ideia do bloco.** Uma estimativa é uma **variável aleatória**: ela tem distribuição,
+centro e largura. E é a largura dessa distribuição — e não a dos dados originais — que
+vira a margem de erro de uma pesquisa.
+
+$$EP = \\frac{s}{\\sqrt{n}}$$
+
+* $s$ é o desvio padrão da população
+* $n$ é o tamanho da amostra
+* $EP$ é o erro padrão da média
+
+Em corrente: **a estimativa varia menos que os dados**, e varia menos ainda conforme a
+amostra cresce — mas pela **raiz** de n. Para reduzir o erro pela metade, quadruplique a
+amostra.
+
+**Quando usar e quando não usar**
+
+| | |
 |---|---|
-| 3.01 | Receita de venda de bens e/ou serviços |
-| 3.11 | Lucro/prejuízo consolidado do período |
+| **Use** | O erro padrão para dizer quanto a estimativa pode variar. É ele que entra na margem de erro e no intervalo de confiança |
+| **Não use** | O desvio padrão da população como se fosse a incerteza da estimativa. O desvio descreve **os casos**; o erro padrão descreve **a estimativa** |'''},
+    {"tipo": "code", "texto": '''# A simulação: mil amostras, mil estimativas.
+import numpy as np
 
-Essa é a "gramática" do documento: quem não a conhece, não extrai o dado certo."""})
+medias = np.array([cadastro["preco_medio"].sample(n=N_AMOSTRA,
+                                                  random_state=s).mean()
+                   for s in range(N_VEZES)])
 
-C.append({"tipo": "code", "aluno": """\
-# Apenas o exercício mais recente de cada companhia
-dre_ultimo = dre[dre["ORDEM_EXERC"] == "ÚLTIMO"].copy()
-dre_ultimo["VL_CONTA"] = pd.to_numeric(dre_ultimo["VL_CONTA"], errors="coerce")
+erro_padrao = populacao.std() / N_AMOSTRA ** 0.5
 
-receita = dre_ultimo[dre_ultimo["CD_CONTA"] == "3.01"][["CD_CVM", "DENOM_CIA", "VL_CONTA"]]
-receita = receita.rename(columns={"VL_CONTA": "receita"})
+print(f"{N_VEZES} amostras de {N_AMOSTRA} postos")
+print()
+print(f"  o valor verdadeiro (parâmetro) ...... R$ {populacao.mean():.4f}")
+print(f"  centro das {N_VEZES} estimativas ....... R$ {medias.mean():.4f}")
+print(f"     diferença ......................... {medias.mean() - populacao.mean():+.4f}")
+print()
+print(f"  largura observada (desvio das médias) R$ {medias.std():.4f}")
+print(f"  largura prevista (s ÷ √n) .......... R$ {erro_padrao:.4f}")
+print(f"     diferença ......................... {medias.std() - erro_padrao:+.4f}")
+print()
+print(f"  a variação dos PREÇOS (R$ {populacao.std():.4f}) é "
+      f"{populacao.std() / medias.std():.1f} vezes a variação das ESTIMATIVAS")
+print()
+print("Duas leituras:")
+print("  o centro mostra que a estimativa não é viciada;")
+print("  a largura mostra que ela varia — e o quanto.")
 
-# === COMPLETE AQUI: filtre o lucro líquido (código de conta 3.11) ===
-lucro = dre_ultimo[dre_ultimo["CD_CONTA"] == ""][["CD_CVM", "VL_CONTA"]]
-lucro = lucro.rename(columns={"VL_CONTA": "lucro_liquido"})
+conferir("média da população", populacao.mean(), 6.0087, tolerancia=0.001, unidade=" R$")
+conferir("erro padrão previsto", erro_padrao, 0.0481, tolerancia=0.001, unidade=" R$")'''},
+    {"tipo": "code", "texto": '''# A regra 68-95-99,7 aplicada às estimativas.
+dentro = lambda k: (np.abs(medias - populacao.mean()) < k * erro_padrao).mean() * 100
 
-base = receita.merge(lucro, on="CD_CVM", how="inner").drop_duplicates(subset="CD_CVM")
-base = base[base["receita"].notna() & (base["receita"] != 0)]
-print("Companhias com receita e lucro:", len(base))
-base.head()""", "professor": """\
-# Apenas o exercício mais recente de cada companhia
-dre_ultimo = dre[dre["ORDEM_EXERC"] == "ÚLTIMO"].copy()
-dre_ultimo["VL_CONTA"] = pd.to_numeric(dre_ultimo["VL_CONTA"], errors="coerce")
-
-receita = dre_ultimo[dre_ultimo["CD_CONTA"] == "3.01"][["CD_CVM", "DENOM_CIA", "VL_CONTA"]]
-receita = receita.rename(columns={"VL_CONTA": "receita"})
-
-lucro = dre_ultimo[dre_ultimo["CD_CONTA"] == "3.11"][["CD_CVM", "VL_CONTA"]]
-lucro = lucro.rename(columns={"VL_CONTA": "lucro_liquido"})
-
-base = receita.merge(lucro, on="CD_CVM", how="inner").drop_duplicates(subset="CD_CVM")
-base = base[base["receita"].notna() & (base["receita"] != 0)]
-print("Companhias com receita e lucro:", len(base))
-base.head()"""})
-
-C.append({"tipo": "md", "texto": """\
-Falta o **setor**: que está em outro documento: o cadastro de companhias da CVM. Juntar
-dois registros documentais por uma chave comum (o código CVM) é operação típica dessa
-técnica de coleta."""})
-
-C.append({"tipo": "code", "texto": """\
-url_cad = "https://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.csv"
-cadastro_cvm = pd.read_csv(url_cad, sep=";", encoding="latin-1", dtype=str)
-cadastro_cvm = cadastro_cvm[cadastro_cvm["SIT"] == "ATIVO"][["CD_CVM", "SETOR_ATIV"]]
-
-# O código CVM aparece com formatações diferentes nos dois arquivos. padronizamos:
-base["chave"] = base["CD_CVM"].astype(float).astype(int)
-cadastro_cvm["chave"] = cadastro_cvm["CD_CVM"].astype(float).astype(int)
-
-base = base.merge(cadastro_cvm[["chave", "SETOR_ATIV"]], on="chave", how="left")
-base = base.rename(columns={"SETOR_ATIV": "setor"}).drop(columns="chave")
-print("Com setor:", base.shape)
-base.head()"""})
-
-C.append({"tipo": "md", "texto": """\
-**Célula de contingência**: execute apenas se as células de download falharem (upload de
-`dados/cvm_dre_2024.csv` no Colab). Ela entrega a mesma base final já construída."""})
-
-C.append({"tipo": "code", "texto": """\
-import os
-if "base" not in dir():
-    for caminho in ("../../dados/cvm_dre_2024.csv", "cvm_dre_2024.csv"):
-        if os.path.exists(caminho):
-            base = pd.read_csv(caminho, dtype={"CD_CVM": str})
-            print("Carregado do arquivo local:", caminho)
-            break"""})
-
-C.append({"tipo": "nota", "texto": (
-    "~20 min até aqui (o download consome parte). A lição metodológica: dado documental "
-    "exige conhecer a gramática do documento (plano de contas, chaves de junção, escala em "
-    "milhares), é essa gramática que garante comparabilidade entre empresas. Se o download "
-    "estiver lento, use direto a célula de contingência.")})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 2: Da conta contábil à variável de pesquisa
-
-A **margem líquida** (lucro ÷ receita) é uma operacionalização clássica de "desempenho"
-sobre registro documental. Crie a variável e explore por setor:"""})
-
-C.append({"tipo": "code", "aluno": """\
-# === COMPLETE AQUI: margem líquida = lucro_liquido / receita ===
-base["margem_liquida"] = ...
-
-margens_setor = (
-    base.groupby("setor")["margem_liquida"]
-    .agg(["count", "median"])
-    .rename(columns={"count": "n_empresas", "median": "margem_mediana"})
-    .query("n_empresas >= 8")
-    .sort_values("margem_mediana", ascending=False)
-)
-(margens_setor.style.format({"margem_mediana": "{:.1%}"}))""", "professor": """\
-base["margem_liquida"] = base["lucro_liquido"] / base["receita"]
-
-margens_setor = (
-    base.groupby("setor")["margem_liquida"]
-    .agg(["count", "median"])
-    .rename(columns={"count": "n_empresas", "median": "margem_mediana"})
-    .query("n_empresas >= 8")
-    .sort_values("margem_mediana", ascending=False)
-)
-(margens_setor.style.format({"margem_mediana": "{:.1%}"}))"""})
-
-C.append({"tipo": "code", "texto": """\
+print("Quantas das mil estimativas caem a k erros padrão do valor verdadeiro:")
+for k, esperado in [(1, 68.3), (2, 95.4), (3, 99.7)]:
+    print(f"  k = {k}: observado {dentro(k):5.1f}%  |  a regra diz {esperado:5.1f}%  "
+          f"|  diferença {dentro(k) - esperado:+.1f}")
+print()
+print("É a mesma régua do encontro 4, agora sobre ESTIMATIVAS em vez de preços.")
+print("No próximo encontro ela vira o intervalo de confiança.")'''},
+    {"tipo": "code", "texto": '''# O histograma das estimativas: a distribuição amostral, desenhada.
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(9, 5))
-plt.barh(margens_setor.index[::-1], margens_setor["margem_mediana"][::-1] * 100)
-plt.xlabel("Margem líquida mediana (%)")
-plt.title("Margem líquida mediana por setor, companhias abertas, DFP 2024")
-plt.axvline(0, linewidth=0.8, color="black")
+fig, ax = plt.subplots(figsize=(10, 4.5))
+ax.hist(medias, bins=30, color="#0AB0AB", edgecolor="white")
+ax.axvline(populacao.mean(), color="#8D0333", linewidth=2,
+           label=f"valor verdadeiro  R$ {populacao.mean():.3f}")
+ax.axvline(populacao.mean() - erro_padrao, color="#D4B277", linewidth=1.5,
+           linestyle="--")
+ax.axvline(populacao.mean() + erro_padrao, color="#D4B277", linewidth=1.5,
+           linestyle="--", label="± 1 erro padrão")
+ax.set_xlabel("Preço médio estimado (R$ por litro)")
+ax.set_ylabel("Número de amostras")
+ax.set_title(f"A distribuição amostral: {N_VEZES} amostras de {N_AMOSTRA} postos")
+ax.legend()
 plt.tight_layout()
-plt.show()"""})
+plt.show()
 
-C.append({"tipo": "nota", "texto": (
-    "Dois pontos de leitura: usamos a MEDIANA (não a média) porque margens têm valores "
-    "extremos, gancho para o encontro 9; e margens negativas (prejuízo) são dado, não "
-    "erro. Pergunte-se por que o código filtra setores com n >= 8 antes de comparar "
-    "medianas.")})
+print("A forma é aproximadamente normal, e o centro está no valor verdadeiro.")
+print("É o teorema central do limite, na frente de vocês.")'''},
+    {"tipo": "md", "texto": '''**A frase que vai para o relatório**
 
-C.append({"tipo": "md", "texto": """\
-## Estatística do encontro: probabilidade
+> "O preço médio dos postos do Maranhão é de **R$ 6,01**, e uma amostra de 50 postos
+> estima esse valor com um **erro padrão de R$ 0,05** — ou seja, estimativas de amostras
+> desse tamanho variam cerca de R$ 0,10 para cima ou para baixo na maioria das vezes
+> (ANP, SHPC, 2025)."
 
-**As fórmulas.** A probabilidade estimada a partir de dados é a frequência relativa observada:
-`P(A) = n_A / n`. A probabilidade condicional é `P(A|B) = P(A e B) / P(B)`, ou, na tabela, a célula
-dividida pelo total da linha do condicionante.
+**O que essa frase não diz.** Que a estimativa está errada. O erro padrão não é um erro
+cometido: é a **variação esperada** da estimativa. Uma estimativa a um erro padrão do valor
+verdadeiro é o comportamento normal — só acima de dois é que se estranha.'''},
+    {"tipo": "md", "texto": '''## Seção 2. As três perguntas do dia
 
-**Por que isso importa aqui.** A frequência relativa que você calcula numa base é uma estimativa de
-probabilidade. É essa ponte que autoriza a inferência da Unidade III. E, no encontro de hoje, é
-também o que mede o risco de reidentificação numa base que se pretende anônima."""})
+Responda por escrito, editando as células abaixo.'''},
+    {"tipo": "md", "texto": '''**1. Se você quadruplicar o tamanho da amostra, o que acontece com o erro padrão? E por quê?**
 
-C.append({"tipo": "code", "texto": """\
-# a variável de interesse: a empresa teve prejuízo no exercício?
-base["resultado"] = (base["lucro_liquido"] < 0).map({True: "prejuizo", False: "lucro"})
+_(dica: olhe a fórmula, e depois teste no notebook)_
 
-# P(resultado): a probabilidade marginal, ignorando o setor
-base["resultado"].value_counts(normalize=True).round(3)"""})
-
-C.append({"tipo": "code", "texto": """\
-# P(setor e resultado): a tabela de probabilidades conjuntas
-pd.crosstab(base["setor"], base["resultado"], normalize="all").round(3).head(10)"""})
-
-C.append({"tipo": "code", "texto": """\
-# P(resultado | setor): a condicional, dividindo pelo total da LINHA
-condicional = pd.crosstab(base["setor"], base["resultado"], normalize="index").round(3)
-condicional = condicional.sort_values("prejuizo", ascending=False)
-condicional.head(10)"""})
-
-C.append({"tipo": "md", "texto": """\
-Compare a primeira coluna da tabela acima com a probabilidade marginal de prejuízo. Onde a
-condicional se afasta bastante da marginal, setor e resultado **não são independentes**. O teste
-qui-quadrado, no encontro 11, avalia formalmente se esse afastamento é maior do que o acaso
-produziria.
-
-**Agora a aplicação ética.** Uma base é reidentificável quando poucas linhas compartilham a mesma
-combinação de características."""})
-
-C.append({"tipo": "code", "texto": """\
-# quantas empresas há em cada setor? células pequenas são o risco
-tamanho = base["setor"].value_counts()
-
-print("Setores com menos de 5 empresas na base:")
-print(tamanho[tamanho < 5])
-print()
-print("Se um setor tem k empresas, a chance de identificar a certa é 1/k.")
-print("Com k = 2, a probabilidade é 0,5; com k = 1, é 1.")"""})
-
-C.append({"tipo": "md", "texto": """\
-**Escreva a sua leitura, e a decisão ética.**
-
-*A probabilidade estimada de prejuízo no conjunto é de ______. Entre as empresas do setor
-______________, é de ______, a maior da base.*
-
-*Há ______ setores com menos de cinco empresas. Antes de divulgar a tabela por setor, a decisão
-seria ______________ (agregar em "Outros"? suprimir? divulgar assim mesmo?), porque
-______________.*"""})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 3: Limites do registro documental
-
-Responda por escrito, editando esta célula:
-
-**1.** Quem está **dentro** desta base? Quem está **fora**? (Pense: das milhões de
-empresas brasileiras do CEMPRE, quantas são companhias abertas?)
-
-*Sua resposta:*
-
-**2.** Para quais perguntas de pesquisa esta base é **adequada**: e para quais seria
-**enganosa**? Dê um exemplo de cada.
-
-*Sua resposta:*
-
-**3.** Bancos aparecem com margens muito diferentes das indústrias. Que cuidado isso impõe
-ao comparar setores com dados contábeis?
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 4: Pré-teste do seu questionário
-
-Compartilhe o link do seu questionário revisado com 3 a 5 colegas e responda aos deles.
-Depois, importe as respostas:
-
-**Como exportar do Google Formulários:** aba *Respostas* → ícone do Sheets → na planilha,
-*Arquivo → Fazer download → CSV*. Faça o upload do arquivo aqui no Colab (ícone de pasta)
-e ajuste o nome abaixo."""})
-
-C.append({"tipo": "code", "texto": """\
-import os
-
-arquivo_respostas = "respostas_pre_teste.csv"   # ajuste para o nome do seu arquivo
-
-if os.path.exists(arquivo_respostas):
-    respostas = pd.read_csv(arquivo_respostas)
-    print("Respostas importadas:", respostas.shape)
-    print("\\nColunas (uma por pergunta):")
-    for c in respostas.columns:
-        print(" -", c[:80])
-else:
-    print("Arquivo não encontrado, faça o upload do CSV e reexecute esta célula.")"""})
-
-C.append({"tipo": "code", "texto": """\
-# Diagnóstico simples do pré-teste: distribuição de respostas por pergunta fechada
-if os.path.exists(arquivo_respostas):
-    for coluna in respostas.columns[1:]:          # pula o carimbo de data/hora
-        contagem = respostas[coluna].value_counts()
-        if len(contagem) <= 8:                    # só perguntas fechadas
-            print(f"\\n== {coluna[:70]}")
-            print(contagem.to_string())"""})
-
-C.append({"tipo": "md", "texto": """\
-**Registro do pré-teste** (edite esta célula):
-
-**Duas mudanças que farei no questionário após ver as respostas:**
-
-1.
-
-2.
-
-**O TCLE da tela inicial funcionou?** (Alguém começou a responder sem entender o que era?)
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "md", "texto": """\
-## Seção 5. Ética: o registro do seu projeto
-
-Responda por escrito, editando esta célula:
-
-**1.** Seu projeto individual usa dados públicos e agregados (IBGE, BCB, CVM). Explique
-por que ele se enquadra nas situações que a Resolução CNS nº 510/2016 dispensa de registro
-em CEP, e cite **dois deveres éticos** que permanecem mesmo assim.
-
-*Sua resposta:*
-
-**2.** Se você transformasse seu projeto num survey com gestores (dados primários), o que
-mudaria: TCLE? Submissão via Plataforma Brasil? Cuidados de anonimização (LGPD)?
-
-*Sua resposta:*
-
-**3.** Que registro documental existe na organização onde você trabalha (ou que conhece)
-que permitiria pesquisa quantitativa? Que questões éticas o uso dele levantaria?
-
-*Sua resposta:*"""})
-
-C.append({"tipo": "md", "texto": """\
 ---
-### Antes de sair
+'''},
+    {"tipo": "md", "texto": '''**2. No seu projeto, qual seria a diferença entre o desvio padrão da sua variável e o erro padrão da sua estimativa?**
 
-1. Salve e compartilhe o link do notebook;
-2. **Próximo encontro é a Avaliação 1**: prova (parte conceitual + parte prática em
-notebook) e entrega da primeira etapa do projeto;
-3. **Revisão:** as sínteses teóricas ao final dos slides dos encontros 1 a 7 são o mapa;
-reexecutar os notebooks é a revisão ativa;
-4. **Projeto:** conclua problema, hipóteses, variáveis (com níveis), base escolhida e
-matriz de amarração, entrega ao final da prova."""})
+---
+'''},
+    {"tipo": "md", "texto": '''**3. O centro das mil estimativas ficou praticamente no valor verdadeiro. O que isso mostra, e o que uma amostra por conveniência mudaria nesse resultado?**
 
-gera_notebooks(7, C)
+---
+'''},
+    {"tipo": "md", "texto": '''## Antes de sair
+
+- [ ] Executei o notebook inteiro de cima para baixo, sem erro
+- [ ] Mudei `N_AMOSTRA` e `N_VEZES` e vi a largura mudar
+- [ ] Entendo a diferença entre desvio padrão e erro padrão
+- [ ] Respondi as três perguntas
+
+> Guarde este notebook. **No próximo encontro o erro padrão vira intervalo de confiança**,
+> e é ele que fecha o Módulo II.'''},
+]
+
+if __name__ == "__main__":
+    nb.gera_notebooks(7, CELULAS, versao="autossuficiente", executa_notebook=True,
+                      timeout=1800)

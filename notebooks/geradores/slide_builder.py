@@ -166,7 +166,7 @@ def secao_conducao(num, titulo, minutos, blocos, ancoras):
 
 # ------------------------------------------------------------------ o que e meu
 #
-# Tudo o que este modulo insere no arquivo tem uma forma unica e recognizable, para
+# Tudo o que este modulo insere no arquivo tem uma forma unica e reconhecivel, para
 # poder ser removido sem ambiguidade antes de reinserido. E o que torna a operacao
 # idempotente: rodar duas vezes seguidas produz o mesmo arquivo.
 #

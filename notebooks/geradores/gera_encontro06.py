@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera os notebooks dos encontros 6 e 7, do Modulo II.
+"""Gera o notebook do encontro 6, do Modulo II (o do encontro 7 esta em gera_encontro07.py).
 
 E6 — o sorteio: a base de precos da ANP e, na verdade, um CADASTRO de postos (tem CNPJ,
 municipio e bandeira). E o unico cadastro de estabelecimentos que a disciplina tem em
