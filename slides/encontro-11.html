@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 11: Inferência estatística</title>
+<title>Encontro 11: Testes de média e qui-quadrado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,11 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 11 · Unidade III</div>
-  <h1>Inferência estatística</h1>
-  <p class="subtitulo">Intervalo de confiança e testes de hipóteses</p>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 11 · Módulo III · Inferência estatística</div>
+  <h1>Testes de média e qui-quadrado</h1>
+  <p class="subtitulo">Qual teste para qual pergunta, e com que risco de errar</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -33,554 +37,982 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>15 min</td><td>Retomada: do desvio padrão (encontro 9) à incerteza da estimativa</td></tr>
-    <tr><td>85 min</td><td>Normal e TCL · intervalos de confiança · lógica dos testes de hipóteses</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>85 min</td><td><strong>Prática no Colab:</strong> TCL simulado; IC e teste t na CVM; qui-quadrado no CEMPRE</td></tr>
-    <tr><td>30 min</td><td><strong>Oficina:</strong> a hipótese do seu projeto em forma de teste</td></tr>
-    <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
-  </table>
-  <p class="menor">A passagem que completa a Unidade III: de <em>descrever</em> o que temos
-  para <strong>inferir</strong> sobre o que não observamos, com medida explícita de
-  incerteza.</p>
+  <p>O encontro 10 ensinou a lógica do teste com <strong>um</strong> grupo e
+  <strong>um</strong> valor de referência. Hoje o teste ganha <strong>dois grupos</strong>,
+  <strong>pares</strong> e <strong>categorias</strong> — e a pergunta passa a ser também
+  <em>qual</em> teste usar.</p>
+  <div class="colunas">
+    <div>
+      <h3>Parte 1: os dois erros de um teste</h3>
+      <p>Erro tipo I, erro tipo II, poder e a tabela de decisão. Contados, e não só
+      definidos: no cadastro de postos o valor verdadeiro é conhecido, e dá para ver quantas
+      vezes o teste erra.</p>
+    </div>
+    <div>
+      <h3>Parte 2: cinco testes e o fluxograma</h3>
+      <p>O t de uma amostra, o de duas amostras e o pareado; o qui-quadrado de independência
+      e o de aderência. Cada um responde a uma pergunta de gestão, com dado real da ANP e
+      da CVM.</p>
+    </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">O fio que liga os dois blocos</span>
+  Escolher o teste errado também é um erro — e o software não avisa. A Parte 1 mede o risco
+  de errar <strong>dentro</strong> de um teste; a Parte 2 evita o erro de escolher o teste
+  <strong>errado</strong>.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p>Ao final do encontro, você deverá ser capaz de:</p>
-  <ol>
-    <li><strong>explicar</strong> por que as médias de amostras repetidas se distribuem de
-        forma aproximadamente normal mesmo quando a população é assimétrica (teorema
-        central do limite);</li>
-    <li><strong>distinguir</strong> estimação por ponto de estimação por intervalo e
-        <strong>interpretar</strong> corretamente um intervalo de confiança;</li>
-    <li><strong>formular</strong> hipótese nula e alternativa e <strong>decidir</strong>
-        pelo valor-p, sem confundir "não rejeitar H0" com "provar H0";</li>
-    <li><strong>aplicar</strong> o teste t de Student para comparar dois grupos, checando
-        o efeito dos extremos sobre a validade do teste;</li>
-    <li><strong>aplicar</strong> o teste qui-quadrado de independência em tabelas de
-        contingência;</li>
-    <li><strong>executar</strong> as análises com <code>scipy.stats</code> e
-        <strong>relacionar</strong> os testes à hipótese do seu projeto individual.</li>
+  <h2>Retomada: a lógica do encontro 10</h2>
+  <table>
+    <tr><th>A ideia</th><th>No exemplo do encontro 10</th></tr>
+    <tr><td>H0 tem o sinal de igual; H1 é o que se aceita se H0 cair</td>
+        <td>H0: a média do Maranhão é R$ 6,19</td></tr>
+    <tr><td>O valor-p é a chance da amostra, supondo H0 verdadeira</td>
+        <td>t = −3,54; p = 0,0014 → rejeita</td></tr>
+    <tr><td>Fora do IC de 95%, rejeitado a 5%</td>
+        <td>IC de R$ 5,93 a R$ 6,12; R$ 6,19 fica fora</td></tr>
+    <tr><td>Não rejeitar não é provar</td>
+        <td>R$ 6,00 e R$ 6,10 sobrevivem os dois</td></tr>
+  </table>
+  <div class="pergunta">A pergunta que ficou: contra R$ 6,00 o teste não rejeitou H0. Mas a
+  média verdadeira é <strong>R$ 6,0087</strong>. <strong>O teste errou?</strong></div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A tabela de decisão do teste</h2>
+  <table>
+    <tr><th></th><th>H0 é verdadeira</th><th>H0 é falsa</th></tr>
+    <tr><td><strong>O teste rejeita H0</strong></td>
+        <td><strong>Erro tipo I</strong> — o alarme falso. Chance: <strong>α</strong></td>
+        <td>Acerto. Chance: <strong>poder = 1 − β</strong></td></tr>
+    <tr><td><strong>O teste não rejeita H0</strong></td>
+        <td>Acerto. Chance: 1 − α</td>
+        <td><strong>Erro tipo II</strong> — o efeito que passou despercebido. Chance:
+        <strong>β</strong></td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  Todo teste termina em uma decisão, e toda decisão pode errar de dois jeitos: acusar uma
+  diferença que não existe (<strong>tipo I</strong>), ou deixar passar uma que existe
+  (<strong>tipo II</strong>). O <strong>poder</strong> é a chance de enxergar a diferença
+  quando ela existe.</div>
+  <p class="menor">Em pesquisa de verdade ninguém sabe em que coluna está — é por isso que se
+  testa. No cadastro de 236 postos a média verdadeira é conhecida, e dá para
+  <strong>contar</strong> os erros.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Erro tipo I: o alarme falso</h2>
+  <ol class="passos">
+    <li>H0 <strong>verdadeira</strong>: “a média é <span class="num">R$ 6,0087</span>” — é a
+        média do próprio cadastro;</li>
+    <li>Sorteamos <span class="num">1.000 amostras</span> de <span class="num">30
+        postos</span> (sementes 0 a 999) e testamos H0 em cada uma, a
+        <span class="num">α = 5%</span>;</li>
+    <li>Rejeitaram H0: <span class="num">41 de 1.000 = 4,1%</span>. Cada uma é um
+        <strong>alarme falso</strong>.</li>
   </ol>
+  <div class="definicao"><span class="rotulo">O que o α é, de verdade</span>
+  α é a taxa de alarme falso que se aceita <strong>antes</strong> de olhar os dados. Com 5%,
+  cerca de 1 em cada 20 testes de uma H0 verdadeira acusa diferença por puro acaso. A
+  simulação deu 4,1%: um pouco abaixo, pelo mesmo motivo dos 95,9% de cobertura do encontro
+  10 — 30 postos são 13% de um cadastro pequeno.</div>
+  <p class="menor">É também por isso que rodar vinte testes e relatar só o que “deu
+  significativo” é enganar o leitor: um deles daria, mesmo sem efeito nenhum.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Retomada: o encontro 5 tinha nome de inferência</h2>
-  <div class="afirmacao">No encontro 5 usamos o <strong>z de 95%</strong> para calcular o
-  tamanho da amostra. Aquilo era inferência estatística, sem o nome.</div>
-  <ul>
-    <li><strong>Encontro 9:</strong> aprendemos a resumir uma amostra com medidas;</li>
-    <li><strong>Pergunta de hoje:</strong> quanto essas medidas se aproximam do valor
-        verdadeiro da população?</li>
-    <li><strong>A resposta:</strong> a inferência vem com medida explícita de incerteza,
-        o intervalo de confiança e o teste de hipóteses.</li>
-  </ul>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer (15 min)</span>
-  Hoje damos o salto conceitual do semestre: de <strong>descrever</strong> o que temos para
-  <strong>inferir</strong> sobre o que não observamos. Tenha à mão a hipótese do seu
-  projeto: no fim da aula ela vira um par H0/H1 testável.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide divisor">
-  <h2>A distribuição normal e o TCL</h2>
-  <p>O sino não é propriedade dos dados, é propriedade das médias amostrais</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A distribuição normal</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  O ideal simétrico em forma de sino: cerca de <strong>68%</strong> dos valores a um desvio
-  padrão da média, <strong>95%</strong> a dois, praticamente tudo a três.</div>
-  <div class="cartoes">
-    <div class="cartao alt-dourado">
-      <h4>Os dados não precisam ser normais</h4>
-      <p>Dados empresariais costumam ser tudo menos normais: receitas assimétricas, margens
-      com extremos.</p>
-    </div>
-    <div class="cartao alt-verde">
-      <h4>O TCL resolve o paradoxo</h4>
-      <p>A normal aparece nas <strong>médias das amostras</strong>, não nos dados
-      brutos.</p>
-    </div>
+  <h2>Erro tipo II: o efeito que passa despercebido</h2>
+  <p>A resposta à pergunta do encontro 10. H0 dizia <strong>R$ 6,00</strong>; a média
+  verdadeira é <strong>R$ 6,0087</strong>. H0 é falsa — por menos de 1 centavo.</p>
+  <ol class="passos">
+    <li>As mesmas 1.000 amostras de 30 postos, agora contra <span class="num">H0: μ =
+        R$ 6,00</span>;</li>
+    <li>Rejeitaram H0: só <span class="num">3,4%</span>;</li>
+    <li>O erro tipo II: <span class="num">β = 96,6%</span>. Quase sempre o teste deixa a
+        diferença passar.</li>
+  </ol>
+  <div class="colunas">
+    <div class="alerta"><span class="rotulo">O teste errou?</span>
+    Tecnicamente, sim: H0 era falsa e não foi rejeitada. É um erro tipo II, e acontece em
+    96,6% das amostras desse tamanho.</div>
+    <div class="exemplo"><span class="rotulo">E isso importa?</span>
+    Não. Uma diferença de menos de 1 centavo por litro não muda nenhuma decisão de gestão.
+    O teste “ignorar” o que é irrelevante não é falha — é o tamanho do efeito falando.</div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O teorema central do limite (TCL)</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  As <strong>médias de amostras repetidas</strong> retiradas de uma população qualquer
-  tendem à distribuição normal à medida que o <strong>tamanho da amostra cresce</strong>:
-  mesmo que a população seja assimétrica.</div>
-  <p>É o resultado mais importante de toda a inferência. Três ideias se encontram:</p>
-  <p style="font-size:3vh; text-align:center; margin:2vh 0;">
-    <strong>amostra sorteada</strong> (enc. 5) → <strong>medidas resumidas</strong> (enc. 9)
-    → <strong>flutuação conhecida</strong> (TCL)
-  </p>
-  <p class="menor">É ele que justifica o z de 95% do encontro 5: a margem de erro vem da
-  distribuição das médias.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Estimação por ponto e por intervalo</h2>
-  <p>Um número só é um chute sem régua, o intervalo dá a régua</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Estimador por ponto × intervalo de confiança</h2>
-  <div class="definicao"><span class="rotulo">Estimador por ponto</span>
-  Um único número que chuta o parâmetro populacional (ex.: a média da amostra). O problema:
-  não sabemos <strong>quão perto</strong> acertamos.</div>
-  <div class="definicao"><span class="rotulo">Intervalo de confiança</span>
-  A estimativa ± uma <strong>margem de erro</strong>, que combina a variabilidade dos dados
-  (desvio padrão), o tamanho da amostra e o nível de confiança.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A leitura correta do 95%</h2>
-  <div class="definicao"><span class="rotulo">Certo</span>
-  Repetindo o experimento em muitas amostras, o intervalo construído assim captura o
-  parâmetro verdadeiro em <strong>95% dos casos</strong>: a propriedade é do método.</div>
-  <div class="exemplo"><span class="rotulo">Errado (e muito comum)</span>
-  "Há 95% de chance de o parâmetro estar <em>neste</em> intervalo específico." O intervalo
-  sorteado <strong>ou contém</strong> o parâmetro <strong>ou não contém</strong>: a
-  probabilidade não é do intervalo particular.</div>
-  <p class="menor">Conexão com o encontro 5: o n que a tabela pedia é o que controla a
-  largura do intervalo, apertar a margem de 5% para 2% multiplica o n por ~6.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide divisor">
-  <h2>A lógica dos testes de hipóteses</h2>
-  <p>Quão surpreendente seriam os dados, se H0 fosse verdadeira?</p>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>H0, H1 e a pergunta do valor-p</h2>
-  <div class="definicao"><span class="rotulo">Hipótese nula (H0)</span>
-  A posição conservadora: geralmente "não há diferença" ou "não há associação".</div>
-  <div class="definicao"><span class="rotulo">Hipótese alternativa (H1)</span>
-  O que a pesquisa suspeita, a hipótese do seu projeto vira H1.</div>
-  <div class="definicao"><span class="rotulo">Valor-p</span>
-  A probabilidade de obter, por acaso, um resultado <strong>tão extremo quanto o observado
-  (ou mais)</strong>, supondo H0 verdadeira.</div>
-  <p class="menor">O valor-p é uma pergunta <strong>sobre os dados sob H0</strong>, não
-  sobre "a verdade do mundo".</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A regra de decisão</h2>
+  <h2>O poder do teste se compra com n</h2>
+  <p>H0: μ = <strong>R$ 6,10</strong>, falsa por <strong>9 centavos</strong> (a verdade é
+  R$ 6,0087). Mil amostras para cada tamanho:</p>
   <table>
-    <tr><th>Se o valor-p…</th><th>Decisão</th></tr>
-    <tr><td>&lt; α (nível de significância, convencionalmente <strong>5%</strong>)</td>
-        <td><strong>Rejeita H0</strong>: os dados falam contra a posição conservadora</td></tr>
-    <tr><td>≥ α</td><td><strong>Não rejeita H0</strong>, não há evidência contra</td></tr>
+    <tr><th>Tamanho da amostra</th><th>Rejeitaram H0 (o poder)</th><th>Não rejeitaram (β)</th></tr>
+    <tr><td>10 postos</td><td>17,6%</td><td>82,4%</td></tr>
+    <tr><td>30 postos</td><td>32,0%</td><td>68,0%</td></tr>
+    <tr><td>50 postos</td><td>45,9%</td><td>54,1%</td></tr>
+    <tr><td><strong>100 postos</strong></td><td><strong>81,0%</strong></td><td><strong>19,0%</strong></td></tr>
   </table>
-  <h3>Três armadilhas a desmontar</h3>
-  <ol>
-    <li><strong>p pequeno ≠ efeito grande:</strong> significância estatística ≠ importância
-        gerencial;</li>
-    <li><strong>"Não rejeitar" ≠ "provar" H0:</strong> é não ter evidência contra;</li>
-    <li><strong>p depende de n:</strong> amostras enormes rejeitam diferenças minúsculas e
-        irrelevantes.</li>
-  </ol>
+  <div class="definicao"><span class="rotulo">A regra de planejamento</span>
+  A convenção da área é planejar a amostra para um poder de <strong>pelo menos 80%</strong>.
+  Para enxergar uma diferença de 9 centavos neste cadastro, isso pede cerca de 100 postos.
+  Com 30, o teste a enxerga em menos de uma vez a cada três.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O teste é o elo com o seu projeto</h2>
-  <div class="afirmacao">A hipótese de pesquisa do seu projeto (encontro 3) vira a
-  <strong>H1</strong>, e é testada contra a H0 de "não há efeito".</div>
+  <h2>A troca entre os dois erros</h2>
   <table>
-    <tr><th>Se a H1 envolve…</th><th>O teste é…</th></tr>
-    <tr><td>Comparar dois grupos (média)</td><td>t de Student</td></tr>
-    <tr><td>Associação entre categóricas</td><td>qui-quadrado</td></tr>
-    <tr><td>Associação entre quantitativas</td><td>correlação / regressão (encontro 13)</td></tr>
-    <tr><td>Uma proporção</td><td>IC de proporção</td></tr>
+    <tr><th>Se você…</th><th>O erro tipo I (α)</th><th>O erro tipo II (β)</th><th>O poder</th></tr>
+    <tr><td>Exige 1% em vez de 5%</td><td>cai</td><td><strong>sobe</strong></td><td>cai</td></tr>
+    <tr><td>Aumenta a amostra</td><td>fica igual</td><td>cai</td><td><strong>sobe</strong></td></tr>
+    <tr><td>Procura uma diferença maior</td><td>fica igual</td><td>cai</td><td><strong>sobe</strong></td></tr>
+    <tr><td>Trabalha com dados mais dispersos</td><td>fica igual</td><td>sobe</td><td>cai</td></tr>
   </table>
-  <p class="menor">Toda inferência descansa em três pressupostos encadeados: amostra
-  sorteada ao acaso, medidas honestas e dados compatíveis com o teste.</p>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    A tabela para planejar: decida antes qual diferença importa para a gestão, e escolha n
+    para ter poder de enxergá-la. É a conta do tamanho da amostra do encontro 8, vista pelo
+    lado do teste.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    A ideia de “zerar os erros”: não existe teste sem erro. Exigir α minúsculo só troca
+    alarme falso por efeito despercebido, a menos que a amostra cresça junto.</div>
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: qual erro custa mais?</h2>
+  <div class="instrucao"><span class="rotulo">Em duplas, cinco minutos</span>
+  Para cada situação, digam o que seria o <strong>erro tipo I</strong> e o <strong>erro tipo
+  II</strong>, e qual dos dois custa mais caro para a organização. Uma dupla por situação
+  responde para a turma.</div>
+  <ol>
+    <li>Um banco testa um novo modelo de crédito. H0: o modelo novo <strong>não</strong>
+        reduz a inadimplência;</li>
+    <li>Uma indústria inspeciona um lote de peças. H0: o lote está <strong>dentro</strong>
+        da especificação;</li>
+    <li>Uma rede de varejo testa uma promoção. H0: a promoção <strong>não</strong> aumenta
+        as vendas;</li>
+    <li>Uma auditoria examina as contas de um fornecedor. H0: o fornecedor
+        <strong>não</strong> fraudou.</li>
+  </ol>
+  <p class="menor">Não há resposta única para “qual custa mais”: depende do custo de cada
+  decisão. É por isso que α é escolha do pesquisador, e não uma constante da natureza.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
 <section class="slide divisor estat">
-  <h2>Estatística do encontro 11</h2>
-  <p>A lógica do teste: hipóteses, erros, valor-p e a escolha do teste</p>
+  <h2>Parte 2: estatística</h2>
+  <p>Os testes de média e o qui-quadrado: qual teste para qual pergunta</p>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: a estatística de teste e o valor-p</h2>
-
-  <p>Os encontros 5 e 9 já deram as peças: erro padrão, intervalo de confiança e desvio padrão. O
-  teste de hipóteses junta tudo em uma pergunta: <strong>a diferença que eu observei é maior do
-  que o acaso produziria?</strong></p>
-  <div class="formula">
-    <span class="expr">t<span class="op">=</span><span class="frac"><span class="cima">x̄<sub>1</sub> − x̄<sub>2</sub></span><span class="baixo">EP da diferença</span></span></span>
-    <span class="legenda-formula">Em linguagem corrente: a diferença observada, medida em
-    unidades de erro padrão. Se a diferença for pequena perto da variação normal entre amostras,
-    t fica perto de zero. Se for grande, t se afasta.</span>
-  </div>
-  <div class="definicao"><span class="rotulo">Valor-p</span>
-  A probabilidade de observar uma diferença <strong>tão grande quanto a observada, ou maior</strong>,
-  supondo que a hipótese nula seja verdadeira. Valor-p pequeno significa que o dado é improvável
-  sob H0, e por isso H0 é rejeitada.</div>
-  <div class="alerta"><span class="rotulo">O que o valor-p não é</span>
-  Não é a probabilidade de H0 ser verdadeira, nem a probabilidade de a conclusão estar errada, nem
-  o tamanho do efeito. É apenas a probabilidade do dado, sob uma suposição.</div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">Diante de uma pergunta de pesquisa, <strong>qual teste usar</strong>
+  — e como ler o que ele devolve?</div>
+  <p>Cinco perguntas de gestão, com dado real, e cada uma pede um teste diferente:</p>
+  <ul>
+    <li>No Maranhão, o etanol custa 70% da gasolina do mesmo posto?</li>
+    <li>Os postos de São Luís cobram diferente dos postos do interior?</li>
+    <li>No mesmo posto, quanto a gasolina custa a mais que o etanol?</li>
+    <li>Entre as companhias abertas, ter prejuízo depende do setor?</li>
+    <li>Uma amostra de 100 postos reproduz o cadastro, por região?</li>
+  </ul>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  O teste não se escolhe pelo nome nem pelo hábito: escolhe-se pelo <strong>tipo das
+  variáveis</strong>, pelo <strong>número de grupos</strong> e pelo
+  <strong>pareamento</strong>. É o nível de mensuração do encontro 2 decidindo, outra vez,
+  o que é permitido calcular.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Os cinco testes em linguagem corrente</h2>
+  <table>
+    <tr><th>Teste</th><th>O que pergunta</th><th>As variáveis</th></tr>
+    <tr><td><strong>t de uma amostra</strong></td><td>A média é igual a um valor de fora?</td>
+        <td>uma quantitativa</td></tr>
+    <tr><td><strong>t de duas amostras (Welch)</strong></td><td>Dois grupos diferentes têm a
+        mesma média?</td><td>uma quantitativa e uma categórica de dois níveis</td></tr>
+    <tr><td><strong>t pareado</strong></td><td>Nos mesmos casos, a diferença média entre duas
+        medidas é zero?</td><td>uma quantitativa, medida duas vezes</td></tr>
+    <tr><td><strong>Qui-quadrado de independência</strong></td><td>Duas categóricas estão
+        associadas?</td><td>duas categóricas</td></tr>
+    <tr><td><strong>Qui-quadrado de aderência</strong></td><td>As contagens seguem proporções
+        conhecidas?</td><td>uma categórica</td></tr>
+  </table>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Welch como o t de duas amostras padrão: ele não supõe que os dois grupos tenham a mesma
+    dispersão, e quase nunca têm. O pareado sempre que os casos forem os mesmos.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    O qui-quadrado com célula esperada menor que 5 (junte categorias antes), nem o t com
+    três ou mais grupos (é a ANOVA, encontro 12), nem teste nenhum sem declarar como a
+    amostra foi obtida.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: a decisão desenhada</h2>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>As fórmulas dos testes t, com cada símbolo nomeado</h2>
+  <div class="colunas">
+    <div>
+      <div class="formula">
+        <span class="expr">t<span class="op">=</span>
+          <span class="frac"><span class="cima">x&#772;<sub>A</sub> − x&#772;<sub>B</sub></span>
+            <span class="baixo">√<span class="raiz">s<sub>A</sub>²/n<sub>A</sub> + s<sub>B</sub>²/n<sub>B</sub></span></span></span></span>
+        <span class="simbolos">
+          <span><b>x&#772;<sub>A</sub>, x&#772;<sub>B</sub></b>as médias dos dois grupos</span>
+          <span><b>s<sub>A</sub>, s<sub>B</sub></b>os desvios</span>
+          <span><b>n<sub>A</sub>, n<sub>B</sub></b>os tamanhos</span>
+        </span>
+        <span class="legenda-formula"><strong>Duas amostras (Welch):</strong> a diferença
+        entre as médias, dividida por um erro padrão que <strong>soma</strong> a incerteza
+        dos dois grupos.</span>
+      </div>
+    </div>
+    <div>
+      <div class="formula">
+        <span class="expr">t<span class="op">=</span>
+          <span class="frac"><span class="cima">d&#772;</span>
+            <span class="baixo">s<sub>d</sub> ÷ √n</span></span></span>
+        <span class="simbolos">
+          <span><b>d&#772;</b>a média das diferenças dentro de cada par</span>
+          <span><b>s<sub>d</sub></b>o desvio dessas diferenças</span>
+          <span><b>n</b>o número de pares</span>
+        </span>
+        <span class="legenda-formula"><strong>Pareado:</strong> é o t de uma amostra do
+        encontro 10 aplicado às <strong>diferenças</strong>, com H0 dizendo que a diferença
+        média é zero.</span>
+      </div>
+    </div>
+  </div>
+  <p class="menor">O t de uma amostra é o do encontro 10: t = (x&#772; − μ<sub>0</sub>) ÷
+  (s ÷ √n). Os três testes t medem a mesma coisa — uma diferença em erros padrão —, e o que
+  muda é só o erro padrão.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula do qui-quadrado</h2>
+  <div class="formula">
+    <span class="expr">χ²<span class="op">=</span>Σ
+      <span class="frac"><span class="cima">(O − E)²</span>
+        <span class="baixo">E</span></span></span>
+    <span class="simbolos">
+      <span><b>O</b>a contagem observada em cada célula</span>
+      <span><b>E</b>a contagem esperada se H0 fosse verdadeira</span>
+      <span><b>Σ</b>a soma sobre todas as células</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> célula a célula,
+    a distância entre o que se observou e o que se esperaria se H0 fosse verdadeira, elevada
+    ao quadrado e comparada com o esperado. Somadas as distâncias, quanto maior o χ², mais
+    difícil acreditar em H0.</span>
+  </div>
+  <table>
+    <tr><th></th><th>Independência</th><th>Aderência</th></tr>
+    <tr><td><strong>O esperado E vem de…</strong></td><td>total da linha × total da coluna ÷
+        total geral</td><td>proporção conhecida × total da amostra</td></tr>
+    <tr><td><strong>Graus de liberdade</strong></td><td>(linhas − 1) × (colunas − 1)</td>
+        <td>categorias − 1</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>As fórmulas ditas como receita</h2>
+  <ol class="passos">
+    <li><strong>Os três testes t</strong>: meça a diferença que interessa e divida pelo seu
+        erro padrão. Muda só o que se compara — a média com um valor, duas médias, ou a
+        diferença dentro dos pares;</li>
+    <li><strong>No pareado</strong>, calcule primeiro a diferença de cada caso consigo
+        mesmo. A variação <em>entre</em> os casos sai da conta, e o teste fica mais
+        sensível;</li>
+    <li><strong>No qui-quadrado</strong>, monte o que se esperaria sem associação (ou com as
+        proporções conhecidas), compare célula a célula com o observado e some;</li>
+    <li><strong>Em todos</strong>: o valor-p diz quão rara seria a estatística se H0 fosse
+        verdadeira. Menor que α, rejeita-se H0.</li>
+  </ol>
+  <p class="menor">A decisão é sempre a mesma do encontro 10. O que muda de um teste para o
+  outro é a pergunta — e a pergunta se escolhe pelo fluxograma da próxima tela.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>O fluxograma de escolha do teste</h2>
   <div class="figura">
-    <svg viewBox="0 0 1000 214" role="img" aria-label="Distribuição da estatística de teste sob a hipótese nula, com a região de rejeição e o valor observado">
-      <path d="M60.0 158.0 L60.0 158.0 L71.0 158.0 L82.0 157.9 L93.0 157.9 L104.0 157.9 L115.0 157.8 L126.0 157.7 L137.0 157.6 L148.0 157.4 L159.0 157.2 L170.0 156.9 L181.0 156.5 L192.0 156.0 L203.0 155.4 L214.0 154.5 L225.0 153.5 L236.0 152.2 L247.0 150.5 L258.0 148.6 L269.0 146.2 L280.0 143.4 L291.0 140.2 L302.0 136.4 L313.0 132.1 L324.0 127.3 L335.0 121.9 L346.0 116.0 L357.0 109.7 L368.0 103.0 L379.0 96.1 L390.0 88.9 L401.0 81.8 L412.0 74.8 L423.0 68.0 L434.0 61.8 L445.0 56.1 L456.0 51.2 L467.0 47.3 L478.0 44.4 L489.0 42.6 L500.0 42.0 L511.0 42.6 L522.0 44.4 L533.0 47.3 L544.0 51.2 L555.0 56.1 L566.0 61.8 L577.0 68.0 L588.0 74.8 L599.0 81.8 L610.0 88.9 L621.0 96.1 L632.0 103.0 L643.0 109.7 L654.0 116.0 L665.0 121.9 L676.0 127.3 L687.0 132.1 L698.0 136.4 L709.0 140.2 L720.0 143.4 L731.0 146.2 L742.0 148.6 L753.0 150.5 L764.0 152.2 L775.0 153.5 L786.0 154.5 L797.0 155.4 L808.0 156.0 L819.0 156.5 L830.0 156.9 L841.0 157.2 L852.0 157.4 L863.0 157.6 L874.0 157.7 L885.0 157.8 L896.0 157.9 L907.0 157.9 L918.0 157.9 L929.0 158.0 L940.0 158.0 L940.0 158.0 Z" fill="#f0faf9"/>
-      <path d="M60.0 158.0 L60.0 158.0 L62.8 158.0 L65.6 158.0 L68.4 158.0 L71.2 158.0 L74.1 158.0 L76.9 157.9 L79.7 157.9 L82.5 157.9 L85.3 157.9 L88.1 157.9 L90.9 157.9 L93.8 157.9 L96.6 157.9 L99.4 157.9 L102.2 157.9 L105.0 157.9 L107.8 157.8 L110.6 157.8 L113.4 157.8 L116.2 157.8 L119.1 157.8 L121.9 157.7 L124.7 157.7 L127.5 157.7 L130.3 157.7 L133.1 157.6 L135.9 157.6 L138.8 157.6 L141.6 157.5 L144.4 157.5 L147.2 157.4 L150.0 157.4 L152.8 157.3 L155.6 157.3 L158.4 157.2 L161.2 157.2 L164.1 157.1 L166.9 157.0 L169.7 156.9 L172.5 156.8 L175.3 156.7 L178.1 156.6 L180.9 156.5 L183.8 156.4 L186.6 156.3 L189.4 156.1 L192.2 156.0 L195.0 155.8 L197.8 155.7 L200.6 155.5 L203.4 155.3 L206.2 155.1 L209.1 154.9 L211.9 154.7 L214.7 154.5 L217.5 154.2 L220.3 153.9 L223.1 153.7 L225.9 153.4 L228.8 153.0 L231.6 152.7 L234.4 152.4 L237.2 152.0 L240.0 151.6 L242.8 151.2 L245.6 150.8 L248.4 150.3 L251.2 149.8 L254.1 149.3 L256.9 148.8 L259.7 148.2 L262.5 147.7 L265.3 147.1 L268.1 146.4 L270.9 145.8 L273.8 145.1 L276.6 144.4 L279.4 143.6 L282.2 142.8 L285.0 142.0 L285.0 158.0 Z" fill="#c0392b" opacity="0.75"/>
-      <path d="M715.0 158.0 L715.0 142.0 L717.8 142.8 L720.6 143.6 L723.4 144.4 L726.2 145.1 L729.1 145.8 L731.9 146.4 L734.7 147.1 L737.5 147.7 L740.3 148.2 L743.1 148.8 L745.9 149.3 L748.8 149.8 L751.6 150.3 L754.4 150.8 L757.2 151.2 L760.0 151.6 L762.8 152.0 L765.6 152.4 L768.4 152.7 L771.2 153.0 L774.1 153.4 L776.9 153.7 L779.7 153.9 L782.5 154.2 L785.3 154.5 L788.1 154.7 L790.9 154.9 L793.8 155.1 L796.6 155.3 L799.4 155.5 L802.2 155.7 L805.0 155.8 L807.8 156.0 L810.6 156.1 L813.4 156.3 L816.2 156.4 L819.1 156.5 L821.9 156.6 L824.7 156.7 L827.5 156.8 L830.3 156.9 L833.1 157.0 L835.9 157.1 L838.8 157.2 L841.6 157.2 L844.4 157.3 L847.2 157.3 L850.0 157.4 L852.8 157.4 L855.6 157.5 L858.4 157.5 L861.2 157.6 L864.1 157.6 L866.9 157.6 L869.7 157.7 L872.5 157.7 L875.3 157.7 L878.1 157.7 L880.9 157.8 L883.8 157.8 L886.6 157.8 L889.4 157.8 L892.2 157.8 L895.0 157.9 L897.8 157.9 L900.6 157.9 L903.4 157.9 L906.2 157.9 L909.1 157.9 L911.9 157.9 L914.7 157.9 L917.5 157.9 L920.3 157.9 L923.1 157.9 L925.9 158.0 L928.8 158.0 L931.6 158.0 L934.4 158.0 L937.2 158.0 L940.0 158.0 L940.0 158.0 Z" fill="#c0392b" opacity="0.75"/>
-      <path d="M60.0 158.0 L65.5 158.0 L71.0 158.0 L76.5 157.9 L82.0 157.9 L87.5 157.9 L93.0 157.9 L98.5 157.9 L104.0 157.9 L109.5 157.8 L115.0 157.8 L120.5 157.8 L126.0 157.7 L131.5 157.7 L137.0 157.6 L142.5 157.5 L148.0 157.4 L153.5 157.3 L159.0 157.2 L164.5 157.1 L170.0 156.9 L175.5 156.7 L181.0 156.5 L186.5 156.3 L192.0 156.0 L197.5 155.7 L203.0 155.4 L208.5 155.0 L214.0 154.5 L219.5 154.0 L225.0 153.5 L230.5 152.8 L236.0 152.2 L241.5 151.4 L247.0 150.5 L252.5 149.6 L258.0 148.6 L263.5 147.5 L269.0 146.2 L274.5 144.9 L280.0 143.4 L285.5 141.9 L291.0 140.2 L296.5 138.3 L302.0 136.4 L307.5 134.3 L313.0 132.1 L318.5 129.7 L324.0 127.3 L329.5 124.6 L335.0 121.9 L340.5 119.0 L346.0 116.0 L351.5 112.9 L357.0 109.7 L362.5 106.4 L368.0 103.0 L373.5 99.6 L379.0 96.1 L384.5 92.5 L390.0 88.9 L395.5 85.4 L401.0 81.8 L406.5 78.3 L412.0 74.8 L417.5 71.4 L423.0 68.0 L428.5 64.8 L434.0 61.8 L439.5 58.8 L445.0 56.1 L450.5 53.6 L456.0 51.2 L461.5 49.1 L467.0 47.3 L472.5 45.7 L478.0 44.4 L483.5 43.3 L489.0 42.6 L494.5 42.2 L500.0 42.0 L505.5 42.2 L511.0 42.6 L516.5 43.3 L522.0 44.4 L527.5 45.7 L533.0 47.3 L538.5 49.1 L544.0 51.2 L549.5 53.6 L555.0 56.1 L560.5 58.8 L566.0 61.8 L571.5 64.8 L577.0 68.0 L582.5 71.4 L588.0 74.8 L593.5 78.3 L599.0 81.8 L604.5 85.4 L610.0 88.9 L615.5 92.5 L621.0 96.1 L626.5 99.6 L632.0 103.0 L637.5 106.4 L643.0 109.7 L648.5 112.9 L654.0 116.0 L659.5 119.0 L665.0 121.9 L670.5 124.6 L676.0 127.3 L681.5 129.7 L687.0 132.1 L692.5 134.3 L698.0 136.4 L703.5 138.3 L709.0 140.2 L714.5 141.9 L720.0 143.4 L725.5 144.9 L731.0 146.2 L736.5 147.5 L742.0 148.6 L747.5 149.6 L753.0 150.5 L758.5 151.4 L764.0 152.2 L769.5 152.8 L775.0 153.5 L780.5 154.0 L786.0 154.5 L791.5 155.0 L797.0 155.4 L802.5 155.7 L808.0 156.0 L813.5 156.3 L819.0 156.5 L824.5 156.7 L830.0 156.9 L835.5 157.1 L841.0 157.2 L846.5 157.3 L852.0 157.4 L857.5 157.5 L863.0 157.6 L868.5 157.7 L874.0 157.7 L879.5 157.8 L885.0 157.8 L890.5 157.8 L896.0 157.9 L901.5 157.9 L907.0 157.9 L912.5 157.9 L918.0 157.9 L923.5 157.9 L929.0 158.0 L934.5 158.0 L940.0 158.0" fill="none" stroke="#05635f" stroke-width="3"/>
-      <line x1="60" y1="158" x2="940" y2="158" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="500" y1="30" x2="500" y2="164" stroke="#05635f" stroke-width="2" stroke-dasharray="6 5"/>
-      <text x="500" y="24" text-anchor="middle" font-size="16" fill="#05635f">se H0 for verdadeira, a diferença observada tende a ficar aqui</text>
-      <text x="255" y="182" text-anchor="middle" font-size="15" fill="#a93226">2,5%</text>
-      <text x="745" y="182" text-anchor="middle" font-size="15" fill="#a93226">2,5%</text>
-      <line x1="806" y1="66" x2="806" y2="164" stroke="#8D0333" stroke-width="3.4"/>
-      <text x="806" y="58" text-anchor="middle" font-size="17" fill="#8D0333" font-weight="700">valor observado</text>
-      <text x="500" y="204" text-anchor="middle" font-size="16" fill="#777">O valor-p é a área da cauda a partir do valor observado: a chance de ver isso, ou algo mais extremo, se H0 for verdadeira.</text>
+    <svg viewBox="0 0 1000 440" role="img" aria-label="Fluxograma de escolha do teste: o que se compara, quantos grupos, se os casos são pareados, e se as categorias são uma variável ou duas">
+      <rect x="0" y="175" width="180" height="80" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+      <text x="90.0" y="211" text-anchor="middle" font-size="16" fill="#333">1. O que se</text>
+      <text x="90.0" y="231" text-anchor="middle" font-size="16" fill="#333">compara?</text>
+      <rect x="270" y="55" width="200" height="70" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+      <text x="370.0" y="86" text-anchor="middle" font-size="16" fill="#333">2. Quantos</text>
+      <text x="370.0" y="106" text-anchor="middle" font-size="16" fill="#333">grupos?</text>
+      <rect x="270" y="320" width="200" height="70" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+      <text x="370.0" y="351" text-anchor="middle" font-size="16" fill="#333">4. Uma variável,</text>
+      <text x="370.0" y="371" text-anchor="middle" font-size="16" fill="#333">ou duas cruzadas?</text>
+      <path d="M90 175 L270 95" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="40" y="118" text-anchor="start" font-size="14" fill="#8D0333">médias</text>
+      <text x="40" y="136" text-anchor="start" font-size="14" fill="#8D0333">(quantitativa)</text>
+      <path d="M90 255 L270 350" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="40" y="302" text-anchor="start" font-size="14" fill="#8D0333">contagens</text>
+      <text x="40" y="320" text-anchor="start" font-size="14" fill="#8D0333">(categórica)</text>
+      <rect x="590" y="0" width="210" height="50" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
+      <text x="695.0" y="31" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">t de uma amostra</text>
+      <rect x="590" y="95" width="210" height="70" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+      <text x="695.0" y="126" text-anchor="middle" font-size="16" fill="#333">3. Os mesmos casos,</text>
+      <text x="695.0" y="146" text-anchor="middle" font-size="16" fill="#333">medidos duas vezes?</text>
+      <rect x="590" y="200" width="210" height="50" rx="8" fill="#f4f4f4" stroke="#bbb" stroke-width="2"/>
+      <text x="695.0" y="231" text-anchor="middle" font-size="17" fill="#777" font-weight="700">ANOVA (encontro 12)</text>
+      <path d="M470 80 L588 28" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="370" y="44" text-anchor="middle" font-size="14" fill="#8D0333">1 grupo × valor de fora</text>
+      <path d="M470 92 L588 128" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="530" y="100" text-anchor="middle" font-size="14" fill="#8D0333">2 grupos</text>
+      <path d="M470 110 L588 222" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="500" y="190" text-anchor="middle" font-size="14" fill="#8D0333">3 ou mais</text>
+      <rect x="840" y="95" width="160" height="50" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
+      <text x="920.0" y="126" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">t pareado</text>
+      <rect x="840" y="175" width="160" height="60" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
+      <text x="920.0" y="201" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">t de duas</text>
+      <text x="920.0" y="221" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">amostras (Welch)</text>
+      <path d="M800 120 L838 120" stroke="#0AB0AB" stroke-width="2.2" fill="none" marker-end="url(#sg)"/>
+      <text x="819" y="112" text-anchor="middle" font-size="14" fill="#067a76">sim</text>
+      <path d="M800 150 L838 200" stroke="#0AB0AB" stroke-width="2.2" fill="none" marker-end="url(#sg)"/>
+      <text x="808" y="190" text-anchor="middle" font-size="14" fill="#067a76">não</text>
+      <rect x="640" y="290" width="300" height="50" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
+      <text x="790.0" y="321" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">qui-quadrado de aderência</text>
+      <rect x="640" y="380" width="300" height="50" rx="8" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2"/>
+      <text x="790.0" y="411" text-anchor="middle" font-size="17" fill="#067a76" font-weight="700">qui-quadrado de independência</text>
+      <path d="M470 345 L638 315" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="540" y="288" text-anchor="middle" font-size="14" fill="#8D0333">uma, contra proporções</text>
+      <text x="540" y="304" text-anchor="middle" font-size="14" fill="#8D0333">conhecidas</text>
+      <path d="M470 365 L638 405" stroke="#8D0333" stroke-width="2.2" fill="none" marker-end="url(#sv)"/>
+      <text x="552" y="410" text-anchor="middle" font-size="14" fill="#8D0333">duas, cruzadas</text>
     </svg>
   </div>
-
-  <div class="colunas">
-    <div>
-      <p>A curva é a distribuição da estatística de teste <strong>supondo H0 verdadeira</strong>.
-      As caudas vermelhas somam 5%, o nível de significância α. Se o valor observado cai nelas, o
-      resultado é improvável sob H0, e H0 é rejeitada.</p>
-    </div>
-    <div>
-      <table>
-        <tr><th></th><th>H0 verdadeira</th><th>H0 falsa</th></tr>
-        <tr><td><strong>Rejeitou H0</strong></td><td>erro tipo I (α)</td><td>acerto</td></tr>
-        <tr><td><strong>Não rejeitou</strong></td><td>acerto</td><td>erro tipo II (β)</td></tr>
-      </table>
-      <p class="menor">Reduzir α aumenta β: quanto mais exigente você é para rejeitar, mais deixa
-      passar efeito real. O 5% é convenção de equilíbrio, não verdade.</p>
-    </div>
-  </div>
+  <p class="menor">Três perguntas, nesta ordem: <strong>o que se compara</strong> (médias de
+  uma quantitativa ou contagens de categorias), <strong>quantos grupos</strong> e
+  <strong>se os casos são os mesmos</strong>. O ramo cinza, três ou mais grupos, é a ANOVA
+  do encontro 12.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo 1: t de uma amostra — o etanol compensa?</h2>
+  <p>O etanol rende menos que a gasolina; a regra de bolso diz que ele compensa quando custa
+  <strong>até 70%</strong> do preço da gasolina. A comparação é com um valor de fora.</p>
+  <ol class="passos">
+    <li>Os <span class="num">148 postos</span> que vendiam gasolina e etanol no mesmo mês; para
+        cada um, a razão etanol ÷ gasolina;</li>
+    <li>As hipóteses: <span class="num">H0: razão média = 0,70</span> e
+        <span class="num">H1: ≠ 0,70</span>;</li>
+    <li>A razão média: <span class="num">0,8007</span>, ou 80,1%. A menor de todas:
+        <span class="num">0,7013</span>;</li>
+    <li>O teste: <span class="num">t = 34,14</span>, <span class="num">gl = 147</span>,
+        <span class="num">p &lt; 0,0001</span> → <strong>rejeita H0</strong>.</li>
+  </ol>
+  <div class="frase-resultado"><span class="rotulo">A leitura</span>
+  O etanol custou em média 80,1% da gasolina do mesmo posto, acima dos 70% — e em
+  <strong>nenhum</strong> dos 148 postos ele compensou.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo 2: t de duas amostras — São Luís × demais municípios</h2>
+  <ol class="passos">
+    <li>Dois grupos de postos <strong>diferentes</strong>: <span class="num">101</span> em
+        São Luís, <span class="num">135</span> nos outros 10 municípios;</li>
+    <li>As médias: <span class="num">R$ 5,8000</span> e <span class="num">R$ 6,1649</span>.
+        A diferença: <span class="num">−R$ 0,3649</span>;</li>
+    <li>Os desvios: <span class="num">R$ 0,16</span> na capital e
+        <span class="num">R$ 0,35</span> no interior — por isso Welch, que não supõe
+        dispersões iguais;</li>
+    <li>O erro padrão da diferença: <span class="num">0,0346</span>. O t:
+        <span class="num">−0,3649 ÷ 0,0346 = −10,56</span>, com
+        <span class="num">gl = 199</span>;</li>
+    <li>O valor-p: <span class="num">p &lt; 0,0001</span> → <strong>rejeita H0</strong>.</li>
+  </ol>
+  <div class="alerta"><span class="rotulo">Uma mudança de papel</span>
+  Até o encontro 10, os 236 postos eram a população do exercício. Aqui, a pergunta é sobre
+  os postos do Maranhão em geral, e os 236 são os que a ANP pesquisou — uma seleção em 11
+  municípios, e não um sorteio. A conclusão vale com essa limitação declarada.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo 3: t pareado — gasolina × etanol no mesmo posto</h2>
+  <ol class="passos">
+    <li>Os mesmos <span class="num">148 postos</span>, cada um com dois preços no mesmo mês:
+        gasolina <span class="num">R$ 5,9786</span> e etanol <span class="num">R$ 4,7826</span>,
+        em média;</li>
+    <li>A diferença dentro de cada posto, gasolina − etanol: média
+        <span class="num">R$ 1,1960</span>, desvio <span class="num">R$ 0,2565</span>;</li>
+    <li>O erro padrão: <span class="num">0,2565 ÷ √148 = 0,0211</span>. O t:
+        <span class="num">56,72</span>, com <span class="num">gl = 147</span>;</li>
+    <li>O valor-p: <span class="num">p &lt; 0,0001</span> → <strong>rejeita H0</strong>.</li>
+  </ol>
+  <table>
+    <tr><th>O mesmo dado, tratado como…</th><th>t</th><th>Por quê</th></tr>
+    <tr><td><strong>pares</strong> (certo)</td><td>56,72</td><td>só a diferença dentro de cada
+        posto entra no erro padrão</td></tr>
+    <tr><td>dois grupos independentes (errado)</td><td>32,79</td><td>a variação de preço
+        <em>entre</em> postos infla o erro padrão</td></tr>
+  </table>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo 4: qui-quadrado de independência — o prejuízo depende do setor?</h2>
+  <p>As <strong>159 companhias abertas</strong> dos cinco setores com mais empresas (CVM, DFP
+  2024). Entre parênteses, a contagem esperada se o setor não importasse:</p>
+  <table>
+    <tr><th>Setor</th><th>Lucro</th><th>Prejuízo</th><th>% com prejuízo</th></tr>
+    <tr><td>Comércio (atacado e varejo)</td><td>27 (27,96)</td><td>12 (11,04)</td><td>30,8%</td></tr>
+    <tr><td>Construção civil</td><td>30 (30,11)</td><td>12 (11,89)</td><td>28,6%</td></tr>
+    <tr><td>Energia elétrica</td><td>25 (21,51)</td><td>5 (8,49)</td><td>16,7%</td></tr>
+    <tr><td>Máquinas, equipamentos e veículos</td><td>12 (15,06)</td><td>9 (5,94)</td><td>42,9%</td></tr>
+    <tr><td>Transporte e logística</td><td>20 (19,36)</td><td>7 (7,64)</td><td>25,9%</td></tr>
+  </table>
+  <ol class="passos">
+    <li>Somadas as distâncias das dez células: <span class="num">χ² = 4,388</span>, com
+        <span class="num">gl = (5 − 1) × (2 − 1) = 4</span>;</li>
+    <li>O valor-p: <span class="num">0,3561</span> → <strong>não rejeita H0</strong>. O menor
+        esperado é <span class="num">5,94</span>: a condição do teste está cumprida.</li>
+  </ol>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo 5: qui-quadrado de aderência — a amostra representa o cadastro?</h2>
+  <p>Duas amostras de 100 postos, contra as proporções do cadastro por região:</p>
+  <table>
+    <tr><th>Região</th><th>Cadastro</th><th>Esperado em 100</th><th>Sorteada</th><th>Conveniência</th></tr>
+    <tr><td>São Luís</td><td>42,8%</td><td>42,80</td><td>44</td><td><strong>25</strong></td></tr>
+    <tr><td>São José de Ribamar</td><td>12,7%</td><td>12,71</td><td>10</td><td>9</td></tr>
+    <tr><td>Imperatriz</td><td>11,4%</td><td>11,44</td><td>10</td><td><strong>17</strong></td></tr>
+    <tr><td>Demais municípios</td><td>33,1%</td><td>33,05</td><td>36</td><td><strong>49</strong></td></tr>
+    <tr><td><strong>χ² (gl = 3)</strong></td><td></td><td></td><td>1,057</td><td>18,882</td></tr>
+    <tr><td><strong>Valor-p</strong></td><td></td><td></td><td>0,7875 → não rejeita</td>
+        <td>0,0003 → rejeita</td></tr>
+  </table>
+  <p class="menor">A sorteada é a amostra aleatória simples do encontro 6 (semente 2025); a de
+  conveniência são os 100 primeiros da lista. O teste encontrou, com um valor-p, o
+  <strong>viés</strong> que o encontro 6 mostrou no preço.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se leem os cinco exemplos</h2>
+  <table>
+    <tr><th>Pergunta</th><th>Teste</th><th>Resultado</th><th>Em linguagem corrente</th></tr>
+    <tr><td>Etanol a 70% da gasolina?</td><td>t de uma amostra</td><td>t = 34,14; p &lt; 0,0001</td>
+        <td>custa 80%; não compensou em nenhum posto</td></tr>
+    <tr><td>São Luís × interior</td><td>t de Welch</td><td>t = −10,56; p &lt; 0,0001</td>
+        <td>a capital é 37 centavos mais barata</td></tr>
+    <tr><td>Gasolina × etanol</td><td>t pareado</td><td>t = 56,72; p &lt; 0,0001</td>
+        <td>no mesmo posto, R$ 1,20 de diferença</td></tr>
+    <tr><td>Prejuízo × setor</td><td>χ² de independência</td><td>χ² = 4,39; p = 0,36</td>
+        <td>sem evidência de associação</td></tr>
+    <tr><td>Amostra × cadastro</td><td>χ² de aderência</td><td>1,06 (p = 0,79) e 18,88 (p = 0,0003)</td>
+        <td>a sorteada representa; a conveniência, não</td></tr>
+  </table>
+  <div class="frase-resultado"><span class="rotulo">O que a coluna da direita tem em comum</span>
+  Nenhuma frase diz só “significativo”. Cada uma traz o <strong>tamanho</strong> do que se
+  encontrou, na unidade original: centavos, porcentagem, contagem de postos. O valor-p
+  diz se a diferença é detectável; só o tamanho diz se ela importa.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se faz no Colab, e qual teste escolher</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se faz no Colab</h2>
   <pre class="codigo"><span class="fn">from</span> scipy <span class="fn">import</span> stats
 
-<span class="cmt"># duas médias, grupos independentes (ex.: margem de indústria x serviços)</span>
-t, p = stats.<span class="fn">ttest_ind</span>(grupo_a, grupo_b, equal_var=<span class="fn">False</span>)
+<span class="cmt"># duas amostras independentes, na versão de Welch</span>
+stats.<span class="fn">ttest_ind</span>(sao_luis, demais, equal_var=<span class="fn">False</span>)
 
-<span class="cmt"># duas variáveis categóricas (ex.: porte x situação)</span>
-tabela = pd.<span class="fn">crosstab</span>(base[<span class="str">"porte"</span>], base[<span class="str">"situacao"</span>])
-qui, p, gl, esperado = stats.<span class="fn">chi2_contingency</span>(tabela)</pre>
-  <table>
-    <tr><th>A pergunta</th><th>As variáveis</th><th>O teste</th></tr>
-    <tr><td>Dois grupos têm médias diferentes?</td><td>uma categórica de 2 níveis e uma quantitativa</td><td><code>ttest_ind</code></td></tr>
-    <tr><td>A média mudou entre antes e depois, nos mesmos casos?</td><td>quantitativa medida duas vezes</td><td><code>ttest_rel</code></td></tr>
-    <tr><td>Duas variáveis categóricas estão associadas?</td><td>duas categóricas</td><td><code>chi2_contingency</code></td></tr>
-    <tr><td>Duas quantitativas andam juntas?</td><td>duas quantitativas</td><td>correlação, encontro 13</td></tr>
-  </table>
-  <p class="menor">O teste é escolhido pelo <strong>nível de mensuração</strong> das variáveis, que
-  é o conteúdo do encontro 3. Classificação errada leva a teste errado, e nenhum software avisa.</p>
+<span class="cmt"># pareado: os mesmos postos, duas medidas</span>
+stats.<span class="fn">ttest_rel</span>(pares[<span class="str">"gasolina"</span>], pares[<span class="str">"etanol"</span>])
+
+<span class="cmt"># qui-quadrado de independência: a tabela cruzada das duas categóricas</span>
+tabela = pd.<span class="fn">crosstab</span>(cvm5[<span class="str">"setor"</span>], cvm5[<span class="str">"resultado"</span>])
+stats.<span class="fn">chi2_contingency</span>(tabela)
+
+<span class="cmt"># qui-quadrado de aderência: observado contra esperado</span>
+stats.<span class="fn">chisquare</span>(f_obs=observado, f_exp=esperado)</pre>
+  <p>Os argumentos que importam têm nome: <code>equal_var=False</code> é o que faz do teste
+  um Welch; <code>f_exp</code> é o que se esperava. No notebook, cada chamada vem embrulhada
+  em uma função que devolve a leitura arrumada: estatística, gl, valor-p e decisão.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê o resultado</h2>
-
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "A margem líquida mediana difere entre indústria e serviços (<strong>t = 2,84; gl = 198;
-  p = 0,005</strong>). Como p é menor que 0,05, rejeita-se a hipótese nula de igualdade entre os
-  grupos."</div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Entre as 159 companhias abertas dos cinco setores com mais empresas, a proporção com
+  prejuízo em 2024 variou de <strong>16,7%</strong> (energia elétrica) a
+  <strong>42,9%</strong> (máquinas, equipamentos e veículos), mas a associação entre setor e
+  prejuízo não foi estatisticamente significativa (<strong>χ² = 4,39; gl = 4;
+  p = 0,36</strong>) (CVM, DFP 2024).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que o setor não importa: não rejeitar H0 não prova independência. Com 159 companhias, o
+  teste tem pouco poder para diferenças dessa ordem — é a Parte 1 de hoje em dado real. E,
+  se tivesse rejeitado, não diria que o setor <em>causa</em> o prejuízo: associação não é
+  causa.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: tratar pares como grupos independentes</h2>
   <div class="colunas">
-    <div>
-      <h3>O que a frase precisa ter</h3>
-      <ul>
-        <li>A estatística de teste, os graus de liberdade e o valor-p;</li>
-        <li>A decisão explicitada, com o α adotado;</li>
-        <li>E, logo depois, o <strong>tamanho da diferença</strong> em unidade original: "as
-        indústrias têm margem 3,1 pontos percentuais menor".</li>
-      </ul>
-      <p class="menor">Valor-p diz se a diferença é detectável; só a diferença em unidade original
-      diz se ela importa.</p>
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “Comparei o preço da gasolina e o do etanol dos 148 postos com o t de duas amostras:
+      t = 32,79.”<br><br>
+      Os dois preços são do <strong>mesmo posto</strong>. Tratados como grupos
+      independentes, a variação de preço <em>entre</em> postos entra no erro padrão e
+      esconde parte da diferença.
     </div>
-    <div>
-      <h3>Quando p é maior que α</h3>
-      <div class="exemplo"><span class="rotulo">Certo</span>
-      "Não há evidência de diferença entre os grupos (p = 0,38)."</div>
-      <div class="alerta"><span class="rotulo">Errado</span>
-      "Os grupos são iguais" ou "provou-se que não há diferença". Não rejeitar H0 é não ter
-      encontrado evidência, o que pode significar apenas que a amostra é pequena demais para
-      detectar o efeito.</div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      O t pareado olha a diferença dentro de cada posto: <strong>t = 56,72</strong>, com o
+      mesmo dado.<br><br>
+      Aqui a conclusão não mudou, porque a diferença é enorme. Com uma diferença pequena, o
+      teste errado pode <strong>não rejeitar</strong> o que o pareado rejeita — é erro tipo
+      II fabricado pela escolha do teste.
     </div>
   </div>
+  <p class="menor">O pareamento é informação do <strong>delineamento</strong>, e não do
+  dado: o mesmo cliente antes e depois, a mesma loja em dois meses, o mesmo posto com dois
+  produtos. Quem desenhou a pesquisa sabe; o software não sabe.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Os erros comuns com valor-p</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 1: ler p como probabilidade de H0</span>
-      p = 0,03 não significa "3% de chance de H0 ser verdadeira". Significa: se H0 fosse
-      verdadeira, dados como estes apareceriam em 3% das amostras.</div>
-      <div class="alerta"><span class="rotulo">Erro 2: confundir significância com relevância</span>
-      Com n grande, diferenças minúsculas ficam significativas. Uma diferença de 0,1 ponto
-      percentual pode ter p &lt; 0,001 e não interessar a ninguém. Relate sempre o tamanho.</div>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 3: testar até achar</span>
-      Rodar dez testes e relatar o que deu significativo é garantia de falso positivo: a 5%, um em
-      cada vinte testes dá significativo por acaso. Declare quantos testes foram feitos.</div>
-      <div class="alerta"><span class="rotulo">Erro 4: ignorar o pressuposto</span>
-      O teste t compara médias, e média é frágil a extremos. Em dados empresariais, o caminho
-      usual é transformar a variável (logaritmo) ou usar teste baseado em postos. Verifique a
-      distribuição antes de testar, com o boxplot do encontro 9.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: teste de hipóteses</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Ficha de revisão: os testes de média e o qui-quadrado</h2>
   <div class="ficha">
     <div>
-      <h4>A fórmula</h4>
-      <p><span class="expr">t = diferença ÷ EP da diferença</span></p>
-      <p>Valor-p: probabilidade do dado, ou algo mais extremo, supondo H0 verdadeira.</p>
+      <h4>As fórmulas</h4>
+      <p>Testes t: <span class="expr">diferença ÷ erro padrão</span></p>
+      <p>Qui-quadrado: <span class="expr">χ² = Σ (O − E)² ÷ E</span></p>
     </div>
     <div>
       <h4>No Colab</h4>
-      <pre class="codigo">from scipy import stats
-stats.ttest_ind(a, b,
-      equal_var=False)
-stats.chi2_contingency(tab)</pre>
+      <pre class="codigo">stats.ttest_ind(a, b, equal_var=False)
+stats.ttest_rel(m1, m2)
+stats.chi2_contingency(tabela)
+stats.chisquare(f_obs=o, f_exp=e)</pre>
     </div>
     <div>
-      <h4>A frase de leitura</h4>
-      <p>"<em>t</em> = _; gl = _; p = _. Rejeita-se (ou não) H0 a 5%; a diferença é de <em>d</em>
-      em unidade original."</p>
+      <h4>A escolha</h4>
+      <p>O fluxograma: o que se compara, quantos grupos, se os casos são os mesmos. Nunca o
+      hábito.</p>
     </div>
     <div>
-      <h4>O erro a evitar</h4>
-      <p>Ler p como probabilidade de H0, confundir significância com relevância e dizer que "não
-      rejeitar" prova igualdade.</p>
+      <h4>O erro</h4>
+      <p>Tratar pares como grupos independentes; usar qui-quadrado com esperado menor que 5;
+      ler “não rejeitar” como “provar”.</p>
     </div>
   </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Silva e Samá (2021), <em>Estatística</em>,
-  volume II, capítulos 5 (testes de hipóteses, com o fluxograma da seção 5.9), 6 e 7 (duas
-  amostras, fluxogramas 6.3 e 7.3) e seção 8.4 (qui-quadrado não paramétrico).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
-
-<section class="slide divisor">
-  <h2>Mão na massa</h2>
-  <p>TCL simulado · IC e teste t na CVM · qui-quadrado no CEMPRE, abra o notebook do encontro</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1: Ver o TCL acontecer (15 min)</h2>
-  <ul>
-    <li>Gerar uma população lognormal de 200 mil valores, <strong>assimetria severa</strong>,
-        como receitas;</li>
-    <li>Sortear milhares de amostras de tamanhos <strong>5, 30 e 100</strong> e guardar a
-        média de cada uma;</li>
-    <li>Sobrepor os histogramas das médias: com n = 5 ainda enviesadas; com n = 30 o sino;
-        com n = 100, nítido.</li>
-  </ul>
-  <div class="pergunta">A assimetria que desaparece é a mesma que o encontro 5 operava:
-  sortear empresas, estimar proporções, usar o z de 95%.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2: IC na base CVM (25 min)</h2>
-  <ul>
-    <li>Carregar a DRE 2024 e construir <strong>margem líquida</strong> e
-        <strong>log-receita</strong>;</li>
-    <li>IC de 95% para a média da margem de <strong>Energia Elétrica</strong> com
-        <code>scipy.stats.t.interval</code>;</li>
-    <li>O passo a passo mostra de onde sai cada termo: <code>estimativa ± t × desvio /
-        √n</code>;</li>
-    <li>O intervalo sai <strong>largo</strong>: a assinatura dos extremos da margem. A
-        resposta prática é a do encontro 9: mediana e transformação.</li>
-  </ul>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Ao escrever a interpretação, não diga "há 95% de chance de a média verdadeira estar neste
-  intervalo". Este intervalo <strong>contém ou não contém</strong> o parâmetro. Os 95% são
-  propriedade do <strong>método</strong>: repetido em muitas amostras, ele acerta em 95%
-  dos casos.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: Teste t: o par que ensina (25 min)</h2>
-  <p><strong>Pergunta:</strong> a receita de <strong>Comércio</strong> difere da de
-  <strong>Construção Civil</strong>?</p>
-  <table>
-    <tr><th>Variável</th><th>Resultado</th><th>Lição</th></tr>
-    <tr><td>Receita bruta</td><td>p &gt; 0,05, <strong>não rejeita H0</strong></td>
-        <td>Gigantes arrastam médias e variância</td></tr>
-    <tr><td>Log-receita</td><td>p &lt; 0,001, <strong>rejeita H0</strong></td>
-        <td>A escala devolve ao teste o que ele precisa</td></tr>
-  </table>
-  <p class="menor">Mesmos dados, duas conclusões opostas, e o notebook mostra por quê:
-  transformar a variável é ofício do pesquisador de dados de negócios.</p>
-  <div class="instrucao"><span class="rotulo">Escreva no notebook</span>
-  Redija a conclusão com o vocabulário completo: <strong>H0, H1, valor-p, nível de
-  significância, decisão</strong> e a limitação declarada. É o parágrafo que você repetirá
-  no relatório final.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: Qui-quadrado: porte × sobrevivência (20 min)</h2>
-  <ul>
-    <li>Dados da demografia empresarial (SIDRA 9949): nascimentos e taxa de sobrevivência de
-        1 ano por <strong>faixa de pessoal</strong>;</li>
-    <li>Tabela de contingência: sobreviveram × não sobreviveram por faixa;</li>
-    <li><code>scipy.stats.chi2_contingency</code>: associação fortemente significativa
-        (p &lt; 0,001);</li>
-    <li>É o teste formal do que o encontro 2 mostrou em tabelas: empresas maiores
-        sobrevivem mais.</li>
-  </ul>
-  <div class="alerta"><span class="rotulo">Atenção ao interpretar</span>
-  São dados <strong>agregados por faixa</strong> de pessoal, não o rastro individual de cada
-  empresa. E significância não é magnitude nem causalidade: o teste diz que a associação
-  dificilmente é acaso, não que o porte <em>causa</em> a sobrevivência.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Oficina do projeto individual</h2>
-  <p>A sua hipótese em forma de teste</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5: A hipótese do seu projeto (30 min)</h2>
-  <ol>
-    <li>Escreva a <strong>hipótese de pesquisa</strong> (vira H1);</li>
-    <li>Formule a <strong>H0</strong> correspondente;</li>
-    <li>Identifique <strong>qual teste</strong> da disciplina o par exigiria (t, qui-quadrado,
-        correlação);</li>
-    <li>Confira: a <strong>base escolhida</strong> tem as variáveis para executá-lo?</li>
-  </ol>
-  <p class="menor">O professor circula verificando se a H1 anunciada no semestre é
-  testável, variáveis certas, níveis compatíveis, base suficiente.</p>
-  <div class="pergunta">Se a base ainda não permite o teste, registrar por escrito "o que
-  seria necessário" é disciplina de pesquisador.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Agora na sua base: o teste que a sua hipótese pede</h2>
-  <div class="instrucao"><span class="rotulo">Roteiro da oficina</span>
-  <ol>
-    <li>Carregue a <strong>sua base</strong> no notebook;</li>
-    <li>Identifique uma <strong>comparação entre dois grupos</strong> (porte, setor, região)
-        ou uma <strong>associação entre variáveis categóricas</strong> compatível com a sua
-        hipótese;</li>
-    <li>Execute o teste correspondente, quando a base e o tamanho permitirem;</li>
-    <li>Registre por escrito a decisão completa: variáveis, teste, H0/H1, resultado e
-        limitação.</li>
-  </ol></div>
+  <h2>Prática no Colab: o fluxograma e o qui-quadrado na sua base</h2>
+  <div class="instrucao"><span class="rotulo">No notebook do encontro 11</span>
+  Execute de cima para baixo e confira os <code>[ok]</code>. Depois, as três práticas:</div>
   <table>
-    <tr><th>Se a sua hipótese é...</th><th>O teste natural é...</th></tr>
-    <tr><td>Comparar um indicador entre dois grupos</td><td>t de Student, sobre a
-        transformação adequada</td></tr>
-    <tr><td>Verificar associação entre duas categóricas</td><td>Qui-quadrado de
-        independência</td></tr>
-    <tr><td>Medir relação entre duas quantitativas</td><td>Correlação e regressão
-        (encontro 13)</td></tr>
+    <tr><th>Prática</th><th>O que se faz</th><th>O que se entrega</th></tr>
+    <tr><td><strong>1</strong></td><td>Seis situações: escolher o teste pelo fluxograma e
+        conferir</td><td>os seis números, com <code>[ok]</code></td></tr>
+    <tr><td><strong>2</strong></td><td>O qui-quadrado setor × prejuízo, na base da CVM</td>
+        <td>a frase de leitura e o que ela não diz</td></tr>
+    <tr><td><strong>3</strong></td><td>A mesma célula, com a base do seu projeto: trocar
+        <code>ARQUIVO_PROJETO</code>, <code>COLUNA_A</code> e <code>COLUNA_B</code></td>
+        <td>a frase do teste na sua base, ou o teste que a sua hipótese pede</td></tr>
   </table>
-  <div class="alerta"><span class="rotulo">Base pequena?</span>
-  Descreva o teste que você faria com mais dados e diga por que não é possível agora.
-  <strong>Declarar o que não dá para fazer é parte do rigor</strong>, não uma falha.</div>
+  <p class="menor">Na Prática 3 os <code>[X]</code> são esperados: os números passam a ser os
+  da sua base. Se usar IA para redigir, use o <strong>cartão de contexto</strong> e registre o
+  prompt e a checagem: a IA explica, o código calcula, e você confere e escreve.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese do encontro</h2>
-  <ol>
-    <li><strong>Inferir é apostar com cinto de segurança:</strong> a estimativa pontual vem
-        sempre acompanhada da medida de incerteza;</li>
-    <li><strong>O valor-p é uma pergunta sobre os dados, não sobre o mundo:</strong>
-        "quão surpreendente seria, se H0 fosse verdadeira?";</li>
-    <li><strong>Pressupostos não são detalhe:</strong> extremos destroem o teste t, e a
-        resposta prática em dados de negócios é transformar a variável e reportar
-        medianas;</li>
-    <li><strong>Toda decisão se declara:</strong> H0, H1, teste, valor-p, α, limitações.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
+  <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li><strong>Revisar:</strong> encontros 9, 10 e 11, descritivas, gráficos e testes são
-        exatamente o que a Avaliação 2 vai cobrar;</li>
-    <li><strong>Próximo encontro (12):</strong> Avaliação 2, atividade prática no Colab
-        sobre um banco preparado pelo professor (CVM ou IBGE);</li>
-    <li><strong>Projeto:</strong> definir no papel o teste que a sua hipótese exigirá, e
-        anotar as variáveis da base que o permitem.</li>
+    <li><strong>Todo teste pode errar de dois jeitos</strong>: o alarme falso (tipo I, com
+        chance α) e o efeito despercebido (tipo II, com chance β). Na simulação, 4,1% de
+        alarmes falsos para um α de 5%;</li>
+    <li><strong>O poder se compra com n</strong>: contra uma diferença de 9 centavos, de
+        17,6% com 10 postos a 81,0% com 100;</li>
+    <li><strong>Reduzir α aumenta β</strong>: não existe teste sem erro, só a escolha de qual
+        erro custa mais;</li>
+    <li><strong>O teste se escolhe pelo fluxograma</strong>: o que se compara, quantos
+        grupos, se os casos são os mesmos;</li>
+    <li><strong>Pares pedem o teste pareado</strong>, e tratá-los como grupos independentes
+        joga fora poder;</li>
+    <li><strong>O qui-quadrado compara o observado com o esperado</strong>: entre duas
+        categóricas (independência) ou contra proporções conhecidas (aderência).</li>
   </ul>
-  <p><strong>Síntese do dia:</strong> descrever é necessário, inferir é decidir, e decidir
-  com incerteza medida é o que separa o relatório do achismo.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
 </section>
+<section class="slide leitura">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
+  <ul>
+    <li><strong>SILVA e SAMÁ (2021)</strong>, <em>Estatística</em>, volume II (acesso aberto):
+        capítulos 5 (testes de hipóteses e erros, com o fluxograma da seção 5.9), 6 e 7
+        (duas amostras, com os fluxogramas 6.3 e 7.3) e seção 8.4 (qui-quadrado).</li>
+    <li><strong>O notebook do encontro</strong>: mude <code>N_AMOSTRA</code> para 100 e veja
+        a taxa de erro tipo I; ela continua perto de 5%? E o poder contra R$ 6,10?</li>
+    <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai
+        em duas partes.</li>
+  </ul>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Diga, para o <strong>seu</strong> projeto, qual teste do fluxograma a sua hipótese
+        pede, e se a sua base tem as variáveis para executá-lo;</li>
+    <li>O próximo encontro fecha o Módulo III: <strong>ANOVA</strong>, para três ou mais
+        grupos, e os testes para quando o t não cabe — <strong>Mann-Whitney e
+        Wilcoxon</strong>.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 11</div>
+</section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 11</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 3</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a></p>
+    <h2>Abertura e retomada do encontro 10 <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) montar a tabela de
+            decisão do teste e distinguir erro tipo I, erro tipo II e poder; (ii) explicar o
+            que aumenta o poder e por que reduzir α aumenta β; (iii) escolher, pelo
+            fluxograma, entre o t de uma amostra, o de duas amostras (Welch), o pareado e os
+            qui-quadrados de independência e de aderência; (iv) explicar por que dados
+            pareados pedem o teste pareado; (v) escrever a frase de leitura de um
+            qui-quadrado, com o tamanho do efeito e o que a frase não diz; (vi) aplicar o
+            qui-quadrado à base do próprio projeto.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura e retomada do encontro 10</td><td>15</td></tr>
+      <tr><td>Parte 1: erros tipo I e II, poder e a tabela de decisão</td><td>45</td></tr>
+      <tr><td>Parte 2: os testes de média, o qui-quadrado e o fluxograma</td><td>60</td></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>Prática no Colab: o fluxograma e um qui-quadrado aplicado</td><td>90</td></tr>
+      <tr><td>Síntese e tarefa</td><td>15</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O fio que liga as duas partes do dia</span>
+            <p>Anunciar: <strong>há dois jeitos de errar com um teste</strong>. Um é dentro do
+            teste — o alarme falso e o efeito despercebido, que a Parte 1 mede. O outro é
+            antes dele — escolher o teste errado, que a Parte 2 evita com o fluxograma. O
+            software não avisa nenhum dos dois.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A retomada começa pela pergunta que ficou</span>
+            <p>Projetar a tela 3 e ler a pergunta em voz alta: <em>“contra R$ 6,00 o teste não
+            rejeitou H0, mas a média verdadeira é R$ 6,0087. O teste errou?”</em> Deixar a
+            turma votar: sim ou não. As duas respostas têm razão em parte, e a Parte 1 vai
+            mostrar por quê: tecnicamente é um erro tipo II, e é um erro que não importa.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 4 a 9</b> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a></p>
+    <h2>Parte 1: erros tipo I e II, poder e a tabela de decisão <span class="min">(45 min)</span></h2>
+    <h3>Minutagem da Parte 1</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A tabela de decisão</td><td>8</td></tr>
+      <tr><td>Erro tipo I: o alarme falso, contado na simulação</td><td>8</td></tr>
+      <tr><td>Erro tipo II: a resposta à pergunta do encontro 10</td><td>8</td></tr>
+      <tr><td>O poder se compra com n</td><td>8</td></tr>
+      <tr><td>A troca entre os dois erros</td><td>5</td></tr>
+      <tr><td>Exercício: qual erro custa mais?</td><td>8</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A tabela de decisão, montada no quadro</span>
+            <p>Desenhar a tabela 2 × 2 no quadro antes de projetar: colunas “H0 verdadeira” e
+            “H0 falsa”; linhas “rejeita” e “não rejeita”. Pedir à turma que diga, célula a
+            célula, se é acerto ou erro. Só depois dar os nomes. A analogia do júri do
+            encontro 10 ajuda: condenar um inocente é o erro tipo I; absolver um culpado, o
+            tipo II.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O momento central: contar os erros</span>
+            <p>A simulação faz o que a pesquisa real não pode: como a média verdadeira é
+            conhecida, dá para <strong>contar</strong> quantas vezes o teste erra. Antes de
+            mostrar cada número, pedir o palpite:</p>
+            <ul>
+              <li><em>“Com H0 verdadeira e α de 5%, quantas de mil amostras vão rejeitar?”</em>
+              Resposta: 41 (4,1%) — perto dos 50 prometidos;</li>
+              <li><em>“Com H0 falsa por menos de 1 centavo, quantas vão rejeitar?”</em>
+              Resposta: 3,4%. O teste quase nunca percebe — e não precisa;</li>
+              <li><em>“Com H0 falsa por 9 centavos, quantos postos são precisos para o teste
+              perceber em 80% das vezes?”</em> Resposta: cerca de 100.</li>
+            </ul>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Por que 4,1% e não exatamente 5%</span>
+            <p>Se perguntarem: é o mesmo efeito dos 95,9% de cobertura do encontro 10. Trinta
+            postos são 13% de um cadastro pequeno, e o teste sem correção para população
+            finita fica um pouco conservador. Em um cadastro grande, a taxa ficaria colada em
+            5%.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Achar que α é a chance de a conclusão estar errada.</strong> α é a
+              chance de rejeitar <em>se</em> H0 for verdadeira — uma probabilidade
+              condicional, como o valor-p;</li>
+              <li><strong>Achar que basta reduzir α para errar menos.</strong> Reduz um erro e
+              aumenta o outro; só o n reduz os dois juntos;</li>
+              <li><strong>Achar que todo erro tipo II é grave.</strong> Diferença irrelevante
+              que passa despercebida não é problema: o que importa é ter poder para a diferença
+              que muda a decisão;</li>
+              <li><strong>Confundir poder com significância.</strong> Poder é planejamento, feito
+              antes de coletar; significância é o resultado, visto depois.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do exercício da tela 9</span>
+            <table>
+              <tr><th>Situação</th><th>Erro tipo I</th><th>Erro tipo II</th><th>O que costuma custar mais</th></tr>
+              <tr><td>1. Banco, modelo de crédito</td><td>adotar um modelo que não reduz a
+                  inadimplência</td><td>descartar um modelo que reduziria</td><td>depende do
+                  custo de implantação; discutível</td></tr>
+              <tr><td>2. Indústria, lote de peças</td><td>recusar um lote bom</td><td>aceitar um
+                  lote defeituoso</td><td><strong>tipo II</strong> (recall, segurança): aceita-se
+                  α maior para ganhar poder</td></tr>
+              <tr><td>3. Varejo, promoção</td><td>adotar uma promoção inútil</td><td>abandonar
+                  uma promoção que funcionava</td><td>depende da margem sacrificada</td></tr>
+              <tr><td>4. Auditoria, fraude</td><td>acusar um fornecedor honesto</td><td>deixar
+                  passar uma fraude</td><td><strong>tipo I</strong> (dano jurídico e de
+                  reputação): exige-se α menor</td></tr>
+            </table>
+            <p>A conclusão que fecha a Parte 1: <strong>α é decisão de gestão</strong>, tomada
+            pelo custo de cada erro, e não um número sagrado.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito da Parte 1</span>
+            <table>
+              <tr><th>Simulação (1.000 amostras de 30, sementes 0 a 999, α = 5%)</th><th>Resultado</th></tr>
+              <tr><td>H0 verdadeira (μ = 6,0087): rejeições</td><td>41 = 4,1% (erro tipo I)</td></tr>
+              <tr><td>H0: μ = 6,00 (falsa por menos de 1 centavo)</td><td>3,4% de rejeições; β = 96,6%</td></tr>
+              <tr><td>H0: μ = 6,10, poder com n = 10</td><td>17,6% (β = 82,4%)</td></tr>
+              <tr><td>H0: μ = 6,10, poder com n = 30</td><td>32,0% (β = 68,0%)</td></tr>
+              <tr><td>H0: μ = 6,10, poder com n = 50</td><td>45,9% (β = 54,1%)</td></tr>
+              <tr><td>H0: μ = 6,10, poder com n = 100</td><td>81,0% (β = 19,0%)</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 10 a 26</b> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a></p>
+    <h2>Parte 2: os testes de média, o qui-quadrado e o fluxograma <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta e os cinco testes em linguagem corrente</td><td>7</td></tr>
+      <tr><td>As fórmulas e a receita</td><td>8</td></tr>
+      <tr><td>O fluxograma de escolha</td><td>8</td></tr>
+      <tr><td>Os cinco exemplos resolvidos</td><td>22</td></tr>
+      <tr><td>A leitura, o código e a frase</td><td>8</td></tr>
+      <tr><td>Erro comum e ficha de revisão</td><td>7</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir: <strong>os três testes t fazem a mesma coisa</strong> — medem uma
+            diferença em erros padrão, como no encontro 10. O que muda é só o erro padrão. E o
+            qui-quadrado faz a mesma coisa com contagens: mede a distância entre o observado e
+            o esperado. A turma não precisa de cinco ideias novas; precisa de uma ideia e de
+            um critério para escolher.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Conduzir o fluxograma pela pergunta, e não pelo nome do teste</span>
+            <p>Antes de mostrar os exemplos, percorrer o fluxograma com as cinco perguntas da
+            tela 11, uma a uma, pedindo à turma o caminho: <em>“o que se compara aqui? quantos
+            grupos? os casos são os mesmos?”</em> Só depois dizer o nome do teste. O nome é a
+            última coisa; a pergunta é a primeira.</p>
+            <p>Na pergunta do pareado, insistir: <strong>o pareamento está no delineamento, e
+            não no dado</strong>. Duas colunas de preço parecem dois grupos; quem sabe que são
+            do mesmo posto é quem desenhou a pesquisa.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A mudança de papel dos 236 postos</span>
+            <p>Dizer em voz alta, na tela do Exemplo 2: nos encontros 6 a 10 os 236 postos
+            foram a <strong>população</strong> do exercício, porque precisávamos de um valor
+            verdadeiro conhecido. Hoje a pergunta é sobre os postos do Maranhão em geral, e os
+            236 são o que a ANP pesquisou — uma seleção em 11 municípios, e não um sorteio. A
+            população de um estudo depende da pergunta, e a limitação vai declarada na frase.
+            Na Parte 1, a simulação ainda usa os 236 como população: é isso que permite contar
+            os erros.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O exemplo que surpreende: o qui-quadrado que não rejeita</span>
+            <p>Mostrar a tabela do Exemplo 4 e perguntar: <em>“16,7% de prejuízo em um setor,
+            42,9% em outro. Isso é diferença?”</em> A maioria dirá que sim. O teste diz que não
+            há evidência (p = 0,36). Ligar à Parte 1: com 159 companhias e diferenças dessa
+            ordem, o poder é baixo. Não rejeitar, de novo, não é provar.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Usar o t de duas amostras em dados pareados.</strong> É o erro da tela
+              25: com o mesmo dado, t = 32,79 em vez de 56,72;</li>
+              <li><strong>Rodar o qui-quadrado com célula esperada menor que 5.</strong> Foi
+              por isso que o exemplo usa os cinco maiores setores; com oito setores, o menor
+              esperado cai para 4,3;</li>
+              <li><strong>Confundir independência com aderência.</strong> Duas variáveis
+              cruzadas: independência. Uma variável contra proporções conhecidas: aderência;</li>
+              <li><strong>Escrever “significativo” sem o tamanho.</strong> Toda frase leva a
+              diferença na unidade original: centavos, porcentagem, contagem.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Teste</th><th>Números</th></tr>
+              <tr><td>t de uma amostra: razão etanol/gasolina, H0 = 0,70</td>
+                  <td>148 postos; média 0,8007 (mín. 0,7013); t = 34,14; gl = 147; p &lt; 0,0001;
+                  nenhum posto a 70% ou menos</td></tr>
+              <tr><td>t de Welch: São Luís × demais</td>
+                  <td>101 × 135 postos; 5,8000 × 6,1649; diferença −0,3649; EP 0,0346;
+                  t = −10,56; gl = 199,0; p &lt; 0,0001</td></tr>
+              <tr><td>t pareado: gasolina × etanol</td>
+                  <td>148 pares; 5,9786 × 4,7826; diferença 1,1960 (desvio 0,2565; EP 0,0211);
+                  t = 56,72; gl = 147; p &lt; 0,0001. Tratado como independente: t = 32,79</td></tr>
+              <tr><td>χ² de independência: setor × prejuízo</td>
+                  <td>159 companhias, 5 setores; prejuízo de 16,7% a 42,9%; χ² = 4,388; gl = 4;
+                  p = 0,3561; menor esperado 5,94 → não rejeita</td></tr>
+              <tr><td>χ² de aderência: amostra × cadastro, por região</td>
+                  <td>proporções 42,8 / 12,7 / 11,4 / 33,1%. Sorteada [44, 10, 10, 36]:
+                  χ² = 1,057; p = 0,7875. Conveniência [25, 9, 17, 49]: χ² = 18,882;
+                  p = 0,0003</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>tela 27</b> <a class="chip-tela" href="#27">27</a></p>
+    <h2>Prática no Colab: o fluxograma e um qui-quadrado aplicado <span class="min">(90 min)</span></h2>
+    <h3>Minutagem da prática</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abrir o notebook e executar as cargas (ANP e CVM)</td><td>15</td></tr>
+      <tr><td>Parte 1 e os cinco testes: executar e conferir</td><td>20</td></tr>
+      <tr><td>Prática 1: o fluxograma, seis situações</td><td>15</td></tr>
+      <tr><td>Prática 2: o qui-quadrado da CVM e a frase</td><td>15</td></tr>
+      <tr><td>Prática 3: o qui-quadrado na base do projeto</td><td>20</td></tr>
+      <tr><td>Leitura em voz alta de três frases</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Condução passo a passo</span>
+            <ol>
+              <li><strong>As cargas.</strong> São duas CÉLULAS A: a da ANP (12 arquivos) e a da
+              CVM (um zip de 13 MB e o cadastro). Se aparecer <em>could not resolve host</em>,
+              <em>timed out</em> ou <em>BadZipFile</em>, mandar usar a CÉLULA B
+              correspondente, com upload de <code>anp_precos_revenda_ma_2025.csv</code> ou
+              <code>cvm_dre_2024.csv</code>;</li>
+              <li><strong>A simulação da Parte 1</strong> leva meio minuto: avisar antes, para
+              ninguém executar duas vezes;</li>
+              <li><strong>Prática 1.</strong> Pedir que decidam <em>no papel</em> antes de olhar
+              a célula — nesta versão do notebook as respostas já vêm preenchidas. Corrigir em
+              voz alta só a situação f, que é a que separa;</li>
+              <li><strong>Prática 2.</strong> Circular lendo as frases: a frase boa traz a
+              variação das proporções (16,7% a 42,9%), χ², gl, p e a decisão, e diz que não
+              rejeitar não prova independência;</li>
+              <li><strong>Prática 3.</strong> O estudante troca três valores na configuração.
+              Os <code>[X]</code> são esperados. Se aparecer o aviso de esperado menor que 5,
+              ajudar a juntar categorias — é a única intervenção que pode exigir o professor.</li>
+            </ol>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Para quem não tem duas categóricas no projeto</span>
+            <p>Muitos projetos têm só variáveis quantitativas (séries do BCB, receitas da CVM).
+            Para eles, a Prática 3 é escrita: qual teste do fluxograma a hipótese pede, e por
+            quê. Perguntar: <em>“a sua comparação é com um valor de fora, entre dois grupos,
+            ou entre os mesmos casos em dois momentos?”</em> Quem tiver uma variável
+            quantitativa e um grupo pode criar a categórica no encontro 12, com o professor.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito da prática</span>
+            <table>
+              <tr><th>Situação (Prática 1)</th><th>Teste</th><th>Por quê</th></tr>
+              <tr><td>a. tempo de atendimento contra a meta de 5 minutos</td><td>1 — t de uma
+                  amostra</td><td>uma média contra um valor de fora</td></tr>
+              <tr><td>b. margem de Energia × Comércio</td><td>2 — t de duas amostras</td>
+                  <td>dois grupos de companhias diferentes</td></tr>
+              <tr><td>c. vendedores antes e depois do treinamento</td><td>3 — t pareado</td>
+                  <td>os mesmos 35 vendedores, duas medidas</td></tr>
+              <tr><td>d. porte × loja virtual</td><td>4 — χ² de independência</td>
+                  <td>duas categóricas cruzadas</td></tr>
+              <tr><td>e. reclamações pelos dias úteis</td><td>5 — χ² de aderência</td>
+                  <td>uma categórica contra proporções conhecidas (20% cada dia)</td></tr>
+              <tr><td>f. diária dos hotéis na alta e na baixa</td><td>3 — t pareado</td>
+                  <td>os mesmos 30 hotéis, duas temporadas</td></tr>
+            </table>
+            <p><strong>Prática 2:</strong> χ² = 4,388; gl = 4; p = 0,3561; não rejeita H0. A
+            frase esperada é a da tela 24.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar na prática</span>
+            <p>Não transformar a Prática 3 em depuração da base do aluno. Se o CSV do projeto
+            não carregar, o estudante registra o teste que a hipótese pede (a alternativa
+            escrita) e segue; a base se resolve no atendimento do encontro 12.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 28 a 29</b> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os aprendizados do dia</span>
+            <ol>
+              <li><strong>Todo teste pode errar de dois jeitos</strong>, e os dois se contam:
+              4,1% de alarmes falsos para α de 5%;</li>
+              <li><strong>O poder se compra com n</strong>: de 17,6% a 81,0% contra a mesma
+              diferença, de 10 para 100 postos;</li>
+              <li><strong>O teste se escolhe pelo fluxograma</strong>: o que se compara, quantos
+              grupos, se os casos são os mesmos;</li>
+              <li><strong>Pares pedem o teste pareado</strong>; o qui-quadrado compara o
+              observado com o esperado;</li>
+              <li><strong>Toda frase leva o tamanho do efeito</strong>, e não rejeitar continua
+              não sendo provar.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Escreva, para o <strong>seu</strong> projeto, o caminho no fluxograma: o que
+              se compara, quantos grupos, se os casos são os mesmos — e o teste a que se
+              chega;</li>
+              <li>Se a sua base tem três ou mais grupos, anote quais são: é a ANOVA do próximo
+              encontro;</li>
+              <li>No notebook, mude <code>N_AMOSTRA</code> para 100 e anote a taxa de erro tipo
+              I. Ela continua perto de 5%? Por que o poder muda e o α não?</li>
+            </ol>
+            <p>O próximo encontro fecha o Módulo III: <strong>ANOVA</strong> e os testes para
+            quando o t não cabe — <strong>Mann-Whitney e Wilcoxon</strong> —, com revisão
+            cumulativa pelos fluxogramas e prática guiada no projeto.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>

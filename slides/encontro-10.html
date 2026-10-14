@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 10: Apresentação de dados</title>
+<title>Encontro 10: Do intervalo de confiança à lógica do teste</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,11 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 10 · Unidade III</div>
-  <h1>Apresentação de dados</h1>
-  <p class="subtitulo">Tabelas, gráficos e boas práticas de visualização</p>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 10 · Módulo III · Inferência estatística</div>
+  <h1>Do intervalo de confiança à lógica do teste</h1>
+  <p class="subtitulo">O que uma amostra autoriza dizer sobre a população, e com que risco</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -33,621 +37,987 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
 <section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>15 min</td><td>Retomada: o que as medidas resumem, o que só o gráfico mostra</td></tr>
-    <tr><td>50 min</td><td>O gráfico como argumento; tipos de gráfico; integridade visual</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>70 min</td><td><strong>Prática no Colab:</strong> matplotlib sobre séries do
-        Banco Central</td></tr>
-    <tr><td>75 min</td><td><strong>Oficina do projeto:</strong> limpeza, descritivas e
-        primeiro gráfico da base própria</td></tr>
-    <tr><td>15 min</td><td>Síntese e tarefa</td></tr>
-  </table>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p>Ao final do encontro, vocês devem ser capazes de:</p>
-  <ol>
-    <li><strong>Escolher</strong> o tipo de gráfico adequado à pergunta analítica: barras,
-        histograma, boxplot, linhas ou dispersão;</li>
-    <li><strong>Construir</strong> esses gráficos com matplotlib sobre séries econômicas
-        reais, com título, eixos, unidades e fonte;</li>
-    <li><strong>Identificar e corrigir</strong> violações de integridade visual: eixo
-        truncado sem aviso, desproporção, pizza ilegível, excesso de tinta;</li>
-    <li><strong>Apresentar</strong> tabelas conforme as normas de comunicação científica
-        (título completo, fonte, unidades);</li>
-    <li><strong>Aplicar</strong> limpeza básica, descritivas e um primeiro gráfico à base do
-        próprio projeto individual.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Retomada: o que as medidas não mostram (15 min)</h2>
-  <div class="exemplo"><span class="rotulo">Exemplo da base CVM</span>
-  Dois setores podem ter a <strong>mesma margem mediana</strong> e distribuições completamente
-  diferentes: um concentrado em torno da mediana, outro espalhado, com caudas longas.</div>
-  <div class="instrucao"><span class="rotulo">Discussão</span>
-  Respondam antes de ver o próximo slide: se vocês só tivessem a tabela de descritivas do
-  encontro 9 (média, mediana, desvio padrão, quartis), conseguiriam distinguir esses dois
-  setores? Que medida denunciaria a diferença e que aspecto da forma escaparia mesmo assim?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Retomada: o quarteto de Anscombe</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Quatro conjuntos de pontos com as <strong>mesmas estatísticas</strong> (média, variância,
-  correlação e reta de regressão coincidentes) e <strong>desenhos radicalmente distintos</strong>.</div>
-  <p>Recupera o que vimos no encontro 9 com um exemplo extremo:</p>
-  <ul>
-    <li><strong>As medidas resumem;</strong></li>
-    <li>A <strong>forma da distribuição</strong> (e a forma da relação) <strong>só o
-        gráfico mostra</strong>.</li>
-  </ul>
-  <div class="pergunta">Um gráfico não é enfeite de relatório, é um <strong>argumento</strong>,
-  e argumentos podem ser honestos ou desonestos.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide divisor">
-  <h2>O gráfico como argumento</h2>
-  <p>A pergunta é quem escolhe o tipo de gráfico</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A pergunta chave</h2>
-  <div class="pergunta">O que você quer que o <strong>leitor veja</strong>?</div>
-  <p>O tipo de gráfico não é gosto, é resposta à pergunta analítica:</p>
-  <table>
-    <tr><th>Pergunta</th><th>Gráfico</th></tr>
-    <tr><td>Comparar categorias</td><td><strong>Barras</strong> (ordenadas pelo valor; horizontais para rótulos longos)</td></tr>
-    <tr><td>Examinar uma distribuição</td><td><strong>Histograma</strong></td></tr>
-    <tr><td>Comparar distribuições entre grupos</td><td><strong>Boxplot</strong></td></tr>
-    <tr><td>Evolução no tempo</td><td><strong>Linhas</strong></td></tr>
-    <tr><td>Relação entre duas quantitativas</td><td><strong>Dispersão</strong></td></tr>
-  </table>
-  <div class="instrucao"><span class="rotulo">Exercício</span>
-  Para cada pergunta abaixo, digam o gráfico: (a) qual setor CNAE tem mais empresas
-  no Maranhão? (b) como se distribui a margem líquida das empresas da CVM? (c) a margem varia
-  entre setores? (d) como evoluiu a Selic desde 2018? (e) juros mais altos andam junto com
-  mais inadimplência?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Comparar categorias: barras</h2>
-  <ul>
-    <li>Ordenar as barras <strong>pelo valor</strong>, não pela ordem alfabética, o olho lê
-        a ordem;</li>
-    <li><strong>Horizontais</strong> quando os rótulos são longos (nome de setores CNAE,
-        empresas);</li>
-    <li>Eixo y <strong>começa no zero</strong>: o detalhe vira assunto no próximo slide.</li>
-  </ul>
-  <div class="exemplo"><span class="rotulo">No curso</span>
-  Foi seu primeiro gráfico no encontro 1: as dez seções CNAE com mais empresas no Maranhão.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Histograma e boxplot</h2>
-  <div class="definicao"><span class="rotulo">Histograma</span>
-  Examina a <strong>forma da distribuição</strong>. A escolha do número de classes muda o
-  desenho, mostrar o mesmo dado com 5 e com 50 classes revela escolhas, não fatos.</div>
-  <div class="definicao"><span class="rotulo">Boxplot</span>
-  Compara distribuições entre grupos e traduz em desenho as medidas do encontro 9:
-  <strong>mediana, quartis, amplitude interquartílica e pontos atípicos</strong>.</div>
-  <p class="menor">Boxplot saiu no encontro 5 (distribuição do erro amostral), agora ele
-  vira instrumento da análise.</p>
-  <div class="exemplo"><span class="rotulo">O mesmo dado, duas leituras</span>
-  Com 5 classes, o mesmo conjunto de dados aparece "liso": poucas barras, tendência clara.
-  Com 50 classes, aparece "picotado": muitas barras finas, ruído visual que esconde o padrão.
-  Para um relatório, a escolha certa é a versão com menos classes, legível para quem não
-  trabalha com os dados todos os dias.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Linhas e dispersão</h2>
-  <div class="definicao"><span class="rotulo">Linhas</span>
-  Mostra a <strong>evolução no tempo</strong>: com eixos, unidades e a escala avisada
-  quando o recorte for necessário.</div>
-  <div class="definicao"><span class="rotulo">Dispersão</span>
-  Cada ponto é uma <strong>unidade de observação</strong>; a nuvem insinua a pergunta que o
-  encontro 13 responderá com a correlação.</div>
-  <div class="exemplo"><span class="rotulo">No curso</span>
-  Dispersão entre meta Selic e inadimplência PJ, fica a pergunta armada: <em>como medir essa
-  relação?</em></div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>A pizza, o contraexemplo</h2>
-  <div class="definicao"><span class="rotulo">Quando funciona</span>
-  No limite: <strong>duas ou três categorias</strong> que somam um todo (uma fatia = 25%, o
-  resto = 75%).</div>
-  <div class="definicao"><span class="rotulo">Quando falha</span>
-  No uso corrente: o olho <strong>compara mal ângulos</strong>: qualquer pizza com muitas
-  fatias ou em 3D vira <strong>ilustração, não evidência</strong>.</div>
-  <p class="menor">Regra prática: se precisa comparar, use barras; se quer um todo, use
-  barras empilhadas ou uma % simples.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Integridade visual: honestidade com o leitor</h2>
-  <div class="definicao"><span class="rotulo">Princípio da proporcionalidade</span>
-  A <strong>área de tinta</strong> deve ser proporcional ao número representado.</div>
-  <ul>
-    <li><strong>Eixo y truncado</strong> infla diferenças pequenas, a manipulação mais
-        comum em relatórios gerenciais e na imprensa;</li>
-    <li>Regra profissional: barras <strong>começam no zero</strong>;</li>
-    <li>Quando o recorte de escala for necessário (séries de linhas, variação pequena),
-        <strong>avisar no próprio gráfico</strong>.</li>
-  </ul>
-  <div class="instrucao"><span class="rotulo">Discussão</span>
-  Onde vocês já viram um eixo truncado? Pensem em um relatório gerencial, um telejornal ou
-  uma apresentação de resultados. O que a versão truncada fazia o leitor concluir?</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Razão tinta/informação e o gráfico que se sustenta</h2>
-  <div class="definicao"><span class="rotulo">Razão tinta/informação</span>
-  Tudo que não carrega dado (grades pesadas, sombras, 3D, cores decorativas)
-  <strong>compete com o dado</strong>. Simplificar é aumentar a legibilidade.</div>
-  <div class="definicao"><span class="rotulo">O gráfico se sustenta sozinho</span>
-  <strong>Título</strong> que afirma o que se vê, <strong>eixos com unidades</strong>,
-  <strong>fonte</strong> dos dados.</div>
-  <div class="exemplo"><span class="rotulo">Teste rápido</span>
-  Um gráfico colado fora do texto continua sendo compreensível? Se não, ele não é um
-  gráfico, é um enfeite.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Normas de tabelas, e a decisão tabela × gráfico</h2>
-  <table>
-    <tr><th>Item</th><th>Regra</th></tr>
-    <tr><td>Título</td><td>Completo: <strong>o quê, onde, quando</strong></td></tr>
-    <tr><td>Unidades</td><td>No cabeçalho das colunas</td></tr>
-    <tr><td>Fonte</td><td>No rodapé da tabela</td></tr>
-    <tr><td>Números</td><td>Alinhados à direita, <strong>mesmo número de decimais</strong></td></tr>
-    <tr><td>Decisão</td><td>Tabela quando o leitor precisa dos <strong>valores exatos</strong>;
-        gráfico quando precisa da <strong>comparação</strong></td></tr>
-  </table>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide divisor estat">
-  <h2>Estatística do encontro 10</h2>
-  <p>Da tabela de frequência ao histograma, e a régua do escore z</p>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: classes e escore z</h2>
-
+  <p>O Módulo II terminou com o erro padrão e a margem de erro: o quanto uma estimativa
+  costuma variar. Hoje começa o <strong>Módulo III</strong>, e a pergunta muda de tom:
+  <strong>o que a amostra autoriza dizer sobre a população — e com que risco?</strong></p>
   <div class="colunas">
     <div>
-      <div class="definicao"><span class="rotulo">Distribuição de frequência com classes</span>
-      Quando a variável é contínua, não se conta valor a valor: agrupa-se em
-      <strong>intervalos de classe</strong> de mesma largura. A amplitude de cada classe é a
-      amplitude total dividida pelo número de classes escolhido.</div>
-      <div class="formula">
-        <span class="expr" style="font-size:3vh">h<span class="op">=</span><span class="frac"><span class="cima">máximo − mínimo</span><span class="baixo">número de classes</span></span></span>
-        <span class="legenda-formula">O histograma é essa tabela desenhada: a altura de cada barra
-        é a frequência da classe.</span>
-      </div>
+      <h3>Parte 1: o intervalo de confiança</h3>
+      <p>A estimativa com a régua ao lado, para a média e para a proporção. E o que o
+      “95%” <strong>não</strong> significa, mostrado com cem amostras do cadastro de postos,
+      em que o valor verdadeiro é conhecido.</p>
     </div>
     <div>
-      <div class="definicao"><span class="rotulo">Escore z</span>
-      Transforma qualquer valor em "quantos desvios padrão ele está da média". Serve para comparar
-      valores de variáveis medidas em escalas diferentes.</div>
-      <div class="formula">
-        <span class="expr">z<span class="op">=</span><span class="frac"><span class="cima">x − x̄</span><span class="baixo">s</span></span></span>
-        <span class="simbolos">
-          <span><b>x</b>o valor observado</span>
-          <span><b>x̄</b>a média</span>
-          <span><b>s</b>o desvio padrão</span>
-        </span>
-      </div>
+      <h3>Parte 2: a lógica do teste</h3>
+      <p>Hipótese nula, hipótese alternativa, nível de significância e valor-p. A pergunta do
+      dia: o preço médio da gasolina no Maranhão é diferente da <strong>média
+      nacional</strong>?</p>
     </div>
+  </div>
+  <div class="instrucao"><span class="rotulo">O fio que liga os dois blocos</span>
+  O intervalo e o teste usam <strong>o mesmo erro padrão</strong> e nunca se contradizem:
+  o valor que fica fora do intervalo de 95% é o valor que o teste rejeita a 5%. Quem
+  entende um, entende o outro.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Retomada: o que o Módulo II deixou na mão</h2>
+  <table>
+    <tr><th>Encontro</th><th>A ideia</th><th>O número que ficou</th></tr>
+    <tr><td><strong>7</strong></td><td>A estimativa é uma variável aleatória: tem centro e
+        largura</td><td>mil amostras de 50 postos, centradas em R$ 6,01</td></tr>
+    <tr><td><strong>7</strong></td><td>O erro padrão mede a largura: EP = s ÷ √n</td>
+        <td>R$ 0,34 ÷ √50 = R$ 0,05</td></tr>
+    <tr><td><strong>8</strong></td><td>A margem de erro é o erro padrão multiplicado pelo
+        nível de confiança: E = z × EP</td><td>z = 1,96 para 95%</td></tr>
+    <tr><td><strong>8</strong></td><td>O tamanho da amostra sai da margem que se aceita</td>
+        <td>385 casos para 5 pontos em uma proporção</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">O passo de hoje</span>
+  Juntar as peças: <strong>estimativa ± margem de erro</strong> é o intervalo de confiança.
+  E, virando a pergunta ao contrário, o intervalo vira <strong>teste</strong>.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O intervalo de confiança em linguagem corrente</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  Uma estimativa sozinha é um número sem régua. O <strong>intervalo de confiança</strong>
+  põe a régua ao lado: <em>a estimativa, mais ou menos a margem de erro</em>. É a faixa de
+  valores plausíveis para o parâmetro, dada a amostra que se tem.</div>
+  <div class="exemplo"><span class="rotulo">Exemplo</span>
+  “O preço médio da gasolina nos postos do Maranhão está entre R$ 5,93 e R$ 6,12, com 95%
+  de confiança.” A estimativa pontual, R$ 6,03, está no meio; a margem, R$ 0,09, para cada
+  lado.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Sempre que publicar uma estimativa feita com <strong>amostra sorteada</strong>: média,
+    proporção, diferença entre grupos. O intervalo diz ao leitor quanto confiar no
+    número.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Com amostra por conveniência — o intervalo mede o erro do <em>sorteio</em>, e não
+    conserta viés. Nem com o censo inteiro: se a população toda foi medida, não há o que
+    estimar.</div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: a normal como régua</h2>
+  <h2>Intervalo para a média: o t no lugar do z</h2>
+  <div class="formula">
+    <span class="expr">IC<span class="op">=</span>x&#772;<span class="op">±</span>t<span class="op">×</span>
+      <span class="frac"><span class="cima">s</span>
+        <span class="baixo">√n</span></span></span>
+    <span class="simbolos">
+      <span><b>x&#772;</b>a média da amostra</span>
+      <span><b>s</b>o desvio padrão da amostra</span>
+      <span><b>n</b>o tamanho da amostra</span>
+      <span><b>t</b>o multiplicador do nível de confiança</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> a média da
+    amostra, mais ou menos <em>t</em> erros padrão. É a margem de erro do encontro 8, com
+    uma troca: como o desvio vem da <strong>própria amostra</strong>, e não da população, o
+    multiplicador é o <em>t</em>, um pouco maior que o <em>z</em>.</span>
+  </div>
+  <table>
+    <tr><th>Tamanho da amostra</th><th>t para 95%</th><th>z para 95%</th></tr>
+    <tr><td>n = 10</td><td>2,262</td><td rowspan="3">1,960</td></tr>
+    <tr><td>n = 30</td><td>2,045</td></tr>
+    <tr><td>n = 100</td><td>1,984</td></tr>
+  </table>
+  <p class="menor">Com amostra pequena, o t cobra um pedágio pela incerteza do próprio
+  desvio. Com amostra grande, t e z praticamente coincidem.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Intervalo para a proporção</h2>
+  <div class="formula">
+    <span class="expr">IC<span class="op">=</span>p&#770;<span class="op">±</span>z<span class="op">×</span>√<span class="raiz"><span class="frac"><span class="cima">p&#770;(1 − p&#770;)</span>
+        <span class="baixo">n</span></span></span></span>
+    <span class="simbolos">
+      <span><b>p&#770;</b>a proporção na amostra</span>
+      <span><b>n</b>o tamanho da amostra</span>
+      <span><b>z</b>1,96 para 95% de confiança</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> a proporção da
+    amostra, mais ou menos <em>z</em> erros padrão. O erro padrão de uma proporção depende
+    só dela mesma e de n — e é máximo quando a proporção está perto de 50%.</span>
+  </div>
+  <div class="alerta"><span class="rotulo">Atenção à largura</span>
+  A proporção pede muito mais casos que a média para a mesma precisão. Com 30 postos, o
+  intervalo da proporção tem mais de 30 pontos percentuais de largura. Foi por isso que o
+  encontro 8 chegou a 385 casos para uma margem de 5 pontos.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Os dois intervalos, na amostra de 30 postos</h2>
+  <ol class="passos">
+    <li>Do cadastro de <span class="num">236 postos</span>, sorteamos
+        <span class="num">30</span> (semente 2025). A média deu <span class="num">R$ 6,0267</span>,
+        com desvio de <span class="num">R$ 0,2530</span>;</li>
+    <li>Erro padrão: <span class="num">0,2530 ÷ √30 = 0,0462</span>. Margem:
+        <span class="num">2,045 × 0,0462 = 0,0945</span>;</li>
+    <li>IC de 95% da média: <span class="num">[R$ 5,9322 ; R$ 6,1211]</span>;</li>
+    <li>Bandeira branca na amostra: <span class="num">19 de 30 = 63,3%</span>. Margem:
+        <span class="num">1,96 × 0,0880 = 0,1724</span>;</li>
+    <li>IC de 95% da proporção: <span class="num">[46,1% ; 80,6%]</span>.</li>
+  </ol>
+  <table>
+    <tr><th>Parâmetro</th><th>Intervalo da amostra</th><th>Valor verdadeiro</th><th>Cobriu?</th></tr>
+    <tr><td>Preço médio</td><td>R$ 5,93 a R$ 6,12</td><td>R$ 6,0087</td><td>sim</td></tr>
+    <tr><td>Bandeira branca</td><td>46,1% a 80,6%</td><td>50,0%</td><td>sim</td></tr>
+  </table>
+  <p class="menor">A última coluna só existe aqui. Em pesquisa de verdade o valor
+  verdadeiro é desconhecido, e ninguém sabe se o seu intervalo cobriu.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Mais confiança, mais largura</h2>
+  <p>A mesma amostra de 30 postos, três níveis de confiança:</p>
+  <table>
+    <tr><th>Nível de confiança</th><th>t crítico</th><th>Margem</th><th>Intervalo</th><th>Largura</th></tr>
+    <tr><td>90%</td><td>1,699</td><td>R$ 0,0785</td><td>R$ 5,9482 a R$ 6,1051</td><td>R$ 0,16</td></tr>
+    <tr><td><strong>95%</strong></td><td><strong>2,045</strong></td><td><strong>R$ 0,0945</strong></td>
+        <td><strong>R$ 5,9322 a R$ 6,1211</strong></td><td><strong>R$ 0,19</strong></td></tr>
+    <tr><td>99%</td><td>2,756</td><td>R$ 0,1273</td><td>R$ 5,8994 a R$ 6,1540</td><td>R$ 0,25</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">A troca que não tem saída</span>
+  Mais confiança custa largura: o intervalo de 99% é cerca de <strong>35% mais
+  largo</strong> que o de 95%. Um intervalo ao mesmo tempo estreito e muito confiável só
+  existe com <strong>mais casos</strong> — é a conta do tamanho da amostra do encontro 8.</div>
+  <p class="menor">O que estreita o intervalo: mais casos (n), menos dispersão nos dados (s)
+  e menos confiança exigida. O primeiro é decisão de pesquisa; o segundo é da realidade; o
+  terceiro é convenção, e 95% é a convenção da área.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O que “95%” não significa</h2>
+  <div class="colunas">
+    <div class="alerta">
+      <span class="rotulo">A leitura errada, e muito comum</span>
+      “Há 95% de probabilidade de o preço médio estar entre R$ 5,93 e R$ 6,12.”<br><br>
+      O preço médio verdadeiro <strong>não é sorteado</strong>: é um número só, fixo. O
+      intervalo já calculado <strong>ou o contém, ou não o contém</strong>. Não sobra
+      probabilidade para distribuir.
+    </div>
+    <div class="exemplo">
+      <span class="rotulo">A leitura certa</span>
+      O 95% é a <strong>taxa de acerto do procedimento</strong>: se a pesquisa fosse repetida
+      com muitas amostras, cerca de 95 em cada 100 intervalos construídos assim cobririam o
+      valor verdadeiro.<br><br>
+      A confiança é do <strong>método</strong>, e não do intervalo que está na sua mão.
+    </div>
+  </div>
+  <p>A diferença parece sutil, e é ela que separa quem lê estatística de quem a repete.
+  Como se demonstra? Com um cadastro em que o valor verdadeiro é conhecido — o nosso.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Cem amostras, cem intervalos: 94 acertaram</h2>
   <div class="figura">
-    <svg viewBox="0 0 1000 210" role="img" aria-label="Curva normal com as faixas de um, dois e três desvios padrão">
-      <path d="M280.0 160.0 L280.0 144.0 L285.5 142.4 L291.0 140.6 L296.5 138.7 L302.0 136.6 L307.5 134.5 L313.0 132.2 L318.5 129.8 L324.0 127.2 L329.5 124.5 L335.0 121.7 L340.5 118.8 L346.0 115.7 L351.5 112.6 L357.0 109.3 L362.5 106.0 L368.0 102.6 L373.5 99.1 L379.0 95.6 L384.5 92.0 L390.0 88.4 L395.5 84.9 L401.0 81.3 L406.5 77.8 L412.0 74.3 L417.5 70.9 L423.0 67.6 L428.5 64.5 L434.0 61.4 L439.5 58.6 L445.0 55.9 L450.5 53.4 L456.0 51.1 L461.5 49.0 L467.0 47.2 L472.5 45.6 L478.0 44.3 L483.5 43.3 L489.0 42.6 L494.5 42.1 L500.0 42.0 L505.5 42.1 L511.0 42.6 L516.5 43.3 L522.0 44.3 L527.5 45.6 L533.0 47.2 L538.5 49.0 L544.0 51.1 L549.5 53.4 L555.0 55.9 L560.5 58.6 L566.0 61.4 L571.5 64.5 L577.0 67.6 L582.5 70.9 L588.0 74.3 L593.5 77.8 L599.0 81.3 L604.5 84.9 L610.0 88.4 L615.5 92.0 L621.0 95.6 L626.5 99.1 L632.0 102.6 L637.5 106.0 L643.0 109.3 L648.5 112.6 L654.0 115.7 L659.5 118.8 L665.0 121.7 L670.5 124.5 L676.0 127.2 L681.5 129.8 L687.0 132.2 L692.5 134.5 L698.0 136.6 L703.5 138.7 L709.0 140.6 L714.5 142.4 L720.0 144.0 L720.0 160.0 Z" fill="#d9f2f1" opacity="0.55"/>
-      <path d="M390.0 160.0 L390.0 88.4 L392.8 86.6 L395.5 84.9 L398.2 83.1 L401.0 81.3 L403.8 79.5 L406.5 77.8 L409.2 76.0 L412.0 74.3 L414.8 72.6 L417.5 70.9 L420.2 69.3 L423.0 67.6 L425.8 66.0 L428.5 64.5 L431.2 62.9 L434.0 61.4 L436.8 60.0 L439.5 58.6 L442.2 57.2 L445.0 55.9 L447.8 54.6 L450.5 53.4 L453.2 52.2 L456.0 51.1 L458.8 50.0 L461.5 49.0 L464.2 48.1 L467.0 47.2 L469.8 46.4 L472.5 45.6 L475.2 44.9 L478.0 44.3 L480.8 43.8 L483.5 43.3 L486.2 42.9 L489.0 42.6 L491.8 42.3 L494.5 42.1 L497.2 42.0 L500.0 42.0 L502.8 42.0 L505.5 42.1 L508.2 42.3 L511.0 42.6 L513.8 42.9 L516.5 43.3 L519.2 43.8 L522.0 44.3 L524.8 44.9 L527.5 45.6 L530.2 46.4 L533.0 47.2 L535.8 48.1 L538.5 49.0 L541.2 50.0 L544.0 51.1 L546.8 52.2 L549.5 53.4 L552.2 54.6 L555.0 55.9 L557.8 57.2 L560.5 58.6 L563.2 60.0 L566.0 61.4 L568.8 62.9 L571.5 64.5 L574.2 66.0 L577.0 67.6 L579.8 69.3 L582.5 70.9 L585.2 72.6 L588.0 74.3 L590.8 76.0 L593.5 77.8 L596.2 79.5 L599.0 81.3 L601.8 83.1 L604.5 84.9 L607.2 86.6 L610.0 88.4 L610.0 160.0 Z" fill="#0AB0AB" opacity="0.30"/>
-      <path d="M60.0 160.0 L65.5 160.0 L71.0 159.9 L76.5 159.9 L82.0 159.9 L87.5 159.9 L93.0 159.9 L98.5 159.8 L104.0 159.8 L109.5 159.8 L115.0 159.7 L120.5 159.7 L126.0 159.6 L131.5 159.6 L137.0 159.5 L142.5 159.4 L148.0 159.3 L153.5 159.2 L159.0 159.0 L164.5 158.9 L170.0 158.7 L175.5 158.5 L181.0 158.2 L186.5 158.0 L192.0 157.7 L197.5 157.3 L203.0 156.9 L208.5 156.5 L214.0 156.0 L219.5 155.4 L225.0 154.8 L230.5 154.1 L236.0 153.4 L241.5 152.5 L247.0 151.6 L252.5 150.6 L258.0 149.5 L263.5 148.3 L269.0 147.0 L274.5 145.6 L280.0 144.0 L285.5 142.4 L291.0 140.6 L296.5 138.7 L302.0 136.6 L307.5 134.5 L313.0 132.2 L318.5 129.8 L324.0 127.2 L329.5 124.5 L335.0 121.7 L340.5 118.8 L346.0 115.7 L351.5 112.6 L357.0 109.3 L362.5 106.0 L368.0 102.6 L373.5 99.1 L379.0 95.6 L384.5 92.0 L390.0 88.4 L395.5 84.9 L401.0 81.3 L406.5 77.8 L412.0 74.3 L417.5 70.9 L423.0 67.6 L428.5 64.5 L434.0 61.4 L439.5 58.6 L445.0 55.9 L450.5 53.4 L456.0 51.1 L461.5 49.0 L467.0 47.2 L472.5 45.6 L478.0 44.3 L483.5 43.3 L489.0 42.6 L494.5 42.1 L500.0 42.0 L505.5 42.1 L511.0 42.6 L516.5 43.3 L522.0 44.3 L527.5 45.6 L533.0 47.2 L538.5 49.0 L544.0 51.1 L549.5 53.4 L555.0 55.9 L560.5 58.6 L566.0 61.4 L571.5 64.5 L577.0 67.6 L582.5 70.9 L588.0 74.3 L593.5 77.8 L599.0 81.3 L604.5 84.9 L610.0 88.4 L615.5 92.0 L621.0 95.6 L626.5 99.1 L632.0 102.6 L637.5 106.0 L643.0 109.3 L648.5 112.6 L654.0 115.7 L659.5 118.8 L665.0 121.7 L670.5 124.5 L676.0 127.2 L681.5 129.8 L687.0 132.2 L692.5 134.5 L698.0 136.6 L703.5 138.7 L709.0 140.6 L714.5 142.4 L720.0 144.0 L725.5 145.6 L731.0 147.0 L736.5 148.3 L742.0 149.5 L747.5 150.6 L753.0 151.6 L758.5 152.5 L764.0 153.4 L769.5 154.1 L775.0 154.8 L780.5 155.4 L786.0 156.0 L791.5 156.5 L797.0 156.9 L802.5 157.3 L808.0 157.7 L813.5 158.0 L819.0 158.2 L824.5 158.5 L830.0 158.7 L835.5 158.9 L841.0 159.0 L846.5 159.2 L852.0 159.3 L857.5 159.4 L863.0 159.5 L868.5 159.6 L874.0 159.6 L879.5 159.7 L885.0 159.7 L890.5 159.8 L896.0 159.8 L901.5 159.8 L907.0 159.9 L912.5 159.9 L918.0 159.9 L923.5 159.9 L929.0 159.9 L934.5 160.0 L940.0 160.0" fill="none" stroke="#05635f" stroke-width="3"/>
-      <line x1="60" y1="160" x2="940" y2="160" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="500" y1="36" x2="500" y2="166" stroke="#8D0333" stroke-width="2.4" stroke-dasharray="6 5"/>
-      <text x="500" y="182" text-anchor="middle" font-size="16" fill="#8D0333">x̄</text>
-      <text x="390" y="182" text-anchor="middle" font-size="15" fill="#777">−1s</text>
-      <text x="610" y="182" text-anchor="middle" font-size="15" fill="#777">+1s</text>
-      <text x="280" y="182" text-anchor="middle" font-size="15" fill="#777">−2s</text>
-      <text x="720" y="182" text-anchor="middle" font-size="15" fill="#777">+2s</text>
-      <text x="170" y="182" text-anchor="middle" font-size="15" fill="#777">−3s</text>
-      <text x="830" y="182" text-anchor="middle" font-size="15" fill="#777">+3s</text>
-      <text x="500" y="115" text-anchor="middle" font-size="18" fill="#05635f" font-weight="700">68%</text>
-      <text x="330" y="145" text-anchor="middle" font-size="16" fill="#05635f">95% dentro de ±2s</text>
-      <text x="500" y="204" text-anchor="middle" font-size="16" fill="#777">A regra 68, 95, 99,7 é o que transforma "longe da média" em número.</text>
+    <svg viewBox="0 0 1000 270" role="img" aria-label="Cem intervalos de confiança de 95%, um por amostra de 30 postos; 94 cobrem o preço médio verdadeiro e 6 não cobrem">
+      <line x1="58" y1="213.2" x2="980" y2="213.2" stroke="#eee" stroke-width="1"/>
+      <text x="52" y="217.2" text-anchor="end" font-size="13" fill="#888">5,80</text>
+      <line x1="58" y1="175.2" x2="980" y2="175.2" stroke="#eee" stroke-width="1"/>
+      <text x="52" y="179.2" text-anchor="end" font-size="13" fill="#888">5,90</text>
+      <line x1="58" y1="137.2" x2="980" y2="137.2" stroke="#eee" stroke-width="1"/>
+      <text x="52" y="141.2" text-anchor="end" font-size="13" fill="#888">6,00</text>
+      <line x1="58" y1="99.2" x2="980" y2="99.2" stroke="#eee" stroke-width="1"/>
+      <text x="52" y="103.2" text-anchor="end" font-size="13" fill="#888">6,10</text>
+      <line x1="58" y1="61.2" x2="980" y2="61.2" stroke="#eee" stroke-width="1"/>
+      <text x="52" y="65.2" text-anchor="end" font-size="13" fill="#888">6,20</text>
+      <line x1="64.0" y1="192.5" x2="64.0" y2="95.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="73.1" y1="187.3" x2="73.1" y2="87.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="82.2" y1="180.0" x2="82.2" y2="88.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="91.3" y1="186.6" x2="91.3" y2="61.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="100.4" y1="206.7" x2="100.4" y2="80.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="109.5" y1="154.4" x2="109.5" y2="63.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="118.6" y1="166.5" x2="118.6" y2="64.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="127.7" y1="166.3" x2="127.7" y2="79.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="136.8" y1="171.6" x2="136.8" y2="93.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="145.9" y1="181.9" x2="145.9" y2="86.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="155.0" y1="188.1" x2="155.0" y2="103.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="164.1" y1="182.3" x2="164.1" y2="87.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="173.2" y1="213.5" x2="173.2" y2="96.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="182.3" y1="174.0" x2="182.3" y2="59.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="191.4" y1="177.0" x2="191.4" y2="55.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="200.5" y1="178.2" x2="200.5" y2="78.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="209.6" y1="182.7" x2="209.6" y2="103.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="218.7" y1="187.6" x2="218.7" y2="91.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="227.8" y1="148.1" x2="227.8" y2="50.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="236.9" y1="220.1" x2="236.9" y2="134.1" stroke="#8D0333" stroke-width="3.2"/>
+      <line x1="246.0" y1="170.0" x2="246.0" y2="61.4" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="255.1" y1="182.9" x2="255.1" y2="86.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="264.2" y1="155.9" x2="264.2" y2="47.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="273.3" y1="188.3" x2="273.3" y2="100.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="282.4" y1="144.4" x2="282.4" y2="18.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="291.5" y1="177.4" x2="291.5" y2="75.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="300.6" y1="185.7" x2="300.6" y2="107.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="309.7" y1="173.5" x2="309.7" y2="70.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="318.8" y1="191.8" x2="318.8" y2="104.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="327.9" y1="194.7" x2="327.9" y2="109.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="337.0" y1="175.0" x2="337.0" y2="80.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="346.1" y1="187.8" x2="346.1" y2="91.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="355.2" y1="185.8" x2="355.2" y2="86.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="364.3" y1="172.7" x2="364.3" y2="59.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="373.4" y1="186.0" x2="373.4" y2="70.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="382.5" y1="166.5" x2="382.5" y2="56.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="391.6" y1="202.4" x2="391.6" y2="105.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="400.7" y1="173.6" x2="400.7" y2="89.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="409.8" y1="171.4" x2="409.8" y2="57.4" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="418.9" y1="175.3" x2="418.9" y2="67.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="428.0" y1="175.9" x2="428.0" y2="65.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="437.1" y1="194.7" x2="437.1" y2="87.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="446.2" y1="195.0" x2="446.2" y2="90.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="455.3" y1="196.0" x2="455.3" y2="94.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="464.4" y1="194.3" x2="464.4" y2="101.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="473.5" y1="160.6" x2="473.5" y2="67.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="482.6" y1="217.2" x2="482.6" y2="124.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="491.7" y1="173.8" x2="491.7" y2="70.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="500.8" y1="202.8" x2="500.8" y2="113.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="509.9" y1="191.9" x2="509.9" y2="91.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="519.0" y1="178.3" x2="519.0" y2="94.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="528.1" y1="138.2" x2="528.1" y2="54.4" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="537.2" y1="213.5" x2="537.2" y2="137.1" stroke="#8D0333" stroke-width="3.2"/>
+      <line x1="546.3" y1="197.2" x2="546.3" y2="123.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="555.4" y1="172.7" x2="555.4" y2="76.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="564.5" y1="193.2" x2="564.5" y2="91.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="573.6" y1="159.2" x2="573.6" y2="47.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="582.7" y1="202.0" x2="582.7" y2="110.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="591.8" y1="195.8" x2="591.8" y2="107.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="600.9" y1="190.5" x2="600.9" y2="111.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="610.0" y1="179.7" x2="610.0" y2="78.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="619.1" y1="176.2" x2="619.1" y2="61.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="628.2" y1="208.1" x2="628.2" y2="141.3" stroke="#8D0333" stroke-width="3.2"/>
+      <line x1="637.3" y1="211.3" x2="637.3" y2="121.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="646.4" y1="191.1" x2="646.4" y2="92.9" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="655.5" y1="182.2" x2="655.5" y2="77.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="664.6" y1="211.1" x2="664.6" y2="128.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="673.7" y1="191.1" x2="673.7" y2="90.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="682.8" y1="155.3" x2="682.8" y2="59.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="691.9" y1="176.5" x2="691.9" y2="73.4" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="701.0" y1="191.4" x2="701.0" y2="87.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="710.1" y1="186.4" x2="710.1" y2="86.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="719.2" y1="197.0" x2="719.2" y2="105.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="728.3" y1="203.0" x2="728.3" y2="98.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="737.4" y1="213.4" x2="737.4" y2="111.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="746.5" y1="174.8" x2="746.5" y2="75.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="755.6" y1="191.5" x2="755.6" y2="105.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="764.7" y1="223.0" x2="764.7" y2="127.1" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="773.8" y1="173.8" x2="773.8" y2="53.8" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="782.9" y1="187.9" x2="782.9" y2="97.4" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="792.0" y1="160.3" x2="792.0" y2="75.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="801.1" y1="183.8" x2="801.1" y2="96.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="810.2" y1="124.1" x2="810.2" y2="28.2" stroke="#8D0333" stroke-width="3.2"/>
+      <line x1="819.3" y1="187.4" x2="819.3" y2="94.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="828.4" y1="169.1" x2="828.4" y2="66.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="837.5" y1="212.5" x2="837.5" y2="144.8" stroke="#8D0333" stroke-width="3.2"/>
+      <line x1="846.6" y1="165.5" x2="846.6" y2="68.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="855.7" y1="186.8" x2="855.7" y2="81.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="864.8" y1="176.0" x2="864.8" y2="55.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="873.9" y1="187.6" x2="873.9" y2="82.7" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="883.0" y1="197.5" x2="883.0" y2="87.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="892.1" y1="168.6" x2="892.1" y2="78.2" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="901.2" y1="185.3" x2="901.2" y2="81.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="910.3" y1="209.4" x2="910.3" y2="138.7" stroke="#8D0333" stroke-width="3.2"/>
+      <line x1="919.4" y1="193.5" x2="919.4" y2="104.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="928.5" y1="172.2" x2="928.5" y2="52.0" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="937.6" y1="141.5" x2="937.6" y2="31.6" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="946.7" y1="187.1" x2="946.7" y2="86.3" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="955.8" y1="192.7" x2="955.8" y2="100.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="964.9" y1="203.3" x2="964.9" y2="103.5" stroke="#0AB0AB" stroke-width="2.2"/>
+      <line x1="58" y1="133.9" x2="980" y2="133.9" stroke="#333" stroke-width="2"/>
+      <text x="520" y="262" text-anchor="middle" font-size="14" fill="#555">cada traço vertical é o intervalo de uma amostra de 30 postos (sementes 0 a 99)</text>
     </svg>
   </div>
-
   <div class="colunas">
     <div>
-      <p>Quando a distribuição é aproximadamente normal, o escore z tem leitura direta: cerca de
-      <strong>68%</strong> dos casos ficam entre −1 e +1, <strong>95%</strong> entre −2 e +2 e
-      <strong>99,7%</strong> entre −3 e +3.</p>
-      <p>Assim, z = 2,1 quer dizer que o valor está entre os 2% mais altos, e isso vale para
-      inadimplência, faturamento ou nota de satisfação, sem depender da unidade.</p>
+      <p>Cem amostras de 30 postos, uma de cada semente (0 a 99), e um intervalo de 95% para
+      cada uma. Em <strong>verde</strong>, os <strong>94</strong> que cobrem a média
+      verdadeira (a linha preta, R$ 6,0087); em <strong>vinho</strong>, os
+      <strong>6</strong> que erram.</p>
     </div>
     <div>
-      <div class="exemplo"><span class="rotulo">Exemplo resolvido</span>
-      A inadimplência média do período foi de 3,2%, com desvio padrão de 0,6 ponto. Em março a
-      inadimplência foi de 4,6%.<br>
-      z = (4,6 − 3,2) ÷ 0,6 = <strong>2,3</strong>.<br>
-      Leitura: março está 2,3 desvios acima da média, um valor atingido em menos de 2% dos
-      meses.</div>
-      <p class="menor">Cuidado: a régua só vale se a distribuição for aproximadamente simétrica.
-      Em variáveis com cauda longa, use os quartis do encontro 9.</p>
+      <p>Com mil amostras, <strong>959 de 1.000</strong> cobrem (95,9%). Nenhum intervalo
+      “sabe” se acertou: olhando um só, sem o valor verdadeiro, é impossível dizer se ele é
+      dos verdes ou dos vinhos.</p>
     </div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
-
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Exercício: qual frase está certa?</h2>
+  <div class="instrucao"><span class="rotulo">Em duplas, dois minutos</span>
+  Uma pesquisa com 400 clientes sorteados estimou a satisfação média em 7,8, com IC de 95%
+  de 7,5 a 8,1. Quais frases estão certas? Uma dupla responde para a turma, com o porquê.</div>
+  <ol>
+    <li>Há 95% de chance de a satisfação média dos clientes estar entre 7,5 e 8,1;</li>
+    <li>95% dos clientes deram nota entre 7,5 e 8,1;</li>
+    <li>Se a pesquisa fosse repetida muitas vezes, cerca de 95% dos intervalos calculados
+        assim cobririam a satisfação média verdadeira;</li>
+    <li>Com 1.600 clientes, o intervalo teria cerca de metade da largura;</li>
+    <li>Um intervalo de 99% com os mesmos 400 clientes seria mais estreito.</li>
+  </ol>
+  <p class="menor">Pista: duas estão certas. Uma das erradas confunde o intervalo da
+  <em>média</em> com a dispersão <em>dos clientes</em> — o erro do encontro 7, com outra
+  roupa.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
+<section class="slide divisor estat">
+  <h2>Parte 2: estatística</h2>
+  <p>A lógica do teste: hipótese nula, nível de significância e valor-p</p>
+</section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">O preço médio da gasolina nos postos do Maranhão é diferente da
+  <strong>média nacional de R$ 6,19</strong>?</div>
+  <p>A amostra de 30 postos deu <strong>R$ 6,03</strong>: 16 centavos abaixo da média
+  nacional. Mas outra amostra daria outro número. A pergunta do bloco é: <strong>a
+  diferença é real, ou é o acaso do sorteio?</strong></p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  Um teste não pergunta “a diferença existe?”. Pergunta: <strong>se não houvesse diferença
+  nenhuma, quão rara seria uma amostra como a nossa?</strong> Se for rara demais, a
+  hipótese de que não há diferença cai.</div>
+  <p class="menor">A referência sai dos mesmos arquivos da ANP: a média dos 8.635 postos do
+  Brasil, com a mesma regra do cadastro (o preço da primeira coleta do ano).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Hipótese nula, alternativa, α e valor-p</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>H0, a hipótese nula</strong>: a afirmação posta à prova, sempre com o sinal de
+  igual — “a média do Maranhão é R$ 6,19”.<br>
+  <strong>H1, a alternativa</strong>: o que se aceita se H0 cair — “é diferente de R$ 6,19”.<br>
+  <strong>α, o nível de significância</strong>: o risco de rejeitar uma H0 verdadeira que se
+  aceita correr; por convenção, 5%.<br>
+  <strong>Valor-p</strong>: a chance de uma amostra tão afastada de H0 quanto a nossa,
+  <em>se H0 fosse verdadeira</em>. Valor-p menor que α: rejeita-se H0.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    O teste t de uma amostra para comparar a média de <strong>uma</strong> amostra com
+    <strong>um</strong> valor de fora: uma meta, uma norma, uma média nacional, o número de
+    um concorrente.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Para comparar dois grupos da amostra (é o teste de duas amostras, encontro 11), nem
+    com amostra que não foi sorteada: sem sorteio, o valor-p não tem significado.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula, com cada símbolo nomeado</h2>
+  <div class="formula">
+    <span class="expr">t<span class="op">=</span>
+      <span class="frac"><span class="cima">x&#772; − μ<sub>0</sub></span>
+        <span class="baixo">s ÷ √n</span></span></span>
+    <span class="simbolos">
+      <span><b>x&#772;</b>a média da amostra</span>
+      <span><b>μ<sub>0</sub></b>o valor que H0 afirma</span>
+      <span><b>s ÷ √n</b>o erro padrão</span>
+      <span><b>n − 1</b>os graus de liberdade (gl)</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> a distância entre
+    a média da amostra e o valor de referência, <strong>medida em erros padrão</strong>. Se
+    H0 for verdadeira, t fica perto de zero; quanto mais longe de zero, mais difícil
+    acreditar em H0.</span>
+  </div>
+  <p class="menor">É o escore z do encontro 4 com outra roupa: lá se media a distância de
+  um posto até a média, em desvios padrão; aqui, a distância de uma média até a
+  referência, em erros padrão.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A fórmula dita como receita</h2>
+  <ol class="passos">
+    <li><strong>Meça a distância</strong> entre a média da amostra e o valor que H0 afirma;</li>
+    <li><strong>Divida pelo erro padrão</strong>: a distância vira “quantos erros padrão” —
+        esse é o t;</li>
+    <li><strong>Pergunte quão raro</strong> seria um t tão longe de zero se H0 fosse
+        verdadeira: essa chance é o <strong>valor-p</strong>;</li>
+    <li><strong>Compare com α e decida.</strong></li>
+  </ol>
+  <table>
+    <tr><th>Se o valor-p é…</th><th>A decisão</th><th>Como se diz</th></tr>
+    <tr><td>menor que α (5%)</td><td><strong>Rejeita H0</strong></td>
+        <td>“a diferença é estatisticamente significativa a 5%”</td></tr>
+    <tr><td>maior ou igual a α</td><td><strong>Não rejeita H0</strong></td>
+        <td>“não há evidência de diferença”</td></tr>
+  </table>
+  <p class="menor">Repare na segunda linha: <strong>não existe</strong> a decisão “aceita
+  H0”. O teste só sabe dizer se a amostra contradiz H0 — nunca se a confirma.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A decisão desenhada</h2>
+  <div class="figura">
+    <svg viewBox="0 0 1000 236" role="img" aria-label="Distribuição de t com 29 graus de liberdade se H0 fosse verdadeira, com as caudas de 2,5% e o t observado de menos 3,54 na cauda esquerda">
+      <path d="M48.5 170 L48.5 169.9 L53.8 169.9 L59.0 169.9 L64.3 169.9 L69.5 169.9 L74.8 169.8 L80.0 169.8 L85.2 169.8 L90.5 169.8 L95.8 169.7 L101.0 169.7 L106.2 169.7 L111.5 169.6 L116.8 169.6 L122.0 169.5 L127.2 169.4 L132.5 169.4 L137.8 169.3 L143.0 169.2 L148.3 169.1 L153.5 169.0 L158.8 168.8 L164.0 168.7 L169.2 168.5 L174.5 168.3 L179.8 168.1 L185.0 167.8 L190.2 167.6 L195.5 167.3 L200.8 166.9 L206.0 166.5 L211.2 166.1 L216.5 165.7 L221.8 165.2 L227.0 164.6 L232.2 164.0 L237.5 163.3 L242.8 162.6 L248.0 161.7 L253.2 160.9 L258.5 159.9 L263.8 158.8 L269.0 157.7 L274.2 156.4 L279.5 155.0 L284.8 153.6 L290.0 152.0 L295.2 150.3 L300.5 148.5 L305.8 146.5 L311.0 144.5 L316.2 142.3 L321.5 139.9 L326.8 137.5 L332.0 134.9 L337.2 132.1 L342.5 129.2 L347.8 126.3 L353.0 123.1 L358.2 119.9 L363.5 116.6 L368.8 113.1 L374.0 109.6 L379.2 106.0 L384.5 102.3 L389.8 98.6 L395.0 94.8 L400.2 91.1 L405.5 87.3 L410.8 83.6 L416.0 79.9 L421.2 76.3 L426.5 72.8 L431.8 69.4 L437.0 66.1 L442.2 63.0 L447.5 60.1 L452.8 57.4 L458.0 54.9 L463.2 52.7 L468.5 50.7 L473.8 49.0 L479.0 47.6 L484.2 46.4 L489.5 45.6 L494.8 45.2 L500.0 45.0 L505.2 45.2 L510.5 45.6 L515.8 46.4 L521.0 47.6 L526.2 49.0 L531.5 50.7 L536.8 52.7 L542.0 54.9 L547.2 57.4 L552.5 60.1 L557.8 63.0 L563.0 66.1 L568.2 69.4 L573.5 72.8 L578.8 76.3 L584.0 79.9 L589.2 83.6 L594.5 87.3 L599.8 91.1 L605.0 94.8 L610.2 98.6 L615.5 102.3 L620.8 106.0 L626.0 109.6 L631.2 113.1 L636.5 116.6 L641.8 119.9 L647.0 123.1 L652.2 126.3 L657.5 129.2 L662.8 132.1 L668.0 134.9 L673.2 137.5 L678.5 139.9 L683.8 142.3 L689.0 144.5 L694.2 146.5 L699.5 148.5 L704.7 150.3 L710.0 152.0 L715.2 153.6 L720.5 155.0 L725.8 156.4 L731.0 157.7 L736.2 158.8 L741.5 159.9 L746.8 160.9 L752.0 161.7 L757.2 162.6 L762.5 163.3 L767.8 164.0 L773.0 164.6 L778.2 165.2 L783.5 165.7 L788.8 166.1 L794.0 166.5 L799.2 166.9 L804.5 167.3 L809.8 167.6 L815.0 167.8 L820.2 168.1 L825.5 168.3 L830.8 168.5 L836.0 168.7 L841.2 168.8 L846.5 169.0 L851.8 169.1 L857.0 169.2 L862.2 169.3 L867.5 169.4 L872.8 169.4 L878.0 169.5 L883.2 169.6 L888.5 169.6 L893.7 169.7 L899.0 169.7 L904.2 169.7 L909.5 169.8 L914.8 169.8 L920.0 169.8 L925.2 169.8 L930.5 169.9 L935.8 169.9 L941.0 169.9 L946.2 169.9 L951.5 169.9 L951.5 170 Z" fill="#f0faf9"/>
+      <path d="M48.5 170 L48.5 169.9 L54.6 169.9 L60.6 169.9 L66.7 169.9 L72.8 169.9 L78.9 169.8 L84.9 169.8 L91.0 169.8 L97.1 169.7 L103.1 169.7 L109.2 169.6 L115.3 169.6 L121.3 169.5 L127.4 169.4 L133.5 169.4 L139.6 169.2 L145.6 169.1 L151.7 169.0 L157.8 168.8 L163.8 168.7 L169.9 168.5 L176.0 168.2 L182.1 168.0 L188.1 167.7 L194.2 167.3 L200.3 167.0 L206.3 166.5 L212.4 166.0 L218.5 165.5 L224.5 164.9 L230.6 164.2 L236.7 163.4 L242.8 162.6 L248.8 161.6 L254.9 160.6 L261.0 159.4 L267.0 158.1 L273.1 156.7 L279.2 155.1 L285.3 153.4 L285.3 170 Z" fill="#c0392b" opacity="0.75"/>
+      <path d="M714.7 170 L714.7 153.4 L720.8 155.1 L726.9 156.7 L733.0 158.1 L739.0 159.4 L745.1 160.6 L751.2 161.6 L757.2 162.6 L763.3 163.4 L769.4 164.2 L775.5 164.9 L781.5 165.5 L787.6 166.0 L793.7 166.5 L799.7 167.0 L805.8 167.3 L811.9 167.7 L817.9 168.0 L824.0 168.2 L830.1 168.5 L836.2 168.7 L842.2 168.8 L848.3 169.0 L854.4 169.1 L860.4 169.2 L866.5 169.4 L872.6 169.4 L878.7 169.5 L884.7 169.6 L890.8 169.6 L896.9 169.7 L902.9 169.7 L909.0 169.8 L915.1 169.8 L921.1 169.8 L927.2 169.9 L933.3 169.9 L939.4 169.9 L945.4 169.9 L951.5 169.9 L951.5 170 Z" fill="#c0392b" opacity="0.75"/>
+      <path d="M48.5 169.9 L53.8 169.9 L59.0 169.9 L64.3 169.9 L69.5 169.9 L74.8 169.8 L80.0 169.8 L85.2 169.8 L90.5 169.8 L95.8 169.7 L101.0 169.7 L106.2 169.7 L111.5 169.6 L116.8 169.6 L122.0 169.5 L127.2 169.4 L132.5 169.4 L137.8 169.3 L143.0 169.2 L148.3 169.1 L153.5 169.0 L158.8 168.8 L164.0 168.7 L169.2 168.5 L174.5 168.3 L179.8 168.1 L185.0 167.8 L190.2 167.6 L195.5 167.3 L200.8 166.9 L206.0 166.5 L211.2 166.1 L216.5 165.7 L221.8 165.2 L227.0 164.6 L232.2 164.0 L237.5 163.3 L242.8 162.6 L248.0 161.7 L253.2 160.9 L258.5 159.9 L263.8 158.8 L269.0 157.7 L274.2 156.4 L279.5 155.0 L284.8 153.6 L290.0 152.0 L295.2 150.3 L300.5 148.5 L305.8 146.5 L311.0 144.5 L316.2 142.3 L321.5 139.9 L326.8 137.5 L332.0 134.9 L337.2 132.1 L342.5 129.2 L347.8 126.3 L353.0 123.1 L358.2 119.9 L363.5 116.6 L368.8 113.1 L374.0 109.6 L379.2 106.0 L384.5 102.3 L389.8 98.6 L395.0 94.8 L400.2 91.1 L405.5 87.3 L410.8 83.6 L416.0 79.9 L421.2 76.3 L426.5 72.8 L431.8 69.4 L437.0 66.1 L442.2 63.0 L447.5 60.1 L452.8 57.4 L458.0 54.9 L463.2 52.7 L468.5 50.7 L473.8 49.0 L479.0 47.6 L484.2 46.4 L489.5 45.6 L494.8 45.2 L500.0 45.0 L505.2 45.2 L510.5 45.6 L515.8 46.4 L521.0 47.6 L526.2 49.0 L531.5 50.7 L536.8 52.7 L542.0 54.9 L547.2 57.4 L552.5 60.1 L557.8 63.0 L563.0 66.1 L568.2 69.4 L573.5 72.8 L578.8 76.3 L584.0 79.9 L589.2 83.6 L594.5 87.3 L599.8 91.1 L605.0 94.8 L610.2 98.6 L615.5 102.3 L620.8 106.0 L626.0 109.6 L631.2 113.1 L636.5 116.6 L641.8 119.9 L647.0 123.1 L652.2 126.3 L657.5 129.2 L662.8 132.1 L668.0 134.9 L673.2 137.5 L678.5 139.9 L683.8 142.3 L689.0 144.5 L694.2 146.5 L699.5 148.5 L704.7 150.3 L710.0 152.0 L715.2 153.6 L720.5 155.0 L725.8 156.4 L731.0 157.7 L736.2 158.8 L741.5 159.9 L746.8 160.9 L752.0 161.7 L757.2 162.6 L762.5 163.3 L767.8 164.0 L773.0 164.6 L778.2 165.2 L783.5 165.7 L788.8 166.1 L794.0 166.5 L799.2 166.9 L804.5 167.3 L809.8 167.6 L815.0 167.8 L820.2 168.1 L825.5 168.3 L830.8 168.5 L836.0 168.7 L841.2 168.8 L846.5 169.0 L851.8 169.1 L857.0 169.2 L862.2 169.3 L867.5 169.4 L872.8 169.4 L878.0 169.5 L883.2 169.6 L888.5 169.6 L893.7 169.7 L899.0 169.7 L904.2 169.7 L909.5 169.8 L914.8 169.8 L920.0 169.8 L925.2 169.8 L930.5 169.9 L935.8 169.9 L941.0 169.9 L946.2 169.9 L951.5 169.9" fill="none" stroke="#05635f" stroke-width="3"/>
+      <line x1="40" y1="170" x2="960" y2="170" stroke="#bbb" stroke-width="1.6"/>
+      <text x="80.0" y="190" text-anchor="middle" font-size="14" fill="#888">−4</text>
+      <text x="185.0" y="190" text-anchor="middle" font-size="14" fill="#888">−3</text>
+      <text x="290.0" y="190" text-anchor="middle" font-size="14" fill="#888">−2</text>
+      <text x="395.0" y="190" text-anchor="middle" font-size="14" fill="#888">−1</text>
+      <text x="500.0" y="190" text-anchor="middle" font-size="14" fill="#888">0</text>
+      <text x="605.0" y="190" text-anchor="middle" font-size="14" fill="#888">1</text>
+      <text x="710.0" y="190" text-anchor="middle" font-size="14" fill="#888">2</text>
+      <text x="815.0" y="190" text-anchor="middle" font-size="14" fill="#888">3</text>
+      <text x="920.0" y="190" text-anchor="middle" font-size="14" fill="#888">4</text>
+      <text x="500" y="30" text-anchor="middle" font-size="16" fill="#05635f">se H0 fosse verdadeira, t cairia aqui em 95% das amostras</text>
+      <text x="211.2" y="150" text-anchor="middle" font-size="14" fill="#a93226">2,5%</text>
+      <text x="788.8" y="150" text-anchor="middle" font-size="14" fill="#a93226">2,5%</text>
+      <text x="285.3" y="212" text-anchor="middle" font-size="14" fill="#a93226">−2,045</text>
+      <text x="714.7" y="212" text-anchor="middle" font-size="14" fill="#a93226">+2,045</text>
+      <line x1="128.7" y1="64" x2="128.7" y2="176" stroke="#8D0333" stroke-width="3.4"/>
+      <text x="118.7" y="56" text-anchor="start" font-size="16" fill="#8D0333" font-weight="700">t observado = −3,54</text>
+      <text x="500" y="230" text-anchor="middle" font-size="14" fill="#777">O valor-p é a área além de ±3,54: a chance de um t tão longe de zero, se H0 fosse verdadeira (0,0014).</text>
+    </svg>
+  </div>
+  <div class="colunas">
+    <div>
+      <p>A curva é a distribuição de t com 29 graus de liberdade <strong>supondo H0
+      verdadeira</strong>. As caudas vermelhas somam 5%: é α. Fora de ±2,045 fica a região
+      de rejeição.</p>
+    </div>
+    <div>
+      <p>O t da nossa amostra, <strong>−3,54</strong>, caiu longe, na cauda esquerda. Se a
+      média do Maranhão fosse mesmo R$ 6,19, uma amostra assim apareceria em
+      <strong>14 de cada 10 mil</strong> sorteios.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: o Maranhão contra a média nacional</h2>
+  <ol class="passos">
+    <li>As hipóteses: <span class="num">H0: μ = R$ 6,19</span> e
+        <span class="num">H1: μ ≠ R$ 6,19</span>, com <span class="num">α = 5%</span>;</li>
+    <li>A distância: <span class="num">6,0267 − 6,19 = −0,1633</span>;</li>
+    <li>O erro padrão: <span class="num">0,2530 ÷ √30 = 0,0462</span>;</li>
+    <li>O t: <span class="num">−0,1633 ÷ 0,0462 = −3,54</span>, com
+        <span class="num">29 graus de liberdade</span>;</li>
+    <li>O valor-p: <span class="num">0,0014</span>. Como 0,0014 &lt; 0,05,
+        <strong>rejeita-se H0</strong>.</li>
+  </ol>
+  <p class="menor">Os números do passo 4 e do passo 5 saem de uma célula do notebook — nenhum
+  deles se calcula à mão. O que se faz à mão é <strong>ler</strong>: a amostra está a três
+  erros padrão e meio da referência, e isso é raro demais para ser acaso.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Se a gasolina no Maranhão custasse, em média, o mesmo que no Brasil, seria muito raro
+  sortear 30 postos com média de R$ 6,03. Como sorteamos, a conclusão é que o preço médio
+  no Maranhão é <strong>mais baixo</strong> que o nacional — cerca de 16 centavos por
+  litro na estimativa.</div>
+  <table>
+    <tr><th>O que se mediu</th><th>Valor</th></tr>
+    <tr><td>Média da amostra (30 postos)</td><td>R$ 6,0267</td></tr>
+    <tr><td>Diferença para a referência</td><td>−R$ 0,1633</td></tr>
+    <tr><td>Estatística t (gl = 29)</td><td>−3,54</td></tr>
+    <tr><td>Valor-p</td><td>0,0014</td></tr>
+    <tr><td>IC de 95% da média</td><td>R$ 5,93 a R$ 6,12 — não contém R$ 6,19</td></tr>
+  </table>
+  <p class="menor">A última linha é a ponte com a Parte 1: o intervalo inteiro fica abaixo
+  de R$ 6,19. O teste e o intervalo chegaram à mesma conclusão por caminhos diferentes.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>O intervalo e o teste dizem a mesma coisa</h2>
+  <p>A mesma amostra de 30 postos, cinco valores de referência. O IC de 95% vai de
+  <strong>R$ 5,93 a R$ 6,12</strong>.</p>
+  <table>
+    <tr><th>H0: a média é…</th><th>Dentro do IC?</th><th>t</th><th>Valor-p</th><th>Decisão a 5%</th></tr>
+    <tr><td>R$ 5,90</td><td>não</td><td>2,743</td><td>0,0103</td><td>rejeita</td></tr>
+    <tr><td>R$ 6,00</td><td>sim</td><td>0,577</td><td>0,5681</td><td>não rejeita</td></tr>
+    <tr><td>R$ 6,10</td><td>sim</td><td>−1,588</td><td>0,1232</td><td>não rejeita</td></tr>
+    <tr><td>R$ 6,15</td><td>não</td><td>−2,670</td><td>0,0123</td><td>rejeita</td></tr>
+    <tr><td>R$ 6,19</td><td>não</td><td>−3,536</td><td>0,0014</td><td>rejeita</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">A regra que liga os dois</span>
+  Um valor <strong>fora</strong> do intervalo de 95% é <strong>rejeitado</strong> a 5%; um
+  valor <strong>dentro</strong> não é. Não é coincidência: o intervalo e o teste usam o
+  mesmo erro padrão e o mesmo t crítico. Quem lê o intervalo já sabe o resultado do teste
+  para qualquer referência.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Como se faz no Colab</h2>
+  <pre class="codigo"><span class="cmt"># a amostra: 30 postos sorteados do cadastro, com semente fixa</span>
+amostra = cadastro.<span class="fn">sample</span>(n=<span class="str">30</span>, random_state=<span class="str">2025</span>)
 
-  <pre class="codigo"><span class="cmt"># 1. a tabela de frequência com classes</span>
-classes = pd.<span class="fn">cut</span>(painel[<span class="str">"inadimplencia_pj"</span>], bins=6)
-classes.<span class="fn">value_counts</span>().<span class="fn">sort_index</span>()
+<span class="cmt"># o teste t de uma amostra: H0 diz que a média é 6,19</span>
+r = stats.<span class="fn">ttest_1samp</span>(amostra[<span class="str">"preco"</span>], popmean=<span class="str">6.19</span>)
+<span class="fn">print</span>(r.statistic, r.pvalue)        <span class="cmt"># -3.536  0.0014</span>
 
-<span class="cmt"># 2. o histograma: a mesma tabela desenhada</span>
-painel[<span class="str">"inadimplencia_pj"</span>].<span class="fn">hist</span>(bins=6)
-plt.<span class="fn">xlabel</span>(<span class="str">"Inadimplência PJ (%)"</span>); plt.<span class="fn">ylabel</span>(<span class="str">"Meses"</span>); plt.<span class="fn">show</span>()
-
-<span class="cmt"># 3. o boxplot: os cinco números do encontro 9, desenhados</span>
-painel.<span class="fn">boxplot</span>(column=<span class="str">"inadimplencia_pj"</span>)
-
-<span class="cmt"># 4. o escore z de cada mês</span>
-z = (painel[<span class="str">"inadimplencia_pj"</span>] - painel[<span class="str">"inadimplencia_pj"</span>].<span class="fn">mean</span>()) \
-    / painel[<span class="str">"inadimplencia_pj"</span>].<span class="fn">std</span>()
-z[z.<span class="fn">abs</span>() &gt; 2]   <span class="cmt"># os meses atípicos</span></pre>
-  <div class="alerta"><span class="rotulo">O argumento que muda o desenho</span>
-  <code>bins</code> não é detalhe estético. Com 5 classes a distribuição parece uma coisa; com 50,
-  outra. Experimente os dois e escolha o número que revela a forma sem inventar picos. Depois,
-  registre a escolha na legenda do gráfico.</div>
+<span class="cmt"># no notebook, a leitura vem arrumada em sete linhas:</span>
+<span class="fn">teste_t_uma</span>(amostra[<span class="str">"preco"</span>], valor_ref=<span class="str">6.19</span>, alfa=<span class="str">0.05</span>)</pre>
+  <p>O argumento que importa tem nome: <code>popmean</code> é o valor que H0 afirma. Trocar
+  esse número é trocar a pergunta. No notebook ele está no bloco de configuração, como
+  <code>VALOR_REFERENCIA</code>.</p>
+  <p class="menor">A função <code>teste_t_uma</code> devolve a referência, a média, a
+  diferença, o t, os graus de liberdade, o valor-p e a decisão — nada mais. Nenhuma saída
+  bruta de pacote.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê: a legenda completa</h2>
-
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "A inadimplência mensal concentra-se entre 2,8% e 3,6%, com distribuição aproximadamente
-  simétrica (Figura 3). Março de 2024, com 4,6%, está a <strong>2,3 desvios padrão</strong> acima
-  da média do período."</div>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “O preço médio da gasolina comum em uma amostra aleatória de 30 postos do Maranhão foi de
+  <strong>R$ 6,03</strong>, inferior à média nacional de R$ 6,19 (<strong>t = −3,54;
+  gl = 29; p = 0,001</strong>). A diferença, de <strong>16 centavos por litro</strong>, é
+  estatisticamente significativa a 5% (ANP, SHPC, 2025).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que a diferença é <em>grande</em> ou <em>importante</em>: isso é julgamento de gestão,
+  feito em centavos, e não em valor-p. Nem que há 0,14% de chance de H0 ser verdadeira: o
+  valor-p é calculado <strong>supondo</strong> H0 verdadeira, e não é a probabilidade
+  dela. E nem por que o Maranhão é mais barato: o teste mede, não explica.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: ler “não rejeitar” como “provar”</h2>
   <div class="colunas">
-    <div>
-      <h3>O que toda figura precisa ter</h3>
-      <ul>
-        <li>Título que diz o que está no gráfico, não o nome da variável;</li>
-        <li>Eixos rotulados, com <strong>unidade</strong>;</li>
-        <li>Fonte dos dados, embaixo;</li>
-        <li>Quando houver escolha metodológica, a escolha declarada: número de classes, período,
-        recorte.</li>
-      </ul>
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “Contra R$ 6,00 o teste deu p = 0,57. <strong>Está provado</strong> que o preço médio
+      do Maranhão é R$ 6,00.”<br><br>
+      Mas contra R$ 6,10 a mesma amostra dá p = 0,12, e também não rejeita. Se não rejeitar
+      fosse provar, a média seria R$ 6,00 <strong>e</strong> R$ 6,10 ao mesmo tempo.
     </div>
-    <div>
-      <h3>A ponte com o encontro de hoje</h3>
-      <p>Os três gráficos do dia são os três resumos que você já sabe calcular, desenhados:</p>
-      <table>
-        <tr><th>Gráfico</th><th>É o desenho de</th></tr>
-        <tr><td>Barras</td><td>tabela de frequência (encontro 1)</td></tr>
-        <tr><td>Histograma</td><td>tabela de frequência com classes</td></tr>
-        <tr><td>Boxplot</td><td>os cinco números (encontro 9)</td></tr>
-      </table>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      “A amostra <strong>não traz evidência</strong> de que o preço médio seja diferente de
+      R$ 6,00 (t = 0,58; gl = 29; p = 0,57).”<br><br>
+      Não rejeitar é <strong>não ter encontrado evidência contra</strong> — o que pode ser
+      só falta de casos. Todo valor dentro do intervalo, de R$ 5,93 a R$ 6,12, sobrevive ao
+      teste.
     </div>
   </div>
+  <p class="menor">Guarde: <strong>o teste só derruba; nunca confirma.</strong> E a média
+  verdadeira, que aqui conhecemos, é R$ 6,0087 — nem 6,00, nem 6,10.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
-
-<section class="slide estatistica">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O erro comum: o número de classes e o z fora de lugar</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 1: deixar o bins no automático e não olhar</span>
-      O histograma automático pode esconder bimodalidade ou inventar picos. Rode com 5, 10 e 30
-      classes antes de escolher, e declare o número escolhido.</div>
-      <div class="alerta"><span class="rotulo">Erro 2: usar a régua do z em distribuição torta</span>
-      Em faturamento, com cauda longa, z = 2 não corresponde aos 2% mais altos, porque a regra
-      68-95-99,7 pressupõe simetria. Nesses casos, use percentis: "está acima do percentil 95".</div>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">Erro 3: eixo y truncado sem aviso</span>
-      Começar o eixo em 2,8 em vez de zero faz uma variação de 0,2 ponto parecer um desabamento.
-      Truncar é legítimo em séries que oscilam pouco, desde que <strong>declarado na legenda</strong>.
-      Truncar sem dizer é manipulação.</div>
-      <div class="exemplo"><span class="rotulo">Conferência final</span>
-      Mostre o gráfico a alguém que não viu os dados e pergunte o que ele entendeu. Se a resposta
-      não for a sua conclusão, o problema é do gráfico.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: histograma e escore z</h2>
-
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Ficha de revisão: o teste t de uma amostra</h2>
   <div class="ficha">
     <div>
       <h4>A fórmula</h4>
-      <p><span class="expr">z = (x − x̄) ÷ s</span></p>
-      <p>Com distribuição simétrica: 68% entre ±1s, 95% entre ±2s, 99,7% entre ±3s.</p>
+      <span class="expr">t = (x&#772; − μ<sub>0</sub>) ÷ (s ÷ √n)</span>
+      <p>A distância até a referência, em erros padrão. Valor-p menor que α: rejeita H0.</p>
     </div>
     <div>
       <h4>No Colab</h4>
-      <pre class="codigo">pd.cut(v, bins=6).value_counts()
-v.hist(bins=6)
-z = (v - v.mean()) / v.std()</pre>
+      <pre class="codigo">stats.ttest_1samp(x,
+    popmean=6.19)
+teste_t_uma(x, valor_ref=6.19)</pre>
     </div>
     <div>
       <h4>A frase de leitura</h4>
-      <p>"O valor <em>x</em> está a <em>z</em> desvios padrão da média, o que o coloca entre os
-      <em>p</em>% mais altos."</p>
+      <p>“A média foi de x&#772;, diferente (ou não) de μ<sub>0</sub> (t = _; gl = _; p = _).
+      A diferença é de _ na unidade original.”</p>
+      <p>No exemplo: t = −3,54; gl = 29; p = 0,0014.</p>
     </div>
     <div>
-      <h4>O erro a evitar</h4>
-      <p>Aceitar o número de classes automático, usar o z em distribuição torta e truncar o eixo
-      sem declarar.</p>
+      <h4>O erro</h4>
+      <p>Ler “não rejeitar” como “provar H0”, e ler o valor-p como a probabilidade de H0. O
+      teste só derruba; a probabilidade é dos dados, supondo H0.</p>
     </div>
   </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
-  volume I, seções 2.4 (gráficos para dados quantitativos) e 8.1 a 8.1.3 (distribuição normal e
-  variável padronizada).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
-
-
-<section class="slide divisor">
-  <h2>Mão na massa</h2>
-  <p>Gráficos com matplotlib sobre séries do Banco Central, abra o notebook do encontro</p>
-</section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>As séries de hoje (Já conhecidas do encontro 4)</h2>
+  <h2>Prática no Colab: três testes, três frases</h2>
+  <div class="instrucao"><span class="rotulo">No notebook do encontro 10</span>
+  Execute de cima para baixo. Em cada questão, confira o <code>[ok]</code> e escreva, na
+  célula de texto logo abaixo, a <strong>frase de leitura</strong> (t, gl, valor-p e
+  decisão) e <strong>o que a frase não diz</strong>.</div>
   <table>
-    <tr><th>Série</th><th>Código SGS</th><th>Gráfico</th></tr>
-    <tr><td>Saldo de crédito a PJ (R$ mi)</td><td>20543</td><td>linhas</td></tr>
-    <tr><td>Inadimplência da carteira PJ (%)</td><td>21086</td><td>histograma · boxplot · barras</td></tr>
-    <tr><td>Meta Selic (% a.a.)</td><td>432</td><td>dispersão (× inadimplência)</td></tr>
+    <tr><th>Questão</th><th>H0: a média é…</th><th>O que se pede</th></tr>
+    <tr><td><strong>1</strong></td><td>R$ 6,19 (nacional)</td><td>A frase com a decisão de rejeitar</td></tr>
+    <tr><td><strong>2</strong></td><td>R$ 6,00</td><td>A frase quando H0 não é rejeitada</td></tr>
+    <tr><td><strong>3</strong></td><td>R$ 6,10</td><td>Por que as questões 2 e 3 juntas mostram que não rejeitar não é provar</td></tr>
+    <tr><td><strong>4</strong></td><td>R$ 6,25</td><td>A decisão pelo intervalo, sem rodar o teste</td></tr>
   </table>
+  <p class="menor">Depois, mude <code>NIVEL_CONFIANCA</code> para 0.99 e veja o intervalo
+  alargar. Se usar IA para redigir, use o <strong>cartão de contexto</strong> e registre o
+  prompt e a checagem na tabela do notebook: a IA explica, o código calcula, e você confere
+  e escreve.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li>Baixadas com <code>python-bcb</code>, <strong>desde 2018</strong>, reamostradas para
-        mensal;</li>
-    <li>Contingência local: <code>dados/bcb_series_contexto.csv</code>.</li>
+    <li><strong>O intervalo de confiança é a estimativa com a régua ao lado</strong>:
+        estimativa ± t (ou z) erros padrão. Para a média, o t; para a proporção, o z;</li>
+    <li><strong>O 95% é do procedimento, e não do intervalo</strong>: de cem intervalos, 94
+        cobriram o valor verdadeiro. O intervalo que você tem na mão ou cobre, ou não;</li>
+    <li><strong>Mais confiança, mais largura</strong>; mais casos, menos largura. A troca só
+        se desfaz com n;</li>
+    <li><strong>O teste pergunta quão rara seria a amostra se H0 fosse verdadeira</strong>.
+        O valor-p responde; menor que α, rejeita-se H0;</li>
+    <li><strong>O intervalo e o teste nunca se contradizem</strong>: o que fica fora do IC de
+        95% é rejeitado a 5%;</li>
+    <li><strong>Não rejeitar não é provar</strong>, e significância estatística não é
+        importância de gestão: a diferença se relata em centavos, ao lado do valor-p.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
-
-<section class="slide">
+<section class="slide leitura">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seções 1 a 3: o repertório na prática</h2>
-  <table>
-    <tr><th>Seção</th><th>O que faz</th><th>Ponto de discussão</th></tr>
-    <tr><td>1 · Linhas (15 min)</td><td>Gráfico do crédito PJ com os quatro elementos
-        obrigatórios</td><td>Juntar escalas diferentes no mesmo eixo <strong>engana</strong></td></tr>
-    <tr><td>2 · Formas (25 min)</td><td>Histograma, boxplot por ano e barras da inadimplência</td>
-        <td>Classes mudam o desenho; o boxplot mostra o que a barra esconde</td></tr>
-    <tr><td>3 · Dispersão (10 min)</td><td>Selic × inadimplência no mês</td>
-        <td>Defasagem conceitual: juros de hoje afetam inadimplência de amanhã</td></tr>
-  </table>
-  <p class="menor">Na Seção 1, a célula do professor mostra a segunda série em
-  <strong>eixo secundário</strong>: precisamente para discutir por que isso engana.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1: As séries e o gráfico de linhas (15 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li>Baixe as três séries desde 2018; inspecione a <strong>frequência</strong> de cada uma
-        (a Selic é diária) e reamostre as diárias para <strong>mensal</strong>;</li>
-    <li>Construa o gráfico de linhas do crédito PJ com os quatro elementos obrigatórios:
-        <strong>título afirmativo, eixos com unidade, fonte</strong>;</li>
-    <li><strong>Sua adaptação:</strong> acrescente a inadimplência como segunda série em
-        <strong>eixo secundário</strong> (R$ milhões de um lado, % do outro). Vale pedir o
-        código à IA, descrevendo as colunas e as unidades de cada eixo.</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  Antes de rodar a célula, escreva em uma linha: por que colocar as duas séries em um
-  <strong>mesmo</strong> eixo enganaria o leitor? Vamos comparar as respostas.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2: Histograma, boxplot e barras (25 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li><strong>Histograma</strong> da inadimplência PJ: varie o número de classes
-        (5, 10, 30, 50) e anote o que muda no desenho;</li>
-    <li><strong>Boxplot</strong> da inadimplência por ano. Leia com o vocabulário
-        do encontro 9: onde está a mediana, o que a caixa representa, quais anos têm pontos
-        atípicos;</li>
-    <li><strong>Barras</strong> da inadimplência média por ano, <strong>ordenadas pelo
-        valor</strong>. Compare com o boxplot: o que a barra esconde?</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Deixar as barras na ordem cronológica quando a pergunta é "qual ano teve mais
-  inadimplência". Ordem do tempo pede linhas; comparação de categorias pede barras
-  ordenadas.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: Dispersão: Selic × inadimplência (10 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li>Construa o diagrama de dispersão entre a <strong>meta Selic</strong> e a
-        <strong>inadimplência PJ</strong> no mesmo mês (cada ponto = um mês);</li>
-    <li>Descreva a nuvem em uma frase: sobe, desce, não tem forma?</li>
-    <li>Compare com a versão da célula do professor, <strong>defasada em 6 meses</strong>:
-        juros de hoje afetam a inadimplência de amanhã. A nuvem mudou?</li>
-  </ol></div>
-  <div class="pergunta">A nuvem sugere uma relação. <strong>Como medi-la?</strong> Esta pergunta
-  fica armada para o encontro 13.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: Conserte este gráfico (20 min)</h2>
-  <p>O notebook entrega <strong>dois gráficos deliberadamente ruins</strong> sobre os mesmos
-  dados:</p>
-  <ol>
-    <li><strong>Barras da inadimplência anual com eixo y truncado em 3,4%</strong>:
-        diferenças infladas;</li>
-    <li><strong>Pizza de participação setorial com dez fatias</strong>: ilegível.</li>
-  </ol>
-  <p>Seu trabalho: refazer <strong>corrigidos</strong> e responder por escrito <strong>o que
-  cada versão ruim induzia o leitor a concluir</strong>.</p>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Esquecer <code>plt.ylim(0, ...)</code> e entregar a barra ainda truncada, ou corrigir o
-  eixo e deixar as barras fora de ordem. Antes de dizer "pronto", confira: eixo no zero,
-  barras ordenadas, título, unidades e fonte. Quem cair no erro traz para a discussão de
-  revisão.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Oficina do projeto individual</h2>
-  <p>Limpeza, descritivas e o primeiro gráfico da base própria</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O roteiro-checklist da oficina (75 min)</h2>
-  <ol>
-    <li>Carregar a <strong>base do projeto</strong> (API ou CSV de contingência);</li>
-    <li>Verificar <strong>tipos, dimensões e valores ausentes</strong>;</li>
-    <li>Produzir a <strong>tabela de descritivas</strong> das variáveis centrais (encontro 9);</li>
-    <li>Construir <strong>um gráfico</strong> que responda à pergunta descritiva mais
-        importante do projeto, com título, unidades e fonte;</li>
-    <li>Registrar por escrito <strong>o que o gráfico mostra e o que ainda não permite
-        afirmar</strong>.</li>
-  </ol>
-  <p class="menor">Base atrasada? Use a oficina para resolver a carga e chame o professor:
-  quem travou no acesso a dados tem prioridade. Ao final, dois ou três de vocês projetam o
-  gráfico para <strong>comentário coletivo de integridade visual</strong>.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que você leva do projeto hoje</h2>
-  <div class="instrucao"><span class="rotulo">Escreva no notebook do projeto</span>
-  <ol>
-    <li>A <strong>pergunta descritiva mais importante</strong> do seu projeto, em uma frase
-        (é ela que escolhe o tipo de gráfico);</li>
-    <li>A <strong>tabela de descritivas</strong> das variáveis centrais, com título completo,
-        unidades e fonte;</li>
-    <li><strong>Um gráfico</strong> que responda à pergunta, com título afirmativo, eixos com
-        unidade e fonte;</li>
-    <li>Dois parágrafos curtos: <strong>o que o gráfico mostra</strong> e <strong>o que ele
-        ainda não permite afirmar</strong>.</li>
-  </ol></div>
-  <p class="menor">Tabela e gráfico entram direto no relatório final; compartilhe o link do
-  notebook ao final da oficina.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Comentário coletivo: o gráfico do colega</h2>
-  <div class="instrucao"><span class="rotulo">Dinâmica</span>
-  Dois ou três gráficos projetados na tela. A turma responde, em ordem, sem olhar para quem
-  fez:</div>
-  <ol>
-    <li>Qual <strong>pergunta</strong> este gráfico responde? O tipo escolhido é o certo?</li>
-    <li>O gráfico <strong>se sustenta sozinho</strong>: título afirmativo, unidades, fonte?</li>
-    <li>Há <strong>eixo truncado</strong> sem aviso, barras fora de ordem, tinta sem dado?</li>
-    <li>O que ele <strong>induz</strong> o leitor a concluir? Essa conclusão é honesta?</li>
-  </ol>
-  <p class="menor">O autor anota as sugestões e corrige antes de fechar o notebook.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese do encontro</h2>
-  <ol>
-    <li>O tipo de gráfico <strong>se escolhe pela pergunta</strong>, não pelo gosto;</li>
-    <li><strong>Integridade visual é honestidade</strong> com o leitor: barras do zero,
-        escala avisada, tinta a serviço do dado;</li>
-    <li><strong>Tabela</strong> para valores exatos; <strong>gráfico</strong> para
-        comparação;</li>
-    <li>Todo gráfico se sustenta sozinho: <strong>título, unidades, fonte</strong>.</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
   <ul>
-    <li><strong>Revisar:</strong> média e desvio padrão (encontro 9), a inferência
-        estatística se constrói sobre eles;</li>
-    <li><strong>Encontro 11:</strong> distribuição normal, intervalos de confiança e testes
-        de hipóteses;</li>
-    <li><strong>Projeto:</strong> avançar descritivas e gráficos da base, insumo direto do
-        relatório final.</li>
+    <li><strong>SILVA e SAMÁ (2021)</strong>, <em>Estatística</em>, volume II (acesso aberto):
+        os capítulos de estimação por intervalo e o capítulo 5, de testes de hipóteses, com
+        o fluxograma da seção 5.9.</li>
+    <li><strong>O notebook do encontro</strong>: reexecute a simulação dos cem intervalos com
+        <code>NIVEL_CONFIANCA = 0.90</code> e conte quantos erram. É o encontro em que a
+        simulação ensina o que a fórmula esconde.</li>
+    <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai
+        em duas partes.</li>
   </ul>
-  <p><strong>Síntese do dia:</strong> um bom gráfico responde a uma pergunta honestamente,
-  e esse é o padrão que o seu relatório final vai cobrar.</p>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Escreva a hipótese do <strong>seu</strong> projeto como par H0 e H1, com o sinal de
+        igual em H0. Ela será o ponto de partida do encontro 11;</li>
+    <li>O próximo encontro traz os testes de <strong>dois grupos, de pares e de
+        categorias</strong> — e o fluxograma que diz qual usar.</li>
+  </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 10</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 10</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 3</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a></p>
+    <h2>Abertura do Módulo III e retomada <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) ler e escrever um
+            intervalo de confiança para a média e para a proporção; (ii) explicar o que o
+            “95%” significa — a taxa de acerto do procedimento — e o que ele não significa;
+            (iii) dizer o que torna um intervalo mais largo ou mais estreito; (iv) formular H0
+            e H1 e decidir pelo valor-p diante de α; (v) ligar o intervalo ao teste: o valor
+            fora do IC de 95% é rejeitado a 5%; (vi) escrever a frase de leitura de um teste t
+            de uma amostra, e o que ela não diz.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura e retomada do Módulo II</td><td>15</td></tr>
+      <tr><td>Parte 1: o intervalo de confiança e o que “95%” não significa</td><td>45</td></tr>
+      <tr><td>Parte 2: a lógica do teste (os dez elementos)</td><td>60</td></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>Prática no Colab: o teste t de uma amostra, com leitura escrita</td><td>90</td></tr>
+      <tr><td>Síntese e tarefa</td><td>15</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O fio que liga as duas partes do dia</span>
+            <p>Anunciar na abertura, e repetir no fim da Parte 2: <strong>o intervalo e o
+            teste usam o mesmo erro padrão e nunca se contradizem</strong>. O valor que fica
+            fora do intervalo de 95% é o valor que o teste rejeita a 5%. Quem entende um,
+            entende o outro — e por isso a aula começa pelo intervalo, que é mais
+            intuitivo.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A retomada em três números</span>
+            <p>Não reexplicar o Módulo II: puxar da turma os três números que ficaram, na
+            ordem da tela 3. O erro padrão de R$ 0,05 (encontro 7), o z de 1,96 (encontro 8)
+            e os 385 casos para uma proporção (encontro 8). Perguntar: <em>“se a margem de
+            erro é z vezes o erro padrão, o que acontece se eu somar e subtrair a margem da
+            estimativa?”</em> A resposta é o intervalo de confiança — a turma chega nele antes
+            de o slide dizer o nome.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar na abertura</span>
+            <p>Não abrir com a fórmula do t nem com a palavra “inferência” solta. A turma
+            trava em vocabulário. A palavra entra depois do exemplo: “isso que acabamos de
+            fazer — dizer algo sobre os 236 postos olhando 30 — chama-se inferência”.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 4 a 11</b> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a></p>
+    <h2>Parte 1: o intervalo de confiança e o que “95%” não significa <span class="min">(45 min)</span></h2>
+    <h3>Minutagem da Parte 1</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>O intervalo em linguagem corrente; use e não use</td><td>7</td></tr>
+      <tr><td>IC da média (o t no lugar do z) e IC da proporção</td><td>10</td></tr>
+      <tr><td>Os dois intervalos na amostra de 30 postos</td><td>8</td></tr>
+      <tr><td>Mais confiança, mais largura</td><td>5</td></tr>
+      <tr><td>O que “95%” não significa e os cem intervalos</td><td>10</td></tr>
+      <tr><td>Exercício: qual frase está certa?</td><td>5</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Por que o t, e não o z</span>
+            <p>O encontro 8 usou o z porque tratava o desvio como conhecido. Hoje o desvio
+            vem da própria amostra de 30 postos — e um desvio estimado também erra. O t
+            cobra esse pedágio: 2,045 em vez de 1,96 para 30 casos. Mostrar a tabelinha da
+            tela: com 100 casos, t e z praticamente coincidem. A frase para a turma:
+            <strong>“o t é o z de quem não conhece o desvio da população”</strong> — que é o
+            caso de toda pesquisa real.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O momento central da Parte 1: os cem intervalos</span>
+            <p>Antes de mostrar a figura, perguntar: <em>“se eu sortear cem amostras e calcular
+            cem intervalos de 95%, quantos vão cobrir o preço médio verdadeiro?”</em> A
+            maioria dirá 95, e está certa — aproximadamente. Mostrar: <strong>94</strong>. Com
+            mil amostras, 959.</p>
+            <p>A pergunta seguinte é a que ensina: <em>“olhando só o intervalo da amostra 19,
+            sem a linha preta, dá para saber que ele errou?”</em> Não dá. Por isso a confiança
+            é do <strong>método</strong>, e não do intervalo que se tem na mão.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">Se a turma perguntar por que 94 e não 95</span>
+            <p>Duas razões, nessa ordem. Primeira: cem amostras são poucas, e o número varia
+            de um conjunto de sementes para outro (93, 96, 97 são igualmente normais).
+            Segunda: com mil amostras a taxa fica em 95,9%, um pouco acima de 95%, porque 30
+            postos são 13% de um cadastro pequeno — a correção para população finita do
+            encontro 8. Com n = 50, a fatia é maior e a taxa sobe para cerca de 98%; foi por
+            isso que a simulação de hoje usa 30.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>“Há 95% de chance de a média estar no intervalo.”</strong> É o erro
+              da tela 9. Corrigir toda vez: o intervalo já calculado cobre ou não cobre;</li>
+              <li><strong>Confundir o intervalo da média com a faixa dos casos.</strong> O IC
+              de R$ 5,93 a R$ 6,12 não diz que 95% dos postos cobram nessa faixa — os preços
+              da amostra vão de R$ 5,55 a R$ 6,59. É o erro do encontro 7 (desvio × erro
+              padrão), com outra roupa;</li>
+              <li><strong>Achar que 99% é “melhor” que 95%.</strong> É mais confiável e mais
+              largo: um intervalo de R$ 5,90 a R$ 6,15 informa menos;</li>
+              <li><strong>Calcular intervalo para amostra por conveniência.</strong> O
+              intervalo mede o erro do sorteio; sem sorteio, ele não mede nada.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do exercício da tela 11</span>
+            <p>Certas: <strong>3</strong> (a leitura do procedimento) e <strong>4</strong>
+            (quadruplicar n reduz a margem à metade, a regra da raiz de n do encontro 7).
+            Erradas: a 1 é a leitura probabilística do intervalo; a 2 confunde a média com os
+            clientes; a 5 inverte a troca — 99% dá intervalo mais <em>largo</em>.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito da Parte 1</span>
+            <table>
+              <tr><th>Medida</th><th>Valor</th></tr>
+              <tr><td>População (cadastro)</td><td>236 postos; média R$ 6,0087; desvio R$ 0,3402</td></tr>
+              <tr><td>Bandeira branca no cadastro</td><td>118 de 236 = 50,0%</td></tr>
+              <tr><td>Amostra do dia</td><td>30 postos, <code>random_state=2025</code></td></tr>
+              <tr><td>Média e desvio da amostra</td><td>R$ 6,0267 e R$ 0,2530</td></tr>
+              <tr><td>Erro padrão e t crítico (29 gl)</td><td>0,0462 e 2,0452</td></tr>
+              <tr><td>Margem e IC de 95% da média</td><td>0,0945; [R$ 5,9322 ; R$ 6,1211]</td></tr>
+              <tr><td>IC de 90% e de 99%</td><td>[5,9482 ; 6,1051] e [5,8994 ; 6,1540]</td></tr>
+              <tr><td>Bandeira branca na amostra</td><td>19 de 30 = 63,33%; EP 0,0880; margem 0,1724</td></tr>
+              <tr><td>IC de 95% da proporção</td><td>[46,09% ; 80,58%] — cobre os 50,0%</td></tr>
+              <tr><td>Cem intervalos (sementes 0 a 99)</td><td>94 cobrem; erram as amostras 19, 52, 62, 82, 85 e 93</td></tr>
+              <tr><td>Mil intervalos (sementes 0 a 999)</td><td>959 cobrem (95,9%)</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 12 a 24</b> <a class="chip-tela" href="#12">12</a> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a></p>
+    <h2>Parte 2: a lógica do teste — hipóteses, α e valor-p <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta: o Maranhão é diferente da média nacional?</td><td>5</td></tr>
+      <tr><td>H0, H1, α e valor-p, com use e não use</td><td>10</td></tr>
+      <tr><td>A fórmula, a receita e a decisão desenhada</td><td>12</td></tr>
+      <tr><td>O exemplo resolvido e a leitura</td><td>10</td></tr>
+      <tr><td>O intervalo e o teste dizem a mesma coisa</td><td>8</td></tr>
+      <tr><td>O código, a frase e o que ela não diz</td><td>8</td></tr>
+      <tr><td>Erro comum e ficha de revisão</td><td>7</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
+            <p>Repetir até virar reflexo: <strong>o teste não pergunta se a diferença
+            existe; pergunta quão rara seria a amostra se ela não existisse.</strong> O valor-p
+            é a resposta a essa pergunta hipotética. Por isso ele é calculado
+            <em>supondo</em> H0 verdadeira, e por isso não é a probabilidade de H0.</p>
+            <p>Uma analogia que funciona com a turma: o júri. H0 é “o réu é inocente”; a
+            amostra é a prova; rejeitar H0 é condenar. O júri nunca declara o réu
+            <em>inocente</em> — declara “não culpado”, por falta de provas. É exatamente o
+            “não rejeita H0”.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para a turma antes da decisão desenhada</span>
+            <p>Mostrar só o resultado: a amostra deu R$ 6,03, a referência é R$ 6,19, o erro
+            padrão é R$ 0,046. Perguntar: <em>“quantos erros padrão separam a amostra da
+            referência?”</em> A turma chega a três e meio sem conta formal (16 centavos
+            divididos por 4,6). Só então mostrar a curva: três erros padrão e meio está fora
+            das caudas de 2,045. A fórmula do t vem depois da intuição, como no encontro 7.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A ponte com a Parte 1, que precisa ser dita em voz alta</span>
+            <p>Na tela da tabela dos cinco valores, cobrir a coluna da decisão e pedir à
+            turma que a preencha olhando só o intervalo (R$ 5,93 a R$ 6,12). Todos acertam.
+            A frase que fecha: <strong>“o intervalo de 95% é a lista de todos os valores que o
+            teste a 5% não rejeita.”</strong></p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>“Não rejeitei H0, então provei que a média é R$ 6,00.”</strong> É o
+              erro da tela 23. A mesma amostra não rejeita R$ 6,00 nem R$ 6,10;</li>
+              <li><strong>“p = 0,0014 quer dizer 0,14% de chance de H0 ser
+              verdadeira.”</strong> Não: é a chance da amostra, supondo H0;</li>
+              <li><strong>“Significativo quer dizer importante.”</strong> A diferença de 16
+              centavos se julga em centavos: para uma frota, é muito; para um motorista, pouco.
+              O valor-p não sabe disso;</li>
+              <li><strong>Escrever H0 com o sinal de diferente.</strong> H0 sempre tem o sinal
+              de igual; a pergunta de pesquisa costuma estar em H1.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Medida</th><th>Valor</th></tr>
+              <tr><td>Referência nacional</td><td>R$ 6,19 (8.635 postos do Brasil, média R$ 6,1930, mesma regra)</td></tr>
+              <tr><td>H0 e H1</td><td>μ = 6,19 e μ ≠ 6,19; α = 5%</td></tr>
+              <tr><td>Diferença</td><td>6,0267 − 6,19 = −0,1633</td></tr>
+              <tr><td>t e gl</td><td>−3,536 e 29</td></tr>
+              <tr><td>Valor-p</td><td>0,0014 → rejeita H0</td></tr>
+              <tr><td>t crítico a 5% (29 gl)</td><td>±2,045</td></tr>
+              <tr><td>Contra R$ 5,90</td><td>t = 2,743; p = 0,0103 → rejeita (fora do IC)</td></tr>
+              <tr><td>Contra R$ 6,00</td><td>t = 0,577; p = 0,5681 → não rejeita (dentro)</td></tr>
+              <tr><td>Contra R$ 6,10</td><td>t = −1,588; p = 0,1232 → não rejeita (dentro)</td></tr>
+              <tr><td>Contra R$ 6,15</td><td>t = −2,670; p = 0,0123 → rejeita (fora)</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>tela 25</b> <a class="chip-tela" href="#25">25</a></p>
+    <h2>Prática no Colab: o teste t de uma amostra, com leitura escrita <span class="min">(90 min)</span></h2>
+    <h3>Minutagem da prática</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abrir o notebook e executar até a Parte 1 (CÉLULA A ou B)</td><td>15</td></tr>
+      <tr><td>Parte 1: os intervalos, a largura e os cem intervalos</td><td>20</td></tr>
+      <tr><td>Parte 2: o teste, a decisão desenhada e a tabela dos cinco valores</td><td>15</td></tr>
+      <tr><td>Questões 1 a 4: executar, conferir e escrever as frases</td><td>30</td></tr>
+      <tr><td>Leitura em voz alta de três frases e correção coletiva</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Condução passo a passo</span>
+            <ol>
+              <li><strong>A carga.</strong> A CÉLULA A baixa os 12 arquivos do Brasil inteiro
+              (dois minutos, às vezes mais). Se aparecer <em>could not resolve host</em> ou
+              <em>timed out</em>, ou se passar de cinco minutos, mandar usar a CÉLULA B, com
+              upload de <code>anp_precos_revenda_ma_2025.csv</code>. A referência nacional já
+              está no bloco de configuração e não depende da CÉLULA A;</li>
+              <li><strong>Os primeiros <code>[ok]</code>.</strong> A célula do cadastro confere
+              R$ 6,0087 e 50,0%. Se der <code>[X]</code> aqui, o estudante pulou a carga;</li>
+              <li><strong>A simulação.</strong> Pedir que todos rodem e digam o número: deve ser
+              94 em todas as máquinas, porque as sementes são fixas. É a prova de que o
+              notebook é reprodutível;</li>
+              <li><strong>As questões.</strong> Circular pela sala lendo as frases, não o
+              código. O código já funciona; o que se avalia é a leitura;</li>
+              <li><strong>O experimento livre.</strong> Quem terminar muda
+              <code>NIVEL_CONFIANCA</code> para 0.90 e conta quantos dos cem intervalos erram
+              (o <code>[X]</code> é esperado e não é erro).</li>
+            </ol>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O que observar nas frases</span>
+            <p>Três marcas de uma frase boa, para usar na correção coletiva: (1) traz t, gl e
+            valor-p; (2) diz a decisão com o α; (3) traz a diferença em <strong>unidade
+            original</strong> — centavos por litro. A Questão 2 é a que separa: a frase certa é
+            “não há evidência de que a média seja diferente de R$ 6,00”, e não “a média é
+            R$ 6,00”.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito das questões</span>
+            <table>
+              <tr><th>Questão</th><th>Resultado</th><th>A frase esperada</th></tr>
+              <tr><td>1 (R$ 6,19)</td><td>t = −3,536; gl = 29; p = 0,0014</td>
+                  <td>Rejeita H0: o preço médio no Maranhão (R$ 6,03) é inferior ao nacional,
+                  em cerca de 16 centavos</td></tr>
+              <tr><td>2 (R$ 6,00)</td><td>t = 0,577; gl = 29; p = 0,5681</td>
+                  <td>Não rejeita H0: não há evidência de que a média seja diferente de R$ 6,00</td></tr>
+              <tr><td>3 (R$ 6,10)</td><td>t = −1,588; gl = 29; p = 0,1232</td>
+                  <td>Não rejeita H0; e como 6,00 e 6,10 também sobrevivem, não rejeitar não é
+                  provar — a amostra é compatível com todos os valores do IC</td></tr>
+              <tr><td>4 (R$ 6,25)</td><td>pelo IC, sem teste</td>
+                  <td>Rejeitado a 5%: R$ 6,25 está fora do IC de 95% (R$ 5,93 a R$ 6,12)</td></tr>
+            </table>
+            <p>O que cada frase não diz: na 1, que a diferença é importante ou por que existe;
+            na 2 e na 3, que a média é igual ao valor testado. A média verdadeira, que aqui se
+            conhece, é R$ 6,0087.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Evitar na prática</span>
+            <p>Não deixar a prática virar caça a erro no código: nenhuma célula precisa ser
+            editada fora do bloco de configuração. Se um estudante travar, a resposta é
+            “execute de cima para baixo” ou “use a CÉLULA B”, nunca “procure o erro”.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 26 a 27</b> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os aprendizados do dia</span>
+            <ol>
+              <li><strong>O intervalo é a estimativa com a régua ao lado</strong>: para a média,
+              com o t; para a proporção, com o z;</li>
+              <li><strong>O 95% é a taxa de acerto do procedimento</strong>: 94 de 100
+              intervalos cobriram; o seu, ou cobre, ou não;</li>
+              <li><strong>O teste pergunta quão rara seria a amostra se H0 fosse
+              verdadeira</strong>, e o valor-p responde;</li>
+              <li><strong>Intervalo e teste nunca se contradizem</strong>: fora do IC de 95%,
+              rejeitado a 5%;</li>
+              <li><strong>Não rejeitar não é provar</strong>, e significante não é
+              importante.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Escreva a hipótese do <strong>seu</strong> projeto como par H0 e H1, com o sinal
+              de igual em H0, e diga se a comparação é com um valor de fora (uma amostra), entre
+              dois grupos, entre pares ou entre categorias;</li>
+              <li>No notebook, mude <code>NIVEL_CONFIANCA</code> para 0.90 e anote quantos dos
+              cem intervalos erram. A previsão é cerca de dez;</li>
+              <li>Pense na pergunta que fica: na Questão 2, o teste não rejeitou R$ 6,00, e a
+              média verdadeira é R$ 6,0087. <strong>O teste errou?</strong></li>
+            </ol>
+            <p>A pergunta 3 é a ponte: o próximo encontro abre com os <strong>erros tipo I e
+            II</strong> e o poder do teste, e segue para os testes de duas amostras, o pareado e
+            o qui-quadrado.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>
