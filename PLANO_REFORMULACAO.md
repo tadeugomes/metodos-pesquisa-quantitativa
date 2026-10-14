@@ -22,6 +22,9 @@ Registradas aqui porque restringem todo o resto do plano.
 | Decisão 6 | Delineamentos migram para o **Módulo II** | A ordem passa a ser problema → delineamento → amostragem |
 | Decisão 7 | O encontro 4 mantém o desenho aprovado: 120 min de estatística, 45 min de fontes/qualidade/ética, 45 min de prática | Único encontro de risco de transbordo; a minutagem está fechada na seção 4.4 |
 | Decisão 8 | O mapa de fontes é material didático e as chamadas novas **são testadas** antes de entrar | Cada fonte nova entra com chamada validada, CSV de contingência e data da validação |
+| Decisão 9 | Pesos da AV2: **40%** descrever a base, **35%** plano de amostragem, **25%** sorteio (14/10/2026) | Aplicados no notebook e na condução do encontro 9 |
+| Decisão 10 | As simulações do intervalo de confiança do encontro 10 usam **n = 30** (14/10/2026) | Com n = 50 a cobertura sobe para 98% pela população finita de 236 postos; com 30, 94 de 100 intervalos cobrem a média |
+| Decisão 11 | No encontro 13 a prática acontece **dentro** do bloco de estatística, com o notebook aberto (14/10/2026) | A aula fecha em 240 minutos; 15 minutos finais ficam só para o projeto individual (tabela da seção 6.3) |
 
 ## 1. O problema que o plano resolve
 
@@ -33,7 +36,7 @@ três blocos de 85 a 90 minutos que chegam a exigir, no encontro 11, teorema cen
 intervalo de confiança, teste t e qui-quadrado em uma única manhã. O desencontro é anterior ao
 Módulo III: as Unidades I e II já dependem de estatística que ainda não foi ensinada.
 
-A v2 tentou consertar isso mantendo a estatística como servçal do conceito de pesquisa. A v3
+A v2 tentou consertar isso mantendo a estatística como serva do conceito de pesquisa. A v3
 inverte a relação: **a estatística é a base, e o conceito de pesquisa é a aplicação.** A
 disciplina passa a ter uma progressão explícita e cumulativa, do dado bruto ao modelo, em quatro
 módulos, e o estudante termina o semestre capaz de escolher a técnica certa, não só de
@@ -53,8 +56,8 @@ apresentam estatística nova sem que o estudante já a tenha visto antes em cont
    pela fórmula. A fórmula é o meio; a frase de leitura é o produto.
 4. **Zero programação.** O estudante executa células prontas, edita no máximo seis valores
    declarados no topo do notebook, preenche células de texto com a frase de leitura e cola saída
-   de assistente em célula marcada. Nunca escreve lógica, nunca depura, nunca diagnostica (o bloco do encontro 2).
-5. **Zero cálculo à mão.** Nenhum exercício de aritmética no papel (o bloco do encontro 3). A fórmula é explicada
+   de assistente em célula marcada. Nunca escreve lógica, nunca depura, nunca diagnostica.
+5. **Zero cálculo à mão.** Nenhum exercício de aritmética no papel. A fórmula é explicada
    para que se entenda de onde vem o número; o número sai de uma célula executada.
 6. **Nada é visto pela primeira vez em branco.** Todo notebook é publicado **pré-executado**,
    com as saídas salvas. O estudante abre e já lê o resultado esperado antes de executar.
@@ -90,8 +93,8 @@ Duas ordens que o plano protege explicitamente:
   vêm todos no Módulo I. Quando o encontro 7 simular a distribuição amostral, o estudante já sabe
   o que é forma de distribuição e o que é um escore z.
 - **Forma da distribuição antes da distribuição amostral.** A curva normal aparece no Módulo I, com
-  o histograma e o escore z, e só no Módulo II vira teorema central do limite. É por isso que o bloco do encontro 5
-  (forma) está no encontro 4 e não depois do módulo de amostragem.
+  o histograma e o escore z, e só no Módulo II vira teorema central do limite. É por isso que o bloco da forma
+  da distribuição está no encontro 4 e não depois do módulo de amostragem.
 
 ## 4. Módulo I: pesquisa quantitativa, dados e estatística descritiva
 
@@ -99,10 +102,10 @@ Duas ordens que o plano protege explicitamente:
 
 | Enc. | Pesquisa (45 min) | Estatística | Dados e prática | Produto |
 |---|---|---|---|---|
-| 1 | Ciência e senso comum; o que faz uma pesquisa quantitativa; contrato didático | **Parte 2 — ler um conjunto de dados** (75 min) | Ambientação ao Colab; o que é uma API; primeira fonte (CEMPRE/IBGE, tabela 9582) | Guia acumulado v1; ficha o bloco do encontro 1; `conferir` instalado |
-| 2 | Variáveis, tipos de dados e níveis de mensuração | **Parte 2 — tipos de dado e a regra da medida** (90 min) | pandas de descrição (`head`, `dtypes`, `value_counts`, `groupby`); PAS/PMC do IBGE | Guia v2; ficha o bloco do encontro 2; `CONFIG` introduzida |
-| 3 | Problema, objetivos, hipóteses e matriz de amarração; escolha da base do projeto | **Parte 2 — tendência central** (90 min) | Séries do BCB (SGS) e do Ipeadata; primeira descrição de série temporal | Guia v3; ficha o bloco do encontro 3; esboço do problema do projeto |
-| 4 | O projeto e a base de dados | **Parte 2 — dispersão** (55 min) + **Parte 2 — forma da distribuição** (55 min) | Mapa das fontes de Administração, qualidade do dado, ética de dados secundários; base CVM | **Guia v4, completo**; fichas o bloco do encontro 4 e o bloco do encontro 5; mapa de fontes |
+| 1 | Ciência e senso comum; o que faz uma pesquisa quantitativa; contrato didático | **Parte 2 — ler um conjunto de dados** (75 min) | Ambientação ao Colab; o que é uma API; primeira fonte (CEMPRE/IBGE, tabela 9582) | Guia acumulado v1; ficha do bloco de frequência; `conferir` instalado |
+| 2 | Variáveis, tipos de dados e níveis de mensuração | **Parte 2 — tipos de dado e a regra da medida** (90 min) | pandas de descrição (`head`, `dtypes`, `value_counts`, `groupby`); PAS/PMC do IBGE | Guia v2; ficha do bloco da regra da medida; `CONFIG` introduzida |
+| 3 | Problema, objetivos, hipóteses e matriz de amarração; escolha da base do projeto | **Parte 2 — tendência central** (90 min) | Séries do BCB (SGS) e do Ipeadata; primeira descrição de série temporal | Guia v3; ficha do bloco de tendência central; esboço do problema do projeto |
+| 4 | O projeto e a base de dados | **Parte 2 — dispersão** (55 min) + **Parte 2 — forma da distribuição** (55 min) | Mapa das fontes de Administração, qualidade do dado, ética de dados secundários; base CVM | **Guia v4, completo**; fichas dos blocos de dispersão e de forma; mapa de fontes |
 | 5 | — | — | — | **AV1** e 1ª entrega do projeto |
 
 ### 4.2 Por que o roteiro de pesquisa e o de dados não são um bloco à parte
@@ -127,67 +130,67 @@ mesma estrutura de dez elementos (seção 8.2).
 
 | Item | Conteúdo |
 |---|---|
-| 0 | Dado e informação: o que muda quando o número ganha nome, unidade e data |
-| 0 | Observação (linha) e variável (coluna): a anatomia de uma base de dados |
-| 0 | Base de registros individuais e base agregada: por que os dois exigem leitura diferente |
-| 0 | Frequência absoluta: contar é o início de tudo |
-| 0 | Frequência relativa: a contagem dividida pelo total |
-| 0 | **Porcentagem e o denominador:** a única ideia do bloco |
-| 0 | Razão, proporção e taxa: três divisões que a Administração confunde |
-| 0 | Ponto percentual: a diferença em pontos e a variação em por cento |
-| 0 | Base 100 e número-índice: a taxa de variação como série |
-| 0 | Ler uma tabela: unidade, total, ordem das linhas, período de referência |
+| 1.1 | Dado e informação: o que muda quando o número ganha nome, unidade e data |
+| 1.2 | Observação (linha) e variável (coluna): a anatomia de uma base de dados |
+| 1.3 | Base de registros individuais e base agregada: por que os dois exigem leitura diferente |
+| 1.4 | Frequência absoluta: contar é o início de tudo |
+| 1.5 | Frequência relativa: a contagem dividida pelo total |
+| 1.6 | **Porcentagem e o denominador:** a única ideia do bloco |
+| 1.7 | Razão, proporção e taxa: três divisões que a Administração confunde |
+| 1.8 | Ponto percentual: a diferença em pontos e a variação em por cento |
+| 1.9 | Base 100 e número-índice: a taxa de variação como série |
+| 1.10 | Ler uma tabela: unidade, total, ordem das linhas, período de referência |
 
 **Parte 2 do encontro 2: tipos de dado e a regra da medida — 9 itens, 90 min (encontro 2)**
 
 | Item | Conteúdo |
 |---|---|
-| 1 | Variável qualitativa nominal: categorias sem ordem natural |
-| 1 | Variável qualitativa ordinal: categorias com ordem definida |
-| 1 | Variável quantitativa discreta: contagens |
-| 1 | Variável quantitativa contínua: medições |
-| 1 | Os níveis de mensuração de Stevens: nominal, ordinal, intervalo, razão |
-| 1 | O que cada nível permite: ordenar, somar, subtrair. O intervalo e o zero que não é zero |
-| 1 | **A tabela de decisão: nível → medida de posição → medida de dispersão → gráfico.** É o eixo do módulo |
-| 1 | Codificar no pandas: `dtype`, `astype`, `pd.Categorical`; a variável é decisão do pesquisador |
-| 1 | Frequência, frequência relativa e frequência acumulada em ordinal |
+| 2.1 | Variável qualitativa nominal: categorias sem ordem natural |
+| 2.2 | Variável qualitativa ordinal: categorias com ordem definida |
+| 2.3 | Variável quantitativa discreta: contagens |
+| 2.4 | Variável quantitativa contínua: medições |
+| 2.5 | Os níveis de mensuração de Stevens: nominal, ordinal, intervalo, razão |
+| 2.6 | O que cada nível permite: ordenar, somar, subtrair. O intervalo e o zero que não é zero |
+| 2.7 | **A tabela de decisão: nível → medida de posição → medida de dispersão → gráfico.** É o eixo do módulo |
+| 2.8 | Codificar no pandas: `dtype`, `astype`, `pd.Categorical`; a variável é decisão do pesquisador |
+| 2.9 | Frequência, frequência relativa e frequência acumulada em ordinal |
 
 **Parte 2 do encontro 3: tendência central — 8 itens, 90 min (encontro 3)**
 
 | Item | Conteúdo |
 |---|---|
-| 2 | Média como centro de gravidade: o que entra e o que não entra na conta |
-| 2 | Média ponderada: quando cada caso não vale o mesmo |
-| 2 | Mediana como ponto de corte: metade de cada lado |
-| 2 | Mediana em dados ordinais, quando não há valor numérico |
-| 2 | Moda: o valor mais frequente e o que ela informa |
-| 2 | A tabela "qual usar": decisão por nível e por forma da distribuição |
-| 2 | O problema do valor extremo: a média que se desloca e a mediana que fica |
-| 2 | Média próxima da mediana sugere simetria; a regra de bolso do administrador |
+| 3.1 | Média como centro de gravidade: o que entra e o que não entra na conta |
+| 3.2 | Média ponderada: quando cada caso não vale o mesmo |
+| 3.3 | Mediana como ponto de corte: metade de cada lado |
+| 3.4 | Mediana em dados ordinais, quando não há valor numérico |
+| 3.5 | Moda: o valor mais frequente e o que ela informa |
+| 3.6 | A tabela "qual usar": decisão por nível e por forma da distribuição |
+| 3.7 | O problema do valor extremo: a média que se desloca e a mediana que fica |
+| 3.8 | Média próxima da mediana sugere simetria; a regra de bolso do administrador |
 
 **Parte 2 do encontro 4: dispersão — 7 itens, 55 min (encontro 4)**
 
 | Item | Conteúdo |
 |---|---|
-| 3 | Por que dispersão: dois grupos com a mesma média e realidades opostas |
-| 3 | Amplitude: o mais simples e o mais frágil |
-| 3 | **Variância: por que se eleva ao quadrado** (senos se cancelariam) |
-| 3 | Desvio padrão: a volta dos desvios à unidade original |
-| 3 | Coeficiente de variação: comparar dispersão entre escalas diferentes |
-| 3 | Intervalo interquartílico: a dispersão que ignora as caudas |
-| 3 | Sensibilidade de cada medida ao valor extremo |
+| 4.1 | Por que dispersão: dois grupos com a mesma média e realidades opostas |
+| 4.2 | Amplitude: o mais simples e o mais frágil |
+| 4.3 | **Variância: por que se eleva ao quadrado** (os desvios se cancelariam) |
+| 4.4 | Desvio padrão: a volta dos desvios à unidade original |
+| 4.5 | Coeficiente de variação: comparar dispersão entre escalas diferentes |
+| 4.6 | Intervalo interquartílico: a dispersão que ignora as caudas |
+| 4.7 | Sensibilidade de cada medida ao valor extremo |
 
 **Parte 2 do encontro 4: forma da distribuição — 7 itens, 55 min (encontro 4)**
 
 | Item | Conteúdo |
 |---|---|
-| 4 | Distribuição de frequência e classes: de onde vem a classe |
-| 4 | Amplitude de classe e número de classes: a escolha que muda o desenho |
-| 4 | Histograma: a forma, e o que muda quando se muda o número de classes |
-| 4 | Quartis e o esquema dos cinco números |
-| 4 | Boxplot: anatomia e o que cada elemento afirma |
-| 4 | Escore z: a régua que compara grandezas de escalas diferentes |
-| 4 | Assimetria e sua assinatura: média, mediana e cauda |
+| 4.8 | Distribuição de frequência e classes: de onde vem a classe |
+| 4.9 | Amplitude de classe e número de classes: a escolha que muda o desenho |
+| 4.10 | Histograma: a forma, e o que muda quando se muda o número de classes |
+| 4.11 | Quartis e o esquema dos cinco números |
+| 4.12 | Boxplot: anatomia e o que cada elemento afirma |
+| 4.13 | Escore z: a régua que compara grandezas de escalas diferentes |
+| 4.14 | Assimetria e sua assinatura: média, mediana e cauda |
 
 ### 4.4 Minutagem dos encontros do Módulo I
 
@@ -240,12 +243,12 @@ estudante sabe, sozinho, se acertou.
 | Enc. | Pesquisa (45 min) | Estatística (90 min) | Prática (60 min) |
 |---|---|---|---|
 | 6 | Delineamentos: descritiva, correlacional, experimental, quase-experimental, survey | Amostragem não probabilística e seus vieses; o sorteio real sobre o cadastro do CEMPRE | Sorteio com `sample`, ponderação por porte e conferência com `conferir` |
-| 7 | O que makes a amostra representar a população | As quatro técnicas probabilísticas; **distribuição amostral e teorema central do limite por simulação** | Mil amostras, histograma das médias, o centro e a largura |
+| 7 | O que faz a amostra representar a população | As quatro técnicas probabilísticas; **distribuição amostral e teorema central do limite por simulação** | Mil amostras, histograma das médias, o centro e a largura |
 | 8 | Erro de amostragem: sistemático e aleatório | Erro padrão, margem de erro, nível de confiança e **tamanho da amostra derivado do intervalo** | Simulador interativo de tamanho de amostra |
 | 9 | **AV2** (Módulos I e II) + entrega do relatório de sorteio | — | — |
 
-A escala Likert, a validade e a confiabilidade (alfa de Cronbach) entram no encontro 8, depois de
-o bloco do encontro 4, porque a alfa é uma função da variância entre itens e da correlação média entre eles. O
+A escala Likert, a validade e a confiabilidade (alfa de Cronbach) entram no encontro 8, depois da
+dispersão do encontro 4, porque o alfa é uma função da variância entre itens e da correlação média entre eles. O
 detalhe do encontro 8, com a minutagem completa, está na seção 6.3.
 
 Aula de sorteio com resultado verificável é o gancho do módulo: o estudante sorteia, confere com
@@ -271,8 +274,8 @@ Aula de sorteio com resultado verificável é o gancho do módulo: o estudante s
 
 O encontro 13 reúne a família da regressão num dia, com a prática aplicada à base do projeto,
 porque a regressão logística é a leitura do resultado da regressão linear com outra escala de
-resposta. A logisticidade do Módulo IV não aparece antes porque depende de correlação e de
-dispersão, ambos do Módulo I e do encontro 13.
+resposta. A regressão logística não aparece antes porque depende de correlação e de
+dispersão, vistas no Módulo I e no próprio encontro 13.
 
 Duas exigências que decorrem da decisão 1 e valem para os dois modelos:
 
@@ -288,12 +291,18 @@ Duas exigências que decorrem da decisão 1 e valem para os dois modelos:
 |---|---|---|---|---|---|---|---|---|---|---|
 | Abertura | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
 | Pesquisa / exposição | 45 | 45 | 60 | — | 45 | 45 | 45 | 90 | 30 | — |
-| Estatística | 90 | 90 | 60 | — | 60 | 60 | 45 | 90 | — | — |
+| Estatística | 90 | 90 | 60 | — | 60 | 60 | 45 | 75 | — | — |
 | Intervalo | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 30 | 15 | — |
 | Ética da coleta primária | — | — | 30 | — | — | — | — | — | — | — |
-| Prática / avaliação | 60 | 60 | 45 | 195 | 90 | 90 | 105 | 75 | 165 | 210 |
-| Síntese e tarefa | 15 | 15 | 15 | — | 15 | 15 | 15 | 15 | — | 15 |
+| Prática / avaliação | 60 | 60 | 45 | 195 | 90 | 90 | 105 | 15 | 165 | 210 |
+| Síntese, entrega e tarefa | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
 | **Total** | **240** | **240** | **240** | **240** | **240** | **240** | **240** | **240** | **240** | **240** |
+
+Três colunas foram corrigidas na produção dos encontros, porque a versão anterior da tabela não
+fechava em 240 minutos: no **E9** e no **E14**, a última linha passou a ser a entrega (do
+relatório de sorteio e da AV3); no **E13**, a prática é feita **dentro** do bloco de estatística,
+com o notebook aberto (75 minutos), e os 15 minutos de prática restantes são só do projeto
+individual. A minutagem detalhada de cada encontro está na camada de condução do deck.
 
 ## 7. Uso de IA generativa e a regra de que nenhum aluno diagnostica
 
@@ -434,7 +443,7 @@ passo e a leitura do exemplo vem antes da leitura do próprio resultado.
 Os roteiros foram eliminados, e a condução virou a segunda camada do próprio slide. A
 geração é **cirúrgica e idempotente**: o gerador nunca reescreve o que não é dele.
 
-- `notebooks/geradores/slide_builder.py`: o módulo común aos quinze encontros. Ele lê o
+- `notebooks/geradores/slide_builder.py`: o módulo comum aos quinze encontros. Ele lê o
   `slides/encontro-NN.html` que já existe, **preserva intactos** o `<head>`, as fontes, os
   marcadores SVG inline (`#sv`, `#sg`, `#sd`, `#sc`), o logo e o rodapé de cada tela, e o
   conteúdo de cada `<section class="slide">`. Só acrescenta o que é seu: `<div id="deck">`
@@ -499,7 +508,7 @@ avaliação continuar no encontro 8.
 | 14 | **AV3** | Relatório final, notebook reprodutível e apresentação sintética de três a cinco minutos | 1/3 |
 | 15 | Prova final | Parte A conceitual, sem consulta, em células de texto; Parte B prática, com consulta e registro de IA | — |
 
-A AV1 no encontro 5 só é exigível porque o encontro 1 jáensinou a obter dados por API: o marco
+A AV1 no encontro 5 só é exigível porque o encontro 1 já ensinou a obter dados por API: o marco
 "base escolhida com a carga funcionando" é consequência direta do que foi ensinado. A parte de
 plano amostral que hoje está na AV1 migra para a AV2. A entrega completa do projeto (problema,
 hipóteses, variáveis) fica como formativa no encontro 7 e é reescrita no encontro 9.
@@ -534,13 +543,13 @@ apresentados como lista de verificação antes de qualquer download:
 1. **Periodicidade** e precisão do período de referência
 2. **Granularidade**: empresa, município, UF, nacional
 3. **Cobertura territorial e temporal** da base
-4. **Metadado**: quem produz, com que metodologia, com que periodicidade, se é revidado ou não
+4. **Metadado**: quem produz, com que metodologia, com que periodicidade, se é revisado ou não
 5. **Licença e citação**: o que se pode publicar e como se cita
 6. **Acesso**: API, arquivo para download ou digitação manual
 
 ### 12.2 Fontes da disciplina
 
-Oito fontes. As quatro primeras já eram usadas; as quatro últimas entraram na reformulação, todas
+Oito fontes. As quatro primeiras já eram usadas; as quatro últimas entraram na reformulação, todas
 com chamada testada em 28/09/2026. O registro completo, com separador, codificação, tamanho, data
 e contingência, está em [`dados/FONTES.md`](dados/FONTES.md), que é material didático do
 encontro 4.
@@ -551,7 +560,7 @@ encontro 4.
 | Banco Central | SGS e boletim Focus | API `python-bcb` | Juros, câmbio, inflação, crédito, inadimplência |
 | IPEA | Ipeadata | API `ipeadatapy` | Séries macroeconômicas e setoriais |
 | CVM | Cadastro de companhias e DFP/ITR | CSV abertos com `pandas` | Receita, lucro, margem e endividamento por setor |
-| **ANP** | SHPC (preços de revenda) e processamento de petróleo | CSV mensal, `sep=";"`, `utf-8-sig` | **Preço de combustível por posto no Maranhão**: 10.641 linhas posto-mês, 11 municípios, 3 produtos, ano de 2025 completo. É a base do item o bloco do encontro 3 (média × mediana) e de o bloco do encontro 4 e o bloco do encontro 5 |
+| **ANP** | SHPC (preços de revenda) e processamento de petróleo | CSV mensal, `sep=";"`, `utf-8-sig` | **Preço de combustível por posto no Maranhão**: 10.641 linhas posto-mês, 11 municípios, 3 produtos, ano de 2025 completo. É a base do bloco de tendência central (média × mediana) e dos blocos de dispersão e de forma |
 | **ANTT** | Catálogo aberto CKAN e cadastro CIOT | API CKAN pública, **sem chave** | A **busca em catálogo** como lição de como achar fonte aberta, e o CIOT como exemplo de fluxo entre municípios |
 | **DNIT** | Catálogo aberto CKAN | API CKAN pública, **sem chave** | Pavimentação, pesagem, contagem de tráfego |
 | **Receita Federal** | Base CNPJ: municípios e CNAEs | WebDAV com token público de link | **O universo do plano amostral do Módulo II**: 5.572 municípios e 1.359 atividades, 65 KB no total |
@@ -599,30 +608,39 @@ descartado e por quê faz parte de ensinar a escolher fonte.
 2. Validação das fontes novas e reescrita do `dados/FONTES.md`. **Feito em 28/09/2026**, com seis
    CSVs de contingência novos gravados em `dados/`.
 3. `nb_helper.py` com `cartao`, `conferir`, `CONFIG`, painel do encontro e execução na geração.
+   **Feito.**
 4. **Encontro 1 como implementação de referência**: gerador de slide com camada de detalhe, e
    notebook com `CONFIG`, painel, glossário e saídas salvas. Revisão do padrão travada aqui.
+   **Feito.**
 5. Encontros 2 a 15, em três levas: Módulo I (2 a 4), Módulos II e III (6 a 12), Módulo IV (13 a 15).
-6. Migração dos 16 roteiros para a camada de detalhe e remoção do diretório.
-7. `README.md` e programa em Word.
+   **Feito em 14/10/2026**, com o guia acumulado do Módulo I
+   (`notebooks/modulo-I/guia_descritiva.ipynb`) e a camada de condução da aula inaugural.
+6. Migração dos 16 roteiros para a camada de detalhe e remoção do diretório. **Feito em
+   14/10/2026**: o histórico do git preserva os roteiros.
+7. `README.md` e programa em Word. **Feito em 14/10/2026.**
 8. Verificação final: cada deck testado em três resoluções e nos dois modos; cada notebook
-   regerado, executado e com as saídas conferidas.
+   regerado, executado e com as saídas conferidas. **Feito em 14/10/2026**: dezesseis decks com
+   seções balanceadas e condução idempotente; quinze notebooks e o guia sem célula de código
+   vazia, sem erro de execução e sem conferência reprovada.
 
 ## 14. Referências de apoio do bloco de estatística
 
 Base elementar, em português e com acesso pela biblioteca da UFMA, porque a turma não pode ser
 exigida em inglês técnico nem em estatística de nível de bacharelado:
 
-- LEVI, Edward. **Elementos de estatística**. Rio de Janeiro: LTC. Referência da progressão
-  elementar dos Módulos I e II.
-- BLUNDAN, Jeffrey; BLUNDAN, Donna. **Estatística aplicada à gestão e à economia**. Porto Alegre:
-  AMGH. Referência de aplicação à Administração.
+- VIEIRA, Sonia. **Elementos de estatística**. 4. ed. São Paulo: Atlas, 2003. Referência da
+  progressão elementar dos Módulos I e II.
+- BLUMAN, Allan G. **Elementary statistics**: a step by step approach. 8. ed. New York:
+  McGraw-Hill, 2012. Referência da explicação passo a passo, para consulta do professor: é a
+  edição original, sem tradução brasileira localizada.
+  (As duas substituem, em 14/10/2026, duas referências que não constam de nenhum catálogo.)
 - PINTO, Suzi Samá; SILVA, Carla Silva da. **Estatística**: volume I. Rio Grande: Editora da FURG,
   2020. Acesso aberto.
 - SILVA, Carla Silva da; SAMÁ, Suzi. **Estatística**: volume II. Rio Grande: Editora da FURG, 2021.
   Acesso aberto.
 - ANDERSON, David R.; SWEENEY, Dennis J.; WILLIAMS, Thomas A. **Estatística aplicada à
-  administração e economia**. 3. ed. São Paulo: Cengage Learning, 2013. Demovida a "aplicada",
-  por ser de nível intermediário e técnico demais para a turma.
+  administração e economia**. 3. ed. São Paulo: Cengage Learning, 2013. Mantida como
+  complementar, por ser de nível intermediário e técnico demais para a base da turma.
 - GRUS, Joel. **Data science do zero**. 2. ed. Rio de Janeiro: Alta Books, 2021.
 - MCKINNEY, Wes. **Python para análise de dados**. 3. ed. São Paulo: Novatec, 2023.
 

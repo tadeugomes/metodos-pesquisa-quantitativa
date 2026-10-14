@@ -1,5 +1,11 @@
 # Plano de revisão da disciplina: estatística integrada à pesquisa
 
+> **Documento substituído.** Esta é a versão 2 do plano, mantida apenas como registro
+> histórico. Ela foi substituída pelo [`PLANO_REFORMULACAO.md`](PLANO_REFORMULACAO.md)
+> (versão 3, de 28/09/2026), que reorganiza a disciplina em quatro módulos com a
+> estatística na base. Os encontros, as avaliações e a numeração citados abaixo **não
+> valem mais**.
+
 Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA. Versão 2, com as decisões do professor incorporadas, 12/09/2026.
 
 > **Decisões tomadas** (substituem a seção 7 da versão 1)

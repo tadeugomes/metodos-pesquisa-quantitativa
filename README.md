@@ -30,11 +30,11 @@ vem o número; o número sai de uma célula executada e conferida.
 ## Encontros
 
 Legenda do estado: **pronto** = telas com a camada de condução e notebook pré-executado;
-**telas** = telas com condução, sem notebook; **v2** = material antigo, ainda no padrão
-anterior.
+**telas** = telas com condução, sem notebook.
 
 | # | Módulo | Tema | Parte 2 — estatística | Estado | Slides | Notebook |
 |---|---|---|---|---|---|---|
+| 0 | — | Aula inaugural: o que é um projeto de pesquisa quantitativo | O vocabulário: população, amostra, variável, parâmetro | **telas** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-00.html) | — |
 | 1 | I | O que é pesquisa quantitativa; ambientação ao Colab | Ler um conjunto de dados: frequência e o denominador | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-01.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-01/encontro01.ipynb) |
 | 2 | I | Variáveis, tipos de dado e níveis de mensuração | A regra da medida: o nível decide o que calcular | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-02.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-02/encontro02.ipynb) |
 | 3 | I | Problema, objetivos e hipóteses | Tendência central: média, mediana e moda | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-03.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-03/encontro03.ipynb) |
@@ -42,23 +42,25 @@ anterior.
 | 5 | I | **AV1** — conceitual, prática e 1ª entrega do projeto | — (dia de avaliação) | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-05.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-05/encontro05.ipynb) |
 | 6 | II | Delineamentos; população, amostra e amostragem sem sorteio | — (o bloco volta no 7) | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-06.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-06/encontro06.ipynb) |
 | 7 | II | As quatro técnicas probabilísticas de sorteio | Distribuição amostral e teorema central do limite | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-07.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-07/encontro07.ipynb) |
-| 8 | II | Tamanho da amostra, instrumentos e escalas | Erro padrão, margem de erro e o *n* do estudo | v2 | *em revisão* | *em revisão* |
-| 9 | II | **AV2** — Módulos I e II | — (dia de avaliação) | v2 | *em revisão* | *em revisão* |
-| 10 | III | Do intervalo de confiança à lógica do teste | Intervalo de confiança | v2 | *em revisão* | *em revisão* |
-| 11 | III | Testes de média e qui-quadrado | Hipóteses, valor-p e escolha do teste | v2 | *em revisão* | *em revisão* |
-| 12 | III | ANOVA, não-paramétricos e revisão | ANOVA e testes de posto | v2 | *em revisão* | *em revisão* |
-| 13 | IV | Correlação, regressão linear e logística | r, R² e os coeficientes | v2 | *em revisão* | *em revisão* |
-| 14 | IV | Comunicação; **AV3** — relatório e apresentação | — (dia de avaliação) | v2 | *em revisão* | *em revisão* |
-| 15 | IV | Prova final | — | v2 | *em revisão* | *em revisão* |
+| 8 | II | Erro de amostragem, instrumentos, escalas e ética da coleta primária | Margem de erro e o tamanho da amostra derivado do intervalo | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-08.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-08/encontro08.ipynb) |
+| 9 | II | **AV2** — Módulos I e II e entrega do relatório de sorteio | — (dia de avaliação) | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-09.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-09/encontro09.ipynb) |
+| 10 | III | Do intervalo de confiança à lógica do teste | Hipóteses, nível de significância e valor-p | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-10.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-10/encontro10.ipynb) |
+| 11 | III | Erros tipo I e II, poder e a tabela de decisão | Testes t e qui-quadrado; o fluxograma de escolha | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-11.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-11/encontro11.ipynb) |
+| 12 | III | ANOVA e quando o paramétrico não cabe; revisão do módulo | Testes de postos: Mann-Whitney, Wilcoxon, Kruskal-Wallis | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-12.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-12/encontro12.ipynb) |
+| 13 | IV | Correlação, R² e o que eles não dizem sobre causa | Regressão linear simples e múltipla e regressão logística | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-13.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-13/encontro13.ipynb) |
+| 14 | IV | Comunicação dos resultados; **AV3** — relatório e apresentação | — (dia de avaliação) | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-14.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-14/encontro14.ipynb) |
+| 15 | IV | Prova final | — (dia de avaliação) | **pronto** | [abrir](https://tadeugomes.github.io/metodos-pesquisa-quantitativa/slides/encontro-15.html) | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/encontro-15/encontro15.ipynb) |
 
-**O que já está pronto e verificado:** os **encontros 1 a 7** — 44, 35, 46, 54, 9, 48 e 21
-telas, todos com a camada de condução, todos idempotentes — e **sete notebooks pré-executados**,
-com a conferência passando nos números reais. O Módulo I está fechado (1 a 5) e o Módulo II vai
-até o encontro 7.
+**O material está completo e verificado:** os **dezesseis decks** (aula inaugural e encontros
+1 a 15) têm a camada de condução, e todos os geradores de condução são idempotentes; os
+**quinze notebooks** estão pré-executados, com todas as conferências passando nos números
+reais — a única exceção visível são as células de decisão da prova final, que chegam em
+branco para o estudante preencher. Os quatro módulos estão fechados.
 
-**O que falta:** o encontro 8 (erro padrão, tamanho da amostra e instrumentos) e os encontros
-9 a 15. Os roteiros em Markdown dos encontros 1 a 7 já tiveram o conteúdo migrado para a
-condução; os dos encontros 8 a 15 ainda são a fonte do conteúdo.
+**O guia do Módulo I.** O notebook
+[`notebooks/modulo-I/guia_descritiva.ipynb`](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/modulo-I/guia_descritiva.ipynb)
+reúne, em um arquivo só, os 41 itens de estatística descritiva dos encontros 1 a 4, cada um com
+a fórmula comentada, o código mínimo e a conferência. É a referência rápida para as avaliações.
 
 ## Como o material funciona
 
@@ -163,6 +165,7 @@ estão registradas com o motivo** — inclusive as que foram descartadas e as qu
 │   └── ufma-slides.js         # navegação e modo condução
 ├── notebooks/
 │   ├── encontro-NN/           # notebook do encontro, pré-executado
+│   ├── modulo-I/              # o guia acumulado da estatística descritiva
 │   └── geradores/             # scripts Python que geram notebooks e slides
 └── dados/                     # CSVs de contingência e o FONTES.md
 ```
@@ -172,6 +175,8 @@ estão registradas com o motivo** — inclusive as que foram descartadas e as qu
 - `notebooks/geradores/gera_encontroNN.py` — o conteúdo do notebook. Execute-o e o `.ipynb` é
   regerado **e reexecutado**, com as saídas salvas.
 - `notebooks/geradores/gera_slide_NN.py` — só a **condução**. As telas se editam no HTML, à mão.
+- `notebooks/geradores/gera_guia_descritiva.py` — o guia acumulado do Módulo I, regerado e
+  reexecutado como os notebooks dos encontros.
 - `notebooks/geradores/slide_builder.py` — a transformação. Ele **preserva intactos** o `<head>`,
   as fontes, os marcadores SVG, o logo e o rodapé de cada tela, e o conteúdo de cada tela. Rodar
   duas vezes produz o mesmo arquivo.
@@ -192,10 +197,11 @@ o HTML.
 
 ### Complementar — estatística
 
-- LEVI, Edward. **Elementos de estatística**. Rio de Janeiro: LTC. *Referência da progressão
-  elementar dos Módulos I e II.*
-- BLUNDAN, Jeffrey; BLUNDAN, Donna. **Estatística aplicada à gestão e à economia**. Porto
-  Alegre: AMGH. *Referência de aplicação à Administração.*
+- VIEIRA, Sonia. **Elementos de estatística**. 4. ed. São Paulo: Atlas, 2003. *Referência da
+  progressão elementar dos Módulos I e II.*
+- BLUMAN, Allan G. **Elementary statistics**: a step by step approach. 8. ed. New York:
+  McGraw-Hill, 2012. *Referência da explicação passo a passo; edição original, sem tradução
+  brasileira localizada.*
 - PINTO, Suzi Samá; SILVA, Carla Silva da. **Estatística**: volume I. Rio Grande: Editora da
   FURG, 2020. Acesso aberto.
 - SILVA, Carla Silva da; SAMÁ, Suzi. **Estatística**: volume II. Rio Grande: Editora da FURG,
