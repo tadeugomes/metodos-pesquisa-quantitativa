@@ -3,17 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 8: Avaliação 1</title>
+<title>Encontro 8: Erro de amostragem, tamanho da amostra e instrumentos de coleta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="sv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8D0333"/></marker>
+<marker id="sg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0AB0AB"/></marker>
+<marker id="sd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a67c2e"/></marker>
+<marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
+</defs></svg>
+
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 8 · Unidade II</div>
-  <h1>Avaliação 1</h1>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 8 · Módulo II · População, amostra e mensuração</div>
+  <h1>Erro de amostragem, tamanho da amostra e instrumentos de coleta</h1>
+  <p class="subtitulo">Quantos casos sortear, e com que instrumento medir</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -25,332 +37,1001 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Como o encontro está organizado</h2>
+  <h2>O que vamos fazer hoje</h2>
+  <p>No encontro 7 a pergunta foi: <em>se eu sortear mil vezes, como as estimativas se
+  distribuem?</em> Hoje a pergunta é a de quem vai a campo: <strong>quantos casos sortear
+  para errar no máximo tanto</strong> — e com que instrumento medir o que se quer medir.</p>
   <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>15 min</td><td>Orientações e abertura do notebook</td></tr>
-    <tr><td>20 min</td><td><strong>Revisão</strong> pelas fichas de estatística dos encontros 0 a 7</td></tr>
-    <tr><td>55 min</td><td><strong>Prova, Parte A</strong> (conceitual e estatística, sem consulta)</td></tr>
-    <tr><td>75 min</td><td><strong>Prova, Parte B</strong> (prática, com consulta)</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>45 min</td><td>Entrega da 1ª etapa do projeto + plantão de dúvidas</td></tr>
-    <tr><td>15 min</td><td>Encerramento e panorama da Unidade III</td></tr>
+    <tr><th>Bloco</th><th>A pergunta do bloco</th></tr>
+    <tr><td><strong>Parte 1:</strong> o erro e o instrumento</td>
+        <td>Que tipos de erro uma pesquisa comete? Como se constrói um questionário, uma
+        escala Likert, e como se sabe se ela é confiável?</td></tr>
+    <tr><td><strong>Parte 2:</strong> estatística</td>
+        <td>Como o erro padrão vira margem de erro, e a margem vira o <strong>tamanho da
+        amostra</strong>?</td></tr>
+    <tr><td><strong>Ética da coleta primária</strong></td>
+        <td>O que muda quando o dado sai de uma pessoa: TCLE, Resolução CNS 510/2016 e
+        LGPD</td></tr>
+    <tr><td><strong>Prática no Colab</strong></td>
+        <td>O simulador de tamanho de amostra, e o alfa de Cronbach sobre respostas
+        simuladas</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">O fio do dia</span>
+  O <strong>erro aleatório</strong> se controla com o tamanho da amostra, e a fórmula diz
+  quanto. O <strong>erro sistemático</strong> não se controla com tamanho nenhum: se controla
+  com o cadastro, com o sorteio e com o instrumento. O encontro trata dos dois.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
+<section class="slide divisor">
+  <h2>Parte 1: o erro e o instrumento</h2>
+  <p>Dois tipos de erro, e como medir sem errar o que se mede</p>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Dois tipos de erro: aleatório e sistemático</h2>
+  <div class="cartoes">
+    <div class="cartao alt-verde">
+      <h4>Erro aleatório (de amostragem)</h4>
+      <p>A estimativa varia de amostra para amostra, <strong>ora para cima, ora para
+      baixo</strong>. Em média, acerta.</p>
+      <p>Como tiros <strong>espalhados em torno do centro</strong> do alvo.</p>
+      <p><strong>Diminui com n</strong>, e o erro padrão do encontro 7 diz quanto.</p>
+    </div>
+    <div class="cartao">
+      <h4>Erro sistemático (viés)</h4>
+      <p>A estimativa erra <strong>sempre para o mesmo lado</strong>, por um defeito do
+      cadastro, da resposta ou do instrumento.</p>
+      <p>Como tiros <strong>agrupados longe do centro</strong>.</p>
+      <p><strong>Não diminui com n</strong>, e nenhuma fórmula o mede.</p>
+    </div>
+  </div>
+  <div class="definicao"><span class="rotulo">A distinção que organiza o encontro</span>
+  A margem de erro de uma pesquisa mede <strong>só o erro aleatório</strong>. Quando um
+  relatório diz “margem de 3 pontos”, ele está dizendo: <em>supondo que não haja viés</em>.
+  É por isso que o sorteio, o cadastro e o instrumento vêm antes da conta.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>As três fontes de viés</h2>
+  <table>
+    <tr><th>Viés</th><th>O que acontece</th><th>Exemplo em Administração</th><th>Como reduzir</th></tr>
+    <tr><td><strong>De cobertura</strong></td>
+        <td>O cadastro deixa de fora parte da população-alvo</td>
+        <td>Pesquisar “as empresas do Maranhão” pelo cadastro da Junta Comercial: as
+        informais ficam de fora</td>
+        <td>Declarar a diferença entre população-alvo e cadastro (encontro 6)</td></tr>
+    <tr><td><strong>De não resposta</strong></td>
+        <td>Quem não responde é diferente de quem responde</td>
+        <td>Survey de satisfação por e-mail: responde quem está muito satisfeito ou muito
+        insatisfeito</td>
+        <td>Insistir com os sorteados; comparar respondentes e não respondentes no que o
+        cadastro tem</td></tr>
+    <tr><td><strong>De mensuração</strong></td>
+        <td>O instrumento mede outra coisa, ou induz a resposta</td>
+        <td>“Você concorda que o nosso atendimento melhorou?”</td>
+        <td>Redação neutra, pré-teste, escala validada</td></tr>
+  </table>
+  <p class="menor">As três têm a mesma assinatura: empurram a estimativa para um lado, e
+  <strong>aumentar a amostra só faz errar com mais precisão</strong>.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Aumentar a amostra não conserta viés</h2>
+  <div class="exemplo"><span class="rotulo">O caso clássico: a eleição americana de 1936</span>
+  A revista <em>Literary Digest</em> enviou cédulas a cerca de 10 milhões de pessoas,
+  tiradas de listas de assinantes, de donos de automóvel e de catálogos telefônicos, e
+  recebeu <strong>cerca de 2,4 milhões de respostas</strong>. Previu a vitória de Landon.
+  Roosevelt venceu com cerca de <strong>61% dos votos</strong>.</div>
+  <p>Os dois vieses atuaram juntos: o <strong>de cobertura</strong> (em 1936, ter telefone e
+  automóvel era sinal de renda alta) e o <strong>de não resposta</strong> (respondeu quem
+  quis). Pesquisas com algumas dezenas de milhares de entrevistas, escolhidas com mais
+  cuidado, acertaram o vencedor.</p>
+  <div class="alerta"><span class="rotulo">A lição, que vale para o seu TCC</span>
+  Dois milhões de respostas de um cadastro enviesado valem menos que algumas centenas de
+  respostas sorteadas de um cadastro bom. <strong>Tamanho não substitui sorteio.</strong>
+  É o que a amostra por conveniência do encontro 7 já tinha mostrado nos postos.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O questionário: anatomia e a regra de ouro</h2>
+  <div class="colunas">
+    <div>
+      <h3>As partes, nesta ordem</h3>
+      <ol>
+        <li><strong>Apresentação e consentimento</strong> (TCLE): quem pesquisa, para quê, e
+            o aceite antes da primeira pergunta;</li>
+        <li><strong>Instruções</strong>: como responder, quanto tempo leva;</li>
+        <li><strong>Blocos temáticos</strong>: um bloco por construto da matriz de
+            amarração;</li>
+        <li><strong>Caracterização no fim</strong>: porte, setor, cargo. No começo, cansa e
+            pode enviesar.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Os tipos de pergunta</h3>
+      <ul>
+        <li><strong>Fechada</strong>, de escolha única ou múltipla: opções
+            <strong>exaustivas</strong> (cobrem todos os casos) e <strong>mutuamente
+            exclusivas</strong> (sem sobreposição);</li>
+        <li><strong>Aberta</strong>: rica, mas cara de analisar;</li>
+        <li><strong>Escala</strong>: o grau de concordância ou de frequência.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="definicao"><span class="rotulo">A regra de ouro</span>
+  Cada pergunta corresponde a <strong>uma variável da matriz de amarração</strong>, com o
+  nível de mensuração já decidido (encontro 2). Pergunta que não vai ser analisada é custo
+  para o respondente, sem retorno para a pesquisa.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Defeitos de redação: o item que mede outra coisa</h2>
+  <table>
+    <tr><th>Defeito</th><th>O item com defeito</th><th>O item corrigido</th></tr>
+    <tr><td><strong>Pergunta dupla</strong></td><td>“O atendimento foi rápido e cordial?”</td>
+        <td>Dois itens: um sobre rapidez, outro sobre cordialidade</td></tr>
+    <tr><td><strong>Indutora</strong></td><td>“Você concorda que o serviço melhorou?”</td>
+        <td>“Como você avalia o serviço neste ano, comparado ao anterior?”</td></tr>
+    <tr><td><strong>Jargão</strong></td><td>“Qual o seu <em>churn</em> mensal?”</td>
+        <td>“Quantos clientes deixaram de comprar no último mês?”</td></tr>
+    <tr><td><strong>Sem período de referência</strong></td><td>“Com que frequência você
+        compra a prazo?”</td><td>“Nos últimos 30 dias, quantas compras você fez a prazo?”</td></tr>
+    <tr><td><strong>Opções sobrepostas</strong></td><td>“1 a 5 funcionários / 5 a 10”</td>
+        <td>“1 a 4 / 5 a 9 / 10 ou mais”</td></tr>
+    <tr><td><strong>Dupla negação</strong></td><td>“Não é verdade que o prazo não é
+        cumprido?”</td><td>“O fornecedor cumpre o prazo combinado.”</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">O remédio é o pré-teste</span>
+  Aplicar o instrumento a um grupo pequeno, parecido com a população, <strong>antes</strong>
+  da coleta. Quem escreveu a pergunta não enxerga a ambiguidade; quem responde, sim.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A escala Likert</h2>
+  <div class="definicao"><span class="rotulo">O que é</span>
+  Um conjunto de <strong>afirmações</strong> sobre o mesmo construto, cada uma respondida
+  num grau de concordância — tipicamente de 1 (discordo totalmente) a 5 (concordo
+  totalmente). O construto <strong>não se mede com um item</strong>: “satisfação com o
+  fornecedor” é a soma, ou a média, de vários.</div>
+  <ul>
+    <li><strong>Quantos pontos:</strong> 5 ou 7. Mais pontos não trazem mais informação se o
+        respondente não distingue entre eles;</li>
+    <li><strong>Ponto neutro:</strong> com número ímpar, há um “nem concordo nem discordo”.
+        Tirá-lo força uma posição, e isso é uma decisão a declarar;</li>
+    <li><strong>Âncoras rotuladas:</strong> o que significa cada ponto, escrito, e não só o
+        número;</li>
+    <li><strong>Item invertido:</strong> redigido ao contrário (“tenho problemas frequentes
+        com este fornecedor”) para pegar quem responde no automático. Precisa ser
+        <strong>recodificado</strong> antes de somar.</li>
+  </ul>
+  <div class="alerta"><span class="rotulo">O nível de mensuração (encontro 2)</span>
+  Um item Likert é <strong>ordinal</strong>. A soma de vários itens costuma ser tratada como
+  intervalar, e é isso que autoriza a média da escala. É uma <strong>convenção</strong>, e o
+  relatório precisa declará-la.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Validade e confiabilidade</h2>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>Validade</h4>
+      <p>O instrumento mede <strong>o que diz medir</strong>.</p>
+      <p>Uma balança é válida para peso, e não para altura. Uma escala de “satisfação” que
+      na verdade mede “simpatia pelo vendedor” não é válida.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Confiabilidade</h4>
+      <p>O instrumento mede <strong>de forma consistente</strong>.</p>
+      <p>A mesma balança dá o mesmo peso em pesagens repetidas. Os itens de uma escala
+      confiável “andam juntos”: quem concorda com um tende a concordar com os outros.</p>
+    </div>
+  </div>
+  <table>
+    <tr><th>No alvo</th><th>Confiável?</th><th>Válido?</th></tr>
+    <tr><td>Tiros agrupados no centro</td><td>Sim</td><td>Sim — o instrumento bom</td></tr>
+    <tr><td>Tiros agrupados longe do centro</td><td>Sim</td><td>Não — mede outra coisa, com
+        precisão</td></tr>
+    <tr><td>Tiros espalhados</td><td>Não</td><td>Não dá para saber</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">A assimetria que importa</span>
+  Confiabilidade é condição <strong>necessária</strong>, mas <strong>não suficiente</strong>,
+  de validade.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O alfa de Cronbach: função de k e de r̄</h2>
+  <div class="formula">
+    <span class="expr">α<span class="op">=</span>
+      <span class="frac"><span class="cima">k × r&#772;</span>
+        <span class="baixo">1 + (k − 1) × r&#772;</span></span></span>
+    <span class="simbolos">
+      <span><b>k</b>o número de itens da escala</span>
+      <span><b>r&#772;</b>a correlação média entre os itens</span>
+      <span><b>α</b>o alfa (padronizado), de 0 a 1</span>
+    </span>
+    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> o alfa sobe quando
+    os itens andam juntos (r&#772; alto) <strong>e</strong> quando a escala tem mais itens
+    (k alto). O piso usual é <strong>0,7</strong>. Os dois motores estão na mesma fórmula, e
+    é por isso que o alfa precisa ser lido com cuidado.</span>
+  </div>
+  <p>Nas respostas simuladas da prática, a correlação média é <strong>r&#772; = 0,501</strong>.
+  Com <em>a mesma</em> correlação, só o número de itens muda o alfa:</p>
+  <table>
+    <tr><th>Itens (k)</th><th>2</th><th>3</th><th>6</th><th>12</th></tr>
+    <tr><td>Alfa</td><td>0,668</td><td>0,751</td><td>0,858</td><td>0,923</td></tr>
   </table>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p>A Avaliação 1 verifica o que vocês construíram nas Unidades I e II. Ao final, você deve
-  ser capaz de:</p>
-  <ol>
-    <li><strong>Distinguir</strong> tipos de pesquisa (descritiva, correlacional, experimental,
-        quase-experimental) a partir de situações concretas;</li>
-    <li><strong>Formular</strong> problema de pesquisa em forma de pergunta e hipóteses
-        testáveis (com H0);</li>
-    <li><strong>Classificar</strong> variáveis por papel e por nível de mensuração;</li>
-    <li><strong>Caracterizar</strong> técnicas de amostragem e <strong>calcular</strong>
-        tamanho de amostra;</li>
-    <li><strong>Reconhecer</strong> exigências de validade, confiabilidade e ética;</li>
-    <li><strong>Aplicar</strong> esses conceitos à sua própria investigação (1ª etapa do projeto).</li>
+  <h2>O alfa na prática: o item invertido</h2>
+  <div class="alerta"><span class="rotulo">Dados simulados</span>
+  As respostas abaixo foram <strong>geradas por código</strong>, com semente fixa, para fins
+  didáticos: 200 gestores, seis itens sobre um fornecedor, escala de 1 a 5. Não são de uma
+  pesquisa real.</div>
+  <ol class="passos">
+    <li>O item 6, “tenho problemas frequentes com este fornecedor”, é <strong>invertido</strong>.
+        As correlações dele com os outros cinco são todas negativas, de
+        <span class="num">−0,42</span> a <span class="num">−0,53</span>;</li>
+    <li>Calculado sem recodificar o item 6, o alfa é <span class="num">0,561</span> — abaixo
+        do piso de 0,7. A escala parece ruim;</li>
+    <li>Recodificado o item 6 (5 vira 1, 4 vira 2...), o alfa é
+        <span class="num">0,857</span>. O defeito era de digitação da análise, e não da
+        escala.</li>
   </ol>
+  <div class="definicao"><span class="rotulo">Os três limites do alfa</span>
+  (1) mede <strong>consistência</strong>, e não validade; (2) sobe mecanicamente com o
+  número de itens; (3) exige que todos os itens apontem para o mesmo lado. Alfa é ferramenta
+  de diagnóstico, não selo de qualidade.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Antes de começar (15 min)</h2>
-  <div class="instrucao">
-    <span class="rotulo">Como vamos fazer</span>
-    <ol>
-      <li>Confirme que você consegue entrar no Google Colab com a sua conta;</li>
-      <li>Abra <code>notebooks/encontro-08/encontro08_aluno.ipynb</code> e deixe-o pronto
-          (ainda sem executar a prova);</li>
-      <li>Os dados são o extrato do CEMPRE (tabela 9582), os mesmos dos encontros 1 e 5.
-          Se a API do SIDRA estiver fora do ar, a célula de contingência carrega a base
-          localmente: execute-a e siga em frente;</li>
-      <li>Receba a Parte A (papel ou formulário fechado) e aguarde o sinal para iniciar.</li>
-    </ol>
-  </div>
-  <div class="alerta">
-    <span class="rotulo">Atenção</span>
-    Durante toda a Parte B, mantenha abertos <strong>apenas</strong> o Colab e o material da
-    disciplina. Outras abas ou aplicativos de mensagem abertos invalidam a prova.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-3" data-conducao="1">
+<section class="slide divisor estat">
+  <h2>Parte 2: estatística</h2>
+  <p>Margem de erro e o tamanho da amostra que ela exige</p>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Composição da nota da Avaliação 1</h2>
-  <table>
-    <tr><th>Componente</th><th>Peso</th></tr>
-    <tr><td>Parte A, conceitual e estatística (8 questões)</td><td><strong>40%</strong></td></tr>
-    <tr><td>Parte B, prática em notebook (3 tarefas)</td><td><strong>40%</strong></td></tr>
-    <tr><td>Primeira etapa do projeto individual</td><td><strong>20%</strong></td></tr>
-  </table>
-  <p class="menor">A Avaliação 1 corresponde a um terço da nota semestral (média aritmética
-  das três avaliações).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Revisão pelas fichas (20 min)</h2>
-  <p>Antes da prova, percorremos as fichas de revisão dos blocos de estatística dos encontros 0 a
-  7. Cada ficha tem quatro quadros: a fórmula, o código do Colab, a frase de leitura e o erro a
-  evitar. É esse o formato que as questões 6 a 8 cobram.</p>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A pergunta que a estatística do dia responde</h2>
+  <div class="pergunta">Quantos postos eu preciso visitar para estimar o preço médio da
+  gasolina no Maranhão com erro de, no máximo, <strong>5 centavos</strong>?</div>
+  <p>No encontro 7 a conta foi num sentido: dado o tamanho da amostra (50 postos), quanto a
+  estimativa varia? Hoje a conta vai no sentido contrário, que é o de quem planeja uma
+  pesquisa: <strong>dado o erro que eu aceito, quantos casos eu sorteio?</strong></p>
+  <div class="definicao"><span class="rotulo">Regra do dia</span>
+  O tamanho da amostra sai da <strong>margem de erro</strong> que se aceita e da
+  <strong>confiança</strong> que se quer — e não do tamanho da população, nem de uma
+  porcentagem dela.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro padrão, nível de confiança e margem de erro</h2>
+  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
+  <strong>Erro padrão</strong>: o quanto a estimativa costuma variar de amostra para amostra
+  (encontro 7).<br>
+  <strong>Nível de confiança</strong>: de todas as amostras que se poderiam sortear, a
+  proporção que fica dentro da margem. Com 95%, 19 em cada 20.<br>
+  <strong>Margem de erro</strong>: o erro máximo aceito, a esse nível de confiança. É o erro
+  padrão multiplicado pelo número de erros padrão que a confiança exige.</div>
+  <div class="limites">
+    <div class="usa"><span class="rotulo">Use</span>
+    Para <strong>planejar</strong> uma coleta por sorteio — quantos casos, antes de ir a
+    campo — e para declarar no relatório o quanto a estimativa pode errar.</div>
+    <div class="nao-usa"><span class="rotulo">Não use</span>
+    Para dar margem de erro a amostra <strong>por conveniência</strong>. A fórmula supõe
+    sorteio; sem ele, o erro que importa é o viés, e a margem calculada é falsa
+    precisão.</div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A margem de erro, com cada símbolo nomeado</h2>
+  <div class="formula">
+    <span class="expr">E<span class="op">=</span>z<span class="op">×</span>
+      <span class="frac"><span class="cima">s</span>
+        <span class="baixo">√n</span></span></span>
+    <span class="simbolos">
+      <span><b>E</b>a margem de erro</span>
+      <span><b>z</b>quantos erros padrão a confiança exige</span>
+      <span><b>s ÷ √n</b>o erro padrão (encontro 7)</span>
+    </span>
+    <span class="legenda-formula"><strong>Como receita:</strong> calcule o erro padrão;
+    escolha a confiança; troque a confiança pelo seu z; multiplique. É a régua do escore z do
+    encontro 4, aplicada à estimativa.</span>
+  </div>
   <table>
-    <tr><th>Encontro</th><th>Ficha</th><th>O que a prova pode pedir</th></tr>
-    <tr><td>0</td><td>O vocabulário</td><td>Distinguir população e amostra, parâmetro e estatística; classificar o tipo de variável</td></tr>
-    <tr><td>1</td><td>Frequência e porcentagem</td><td>Calcular percentual identificando o denominador correto</td></tr>
-    <tr><td>2</td><td>Proporção e tabela cruzada</td><td>Ler proporção por linha e escrever a diferença em pontos percentuais</td></tr>
-    <tr><td>3</td><td>Medidas de posição</td><td>Escolher entre média e mediana à vista de valores extremos, e justificar</td></tr>
-    <tr><td>4</td><td>Dispersão</td><td>Interpretar desvio padrão e usar o coeficiente de variação para comparar escalas</td></tr>
-    <tr><td>5</td><td>Erro padrão e intervalo</td><td>Dizer o que a margem de erro exige do desenho amostral, e o que 95% de confiança significa</td></tr>
-    <tr><td>6</td><td>Consistência interna</td><td>Ler um alfa de Cronbach e separar confiabilidade de validade</td></tr>
-    <tr><td>7</td><td>Probabilidade</td><td>Ler uma probabilidade condicional sem inverter o denominador</td></tr>
+    <tr><th>Confiança</th><th>90%</th><th>95%</th><th>99%</th></tr>
+    <tr><td>z</td><td>1,645</td><td>1,960</td><td>2,576</td></tr>
   </table>
-  <div class="frase-resultado"><span class="rotulo">O que se cobra, em uma frase</span>
-  Não se cobra conta de cabeça. Cobra-se <strong>escolher a medida certa</strong>, saber
-  <strong>que função do pandas a produz</strong> e <strong>escrever a leitura</strong> do número
-  em uma frase que outra pessoa entenda.</div>
+  <p class="menor">Com os 50 postos do encontro 7: E = 1,960 × 0,0481 = <strong>R$ 0,0943</strong>.
+  Mais confiança pede um z maior, e uma margem mais larga para o mesmo n.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
-
-
-<section class="slide">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte A: regras (55 min)</h2>
-  <ul>
-    <li>A prova inteira é no <strong>Colab</strong>. A Parte A é respondida nas células de
-        texto do próprio notebook, e as três questões de estatística têm também uma célula de
-        código;</li>
-    <li><strong>Sem consulta</strong> durante a Parte A: nenhuma outra aba aberta, nenhum
-        material, e <strong>sem IA</strong>. Esta parte mede o que você sabe sozinho;</li>
-    <li>São <strong>8 questões</strong>: cinco conceituais sobre os encontros 1 a 7 e três de
-        estatística, que pedem a escolha da medida, o código que a produz e a leitura do
-        resultado em uma frase;</li>
-    <li>Ao terminar, execute a célula <strong>"Encerramento da Parte A"</strong>, que registra o
-        horário. Só depois dela a consulta e a IA ficam liberadas, para a Parte B;</li>
-    <li>Respostas <strong>objetivas e justificadas</strong>: frase que responde vale mais que
-        página que enrola.</li>
-  </ul>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte A: o que cada questão pede</h2>
-  <table>
-    <tr><th>Questão</th><th>Tema</th><th>O que se espera</th></tr>
-    <tr><td>1</td><td>Tipos de pesquisa</td><td>Identificar o tipo em quatro situações e justificar cada uma em uma frase</td></tr>
-    <tr><td>2</td><td>Problema e hipóteses</td><td>Redigir problema delimitado, hipótese direcional com H0 e apontar um defeito de testabilidade</td></tr>
-    <tr><td>3</td><td>Variáveis</td><td>Classificar cinco variáveis por nível de mensuração e indicar estatísticas adequadas e inadequadas</td></tr>
-    <tr><td>4</td><td>Amostragem</td><td>Explicar limites da conveniência, desenhar uma estratificação e raciocinar sobre margem de erro</td></tr>
-    <tr><td>5</td><td>Instrumentos e ética</td><td>Validade versus confiabilidade, defeitos de redação de item e exigências éticas com dados agregados</td></tr>
-    <tr><td><strong>6</strong></td><td><strong>Descrição</strong></td><td>Diante de uma tabela com média e mediana distantes, escolher a medida de posição, escrever o código que a produz e justificar a escolha</td></tr>
-    <tr><td><strong>7</strong></td><td><strong>Proporção</strong></td><td>Ler uma tabela cruzada, calcular a proporção pedida identificando o denominador correto e escrever a diferença em pontos percentuais</td></tr>
-    <tr><td><strong>8</strong></td><td><strong>Dispersão e inferência</strong></td><td>Comparar dispersões de escalas diferentes com o coeficiente de variação, e dizer o que a margem de erro exige do desenho amostral</td></tr>
-  </table>
-  <div class="instrucao">
-    <span class="rotulo">Regras</span>
-    Toda resposta precisa de <strong>justificativa</strong>: classificar sem explicar vale
-    metade. Leia a questão inteira antes de escrever e responda a cada subitem (a, b, c).
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>O tamanho da amostra: a mesma fórmula, ao contrário</h2>
+  <div class="formula">
+    <span class="expr">n<sub>0</sub><span class="op">=</span>(<span class="frac"><span class="cima">z × s</span><span class="baixo">E</span></span>)<sup>2</sup>
+      <span class="op">&nbsp;&nbsp;</span>
+      n<sub>0</sub><span class="op">=</span><span class="frac"><span class="cima">z<sup>2</sup> × p (1 − p)</span><span class="baixo">E<sup>2</sup></span></span></span>
+    <span class="simbolos">
+      <span><b>n<sub>0</sub></b>o n sem correção</span>
+      <span><b>s</b>o desvio da variável (média)</span>
+      <span><b>p</b>a proporção esperada; sem informação, 0,5</span>
+    </span>
+  </div>
+  <div class="formula">
+    <span class="expr">n<span class="op">=</span><span class="frac"><span class="cima">n<sub>0</sub></span><span class="baixo">1 + (n<sub>0</sub> − 1) ÷ N</span></span></span>
+    <span class="simbolos">
+      <span><b>N</b>o tamanho do cadastro</span>
+      <span><b>n</b>o n corrigido para população finita</span>
+    </span>
+    <span class="legenda-formula"><strong>Como receita:</strong> escolha a margem e a
+    confiança; para média, use o desvio; para proporção, use p = 0,5, o caso que exige o
+    maior n; se n<sub>0</sub> for uma fatia grande do cadastro, corrija; e arredonde
+    <strong>sempre para cima</strong>.</span>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
-
-<section class="slide">
+<section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte B: regras (75 min)</h2>
-  <ul>
-    <li>Abra <code>encontro08_aluno.ipynb</code> e preencha <strong>nome e
-        matrícula</strong> (a matrícula é a semente do seu sorteio, individualiza sua
-        prova);</li>
-    <li><strong>Consulta permitida</strong> ao material da disciplina (slides, roteiros,
-        notebooks anteriores) e à <strong>IA generativa</strong>;
-        <strong>comunicação entre colegas, não</strong>;</li>
-    <li>Usou IA? <strong>Registre o prompt</strong> na célula de texto indicada e diga como
-        conferiu a resposta;</li>
-    <li>3 tarefas: classificação de variáveis (10 pts) · plano amostral e sorteio (15 pts)
-        · tamanho da amostra (15 pts);</li>
-    <li>Antes de entregar: <em>Ambiente de execução → Reiniciar e executar tudo</em>,
-        célula quebrada não pontua.</li>
-  </ul>
-  <div class="instrucao">
-    <span class="rotulo">Como vamos fazer</span>
-    Trabalhe na ordem das tarefas; o tempo sugerido é de <strong>20 min</strong> para a
-    Tarefa 1, <strong>30 min</strong> para a Tarefa 2 e <strong>25 min</strong> para a
-    Tarefa 3. Só o Colab e o material da disciplina podem estar abertos na tela.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte B: Tarefa 1: classificação de variáveis (10 pts)</h2>
-  <div class="instrucao">
-    <span class="rotulo">O que fazer (cerca de 20 min)</span>
-    <ol>
-      <li>Execute as células de carga e inspecione a base: nomes das colunas, tipos, primeiras
-          linhas e valores distintos;</li>
-      <li>Preencha a célula de texto estruturada com, para cada variável: <strong>o que
-          mede</strong>, <strong>papel possível</strong> (independente, dependente, controle)
-          e <strong>nível de mensuração</strong>.</li>
-    </ol>
-  </div>
-  <div class="alerta">
-    <span class="rotulo">Atenção</span>
-    Código numérico não é, por si só, variável numérica: pergunte-se o que o número
-    representa e se operações aritméticas com ele fazem sentido. Não deixe nenhuma
-    variável sem justificativa.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte B: Tarefa 2: plano amostral e sorteio (15 pts)</h2>
-  <div class="instrucao">
-    <span class="rotulo">O que fazer (cerca de 30 min)</span>
-    <ol>
-      <li>Cenário: um survey com as empresas do extrato. Escreva o plano na célula de texto:
-          <strong>técnica</strong> escolhida e justificativa, <strong>cadastro</strong>
-          (de onde vem a lista) e <strong>estratos</strong>, se houver;</li>
-      <li>Execute o sorteio de uma <strong>amostra aleatória simples de 100 empresas</strong>
-          com semente fixa (sua matrícula);</li>
-      <li>Compare a distribuição setorial da amostra com a da população e comente o resultado.</li>
-    </ol>
-  </div>
-  <div class="alerta">
-    <span class="rotulo">Atenção</span>
-    Sem semente fixa, o sorteio muda a cada execução e a correção não reproduz o seu
-    resultado. Na comparação, use proporções (não contagens) e diga se as diferenças
-    são compatíveis com o acaso.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Parte B: Tarefa 3: tamanho da amostra (15 pts)</h2>
-  <div class="instrucao">
-    <span class="rotulo">O que fazer (cerca de 25 min)</span>
-    <ol>
-      <li>Complete a função de tamanho de amostra (fórmula de proporção com
-          <strong>correção para população finita</strong>);</li>
-      <li>Calcule o n para margens de erro de <strong>5%</strong> e <strong>3%</strong>,
-          com 95% de confiança, usando o N do extrato;</li>
-      <li>Responda por escrito: <strong>qual margem você adotaria neste cenário e por
-          quê?</strong> Considere custo, prazo e o uso que se fará dos resultados.</li>
-    </ol>
-  </div>
-  <div class="alerta">
-    <span class="rotulo">Atenção</span>
-    Margem de erro entra na fórmula como proporção (0,05), não como 5. Se a função
-    devolver n maior que N, algo está errado na correção finita. A justificativa da
-    escolha vale tanto quanto o cálculo.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Entrega da 1ª etapa do projeto (20%)</h2>
-  <p>Via compartilhamento do notebook do projeto, contendo:</p>
-  <ul>
-    <li><strong>Tema delimitado</strong> (setor, período, território, população);</li>
-    <li><strong>Problema</strong> em forma de pergunta;</li>
-    <li><strong>Hipótese</strong> (com H0);</li>
-    <li><strong>Variáveis</strong> com papel e nível de mensuração;</li>
-    <li><strong>Base de dados</strong> escolhida, com tabela/série identificada;</li>
-    <li><strong>Matriz de amarração</strong> preenchida.</li>
-  </ul>
-  <p class="menor">Critérios: coerência interna da matriz, viabilidade da base e correção
-  técnica das classificações. O plantão do bloco 5 tira dúvidas de <em>entrega</em>, não de
-  conteúdo.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>1ª etapa do projeto: critérios de avaliação</h2>
-  <table>
-    <tr><th>Critério</th><th>O que será observado</th></tr>
-    <tr><td><strong>Coerência interna da matriz</strong></td><td>Elos completos e compatíveis: tema, problema, hipótese, variáveis e base apontam para a mesma pergunta</td></tr>
-    <tr><td><strong>Viabilidade da base</strong></td><td>Tabela ou série identificada, acessível e com as variáveis necessárias para testar a hipótese</td></tr>
-    <tr><td><strong>Correção técnica das classificações</strong></td><td>Papel (independente, dependente, controle) e nível de mensuração corretos para cada variável</td></tr>
-  </table>
-  <div class="instrucao">
-    <span class="rotulo">Entrega</span>
-    Compartilhe o link do notebook do projeto com permissão de leitura e confira se todas as
-    seis seções estão preenchidas, inclusive a <strong>matriz de amarração</strong>. Item
-    ausente não pontua; item inconsistente pontua parcialmente.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Finalização e plantão (45 min)</h2>
-  <div class="instrucao">
-    <span class="rotulo">Como vamos fazer</span>
-    <ol>
-      <li>Use o tempo para <strong>finalizar</strong> o notebook do projeto: revise a matriz
-          de amarração linha a linha e confirme que a base escolhida realmente contém as
-          variáveis anunciadas;</li>
-      <li>O professor circula pelo laboratório: chame para dúvidas <strong>pontuais de
-          entrega</strong> (formato, compartilhamento, item obrigatório);</li>
-      <li>Orientação de conteúdo já aconteceu nos encontros 3 e 4 e não será dada agora;</li>
-      <li>Ao terminar, verifique o checklist dos três artefatos antes de sair.</li>
-    </ol>
-  </div>
-  <div class="alerta">
-    <span class="rotulo">Atenção</span>
-    O plantão não é hora de trocar de tema ou refazer o projeto do zero. Ajuste o que
-    está incompleto e entregue o que você já construiu.
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Checklist antes de sair</h2>
-  <ol>
-    <li>✅ Prova <strong>Parte A</strong> entregue;</li>
-    <li>✅ Link do notebook da <strong>Parte B</strong> compartilhado (todas as células
-        executadas);</li>
-    <li>✅ Link do notebook do <strong>projeto individual</strong> (1ª etapa)
-        compartilhado.</li>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido, passo a passo: quantos postos visitar?</h2>
+  <ol class="passos">
+    <li>O cadastro: <span class="num">236 postos</span>, desvio do preço de
+        <span class="num">R$ 0,3402</span>. A pergunta: margem de
+        <span class="num">R$ 0,05</span> com 95% de confiança, logo
+        <span class="num">z = 1,960</span>;</li>
+    <li>Sem correção: n<sub>0</sub> = (1,960 × 0,3402 ÷ 0,05)² =
+        <span class="num">177,8 → 178 postos</span>;</li>
+    <li>178 é três quartos do cadastro: corrige-se. n = 177,8 ÷ (1 + 176,8 ÷ 236) =
+        <span class="num">101,7</span>;</li>
+    <li>Arredondando para cima: <span class="num">n = 102 postos</span>, 43% do
+        cadastro;</li>
+    <li>A verificação: sorteadas <span class="num">1.000 amostras de 102</span>,
+        <span class="num">96,2%</span> erraram menos que R$ 0,05. A promessa era 95%.</li>
   </ol>
-  <div class="pergunta">São <strong>três artefatos</strong>. Confira os três antes de
-  deixar o laboratório.</div>
+  <p class="menor">O passo 5 só é possível porque, neste cadastro, o valor verdadeiro é
+  conhecido (R$ 6,0087). Em pesquisa real ele não é, e é a fórmula que sustenta a
+  promessa.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
-
-<section class="slide">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que vem pela frente: Unidade III</h2>
-  <ul>
-    <li><strong>Encontros 9–10:</strong> estatística descritiva, tabelas e gráficos;</li>
-    <li><strong>Encontro 11:</strong> inferência e testes de hipóteses;</li>
-    <li><strong>Encontro 12:</strong> Avaliação 2, análise prática em laboratório;</li>
-    <li><strong>Encontro 13:</strong> correlação e regressão;</li>
-    <li>Sempre sobre as bases que você já conhece: CVM, CEMPRE, Banco Central.</li>
-  </ul>
-  <p>A devolutiva das notas e a resolução comentada da prova abrem o encontro 9.</p>
-  <p class="menor">Tarefa: nenhuma leitura nova, descanse. Quem quiser adiantar: revisar
-  medidas descritivas de estatística básica.</p>
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Exemplo resolvido: a proporção e o tamanho da população</h2>
+  <ol class="passos">
+    <li>Estimar uma proporção com margem de <span class="num">5 pontos percentuais</span>, a
+        95%, com <span class="num">p = 0,5</span>: n<sub>0</sub> = 1,960² × 0,5 × 0,5 ÷
+        0,05² = <span class="num">384,1 → 385</span>;</li>
+    <li>O mesmo cálculo, corrigido para quatro cadastros reais:</li>
+  </ol>
+  <table>
+    <tr><th>Cadastro</th><th>N</th><th>n necessário</th><th>% do cadastro</th></tr>
+    <tr><td>Postos de gasolina do MA (ANP)</td><td>236</td><td>147</td><td>62,3%</td></tr>
+    <tr><td>Municípios do Brasil (Receita Federal)</td><td>5.572</td><td>360</td><td>6,5%</td></tr>
+    <tr><td>Empresas do Maranhão (CEMPRE 2024)</td><td>168.098</td><td>384</td><td>0,23%</td></tr>
+    <tr><td>Empresas do Brasil (CEMPRE 2024)</td><td>10.607.110</td><td>385</td><td>0,004%</td></tr>
+  </table>
+  <p>O cadastro cresce <strong>45 mil vezes</strong>; o n necessário, <strong>2,6
+  vezes</strong>. A verificação nos postos: metade é de bandeira branca (50,0%), e de
+  1.000 amostras de 147, <strong>95,1%</strong> ficaram a menos de 5 pontos do valor
+  verdadeiro.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
 </section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se lê o exemplo</h2>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Para estimar o preço médio da gasolina com erro máximo de 5 centavos, em 19 de cada 20
+  sorteios, bastam <strong>102 dos 236 postos</strong>. E para uma proporção com 5 pontos de
+  margem, cerca de <strong>385 casos</strong> bastam em qualquer cadastro grande, seja de 168
+  mil empresas, seja de 10,6 milhões.</div>
+  <p>E o mistério do encontro 7, resolvido pela correção para população finita:</p>
+  <table>
+    <tr><th>Amostras de 50 postos (encontro 7)</th><th>Margem a 95%</th><th>Amostras dentro</th></tr>
+    <tr><td>Sem a correção</td><td>R$ 0,0943</td><td>98,0%</td></tr>
+    <tr><td>Com a correção (× 0,8897)</td><td>R$ 0,0839</td><td>95,6%</td></tr>
+  </table>
+  <p class="menor">A largura observada no encontro 7 (R$ 0,0418) saiu menor que a fórmula
+  previa (R$ 0,0481) porque 50 postos são <strong>21% do cadastro</strong>. Quando a amostra
+  é uma fatia grande da população, ela varia menos — e a correção diz quanto.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Como se faz no Colab</h2>
+  <pre class="codigo">z = norm.ppf(1 - (1 - CONFIANCA) / 2)        <span class="cmt"># 1,960 para 95%</span>
+n0 = (z * s / MARGEM) ** 2                   <span class="cmt"># sem correção</span>
+n = n0 / (1 + (n0 - 1) / N)                  <span class="cmt"># com a correção para N</span>
+n = <span class="fn">int</span>(np.ceil(n))                           <span class="cmt"># arredonda PARA CIMA</span>
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<span class="cmt"># a verificação: sortear mil vezes e contar quantas ficaram dentro</span>
+estimativas = [populacao.sample(n=n, random_state=k).mean() <span class="fn">for</span> k <span class="fn">in</span> <span class="fn">range</span>(1000)]
+dentro = (<span class="fn">abs</span>(np.array(estimativas) - populacao.mean()) &lt;= MARGEM).mean()</pre>
+  <p>O argumento que se muda é <strong><code>MARGEM</code></strong>, no bloco de
+  configuração — junto com <code>CONFIANCA</code> e <code>N_POPULACAO</code>. O notebook vira
+  um <strong>simulador</strong>: muda-se a pergunta, e ele devolve o n e confere, por
+  sorteio, se a margem prometida se cumpre.</p>
+  <p class="menor">O <code>np.ceil</code> é a única decisão do código que não está na fórmula:
+  arredondar para baixo entregaria uma margem um pouco maior que a pedida.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>A frase de leitura que vai para o relatório</h2>
+  <div class="frase-resultado"><span class="rotulo">A frase</span>
+  “Para estimar o preço médio da gasolina comum nos postos do Maranhão com margem de erro de
+  <strong>R$ 0,05</strong> e <strong>95% de confiança</strong>, sorteiam-se <strong>102 dos
+  236 postos</strong> do cadastro da ANP (desvio padrão de R$ 0,34; tamanho calculado com
+  correção para população finita). Em 1.000 sorteios simulados, <strong>96,2%</strong> das
+  estimativas ficaram dentro da margem (ANP, SHPC, 2025).”</div>
+  <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
+  Que a estimativa vai errar menos de R$ 0,05 <strong>com certeza</strong>: cerca de 1
+  sorteio em 20 erra mais, e é isso que os 95% admitem. E ela não diz nada sobre
+  <strong>viés</strong>: se o sorteio for trocado por conveniência, a margem calculada deixa
+  de valer.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide estatistica">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Erro comum: a amostra de 10% da população</h2>
+  <div class="colunas">
+    <div class="alerta">
+      <span class="rotulo">O caso errado</span>
+      “Vou ouvir 10% das empresas do Maranhão: 16.810 empresas. Para os postos, 10% são 24
+      postos.”<br><br>
+      A regra parece prudente e erra para os dois lados: <strong>gasta demais</strong> no
+      cadastro grande e <strong>sorteia de menos</strong> no pequeno.
+    </div>
+    <div class="exemplo">
+      <span class="rotulo">O caso certo</span>
+      O n sai da margem e da confiança, e a fórmula diz quanto:<br><br>
+      Empresas do Maranhão, ±5 pontos a 95%: <strong>384</strong> — cerca de 44 vezes menos
+      que os 10%.<br><br>
+      Postos, ±R$ 0,05 a 95%: <strong>102</strong> — mais de quatro vezes os 10%.
+    </div>
+  </div>
+  <p class="menor">Guarde a regra: <strong>o tamanho da população quase não importa a partir
+  de alguns milhares</strong>; o que manda é a margem de erro que se aceita.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Ficha de revisão: margem de erro e tamanho da amostra</h2>
+  <div class="ficha">
+    <div>
+      <h4>As fórmulas</h4>
+      <span class="expr">E = z × s ÷ √n</span>
+      <p>Média: n<sub>0</sub> = (z × s ÷ E)². Proporção: n<sub>0</sub> = z² × p(1 − p) ÷ E²,
+      com p = 0,5. Correção: n = n<sub>0</sub> ÷ (1 + (n<sub>0</sub> − 1) ÷ N).</p>
+    </div>
+    <div>
+      <h4>No Colab</h4>
+      <pre class="codigo">z = norm.ppf(0.975)
+n0 = (z * s / MARGEM) ** 2
+n = n0 / (1 + (n0 - 1) / N)
+n = int(np.ceil(n))</pre>
+    </div>
+    <div>
+      <h4>A frase de leitura</h4>
+      <p>“Para estimar X com margem de E e confiança de C%, sorteiam-se n dos N casos do
+      cadastro.”</p>
+      <p>No exemplo: 102 dos 236 postos, ±R$ 0,05, 95%.</p>
+    </div>
+    <div>
+      <h4>O erro</h4>
+      <p>Escolher o n como porcentagem da população, ou dar margem de erro a amostra por
+      conveniência. A fórmula supõe sorteio, e não enxerga viés.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-4" data-conducao="1">
+<section class="slide divisor">
+  <h2>Ética da coleta primária</h2>
+  <p>Quando o dado sai de uma pessoa, e não de uma tabela</p>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Dado secundário e dado primário: o que muda</h2>
+  <table>
+    <tr><th></th><th>Dado secundário agregado</th><th>Dado primário</th></tr>
+    <tr><td><strong>Exemplos</strong></td><td>IBGE, ANP, CVM, Banco Central — as bases do
+        semestre</td><td>Questionário, entrevista, observação feitos pelo pesquisador</td></tr>
+    <tr><td><strong>Comitê de ética (CEP)</strong></td><td>Dispensado: a Resolução CNS
+        510/2016 não exige registro para informação de acesso público nem para banco de
+        dados agregado, sem identificação individual</td><td>Exigido: o projeto vai ao CEP
+        pela <strong>Plataforma Brasil</strong> antes da coleta</td></tr>
+    <tr><td><strong>Consentimento</strong></td><td>Não se aplica</td><td>Obrigatório: o
+        <strong>TCLE</strong>, antes da primeira pergunta</td></tr>
+    <tr><td><strong>LGPD</strong></td><td>Em geral não há dado pessoal</td><td>Há dado
+        pessoal: finalidade, necessidade e anonimização</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">A arquitetura das normas</span>
+  A <strong>Resolução CNS 466/2012</strong> traz as diretrizes gerais da pesquisa com seres
+  humanos; a <strong>Resolução CNS 510/2016</strong> trata das especificidades das ciências
+  humanas e sociais, que é onde a Administração está. Os princípios são os mesmos:
+  autonomia, beneficência, não maleficência, justiça e proteção da privacidade.</div>
+  <p class="menor">Dispensa de CEP não é dispensa de ética: citar a fonte, respeitar a licença
+  e não reidentificar continuam sendo deveres.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O TCLE: o consentimento que precede a primeira pergunta</h2>
+  <p>O <strong>Termo de Consentimento Livre e Esclarecido</strong> traduz a autonomia em
+  documento. Ele precisa dizer, em linguagem que o respondente entenda:</p>
+  <ol>
+    <li><strong>Quem pesquisa e para quê</strong>: o objetivo, em uma frase;</li>
+    <li><strong>O que se pede</strong>: o procedimento e o tempo de resposta;</li>
+    <li><strong>Riscos e benefícios</strong>: em pesquisa social, o risco é de
+        constrangimento ou de exposição, e ele existe;</li>
+    <li><strong>Sigilo</strong>: como os dados serão guardados e divulgados — só de forma
+        agregada;</li>
+    <li><strong>Voluntariedade</strong>: o direito de não responder e de desistir a qualquer
+        momento, sem prejuízo;</li>
+    <li><strong>Contato</strong>: do pesquisador e do CEP.</li>
+  </ol>
+  <div class="instrucao"><span class="rotulo">No Google Formulários</span>
+  O TCLE é a <strong>primeira seção</strong>, com uma pergunta obrigatória de aceite
+  (“Li e concordo em participar”). Quem não aceita, sai do formulário. A Resolução 510/2016
+  admite que o registro do consentimento seja escrito, gravado ou feito por outros meios — o
+  aceite na tela é um deles.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>LGPD e anonimização: coletar menos, proteger mais</h2>
+  <p>A <strong>Lei Geral de Proteção de Dados</strong> (Lei nº 13.709/2018) vale para dado
+  pessoal coletado em pesquisa. Três princípios viram regras práticas no questionário:</p>
+  <table>
+    <tr><th>Princípio</th><th>No questionário</th></tr>
+    <tr><td><strong>Finalidade</strong></td><td>O dado só serve à pergunta declarada no TCLE,
+        e não a outro uso</td></tr>
+    <tr><td><strong>Necessidade</strong> (minimização)</td><td>Não pedir nome, CPF ou e-mail
+        se a análise não usa; faixa de idade em vez da data de nascimento</td></tr>
+    <tr><td><strong>Segurança</strong></td><td>Arquivo de respostas com acesso restrito;
+        identificadores separados das respostas</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">Anonimizar é mais que tirar o nome</span>
+  Numa pesquisa com uma empresa de 40 funcionários, “cargo de gerente + setor financeiro +
+  mais de 50 anos” pode apontar uma única pessoa. É o risco da <strong>célula
+  pequena</strong>: o cruzamento de poucas variáveis reidentifica. A regra é divulgar só
+  agregados, e suprimir ou juntar as categorias com poucos casos.</div>
+  <p class="menor">Dado anonimizado — sem meio razoável de reverter — deixa de ser dado
+  pessoal para a LGPD. Dado só pseudonimizado (o nome trocado por um código, com a chave
+  guardada) continua sendo.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Checklist ético do seu instrumento</h2>
+  <div class="instrucao"><span class="rotulo">Em duplas, 10 minutos</span>
+  Imaginem que o projeto de cada um vai virar um questionário com gestores. Respondam, para
+  o projeto do colega, as cinco perguntas abaixo. Depois, uma dupla apresenta.</div>
+  <ol>
+    <li>A pesquisa precisa de <strong>CEP</strong>? Por quê, pela Resolução 510/2016?</li>
+    <li>O que o <strong>TCLE</strong> diria sobre o objetivo, o tempo e o risco?</li>
+    <li>Qual <strong>dado pessoal</strong> o questionário pede que a análise não usa?</li>
+    <li>Que cruzamento de variáveis poderia <strong>reidentificar</strong> um respondente?</li>
+    <li>Como os resultados seriam <strong>divulgados</strong> sem expor ninguém?</li>
+  </ol>
+  <div class="pergunta">E o projeto do semestre, com dados públicos e agregados: o que dos
+  cinco itens continua valendo?</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-5" data-conducao="1">
+<section class="slide divisor">
+  <h2>Prática no Colab</h2>
+  <p>O simulador de tamanho de amostra e o alfa de respostas simuladas</p>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O simulador: o bloco de configuração</h2>
+  <pre class="codigo">CONFIANCA   = 0.95   <span class="cmt"># nível de confiança: 0.90, 0.95 ou 0.99</span>
+MARGEM      = 0.05   <span class="cmt"># margem de erro da MÉDIA, em R$ por litro</span>
+MARGEM_PROP = 0.05   <span class="cmt"># margem de erro da PROPORÇÃO (5 p.p.)</span>
+N_POPULACAO = 5572   <span class="cmt"># tamanho do cadastro grande (municípios da Receita)</span>
+N_VEZES     = 1000   <span class="cmt"># quantas amostras sortear na verificação</span></pre>
+  <p>Execute o notebook inteiro uma vez, com os valores do slide: todos os
+  <code>conferir</code> mostram <code>[ok]</code>. Depois, <strong>três rodadas</strong>, uma
+  mudança de cada vez:</p>
+  <table>
+    <tr><th>Rodada</th><th>Mude</th><th>Observe</th></tr>
+    <tr><td>1</td><td><code>MARGEM</code> de 0.05 para 0.03</td><td>Quanto o n sobe para
+        uma margem de 3 centavos? A simulação confirma a margem?</td></tr>
+    <tr><td>2</td><td><code>CONFIANCA</code> de 0.95 para 0.99</td><td>O que custa passar de
+        19 em 20 para 99 em 100?</td></tr>
+    <tr><td>3</td><td><code>N_POPULACAO</code> de 5572 para 168098</td><td>O cadastro ficou 30
+        vezes maior. E o n?</td></tr>
+  </table>
+  <p class="menor">Com a configuração mudada, o <code>conferir</code> mostra <code>[X ]</code>,
+  e isso é esperado: o número mudou porque a pergunta mudou.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O alfa sobre respostas simuladas</h2>
+  <div class="alerta"><span class="rotulo">Repita para a turma</span>
+  As respostas Likert do notebook são <strong>simuladas</strong>, com semente fixa
+  (2026). Servem para ver o alfa funcionando, e não descrevem gestor nenhum.</div>
+  <p>A seção 3 do notebook faz três coisas, e a turma só executa e lê:</p>
+  <ol class="passos">
+    <li>Mostra as respostas e a <strong>tabela de frequência</strong> de um item — ordinal,
+        na ordem de 1 a 5 (encontro 2);</li>
+    <li>Calcula o alfa <strong>antes</strong> (<span class="num">0,561</span>) e
+        <strong>depois</strong> (<span class="num">0,857</span>) de recodificar o item
+        invertido;</li>
+    <li>Mostra o alfa como função de k, com a mesma correlação média
+        (<span class="num">r&#772; = 0,501</span>): de <span class="num">0,668</span> com 2
+        itens a <span class="num">0,923</span> com 12.</li>
+  </ol>
+  <div class="instrucao"><span class="rotulo">O que escrever no fim</span>
+  As três perguntas da seção 4: a frase do simulador com a margem de 3 centavos; por que o n
+  quase não muda com o tamanho do cadastro; e o TCLE e a minimização no seu projeto.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Síntese teórica do encontro</h2>
+  <ul>
+    <li><strong>Há dois tipos de erro.</strong> O aleatório diminui com n e a margem de erro o
+        mede; o sistemático — de cobertura, de não resposta, de mensuração — não diminui com
+        n, e nenhuma fórmula o mede;</li>
+    <li><strong>Cada pergunta do questionário é uma variável</strong> da matriz de amarração,
+        redigida sem defeito e testada antes da coleta;</li>
+    <li><strong>Validade e confiabilidade são exigências distintas.</strong> O alfa de
+        Cronbach mede consistência, sobe com o número de itens e com a correlação entre
+        eles, e não prova validade;</li>
+    <li><strong>A margem de erro é z vezes o erro padrão.</strong> Lida ao contrário, ela dá o
+        tamanho da amostra: 102 postos para ±R$ 0,05; 385 casos para ±5 pontos;</li>
+    <li><strong>O n quase não depende do tamanho da população</strong> a partir de alguns
+        milhares — e a correção para população finita reduz o n quando o cadastro é
+        pequeno;</li>
+    <li><strong>Coleta primária pede ética desde o desenho</strong>: CEP pela Plataforma
+        Brasil, TCLE antes da primeira pergunta, LGPD e anonimização.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+<section class="slide leitura">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-leitura">Material de estudo do encontro</span>
+  <h2>Para estudar em casa</h2>
+  <ul>
+    <li><strong>BABBIE (1999)</strong>, <em>Métodos de pesquisa de survey</em>: os capítulos
+        sobre erro amostral, tamanho da amostra e construção de questionários.</li>
+    <li><strong>GIL (2019)</strong>: os capítulos sobre questionário, escalas e o pré-teste.</li>
+    <li><strong>Resolução CNS nº 510/2016</strong> e <strong>Lei nº 13.709/2018</strong>
+        (LGPD): leia o artigo 1º da resolução, que diz o que não vai ao CEP.</li>
+    <li><strong>O notebook do encontro</strong>: rode o simulador com outras margens e outras
+        confianças. É a melhor revisão da AV2.</li>
+    <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai
+        em duas partes.</li>
+  </ul>
+  <h3>Antes de sair</h3>
+  <ul>
+    <li>Diga, para o <strong>seu</strong> projeto: que viés ameaçaria uma coleta própria, e
+        quantos casos ela precisaria para ±5 pontos a 95%;</li>
+    <li>O próximo encontro é a <strong>AV2</strong>, sobre os Módulos I e II: descrição de uma
+        base, plano de amostragem, tamanho da amostra e o <strong>relatório de
+        sorteio</strong>. Revise os notebooks 6, 7 e 8.</li>
+  </ul>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 8</div>
+</section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
+
+<div class="cabecalho-conducao">
+  <h1>Encontro 8</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 2</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a></p>
+    <h2>Abertura e o mapa do dia <span class="min">(15 min)</span></h2>
+    <h3>Objetivos de aprendizagem</h3>
+
+            <p>Ao final do encontro o estudante deverá ser capaz de: (i) distinguir erro
+            aleatório de erro sistemático, e nomear os vieses de cobertura, de não resposta e
+            de mensuração; (ii) reconhecer os defeitos clássicos de redação de um item de
+            questionário; (iii) explicar a escala Likert, a diferença entre validade e
+            confiabilidade, e o que o alfa de Cronbach mede e não mede; (iv) calcular e
+            interpretar a margem de erro a partir do erro padrão; (v) obter o tamanho da
+            amostra para média e para proporção, com a correção para população finita; (vi)
+            dizer o que a coleta primária exige de ética: CEP, TCLE e LGPD.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura e o mapa do dia</td><td>15</td></tr>
+      <tr><td>Parte 1: o erro e o instrumento</td><td>60</td></tr>
+      <tr><td>Parte 2: margem de erro e tamanho da amostra</td><td>60</td></tr>
+      <tr><td>Intervalo</td><td>15</td></tr>
+      <tr><td>Ética da coleta primária</td><td>30</td></tr>
+      <tr><td>Prática no Colab: o simulador e o alfa</td><td>45</td></tr>
+      <tr><td>Síntese e tarefa</td><td>15</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O fio do dia, para anunciar na abertura</span>
+            <p>Há dois tipos de erro, e o encontro trata dos dois. O <strong>aleatório</strong>
+            se controla com o tamanho da amostra, e a Parte 2 dá a fórmula. O
+            <strong>sistemático</strong> não se controla com tamanho nenhum: se controla com o
+            cadastro, com o sorteio e com o instrumento — que é a Parte 1.</p>
+            <p>E o encontro fecha o Módulo II: o que se vê hoje, junto com os encontros 6 e 7,
+            é exatamente o que a AV2 cobra no próximo encontro.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 3 a 12</b> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a> <a class="chip-tela" href="#12">12</a></p>
+    <h2>Parte 1: o erro de amostragem e os instrumentos de coleta <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Erro aleatório e sistemático; as três fontes de viés</td><td>15</td></tr>
+      <tr><td>O caso de 1936: tamanho não conserta viés</td><td>7</td></tr>
+      <tr><td>O questionário e os defeitos de redação</td><td>15</td></tr>
+      <tr><td>Escala Likert, validade e confiabilidade</td><td>11</td></tr>
+      <tr><td>O alfa de Cronbach como função de k e de r̄</td><td>12</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>Repetir até a turma devolver: <strong>a margem de erro mede só o erro
+            aleatório</strong>. Quando um relatório diz “margem de 3 pontos”, ele está dizendo
+            “supondo que não haja viés”. Por isso o cadastro, o sorteio e o instrumento vêm
+            antes da conta — e é por isso que a Parte 1 vem antes da Parte 2.</p>
+            <p>A imagem do alvo serve aos dois momentos do bloco: no começo, para os dois tipos
+            de erro (tiros espalhados em torno do centro × agrupados longe dele); no fim, para
+            validade e confiabilidade. Use a mesma imagem de propósito.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O caso de 1936, contado como história</span>
+            <p>Pergunte antes de mostrar o resultado: <em>“uma revista recebeu 2,4 milhões de
+            respostas; uma pesquisa concorrente ouviu algumas dezenas de milhares. Qual
+            acertou?”</em>. A turma aposta na maior. A resposta — a menor — é o argumento mais
+            forte do semestre contra “amostra boa é amostra grande”.</p>
+            <p>Feche ligando ao encontro 7: a amostra por conveniência dos postos errava mais
+            que as sorteadas, e o erro dela não diminuía com n. É o mesmo fenômeno.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O exercício dos defeitos de redação</span>
+            <p>Projete só a coluna do item com defeito e peça à turma que diga o defeito e
+            reescreva o item, antes de mostrar a coluna corrigida. Os seis defeitos aparecem
+            nos questionários de TCC todo semestre; o mais frequente é a <strong>pergunta
+            dupla</strong>, e o mais grave é a <strong>indutora</strong>, porque produz viés de
+            mensuração que nenhuma análise corrige.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O alfa, sem fórmula decorada</span>
+            <p>O plano pede o alfa <strong>depois</strong> da dispersão do encontro 4 porque ele
+            é uma função da variância e da correlação entre itens. Apresente a forma
+            padronizada, α = k × r̄ ÷ (1 + (k − 1) × r̄), e leia a tabela: com a mesma
+            correlação média (0,501), o alfa vai de 0,668 com 2 itens a 0,923 com 12. A
+            conclusão sai sozinha: <strong>alfa alto pode ser só escala longa</strong>.</p>
+            <p>O caso do item invertido (0,561 → 0,857) é o fechamento: o defeito não estava na
+            escala, e sim na análise que esqueceu de recodificar. Diga que os dados são
+            simulados — e diga de novo na prática.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Achar que amostra grande compensa cadastro ruim.</strong> É o caso de
+              1936; tamanho reduz o erro aleatório, não o viés;</li>
+              <li><strong>Confundir validade com confiabilidade.</strong> A escala confiável
+              pode medir, com muita consistência, a coisa errada;</li>
+              <li><strong>Ler alfa alto como prova de qualidade.</strong> Ele sobe com o número de
+              itens, e não diz o que a escala mede;</li>
+              <li><strong>Somar item invertido sem recodificar.</strong> O alfa despenca, e o
+              estudante conclui que a escala é ruim;</li>
+              <li><strong>Tratar o item Likert isolado como intervalar.</strong> O item é
+              ordinal; a soma de itens é que se trata como intervalar, por convenção
+              declarada.</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 13 a 24</b> <a class="chip-tela" href="#13">13</a> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a></p>
+    <h2>Parte 2: margem de erro e o tamanho da amostra <span class="min">(60 min)</span></h2>
+    <h3>Minutagem do bloco</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>A pergunta: quantos postos visitar?</td><td>5</td></tr>
+      <tr><td>Erro padrão, nível de confiança e margem de erro</td><td>10</td></tr>
+      <tr><td>A margem de erro e a tabela de z</td><td>8</td></tr>
+      <tr><td>O tamanho da amostra: a fórmula ao contrário</td><td>10</td></tr>
+      <tr><td>Os dois exemplos resolvidos e a leitura</td><td>15</td></tr>
+      <tr><td>Código, frase, erro comum e ficha</td><td>12</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>O encontro 7 fez a conta num sentido: dado n, quanto a estimativa varia. Hoje a
+            conta vai no sentido contrário, que é o de quem planeja: <strong>dado o erro que eu
+            aceito, quantos casos eu sorteio?</strong> É a mesma fórmula, resolvida para n.
+            Dizer isso explicitamente tira o medo da fórmula nova: ela não é nova.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">O momento que mais ensina: a tabela dos quatro cadastros</span>
+            <p>Antes de projetar a tabela, pergunte: <em>“se 147 postos bastam para um cadastro
+            de 236, quantas empresas bastam para o Brasil, com 10,6 milhões?”</em>. A turma
+            chuta milhares. A resposta é 385 — e o cadastro cresce 45 mil vezes enquanto o n
+            cresce 2,6 vezes.</p>
+            <p>É a tela que desmonta a regra dos 10%, e que o erro comum retoma.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O mistério do encontro 7, resolvido</span>
+            <p>No encontro 7 a largura observada das mil médias (R$ 0,0418) saiu menor que a da
+            fórmula (R$ 0,0481), e a diferença ficou sem explicação. A explicação é a
+            <strong>correção para população finita</strong>: 50 postos são 21% do cadastro, e
+            o fator √((236 − 50) ÷ 235) = 0,8897 reduz a margem de R$ 0,0943 para R$ 0,0839.
+            Com a correção, 95,6% das amostras ficam dentro — a promessa era 95%.</p>
+            <p>Vale a frase: <em>“quando a amostra é uma fatia grande da população, ela varia
+            menos, e a correção diz quanto”</em>.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
+            <ol>
+              <li><strong>Escolher o n como porcentagem da população.</strong> É o erro do
+              slide: gasta demais no cadastro grande e sorteia de menos no pequeno;</li>
+              <li><strong>Arredondar para baixo.</strong> 101,7 vira 102, e não 101: com menos,
+              a margem fica um pouco maior que a pedida;</li>
+              <li><strong>Usar p = 0,5 sem saber por quê.</strong> É o caso conservador: o valor
+              de p que maximiza p(1 − p), e portanto o n;</li>
+              <li><strong>Esquecer a correção num cadastro pequeno.</strong> Sem ela, a fórmula
+              pede 385 postos de um cadastro de 236;</li>
+              <li><strong>Dar margem de erro a amostra por conveniência.</strong> A fórmula supõe
+              sorteio; sem ele, a margem é falsa precisão.</li>
+            </ol>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
+            <table>
+              <tr><th>Medida</th><th>Valor</th></tr>
+              <tr><td>Cadastro de postos (ANP, gasolina comum, MA, 2025)</td><td>236 postos</td></tr>
+              <tr><td>Média e desvio da população</td><td>R$ 6,0087 e R$ 0,3402</td></tr>
+              <tr><td>Erro padrão, n = 50</td><td>R$ 0,0481</td></tr>
+              <tr><td>Margem a 95%, n = 50: sem e com correção</td><td>R$ 0,0943 (98,0% dentro) e R$ 0,0839 (95,6% dentro)</td></tr>
+              <tr><td>z para 90%, 95% e 99%</td><td>1,645; 1,960; 2,576</td></tr>
+              <tr><td>n para a média, ±R$ 0,05, 95%: sem correção</td><td>177,8 → 178 postos</td></tr>
+              <tr><td>n com correção para N = 236</td><td>101,7 → 102 postos (43% do cadastro)</td></tr>
+              <tr><td>Simulação: 1.000 amostras de 102</td><td>96,2% dentro de R$ 0,05</td></tr>
+              <tr><td>n para a proporção, ±5 p.p., 95%, p = 0,5</td><td>384,1 → 385</td></tr>
+              <tr><td>Corrigido: N = 236 / 5.572 / 168.098 / 10.607.110</td><td>147 / 360 / 384 / 385</td></tr>
+              <tr><td>Bandeira branca no cadastro de postos</td><td>50,0% (118 de 236)</td></tr>
+              <tr><td>Simulação: 1.000 amostras de 147</td><td>95,1% dentro de 5 p.p.</td></tr>
+            </table>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-4">
+    <p class="telas-da-secao"><b>telas 25 a 29</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a></p>
+    <h2>Ética da coleta primária <span class="min">(30 min)</span></h2>
+    <h3>Minutagem do bloco (depois do intervalo)</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Dado secundário e dado primário: o que muda</td><td>8</td></tr>
+      <tr><td>O TCLE e o consentimento no formulário</td><td>7</td></tr>
+      <tr><td>LGPD, minimização e anonimização</td><td>7</td></tr>
+      <tr><td>Checklist ético em duplas</td><td>8</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
+            <p>Tirar a ética do lugar de burocracia: <strong>pesquisa envolve pessoas, e pessoas
+            não são meio para fins alheios</strong>. O semestre trabalhou com dados secundários
+            e agregados, que a Resolução CNS 510/2016 dispensa de registro no CEP; o encontro de
+            hoje é o primeiro em que se planeja uma coleta própria, e é aí que a ética deixa de
+            ser citação de fonte e vira desenho do instrumento.</p>
+            <p>Ser preciso: a 510/2016 (art. 1º, parágrafo único) lista o que não vai ao CEP —
+            entre outros, informação de acesso público, informação de domínio público e banco
+            de dados agregado sem identificação individual. Questionário com gestores
+            identificáveis <strong>vai</strong>, pela Plataforma Brasil, antes da coleta.</p>
+            <p>E a dispensa só vale se o protocolo <strong>inteiro</strong> se enquadrar
+            nessas hipóteses (Ofício Circular Conep nº 17/2022): basta uma etapa com
+            participante identificável para o projeto ir ao CEP.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A pergunta que fecha o bloco</span>
+            <p><em>“O projeto do semestre usa dados públicos e agregados. O que, do checklist,
+            continua valendo?”</em> A resposta esperada: citar a fonte, respeitar a licença,
+            não tentar reidentificar e não divulgar células pequenas. A dispensa de CEP não é
+            dispensa de ética.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">O que evitar</span>
+            <ol>
+              <li><strong>Dar o CEP como um carimbo</strong>: o tempo da Plataforma Brasil entra
+              no cronograma de um TCC, e quem descobre isso tarde perde o semestre;</li>
+              <li><strong>Confundir tirar o nome com anonimizar</strong>: o cruzamento de cargo,
+              setor e idade reidentifica numa empresa pequena;</li>
+              <li><strong>Fazer do bloco uma aula de direito</strong>: o foco é o instrumento —
+              o que o TCLE diz, o que o questionário deixa de pedir.</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-5">
+    <p class="telas-da-secao"><b>telas 30 a 32</b> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a></p>
+    <h2>Prática no Colab: o simulador e o alfa <span class="min">(45 min)</span></h2>
+    <h3>Minutagem da prática</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Executar tudo uma vez e conferir os [ok]</td><td>10</td></tr>
+      <tr><td>As três rodadas do simulador</td><td>15</td></tr>
+      <tr><td>O alfa sobre respostas simuladas</td><td>10</td></tr>
+      <tr><td>As três perguntas escritas</td><td>10</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">Condução sugerida</span>
+            <p>Primeiro, todos executam o notebook inteiro com a configuração do slide e
+            conferem os <code>[ok]</code>. Só depois liberar as rodadas, <strong>uma mudança de
+            cada vez</strong>, voltando ao valor original antes da seguinte. Avise que, com a
+            configuração mudada, o <code>conferir</code> mostra <code>[X ]</code>, e que isso é
+            esperado — o número mudou porque a pergunta mudou.</p>
+            <p>Se a CÉLULA A2 (Receita Federal) falhar — “could not resolve host”, 401 ou tempo
+            esgotado —, a turma faz upload de <code>dados/rf_cnpj_municipios.csv</code> e
+            executa a CÉLULA B2. Se a A1 falhar, o mesmo com a B1 e o CSV da ANP.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para a turma, durante a rodada 3</span>
+            <p><em>“O cadastro ficou 30 vezes maior. Quanto o n subiu?”</em> De 360 para 384. É
+            a tabela dos quatro cadastros reaparecendo, agora pela mão de quem executa.</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito das rodadas e do alfa</span>
+            <table>
+              <tr><th>Rodada</th><th>Resultado</th></tr>
+              <tr><td>Configuração do slide</td><td>n = 102 postos; 96,2% dentro de R$ 0,05; proporção: 385 sem correção, 360 para N = 5.572</td></tr>
+              <tr><td>1. <code>MARGEM = 0.03</code></td><td>n<sub>0</sub> = 494,0 → 495; n = 160 postos; 95,8% dentro de R$ 0,03</td></tr>
+              <tr><td>2. <code>CONFIANCA = 0.99</code></td><td>z = 2,576; n<sub>0</sub> = 307,2 → 308; n = 134 postos; 99,1% dentro de R$ 0,05. Proporção: 664 sem correção, 593 para N = 5.572</td></tr>
+              <tr><td>3. <code>N_POPULACAO = 168098</code></td><td>n = 384 (era 360 com N = 5.572)</td></tr>
+              <tr><td>Alfa, item 6 sem recodificar</td><td>0,561 (correlações do item 6: −0,42 a −0,53)</td></tr>
+              <tr><td>Alfa, item 6 recodificado</td><td>0,857</td></tr>
+              <tr><td>Correlação média r̄ e alfa padronizado</td><td>0,501 e 0,858</td></tr>
+              <tr><td>Alfa com o mesmo r̄: k = 2, 3, 6, 12</td><td>0,668; 0,751; 0,858; 0,923</td></tr>
+            </table>
+            <p>Resposta esperada da pergunta 1 do notebook: “para estimar o preço médio com
+            margem de R$ 0,03 e 95% de confiança, sorteiam-se 160 dos 236 postos; em 1.000
+            sorteios, 95,8% das estimativas ficaram dentro da margem”.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-6">
+    <p class="telas-da-secao"><b>telas 33 a 34</b> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
+    <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">Os aprendizados do dia</span>
+            <ol>
+              <li><strong>A margem de erro mede só o erro aleatório</strong>; viés de cobertura,
+              de não resposta e de mensuração não diminuem com n;</li>
+              <li><strong>Confiabilidade não é validade</strong>, e o alfa sobe com o número de
+              itens tanto quanto com a correlação entre eles;</li>
+              <li><strong>O tamanho da amostra é a margem de erro lida ao contrário</strong>: 102
+              postos para ±R$ 0,05; 385 casos para ±5 pontos, em qualquer cadastro grande;</li>
+              <li><strong>Coleta primária pede ética desde o desenho</strong>: CEP, TCLE, LGPD.</li>
+            </ol>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Revise os notebooks dos encontros 6, 7 e 8: <strong>a AV2 é feita sobre eles</strong>
+              — descrição de uma base, plano de amostragem, tamanho da amostra e o relatório de
+              sorteio;</li>
+              <li>Releia as fichas de revisão dos encontros 1 a 4 (frequência, posição,
+              dispersão e forma): a primeira parte da AV2 é a descrição completa de uma base;</li>
+              <li>Para o projeto: escreva, em três linhas, que viés ameaçaria uma coleta própria
+              e quantos casos ela precisaria para ±5 pontos a 95%.</li>
+            </ol>
+            <p>O próximo encontro é a <strong>AV2</strong>, que fecha os Módulos I e II, com
+            consulta e com IA permitida mediante registro do pedido e da checagem.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>

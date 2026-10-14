@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encontro 9: Estatística descritiva</title>
+<title>Encontro 9: Avaliação 2 (Módulos I e II)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ufma-slides.css">
+<link rel="stylesheet" href="ufma-conducao.css">
 </head>
 <body>
 
@@ -17,11 +18,14 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="deck" data-conducao="1">
+<div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
+<section class="secao-projecao" id="sec-1" data-conducao="1">
 <section class="slide capa">
-  <div class="marcador-encontro">Encontro 9 · Unidade III</div>
-  <h1>Estatística descritiva</h1>
-  <p class="subtitulo">Tendência central, dispersão e frequências</p>
-  <p class="subtitulo">Métodos e Técnicas de Pesquisa Quantitativa</p>
+  <div class="marcador-encontro">Encontro 9 · Módulo II · Avaliação 2</div>
+  <h1>Avaliação 2</h1>
+  <p class="subtitulo">Módulos I e II: descrever uma base, planejar a amostra e sortear</p>
   <p class="subtitulo">Prof. Dr. Tadeu Gomes Teixeira</p>
   <div class="bloco-institucional">
     <img src="assets/logo-ufma.png" alt="UFMA">
@@ -33,556 +37,346 @@
   </div>
   <div class="filete-capa"></div>
 </section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>O que vamos fazer hoje</h2>
-  <table>
-    <tr><th>Bloco</th><th>Atividade</th></tr>
-    <tr><td>30 min</td><td>Devolutiva da Avaliação 1: notas e resolução comentada</td></tr>
-    <tr><td>30 min</td><td>Consolidação: assimetria e curtose nos dados da CVM</td></tr>
-    <tr><td>15 min</td><td>Intervalo</td></tr>
-    <tr><td>25 min</td><td>Distribuições de frequência</td></tr>
-    <tr><td>100 min</td><td><strong>Prática no Colab:</strong> descritivas sobre a base CVM</td></tr>
-    <tr><td>30 min</td><td><strong>Oficina:</strong> descritivas da base do seu projeto</td></tr>
-    <tr><td>10 min</td><td>Síntese e tarefa</td></tr>
-  </table>
-  <p class="menor">A virada da disciplina: até aqui planejar e coletar; dos encontros 9 a 13,
-  <strong>analisar</strong>.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section><!-- /secao-projecao -->
+<section class="secao-projecao" id="sec-2" data-conducao="1">
+<section class="slide divisor">
+  <h2>Avaliação 2</h2>
+  <p>Três partes e um relatório: descrever, planejar, sortear — e registrar</p>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Objetivos de aprendizagem</h2>
-  <p class="menor">Ao final do encontro, vocês deverão ser capazes de:</p>
-  <ol>
-    <li><strong>Aplicar</strong> média, mediana, moda, desvio padrão e CV (encontros 3 e 4)
-        a uma base real, maior e mais assimétrica;</li>
-    <li><strong>Reconhecer e nomear</strong> assimetria e curtose, e explicar por que a média
-        setorial pode até trocar de sinal;</li>
-    <li><strong>Aplicar</strong> o cuidado técnico do CV a variáveis com média perto de zero
-        ou negativa;</li>
-    <li><strong>Construir e ler</strong> distribuições de frequência (absoluta, relativa e
-        acumulada) com classes;</li>
-    <li><strong>Produzir</strong> essas medidas em pandas (<code>mean</code>,
-        <code>median</code>, <code>mode</code>, <code>std</code>, <code>describe</code>,
-        <code>groupby</code>, <code>pd.cut</code>) e registrar a interpretação por escrito;</li>
-    <li><strong>Aplicar</strong> o repertório descritivo à base do próprio projeto.</li>
-  </ol>
+  <h2>Como o encontro está organizado</h2>
+  <table>
+    <tr><th>Momento</th><th>O que é</th><th>Duração</th></tr>
+    <tr><td><strong>Abertura</strong></td><td>As regras, o notebook aberto e salvo no Drive</td>
+        <td>15 min</td></tr>
+    <tr><td><strong>Avaliação</strong></td><td>As três partes no Colab, com consulta e com IA
+        registrada</td><td>195 min</td></tr>
+    <tr><td><strong>Intervalo</strong></td><td>No meio da avaliação, na hora que o professor
+        anunciar</td><td>15 min</td></tr>
+    <tr><td><strong>Entrega</strong></td><td>O relatório de sorteio e o link do notebook</td>
+        <td>15 min</td></tr>
+  </table>
+  <div class="pergunta">A avaliação é <strong>inteiramente no Colab</strong>, e
+  <strong>individual</strong>. Consulta liberada; conversa entre colegas, não.</div>
+  <div class="instrucao"><span class="rotulo">Antes de começar</span>
+  Abra o notebook da AV2, no link que o professor enviou, e faça <em>Arquivo → Salvar uma
+  cópia no Drive</em>. Execute a primeira célula de código. Se algo não abrir, chame o
+  professor <strong>agora</strong>, e não depois de perder metade do tempo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Devolutiva da Avaliação 1</h2>
-  <p>Fechar as Unidades I e II com o gabarito público e preparar a Unidade III</p>
-</section>
-
-<section class="slide">
+<section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>As notas e a resolução comentada</h2>
+  <h2>A base da avaliação</h2>
+  <p>Uma base que a turma conhece, com um produto novo: o <strong>cadastro de postos da
+  ANP</strong> (SHPC, Maranhão, 2025), agora para o <strong>etanol</strong>.</p>
+  <table>
+    <tr><th>Item</th><th>O que é</th></tr>
+    <tr><td><strong>Cada linha</strong></td><td>Um posto que vende etanol: CNPJ, município,
+        bandeira e preço</td></tr>
+    <tr><td><strong>Preço</strong></td><td>R$ por litro, na primeira coleta do posto em 2025</td></tr>
+    <tr><td><strong>Recorte</strong></td><td>Maranhão, os municípios pesquisados pela ANP</td></tr>
+    <tr><td><strong>Carga</strong></td><td>CÉLULA A, pronta; CÉLULA B de contingência, só se
+        o professor mandar</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">Por que a mesma base, com outro produto</span>
+  A estrutura é a dos encontros 6 a 8 — um registro por posto, com município e bandeira —,
+  mas os números são outros. A avaliação mede se você <strong>transfere</strong> o que
+  aprendeu, e não se lembra de um número.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte 1: descrever a base (Módulo I)</h2>
+  <p>Cinco questões. Os números já saem calculados: <strong>o que se avalia é a escolha e a
+  frase</strong>.</p>
+  <table>
+    <tr><th>#</th><th>O que a questão pede</th></tr>
+    <tr><td>Q1</td><td>Uma <strong>frequência com o denominador certo</strong>: a mesma
+        contagem aparece dividida por três totais, e só um responde à pergunta</td></tr>
+    <tr><td>Q2</td><td>A <strong>medida de posição</strong> que descreve o preço típico, com a
+        justificativa pelos números</td></tr>
+    <tr><td>Q3</td><td>A <strong>dispersão</strong> — desvio padrão, CV e intervalo
+        interquartílico — em uma frase</td></tr>
+    <tr><td>Q4</td><td>O <strong>gráfico</strong> e a forma da distribuição, em palavras</td></tr>
+    <tr><td>Q5</td><td>A <strong>frase de leitura</strong> do conjunto, com fonte, recorte,
+        ano e unidade</td></tr>
+  </table>
+  <div class="alerta"><span class="rotulo">O que mais custa ponto nesta parte</span>
+  O número sem o denominador declarado, e a medida sem o porquê. <strong>“Entre quem?”</strong>
+  é a pergunta do encontro 1 que a Q1 cobra.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte 2: planejar a amostra (Módulo II)</h2>
+  <div class="exemplo"><span class="rotulo">O cenário</span>
+  A ANP quer repetir a pesquisa de preço do etanol com uma equipe de campo, visitando postos.
+  Não há orçamento para visitar todos: é preciso <strong>sortear</strong>. O cadastro é a
+  lista de postos, com o município de cada um.</div>
+  <table>
+    <tr><th>#</th><th>O que a questão pede</th></tr>
+    <tr><td>Q6</td><td>A <strong>técnica de amostragem</strong>, escolhida pelo formato do
+        cadastro e justificada pelos números — e por que não uma das outras</td></tr>
+    <tr><td>Q7</td><td>O <strong>tamanho da amostra para a média</strong>, com a correção para
+        população finita, e a frase do relatório</td></tr>
+    <tr><td>Q8</td><td>O <strong>tamanho da amostra para a proporção</strong>, o porquê de
+        p = 0,5, e qual n adotar quando a pesquisa tem duas perguntas</td></tr>
+  </table>
+  <div class="instrucao"><span class="rotulo">O que se avalia</span>
+  A técnica certa com a justificativa errada não pontua. A justificativa é <strong>o formato
+  do cadastro</strong> (encontro 7), e não a técnica “mais rigorosa”.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Parte 3: sortear, e o relatório de sorteio</h2>
+  <p>A Q9 sorteia a amostra da pergunta principal, com a técnica e o n das questões
+  anteriores e uma <strong>semente</strong> declarada. Depois, você preenche o
+  <strong>relatório de sorteio</strong>: o documento que permite a qualquer pessoa refazer
+  exatamente o mesmo sorteio.</p>
+  <table>
+    <tr><th>Os oito campos do relatório</th></tr>
+    <tr><td>1. Cadastro (fonte, ano, N) · 2. População-alvo, e a diferença para o
+        cadastro</td></tr>
+    <tr><td>3. Técnica e estratos · 4. Tamanho da amostra, e de onde ele saiu</td></tr>
+    <tr><td>5. Semente · 6. Alocação por estrato</td></tr>
+    <tr><td>7. Estimativa e erro de amostragem · 8. O que o sorteio autoriza concluir, e o que
+        não autoriza</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">Por que a semente</span>
+  Sorteio sem semente não se refaz. A semente é o que transforma “eu sorteei” em “qualquer
+  pessoa pode conferir o meu sorteio” — e é isso que distingue a amostra probabilística de
+  uma lista escolhida a dedo.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>O registro de uso de IA</h2>
+  <p>Na AV2 o assistente é <strong>permitido em todas as partes</strong>, com uma exigência:
+  quem usa, registra. A tabela de registro está no fim do notebook.</p>
+  <table>
+    <tr><th>O que se registra</th><th>Exemplo</th></tr>
+    <tr><td>O <strong>pedido</strong> (o prompt)</td>
+        <td>“com o cartão de contexto abaixo, explique por que a estratificada cabe neste
+        cadastro”</td></tr>
+    <tr><td>A <strong>checagem</strong> que você fez</td>
+        <td>“conferi os números da resposta contra a saída da célula Q6”</td></tr>
+    <tr><td>O que você <strong>mudou</strong> na resposta</td>
+        <td>“a IA disse 150 postos; o cadastro tem outro N, e eu corrigi”</td></tr>
+  </table>
+  <div class="definicao"><span class="rotulo">A regra do semestre</span>
+  <strong>A IA explica, o código calcula, e você confere e escreve.</strong> Cole o
+  <em>cartão de contexto</em> do notebook no pedido: é o que impede o assistente de inventar
+  número. Resposta sem um número que esteja no cartão é alucinação.</div>
+  <p class="menor">O registro não desconta pontos. A omissão é falta de honestidade acadêmica
+  — e é a única coisa desta avaliação que não se recupera com argumento.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>Como a nota é composta</h2>
+  <table>
+    <tr><th>Parte</th><th>Peso</th><th>O que se avalia</th></tr>
+    <tr><td><strong>1</strong> Descrever</td><td>40%</td>
+        <td>O denominador certo, a medida certa para o nível e a forma, e a frase com recorte e
+        unidade</td></tr>
+    <tr><td><strong>2</strong> Planejar</td><td>35%</td>
+        <td>A técnica justificada pelo cadastro, o n calculado e a decisão entre os dois n</td></tr>
+    <tr><td><strong>3</strong> Sortear</td><td>25%</td>
+        <td>O sorteio executado e o relatório com os oito campos</td></tr>
+  </table>
+  <div class="exemplo"><span class="rotulo">O que separa a nota cheia da nota parcial</span>
   <ul>
-    <li>Notas devolvidas <strong>individualmente</strong> (Colab ou impresso);</li>
-    <li>Resolução <strong>questão a questão</strong>, concentrando nas dificuldades reais
-        da turma;</li>
-    <li>Padrões esperados de erro: confusão entre <strong>ordinal e intervalar</strong> na
-        classificação de variáveis e a <strong>justificativa</strong> do plano amostral;</li>
-    <li>As tarefas da prova (classificar variáveis, sortear amostra) são exatamente o que
-        <strong>antecede a análise</strong> que começa hoje.</li>
-  </ul>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer (30 min)</span>
-  Acompanhe a resolução com a sua prova em mãos. Em cada questão, anote onde errou e
-  <strong>por quê</strong>: foi conceito (ordinal ou intervalar?), leitura do enunciado ou
-  justificativa incompleta? Dúvidas sobre a correção são discutidas agora, em aula.</div>
-  <div class="pergunta">O gabarito fecha duas unidades, mas também monta a sala para a
-  Unidade III.</div>
+    <li><strong>Nota cheia</strong>: todos os <code>conferir</code> em <code>[ok]</code>, cada
+        decisão justificada com os números, e cada resultado com a frase de leitura;</li>
+    <li><strong>Nota parcial</strong>: os números certos e a justificativa genérica (“porque é
+        a melhor técnica”);</li>
+    <li><strong>Nota baixa</strong>: o denominador errado na Q1, ou o n escolhido como
+        porcentagem do cadastro. <em>São os dois erros que os Módulos I e II tentaram
+        evitar.</em></li>
+  </ul></div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
-
-<section class="slide divisor">
-  <h2>Estatística descritiva: da revisão à consolidação</h2>
-  <p>Média, mediana, moda (encontro 3), desvio padrão e CV (encontro 4) já foram ensinados;
-  hoje se aplicam a uma base real, maior e mais assimétrica</p>
-</section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Duas medidas novas: assimetria e curtose</h2>
-  <div class="definicao"><span class="rotulo">Assimetria</span>
-  Mede para que lado a distribuição pende. Positiva: cauda longa à direita, poucos valores
-  muito altos, o padrão de receita, salário e faturamento. Negativa: cauda longa à
-  esquerda.</div>
-  <div class="definicao"><span class="rotulo">Curtose</span>
-  Mede o quanto os casos se concentram perto do centro e nas caudas, comparado à
-  distribuição normal. Curtose alta: poucos casos extremos pesam muito no resultado.</div>
-  <div class="pergunta">Regra prática, já vista no encontro 3: média e mediana divergindo
-  muito → distribuição assimétrica ou outliers → reportar as duas.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Nos dados reais da CVM</h2>
-  <div class="afirmacao">A margem líquida das companhias abertas tem extremos tão severos
-  que a <strong>média setorial pode trocar de sinal</strong> por causa de uma única
-  empresa: a assinatura de uma assimetria forte.</div>
-  <div class="exemplo"><span class="rotulo">Por que isso importa para a decisão</span>
-  O mesmo raciocínio vale para qualquer variável de negócio: uma empresa que acompanha o
-  desvio padrão das vendas diárias de um produto usa esse número para decidir o estoque de
-  segurança (desvio alto → picos de demanda a cobrir) e o planejamento financeiro (desvio
-  baixo → vendas previsíveis, alocação de caixa mais simples).</div>
-  <div class="instrucao"><span class="rotulo">Discussão</span>
-  Em duplas, um minuto: citem uma variável do <strong>seu projeto</strong> em que vocês
-  esperam média muito diferente da mediana, e uma em que esperam que coincidam. Justifiquem
-  pela assimetria esperada.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Lembrando o encontro 4: o cuidado técnico do CV</h2>
-  <div class="exemplo"><span class="rotulo">Por que isso já foi visto</span>
-  No encontro 4, o exemplo clássico foi duas turmas com a mesma média (5,0), mas dispersões
-  diferentes: a turma A tinha notas mais espalhadas que a B, e só o desvio padrão revelava a
-  diferença que a média escondia.</div>
-  <div class="pergunta">CV só faz sentido para variáveis de <strong>razão com valores
-  positivos</strong> e média longe de zero.</div>
-  <div class="instrucao"><span class="rotulo">Exercício</span>
-  Para cada variável, digam se o CV faz sentido: (a) receita das companhias; (b) margem
-  líquida; (c) número de funcionários; (d) nota de satisfação de 1 a 5. Justifiquem pelo
-  nível de mensuração e pela posição da média.</div>
-  <p class="menor">A prática de hoje mostrará deliberadamente o CV explodindo na margem
-  líquida, onde a média fica perto de zero.</p>
-  <div class="colunas">
-    <div>
-      <table>
-        <tr><th>CV</th><th>Leitura</th></tr>
-        <tr><td>&gt; 30%</td><td>Alta dispersão</td></tr>
-        <tr><td>15% a 30%</td><td>Média dispersão</td></tr>
-        <tr><td>&lt; 15%</td><td>Baixa dispersão</td></tr>
-      </table>
-    </div>
-    <div>
-      <p class="menor"><strong>Outra aplicação do CV:</strong> comparar ações com preços médios
-      muito diferentes. Ação da Google: média R$ 55,62, desvio R$ 5,10, CV ≈ 9,15%. Ação da
-      Amazon: média R$ 24,86, desvio R$ 3,60, CV ≈ 14,48%. Mesmo com desvios em patamares
-      parecidos, a Amazon é proporcionalmente mais volátil.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Distribuições de frequência</h2>
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Tabela que conta <strong>quantas observações caem em cada categoria</strong> (variável
-  qualitativa) ou em cada <strong>classe de valores</strong> (quantitativa agrupada).</div>
-  <h3>Três colunas básicas</h3>
-  <table>
-    <tr><th>Frequência</th><th>O que conta</th></tr>
-    <tr><td>Absoluta</td><td>quantas observações na classe</td></tr>
-    <tr><td>Relativa (%)</td><td>a participação de cada classe no total</td></tr>
-    <tr><td>Acumulada</td><td>o total até a classe atual</td></tr>
-  </table>
-  <p class="menor">O papel das classes: transformar uma lista ilegível de números numa
-  <strong>estrutura que revela a forma da distribuição</strong>: onde se concentra, onde
-  rareia, se há caudas.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Lendo uma tabela de frequências</h2>
-  <div class="exemplo"><span class="rotulo">A margem líquida de 40 empresas, em classes</span>
-  <table>
-  <tr><th>Classe</th><th>Contagem</th><th>% do total</th><th>% acumulado</th></tr>
-  <tr><td>Prejuízo</td><td>4</td><td>10%</td><td>10%</td></tr>
-  <tr><td>0% a 5%</td><td>10</td><td>25%</td><td>35%</td></tr>
-  <tr><td>5% a 10%</td><td>14</td><td>35%</td><td>70%</td></tr>
-  <tr><td>10% a 20%</td><td>9</td><td>22,5%</td><td>92,5%</td></tr>
-  <tr><td>Acima de 20%</td><td>3</td><td>7,5%</td><td>100%</td></tr>
-  </table></div>
-  <div class="pergunta">A maior concentração está na faixa de 5% a 10% (14 empresas, 35% do
-  total). Os 10% no prejuízo aparecem direto na primeira linha da acumulada. A cauda mais
-  longa fica à direita: a faixa acima de 20% ainda reúne empresas, enquanto o prejuízo some
-  logo depois da primeira classe.</div>
-  <p class="menor">A tabela de frequências é o histograma em forma de tabela; o gráfico
-  fica para o encontro 10.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide divisor estat">
-  <h2>Estatística do encontro 9</h2>
-  <p>Quartis, o esquema dos cinco números e a forma da distribuição</p>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>A fórmula: quartis e amplitude interquartil</h2>
-
-  <div class="definicao"><span class="rotulo">Definição</span>
-  Os <strong>quartis</strong> dividem os dados ordenados em quatro partes iguais.
-  <strong>Q1</strong> deixa 25% dos casos abaixo, <strong>Q2</strong> é a mediana e deixa 50%, e
-  <strong>Q3</strong> deixa 75%. A <strong>amplitude interquartil</strong> é a distância entre
-  Q3 e Q1, e é a dispersão dos 50% do meio.</div>
-  <div class="formula">
-    <span class="expr">IQR<span class="op">=</span>Q3<span class="op">−</span>Q1<span class="op">           </span>extremos<span class="op">:</span>&lt; Q1 − 1,5·IQR<span class="op">  ou  </span>&gt; Q3 + 1,5·IQR</span>
-    <span class="legenda-formula">Em linguagem corrente: descarte o quarto mais baixo e o quarto
-    mais alto, e veja o quanto o miolo se espalha. Quem cai a mais de uma vez e meia o IQR das
-    bordas da caixa é tratado como valor extremo.</span>
-  </div>
-  <div class="exemplo"><span class="rotulo">Exemplo simples, antes do caso CVM</span>
-  Salários mensais (R$ mil) de dez funcionários do mesmo cargo, já ordenados: 2,5 · 3,0 · 3,2 ·
-  3,8 · 4,0 · 4,5 · 4,8 · 5,0 · 5,5 · 6,0. Q1 = 3,2, Q3 = 5,0, logo IQR = 5,0 − 3,2 = 1,8. Metade
-  dos salários está entre R$ 3,2 mil e R$ 5,0 mil: um IQR pequeno aqui sinaliza política salarial
-  consistente, sem grandes desigualdades dentro do cargo.</div>
-  <p>Por que isso importa: média e desvio padrão são arrastados por um único valor extremo.
-  Mediana e quartis não são. Em dados empresariais, que quase sempre têm cauda longa, o segundo
-  par descreve melhor.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O que a fórmula faz: os cinco números e o boxplot</h2>
-
-  <p>Margem líquida, em porcentagem, de 11 companhias ordenadas: 2, 4, 5, 7, 8,
-  <strong>9</strong>, 11, 12, 14, 18, 40.</p>
-  <div class="figura">
-    <svg viewBox="0 0 1000 190" role="img" aria-label="Boxplot das onze margens, com a caixa entre Q1 e Q3 e um valor extremo isolado">
-      <line x1="60" y1="150" x2="940" y2="150" stroke="#bbb" stroke-width="1.6"/>
-      <line x1="99" y1="60" x2="99" y2="110" stroke="#05635f" stroke-width="2.4"/>
-      <line x1="99" y1="85" x2="158" y2="85" stroke="#05635f" stroke-width="2.4"/>
-      <rect x="158" y="58" width="176" height="54" fill="#f0faf9" stroke="#0AB0AB" stroke-width="2.6"/>
-      <line x1="236" y1="58" x2="236" y2="112" stroke="#8D0333" stroke-width="3.4"/>
-      <line x1="334" y1="85" x2="412" y2="85" stroke="#05635f" stroke-width="2.4"/>
-      <line x1="412" y1="60" x2="412" y2="110" stroke="#05635f" stroke-width="2.4"/>
-      <circle cx="842" cy="85" r="8" fill="#c0392b"/>
-      <text x="99" y="172" text-anchor="middle" font-size="16" fill="#555">mín = 2</text>
-      <text x="158" y="46" text-anchor="middle" font-size="16" fill="#05635f">Q1 = 5</text>
-      <text x="236" y="34" text-anchor="middle" font-size="17" fill="#8D0333" font-weight="700">mediana = 9</text>
-      <text x="334" y="46" text-anchor="middle" font-size="16" fill="#05635f">Q3 = 14</text>
-      <text x="412" y="172" text-anchor="middle" font-size="16" fill="#555">18</text>
-      <text x="842" y="172" text-anchor="middle" font-size="16" fill="#c0392b">40, extremo</text>
-      <text x="246" y="130" text-anchor="middle" font-size="15" fill="#777">a caixa contém 50% das empresas</text>
-    </svg>
-  </div>
-  <div class="colunas">
-    <div>
-      <p><strong>IQR</strong> = 14 − 5 = 9. O limite superior é 14 + 1,5 × 9 = 27,5, e por isso a
-      companhia com margem de 40% aparece como ponto isolado.</p>
-    </div>
-    <div>
-      <p>O boxplot é o <strong>esquema dos cinco números desenhado</strong>: mínimo, Q1, mediana,
-      Q3 e máximo. Ele mostra, de uma vez, centro, dispersão, assimetria e extremos. Nenhuma
-      medida isolada faz isso.</p>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se faz no Colab</h2>
-
-  <pre class="codigo"><span class="cmt"># os cinco números, de uma vez</span>
-base[<span class="str">"margem"</span>].<span class="fn">describe</span>()          <span class="cmt"># traz count, mean, std, min, 25%, 50%, 75%, max</span>
-
-<span class="cmt"># quartis isolados, quando você quer só eles</span>
-base[<span class="str">"margem"</span>].<span class="fn">quantile</span>([0.25, 0.5, 0.75])
-
-<span class="cmt"># amplitude interquartil e os limites de extremo</span>
-q1, q3 = base[<span class="str">"margem"</span>].<span class="fn">quantile</span>([0.25, 0.75])
-iqr = q3 - q1
-<span class="fn">print</span>(<span class="str">"IQR:"</span>, <span class="fn">round</span>(iqr, 2), <span class="str">"| limites:"</span>, <span class="fn">round</span>(q1 - 1.5*iqr, 2), <span class="str">"a"</span>, <span class="fn">round</span>(q3 + 1.5*iqr, 2))
-
-<span class="cmt"># a forma: assimetria positiva = cauda à direita</span>
-base[<span class="str">"margem"</span>].<span class="fn">skew</span>().<span class="fn">round</span>(2)
-
-<span class="cmt"># tudo por grupo, que é o formato da tabela de resultados</span>
-base.<span class="fn">groupby</span>(<span class="str">"setor"</span>)[<span class="str">"margem"</span>].<span class="fn">describe</span>().<span class="fn">round</span>(2)</pre>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Como se lê: a tabela 1 do relatório</h2>
-
-  <p>Toda seção de resultados começa por uma tabela de descritivas. Ela tem colunas fixas, e é
-  ela que justifica todas as escolhas que vêm depois.</p>
-  <table>
-    <tr><th>Setor</th><th>n</th><th>Média</th><th>Mediana</th><th>DP</th><th>Q1</th><th>Q3</th><th>Assimetria</th></tr>
-    <tr><td>Indústria</td><td>142</td><td>11,4</td><td>8,2</td><td>13,6</td><td>4,1</td><td>14,9</td><td>2,8</td></tr>
-    <tr><td>Serviços</td><td>98</td><td>9,1</td><td>8,7</td><td>5,2</td><td>5,6</td><td>12,3</td><td>0,4</td></tr>
-  </table>
-  <div class="frase-resultado"><span class="rotulo">A frase que vai para o relatório</span>
-  "A margem líquida mediana da indústria é de <strong>8,2%</strong>, com metade das companhias
-  entre 4,1% e 14,9%. A média, de 11,4%, é puxada pela cauda à direita (assimetria de 2,8), e por
-  isso as comparações entre setores usam a mediana."</div>
-  <p class="menor">Repare no que a tabela permite decidir: em serviços, média e mediana quase
-  coincidem e a assimetria é baixa, então a média serve. Na indústria, não. A tabela não é
-  enfeite: é o argumento que autoriza a escolha da medida no restante do trabalho.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>O erro comum: descrever cauda longa com média e desvio</h2>
-
-  <div class="colunas">
-    <div>
-      <div class="alerta"><span class="rotulo">Errado</span>
-      "A margem líquida da indústria é de 11,4%, com desvio padrão de 13,6." O desvio padrão maior
-      que a própria média já denuncia que a distribuição é torta, e a frase descreve uma empresa
-      típica que não existe.</div>
-      <div class="exemplo"><span class="rotulo">Certo</span>
-      "Mediana de 8,2%, com metade das companhias entre 4,1% e 14,9% (Q1 e Q3)." O par mediana e
-      quartis descreve o que existe.</div>
-    </div>
-    <div>
-      <div class="alerta"><span class="rotulo">Confundir amplitude com IQR</span>
-      Amplitude é máximo menos mínimo, e depende só dos dois valores mais atípicos da base. IQR é
-      Q3 menos Q1, e depende do miolo. São medidas de dispersão muito diferentes, e a primeira
-      quase nunca é informativa.</div>
-      <div class="alerta"><span class="rotulo">Apagar o extremo sem dizer</span>
-      Valor extremo não é erro por definição. Antes de excluir, verifique se é erro de registro ou
-      se é uma empresa real e diferente. Se excluir, registre no método quantos casos saíram e
-      por quê.</div>
-    </div>
-  </div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Estatística</span>
-  <h2>Ficha de revisão: quartis e forma</h2>
-
-  <div class="ficha">
-    <div>
-      <h4>A fórmula</h4>
-      <p><span class="expr">IQR = Q3 − Q1</span></p>
-      <p>Extremo: abaixo de Q1 − 1,5·IQR ou acima de Q3 + 1,5·IQR.</p>
-    </div>
-    <div>
-      <h4>No Colab</h4>
-      <pre class="codigo">base["v"].describe()
-base["v"].quantile([.25,.5,.75])
-base["v"].skew()</pre>
-    </div>
-    <div>
-      <h4>A frase de leitura</h4>
-      <p>"Mediana de <em>x</em>, com metade dos casos entre <em>Q1</em> e <em>Q3</em>;
-      assimetria de <em>a</em>."</p>
-    </div>
-    <div>
-      <h4>O erro a evitar</h4>
-      <p>Descrever distribuição assimétrica por média e desvio padrão, e excluir extremo sem
-      registrar.</p>
-    </div>
-  </div>
-  <p class="menor"><strong>Leitura de apoio:</strong> Pinto e Silva (2020), <em>Estatística</em>,
-  volume I, seções 3.2.6 (quartis e percentis), 3.2.6.1 (gráfico de caixa), 3.3 (assimetria) e
-  3.4 (curtose); capítulo 4 para dados agrupados.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-
-<section class="slide divisor">
-  <h2>Mão na massa</h2>
-  <p>Descritivas sobre as demonstrações financeiras da CVM, abra o notebook do encontro</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seções 1 e 2: construir a base e achar a assimetria</h2>
-  <table>
-    <tr><th>Seção</th><th>O que faz</th><th>Resultado central</th></tr>
-    <tr><td>1 · Base CVM (15 min)</td><td>Baixa a DFP 2024 (receita 3.01, lucro 3.11),
-        junta o setor e cria a margem líquida</td><td>Cada linha = uma companhia; receita em
-        milhares</td></tr>
-    <tr><td>2 · Tendência central (20 min)</td><td>Média, mediana e moda da receita e da
-        margem; identifica extremos com <code>nlargest</code>/<code>nsmallest</code></td>
-        <td>Receita média ≫ mediana, a assinatura da assimetria</td></tr>
-  </table>
-  <p class="menor">Encontre os extremos, recalcule a média sem eles e compare com a mediana,
-  que <strong>quase não se move</strong>. Registre qual medida você reportaria, e por quê.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 1: reconstruir a base CVM (15 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  O código de download e filtragem é o do encontro 7 e vem <strong>pronto</strong>: execute
-  as células em ordem e confira o resultado. A habilidade em treino hoje é outra: ler e
-  resumir, não baixar. Antes de seguir, verifique: quantas linhas tem a base? O que é cada
-  linha? Em que unidade está a receita?</div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  Se o download da DFP falhar (internet do laboratório), rode a célula de contingência que
-  carrega <code>dados/cvm_dre_2024.csv</code>: 451 companhias com receita, lucro, margem e
-  setor. Cada linha é uma companhia; a receita está em <strong>milhares de reais</strong>.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 2: tendência central na prática (20 min)</h2>
-  <div class="instrucao"><span class="rotulo">O que você faz</span>
+  <h2>Antes de entregar</h2>
   <ol>
-    <li>Média, mediana e moda da <strong>receita</strong> e da <strong>margem</strong>;</li>
-    <li>As 5 maiores e 5 menores com <code>nlargest</code>/<code>nsmallest</code>;</li>
-    <li>Média recalculada <strong>sem os extremos</strong>, comparada à mediana;</li>
-    <li>Em uma célula de texto: <strong>qual medida você reportaria e por quê</strong>.</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Dificuldade esperada</span>
-  A margem média sai distorcida por companhias com margens absurdas: receita minúscula no
-  denominador. Não é erro de código; é o dado. Olhe os extremos antes de concluir que
-  "o setor é lucrativo".</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seções 3 e 4: dispersão por setor e tabela de frequências</h2>
-  <table>
-    <tr><th>Seção</th><th>O que faz</th><th>Resultado central</th></tr>
-    <tr><td>3 · Dispersão (20 min)</td><td>Desvio padrão e CV da receita por setor
-        (<code>groupby</code> + <code>agg</code>); CV da margem de propósito</td>
-        <td>O setor de maior desvio não é o mais heterogêneo, o CV reordena; e o CV da
-        margem "explode"</td></tr>
-    <tr><td>4 · Frequências (10 min)</td><td>Tabela da margem com <code>pd.cut</code>
-        (classes) + <code>value_counts</code>, com relativa e acumulada</td><td>Onde a
-        margem se concentra? Que fração opera no prejuízo?</td></tr>
-  </table>
-  <p class="menor">A forma que a tabela insinua será <strong>desenhada</strong> no encontro
-  10.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 3: dispersão e comparação entre setores (20 min)</h2>
-  <div class="instrucao"><span class="rotulo">O que você faz</span>
-  <ol>
-    <li>Desvio padrão da receita <strong>por setor</strong> com <code>groupby</code> +
-        <code>agg</code>;</li>
-    <li>O CV: <code>desvio / média</code> (em %), também por setor;</li>
-    <li>Ordene os setores pelo desvio e depois pelo CV e compare os dois rankings;</li>
-    <li>Agora aplique o CV à <strong>margem líquida</strong>, de propósito.</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Erro comum</span>
-  Concluir que o setor com maior desvio absoluto é "o mais heterogêneo". O desvio carrega
-  a escala; o CV reordena a comparação. E o CV da margem <strong>explode</strong> porque as
-  médias ficam perto de zero: o número está certo, a aplicação é que não faz sentido.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide compacto">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 4: distribuição de frequências (10 min)</h2>
-  <div class="instrucao"><span class="rotulo">Como vamos fazer</span>
-  <ol>
-    <li>Crie as classes da margem com <code>pd.cut</code> (limites já definidos no
-        notebook);</li>
-    <li>Conte com <code>value_counts</code> e acrescente as colunas de frequência
-        <strong>relativa</strong> e <strong>acumulada</strong>;</li>
-    <li>Responda por escrito: onde se concentram as companhias? Que proporção opera no
-        prejuízo?</li>
-  </ol></div>
-  <div class="alerta"><span class="rotulo">Atenção</span>
-  <code>value_counts</code> ordena pela contagem, não pela classe: use
-  <code>sort_index()</code> antes de acumular, senão a frequência acumulada perde o
-  sentido. Valores fora dos limites do <code>pd.cut</code> viram <code>NaN</code> e somem
-  da contagem; confira se o total bate com o número de companhias.</div>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Seção 5: extensão: endividamento (opcional)</h2>
-  <ul>
-    <li>Baixa, do mesmo zip da DFP, os balanços <strong>BPA e BPP</strong> consolidados;</li>
-    <li>Extrai <strong>ativo total</strong> (conta 1) e <strong>passivo exigível</strong>
-        (2.01 + 2.02);</li>
-    <li>Cria <strong>endividamento = exigível ÷ ativo</strong>;</li>
-    <li>Descritivas por setor: intensivos em capital (bens de capital, utilidades) vs.
-        bancos como caso à parte.</li>
-  </ul>
-  <p class="menor">Marcada como opcional, se a internet do laboratório falhar, a
-  contingência local cobre receita e margem.</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide divisor">
-  <h2>Oficina do projeto individual</h2>
-  <p>Agora é a sua base</p>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Primeiro bloco descritivo do seu projeto (20 min)</h2>
-  <ol>
-    <li>Carregue a <strong>base do próprio projeto</strong> (definida na etapa entregue no
-        encontro 8);</li>
-    <li>Produza medidas de <strong>tendência central e dispersão</strong> das variáveis
-        quantitativas;</li>
-    <li>Monte a <strong>tabela de frequências</strong> da variável categórica principal;</li>
-    <li>Registre por escrito <strong>duas observações substantivas</strong>: "o que estes
-        números dizem sobre meu problema de pesquisa?"</li>
+    <li>O notebook está salvo <strong>com as saídas</strong>: rode <em>Runtime → Run all</em>
+        antes de fechar;</li>
+    <li>Todos os <code>conferir</code> mostram <code>[ok]</code>;</li>
+    <li>Q1 a Q9 respondidas <strong>nas células de texto</strong>, com os números e a
+        unidade;</li>
+    <li>O <strong>relatório de sorteio</strong> tem os oito campos preenchidos, com a
+        semente;</li>
+    <li>A tabela de <strong>registro de IA</strong> está preenchida, ou marcada como “não
+        usei”;</li>
+    <li>O link do notebook foi <strong>compartilhado</strong> com o professor.</li>
   </ol>
-  <div class="instrucao"><span class="rotulo">Como escolher a medida</span>
-  Retome a classificação das suas variáveis (Unidade I): nominal pede moda e tabela de
-  frequências; ordinal, mediana; intervalar e razão, média <strong>e</strong> mediana, com
-  desvio padrão. Em dúvida, chame o professor durante a oficina: esse é o elo direto entre a
-  classificação que vocês fizeram e a análise que começa agora.</div>
-  <div class="pergunta">Não conseguiu carregar a base? Leve a tarefa para casa e traga o
-  bloco pronto no <strong>encontro 10</strong>, que terá tempo dedicado ao projeto.</div>
+  <div class="pergunta">Entregou e ficou em dúvida? <strong>Reabra o notebook e confira os
+  <code>conferir</code>.</strong> A avaliação é sobre o que está no arquivo, e não sobre o que
+  você lembra ter feito.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
-
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Síntese do encontro</h2>
-  <ol>
-    <li><strong>Resumir é escolher</strong>, e a escolha entre média e mediana é
-        metodológica, não estética;</li>
-    <li><strong>Dispersão é informação, não ruído</strong>: dois grupos com o mesmo centro
-        podem ser mundos diferentes;</li>
-    <li><strong>Toda medida tem pressupostos</strong>: o CV com média perto de zero é o
-        lembrete de que fórmula sem julgamento produz absurdo;</li>
-    <li>A <strong>tabela de frequências</strong> revela a forma da distribuição, e é o
-        histograma em forma de tabela (encontro 10).</li>
-  </ol>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
-</section>
-
-<section class="slide">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Para estudar em casa · antes de sair</h2>
+  <h2>Depois desta avaliação</h2>
   <ul>
-    <li><strong>Tarefa:</strong> garantir que a base do projeto <strong>carrega no
-        Colab</strong>: quem teve problema resolve antes do próximo encontro (roteiro de
-        contingência do notebook);</li>
-    <li><strong>Encontro 10:</strong> a segunda metade da aula será dedicada às descritivas
-        e ao primeiro gráfico do <strong>seu</strong> projeto;</li>
-    <li><strong>Projeto:</strong> quem não terminou o bloco descritivo em aula traz pronto
-        no encontro 10 (medidas, tabela de frequências e as duas observações escritas);</li>
-    <li><strong>Próxima leitura:</strong> nenhuma obrigatória, revisar medidas descritivas
-        de estatística básica ajuda.</li>
+    <li>Os <strong>Módulos I e II terminam aqui</strong>. Você descreve uma base, escolhe a
+        técnica de amostragem pelo cadastro, calcula o n e sorteia de forma que outra pessoa
+        consiga refazer;</li>
+    <li>O <strong>Módulo III começa no próximo encontro</strong> com o intervalo de confiança:
+        a margem de erro do encontro 8, agora em volta da estimativa — e o que “95%”
+        <em>não</em> significa;</li>
+    <li>O relatório de sorteio de hoje é o primeiro método escrito do seu relatório final.
+        Guarde o notebook.</li>
   </ul>
-  <p><strong>Síntese do dia:</strong> descrever bem é a metade de analisar, medidas certas,
-  pressupostos respeitados e leitura registrada por escrito sobre a sua própria base.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 9</div>
 </section>
+</section><!-- /secao-projecao -->
+</div><!-- /deck -->
+<main id="conducao" data-conducao="1">
 
-<div class="dica-navegacao">← → navegam · clique avança · Ctrl+P exporta PDF</div>
+<div class="cabecalho-conducao">
+  <h1>Encontro 9</h1>
+  <p>Métodos e Técnicas de Pesquisa Quantitativa &middot; Administração (Bacharelado) · UFMA &middot; 2026.2 &middot; Prof. Dr. Tadeu Gomes Teixeira</p>
+  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
+  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instrucoes.</p>
+</div>
+  <section class="secao-conducao" id="det-1">
+    <p class="telas-da-secao"><b>telas 1 a 4</b> <a class="chip-tela" href="#1">1</a> <a class="chip-tela" href="#2">2</a> <a class="chip-tela" href="#3">3</a> <a class="chip-tela" href="#4">4</a></p>
+    <h2>Abertura da avaliação e as regras do dia <span class="min">(15 min)</span></h2>
+    <h3>Objetivos do dia</h3>
+
+            <p>Este não é um encontro de conteúdo: é o <strong>fechamento dos Módulos I e
+            II</strong>. O estudante deve descrever uma base completa (frequência com o
+            denominador certo, posição, dispersão, gráfico e frase), escolher a técnica de
+            amostragem pelo formato do cadastro, calcular o tamanho da amostra e entregar o
+            relatório de sorteio, que permite refazer o sorteio.</p>
+                <h3>Minutagem do dia</h3>
+  <table class="minutagem">
+    <tr><th>Bloco</th><th>Minutos</th></tr>
+      <tr><td>Abertura, regras e notebook salvo no Drive</td><td>15</td></tr>
+      <tr><td>Avaliação, Parte 1: descrever (Q1 a Q5)</td><td>80</td></tr>
+      <tr><td>Intervalo, no meio da Parte 1 ou ao fim dela</td><td>15</td></tr>
+      <tr><td>Avaliação, Parte 2: planejar (Q6 a Q8)</td><td>60</td></tr>
+      <tr><td>Avaliação, Parte 3: sortear (Q9) e registro de IA</td><td>55</td></tr>
+      <tr><td>Entrega do relatório de sorteio e fechamento</td><td>15</td></tr>
+  </table>
+    <div class="caixa falar"><span class="rotulo">O que preparar antes de liberar a avaliação</span>
+            <ol>
+              <li>O notebook <code>notebooks/encontro-09/encontro09.ipynb</code> publicado e
+              compartilhado. Ele vai em modo prova: sem gabarito, com as células de resposta em
+              branco e as saídas já salvas;</li>
+              <li>Peça que cada estudante faça <em>Arquivo → Salvar uma cópia no Drive</em> e
+              execute a CÉLULA A. Só libere a Parte 1 quando todos tiverem o
+              <code>[ok]</code> dos 148 postos;</li>
+              <li>Tenha à mão o arquivo <code>dados/anp_precos_revenda_ma_2025.csv</code>: se a
+              CÉLULA A falhar no laboratório, a turma faz upload e executa a CÉLULA B.</li>
+            </ol>
+            </div>
+    <div class="caixa falar"><span class="rotulo">As regras de IA, ditas em voz alta</span>
+            <p>Na AV2 o assistente é <strong>permitido em todas as partes</strong>, com registro
+            do pedido e da checagem (PLANO_REFORMULACAO.md, seção 7.5). Diferente da AV1, não
+            há parte de telas fechadas. Diga as três coisas que a IA não faz: não escolhe o
+            denominador, não escolhe a técnica pelo cadastro, e não escreve a frase de leitura.
+            É ali que está a nota.</p>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-2">
+    <p class="telas-da-secao"><b>telas 5 a 9</b> <a class="chip-tela" href="#5">5</a> <a class="chip-tela" href="#6">6</a> <a class="chip-tela" href="#7">7</a> <a class="chip-tela" href="#8">8</a> <a class="chip-tela" href="#9">9</a></p>
+    <h2>A avaliação: as três partes no Colab <span class="min">(195 min)</span></h2>
+    <div class="caixa falar"><span class="rotulo">O que o professor faz durante a avaliação</span>
+            <p><strong>Percorrer a sala e confirmar o <code>conferir</code>.</strong> Como os
+            números já saem calculados, a avaliação está nas células de texto: a escolha e a
+            frase. Duas perguntas de dez segundos que separam a nota cheia da parcial:</p>
+            <ul>
+              <li>Na Q1: <em>“entre quem?”</em> — se o estudante não disser “entre os postos de
+              São Luís”, o denominador ainda não foi entendido;</li>
+              <li>Na Q6: <em>“o que no cadastro fez você escolher essa técnica?”</em> — a
+              resposta tem de citar o município e a diferença de preço entre os grupos.</li>
+            </ul>
+            <p>Anuncie o tempo aos 80 minutos (fim sugerido da Parte 1), aos 140 (fim da Parte
+            2) e aos 180 (hora de preencher o relatório de sorteio e o registro de IA).</p>
+            </div>
+    <div class="caixa alerta"><span class="rotulo">A supervisão que importa</span>
+            <p>A avaliação é individual: consulta liberada, conversa entre colegas não. Quem usar
+            IA precisa ter, no fim, a tabela de registro preenchida — confira no meio da prova,
+            e não só na entrega.</p>
+            <p>Se alguém travar, dê o empurrão de método, nunca de conteúdo: <em>“qual é o grupo
+            sobre o qual a pergunta fala?”</em> (Q1); <em>“o preço é parecido em todos os
+            municípios?”</em> (Q6); <em>“qual é a margem pedida?”</em> (Q7).</p>
+            </div>
+    <div class="caixa gabarito"><span class="rotulo">Gabarito da AV2, com os números do notebook</span>
+            <table>
+              <tr><th>Questão</th><th>Resposta esperada</th></tr>
+              <tr><td>Cadastro</td><td>148 postos de etanol, 11 municípios, 8 bandeiras (ANP, SHPC, 2025)</td></tr>
+              <tr><td>Q1 frequência</td><td><strong>39,4%</strong>: 28 dos 71 postos de São Luís são de bandeira branca (linha a). As outras divisões: 18,9% (28 de 148, o cadastro inteiro) e 40,6% (28 de 69, os de bandeira branca). No cadastro inteiro, bandeira branca é 46,6% (69 de 148)</td></tr>
+              <tr><td>Q2 posição</td><td>Média R$ 4,7854; mediana R$ 4,6900 (a média R$ 0,0954 acima). Resposta mais forte: <strong>mediana</strong>, pela cauda à direita; aceita-se a média se a assimetria for declarada</td></tr>
+              <tr><td>Q3 dispersão</td><td>Desvio R$ 0,2741; CV 5,73%; Q1 R$ 4,59 e Q3 R$ 4,99; IQR R$ 0,40; de R$ 4,33 a R$ 5,75</td></tr>
+              <tr><td>Q4 forma</td><td>Assimetria 0,776: cauda à direita, puxada pelos postos do interior</td></tr>
+              <tr><td>Q5 frase</td><td>Um parágrafo com a mediana, a faixa interquartílica, a forma e a Q1, com fonte, recorte, ano e unidade</td></tr>
+              <tr><td>Q6 técnica</td><td><strong>Estratificada</strong> por Ilha (São Luís e São José de Ribamar: 92 postos, média R$ 4,6542, desvio 0,1812) e Interior (56 postos, média R$ 5,0009, desvio 0,2653). Conglomerados é a pior escolha: 11 municípios desiguais, e o preço varia justamente entre eles</td></tr>
+              <tr><td>Q7 n da média</td><td>±R$ 0,05, 95%: n<sub>0</sub> = 115,4 → 116; com a correção para N = 148: 65,1 → <strong>66 postos</strong></td></tr>
+              <tr><td>Q8 n da proporção</td><td>±5 p.p., 95%, p = 0,5: n<sub>0</sub> = 384,1 → 385; corrigido: 107,0 → <strong>108 postos</strong>. Adota-se o maior n (108), que atende às duas perguntas</td></tr>
+              <tr><td>Q9 sorteio</td><td>Estratificada proporcional com n = 66: <strong>41 na Ilha e 25 no Interior</strong>. Com a semente 2026: estimativa R$ 4,7589, erro −0,0265, dentro da margem</td></tr>
+            </table>
+            <p>A Q9 usa o n da pergunta principal (66). Quem justificou 108 na Q8 não perde ponto
+            na Q9: a pergunta da Q8 é a decisão, e a da Q9 é o sorteio reprodutível.</p>
+            </div>
+    <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer, e quanto custam</span>
+            <ol>
+              <li><strong>Escolher 18,9% na Q1</strong>, dividindo pelo cadastro inteiro. É o erro
+              do denominador, o mais caro da Parte 1;</li>
+              <li><strong>Escolher a técnica pela fama</strong> (“a estratificada é a mais
+              precisa”) sem citar o município e os números da Q6. Técnica certa, justificativa
+              errada: nota parcial;</li>
+              <li><strong>Arredondar o n para baixo</strong> (65 em vez de 66);</li>
+              <li><strong>Relatório de sorteio sem a semente</strong>, ou sem dizer o que o
+              sorteio não autoriza concluir (o cadastro da ANP não é o universo dos postos do
+              Maranhão).</li>
+            </ol>
+            </div>
+  </section>
+  <section class="secao-conducao" id="det-3">
+    <p class="telas-da-secao"><b>telas 10 a 11</b> <a class="chip-tela" href="#10">10</a> <a class="chip-tela" href="#11">11</a></p>
+    <h2>Entrega do relatório de sorteio e fechamento <span class="min">(15 min)</span></h2>
+    <div class="caixa gabarito"><span class="rotulo">A entrega, em três verificações</span>
+            <ol>
+              <li>O notebook <strong>tem saídas</strong> e todos os <code>conferir</code> estão em
+              <code>[ok]</code>;</li>
+              <li>O <strong>relatório de sorteio</strong> tem os oito campos, com a semente e a
+              alocação (41 e 25 com a semente do enunciado);</li>
+              <li>O <strong>registro de IA</strong> está preenchido, ou marcado como “não
+              usei”, e o link foi compartilhado.</li>
+            </ol>
+            <p class="aviso">Quem não entregou o relatório no tempo sai com uma tarefa clara:
+            reenviar até o fim do dia. O relatório é o primeiro método escrito do relatório
+            final, e não pode acumular.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">O balanço que se anuncia</span>
+            <p>Fechar dizendo o que os Módulos I e II entregaram: o estudante <strong>descreve
+            qualquer conjunto de dados</strong> com a medida certa, escolhe uma técnica de
+            amostragem pelo cadastro, calcula o n que a margem exige e sorteia de forma
+            reprodutível. É a base de toda a inferência que vem.</p>
+            </div>
+    <h3>Tarefa para o próximo encontro</h3>
+
+            <ol>
+              <li>Nenhuma leitura nova obrigatória. Para quem quiser adiantar: o capítulo de
+              BABBIE (1999) sobre a lógica da amostragem e o intervalo de confiança;</li>
+              <li>Reexecute o notebook do encontro 8 com <code>CONFIANCA = 0.99</code> e anote o
+              que acontece com o n: o próximo encontro começa daí;</li>
+              <li>Combine a data da devolutiva: os erros recorrentes da turma viram telas de
+              revisão na abertura do Módulo III.</li>
+            </ol>
+            <p>O próximo encontro abre o <strong>Módulo III</strong>: o intervalo de confiança em
+            linguagem corrente, e o que “95%” não significa.</p>
+              </section>
+</main><!-- /conducao -->
+
+<div class="dica-navegacao">&larr; &rarr; navegam &nbsp;&middot;&nbsp; clique avan&ccedil;a &nbsp;&middot;&nbsp; tecla D abre a condu&ccedil;&atilde;o &nbsp;&middot;&nbsp; Ctrl+P exporta PDF</div>
 <script src="ufma-slides.js"></script>
 </body>
 </html>
