@@ -8,6 +8,7 @@ Administração (Bacharelado) da Universidade Federal do Maranhão (UFMA).
 - **Local:** laboratório de informática, com uso do Google Colab
 - **Slides publicados:** <https://tadeugomes.github.io/metodos-pesquisa-quantitativa/>
 - **Plano da reformulação:** [`PLANO_REFORMULACAO.md`](PLANO_REFORMULACAO.md)
+- **Template do projeto:** [`Template_Projeto_Pesquisa_Quantitativa.docx`](Template_Projeto_Pesquisa_Quantitativa.docx)
 
 ## A disciplina em quatro módulos
 
@@ -122,6 +123,39 @@ Três atividades individuais, todas no Colab, mais a prova final:
 | 14 | **AV3** — relatório final, notebook reprodutível e apresentação |
 | 15 | Prova final, em duas partes: conceitual sem consulta e prática com consulta |
 
+### O template do projeto
+
+As três entregas são o mesmo projeto, escrito em três versões. O documento
+[`Template_Projeto_Pesquisa_Quantitativa.docx`](Template_Projeto_Pesquisa_Quantitativa.docx)
+é o formulário que o estudante preenche do começo ao fim do semestre: **18 etapas e 4 anexos**,
+da escolha do tema à apresentação de três minutos. Ele é **deliberadamente redundante com os
+slides** — o estudante não deve precisar procurar nada fora dele para preencher um campo.
+
+Toda seção segue a mesma ordem de três caixas, e é essa repetição que ensina:
+
+| Caixa | Cor | O que traz |
+|---|---|---|
+| **O que entra aqui** | vinho | O que o campo pede, o que não é aceito e o erro mais comum |
+| **Exemplo preenchido** | dourado | O campo resolvido com dado real das bases da disciplina |
+| **O campo em branco** | borda cinza | O espaço do estudante, com a dica de formato no rótulo |
+
+O que o template cobre, por etapa:
+
+| Etapas | Conteúdo | Cobrado na |
+|---|---|---|
+| 0 a 5 | Tema (com o cardápio), o funil do problema, as seis regras de Gil item a item, definições operacionais, justificativa, objetivos e os três grupos de verbos, hipóteses com os seis requisitos e os três defeitos, variáveis e níveis de mensuração | **AV1** |
+| 6 a 10 | Delineamento, fonte contra os seis critérios e os quatro defeitos de qualidade, ética, população e amostra com o tamanho parâmetro a parâmetro, instrumento e escalas, matriz de amarração com os quatro buracos | **AV2** |
+| 11 a 17 | Plano de análise e o fluxograma de escolha do teste, as quatro peças de resultado, o teste das quatro perguntas, o modelo em cinco colunas, discussão e limitações, cronograma, referências, registro de IA, os cinco blocos da apresentação | **AV3** |
+| Anexos A a D | Checklist final, a `CONFIG` do notebook, a rubrica da AV3 e um glossário de 23 termos | — |
+
+Toda etapa traz a faixa **ENTREGA**, que diz em qual avaliação ela é cobrada, e nenhum campo
+pode ficar vazio: o que não se aplica — e isso acontece nas etapas 8 e 9 — se escreve como
+“não se aplica”, com o motivo em uma linha.
+
+O arquivo tem gerador, como todo o resto do material:
+`notebooks/geradores/gera_template_projeto.py`. Ele usa `python-docx` e a identidade visual
+UFMA (vinho `#8D0333`, dourado `#D4B277`, logotipo de `slides/assets/`).
+
 ### Uso de IA generativa
 
 A disciplina **incentiva** o uso de assistentes, com uma exigência: **registro do prompt e da
@@ -158,6 +192,7 @@ estão registradas com o motivo** — inclusive as que foram descartadas e as qu
 
 ```
 ├── PLANO_REFORMULACAO.md      # o plano da reformulação, módulo por módulo
+├── Template_Projeto_...docx   # o formulário do projeto, 18 etapas e 4 anexos
 ├── slides/
 │   ├── encontro-NN.html       # o deck E o plano de aula (duas camadas, tecla D)
 │   ├── ufma-slides.css        # identidade visual UFMA — não é alterado pela reforma
@@ -177,6 +212,9 @@ estão registradas com o motivo** — inclusive as que foram descartadas e as qu
 - `notebooks/geradores/gera_slide_NN.py` — só a **condução**. As telas se editam no HTML, à mão.
 - `notebooks/geradores/gera_guia_descritiva.py` — o guia acumulado do Módulo I, regerado e
   reexecutado como os notebooks dos encontros.
+- `notebooks/geradores/gera_template_projeto.py` — o template do projeto em `.docx`. Execute-o
+  da raiz do repositório e o arquivo é regerado no lugar; passe um caminho como argumento para
+  gerar em outro destino.
 - `notebooks/geradores/slide_builder.py` — a transformação. Ele **preserva intactos** o `<head>`,
   as fontes, os marcadores SVG, o logo e o rodapé de cada tela, e o conteúdo de cada tela. Rodar
   duas vezes produz o mesmo arquivo.
