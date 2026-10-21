@@ -534,9 +534,11 @@ SECOES = [
               <tr><th>Contexto</th><th>Regra</th></tr>
               <tr><td>Aulas e projeto individual</td><td>Permitida, sobretudo para adaptar a
               análise à base do projeto</td></tr>
-              <tr><td>AV1 e prova final, Parte A (conceitual)</td><td><strong>Não
+              <tr><td>AV1, nas três partes</td><td>Permitida, com registro do prompt na
+              célula própria</td></tr>
+              <tr><td>Prova final, Parte A (conceitual)</td><td><strong>Não
               permitida</strong>: material fechado, telas fechadas</td></tr>
-              <tr><td>AV1 e prova final, Parte B (prática); AV2; AV3</td><td>Permitida, com
+              <tr><td>Prova final, Parte B (prática); AV2; AV3</td><td>Permitida, com
               registro do prompt na célula própria</td></tr>
             </table>
             """, "falar"),

@@ -5,8 +5,9 @@ E um notebook de PROVA: vai para a turma no modo `aluno`, mantendo as lacunas de
 resposta e omitindo os gabaritos. Os gabaritos ficam nas celulas do tipo `nota`, que
 existem apenas neste gerador.
 
-A Parte A e conceitual, respondida em celulas de texto, com as telas fechadas. A Parte B
-e pratica: a base da CVM, que tem extremos reais e por isso testa a escolha da medida.
+A Parte A e conceitual, respondida em celulas de texto. A Parte B e pratica: a base da
+CVM, que tem extremos reais e por isso testa a escolha da medida. A consulta e livre em
+todas as partes, inclusive o uso de assistente de IA; o que se exige e o registro.
 
 Numeros da base (verificados em 28/09/2026):
   451 companhias no arquivo; 7 declaram em reais (ESCALA_MOEDA = UNIDADE) e sao
@@ -30,21 +31,22 @@ IDENTIFICACAO = """# Avaliação 1 — Métodos e Técnicas de Pesquisa Quantita
 
 1. A avaliação é **inteiramente neste notebook**. Não há prova em papel.
 2. Ela tem **três partes**: a **A** (conceitual), a **B** (prática) e o **Projeto**.
-3. A Parte A é feita **sem consulta e com as telas fechadas**. As Partes B e o Projeto
-   admitem consulta.
+3. **A consulta é livre nas três partes** — material da disciplina, internet e assistente
+   de IA. O que se exige é o **registro** de uso de IA, na célula própria.
 4. Responda **nas células indicadas**, que já vêm com as linhas `---`. Não apague os
    enunciados e não crie células novas.
 5. Salve com as saídas visíveis: rode *Runtime → Run all* antes de entregar.
 6. Compartilhe o link do notebook com o professor ao final.
 
-> **Sobre o uso de IA.** O assistente é **permitido** nas Partes B e no Projeto, e
-> **proibido** na Parte A. Quem usar, registra o pedido, a checagem e o que mudou, na
+> **Sobre o uso de IA.** O assistente é **permitido em todas as partes** desta avaliação,
+> inclusive na Parte A. Quem usar, **registra** o pedido, a checagem e o que mudou, na
 > célula de registro. O registro não desconta pontos; a omissão é falta de honestidade
-> acadêmica.
+> acadêmica. Lembre que a IA não decide qual análise cabe, não confere o resultado e não
+> escreve a frase de leitura — e é aí que está a nota.
 
 ---
 
-## Parte A — conceitual (30 minutos, sem consulta)
+## Parte A — conceitual (30 minutos)
 
 Responda em **duas ou três frases** cada. O que se avalia é a **justificativa**, e não a
 fórmula. Não há conta a fazer."""
@@ -76,14 +78,14 @@ PARTE_A = [
      "negativos se cancelam. Elevar ao quadrado resolve o cancelamento e, de passagem, pune "
      "mais os desvios grandes, que é o que se quer."),
 
-    ("**A5.** Você precisa comparar a **dispersão do preço da gasolina**, medido em R$ por "
+    ("**A5.** Você precisa comparar a **dispersão do preço da gasolina**, medido em R\\$ por "
      "litro, com a **dispersão do IPCA**, medido em pontos percentuais. Que medida você usa "
      "e por quê?",
      "O **coeficiente de variação** (desvio ÷ média). Os desvios não são comparáveis porque "
      "estão em **unidades diferentes** e porque o desvio acompanha a média. O CV é "
      "adimensional e por isso permite a comparação."),
 
-    ("**A6.** A média de uma variável é R$ 6,13 e a mediana é R$ 6,08. **O que essa "
+    ("**A6.** A média de uma variável é R\\$ 6,13 e a mediana é R\\$ 6,08. **O que essa "
      "diferença sugere** sobre a forma da distribuição — e o que ela **não** permite "
      "concluir?",
      "Sugere **assimetria à direita**: a média acima da mediana indica que há valores altos "
@@ -97,7 +99,7 @@ PARTE_A = [
      "atual é o erro mais comum de relatório com série temporal."),
 ]
 
-PARTE_B = """## Parte B — prática (120 minutos, com consulta)
+PARTE_B = """## Parte B — prática (120 minutos)
 
 A base é o **cadastro de companhias abertas com demonstrações financeiras de 2024**
 (CVM) — 449 companhias, com receita, lucro líquido e setor, em milhares de reais.
@@ -246,7 +248,7 @@ print(f"assimetria calculada: {receita.skew():.2f}")'''},
 
     {"tipo": "md", "texto": """### B5. A conclusão
 
-Você tem uma companhia com receita de **R$ 2 bilhões** (2.000.000 em milhares de reais). Ela
+Você tem uma companhia com receita de **R\\$ 2 bilhões** (2.000.000 em milhares de reais). Ela
 está **acima** ou **abaixo** do típico? Que medida responde a essa pergunta e por quê?"""},
 
     {"tipo": "code", "texto": '''# CÉLULA B5: onde R$ 2 bilhões cai na distribuição.
@@ -263,8 +265,9 @@ print("A medida que responde é a MEDIANA: ela divide o conjunto ao meio.")'''},
 
     {"tipo": "md", "texto": """## Registro de uso de IA
 
-**Obrigatório para quem usou o assistente** nas Partes B ou no Projeto. Preencha a
-tabela, ou escreva “não usei”. O registro não desconta pontos."""},
+**Obrigatório para quem usou o assistente em qualquer parte desta avaliação** — A, B ou
+Projeto. Preencha a tabela, ou escreva “não usei”. O registro não desconta pontos; a
+omissão é falta de honestidade acadêmica."""},
 
     {"tipo": "md", "texto": """| O que eu pedi | O que eu conferi | O que eu mudei |
 |---|---|---|
@@ -276,29 +279,58 @@ tabela, ou escreva “não usei”. O registro não desconta pontos."""},
 
     {"tipo": "md", "texto": """## Projeto — 1ª entrega (30 minutos)
 
-Preencha os três itens e **verifique que a base carrega sem erro**.
+Preencha os itens abaixo e **verifique que a base carrega sem erro**.
 
-**1. Tema e pergunta de pesquisa**
+**1. Tema**
+
+_(duas ou três frases: do que o projeto trata, com que recorte — onde e em que período)_
+
+---
+
+**2. Questão de pesquisa**
+
+_(uma pergunta, e não um tema. Ela precisa ser respondível com os dados que você escolheu)_
+
+---
+
+**3. Objetivo geral**
+
+_(uma frase, começando por um verbo no infinitivo: descrever, comparar, analisar, mensurar…)_
+
+---
+
+**4. Fontes de dados**
+
+_(quais são, quem as produz, a que período se referem e o endereço de cada uma — arquivo
+publicado, página de download ou API)_
 
 ---
 """},
-    {"tipo": "md", "texto": """**2. A base escolhida e a célula que a carrega**
+    {"tipo": "md", "texto": """**5. A base escolhida e a célula que a carrega**
 
-_(cole abaixo o código que carrega a sua base e execute-o)_
+_(cole abaixo o código que carrega a sua base e execute-o. A fonte pode ser um arquivo
+publicado ou uma **API** — o que importa é que a célula rode sem erro)_
 """},
     {"tipo": "resposta", "texto": '''# A célula que carrega a base do MEU projeto.
+# A fonte pode ser um arquivo publicado (CSV, Excel) OU uma API.
 # Substitua o endereço pelo da sua fonte, ajuste a codificação e o separador,
 # e execute. O objetivo é que a base carregue SEM ERRO.
 
 import pandas as pd
 
-url = "COLE AQUI O ENDEREÇO DA SUA FONTE"
-# exemplo, se a sua base for um CSV aberto:
+url = "COLE AQUI O ENDEREÇO DA SUA FONTE (arquivo publicado ou endpoint de API)"
+
+# se a fonte for um arquivo CSV aberto:
 # minha_base = pd.read_csv(url, sep=";", encoding="utf-8-sig", decimal=",")
+
+# se a fonte for uma API que devolve JSON:
+# import requests
+# resposta = requests.get(url, timeout=30).json()
+# minha_base = pd.DataFrame(resposta)   # ajuste a chave onde vêm os registros
 
 # print(minha_base.shape)
 # minha_base.head()'''},
-    {"tipo": "md", "texto": """**3. Os seis critérios da sua fonte**
+    {"tipo": "md", "texto": """**6. Os seis critérios da sua fonte**
 
 | # | Critério | A sua fonte |
 |---|---|---|
@@ -308,6 +340,23 @@ url = "COLE AQUI O ENDEREÇO DA SUA FONTE"
 | 4 | Metadado | |
 | 5 | Licença e citação | |
 | 6 | Acesso | |
+
+---
+
+**7. Como a estatística descritiva entra no seu projeto**
+
+Olhe o que você fez nas Partes A e B e escreva, em **três ou quatro frases**, como essas
+análises vão aparecer no seu projeto. Diga, de forma concreta:
+
+- quais **variáveis** da sua base você vai descrever e em que **nível de mensuração** elas
+  estão;
+- qual **medida de posição** você espera usar em cada uma, e por quê (média ou mediana —
+  a justificativa é a mesma da Parte A);
+- que **medida de dispersão** e que **gráfico** entram na caracterização da sua base;
+- que **frase de leitura** essa descrição vai permitir escrever no relatório, com o recorte
+  e a unidade.
+
+_(escreva aqui)_
 
 ---
 

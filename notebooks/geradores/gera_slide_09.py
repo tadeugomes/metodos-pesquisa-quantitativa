@@ -61,8 +61,9 @@ SECOES = [
             """, "falar"),
             ("As regras de IA, ditas em voz alta", """
             <p>Na AV2 o assistente é <strong>permitido em todas as partes</strong>, com registro
-            do pedido e da checagem (PLANO_REFORMULACAO.md, seção 7.5). Diferente da AV1, não
-            há parte de telas fechadas. Diga as três coisas que a IA não faz: não escolhe o
+            do pedido e da checagem (PLANO_REFORMULACAO.md, seção 7.5). É a mesma regra da AV1:
+            nenhuma parte proibida, e o registro é obrigatório. A parte de telas fechadas só
+            aparece na prova final. Diga as três coisas que a IA não faz: não escolhe o
             denominador, não escolhe a técnica pelo cadastro e não escreve a frase de leitura.
             É ali que está a nota.</p>
             """, "falar"),

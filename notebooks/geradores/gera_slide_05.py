@@ -24,9 +24,12 @@ SECOES_E5 = [
         "blocos": [
             ("Objetivos do dia", """
             <p>Este não é um encontro de conteúdo: é o <strong>fechamento do Módulo I</strong>.
-            O estudante deve resolver, sem consulta, as sete questões conceituais; executar, com
-            consulta, a análise descritiva de uma base real; e entregar a base do projeto
-            funcionando.</p>
+            O estudante deve resolver as sete questões conceituais; executar a análise descritiva
+            de uma base real; e entregar a primeira parte do projeto — tema, questão, objetivo
+            geral, fontes e a base carregando.</p>
+            <p><strong>A consulta é livre nas três partes</strong>, o assistente de IA incluído.
+            Não há parte proibida: o que se exige é o registro de uso. Diga isso no começo, com
+            clareza, para que ninguém esconda o que usou.</p>
             """, "bruto"),
             ("O que preparar antes de liberar a avaliação", """
             <ol>
@@ -39,9 +42,9 @@ SECOES_E5 = [
             </ol>
             """, "falar"),
             ("Como cronometrar", """
-            <p>Trinta minutos para a Parte A, com as telas fechadas, é apertado de propósito: as
-            sete questões são de decisão, não de conta. Anuncie o tempo restante aos 15 e aos
-            25 minutos.</p>
+            <p>Trinta minutos para a Parte A é apertado de propósito: as sete questões são de
+            decisão, não de conta, e quem precisar consultar o material ou o assistente perde
+            tempo se não souber o conceito. Anuncie o tempo restante aos 15 e aos 25 minutos.</p>
             <p>Depois, 120 minutos para a Parte B, com consulta liberada. Os últimos 30 minutos
             são para a entrega do projeto — <strong>não deixe virar trabalho de casa</strong>:
             o valor da entrega é a base carregando na frente do professor.</p>
@@ -50,7 +53,7 @@ SECOES_E5 = [
     },
     {
         "num": 2,
-        "titulo": "Parte A: o conceitual, sem consulta",
+        "titulo": "Parte A: o conceitual, por escrito",
         "minutos": 30,
         "entre": ["Parte A", "O registro de uso de IA"],
         "blocos": [
@@ -60,13 +63,20 @@ SECOES_E5 = [
             não faz conta à mão em nenhum encontro. O que se exige é: qual medida cabe nesta
             variável e por quê.</p>
             """, "falar"),
-            ("A supervisão que importa", """
-            <p>Telas fechadas, celular fora da mesa e caminhar pela sala. A Parte A é curta:
-            <strong>quinze minutos de vigilância resolvem os trinta</strong>.</p>
-            <p>Se alguém travar, dê o empurrão de método, nunca de conteúdo: <em>“qual é o nível
-            dessa variável?”</em>. É a pergunta que destrava a avaliação inteira e é a entrega do
-            Módulo I.</p>
+            ("Consulta livre, com registro", """
+            <p>A Parte A <strong>não é mais sem consulta</strong>. Material, internet e assistente
+            estão liberados; quem usar o assistente registra o pedido, a checagem e o que mudou.
+            Anuncie isso de forma direta, sem suspeita: o registro não desconta pontos, e a
+            omissão é falta de honestidade acadêmica.</p>
+            <p>A consulta não resolve a questão, e vale dizer por quê: as sete perguntas pedem a
+            justificativa do caso concreto, e uma resposta genérica — a que o assistente devolve
+            sem contexto — não ganha o ponto. <strong>Metade da nota está no porquê.</strong></p>
             """, "alerta"),
+            ("Se alguém travar", """
+            <p>Dê o empurrão de método, nunca de conteúdo: <em>“qual é o nível dessa
+            variável?”</em>. É a pergunta que destrava a avaliação inteira e é a entrega do
+            Módulo I.</p>
+            """, "falar"),
         ],
     },
     {
@@ -93,21 +103,29 @@ SECOES_E5 = [
             vem.</p>
             """, "falar"),
             ("O registro de IA", """
-            <p>Lembrar, sem dramatizar: o assistente é permitido e a disciplina o incentiva. O que
-            se pede é o <strong>registro</strong> — o pedido, a checagem e o que foi mudado. O
-            registro não desconta pontos; a omissão é falta de honestidade acadêmica.</p>
+            <p>Lembrar, sem dramatizar: o assistente é permitido <strong>em todas as partes</strong>
+            e a disciplina o incentiva. O que se pede é o <strong>registro</strong> — o pedido, a
+            checagem e o que foi mudado. O registro não desconta pontos; a omissão é falta de
+            honestidade acadêmica.</p>
             <p>Vale reforçar as três coisas que a IA não faz, porque é ali que está metade da
             nota: não decide qual análise cabe, não confere o resultado e não escreve a frase de
             leitura.</p>
             """, "falar"),
             ("A entrega do projeto", """
-            <p>Os últimos 30 minutos são da <strong>primeira entrega parcial</strong>: tema,
-            pergunta de pesquisa, base carregando por API e os seis critérios preenchidos.
-            Circule e verifique três coisas, nesta ordem:</p>
+            <p>Os últimos 30 minutos são da <strong>primeira entrega parcial</strong>, e ela tem
+            sete itens: tema e recorte, questão de pesquisa, objetivo geral, fontes de dados, a
+            base carregando (de arquivo publicado ou de API), os seis critérios da fonte e a nota
+            sobre como a descritiva entra no projeto. Circule e verifique, nesta ordem:</p>
             <ol>
               <li>A base <strong>carrega sem erro</strong>? Se não carrega, o projeto não começou;</li>
-              <li>A <strong>pergunta</strong> é uma pergunta, e não um tema?</li>
+              <li>A <strong>questão</strong> é uma pergunta, e não um tema — e é respondível com
+              essa base?</li>
+              <li>O <strong>objetivo geral</strong> começa por um verbo no infinitivo e cabe em
+              uma frase?</li>
+              <li>As <strong>fontes</strong> estão nomeadas com produtor, período e endereço?</li>
               <li>Os seis critérios estão preenchidos com o <strong>recorte declarado</strong>?</li>
+              <li>O item 7 diz, em concreto, <strong>quais variáveis</strong> serão descritas e
+              com que medidas — e não “usarei estatística descritiva”?</li>
             </ol>
             <p class="aviso">Quem não conseguiu a base hoje sai com uma tarefa clara: resolver o
             acesso e reenviar antes do encontro seguinte. Não deixe acumular.</p>
@@ -121,6 +139,9 @@ SECOES_E5 = [
         "entre": ["Antes de entregar", ""],
         "blocos": [
             ("O balanço que se anuncia", """
+            <p>O item 7 da entrega é a ponte: o estudante acaba de fazer a descritiva de uma base
+            do professor e precisa dizer como fará a da sua própria. É ali que se vê se o Módulo I
+            virou repertório ou ficou como receita.</p>
             <p>Fechar dizendo o que o Módulo I entregou: o estudante sabe contar e dividir,
             identificar o nível de mensuração, escolher entre média e mediana, medir dispersão e
             ler a forma de uma distribuição. <strong>É o repertório que descreve qualquer

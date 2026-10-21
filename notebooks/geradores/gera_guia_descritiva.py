@@ -84,9 +84,9 @@ PAINEL = r"""
 >    código e o cartão de contexto da sua base no assistente, peça a mesma conta na sua
 >    coluna, cole na célula cinza do seu notebook e confira.
 >
-> **Nas avaliações.** O guia é material de consulta nas partes práticas (AV1 Parte B,
-> AV2, AV3 e prova final Parte B). Nas partes conceituais, sem consulta, ele fica
-> fechado. Você não escreve código: executa, lê e escreve a frase.
+> **Nas avaliações.** O guia é material de consulta na AV1 (nas três partes), na AV2, na
+> AV3 e na Parte B da prova final. Só na Parte A da prova final, que é de telas fechadas,
+> ele fica fechado. Você não escreve código: executa, lê e escreve a frase.
 
 ---
 

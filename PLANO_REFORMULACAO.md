@@ -25,6 +25,8 @@ Registradas aqui porque restringem todo o resto do plano.
 | Decisão 9 | Pesos da AV2: **40%** descrever a base, **35%** plano de amostragem, **25%** sorteio (14/10/2026) | Aplicados no notebook e na condução do encontro 9 |
 | Decisão 10 | As simulações do intervalo de confiança do encontro 10 usam **n = 30** (14/10/2026) | Com n = 50 a cobertura sobe para 98% pela população finita de 236 postos; com 30, 94 de 100 intervalos cobrem a média |
 | Decisão 11 | No encontro 13 a prática acontece **dentro** do bloco de estatística, com o notebook aberto (14/10/2026) | A aula fecha em 240 minutos; 15 minutos finais ficam só para o projeto individual (tabela da seção 6.3) |
+| Decisão 12 | Na AV1 **não há parte proibida de IA**: a consulta é livre nas três partes, exigido o registro (21/10/2026) | A Parte A deixa de ser de telas fechadas. Seção 7.5, notebook do encontro 5 e as telas da AV1 passam a dizer "permitida, com registro". A prova final mantém a Parte A sem consulta |
+| Decisão 13 | A 1ª entrega do projeto, na AV1, pede **tema, questão de pesquisa, objetivo geral e fontes de dados** (21/10/2026) | A entrega vai a sete itens: os quatro acima, a base carregando (de arquivo publicado **ou de API**), os seis critérios da fonte e uma nota sobre como a descritiva das Partes A e B entra no projeto |
 
 ## 1. O problema que o plano resolve
 
@@ -391,8 +393,7 @@ pontos; a omissão é falta de honestidade acadêmica. Contexto por avaliação:
 | Contexto | Regra |
 |---|---|
 | Aulas e projeto individual | Permitida, sobretudo para adaptar a análise à base do próprio projeto |
-| AV1, Parte A (conceitual) | **Não permitida**: material fechado, telas fechadas |
-| AV1, Parte B (prática) | Permitida, com registro do prompt na célula própria |
+| AV1, nas três partes (A, B e projeto) | Permitida, com registro do prompt na célula própria (Decisão 12) |
 | AV2 (encontro 9) | Permitida, com registro do prompt |
 | AV3 (encontro 14) | Permitida, com registro do prompt |
 | Prova final, Parte A | **Não permitida**: material fechado, telas fechadas |
@@ -503,7 +504,7 @@ avaliação continuar no encontro 8.
 
 | Encontro | Atividade | Conteúdo | Peso |
 |---|---|---|---|
-| 5 | **AV1** | Descritiva no Colab: tabela de frequências, medidas de posição, dispersão, um gráfico e a frase de leitura. Mais a 1ª entrega do projeto: tema, pergunta de pesquisa e base escolhida, com a célula de carga pela API já funcionando | 1/3 |
+| 5 | **AV1** | Descritiva no Colab: tabela de frequências, medidas de posição, dispersão, um gráfico e a frase de leitura. Mais a 1ª entrega do projeto: tema, questão de pesquisa, objetivo geral, fontes de dados, a base carregando (arquivo publicado ou API), os seis critérios da fonte e como a descritiva entra no projeto. Consulta livre nas três partes, com registro de IA | 1/3 |
 | 9 | **AV2** | Módulos I e II: descrição completa de uma base, plano de amostragem e tamanho de amostra calculado, com `conferir` em cada questão | 1/3 |
 | 14 | **AV3** | Relatório final, notebook reprodutível e apresentação sintética de três a cinco minutos | 1/3 |
 | 15 | Prova final | Parte A conceitual, sem consulta, em células de texto; Parte B prática, com consulta e registro de IA | — |
