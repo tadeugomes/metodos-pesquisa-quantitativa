@@ -55,8 +55,9 @@ SECOES = [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("As oito etapas do processo de pesquisa", "8"),
                 ("Dados primários e secundários, com o caso da rotatividade", "8"),
-                ("Como se escolhe uma fonte: os seis critérios", "12"),
-                ("Qualidade do dado e ética", "12"),
+                ("Como se escolhe uma fonte: os seis critérios", "10"),
+                ("Codificação e BOM: o que são", "4"),
+                ("Qualidade do dado e ética", "10"),
                 ("A matriz de amarração", "5"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
@@ -74,6 +75,18 @@ SECOES = [
             a variável desejada, mas para outro período ou outro território. Descobrir isso agora
             custa uma tarde; descobrir depois custa o projeto.</p>
             """, "pergunta-aula"),
+            ("Codificação e BOM, para quem não programa", """
+            <p>A turma não sabe o que é codificação, e não precisa saber mais do que a tela
+            diz: o arquivo guarda números, e a codificação é a tabela que os transforma em
+            letras. Mostre o “é” (233 numa tabela, 195 169 na outra) e pergunte o que
+            acontece se o Python usar a tabela errada. A resposta, acento quebrado, prepara a
+            tabela de cada fonte, na tela seguinte.</p>
+            <p>O BOM é um caso particular: uma marca invisível no começo de alguns arquivos
+            <code>utf-8</code>. O pandas descarta a marca quando lê em <code>utf-8</code>; ela
+            só aparece, grudada no nome da primeira coluna, quando a tabela está errada. Por
+            isso a disciplina lê toda fonte <code>utf-8</code> com <code>utf-8-sig</code>,
+            que funciona com e sem a marca.</p>
+            """, "falar"),
             ("Os quatro defeitos de qualidade do dado", """
             <p>Não é preciso decorar: cada defeito tem um caso real nas bases da disciplina, e
             a tela traz os quatro na mesma tabela. Vale construir a coluna “o que se faz” com a
@@ -89,9 +102,10 @@ SECOES = [
               <li><strong>Número no padrão nacional.</strong> O <code>6,29</code> da ANP e a data
               <code>DD/MM/AAAA</code>: sem <code>decimal=","</code> a coluna chega como texto, e
               a conta falha ou sai errada.</li>
-              <li><strong>Codificação.</strong> A CVM publica em <code>latin-1</code>: lida com
-              a codificação errada, <code>Elétrica</code> chega como <code>ElÃ©trica</code>,
-              e nada avisa.</li>
+              <li><strong>Codificação.</strong> A CVM publica em <code>latin-1</code>: lida como
+              <code>utf-8</code>, a leitura para com erro. O caso perigoso é o inverso: um
+              arquivo <code>utf-8</code> lido como <code>latin-1</code> não avisa e entrega
+              <code>ElÃ©trica</code>.</li>
             </ol>
             <p>Fechar com a regra: o erro não é o defeito existir, é não declará-lo no
             relatório.</p>
