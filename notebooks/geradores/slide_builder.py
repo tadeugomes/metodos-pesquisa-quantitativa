@@ -173,8 +173,8 @@ def secao_conducao(num, titulo, minutos, blocos, ancoras):
 # Os marcadores de fechamento sao deliberadamente precedidos de um comentario: assim
 # `</section>` de um wrapper nunca se confunde com o `</section>` de uma tela.
 
-AVISO = ('<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O '
-         '&mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta '
+AVISO = ('<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: '
+         'as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta '
          'ao deck.</div>')
 
 BARRA = ('<div class="barra-detalhe" data-conducao="1">'

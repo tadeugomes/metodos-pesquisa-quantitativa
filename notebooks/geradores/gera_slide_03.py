@@ -3,7 +3,7 @@
 
 Estrutura do deck depois da reestruturacao:
   capa · abertura · objetivos · PROBLEMA E HIPÓTESES (20 telas) ·
-  PARTE 2 — ESTATÍSTICA (11) · prática (7) · oficina do projeto (2) · síntese · estudo
+  PARTE 2: ESTATÍSTICA (11) · prática (7) · oficina do projeto (2) · síntese · estudo
 """
 import io
 import os
@@ -36,7 +36,7 @@ SECOES = [
             """, "bruto"),
             ("A ponte entre o dia e o bloco de estatística", """
             <p>Anunciar a ligação já na abertura, para que a turma ouça duas vezes: uma hipótese
-            é <strong>uma frase sobre um número</strong> — “a mediana do setor A é maior que a
+            é <strong>uma frase sobre um número</strong>: “a mediana do setor A é maior que a
             do setor B”. Sem saber que número escolher, a hipótese não pode ser testada. É para
             isso que o bloco de hoje existe.</p>
             """, "falar"),
@@ -78,7 +78,7 @@ SECOES = [
               <li><strong>Confundir tema com problema.</strong> “Comércio eletrônico no
               Maranhão” é tema; “o porte da empresa está associado à adoção de comércio
               eletrônico?” é problema.</li>
-              <li><strong>Objetivo com verbo de intenção</strong> — “contribuir para o debate”.
+              <li><strong>Objetivo com verbo de intenção</strong>, como “contribuir para o debate”.
               Objetivo quantitativo pede verbo verificável: medir, comparar, estimar, testar.</li>
               <li><strong>Hipótese que não pode ser falseada.</strong> Se nenhum resultado
               possível a contradiz, não é hipótese.</li>
@@ -94,7 +94,7 @@ SECOES = [
     },
     {
         "num": 3,
-        "titulo": "Parte 2: estatística — média, mediana e moda",
+        "titulo": "Parte 2 (estatística): média, mediana e moda",
         "minutos": 90,
         "entre": ["Parte 2", "Mão na massa"],
         "blocos": [
@@ -108,7 +108,7 @@ SECOES = [
             ("A ideia que organiza o bloco inteiro", """
             <p>Repetir, em voz alta: <strong>“a medida que descreve bem é a que sobrevive a um
             valor extremo”</strong>. O bloco não é sobre três fórmulas: é sobre uma decisão. E a
-            decisão tem um teste de trinta segundos — compare a média com a mediana. Se estão
+            decisão tem um teste de trinta segundos: compare a média com a mediana. Se estão
             longe, use a mediana.</p>
             """, "falar"),
             ("O exemplo que faz a aula acontecer", """
@@ -116,12 +116,12 @@ SECOES = [
             <strong>um</strong> mês extremo. Peça que a turma calcule a média antes de o notebook
             mostrar: a mão em seis valores é viável e o efeito do extremo é visível.</p>
             <p>Ao revelar, dizer o número que impressiona: <strong>um único mês e a média subiu
-            0,1255 ponto percentual</strong> — de 0,4317 para 0,5571, quase 30% — enquanto a
+            0,1255 ponto percentual</strong> (de 0,4317 para 0,5571, quase 30%), enquanto a
             mediana foi de 0,35 para 0,42. A média é frágil; a mediana não.</p>
             """, "pergunta-aula"),
             ("A média ponderada: por que ela existe", """
-            <p>O exemplo de relatório — duas lojas, uma vendendo 100 unidades a R$ 10 e
-            outra 900 a R$ 20 — mostra que a média simples e a ponderada <strong>respondem
+            <p>O exemplo de relatório (duas lojas, uma vendendo 100 unidades a R$ 10 e
+            outra 900 a R$ 20) mostra que a média simples e a ponderada <strong>respondem
             a perguntas diferentes</strong>. O ponto não é a fórmula, é a pergunta: os casos
             valem todos o mesmo, ou cada um pesa diferente?</p>
             <p>Vale antecipar que a ponderada volta em dois lugares: na amostragem estratificada
@@ -130,7 +130,7 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>Usar a média sem olhar o formato.</strong> É o erro do dia.</li>
-              <li><strong>Transformar média em frequência</strong> — “média de 3,54% logo, 4 em
+              <li><strong>Transformar média em frequência</strong>, como em “média de 3,54% logo, 4 em
               cada 100 empresas”. O slide de erro comum trata exatamente disso.</li>
               <li><strong>Citar a média do período como se fosse o valor de hoje.</strong> Erro
               clássico de relatório com série temporal.</li>
@@ -170,17 +170,17 @@ SECOES = [
             <p>A única edição de código do dia é trocar <code>SERIE = 433</code> por
             <code>21086</code>.</p>
             """, "falar"),
-            ("Seção 2 — duas séries do Banco Central (18 min)", """
+            ("Seção 2: duas séries do Banco Central (18 min)", """
             <p>Primeira vez que a disciplina usa uma API cujo retorno é <strong>JSON</strong>, e
             não uma tabela pronta. Vale parar dois minutos na diferença: a coluna de data vem no
             formato brasileiro e precisa ser convertida, e o código mostra isso escrito à
             mão.</p>
             <p>Falar também da <strong>retentativa</strong>: a função tenta três vezes antes de
             desistir, porque a API do Banco Central devolve 502 de vez em quando. É comportamento
-            de quem usa API de verdade e não esconde nada — se as três falharem, a Célula B
+            de quem usa API de verdade e não esconde nada: se as três falharem, a Célula B
             entra em cena.</p>
             """, "falar"),
-            ("Seções 3 e 4 — as medidas e o exemplo (24 min)", """
+            ("Seções 3 e 4: as medidas e o exemplo (24 min)", """
             <p>Pedir a troca de <code>SERIE</code> e a comparação das duas linhas: em qual das
             duas séries a média descreve melhor o período? A inadimplência, com diferença de
             0,007; o IPCA, com diferença de 0,015.</p>
@@ -188,7 +188,7 @@ SECOES = [
             a média dos seis valores na mão, e o notebook confirma. Em seguida o valor extremo
             entra, e o efeito aparece na tela.</p>
             """, "pergunta-aula"),
-            ("Seção 6 — o modo 3 e por que ele é o mais perigoso", """
+            ("Seção 6: o modo 3 e por que ele é o mais perigoso", """
             <p>A segunda leitura errada é a que merece mais tempo: um número <strong>certo</strong>
             (a média de 3,54%) usado para afirmar algo que ele não sustenta. É o mesmo cuidado da
             tela de leitura do encontro 1, agora aplicado a uma série temporal.</p>
@@ -201,7 +201,7 @@ SECOES = [
             <p>As duas telas de oficina fecham o dia: apresentar o cardápio de temas e pedir que
             cada estudante escreva <strong>o problema e uma hipótese</strong> do seu projeto, com
             o número declarado. Circular pela sala, porque é aqui que se descobre quem ainda não
-            escolheu tema — e o encontro 5 tem entrega.</p>
+            escolheu tema, e o encontro 5 tem entrega.</p>
             """, "gabarito"),
         ],
     },
@@ -214,7 +214,7 @@ SECOES = [
             ("Os três aprendizados do dia", """
             <ol>
               <li><strong>Um problema não é um tema</strong>, e uma hipótese é uma frase sobre um
-              número — o que obriga a decidir qual número antes de enunciá-la.</li>
+              número, o que obriga a decidir qual número antes de enunciá-la.</li>
               <li><strong>A média não é sempre a melhor medida.</strong> Ela é frágil a um único
               valor extremo; a mediana não é.</li>
               <li><strong>Média e mediana distantes é um sinal, não um erro:</strong> a

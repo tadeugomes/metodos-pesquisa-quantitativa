@@ -3,7 +3,7 @@
 
 Estrutura do deck:
   capa · abertura · objetivos · o processo de pesquisa (6) · dados e fontes (6) ·
-  a matriz de amarracao (3) · PARTE 2 — dispersao (10) + forma (10) ·
+  a matriz de amarracao (3) · PARTE 2: dispersao (10) + forma (10) ·
   pratica (5) · oficina · sintese · fechamento do Modulo I · estudo
 
 A Parte 2 tem dois blocos de dez telas, e por isso a conducao dela e a mais longa
@@ -62,7 +62,7 @@ SECOES = [
             ("A ideia que organiza o bloco", """
             <p>O processo de pesquisa é uma <strong>cadeia de decisões encadeadas</strong>: o
             problema define o delineamento, que define a população e as fontes, que definem o
-            instrumento, que define a análise. Errar uma etapa contamina todas as seguintes — e
+            instrumento, que define a análise. Errar uma etapa contamina todas as seguintes, e
             é por isso que as decisões aparecem na <strong>matriz de amarração</strong>.</p>
             """, "falar"),
             ("O bloco que mais serve ao projeto", """
@@ -81,7 +81,7 @@ SECOES = [
             <ol>
               <li><strong>Coluna ou célula vazia.</strong> A coluna <code>Valor de Compra</code>
               da ANP está vazia nas 12 planilhas; na CVM, 35 das 451 companhias não têm setor.
-              O que se faz: contar e declarar — nunca preencher por conta própria.</li>
+              O que se faz: contar e declarar, nunca preencher por conta própria.</li>
               <li><strong>Escala e unidade.</strong> Na CVM, 444 companhias declaram em
               <code>MIL</code> e 7 em <code>UNIDADE</code>. Misturar as duas faz a mediana das
               segundas parecer 34 vezes maior. É o defeito mais perigoso dos quatro e volta na
@@ -100,9 +100,9 @@ SECOES = [
             <p>O conceito do dia é o <strong>risco de reidentificação</strong>: quanto mais rara a
             combinação de características divulgadas, mais fácil reconstruir quem é o caso. Uma
             tabela com município, porte, setor e faixa de faturamento consegue isolar uma única
-            empresa — e aí a “anonimização” virou ficção.</p>
+            empresa, e aí retirar o nome não impediu a identificação.</p>
             <p>Vale dizer que é a mesma exigência da pesquisa com seres humanos, aplicada a dado
-            que já existe: não é burocracia, é o que permite publicar sem expor.</p>
+            que já existe: é o que permite publicar a tabela sem expor nenhuma empresa.</p>
             """, "falar"),
             ("A matriz de amarração e a coluna que ela ganha", """
             <p>Fechar o bloco ligando matriz e estatística: a matriz amarra objetivo, variável e
@@ -129,24 +129,24 @@ SECOES = [
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
             <p>Uma frase, repetida: <strong>“uma medida só descreve metade da história”</strong>.
-            Duas empresas com faturamento médio de R$ 1 milhão podem ser idênticas — ou uma
+            Duas empresas com faturamento médio de R$ 1 milhão podem ser idênticas, ou uma
             faturar R$ 1 milhão todo mês e a outra oscilar entre R$ 100 mil e R$ 2 milhões. A
             média não distingue. A dispersão, sim.</p>
             <p>A pergunta volta no fim do bloco, na tela <strong>“De volta à pergunta: as duas
             empresas de R$ 1 milhão”</strong>, com os números: desvio de 39 contra 860, CV de 3,9%
-            contra 86%. Feche pela decisão — capital de giro e risco de crédito —, e não pelo
+            contra 86%. Feche pela decisão (capital de giro e risco de crédito), e não pelo
             cálculo.</p>
             """, "falar"),
             ("O ponto que mais rende: por que o quadrado", """
             <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir
-            pelo número?”</em>. A resposta — eles se cancelam — costuma sair de algum estudante, e
+            pelo número?”</em>. A resposta (eles se cancelam) costuma sair de algum estudante, e
             o quadrado passa a fazer sentido em vez de ser regra decorada.</p>
             <p>Em seguida, a segunda pergunta: <em>“e por que tirar a raiz depois?”</em>. Aí é a
             interpretação: sem a raiz, o número fica em R$ ao quadrado, que não se lê.</p>
             """, "pergunta-aula"),
             ("O exemplo e a frase que sai dele", """
             <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
-            com oscilação típica de R$ 0,42 — 6,9% da média”</em>. A disciplina quer que essa
+            com oscilação típica de R$ 0,42, ou 6,9% da média”</em>. A disciplina quer que essa
             forma de dizer vire hábito: <strong>centro e dispersão na mesma frase</strong>.</p>
             """, "pergunta-aula"),
             ("Erros que vão aparecer na turma", """
@@ -154,7 +154,7 @@ SECOES = [
               <li><strong>Comparar desvios de variáveis diferentes.</strong> É o erro do slide e
               o mais comum em relatório que compara dois indicadores.</li>
               <li><strong>Achar que desvio alto significa problema.</strong> Desvio alto é
-              <em>variação</em>: pode ser diversidade legítima, ou risco — depende do problema.</li>
+              <em>variação</em>: pode ser diversidade legítima, ou risco, e isso depende do problema.</li>
               <li><strong>Usar a amplitude como medida principal.</strong> Ela depende de dois
               valores só, e um extremo a destrói.</li>
             </ol>
@@ -199,7 +199,7 @@ SECOES = [
             posto e a de quem gere uma frota.</p>
             """, "falar"),
             ("O momento em que os dois blocos do dia se encontram", """
-            <p>Este é o ponto mais importante da tarde, e vale conduzir devagar: na
+            <p>Aqui os dois blocos do dia se ligam, e vale conduzir devagar: na
             <strong>tela “Como se lê o exemplo e a forma da distribuição”</strong>, a média
             (6,13) maior que a mediana (6,08) do primeiro bloco <em>explica</em> a assimetria que
             o segundo bloco mede. Não são dois assuntos: são o mesmo, visto por dois ângulos.</p>
@@ -209,7 +209,7 @@ SECOES = [
             """, "falar"),
             ("O IQR contra a amplitude", """
             <p>A pergunta que rende: <em>“por que o IQR (R$ 0,66) é menos da metade da amplitude
-            (R$ 1,82)?”</em>. A resposta — a amplitude olha dois valores, o IQR olha o miolo — é a
+            (R$ 1,82)?”</em>. A resposta (a amplitude olha dois valores, o IQR olha o miolo) é a
             lição de robustez do bloco.</p>
             """, "pergunta-aula"),
             ("Erros que vão aparecer na turma", """
@@ -235,7 +235,7 @@ SECOES = [
               <tr><td>R$ 6,80 a 7,30</td><td>370</td><td>7,7%</td><td>100,0%</td></tr>
             </table>
             <p>São os valores que o notebook confere, e as classes são
-            <strong>fechadas à esquerda</strong> — é o detalhe que faz a tabela do notebook bater
+            <strong>fechadas à esquerda</strong>, e é o detalhe que faz a tabela do notebook bater
             com a do slide.</p>
             """, "gabarito"),
         ],
@@ -264,12 +264,12 @@ SECOES = [
             <strong>12 arquivos mensais</strong>, um por mês, e o notebook baixa os 12. Enquanto
             roda, aproveitar para explicar a diferença das bases anteriores:</p>
             <ul>
-              <li>é <strong>dado de registro</strong>, uma linha por posto por mês — é isso que
+              <li>é <strong>dado de registro</strong>, uma linha por posto por mês, e é isso que
               permite calcular dispersão;</li>
               <li>tem <strong>duas colunas no padrão brasileiro</strong> (data e valor com vírgula
               decimal), que precisam ser convertidas;</li>
-              <li>traz uma <strong>coluna inteiramente vazia</strong> — <code>Valor de
-              Compra</code> não tem um único valor nas 12 planilhas — o
+              <li>traz uma <strong>coluna inteiramente vazia</strong>: <code>Valor de
+              Compra</code> não tem um único valor nas 12 planilhas. É o
               <strong>defeito de qualidade do dia</strong>.</li>
             </ul>
             <p>Se a rede da sala for lenta, rode a célula A antes de começar a aula, ou use a
@@ -290,7 +290,7 @@ SECOES = [
             """, "gabarito"),
             ("A matriz de amarração, na Seção 6 do notebook", """
             <p>Última tarefa da prática: cada estudante preenche a matriz do seu projeto com o
-            que já sabe — problema, objetivo específico, hipótese, variáveis e níveis, base e
+            que já sabe: problema, objetivo específico, hipótese, variáveis e níveis, base e
             técnica prevista. As três primeiras colunas vêm do encontro 3; a base, dos seis
             critérios de hoje; a técnica ainda pode ficar genérica.</p>
             <p>Circular priorizando quem ainda não tem a base carregando: sem ela, a coluna

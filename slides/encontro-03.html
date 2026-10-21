@@ -18,7 +18,7 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
-<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
 <div id="deck" data-conducao="1">
 <div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
 <section class="secao-projecao" id="sec-1" data-conducao="1">
@@ -45,8 +45,8 @@
     <div>
       <h3>Parte 1: a pergunta de pesquisa</h3>
       <p>Do tema ao problema, do problema à hipótese. E a hipótese é uma frase sobre um
-      <strong>número</strong> — o que já nos leva direto à Parte 2.</p>
-      <h3>Parte 2: estatística — média, mediana e moda</h3>
+      <strong>número</strong>, o que já nos leva direto à Parte 2.</p>
+      <h3>Parte 2 (estatística): média, mediana e moda</h3>
       <p>Média, mediana e moda, e a regra que decide entre elas: <strong>a medida que sobrevive a
       um valor extremo.</strong></p>
     </div>
@@ -549,7 +549,7 @@
   <div class="pergunta">Qual <strong>um número</strong> resume bem 36 meses de
   variação do IPCA?</div>
   <p>A resposta de sempre seria a média. Hoje a turma vai ver o que <strong>um
-  único mês extremo</strong> faz com cada uma das três medidas — e sai sabendo
+  único mês extremo</strong> faz com cada uma das três medidas, e sai sabendo
   quando trocar a média pela mediana.</p>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
   A medida de tendência central que descreve bem uma distribuição é a que
@@ -568,9 +568,9 @@
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     A média quando o nível permite somar <strong>e</strong> a distribuição não tem
-    extremos. A mediana sempre que houver dúvida — ela serve a partir do ordinal.</div>
+    extremos. A mediana sempre que houver dúvida: ela serve a partir do ordinal.</div>
     <div class="nao-usa"><span class="rotulo">Não use</span>
-    A média sobre categorias — a média da letra “G” não é nada. E a média
+    A média sobre categorias: a média da letra “G” não é nada. E a média
     quando há um valor muito distante: ela é puxada por ele, e a mediana não.</div>
   </div>
 </section>
@@ -589,7 +589,7 @@
     </span>
     <span class="legenda-formula">Em linguagem corrente: <strong>some todos os
     valores e divida pela quantidade</strong>. A média só existe quando essa soma e
-    essa divisão fazem sentido — e isso depende do nível de mensuração, que é a
+    essa divisão fazem sentido, e isso depende do nível de mensuração, que é a
     Parte 2 do encontro 2.</span>
   </div>
 </section>
@@ -609,7 +609,7 @@
     </span>
     <span class="legenda-formula">Em linguagem corrente: <strong>multiplique cada
     valor pelo peso, some tudo e divida pela soma dos pesos.</strong> Se todos os
-    pesos forem iguais, a ponderada vira a média simples — é por isso que a fórmula
+    pesos forem iguais, a ponderada vira a média simples, e é por isso que a fórmula
     é a mesma.</span>
   </div>
   <p class="menor">Quando ponderar? Quando os casos não valem o mesmo: um mês de
@@ -629,7 +629,7 @@
         <span class="num">0,35</span>;</li>
     <li>Agora acrescentamos <strong>um</strong> valor extremo, o maior da série:
         <span class="num">1,31</span> (fevereiro de 2025);</li>
-    <li>A média salta para <span class="num">0,5571</span> — sobe
+    <li>A média salta para <span class="num">0,5571</span>: sobe
         <span class="num">0,1255</span>. A mediana vai para
         <span class="num">0,42</span>.</li>
   </ol>
@@ -667,7 +667,7 @@ mediana = serie[<span class="str">"valor"</span>].median()    <span class="cmt">
               <strong>diferença entre média e mediana</strong>, que a célula anterior
               imprime: <span class="num">|0,37 − 0,35| = 0,015</span>.</p>
               <p class="menor">Regra de bolso que a turma vai levar: diferença pequena em
-              relação ao próprio valor — a média descreve bem o conjunto. Diferença grande —
+              relação ao próprio valor: a média descreve bem o conjunto. Diferença grande:
               há valores extremos, e a mediana descreve melhor. É um <strong>sinal</strong>,
               não uma prova: para afirmar simetria, olhe o mínimo e o máximo, ou o gráfico
               do encontro 4.</p>
@@ -679,7 +679,7 @@ mediana = serie[<span class="str">"valor"</span>].median()    <span class="cmt">
   <div class="frase-resultado"><span class="rotulo">A frase</span>
   “A inadimplência da carteira de empresas de pessoa jurídica do Sistema Financeiro
   Nacional foi, em média, de <strong>3,54%</strong> ao mês entre agosto de 2023 e
-  julho de 2026, com <strong>mediana de 3,53%</strong> — as duas medidas
+  julho de 2026, com <strong>mediana de 3,53%</strong>: as duas medidas
   praticamente coincidem, o que sugere distribuição simétrica (Banco Central, SGS,
   série 21086). ”</div>
   <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
@@ -765,12 +765,12 @@ mediana = s.median()
   A API do Banco Central devolve <strong>JSON</strong>, e o IBGE devolve uma tabela pronta. Por
   isso a coluna de data precisa ser convertida com o formato brasileiro
   <code>DD/MM/AAAA</code>. É a primeira vez que você precisa prestar atenção a um detalhe de
-  formato — e a chamada está escrita à mão, para você ver o que é pedido e o que é
+  formato, e a chamada está escrita à mão, para você ver o que é pedido e o que é
   recebido.</div>
   <div class="alerta"><span class="rotulo">A API do Banco Central falha de vez em quando</span>
   Por isso a função baixa a mesma URL até <strong>três vezes</strong> antes de desistir. Isso é
   comportamento normal de quem usa API de verdade e não esconde nada: se as três tentativas
-  falharem, o erro aparece — e a Célula B entra em cena.</div>
+  falharem, o erro aparece, e a Célula B entra em cena.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
 </section>
 <section class="slide compacto">
@@ -819,12 +819,12 @@ mediana = s.median()
   <h2>Seção 6: usando o assistente</h2>
 
   <div class="pergunta">A IA explica, o código calcula e você <strong>confere e escreve</strong>.</div>
-  <div class="instrucao"><span class="rotulo">Modo 1 — Pergunta</span>
+  <div class="instrucao"><span class="rotulo">Modo 1: Pergunta</span>
   Rode a célula de contexto, que imprime o que você precisa colar no assistente.</div>
-  <div class="instrucao"><span class="rotulo">Modo 2 — Encomenda</span>
+  <div class="instrucao"><span class="rotulo">Modo 2: Encomenda</span>
   Peça o código, cole na <strong>célula cinza</strong>. Só mude os <em>parâmetros de
   consulta</em>: qual série, qual recorte, quantos meses.</div>
-  <div class="instrucao"><span class="rotulo">Modo 3 — Ler um resultado errado</span>
+  <div class="instrucao"><span class="rotulo">Modo 3: Ler um resultado errado</span>
   Três leituras erradas, todas com a série real. A segunda é a mais perigosa: usa um número
   certo e tira dele uma afirmação que o número não sustenta.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 3</div>
@@ -861,7 +861,7 @@ mediana = s.median()
         menor porte?</td></tr>
     <tr><td>Estrutura empresarial do Maranhão vs. Brasil</td><td>CEMPRE (SIDRA 9582)</td>
         <td>A economia maranhense é mais concentrada em comércio?</td></tr>
-    <tr><td>Preço de combustíveis por município</td><td>ANP — SHPC (dados abertos)</td>
+    <tr><td>Preço de combustíveis por município</td><td>ANP, SHPC (dados abertos)</td>
         <td>O preço da gasolina difere sistematicamente entre os municípios do
         Maranhão?</td></tr>
     <tr><td>Inflação e inadimplência</td><td>SGS/BCB (433, 21086)</td>
@@ -898,7 +898,7 @@ mediana = s.median()
   <ul>
     <li><strong>Tema não é problema.</strong> O problema é uma pergunta delimitada, e as seis
         regras de Gil são o teste de qualidade dela;</li>
-    <li><strong>Objetivo pede verbo verificável</strong> — medir, comparar, estimar, testar. Não
+    <li><strong>Objetivo pede verbo verificável</strong>: medir, comparar, estimar, testar. Não
         “contribuir para o debate”;</li>
     <li><strong>Hipótese é uma frase sobre um número.</strong> “A mediana do setor A é maior
         que a do setor B” é hipótese; “o setor A é melhor que o B” não é;</li>
@@ -924,7 +924,7 @@ mediana = s.median()
         regras, definição operacional, enunciado e objetivos) e capítulo 3 (como construir
         hipóteses: níveis, relações entre variáveis e os seis requisitos).</li>
     <li><strong>O notebook do encontro</strong> está <em>pré-executado</em>. Rode com as duas
-        séries — <code>SERIE = 433</code> e <code>SERIE = 21086</code> — e compare as linhas.</li>
+        séries (<code>SERIE = 433</code> e <code>SERIE = 21086</code>) e compare as linhas.</li>
     <li><strong>A condução da aula</strong>: tecla <strong>D</strong>, ou imprima o PDF, que sai
         em duas partes.</li>
   </ul>
@@ -962,7 +962,7 @@ mediana = s.median()
             pelo formato da distribuição.</p>
                 <div class="caixa falar"><span class="rotulo">A ponte entre o dia e o bloco de estatística</span>
             <p>Anunciar a ligação já na abertura, para que a turma ouça duas vezes: uma hipótese
-            é <strong>uma frase sobre um número</strong> — “a mediana do setor A é maior que a
+            é <strong>uma frase sobre um número</strong>: “a mediana do setor A é maior que a
             do setor B”. Sem saber que número escolher, a hipótese não pode ser testada. É para
             isso que o bloco de hoje existe.</p>
             </div>
@@ -1002,7 +1002,7 @@ mediana = s.median()
               <li><strong>Confundir tema com problema.</strong> “Comércio eletrônico no
               Maranhão” é tema; “o porte da empresa está associado à adoção de comércio
               eletrônico?” é problema.</li>
-              <li><strong>Objetivo com verbo de intenção</strong> — “contribuir para o debate”.
+              <li><strong>Objetivo com verbo de intenção</strong>, como “contribuir para o debate”.
               Objetivo quantitativo pede verbo verificável: medir, comparar, estimar, testar.</li>
               <li><strong>Hipótese que não pode ser falseada.</strong> Se nenhum resultado
               possível a contradiz, não é hipótese.</li>
@@ -1017,7 +1017,7 @@ mediana = s.median()
   </section>
   <section class="secao-conducao" id="det-3">
     <p class="telas-da-secao"><b>telas 24 a 34</b> <a class="chip-tela" href="#24">24</a> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
-    <h2>Parte 2: estatística — média, mediana e moda <span class="min">(90 min)</span></h2>
+    <h2>Parte 2 (estatística): média, mediana e moda <span class="min">(90 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
     <tr><th>Bloco</th><th>Minutos</th></tr>
@@ -1030,7 +1030,7 @@ mediana = s.median()
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
             <p>Repetir, em voz alta: <strong>“a medida que descreve bem é a que sobrevive a um
             valor extremo”</strong>. O bloco não é sobre três fórmulas: é sobre uma decisão. E a
-            decisão tem um teste de trinta segundos — compare a média com a mediana. Se estão
+            decisão tem um teste de trinta segundos: compare a média com a mediana. Se estão
             longe, use a mediana.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O exemplo que faz a aula acontecer</span>
@@ -1038,12 +1038,12 @@ mediana = s.median()
             <strong>um</strong> mês extremo. Peça que a turma calcule a média antes de o notebook
             mostrar: a mão em seis valores é viável e o efeito do extremo é visível.</p>
             <p>Ao revelar, dizer o número que impressiona: <strong>um único mês e a média subiu
-            0,1255 ponto percentual</strong> — de 0,4317 para 0,5571, quase 30% — enquanto a
+            0,1255 ponto percentual</strong> (de 0,4317 para 0,5571, quase 30%), enquanto a
             mediana foi de 0,35 para 0,42. A média é frágil; a mediana não.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">A média ponderada: por que ela existe</span>
-            <p>O exemplo de relatório — duas lojas, uma vendendo 100 unidades a R$ 10 e
-            outra 900 a R$ 20 — mostra que a média simples e a ponderada <strong>respondem
+            <p>O exemplo de relatório (duas lojas, uma vendendo 100 unidades a R$ 10 e
+            outra 900 a R$ 20) mostra que a média simples e a ponderada <strong>respondem
             a perguntas diferentes</strong>. O ponto não é a fórmula, é a pergunta: os casos
             valem todos o mesmo, ou cada um pesa diferente?</p>
             <p>Vale antecipar que a ponderada volta em dois lugares: na amostragem estratificada
@@ -1052,7 +1052,7 @@ mediana = s.median()
     <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
             <ol>
               <li><strong>Usar a média sem olhar o formato.</strong> É o erro do dia.</li>
-              <li><strong>Transformar média em frequência</strong> — “média de 3,54% logo, 4 em
+              <li><strong>Transformar média em frequência</strong>, como em “média de 3,54% logo, 4 em
               cada 100 empresas”. O slide de erro comum trata exatamente disso.</li>
               <li><strong>Citar a média do período como se fosse o valor de hoje.</strong> Erro
               clássico de relatório com série temporal.</li>
@@ -1090,17 +1090,17 @@ mediana = s.median()
             <p>A única edição de código do dia é trocar <code>SERIE = 433</code> por
             <code>21086</code>.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">Seção 2 — duas séries do Banco Central (18 min)</span>
+    <div class="caixa falar"><span class="rotulo">Seção 2: duas séries do Banco Central (18 min)</span>
             <p>Primeira vez que a disciplina usa uma API cujo retorno é <strong>JSON</strong>, e
             não uma tabela pronta. Vale parar dois minutos na diferença: a coluna de data vem no
             formato brasileiro e precisa ser convertida, e o código mostra isso escrito à
             mão.</p>
             <p>Falar também da <strong>retentativa</strong>: a função tenta três vezes antes de
             desistir, porque a API do Banco Central devolve 502 de vez em quando. É comportamento
-            de quem usa API de verdade e não esconde nada — se as três falharem, a Célula B
+            de quem usa API de verdade e não esconde nada: se as três falharem, a Célula B
             entra em cena.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">Seções 3 e 4 — as medidas e o exemplo (24 min)</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seções 3 e 4: as medidas e o exemplo (24 min)</span>
             <p>Pedir a troca de <code>SERIE</code> e a comparação das duas linhas: em qual das
             duas séries a média descreve melhor o período? A inadimplência, com diferença de
             0,007; o IPCA, com diferença de 0,015.</p>
@@ -1108,7 +1108,7 @@ mediana = s.median()
             a média dos seis valores na mão, e o notebook confirma. Em seguida o valor extremo
             entra, e o efeito aparece na tela.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">Seção 6 — o modo 3 e por que ele é o mais perigoso</span>
+    <div class="caixa falar"><span class="rotulo">Seção 6: o modo 3 e por que ele é o mais perigoso</span>
             <p>A segunda leitura errada é a que merece mais tempo: um número <strong>certo</strong>
             (a média de 3,54%) usado para afirmar algo que ele não sustenta. É o mesmo cuidado da
             tela de leitura do encontro 1, agora aplicado a uma série temporal.</p>
@@ -1121,7 +1121,7 @@ mediana = s.median()
             <p>As duas telas de oficina fecham o dia: apresentar o cardápio de temas e pedir que
             cada estudante escreva <strong>o problema e uma hipótese</strong> do seu projeto, com
             o número declarado. Circular pela sala, porque é aqui que se descobre quem ainda não
-            escolheu tema — e o encontro 5 tem entrega.</p>
+            escolheu tema, e o encontro 5 tem entrega.</p>
             </div>
   </section>
   <section class="secao-conducao" id="det-5">
@@ -1130,7 +1130,7 @@ mediana = s.median()
     <div class="caixa falar"><span class="rotulo">Os três aprendizados do dia</span>
             <ol>
               <li><strong>Um problema não é um tema</strong>, e uma hipótese é uma frase sobre um
-              número — o que obriga a decidir qual número antes de enunciá-la.</li>
+              número, o que obriga a decidir qual número antes de enunciá-la.</li>
               <li><strong>A média não é sempre a melhor medida.</strong> Ela é frágil a um único
               valor extremo; a mediana não é.</li>
               <li><strong>Média e mediana distantes é um sinal, não um erro:</strong> a
