@@ -133,6 +133,14 @@ SECOES = [
             <strong>Dizer isso em voz alta é honesto e ensina:</strong> nem toda variável do
             mundo tem exemplo na fonte oficial.</p>
             """, "falar"),
+            ("As duas figuras do bloco", """
+            <p>A tela dos quatro níveis não traz mais a lista em texto: os níveis estão na
+            escada, e cada degrau carrega o anterior e acrescenta uma propriedade. Suba com a
+            turma, degrau a degrau, lendo o exemplo e o que cada um passa a permitir.</p>
+            <p>Na tela da receita, as duas caixas viraram uma figura. Peça que a turma compare
+            as duas escalas de satisfação: a diferença de 4 pontos se mantém, e a razão muda de
+            2 para 1,8. É o teste do zero visto, e não só dito.</p>
+            """, "falar"),
             ("O teste do zero, repetido até virar hábito", """
             <p>Uma pergunta só: <strong>“o zero significa ausência da coisa?”</strong> Se
             significa, é razão. Se significa “ninguém respondeu”, é intervalo. Se a variável é

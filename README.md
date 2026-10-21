@@ -190,8 +190,9 @@ de editar o arquivo gerado:
 - `gera_slide_NN.py`: a camada de condução do deck. As telas se editam no HTML, à mão; o gerador
   preserva as telas e só refaz a condução.
 - `gera_guia_descritiva.py`: o guia do Módulo I, regerado e reexecutado como os notebooks.
-- `figuras_encontro04.py`: as figuras da parte de estatística do encontro 4, calculadas a
-  partir do CSV da ANP e inseridas nas telas. Rodar de novo substitui as figuras, sem duplicar.
+- `figuras_encontroNN.py` (encontros 1 a 4): as figuras da parte de estatística de cada deck,
+  calculadas a partir dos CSVs de `dados/` e inseridas nas telas. Rodar de novo substitui as
+  figuras, sem duplicar. As funções comuns ficam em `figuras_base.py`.
 - `gera_template_projeto.py`: o template do projeto em `.docx`. Rode da raiz do repositório e o
   arquivo é regerado no lugar.
 - `slide_builder.py`: a montagem das duas camadas, usada pelos `gera_slide_NN.py`. Rodar duas

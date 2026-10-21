@@ -15,81 +15,16 @@ faz a figura caber na tela, em 16:9 e em 4:3, sem deformar.
 
 Uso, da raiz do repositorio:  python notebooks/geradores/figuras_encontro04.py
 """
-import io
 import os
-import re
 import sys
-import time
 
 import numpy as np
 import pandas as pd
 
-RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-HTML = os.path.join(RAIZ, "slides", "encontro-04.html")
-CSV = os.path.join(RAIZ, "dados", "anp_precos_revenda_ma_2025.csv")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from figuras_base import *  # noqa: E402,F401,F403
 
-# paleta do deck: a mesma das figuras dos encontros 6 e 13
-VERDE, VERDE_ESC, VERDE_CLARO, VERDE_MEDIO = "#0AB0AB", "#05635f", "#e3f6f5", "#7fd3d1"
-VINHO, DOURADO, DOURADO_CLARO, DOURADO_ESC = "#8D0333", "#a67c2e", "#d9c08f", "#7a5a1f"
-TINTA, CINZA, EIXO, GRADE = "#444", "#777", "#bbb", "#eee"
-TITULO = 'font-family="Montserrat, Calibri, sans-serif" font-weight="700"'
-NEGRITO = 'font-weight="700"'
-PONTA = {VINHO: "sv", VERDE: "sg", VERDE_ESC: "sg", DOURADO: "sd"}
-
-ESC = 1.0   # multiplicador das fontes da figura em construcao
-
-
-def br(v, casas=2):
-    """Numero no padrao brasileiro, com o sinal de menos tipografico."""
-    t = f"{abs(v):,.{casas}f}".replace(",", "X").replace(".", ",").replace("X", ".")
-    return ("−" if v < 0 else "") + t
-
-
-def txt(x, y, s, tam=15, cor=TINTA, ancora="middle", extra=""):
-    return (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{ancora}" font-size="{tam * ESC:.1f}" '
-            f'fill="{cor}" {extra}>{s}</text>')
-
-
-def halo(x, y, s, tam=15, cor=TINTA, ancora="middle", extra=""):
-    """Rotulo com contorno branco, para ficar legivel sobre barras e linhas."""
-    return txt(x, y, s, tam, cor, ancora, extra + ' stroke="#fff" stroke-width="5" paint-order="stroke"')
-
-
-def svg(altura, rotulo, corpo):
-    return (f'<svg viewBox="0 0 1000 {altura}" role="img" aria-label="{rotulo}">\n'
-            + "\n".join(corpo) + "\n</svg>")
-
-
-def linha_v(x, y1, y2, cor, tracejada=False, larg=2.4):
-    tr = ' stroke-dasharray="6 4"' if tracejada else ""
-    return f'<line x1="{x:.1f}" y1="{y1:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{cor}" stroke-width="{larg}"{tr}/>'
-
-
-def seta(x1, y1, x2, y2, cor, larg=2.4):
-    return (f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="{cor}" '
-            f'stroke-width="{larg}" marker-end="url(#{PONTA.get(cor, "sc")})"/>')
-
-
-def colchete(x1, x2, y, cor):
-    return (f'<path d="M{x1:.1f},{y - 8:.1f} V{y:.1f} H{x2:.1f} V{y - 8:.1f}" fill="none" '
-            f'stroke="{cor}" stroke-width="2.6" stroke-linejoin="round"/>')
-
-
-def escala(lo, hi, x0=70, x1=960):
-    return lambda p: x0 + (p - lo) / (hi - lo) * (x1 - x0)
-
-
-def bloco_3d(x, base, lado, frente, topo, lateral, prof=10):
-    """Quadrado com relevo: a face da frente e um quadrado verdadeiro (a area se le
-    nela); topo e lateral dao a profundidade."""
-    y = base - lado
-    return [
-        f'<polygon points="{x:.1f},{y:.1f} {x + prof:.1f},{y - prof:.1f} {x + lado + prof:.1f},{y - prof:.1f} '
-        f'{x + lado:.1f},{y:.1f}" fill="{topo}"/>',
-        f'<polygon points="{x + lado:.1f},{y:.1f} {x + lado + prof:.1f},{y - prof:.1f} '
-        f'{x + lado + prof:.1f},{base - prof:.1f} {x + lado:.1f},{base:.1f}" fill="{lateral}"/>',
-        f'<rect x="{x:.1f}" y="{y:.1f}" width="{lado:.1f}" height="{lado:.1f}" fill="{frente}"/>',
-    ]
+CSV = os.path.join(DADOS, "anp_precos_revenda_ma_2025.csv")
 
 
 # ------------------------------------------------------------------ os dados
@@ -138,15 +73,12 @@ def eixo_precos(X, y, marcas=(5.5, 6.0, 6.5, 7.0)):
     return out
 
 
-FIG = {}
-
-
-def figura(nome, titulo, regra, altura_css, legenda, corpo_svg):
-    FIG[nome] = (titulo, regra, corpo_svg, legenda, altura_css)
+REG = Registro(4)
+figura = REG.figura
 
 
 # ================================================================== 1. a pergunta
-ESC = 1.25
+fonte(1.25)
 A = [950, 1020, 980, 1050, 970, 1030]
 B = [100, 2000, 400, 1800, 200, 1500]
 MESES = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"]
@@ -179,7 +111,7 @@ figura("pergunta", "A pergunta que a estatística do dia responde", "after_pergu
                 "pouco, a B oscila muito", c))
 
 # ================================================================== 2. as medidas sobre o histograma
-ESC = 1.12
+fonte(1.12)
 X = escala(5.30, 7.30, 60, 970)
 c = [f'<rect x="{X(MEDIA - DESVIO):.1f}" y="14" width="{X(MEDIA + DESVIO) - X(MEDIA - DESVIO):.1f}" '
      f'height="140" fill="{VERDE_CLARO}"/>']
@@ -192,7 +124,7 @@ c += [linha_v(X(MEDIA), 10, 154, VINHO, tracejada=True),
 def linha_medida(y, nome, conta, explicacao, cor):
     """Rotulo em tres partes: o nome em negrito, a conta com o numero real e o que a
     medida diz, em cinza."""
-    return [f'<text x="0" y="{y:.1f}" font-size="{15 * ESC:.1f}" fill="{TINTA}">'
+    return [f'<text x="0" y="{y:.1f}" font-size="{15 * esc():.1f}" fill="{TINTA}">'
             f'<tspan font-weight="700" fill="{cor}">{nome}</tspan>'
             f'<tspan> = {conta}</tspan>'
             f'<tspan fill="{CINZA}"> · {explicacao}</tspan></text>']
@@ -229,7 +161,7 @@ figura("medidas", "As medidas de dispersão", "after_h2", "50vh",
                 "variância e coeficiente de variação, cada um com sua definição e seu valor", c))
 
 # ================================================================== 3. os simbolos: x_i - x barra
-ESC = 1.25
+fonte(1.25)
 X5 = escala(5.66, 6.49, 60, 970)
 c = [f'<line x1="60" y1="138" x2="970" y2="138" stroke="{EIXO}" stroke-width="1.6"/>']
 for p in (5.75, 6.00, 6.25):
@@ -248,7 +180,7 @@ figura("simbolos", "A fórmula, com cada símbolo nomeado", "after_formula", "21
        svg(172, "Cinco postos numa reta de preços, com a seta de cada um até a média: o desvio x menos x barra", c))
 
 # ================================================================== 4. por que o quadrado
-ESC = 1.0
+fonte(1.0)
 K1, K2 = 230, 300
 c = []
 # painel 1: os desvios com sinal
@@ -291,7 +223,7 @@ figura("quadrado", "Por que elevar ao quadrado e por que tirar a raiz", "before_
                 "somam; a média das áreas é a variância e o lado do quadrado médio é o desvio padrão", c))
 
 # ================================================================== 5. o desvio em proporcao da media
-ESC = 1.25
+fonte(1.25)
 c = []
 for i, (nome, media_txt, desvio_txt, cv) in enumerate((
         ("Gasolina", "média R$ 6,13", "desvio R$ 0,42", 6.87),
@@ -312,7 +244,7 @@ figura("cv", "Erro comum: comparar desvios de escalas diferentes", "before_menor
                 "79,90% no IPCA mensal", c))
 
 # ================================================================== 6. a pergunta da forma
-ESC = 1.25
+fonte(1.25)
 c = histograma(X, 172, 140)
 c += eixo_precos(X, 172)
 c += [linha_v(X(ALVO), 14, 172, DOURADO, larg=3.2),
@@ -324,7 +256,7 @@ figura("pergunta_forma", "A pergunta que a forma responde", "after_pergunta", "2
        svg(204, "Histograma dos preços da gasolina com o valor de R$ 6,20 marcado e a pergunta: caro ou barato", c))
 
 # ================================================================== 7. histograma, boxplot e regua z
-ESC = 1.15
+fonte(1.15)
 XZ = escala(5.20, 7.40, 120, 975)
 c = histograma(XZ, 104, 92)
 c.append(f'<line x1="{XZ(5.25):.1f}" y1="104" x2="{XZ(7.35):.1f}" y2="104" stroke="{EIXO}" stroke-width="1.6"/>')
@@ -353,7 +285,7 @@ figura("tres", "Quartis, histograma e escore z", "after_definicao", "31vh",
                 "de preços da gasolina", c))
 
 # ================================================================== 8. a regua do z
-ESC = 1.25
+fonte(1.25)
 XR = escala(5.20, 7.45, 190, 975)
 c = []
 y1, y2 = 40, 112
@@ -379,7 +311,7 @@ figura("regua_z", "A fórmula do escore z", "after_formula", "19vh",
                 "acima da média", c))
 
 # ================================================================== 9. a resposta do R$ 6,20
-ESC = 1.25
+fonte(1.25)
 x0, L = 10, 980
 w1, w2 = L * ABAIXO_ALVO / 100, L * IGUAL_ALVO / 100
 c = [f'<rect x="{x0}" y="8" width="{w1 - 1:.1f}" height="42" rx="4" fill="{VERDE}"/>',
@@ -392,7 +324,7 @@ figura("resposta_620", "De volta à pergunta: R$ 6,20", "after_passos", "10vh", 
        svg(84, "Barra dividida: 60,8% dos preços abaixo de R$ 6,20, 0,6% iguais e 38,6% acima", c))
 
 # ================================================================== 10. media e mediana
-ESC = 1.2
+fonte(1.2)
 c = [f'<rect x="{X(BORDAS[0]):.1f}" y="14" width="{X(MEDIA) - X(BORDAS[0]):.1f}" height="158" fill="{VERDE_CLARO}"/>']
 c += histograma(X, 172, 136)
 c += eixo_precos(X, 172)
@@ -410,70 +342,6 @@ figura("assimetria", "Erro comum: usar a média em distribuição assimétrica",
                 "55,2% dos preços ficam abaixo da média", c))
 
 
-# ================================================================== insercao no deck
-def bloco(nome, conteudo, legenda, altura):
-    leg = f'\n    <p class="legenda">{legenda}</p>' if legenda else ""
-    return (f'  <div class="figura" data-fig="{nome}" style="--fig-h:{altura}">\n    '
-            + conteudo.replace("\n", "\n    ") + leg + "\n  </div>\n")
-
-
-def fim_do_bloco(tela, inicio):
-    """Indice logo depois do </div> que fecha o <div ...> aberto em `inicio`."""
-    prof, i = 0, inicio
-    while True:
-        a, f = tela.find("<div", i), tela.find("</div>", i)
-        if a != -1 and a < f:
-            prof, i = prof + 1, a + 4
-        else:
-            prof, i = prof - 1, f + 6
-            if prof == 0:
-                return i + (1 if tela[i:i + 1] == "\n" else 0)
-
-
-def posicao(tela, regra):
-    if regra == "after_h2":
-        return tela.index("</h2>\n") + len("</h2>\n")
-    if regra == "after_pergunta":
-        return fim_do_bloco(tela, tela.index('<div class="pergunta"'))
-    if regra == "after_definicao":
-        return fim_do_bloco(tela, tela.index('<div class="definicao"'))
-    if regra == "after_formula":
-        return fim_do_bloco(tela, tela.index('<div class="formula"'))
-    if regra == "after_passos":
-        return tela.index("</ol>") + len("</ol>\n")
-    if regra in ("before_menor", "before_menor_ou_fim"):
-        j = tela.find('  <p class="menor">')
-        return j if j != -1 else tela.index('  <div class="rodape">')
-    raise ValueError(regra)
-
-
-def insere(html):
-    deck_fim = html.index("<!-- /deck -->")
-    deck, resto = html[:deck_fim], html[deck_fim:]
-    telas = re.split(r'(?=<section class="slide)', deck)
-    for nome, (titulo, regra, conteudo, legenda, altura) in FIG.items():
-        alvo = [k for k, t in enumerate(telas) if f"<h2>{titulo}" in t]
-        assert len(alvo) == 1, (nome, titulo, len(alvo))
-        k = alvo[0]
-        t = re.sub(r'  <div class="figura" data-fig="%s".*?\n  </div>\n' % nome, "", telas[k], flags=re.S)
-        i = posicao(t, regra)
-        telas[k] = t[:i] + bloco(nome, conteudo, legenda, altura) + t[i:]
-    return "".join(telas) + resto
-
-
 if __name__ == "__main__":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-    html = io.open(HTML, encoding="utf-8").read()
-    novo = insere(html)
-    for tentativa in range(5):
-        try:
-            io.open(HTML, "w", encoding="utf-8").write(novo)
-            break
-        except OSError:
-            if tentativa == 4:
-                raise
-            time.sleep(1)
-    print("slides/encontro-04.html")
-    print(f"  figuras: {len(FIG)} ({', '.join(FIG)})")
-    print(f"  média {br(MEDIA)} | mediana {br(MEDIANA)} | desvio {br(DESVIO)} | CV {br(CV)}% | "
-          f"abaixo da média {br(ABAIXO_MEDIA, 1)}% | abaixo de 6,20 {br(ABAIXO_ALVO, 1)}%")
+    REG.gravar(f"média {br(MEDIA)} | mediana {br(MEDIANA)} | desvio {br(DESVIO)} | CV {br(CV)}% | "
+               f"abaixo da média {br(ABAIXO_MEDIA, 1)}% | abaixo de 6,20 {br(ABAIXO_ALVO, 1)}%")

@@ -18,7 +18,7 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
-<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
 <div id="deck" data-conducao="1">
 <div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
 <section class="secao-projecao" id="sec-1" data-conducao="1">
@@ -300,16 +300,42 @@
   <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
   Toda variável tem um <strong>nível</strong>. Ele diz o que a variável carrega:
   só um nome, uma ordem, intervalos, ou intervalos com zero verdadeiro.</div>
-  <ul class="menor">
-    <li><strong>Nominal</strong> carrega só um nome. Exemplo: o setor de atividade da empresa (a
-        seção da CNAE), comércio ou indústria. Dá para contar quantas há em cada um.</li>
-    <li><strong>Ordinal</strong> carrega um nome e uma ordem. Exemplo: o porte, micro, pequena
-        ou média. Dá para dizer qual é maior, mas não quanto.</li>
-    <li><strong>Intervalo</strong> carrega ordem e distâncias iguais, sem zero verdadeiro.
-        Exemplo: nota de satisfação de 0 a 10. A diferença entre 4 e 5 é igual à de 8 e 9.</li>
-    <li><strong>Razão</strong> carrega tudo isso e mais um zero que significa ausência.
-        Exemplo: número de funcionários. Zero é nenhum funcionário, e 27 é o dobro de 13,5.</li>
-  </ul>
+  <div class="figura" data-fig="escada" style="--fig-h:36vh">
+    <svg viewBox="0 0 1000 300" role="img" aria-label="Escada de quatro degraus: nominal carrega só um nome, ordinal acrescenta ordem, intervalo acrescenta distâncias iguais, razão acrescenta o zero verdadeiro">
+    <polygon points="24.0,174.0 40.0,158.0 254.0,158.0 238.0,174.0" fill="#e3f6f5"/>
+    <polygon points="238.0,174.0 254.0,158.0 254.0,222.0 238.0,238.0" fill="#9fdcda"/>
+    <rect x="24.0" y="174.0" width="214.0" height="64.0" fill="#bfe9e7"/>
+    <text x="38.0" y="200.0" text-anchor="start" font-size="20.1" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Nominal</text>
+    <text x="38.0" y="224.0" text-anchor="start" font-size="16.5" fill="#05635f" font-weight="700">só um nome</text>
+    <text x="131.0" y="264.0" text-anchor="middle" font-size="15.3" fill="#777" >seção da CNAE</text>
+    <text x="131.0" y="288.0" text-anchor="middle" font-size="16.5" fill="#05635f" font-weight="700">contar e moda</text>
+    <polygon points="264.0,122.0 280.0,106.0 494.0,106.0 478.0,122.0" fill="#bfe9e7"/>
+    <polygon points="478.0,122.0 494.0,106.0 494.0,222.0 478.0,238.0" fill="#4fbdba"/>
+    <rect x="264.0" y="122.0" width="214.0" height="116.0" fill="#7fd3d1"/>
+    <text x="278.0" y="148.0" text-anchor="start" font-size="20.1" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Ordinal</text>
+    <text x="278.0" y="172.0" text-anchor="start" font-size="16.5" fill="#05635f" font-weight="700">+ uma ordem</text>
+    <text x="371.0" y="264.0" text-anchor="middle" font-size="15.3" fill="#777" >porte: micro a média</text>
+    <text x="371.0" y="288.0" text-anchor="middle" font-size="16.5" fill="#05635f" font-weight="700">+ ordenar e mediana</text>
+    <polygon points="504.0,70.0 520.0,54.0 734.0,54.0 718.0,70.0" fill="#7fd3d1"/>
+    <polygon points="718.0,70.0 734.0,54.0 734.0,222.0 718.0,238.0" fill="#088c88"/>
+    <rect x="504.0" y="70.0" width="214.0" height="168.0" fill="#0AB0AB"/>
+    <text x="518.0" y="96.0" text-anchor="start" font-size="20.1" fill="#fff" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Intervalo</text>
+    <text x="518.0" y="120.0" text-anchor="start" font-size="16.5" fill="#fff" font-weight="700">+ distâncias iguais</text>
+    <text x="611.0" y="264.0" text-anchor="middle" font-size="15.3" fill="#777" >satisfação de 0 a 10</text>
+    <text x="611.0" y="288.0" text-anchor="middle" font-size="16.5" fill="#05635f" font-weight="700">+ somar e média</text>
+    <polygon points="744.0,18.0 760.0,2.0 974.0,2.0 958.0,18.0" fill="#3d9e9b"/>
+    <polygon points="958.0,18.0 974.0,2.0 974.0,222.0 958.0,238.0" fill="#033f3c"/>
+    <rect x="744.0" y="18.0" width="214.0" height="220.0" fill="#05635f"/>
+    <text x="758.0" y="44.0" text-anchor="start" font-size="20.1" fill="#fff" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Razão</text>
+    <text x="758.0" y="68.0" text-anchor="start" font-size="16.5" fill="#fff" font-weight="700">+ zero verdadeiro</text>
+    <text x="851.0" y="264.0" text-anchor="middle" font-size="15.3" fill="#777" >nº de funcionários</text>
+    <text x="851.0" y="288.0" text-anchor="middle" font-size="16.5" fill="#8D0333" font-weight="700">+ “o dobro”</text>
+    <line x1="14.0" y1="238.0" x2="992.0" y2="238.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="40.0" y1="20.0" x2="260.0" y2="20.0" stroke="#777" stroke-width="2" marker-end="url(#sc)"/>
+    <text x="272.0" y="25.0" text-anchor="start" font-size="15.3" fill="#777" >cada degrau carrega o anterior e acrescenta uma propriedade</text>
+    </svg>
+    <p class="legenda">Quanto mais alto o nível, mais operações a variável aceita. Abaixo de cada degrau, um exemplo e o que ele passa a permitir.</p>
+  </div>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     Para decidir, antes de calcular, qual medida de resumo cabe: a média só entra
@@ -359,15 +385,81 @@
   <div class="definicao"><span class="rotulo">O teste do zero, em uma pergunta</span>
   Pergunte: <strong>o zero significa ausência da coisa?</strong> Se sim, a variável é razão. Se o zero
   é só o ponto de partida escolhido por quem montou a medida, é intervalo.</div>
-  <div class="colunas">
-    <div class="exemplo"><span class="rotulo">Receita: razão</span>
-    R$ 0 de receita é nenhum serviço prestado, uma ausência real. Por isso R$ 80 mil é o dobro de
-    R$ 40 mil, e a frase continua verdadeira se a receita for contada em milhares.</div>
-    <div class="alerta"><span class="rotulo">Satisfação de 0 a 10: intervalo</span>
-    Quem marca 0 está muito insatisfeito, mas tem opinião. O zero é só o início da escala, escolhido
-    por quem montou o questionário. Com a escala de 1 a 11, as notas 4 e 8 viram 5 e 9: a diferença
-    de 4 pontos se mantém, e 9 já não é o dobro de 5. Decisão: comparar pela diferença (“subiu 2
-    pontos”), e não pela proporção (“ficou 25% maior”).</div>
+  <div class="figura" data-fig="zero" style="--fig-h:37vh">
+    <svg viewBox="0 0 1000 278" role="img" aria-label="Receita: 80 mil é o dobro de 40 mil porque o zero é ausência. Satisfação: na escala de 0 a 10, 8 é o dobro de 4; levada para 1 a 11, as mesmas respostas viram 5 e 9, e a razão deixa de ser 2">
+    <text x="200.0" y="20.0" text-anchor="middle" font-size="20.4" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Receita: razão</text>
+    <text x="700.0" y="20.0" text-anchor="middle" font-size="20.4" fill="#8D0333" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Satisfação de 0 a 10: intervalo</text>
+    <rect x="110.0" y="124.0" width="80.0" height="72.0" rx="3" fill="#0AB0AB" />
+    <text x="150.0" y="116.0" text-anchor="middle" font-size="16.8" fill="#444" font-weight="700">R$ 40 mil</text>
+    <rect x="250.0" y="52.0" width="80.0" height="144.0" rx="3" fill="#0AB0AB" />
+    <text x="290.0" y="44.0" text-anchor="middle" font-size="16.8" fill="#444" font-weight="700">R$ 80 mil</text>
+    <line x1="80.0" y1="196.0" x2="360.0" y2="196.0" stroke="#444" stroke-width="2"/>
+    <text x="76.0" y="201.0" text-anchor="end" font-size="16.8" fill="#444" font-weight="700">0</text>
+    <text x="220.0" y="224.0" text-anchor="middle" font-size="18.0" fill="#05635f" font-weight="700">80 ÷ 40 = 2: o dobro</text>
+    <text x="220.0" y="250.0" text-anchor="middle" font-size="15.6" fill="#444" >R$ 0 é nenhum serviço prestado: ausência real.</text>
+    <text x="220.0" y="270.0" text-anchor="middle" font-size="15.6" fill="#444" >Em milhares, 80 continua o dobro de 40.</text>
+    <line x1="470.0" y1="70.0" x2="924.5" y2="70.0" stroke="#bbb" stroke-width="2"/>
+    <line x1="470.0" y1="65.0" x2="470.0" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="470.0" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >0</text>
+    <line x1="515.5" y1="65.0" x2="515.5" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="515.5" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >1</text>
+    <line x1="560.9" y1="65.0" x2="560.9" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="560.9" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >2</text>
+    <line x1="606.4" y1="65.0" x2="606.4" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="606.4" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >3</text>
+    <line x1="651.8" y1="65.0" x2="651.8" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="651.8" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >4</text>
+    <line x1="697.3" y1="65.0" x2="697.3" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="697.3" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >5</text>
+    <line x1="742.7" y1="65.0" x2="742.7" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="742.7" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >6</text>
+    <line x1="788.2" y1="65.0" x2="788.2" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="788.2" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >7</text>
+    <line x1="833.6" y1="65.0" x2="833.6" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="833.6" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >8</text>
+    <line x1="879.1" y1="65.0" x2="879.1" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="879.1" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >9</text>
+    <line x1="924.5" y1="65.0" x2="924.5" y2="75.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="924.5" y="91.0" text-anchor="middle" font-size="14.4" fill="#777" >10</text>
+    <circle cx="651.8" cy="70" r="8" fill="#8D0333"/>
+    <circle cx="833.6" cy="70" r="8" fill="#8D0333"/>
+    <path d="M651.8,48.0 V56.0 H833.6 V48.0" fill="none" stroke="#777" stroke-width="2.6" stroke-linejoin="round"/>
+    <text x="742.7" y="44.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">diferença: 4 pontos</text>
+    <text x="462.0" y="75.0" text-anchor="end" font-size="14.4" fill="#777" >escala de 0 a 10</text>
+    <line x1="515.5" y1="152.0" x2="970.0" y2="152.0" stroke="#bbb" stroke-width="2"/>
+    <line x1="515.5" y1="147.0" x2="515.5" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="515.5" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >1</text>
+    <line x1="560.9" y1="147.0" x2="560.9" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="560.9" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >2</text>
+    <line x1="606.4" y1="147.0" x2="606.4" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="606.4" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >3</text>
+    <line x1="651.8" y1="147.0" x2="651.8" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="651.8" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >4</text>
+    <line x1="697.3" y1="147.0" x2="697.3" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="697.3" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >5</text>
+    <line x1="742.7" y1="147.0" x2="742.7" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="742.7" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >6</text>
+    <line x1="788.2" y1="147.0" x2="788.2" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="788.2" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >7</text>
+    <line x1="833.6" y1="147.0" x2="833.6" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="833.6" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >8</text>
+    <line x1="879.1" y1="147.0" x2="879.1" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="879.1" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >9</text>
+    <line x1="924.5" y1="147.0" x2="924.5" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="924.5" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >10</text>
+    <line x1="970.0" y1="147.0" x2="970.0" y2="157.0" stroke="#bbb" stroke-width="1.6"/>
+    <text x="970.0" y="173.0" text-anchor="middle" font-size="14.4" fill="#777" >11</text>
+    <circle cx="697.3" cy="152" r="8" fill="#8D0333"/>
+    <circle cx="879.1" cy="152" r="8" fill="#8D0333"/>
+    <path d="M697.3,130.0 V138.0 H879.1 V130.0" fill="none" stroke="#777" stroke-width="2.6" stroke-linejoin="round"/>
+    <text x="788.2" y="126.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">diferença: 4 pontos</text>
+    <text x="507.5" y="157.0" text-anchor="end" font-size="14.4" fill="#777" >a mesma escala, de 1 a 11</text>
+    <text x="951.8" y="75.0" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700">8 ÷ 4 = 2</text>
+    <text x="951.8" y="157.0" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700">9 ÷ 5 = 1,8</text>
+    <text x="720.0" y="224.0" text-anchor="middle" font-size="18.0" fill="#8D0333" font-weight="700">a diferença se mantém; a razão muda</text>
+    <text x="720.0" y="250.0" text-anchor="middle" font-size="15.6" fill="#444" >Quem marca 0 tem opinião: o zero é só o início da escala.</text>
+    <text x="720.0" y="270.0" text-anchor="middle" font-size="15.6" fill="#444" >Decisão: comparar pela diferença (“subiu 2 pontos”), e não pela proporção.</text>
+    </svg>
   </div>
 </section>
 <section class="slide estatistica">
@@ -386,6 +478,39 @@
     <li>Acumulando a terceira: <span class="num">100,00%</span>. A soma fecha, e
         a conta está certa.</li>
   </ol>
+  <div class="figura" data-fig="acumulada" style="--fig-h:32vh">
+    <svg viewBox="0 0 1000 262" role="img" aria-label="Barras com 93,01%, 6,34% e 0,65% dos nascimentos por faixa de pessoal e a linha acumulada de 93,01%, 99,35% e 100%">
+    <line x1="120.0" y1="210.0" x2="900.0" y2="210.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="120.0" y1="165.0" x2="900.0" y2="165.0" stroke="#eee" stroke-width="1"/>
+    <text x="112.0" y="170.0" text-anchor="end" font-size="14.4" fill="#777" >25%</text>
+    <line x1="120.0" y1="120.0" x2="900.0" y2="120.0" stroke="#eee" stroke-width="1"/>
+    <text x="112.0" y="125.0" text-anchor="end" font-size="14.4" fill="#777" >50%</text>
+    <line x1="120.0" y1="75.0" x2="900.0" y2="75.0" stroke="#eee" stroke-width="1"/>
+    <text x="112.0" y="80.0" text-anchor="end" font-size="14.4" fill="#777" >75%</text>
+    <line x1="120.0" y1="30.0" x2="900.0" y2="30.0" stroke="#eee" stroke-width="1"/>
+    <text x="112.0" y="35.0" text-anchor="end" font-size="14.4" fill="#777" >100%</text>
+    <rect x="180.0" y="42.6" width="140.0" height="167.4" rx="3" fill="#0AB0AB" />
+    <text x="250.0" y="232.0" text-anchor="middle" font-size="16.8" fill="#444" font-weight="700">1 a 9 pessoas</text>
+    <text x="250.0" y="252.0" text-anchor="middle" font-size="14.4" fill="#777" >313.749 nascimentos</text>
+    <text x="250.0" y="72.6" text-anchor="middle" font-size="19.2" fill="#fff" font-weight="700">93,01%</text>
+    <rect x="430.0" y="198.6" width="140.0" height="11.4" rx="3" fill="#0AB0AB" />
+    <text x="500.0" y="232.0" text-anchor="middle" font-size="16.8" fill="#444" font-weight="700">10 a 49 pessoas</text>
+    <text x="500.0" y="252.0" text-anchor="middle" font-size="14.4" fill="#777" >21.374 nascimentos</text>
+    <text x="500.0" y="188.6" text-anchor="middle" font-size="16.8" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">6,34%</text>
+    <rect x="680.0" y="208.8" width="140.0" height="2.0" rx="3" fill="#0AB0AB" />
+    <text x="750.0" y="232.0" text-anchor="middle" font-size="16.8" fill="#444" font-weight="700">50 ou mais pessoas</text>
+    <text x="750.0" y="252.0" text-anchor="middle" font-size="14.4" fill="#777" >2.207 nascimentos</text>
+    <text x="750.0" y="198.8" text-anchor="middle" font-size="16.8" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">0,65%</text>
+    <polyline points="250.0,42.6 500.0,31.2 750.0,30.0" fill="none" stroke="#8D0333" stroke-width="3"/>
+    <circle cx="250.0" cy="42.6" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <text x="262.0" y="34.6" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">93,01% acumulado</text>
+    <circle cx="500.0" cy="31.2" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <text x="512.0" y="23.2" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">99,35% acumulado</text>
+    <circle cx="750.0" cy="30.0" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <text x="762.0" y="22.0" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">100,00% acumulado</text>
+    </svg>
+    <p class="legenda">Barras: a frequência de cada faixa. Linha: a acumulada, que só existe porque a faixa tem ordem. Fonte: IBGE, Demografia das Empresas, 2021.</p>
+  </div>
   <p class="menor">Os passos 4 e 5 são novos em relação ao encontro 1. Ele só existe
   porque a variável <strong>tem ordem</strong>.</p>
 </section>
@@ -397,6 +522,118 @@
   Quase todas as empresas que abriram no Brasil em 2021 eram pequenas: das 337.330
   empresas empregadoras, <strong>99,3% até 49 pessoas</strong> assalariadas, e
   apenas <strong>0,65%</strong> nasceram com 50 pessoas ou mais.</div>
+  <div class="figura" data-fig="cem" style="--fig-h:27vh">
+    <svg viewBox="0 0 1000 190" role="img" aria-label="Grade de 100 quadrados: 93 da faixa de 1 a 9 pessoas, 6 da de 10 a 49 e 1 da de 50 ou mais">
+    <rect x="20.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="6.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="24.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="42.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="60.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="78.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="96.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="114.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="132.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="92.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="110.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="128.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="146.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="164.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="182.0" y="150.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="20.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="38.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="56.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#0AB0AB" />
+    <rect x="74.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#05635f" />
+    <rect x="92.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#05635f" />
+    <rect x="110.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#05635f" />
+    <rect x="128.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#05635f" />
+    <rect x="146.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#05635f" />
+    <rect x="164.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#05635f" />
+    <rect x="182.0" y="168.0" width="15.0" height="15.0" rx="2" fill="#8D0333" />
+    <rect x="230.0" y="25.0" width="18.0" height="18.0" rx="2" fill="#0AB0AB" />
+    <text x="258.0" y="40.0" text-anchor="start" font-size="20.0" fill="#444" font-weight="700">1 a 9 pessoas: 93,01%</text>
+    <rect x="230.0" y="65.0" width="18.0" height="18.0" rx="2" fill="#05635f" />
+    <text x="258.0" y="80.0" text-anchor="start" font-size="20.0" fill="#444" font-weight="700">10 a 49 pessoas: 6,34%</text>
+    <rect x="230.0" y="105.0" width="18.0" height="18.0" rx="2" fill="#8D0333" />
+    <text x="258.0" y="120.0" text-anchor="start" font-size="20.0" fill="#444" font-weight="700">50 ou mais pessoas: 0,65%</text>
+    <text x="230.0" y="166.0" text-anchor="start" font-size="16.2" fill="#777" >de cada 100 empresas que nasceram em 2021, 93 tinham de 1 a 9 pessoas</text>
+    </svg>
+    <p class="legenda">Cada quadrinho é 1% dos 337.330 nascimentos; os 0,65% da última faixa aparecem como um quadrinho.</p>
+  </div>
   <p>Repare no que a frase faz:</p>
   <ul>
     <li>traduz “99,35%” em “99,3% até 49 pessoas” — que é a pergunta que o
@@ -448,7 +685,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
       <strong>ordinal</strong>, escreveu que “as letras vão de A a U, logo há
       ordem”.<br><br>
       Com essa classificação, sentiu que podia calcular a média da seção e
-     publicou que “a empresa mediana está na seção N”.
+     publicou que “a empresa mediana está na seção I”.
     </div>
     <div class="exemplo">
       <span class="rotulo">O caso certo</span>
@@ -458,6 +695,98 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
       O que dá para fazer: contar e ver a frequência de cada seção.<br><br>
       O que não dá: somar as letras, ou dizer qual seção é a “do meio”.
     </div>
+  </div>
+  <div class="figura" data-fig="codigo" style="--fig-h:30vh">
+    <svg viewBox="0 0 1000 256" role="img" aria-label="Seções da CNAE em ordem alfabética, onde o acumulado passa de 50% na seção I, e as mesmas seções ordenadas por frequência">
+    <text x="14.0" y="26.0" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700">Na ordem do código, de A a U: o acumulado passa de 50% na seção I</text>
+    <rect x="40.0" y="83.8" width="36.0" height="12.2" rx="2" fill="#0AB0AB" />
+    <text x="58.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">A</text>
+    <rect x="87.0" y="94.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="105.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">B</text>
+    <rect x="134.0" y="83.2" width="36.0" height="12.8" rx="2" fill="#0AB0AB" />
+    <text x="152.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">C</text>
+    <rect x="181.0" y="94.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="199.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">D</text>
+    <rect x="228.0" y="94.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="246.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">E</text>
+    <rect x="275.0" y="84.3" width="36.0" height="11.7" rx="2" fill="#0AB0AB" />
+    <text x="293.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">F</text>
+    <rect x="322.0" y="36.0" width="36.0" height="60.0" rx="2" fill="#0AB0AB" />
+    <text x="340.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">G</text>
+    <rect x="369.0" y="88.5" width="36.0" height="7.5" rx="2" fill="#0AB0AB" />
+    <text x="387.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">H</text>
+    <rect x="416.0" y="86.5" width="36.0" height="9.5" rx="2" fill="#8D0333" />
+    <text x="434.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#8D0333" font-weight="700">I</text>
+    <rect x="463.0" y="88.2" width="36.0" height="7.8" rx="2" fill="#0AB0AB" />
+    <text x="481.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">J</text>
+    <rect x="510.0" y="89.1" width="36.0" height="6.9" rx="2" fill="#0AB0AB" />
+    <text x="528.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">K</text>
+    <rect x="557.0" y="90.0" width="36.0" height="6.0" rx="2" fill="#0AB0AB" />
+    <text x="575.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">L</text>
+    <rect x="604.0" y="76.2" width="36.0" height="19.8" rx="2" fill="#0AB0AB" />
+    <text x="622.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">M</text>
+    <rect x="651.0" y="74.0" width="36.0" height="22.0" rx="2" fill="#0AB0AB" />
+    <text x="669.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">N</text>
+    <rect x="698.0" y="94.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="716.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">O</text>
+    <rect x="745.0" y="88.9" width="36.0" height="7.1" rx="2" fill="#0AB0AB" />
+    <text x="763.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">P</text>
+    <rect x="792.0" y="81.4" width="36.0" height="14.6" rx="2" fill="#0AB0AB" />
+    <text x="810.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">Q</text>
+    <rect x="839.0" y="92.4" width="36.0" height="3.6" rx="2" fill="#0AB0AB" />
+    <text x="857.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">R</text>
+    <rect x="886.0" y="80.9" width="36.0" height="15.1" rx="2" fill="#0AB0AB" />
+    <text x="904.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">S</text>
+    <rect x="933.0" y="94.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="951.0" y="114.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">U</text>
+    <line x1="30.0" y1="96.0" x2="990.0" y2="96.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="760.0" y="22.0" text-anchor="middle" font-size="16.8" fill="#8D0333" font-weight="700">“a empresa mediana está na seção I”</text>
+    <line x1="610.0" y1="16.6" x2="910.0" y2="16.6" stroke="#8D0333" stroke-width="2.4"/>
+    <text x="14.0" y="140.0" text-anchor="start" font-size="16.8" fill="#05635f" font-weight="700">Por frequência: a única ordem que se pode mostrar numa variável nominal</text>
+    <rect x="40.0" y="150.0" width="36.0" height="60.0" rx="2" fill="#0AB0AB" />
+    <text x="58.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">G</text>
+    <rect x="87.0" y="188.0" width="36.0" height="22.0" rx="2" fill="#0AB0AB" />
+    <text x="105.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">N</text>
+    <rect x="134.0" y="190.2" width="36.0" height="19.8" rx="2" fill="#0AB0AB" />
+    <text x="152.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">M</text>
+    <rect x="181.0" y="194.9" width="36.0" height="15.1" rx="2" fill="#0AB0AB" />
+    <text x="199.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">S</text>
+    <rect x="228.0" y="195.4" width="36.0" height="14.6" rx="2" fill="#0AB0AB" />
+    <text x="246.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">Q</text>
+    <rect x="275.0" y="197.2" width="36.0" height="12.8" rx="2" fill="#0AB0AB" />
+    <text x="293.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">C</text>
+    <rect x="322.0" y="197.8" width="36.0" height="12.2" rx="2" fill="#0AB0AB" />
+    <text x="340.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">A</text>
+    <rect x="369.0" y="198.3" width="36.0" height="11.7" rx="2" fill="#0AB0AB" />
+    <text x="387.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">F</text>
+    <rect x="416.0" y="200.5" width="36.0" height="9.5" rx="2" fill="#0AB0AB" />
+    <text x="434.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">I</text>
+    <rect x="463.0" y="202.2" width="36.0" height="7.8" rx="2" fill="#0AB0AB" />
+    <text x="481.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">J</text>
+    <rect x="510.0" y="202.5" width="36.0" height="7.5" rx="2" fill="#0AB0AB" />
+    <text x="528.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">H</text>
+    <rect x="557.0" y="202.9" width="36.0" height="7.1" rx="2" fill="#0AB0AB" />
+    <text x="575.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">P</text>
+    <rect x="604.0" y="203.1" width="36.0" height="6.9" rx="2" fill="#0AB0AB" />
+    <text x="622.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">K</text>
+    <rect x="651.0" y="204.0" width="36.0" height="6.0" rx="2" fill="#0AB0AB" />
+    <text x="669.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">L</text>
+    <rect x="698.0" y="206.4" width="36.0" height="3.6" rx="2" fill="#0AB0AB" />
+    <text x="716.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">R</text>
+    <rect x="745.0" y="208.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="763.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">O</text>
+    <rect x="792.0" y="208.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="810.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">E</text>
+    <rect x="839.0" y="208.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="857.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">B</text>
+    <rect x="886.0" y="208.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="904.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">D</text>
+    <rect x="933.0" y="208.5" width="36.0" height="1.5" rx="2" fill="#0AB0AB" />
+    <text x="951.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">U</text>
+    <line x1="30.0" y1="210.0" x2="990.0" y2="210.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="500.0" y="246.0" text-anchor="middle" font-size="15.6" fill="#777" >Trocar as letras de lugar muda a “seção do meio”; a frequência de cada seção não muda.</text>
+    </svg>
+    <p class="legenda">Empresas por seção da CNAE no Brasil, em % do total. Fonte: IBGE, CEMPRE, 2024.</p>
   </div>
 </section>
 <section class="slide estatistica">
@@ -782,6 +1111,14 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             nenhuma variável assim. O exemplo é uma escala de satisfação de 0 a 10.
             <strong>Dizer isso em voz alta é honesto e ensina:</strong> nem toda variável do
             mundo tem exemplo na fonte oficial.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">As duas figuras do bloco</span>
+            <p>A tela dos quatro níveis não traz mais a lista em texto: os níveis estão na
+            escada, e cada degrau carrega o anterior e acrescenta uma propriedade. Suba com a
+            turma, degrau a degrau, lendo o exemplo e o que cada um passa a permitir.</p>
+            <p>Na tela da receita, as duas caixas viraram uma figura. Peça que a turma compare
+            as duas escalas de satisfação: a diferença de 4 pontos se mantém, e a razão muda de
+            2 para 1,8. É o teste do zero visto, e não só dito.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O teste do zero, repetido até virar hábito</span>
             <p>Uma pergunta só: <strong>“o zero significa ausência da coisa?”</strong> Se
