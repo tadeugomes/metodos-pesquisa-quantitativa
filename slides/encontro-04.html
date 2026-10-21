@@ -477,6 +477,46 @@
   <h2>A pergunta que a estatística do dia responde</h2>
   <div class="pergunta">Dois grupos podem ter a <strong>mesma média</strong> e oscilar de
   formas diferentes em torno dela. Como distinguir?</div>
+  <div class="figura" data-fig="pergunta" style="--fig-h:27vh">
+    <svg viewBox="0 0 1000 232" role="img" aria-label="Faturamento mensal de duas empresas com a mesma média de R$ 1 milhão: a A oscila pouco, a B oscila muito">
+    <line x1="90" y1="196.0" x2="800" y2="196.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="90" y1="154.1" x2="800" y2="154.1" stroke="#eee" stroke-width="1"/>
+    <line x1="90" y1="70.3" x2="800" y2="70.3" stroke="#eee" stroke-width="1"/>
+    <line x1="90" y1="28.4" x2="800" y2="28.4" stroke="#eee" stroke-width="1"/>
+    <text x="80.0" y="201.0" text-anchor="end" font-size="16.2" fill="#777" >0</text>
+    <text x="80.0" y="117.2" text-anchor="end" font-size="16.2" fill="#777" >1.000</text>
+    <text x="80.0" y="33.4" text-anchor="end" font-size="16.2" fill="#777" >2.000</text>
+    <text x="80.0" y="12.0" text-anchor="end" font-size="16.2" fill="#777" >R$ mil</text>
+    <text x="130.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Jan</text>
+    <text x="258.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Fev</text>
+    <text x="386.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Mar</text>
+    <text x="514.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Abr</text>
+    <text x="642.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Mai</text>
+    <text x="770.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Jun</text>
+    <line x1="90" y1="112.2" x2="800" y2="112.2" stroke="#a67c2e" stroke-width="2.6" stroke-dasharray="8 5"/>
+    <polyline points="130.0,187.6 258.0,28.4 386.0,162.5 514.0,45.1 642.0,179.2 770.0,70.3" fill="none" stroke="#8D0333" stroke-width="3.2" stroke-linejoin="round"/>
+    <circle cx="130.0" cy="187.6" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="258.0" cy="28.4" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="386.0" cy="162.5" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="514.0" cy="45.1" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="642.0" cy="179.2" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="770.0" cy="70.3" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <polyline points="130.0,116.4 258.0,110.5 386.0,113.9 514.0,108.0 642.0,114.7 770.0,109.7" fill="none" stroke="#0AB0AB" stroke-width="3.2" stroke-linejoin="round"/>
+    <circle cx="130.0" cy="116.4" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="258.0" cy="110.5" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="386.0" cy="113.9" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="514.0" cy="108.0" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="642.0" cy="114.7" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="770.0" cy="109.7" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="822" cy="99.6" r="7" fill="#0AB0AB"/>
+    <text x="836.0" y="105.6" text-anchor="start" font-size="18.8" fill="#444" font-weight="700">Empresa A</text>
+    <circle cx="822" cy="70.3" r="7" fill="#8D0333"/>
+    <text x="836.0" y="76.3" text-anchor="start" font-size="18.8" fill="#444" font-weight="700">Empresa B</text>
+    <line x1="810" y1="129.0" x2="834" y2="129.0" stroke="#a67c2e" stroke-width="2.6" stroke-dasharray="8 5"/>
+    <text x="840.0" y="135.0" text-anchor="start" font-size="18.8" fill="#444" font-weight="700">a mesma média</text>
+    </svg>
+    <p class="legenda">Faturamento mensal de duas empresas, em R$ mil. Dados ilustrativos, os mesmos da tela “De volta à pergunta”.</p>
+  </div>
   <p>Até agora descrevemos o <em>centro</em> de um conjunto. Duas empresas com faturamento médio
   de R$ 1 milhão podem ser muito parecidas, ou uma pode faturar R$ 1 milhão todo mês e a outra
   oscilar entre R$ 100 mil e R$ 2 milhões. <strong>A média não distingue as duas.</strong></p>
@@ -490,14 +530,52 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>As medidas de dispersão</h2>
-  <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
-  <strong>Amplitude</strong>: o maior menos o menor.<br>
-  <strong>Variância</strong>: a média dos quadrados dos desvios.<br>
-  <strong>Desvio padrão</strong>: a raiz da variância, que volta à unidade original.<br>
-  <strong>CV</strong>: o desvio dividido pela média, que serve para comparar escalas
-  diferentes.<br>
-  <strong>IQR</strong>: o terceiro quartil menos o primeiro, ou seja, a dispersão do miolo, imune
-  aos extremos.</div>
+  <div class="figura" data-fig="medidas" style="--fig-h:50vh">
+    <svg viewBox="0 0 1000 358" role="img" aria-label="Histograma dos preços da gasolina no Maranhão em 2025 com amplitude, IQR, desvio padrão, variância e coeficiente de variação, cada um com sua definição e seu valor">
+    <rect x="245.5" y="14" width="383.2" height="140" fill="#e3f6f5"/>
+    <rect x="61.0" y="153.2" width="43.5" height="0.8" rx="3" fill="#0AB0AB"/>
+    <rect x="106.5" y="121.0" width="43.5" height="33.0" rx="3" fill="#0AB0AB"/>
+    <rect x="152.0" y="50.1" width="43.5" height="103.9" rx="3" fill="#0AB0AB"/>
+    <rect x="197.5" y="26.0" width="43.5" height="128.0" rx="3" fill="#0AB0AB"/>
+    <rect x="243.0" y="50.1" width="43.5" height="103.9" rx="3" fill="#0AB0AB"/>
+    <rect x="288.5" y="82.4" width="43.5" height="71.6" rx="3" fill="#0AB0AB"/>
+    <rect x="334.0" y="46.2" width="43.5" height="107.8" rx="3" fill="#0AB0AB"/>
+    <rect x="379.5" y="28.9" width="43.5" height="125.1" rx="3" fill="#0AB0AB"/>
+    <rect x="425.0" y="60.1" width="43.5" height="93.9" rx="3" fill="#0AB0AB"/>
+    <rect x="470.5" y="89.5" width="43.5" height="64.5" rx="3" fill="#0AB0AB"/>
+    <rect x="516.0" y="63.0" width="43.5" height="91.0" rx="3" fill="#0AB0AB"/>
+    <rect x="561.5" y="69.0" width="43.5" height="85.0" rx="3" fill="#0AB0AB"/>
+    <rect x="607.0" y="77.4" width="43.5" height="76.6" rx="3" fill="#0AB0AB"/>
+    <rect x="652.5" y="105.0" width="43.5" height="49.0" rx="3" fill="#0AB0AB"/>
+    <rect x="698.0" y="122.0" width="43.5" height="32.0" rx="3" fill="#0AB0AB"/>
+    <rect x="743.5" y="139.0" width="43.5" height="15.0" rx="3" fill="#0AB0AB"/>
+    <rect x="789.0" y="85.8" width="43.5" height="68.2" rx="3" fill="#0AB0AB"/>
+    <rect x="834.5" y="145.9" width="43.5" height="8.1" rx="3" fill="#0AB0AB"/>
+    <rect x="880.0" y="148.2" width="43.5" height="5.8" rx="3" fill="#0AB0AB"/>
+    <line x1="60.0" y1="154" x2="970.0" y2="154" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="151.0" y1="154" x2="151.0" y2="160" stroke="#bbb" stroke-width="1.6"/>
+    <text x="151.0" y="178.0" text-anchor="middle" font-size="15.7" fill="#777" >R$ 5,50</text>
+    <line x1="378.5" y1="154" x2="378.5" y2="160" stroke="#bbb" stroke-width="1.6"/>
+    <text x="378.5" y="178.0" text-anchor="middle" font-size="15.7" fill="#777" >R$ 6,00</text>
+    <line x1="606.0" y1="154" x2="606.0" y2="160" stroke="#bbb" stroke-width="1.6"/>
+    <text x="606.0" y="178.0" text-anchor="middle" font-size="15.7" fill="#777" >R$ 6,50</text>
+    <line x1="833.5" y1="154" x2="833.5" y2="160" stroke="#bbb" stroke-width="1.6"/>
+    <text x="833.5" y="178.0" text-anchor="middle" font-size="15.7" fill="#777" >R$ 7,00</text>
+    <line x1="437.1" y1="10.0" x2="437.1" y2="154.0" stroke="#8D0333" stroke-width="2.4" stroke-dasharray="6 4"/>
+    <text x="444.1" y="26.0" text-anchor="start" font-size="15.7" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">média R$ 6,13</text>
+    <path d="M91.9,216.0 V224.0 H920.0 V216.0" fill="none" stroke="#777" stroke-width="2.6" stroke-linejoin="round"/>
+    <text x="91.9" y="210.0" font-size="16.8" fill="#444"><tspan font-weight="700" fill="#444">Amplitude</tspan><tspan> = 7,19 − 5,37 = R$ 1,82</tspan><tspan fill="#777"> · o maior menos o menor</tspan></text>
+    <path d="M283.0,260.0 V268.0 H583.3 V260.0" fill="none" stroke="#8D0333" stroke-width="2.6" stroke-linejoin="round"/>
+    <text x="283.0" y="254.0" font-size="16.8" fill="#444"><tspan font-weight="700" fill="#8D0333">IQR</tspan><tspan> = Q3 − Q1 = R$ 0,66</tspan><tspan fill="#777"> · a dispersão da metade central</tspan></text>
+    <circle cx="437.1" cy="306" r="5" fill="#05635f"/>
+    <line x1="437.1" y1="306.0" x2="625.7" y2="306.0" stroke="#05635f" stroke-width="3" marker-end="url(#sg)"/>
+    <text x="642.7" y="312.0" font-size="16.8" fill="#444"><tspan font-weight="700" fill="#05635f">Desvio padrão s</tspan><tspan> = R$ 0,42</tspan><tspan fill="#777"> · a oscilação típica</tspan></text>
+    <text x="425.1" y="312.0" text-anchor="end" font-size="15.7" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">faixa média ± s: 59,3% dos preços</text>
+    <text x="60.0" y="348.0" font-size="16.8" fill="#444"><tspan font-weight="700" fill="#444">Variância</tspan><tspan> = s² = 0,177 R$²</tspan><tspan fill="#777"> · a média dos quadrados dos desvios</tspan></text>
+    <text x="606.0" y="348.0" font-size="16.8" fill="#444"><tspan font-weight="700" fill="#444">CV</tspan><tspan> = s ÷ média = 6,9%</tspan><tspan fill="#777"> · compara escalas</tspan></text>
+    </svg>
+    <p class="legenda">Preço da gasolina comum em 4.816 coletas no Maranhão, 2025: as cinco medidas sobre o mesmo eixo, cada uma com o número real. Fonte: ANP, SHPC, 2025.</p>
+  </div>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     O <strong>desvio padrão</strong> para descrever a dispersão de uma variável só e o
@@ -528,6 +606,37 @@
     A raiz é o que devolve o número à <strong>unidade original</strong>: a variância está em
     R$ ao quadrado, o desvio padrão está em reais.</span>
   </div>
+  <div class="figura" data-fig="simbolos" style="--fig-h:21vh">
+    <svg viewBox="0 0 1000 172" role="img" aria-label="Cinco postos numa reta de preços, com a seta de cada um até a média: o desvio x menos x barra">
+    <line x1="60" y1="138" x2="970" y2="138" stroke="#bbb" stroke-width="1.6"/>
+    <text x="158.7" y="162.0" text-anchor="middle" font-size="16.2" fill="#777" >R$ 5,75</text>
+    <text x="432.8" y="162.0" text-anchor="middle" font-size="16.2" fill="#777" >R$ 6,00</text>
+    <text x="706.9" y="162.0" text-anchor="middle" font-size="16.2" fill="#777" >R$ 6,25</text>
+    <line x1="542.4" y1="30.0" x2="542.4" y2="138.0" stroke="#8D0333" stroke-width="2.4" stroke-dasharray="6 4"/>
+    <text x="542.4" y="20.0" text-anchor="middle" font-size="18.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">x̄ = 6,10</text>
+    <line x1="542.4" y1="52.0" x2="158.7" y2="52.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
+    <text x="350.5" y="44.0" text-anchor="middle" font-size="16.2" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">−0,35</text>
+    <line x1="158.7" y1="52.0" x2="158.7" y2="138" stroke="#eee" stroke-width="1.4"/>
+    <circle cx="158.7" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <line x1="542.4" y1="78.0" x2="378.0" y2="78.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
+    <text x="460.2" y="70.0" text-anchor="middle" font-size="16.2" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">−0,15</text>
+    <line x1="378.0" y1="78.0" x2="378.0" y2="138" stroke="#eee" stroke-width="1.4"/>
+    <circle cx="378.0" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <line x1="542.4" y1="104.0" x2="597.2" y2="104.0" stroke="#05635f" stroke-width="2.4" marker-end="url(#sg)"/>
+    <text x="569.8" y="96.0" text-anchor="middle" font-size="16.2" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+0,05</text>
+    <line x1="597.2" y1="104.0" x2="597.2" y2="138" stroke="#eee" stroke-width="1.4"/>
+    <circle cx="597.2" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <line x1="542.4" y1="78.0" x2="706.9" y2="78.0" stroke="#05635f" stroke-width="2.4" marker-end="url(#sg)"/>
+    <text x="624.6" y="70.0" text-anchor="middle" font-size="16.2" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+0,15</text>
+    <line x1="706.9" y1="78.0" x2="706.9" y2="138" stroke="#eee" stroke-width="1.4"/>
+    <circle cx="706.9" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <line x1="542.4" y1="52.0" x2="871.3" y2="52.0" stroke="#05635f" stroke-width="2.4" marker-end="url(#sg)"/>
+    <text x="706.9" y="44.0" text-anchor="middle" font-size="16.2" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+0,30</text>
+    <line x1="871.3" y1="52.0" x2="871.3" y2="138" stroke="#eee" stroke-width="1.4"/>
+    <circle cx="871.3" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <p class="legenda">Cinco postos, dados ilustrativos. Cada seta é um desvio xᵢ − x̄: negativo à esquerda da média, positivo à direita.</p>
+  </div>
   <p class="fonte">Fonte: ANDERSON; SWEENEY; WILLIAMS (2013).</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -544,6 +653,58 @@
   A variância fica na unidade <em>ao quadrado</em>, e isso não se interpreta: R$ 0,18 ao
   quadrado não quer dizer nada. A raiz devolve o número à unidade original, e aí a leitura
   fica direta: “o preço típico é R$ 6,13, e a oscilação típica em torno dele é R$ 0,42”.</div>
+  <div class="figura" data-fig="quadrado" style="--fig-h:29vh">
+    <svg viewBox="0 0 1000 282" role="img" aria-label="Os desvios de cinco postos somam zero; elevados ao quadrado viram quadrados que só somam; a média das áreas é a variância e o lado do quadrado médio é o desvio padrão">
+    <text x="140.0" y="22.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">1. Os desvios</text>
+    <line x1="18" y1="132" x2="262" y2="132" stroke="#bbb" stroke-width="1.6"/>
+    <rect x="30" y="132.0" width="36" height="80.5" rx="3" fill="#8D0333"/>
+    <text x="48.0" y="231.5" text-anchor="middle" font-size="15.0" fill="#444" >−0,35</text>
+    <rect x="77" y="132.0" width="36" height="34.5" rx="3" fill="#8D0333"/>
+    <text x="95.0" y="185.5" text-anchor="middle" font-size="15.0" fill="#444" >−0,15</text>
+    <rect x="124" y="120.5" width="36" height="11.5" rx="3" fill="#0AB0AB"/>
+    <text x="142.0" y="113.5" text-anchor="middle" font-size="15.0" fill="#444" >+0,05</text>
+    <rect x="171" y="97.5" width="36" height="34.5" rx="3" fill="#0AB0AB"/>
+    <text x="189.0" y="90.5" text-anchor="middle" font-size="15.0" fill="#444" >+0,15</text>
+    <rect x="218" y="63.0" width="36" height="69.0" rx="3" fill="#0AB0AB"/>
+    <text x="236.0" y="56.0" text-anchor="middle" font-size="15.0" fill="#444" >+0,30</text>
+    <text x="140.0" y="248.0" text-anchor="middle" font-size="19.0" fill="#8D0333" font-weight="700">somam zero</text>
+    <line x1="272.0" y1="140.0" x2="318.0" y2="140.0" stroke="#777" stroke-width="2.6" marker-end="url(#sc)"/>
+    <text x="525.0" y="22.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">2. Cada desvio ao quadrado</text>
+    <polygon points="332.0,91.0 342.0,81.0 447.0,81.0 437.0,91.0" fill="#7fd3d1"/>
+    <polygon points="437.0,91.0 447.0,81.0 447.0,186.0 437.0,196.0" fill="#05635f"/>
+    <rect x="332.0" y="91.0" width="105.0" height="105.0" fill="#0AB0AB"/>
+    <text x="384.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,1225</text>
+    <polygon points="459.0,151.0 469.0,141.0 514.0,141.0 504.0,151.0" fill="#7fd3d1"/>
+    <polygon points="504.0,151.0 514.0,141.0 514.0,186.0 504.0,196.0" fill="#05635f"/>
+    <rect x="459.0" y="151.0" width="45.0" height="45.0" fill="#0AB0AB"/>
+    <text x="481.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0225</text>
+    <polygon points="526.0,181.0 536.0,171.0 551.0,171.0 541.0,181.0" fill="#7fd3d1"/>
+    <polygon points="541.0,181.0 551.0,171.0 551.0,186.0 541.0,196.0" fill="#05635f"/>
+    <rect x="526.0" y="181.0" width="15.0" height="15.0" fill="#0AB0AB"/>
+    <text x="533.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0025</text>
+    <polygon points="563.0,151.0 573.0,141.0 618.0,141.0 608.0,151.0" fill="#7fd3d1"/>
+    <polygon points="608.0,151.0 618.0,141.0 618.0,186.0 608.0,196.0" fill="#05635f"/>
+    <rect x="563.0" y="151.0" width="45.0" height="45.0" fill="#0AB0AB"/>
+    <text x="585.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0225</text>
+    <polygon points="630.0,106.0 640.0,96.0 730.0,96.0 720.0,106.0" fill="#7fd3d1"/>
+    <polygon points="720.0,106.0 730.0,96.0 730.0,186.0 720.0,196.0" fill="#05635f"/>
+    <rect x="630.0" y="106.0" width="90.0" height="90.0" fill="#0AB0AB"/>
+    <text x="675.0" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0900</text>
+    <text x="525.0" y="248.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-weight="700">só somam: 0,26</text>
+    <line x1="728.0" y1="140.0" x2="774.0" y2="140.0" stroke="#777" stroke-width="2.6" marker-end="url(#sc)"/>
+    <text x="890.0" y="22.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">3. A média e a raiz</text>
+    <polygon points="851.8,119.5 861.8,109.5 938.2,109.5 928.2,119.5" fill="#d9c08f"/>
+    <polygon points="928.2,119.5 938.2,109.5 938.2,186.0 928.2,196.0" fill="#7a5a1f"/>
+    <rect x="851.8" y="119.5" width="76.5" height="76.5" fill="#a67c2e"/>
+    <text x="890.0" y="155.8" text-anchor="middle" font-size="14.0" fill="#fff" font-weight="700">área</text>
+    <text x="890.0" y="173.8" text-anchor="middle" font-size="14.0" fill="#fff" font-weight="700">0,065</text>
+    <line x1="851.8" y1="206" x2="928.2" y2="206" stroke="#444" stroke-width="2.4"/>
+    <text x="890.0" y="226.0" text-anchor="middle" font-size="15.0" fill="#444" font-weight="700">lado = R$ 0,25</text>
+    <text x="890.0" y="248.0" text-anchor="middle" font-size="19.0" fill="#a67c2e" font-weight="700">√0,065 = R$ 0,25 = s</text>
+    <text x="890.0" y="272.0" text-anchor="middle" font-size="14.0" fill="#777" >variância: 0,26 ÷ (5 − 1) = 0,065 R$²</text>
+    </svg>
+    <p class="legenda">Cinco postos, dados ilustrativos. A variância é a área do quadrado médio, em R$²; o desvio padrão é o lado dele, de volta em reais.</p>
+  </div>
   <p class="menor">E por que dividir por <em>n − 1</em> em vez de <em>n</em>? Porque a média foi
   estimada a partir dos próprios dados, o que “gasta” um grau de liberdade. Com n grande a
   diferença é pequena; com n pequeno, ela importa.</p>
@@ -648,6 +809,21 @@ iqr    = serie.quantile(0.75) - serie.quantile(0.25)
       (79,90 ÷ 6,87) que o preço da gasolina no espaço. O CV é o que torna a comparação legítima.
     </div>
   </div>
+  <div class="figura" data-fig="cv" style="--fig-h:17vh">
+    <svg viewBox="0 0 1000 142" role="img" aria-label="Barras com a média de cada variável e o desvio em proporção dela: 6,87% na gasolina e 79,90% no IPCA mensal">
+    <text x="190.0" y="40.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">Gasolina</text>
+    <rect x="205" y="14" width="640" height="38" rx="4" fill="#e3f6f5" stroke="#0AB0AB" stroke-width="1.6"/>
+    <rect x="205" y="14" width="44.0" height="38" rx="4" fill="#05635f"/>
+    <text x="261.0" y="40.0" text-anchor="start" font-size="17.5" fill="#05635f" font-weight="700">desvio R$ 0,42 = 6,87% da média</text>
+    <text x="857.0" y="40.0" text-anchor="start" font-size="16.2" fill="#777" >média R$ 6,13</text>
+    <text x="190.0" y="104.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">IPCA mensal</text>
+    <rect x="205" y="78" width="640" height="38" rx="4" fill="#e3f6f5" stroke="#0AB0AB" stroke-width="1.6"/>
+    <rect x="205" y="78" width="511.4" height="38" rx="4" fill="#8D0333"/>
+    <text x="704.4" y="104.0" text-anchor="end" font-size="17.5" fill="#fff" font-weight="700">desvio 0,30 p.p. = 79,90% da média</text>
+    <text x="857.0" y="104.0" text-anchor="start" font-size="16.2" fill="#777" >média 0,37 p.p.</text>
+    </svg>
+    <p class="legenda">Cada barra é a média da sua variável; o trecho escuro é o desvio. Em proporção da média, as duas se comparam.</p>
+  </div>
   <p class="menor">Guarde a regra: <strong>desvio padrão só se compara dentro da mesma variável;
   variáveis diferentes, só pelo CV.</strong></p>
   <p class="fonte">Fonte: ANP, SHPC, 2025; IBGE, IPCA mensal, set. 2023 a ago. 2026 (SGS/Banco Central).</p>
@@ -718,6 +894,43 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>A pergunta que a forma responde</h2>
   <div class="pergunta">Se você vendeu gasolina a R$ 6,20 ontem, isso foi caro ou barato?</div>
+  <div class="figura" data-fig="pergunta_forma" style="--fig-h:28vh">
+    <svg viewBox="0 0 1000 204" role="img" aria-label="Histograma dos preços da gasolina com o valor de R$ 6,20 marcado e a pergunta: caro ou barato">
+    <rect x="61.0" y="171.1" width="43.5" height="0.9" rx="3" fill="#0AB0AB"/>
+    <rect x="106.5" y="135.9" width="43.5" height="36.1" rx="3" fill="#0AB0AB"/>
+    <rect x="152.0" y="58.4" width="43.5" height="113.6" rx="3" fill="#0AB0AB"/>
+    <rect x="197.5" y="32.0" width="43.5" height="140.0" rx="3" fill="#0AB0AB"/>
+    <rect x="243.0" y="58.4" width="43.5" height="113.6" rx="3" fill="#0AB0AB"/>
+    <rect x="288.5" y="93.7" width="43.5" height="78.3" rx="3" fill="#0AB0AB"/>
+    <rect x="334.0" y="54.1" width="43.5" height="117.9" rx="3" fill="#0AB0AB"/>
+    <rect x="379.5" y="35.2" width="43.5" height="136.8" rx="3" fill="#0AB0AB"/>
+    <rect x="425.0" y="69.3" width="43.5" height="102.7" rx="3" fill="#0AB0AB"/>
+    <rect x="470.5" y="101.4" width="43.5" height="70.6" rx="3" fill="#0AB0AB"/>
+    <rect x="516.0" y="72.5" width="43.5" height="99.5" rx="3" fill="#0AB0AB"/>
+    <rect x="561.5" y="79.0" width="43.5" height="93.0" rx="3" fill="#0AB0AB"/>
+    <rect x="607.0" y="88.2" width="43.5" height="83.8" rx="3" fill="#0AB0AB"/>
+    <rect x="652.5" y="118.4" width="43.5" height="53.6" rx="3" fill="#0AB0AB"/>
+    <rect x="698.0" y="137.0" width="43.5" height="35.0" rx="3" fill="#0AB0AB"/>
+    <rect x="743.5" y="155.6" width="43.5" height="16.4" rx="3" fill="#0AB0AB"/>
+    <rect x="789.0" y="97.4" width="43.5" height="74.6" rx="3" fill="#0AB0AB"/>
+    <rect x="834.5" y="163.1" width="43.5" height="8.9" rx="3" fill="#0AB0AB"/>
+    <rect x="880.0" y="165.7" width="43.5" height="6.3" rx="3" fill="#0AB0AB"/>
+    <line x1="60.0" y1="172" x2="970.0" y2="172" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="151.0" y1="172" x2="151.0" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="151.0" y="196.0" text-anchor="middle" font-size="17.5" fill="#777" >R$ 5,50</text>
+    <line x1="378.5" y1="172" x2="378.5" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="378.5" y="196.0" text-anchor="middle" font-size="17.5" fill="#777" >R$ 6,00</text>
+    <line x1="606.0" y1="172" x2="606.0" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="606.0" y="196.0" text-anchor="middle" font-size="17.5" fill="#777" >R$ 6,50</text>
+    <line x1="833.5" y1="172" x2="833.5" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="833.5" y="196.0" text-anchor="middle" font-size="17.5" fill="#777" >R$ 7,00</text>
+    <line x1="469.5" y1="14.0" x2="469.5" y2="172.0" stroke="#a67c2e" stroke-width="3.2"/>
+    <circle cx="469.5" cy="16" r="16" fill="#a67c2e"/>
+    <text x="469.5" y="22.0" text-anchor="middle" font-size="20.0" fill="#fff" font-weight="700">?</text>
+    <text x="493.5" y="46.0" text-anchor="start" font-size="20.0" fill="#a67c2e" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">R$ 6,20: caro ou barato?</text>
+    </svg>
+    <p class="legenda">A resposta depende de onde R$ 6,20 cai na distribuição. Fonte: ANP, SHPC, 2025.</p>
+  </div>
   <p>Para responder, não basta saber a média. É preciso saber <strong>onde aquele valor cai na
   distribuição</strong>, e a forma da distribuição é o que permite dizer isso em uma frase
   compreensível.</p>
@@ -739,6 +952,62 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
   <strong>Histograma</strong>: a tabela de frequência desenhada.<br>
   <strong>Escore z</strong>: quantos desvios padrão um valor está acima ou abaixo da
   média.</div>
+  <div class="figura" data-fig="tres" style="--fig-h:31vh">
+    <svg viewBox="0 0 1000 280" role="img" aria-label="Histograma, boxplot com os cinco números e régua do escore z alinhados sobre o mesmo eixo de preços da gasolina">
+    <rect x="159.9" y="103.4" width="36.9" height="0.6" rx="3" fill="#0AB0AB"/>
+    <rect x="198.7" y="80.2" width="36.9" height="23.8" rx="3" fill="#0AB0AB"/>
+    <rect x="237.6" y="29.3" width="36.9" height="74.7" rx="3" fill="#0AB0AB"/>
+    <rect x="276.5" y="12.0" width="36.9" height="92.0" rx="3" fill="#0AB0AB"/>
+    <rect x="315.3" y="29.3" width="36.9" height="74.7" rx="3" fill="#0AB0AB"/>
+    <rect x="354.2" y="52.5" width="36.9" height="51.5" rx="3" fill="#0AB0AB"/>
+    <rect x="393.0" y="26.5" width="36.9" height="77.5" rx="3" fill="#0AB0AB"/>
+    <rect x="431.9" y="14.1" width="36.9" height="89.9" rx="3" fill="#0AB0AB"/>
+    <rect x="470.8" y="36.5" width="36.9" height="67.5" rx="3" fill="#0AB0AB"/>
+    <rect x="509.6" y="57.6" width="36.9" height="46.4" rx="3" fill="#0AB0AB"/>
+    <rect x="548.5" y="38.6" width="36.9" height="65.4" rx="3" fill="#0AB0AB"/>
+    <rect x="587.4" y="42.9" width="36.9" height="61.1" rx="3" fill="#0AB0AB"/>
+    <rect x="626.2" y="49.0" width="36.9" height="55.0" rx="3" fill="#0AB0AB"/>
+    <rect x="665.1" y="68.7" width="36.9" height="35.3" rx="3" fill="#0AB0AB"/>
+    <rect x="704.0" y="81.0" width="36.9" height="23.0" rx="3" fill="#0AB0AB"/>
+    <rect x="742.8" y="93.3" width="36.9" height="10.7" rx="3" fill="#0AB0AB"/>
+    <rect x="781.7" y="55.0" width="36.9" height="49.0" rx="3" fill="#0AB0AB"/>
+    <rect x="820.5" y="98.2" width="36.9" height="5.8" rx="3" fill="#0AB0AB"/>
+    <rect x="859.4" y="99.9" width="36.9" height="4.1" rx="3" fill="#0AB0AB"/>
+    <line x1="139.4" y1="104" x2="955.6" y2="104" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="186.1" y1="146" x2="893.4" y2="146" stroke="#444" stroke-width="2"/>
+    <line x1="186.1" y1="136" x2="186.1" y2="156" stroke="#444" stroke-width="2"/>
+    <line x1="893.4" y1="136" x2="893.4" y2="156" stroke="#444" stroke-width="2"/>
+    <rect x="349.3" y="128" width="256.5" height="36" rx="4" fill="#e3f6f5" stroke="#05635f" stroke-width="2"/>
+    <line x1="462.0" y1="128" x2="462.0" y2="164" stroke="#8D0333" stroke-width="3.2"/>
+    <text x="186.1" y="184.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">5,37</text>
+    <text x="186.1" y="201.0" text-anchor="middle" font-size="13.8" fill="#777" >mín.</text>
+    <text x="349.3" y="184.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">5,79</text>
+    <text x="349.3" y="201.0" text-anchor="middle" font-size="13.8" fill="#777" >Q1</text>
+    <text x="462.0" y="184.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">6,08</text>
+    <text x="462.0" y="201.0" text-anchor="middle" font-size="13.8" fill="#777" >mediana</text>
+    <text x="605.8" y="184.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">6,45</text>
+    <text x="605.8" y="201.0" text-anchor="middle" font-size="13.8" fill="#777" >Q3</text>
+    <text x="893.4" y="184.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">7,19</text>
+    <text x="893.4" y="201.0" text-anchor="middle" font-size="13.8" fill="#777" >máx.</text>
+    <line x1="153.7" y1="246" x2="955.6" y2="246" stroke="#a67c2e" stroke-width="2.4"/>
+    <line x1="153.7" y1="238" x2="153.7" y2="254" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="153.7" y="272.0" text-anchor="middle" font-size="16.1" fill="#a67c2e" font-weight="700">−2</text>
+    <line x1="317.3" y1="238" x2="317.3" y2="254" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="317.3" y="272.0" text-anchor="middle" font-size="16.1" fill="#a67c2e" font-weight="700">−1</text>
+    <line x1="481.0" y1="238" x2="481.0" y2="254" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="481.0" y="272.0" text-anchor="middle" font-size="16.1" fill="#a67c2e" font-weight="700">0</text>
+    <line x1="644.6" y1="238" x2="644.6" y2="254" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="644.6" y="272.0" text-anchor="middle" font-size="16.1" fill="#a67c2e" font-weight="700">+1</text>
+    <line x1="808.3" y1="238" x2="808.3" y2="254" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="808.3" y="272.0" text-anchor="middle" font-size="16.1" fill="#a67c2e" font-weight="700">+2</text>
+    <circle cx="893.4" cy="246" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <text x="893.4" y="232.0" text-anchor="middle" font-size="16.1" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+2,52</text>
+    <text x="0.0" y="70.0" text-anchor="start" font-size="16.1" fill="#777" font-weight="700">histograma</text>
+    <text x="0.0" y="151.0" text-anchor="start" font-size="16.1" fill="#777" font-weight="700">boxplot</text>
+    <text x="0.0" y="251.0" text-anchor="start" font-size="16.1" fill="#777" font-weight="700">escore z</text>
+    </svg>
+    <p class="legenda">Os três instrumentos sobre o mesmo eixo de preços; cada traço da régua z é um desvio (R$ 0,42) a partir da média. Fonte: ANP, SHPC, 2025.</p>
+  </div>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     Os <strong>cinco números</strong> e o <strong>boxplot</strong> para descrever qualquer
@@ -768,6 +1037,43 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
     (isso diz “quanto acima ou abaixo”) e divida pelo desvio (isso diz “em quantas unidades de
     oscilação”). O resultado é <strong>adimensional</strong>, e é por isso que permite comparar
     grandezas diferentes.</span>
+  </div>
+  <div class="figura" data-fig="regua_z" style="--fig-h:19vh">
+    <svg viewBox="0 0 1000 146" role="img" aria-label="A mesma reta em reais e em desvios: o posto mais caro, R$ 7,19, está a 2,52 desvios acima da média">
+    <line x1="220.2" y1="40" x2="964.5" y2="40" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="220.2" y1="112" x2="964.5" y2="112" stroke="#a67c2e" stroke-width="2.2"/>
+    <line x1="220.2" y1="34" x2="220.2" y2="46" stroke="#bbb" stroke-width="1.6"/>
+    <text x="220.2" y="28.0" text-anchor="middle" font-size="16.2" fill="#777" >5,29</text>
+    <line x1="220.2" y1="105" x2="220.2" y2="119" stroke="#a67c2e" stroke-width="2.2"/>
+    <text x="220.2" y="137.0" text-anchor="middle" font-size="17.5" fill="#a67c2e" font-weight="700">−2</text>
+    <line x1="367.1" y1="34" x2="367.1" y2="46" stroke="#bbb" stroke-width="1.6"/>
+    <text x="367.1" y="28.0" text-anchor="middle" font-size="16.2" fill="#777" >5,71</text>
+    <line x1="367.1" y1="105" x2="367.1" y2="119" stroke="#a67c2e" stroke-width="2.2"/>
+    <text x="367.1" y="137.0" text-anchor="middle" font-size="17.5" fill="#a67c2e" font-weight="700">−1</text>
+    <line x1="514.1" y1="34" x2="514.1" y2="46" stroke="#bbb" stroke-width="1.6"/>
+    <text x="514.1" y="28.0" text-anchor="middle" font-size="16.2" fill="#777" >6,13</text>
+    <line x1="514.1" y1="105" x2="514.1" y2="119" stroke="#a67c2e" stroke-width="2.2"/>
+    <text x="514.1" y="137.0" text-anchor="middle" font-size="17.5" fill="#a67c2e" font-weight="700">0</text>
+    <line x1="661.0" y1="34" x2="661.0" y2="46" stroke="#bbb" stroke-width="1.6"/>
+    <text x="661.0" y="28.0" text-anchor="middle" font-size="16.2" fill="#777" >6,55</text>
+    <line x1="661.0" y1="105" x2="661.0" y2="119" stroke="#a67c2e" stroke-width="2.2"/>
+    <text x="661.0" y="137.0" text-anchor="middle" font-size="17.5" fill="#a67c2e" font-weight="700">+1</text>
+    <line x1="807.9" y1="34" x2="807.9" y2="46" stroke="#bbb" stroke-width="1.6"/>
+    <text x="807.9" y="28.0" text-anchor="middle" font-size="16.2" fill="#777" >6,97</text>
+    <line x1="807.9" y1="105" x2="807.9" y2="119" stroke="#a67c2e" stroke-width="2.2"/>
+    <text x="807.9" y="137.0" text-anchor="middle" font-size="17.5" fill="#a67c2e" font-weight="700">+2</text>
+    <line x1="954.8" y1="34" x2="954.8" y2="46" stroke="#bbb" stroke-width="1.6"/>
+    <text x="954.8" y="28.0" text-anchor="middle" font-size="16.2" fill="#777" >7,39</text>
+    <line x1="954.8" y1="105" x2="954.8" y2="119" stroke="#a67c2e" stroke-width="2.2"/>
+    <text x="954.8" y="137.0" text-anchor="middle" font-size="17.5" fill="#a67c2e" font-weight="700">+3</text>
+    <text x="202.2" y="45.0" text-anchor="end" font-size="17.5" fill="#777" font-weight="700">em reais</text>
+    <text x="202.2" y="117.0" text-anchor="end" font-size="17.5" fill="#a67c2e" font-weight="700">em desvios (z)</text>
+    <line x1="514.1" y1="76.0" x2="879.3" y2="76.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
+    <text x="699.2" y="69.0" text-anchor="middle" font-size="16.2" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">(7,19 − 6,13) ÷ 0,42 = 2,52</text>
+    <circle cx="884.3" cy="40" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="884.3" cy="112" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <p class="legenda">A mesma reta em duas unidades: o posto mais caro, R$ 7,19, está a 2,52 desvios da média. O z troca reais por desvios, e por isso compara grandezas diferentes. Fonte: ANP, SHPC, 2025.</p>
   </div>
   <p class="menor">Referência de leitura: cerca de dois terços dos dados ficam entre
   <em>z</em> = −1 e <em>z</em> = +1, e 95% entre −2 e +2. Um valor com <em>z</em> acima de 2 é
@@ -832,6 +1138,16 @@ iqr = serie.quantile(0.75) - serie.quantile(0.25)</pre>
     <li>Na base: <span class="num">60,8%</span> dos 4.816 preços coletados em 2025 ficaram abaixo
         de R$ 6,20, e <span class="num">38,6%</span>, acima.</li>
   </ol>
+  <div class="figura" data-fig="resposta_620" style="--fig-h:10vh">
+    <svg viewBox="0 0 1000 84" role="img" aria-label="Barra dividida: 60,8% dos preços abaixo de R$ 6,20, 0,6% iguais e 38,6% acima">
+    <rect x="10" y="8" width="594.8" height="42" rx="4" fill="#0AB0AB"/>
+    <rect x="606.8" y="8" width="4.0" height="42" fill="#a67c2e"/>
+    <rect x="612.3" y="8" width="377.7" height="42" rx="4" fill="#d6d6d6"/>
+    <text x="24.0" y="35.0" text-anchor="start" font-size="18.8" fill="#fff" font-weight="700">60,8% dos preços abaixo de R$ 6,20</text>
+    <text x="976.0" y="35.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">38,6% acima</text>
+    <text x="608.6" y="74.0" text-anchor="middle" font-size="16.2" fill="#a67c2e" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">R$ 6,20 exatos: 0,6%</text>
+    </svg>
+  </div>
   <p class="fonte">Fonte: ANP, SHPC, 2025.</p>
   <div class="frase-resultado"><span class="rotulo">A resposta</span>
   Nem caro nem barato: R$ 6,20 está no miolo da distribuição, um pouco acima do preço típico.
@@ -896,6 +1212,47 @@ serie.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
       porque há postos caros puxando a distribuição para a direita.”</em><br><br>
       Uma frase a mais, e a leitura deixa de ser enganosa.
     </div>
+  </div>
+  <div class="figura" data-fig="assimetria" style="--fig-h:24vh">
+    <svg viewBox="0 0 1000 204" role="img" aria-label="Histograma dos preços da gasolina com a mediana de R$ 6,08 e a média de R$ 6,13; 55,2% dos preços ficam abaixo da média">
+    <rect x="60.0" y="14" width="377.1" height="158" fill="#e3f6f5"/>
+    <rect x="61.0" y="171.2" width="43.5" height="0.8" rx="3" fill="#0AB0AB"/>
+    <rect x="106.5" y="136.9" width="43.5" height="35.1" rx="3" fill="#0AB0AB"/>
+    <rect x="152.0" y="61.6" width="43.5" height="110.4" rx="3" fill="#0AB0AB"/>
+    <rect x="197.5" y="36.0" width="43.5" height="136.0" rx="3" fill="#0AB0AB"/>
+    <rect x="243.0" y="61.6" width="43.5" height="110.4" rx="3" fill="#0AB0AB"/>
+    <rect x="288.5" y="95.9" width="43.5" height="76.1" rx="3" fill="#0AB0AB"/>
+    <rect x="334.0" y="57.5" width="43.5" height="114.5" rx="3" fill="#0AB0AB"/>
+    <rect x="379.5" y="39.1" width="43.5" height="132.9" rx="3" fill="#0AB0AB"/>
+    <rect x="425.0" y="72.2" width="43.5" height="99.8" rx="3" fill="#0AB0AB"/>
+    <rect x="470.5" y="103.4" width="43.5" height="68.6" rx="3" fill="#0AB0AB"/>
+    <rect x="516.0" y="75.3" width="43.5" height="96.7" rx="3" fill="#0AB0AB"/>
+    <rect x="561.5" y="81.7" width="43.5" height="90.3" rx="3" fill="#0AB0AB"/>
+    <rect x="607.0" y="90.6" width="43.5" height="81.4" rx="3" fill="#0AB0AB"/>
+    <rect x="652.5" y="119.9" width="43.5" height="52.1" rx="3" fill="#0AB0AB"/>
+    <rect x="698.0" y="138.0" width="43.5" height="34.0" rx="3" fill="#0AB0AB"/>
+    <rect x="743.5" y="156.1" width="43.5" height="15.9" rx="3" fill="#0AB0AB"/>
+    <rect x="789.0" y="99.5" width="43.5" height="72.5" rx="3" fill="#0AB0AB"/>
+    <rect x="834.5" y="163.4" width="43.5" height="8.6" rx="3" fill="#0AB0AB"/>
+    <rect x="880.0" y="165.9" width="43.5" height="6.1" rx="3" fill="#0AB0AB"/>
+    <line x1="60.0" y1="172" x2="970.0" y2="172" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="151.0" y1="172" x2="151.0" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="151.0" y="196.0" text-anchor="middle" font-size="16.8" fill="#777" >R$ 5,50</text>
+    <line x1="378.5" y1="172" x2="378.5" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="378.5" y="196.0" text-anchor="middle" font-size="16.8" fill="#777" >R$ 6,00</text>
+    <line x1="606.0" y1="172" x2="606.0" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="606.0" y="196.0" text-anchor="middle" font-size="16.8" fill="#777" >R$ 6,50</text>
+    <line x1="833.5" y1="172" x2="833.5" y2="178" stroke="#bbb" stroke-width="1.6"/>
+    <text x="833.5" y="196.0" text-anchor="middle" font-size="16.8" fill="#777" >R$ 7,00</text>
+    <line x1="414.9" y1="10.0" x2="414.9" y2="172.0" stroke="#05635f" stroke-width="3.2"/>
+    <line x1="437.1" y1="10.0" x2="437.1" y2="172.0" stroke="#8D0333" stroke-width="3.2" stroke-dasharray="6 4"/>
+    <text x="406.9" y="26.0" text-anchor="end" font-size="16.8" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">mediana R$ 6,08</text>
+    <text x="445.1" y="26.0" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">média R$ 6,13</text>
+    <text x="73.7" y="26.0" text-anchor="start" font-size="16.8" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">55,2% abaixo da média</text>
+    <text x="824.4" y="62.0" text-anchor="middle" font-size="16.8" fill="#444" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">cauda à direita</text>
+    <line x1="742.5" y1="74.0" x2="924.5" y2="74.0" stroke="#777" stroke-width="2.2" marker-end="url(#sc)"/>
+    </svg>
+    <p class="legenda">A cauda à direita puxa a média para cima da mediana: 55,2% dos preços ficam abaixo da média. Fonte: ANP, SHPC, 2025.</p>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -1219,6 +1576,13 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             empresas de R$ 1 milhão”</strong>, com os números: desvio de 39 contra 860, CV de 3,9%
             contra 86%. Feche pela decisão (capital de giro e risco de crédito), e não pelo
             cálculo.</p>
+            </div>
+    <div class="caixa falar"><span class="rotulo">A figura das cinco medidas</span>
+            <p>A tela das medidas de dispersão não traz mais as definições em texto: elas estão
+            na figura, cada uma sobre o histograma real e com o número ao lado. Conduza de cima
+            para baixo: a amplitude pega as duas pontas, o IQR só a metade central, o desvio
+            padrão sai da média, e a variância e o CV fecham a lista. Pergunte, antes de passar,
+            por que o IQR é tão menor que a amplitude.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O ponto que mais rende: por que o quadrado</span>
             <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir

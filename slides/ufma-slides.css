@@ -412,7 +412,7 @@ html, body {
 
 /* ---------- figuras, esquemas e cartões dos slides de leitura ---------- */
 .figura { margin: 0.6vh 0 1.1vh 0; }
-.figura svg { width: 100%; height: auto; display: block; }
+.figura svg { width: 100%; height: auto; display: block; max-height: var(--fig-h, none); }
 .figura .legenda { font-size: 1.85vh; color: #777; margin-top: 0.3vh; }
 .cartoes-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3vh 1.3vw; margin-top: 0.6vh; }
 .cartoes-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3vh 1.2vw; margin: 0.8vh 0; }
@@ -590,3 +590,10 @@ pre.codigo .str { color: #ffd98a; }
 /* ---------- linha de fonte, abaixo de definição, tabela ou figura ---------- */
 .fonte, .slide p.fonte { font-size: 1.85vh; line-height: 1.3; color: #777;
   margin: 0.2vh 0 0.8vh 0; }
+
+/* ---------- legenda de figura: nao herda o corpo de texto das telas compactas ---------- */
+.slide .figura p.legenda { font-size: 1.85vh; line-height: 1.3; color: #777; margin: 0.3vh 0 0 0; }
+@media (max-aspect-ratio: 14/10) {
+  /* em 4:3 o texto acima da figura quebra em mais linhas: a figura cede 15% */
+  .figura svg { max-height: calc(var(--fig-h, 100vh) * 0.85); }
+}

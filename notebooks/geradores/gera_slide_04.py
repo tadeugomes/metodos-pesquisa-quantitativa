@@ -151,6 +151,13 @@ SECOES = [
             contra 86%. Feche pela decisão (capital de giro e risco de crédito), e não pelo
             cálculo.</p>
             """, "falar"),
+            ("A figura das cinco medidas", """
+            <p>A tela das medidas de dispersão não traz mais as definições em texto: elas estão
+            na figura, cada uma sobre o histograma real e com o número ao lado. Conduza de cima
+            para baixo: a amplitude pega as duas pontas, o IQR só a metade central, o desvio
+            padrão sai da média, e a variância e o CV fecham a lista. Pergunte, antes de passar,
+            por que o IQR é tão menor que a amplitude.</p>
+            """, "falar"),
             ("O ponto que mais rende: por que o quadrado", """
             <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir
             pelo número?”</em>. A resposta (eles se cancelam) costuma sair de algum estudante, e
