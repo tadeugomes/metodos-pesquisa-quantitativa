@@ -578,3 +578,15 @@ pre.codigo .str { color: #ffd98a; }
   .slide.estatistica .ficha p { font-size: 1.88vh; }
   .frase-resultado { font-size: 2.15vh; }
 }
+
+/* ---------- slide denso em tela 4:3: a mesma redução que leitura e estatística já têm ---------- */
+@media (max-aspect-ratio: 14/10) {
+  .slide.compacto p, .slide.compacto li { font-size: 2.3vh; }
+  .slide.compacto table { font-size: 1.95vh; }
+  .slide.compacto .definicao, .slide.compacto .exemplo,
+  .slide.compacto .instrucao, .slide.compacto .alerta { font-size: 2.2vh; }
+}
+
+/* ---------- linha de fonte, abaixo de definição, tabela ou figura ---------- */
+.fonte, .slide p.fonte { font-size: 1.85vh; line-height: 1.3; color: #777;
+  margin: 0.2vh 0 0.8vh 0; }

@@ -40,7 +40,8 @@ SECOES = [
             """, "bruto"),
             ("O fecho do Módulo I", """
             <p>Marcar com clareza: este é o <strong>último encontro de conteúdo do Módulo I</strong>.
-            No próximo é a AV1 e ela exige a base do projeto já carregada e descrita. Tudo o que
+            No próximo é a AV1, com a 1ª entrega do projeto: tema, questão de pesquisa, objetivo
+            geral, fontes de dados e a base carregando. Tudo o que
             a disciplina ensinou sobre descrever um conjunto de dados fecha hoje.</p>
             """, "falar"),
         ],
@@ -52,8 +53,8 @@ SECOES = [
         "entre": ["O processo de pesquisa", "Parte 2: estatística"],
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
-                ("As oito etapas do processo de pesquisa", "10"),
-                ("Dados primários e secundários", "6"),
+                ("As oito etapas do processo de pesquisa", "8"),
+                ("Dados primários e secundários, com o caso da rotatividade", "8"),
                 ("Como se escolhe uma fonte: os seis critérios", "12"),
                 ("Qualidade do dado e ética", "12"),
                 ("A matriz de amarração", "5"),
@@ -106,7 +107,8 @@ SECOES = [
             ("A matriz de amarração e a coluna que ela ganha", """
             <p>Fechar o bloco ligando matriz e estatística: a matriz amarra objetivo, variável e
             <strong>técnica de análise</strong>. É a coluna que o Módulo I passou a permitir
-            preencher — e é ela que a AV1 vai cobrar.</p>
+            preencher. A matriz não é entregue na AV1, mas é dela que saem a questão, o objetivo
+            geral e as fontes da 1ª entrega.</p>
             """, "gabarito"),
         ],
     },
@@ -118,16 +120,22 @@ SECOES = [
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("A pergunta: dois grupos, a mesma média", "8"),
-                ("As cinco medidas de dispersão", "16"),
-                ("Por que o quadrado e por que a raiz", "12"),
+                ("As cinco medidas de dispersão", "13"),
+                ("Por que o quadrado e por que a raiz", "10"),
                 ("O exemplo resolvido: a gasolina no Maranhão", "14"),
-                ("Erro comum e ficha", "5"),
+                ("Erro comum", "3"),
+                ("De volta às duas empresas: a decisão", "5"),
+                ("Ficha", "2"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
             <p>Uma frase, repetida: <strong>“uma medida só descreve metade da história”</strong>.
             Duas empresas com faturamento médio de R$ 1 milhão podem ser idênticas — ou uma
             faturar R$ 1 milhão todo mês e a outra oscilar entre R$ 100 mil e R$ 2 milhões. A
             média não distingue. A dispersão, sim.</p>
+            <p>A pergunta volta no fim do bloco, na tela <strong>“De volta à pergunta: as duas
+            empresas de R$ 1 milhão”</strong>, com os números: desvio de 39 contra 860, CV de 3,9%
+            contra 86%. Feche pela decisão — capital de giro e risco de crédito —, e não pelo
+            cálculo.</p>
             """, "falar"),
             ("O ponto que mais rende: por que o quadrado", """
             <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir
@@ -175,15 +183,20 @@ SECOES = [
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("A pergunta: R$ 6,20 foi caro ou barato?", "8"),
-                ("Quartis, cinco números, histograma e escore z", "16"),
+                ("Quartis, cinco números, histograma e escore z", "13"),
                 ("O exemplo resolvido: onde o posto cai", "12"),
-                ("A forma da distribuição e o encontro com o bloco anterior", "14"),
+                ("A forma da distribuição e o encontro com o bloco anterior", "11"),
+                ("De volta à pergunta: R$ 6,20 foi caro ou barato?", "6"),
                 ("Erro comum e ficha", "5"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
             <p><strong>Um número isolado não é caro nem barato</strong>: ele é caro ou barato
             <em>em relação à distribuição</em>. O escore z faz essa conta, e a forma da
             distribuição decide se ele é confiável.</p>
+            <p>A pergunta dos R$ 6,20 é respondida na tela <strong>“De volta à pergunta”</strong>:
+            z = 0,17, entre a mediana e o Q3, com 60,8% dos preços coletados abaixo. Peça o
+            palpite da turma antes de mostrar, e feche pelas duas decisões da tela: a do dono do
+            posto e a de quem gere uma frota.</p>
             """, "falar"),
             ("O momento em que os dois blocos do dia se encontram", """
             <p>Este é o ponto mais importante da tarde, e vale conduzir devagar: na
@@ -280,9 +293,9 @@ SECOES = [
             que já sabe — problema, objetivo específico, hipótese, variáveis e níveis, base e
             técnica prevista. As três primeiras colunas vêm do encontro 3; a base, dos seis
             critérios de hoje; a técnica ainda pode ficar genérica.</p>
-            <p>Circular priorizando quem recebeu apontamento de inviabilidade da base no
-            encontro anterior. A matriz é revisada ao final do Módulo III, quando a turma
-            souber nomear os testes, e integra a entrega da AV1.</p>
+            <p>Circular priorizando quem ainda não tem a base carregando: sem ela, a coluna
+            “base” fica vazia e a 1ª entrega da AV1 não fecha. A matriz é revisada ao final do
+            Módulo III, quando a turma souber nomear os testes.</p>
             """, "gabarito"),
             ("O fechamento do Módulo I", """
             <p>As três telas finais fazem o balanço do módulo. Vale construir junto com a turma, no
