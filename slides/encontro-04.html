@@ -471,65 +471,390 @@
   <h2>Parte 2: estatística</h2>
   <p>Duas medidas, e não uma: tendência central <em>e</em> dispersão</p>
 </section>
-<section class="slide estatistica">
+<section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>A pergunta que a estatística do dia responde</h2>
-  <div class="pergunta">Dois grupos podem ter a <strong>mesma média</strong> e oscilar de
-  formas diferentes em torno dela. Como distinguir?</div>
-  <div class="figura" data-fig="pergunta" style="--fig-h:27vh">
-    <svg viewBox="0 0 1000 232" role="img" aria-label="Faturamento mensal de duas empresas com a mesma média de R$ 1 milhão: a A oscila pouco, a B oscila muito">
-    <line x1="90" y1="196.0" x2="800" y2="196.0" stroke="#bbb" stroke-width="1.6"/>
-    <line x1="90" y1="154.1" x2="800" y2="154.1" stroke="#eee" stroke-width="1"/>
-    <line x1="90" y1="70.3" x2="800" y2="70.3" stroke="#eee" stroke-width="1"/>
-    <line x1="90" y1="28.4" x2="800" y2="28.4" stroke="#eee" stroke-width="1"/>
-    <text x="80.0" y="201.0" text-anchor="end" font-size="16.2" fill="#777" >0</text>
-    <text x="80.0" y="117.2" text-anchor="end" font-size="16.2" fill="#777" >1.000</text>
-    <text x="80.0" y="33.4" text-anchor="end" font-size="16.2" fill="#777" >2.000</text>
-    <text x="80.0" y="12.0" text-anchor="end" font-size="16.2" fill="#777" >R$ mil</text>
-    <text x="130.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Jan</text>
-    <text x="258.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Fev</text>
-    <text x="386.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Mar</text>
-    <text x="514.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Abr</text>
-    <text x="642.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Mai</text>
-    <text x="770.0" y="222.0" text-anchor="middle" font-size="16.2" fill="#777" >Jun</text>
-    <line x1="90" y1="112.2" x2="800" y2="112.2" stroke="#a67c2e" stroke-width="2.6" stroke-dasharray="8 5"/>
-    <polyline points="130.0,187.6 258.0,28.4 386.0,162.5 514.0,45.1 642.0,179.2 770.0,70.3" fill="none" stroke="#8D0333" stroke-width="3.2" stroke-linejoin="round"/>
-    <circle cx="130.0" cy="187.6" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
-    <circle cx="258.0" cy="28.4" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
-    <circle cx="386.0" cy="162.5" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
-    <circle cx="514.0" cy="45.1" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
-    <circle cx="642.0" cy="179.2" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
-    <circle cx="770.0" cy="70.3" r="7" fill="#8D0333" stroke="#fff" stroke-width="2"/>
-    <polyline points="130.0,116.4 258.0,110.5 386.0,113.9 514.0,108.0 642.0,114.7 770.0,109.7" fill="none" stroke="#0AB0AB" stroke-width="3.2" stroke-linejoin="round"/>
-    <circle cx="130.0" cy="116.4" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <circle cx="258.0" cy="110.5" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <circle cx="386.0" cy="113.9" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <circle cx="514.0" cy="108.0" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <circle cx="642.0" cy="114.7" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <circle cx="770.0" cy="109.7" r="7" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <circle cx="822" cy="99.6" r="7" fill="#0AB0AB"/>
-    <text x="836.0" y="105.6" text-anchor="start" font-size="18.8" fill="#444" font-weight="700">Empresa A</text>
-    <circle cx="822" cy="70.3" r="7" fill="#8D0333"/>
-    <text x="836.0" y="76.3" text-anchor="start" font-size="18.8" fill="#444" font-weight="700">Empresa B</text>
-    <line x1="810" y1="129.0" x2="834" y2="129.0" stroke="#a67c2e" stroke-width="2.6" stroke-dasharray="8 5"/>
-    <text x="840.0" y="135.0" text-anchor="start" font-size="18.8" fill="#444" font-weight="700">a mesma média</text>
+  <div class="pergunta">Duas turmas tiraram a <strong>mesma média, 5</strong>. Elas aprenderam
+  do mesmo jeito?</div>
+  <table>
+    <tr><td><strong>Turma A</strong></td><td>0</td><td>2</td><td>4</td><td>5</td><td>5</td><td>6</td><td>8</td><td>10</td></tr>
+    <tr><td><strong>Turma B</strong></td><td>4</td><td>4,5</td><td>5</td><td>5</td><td>5</td><td>5</td><td>5,5</td><td>6</td></tr>
+  </table>
+  <!-- figura -->
+  <div class="figura" data-fig="pergunta" style="--fig-h:25vh">
+    <svg viewBox="0 0 1000 222" role="img" aria-label="Notas de duas turmas com média 5: a turma A espalhada de 0 a 10, a turma B concentrada entre 4 e 6">
+    <line x1="150.0" y1="84.0" x2="950.0" y2="84.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="150.0" y1="84.0" x2="150.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="150.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >0</text>
+    <line x1="230.0" y1="84.0" x2="230.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="230.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >1</text>
+    <line x1="310.0" y1="84.0" x2="310.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="310.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >2</text>
+    <line x1="390.0" y1="84.0" x2="390.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="390.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >3</text>
+    <line x1="470.0" y1="84.0" x2="470.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="470.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >4</text>
+    <line x1="550.0" y1="84.0" x2="550.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="550.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >5</text>
+    <line x1="630.0" y1="84.0" x2="630.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="630.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >6</text>
+    <line x1="710.0" y1="84.0" x2="710.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="710.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >7</text>
+    <line x1="790.0" y1="84.0" x2="790.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="790.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >8</text>
+    <line x1="870.0" y1="84.0" x2="870.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="870.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >9</text>
+    <line x1="950.0" y1="84.0" x2="950.0" y2="90.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="950.0" y="106.0" text-anchor="middle" font-size="15.0" fill="#777" >10</text>
+    <circle cx="150.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="310.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="470.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="51.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="630.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="790.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="950.0" cy="70.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <text x="132.0" y="75.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">Turma A</text>
+    <line x1="150.0" y1="190.0" x2="950.0" y2="190.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="150.0" y1="190.0" x2="150.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="150.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >0</text>
+    <line x1="230.0" y1="190.0" x2="230.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="230.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >1</text>
+    <line x1="310.0" y1="190.0" x2="310.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="310.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >2</text>
+    <line x1="390.0" y1="190.0" x2="390.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="390.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >3</text>
+    <line x1="470.0" y1="190.0" x2="470.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="470.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >4</text>
+    <line x1="550.0" y1="190.0" x2="550.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="550.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >5</text>
+    <line x1="630.0" y1="190.0" x2="630.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="630.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >6</text>
+    <line x1="710.0" y1="190.0" x2="710.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="710.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >7</text>
+    <line x1="790.0" y1="190.0" x2="790.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="790.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >8</text>
+    <line x1="870.0" y1="190.0" x2="870.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="870.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >9</text>
+    <line x1="950.0" y1="190.0" x2="950.0" y2="196.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="950.0" y="212.0" text-anchor="middle" font-size="15.0" fill="#777" >10</text>
+    <circle cx="470.0" cy="176.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="510.0" cy="176.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="176.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="157.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="138.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="119.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="590.0" cy="176.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="630.0" cy="176.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <text x="132.0" y="181.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">Turma B</text>
+    <line x1="550.0" y1="4.0" x2="550.0" y2="214.0" stroke="#a67c2e" stroke-width="2.4" stroke-dasharray="6 4"/>
+    <text x="558.0" y="14.0" text-anchor="start" font-size="17.5" fill="#7a5a1f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">média 5 nas duas turmas</text>
     </svg>
-    <p class="legenda">Faturamento mensal de duas empresas, em R$ mil. Dados ilustrativos, os mesmos da tela “De volta à pergunta”.</p>
+    <p class="legenda">Cada ponto é um aluno; notas iguais se empilham. Dados ilustrativos.</p>
   </div>
-  <p>Até agora descrevemos o <em>centro</em> de um conjunto. Duas empresas com faturamento médio
-  de R$ 1 milhão podem ser muito parecidas, ou uma pode faturar R$ 1 milhão todo mês e a outra
-  oscilar entre R$ 100 mil e R$ 2 milhões. <strong>A média não distingue as duas.</strong></p>
-  <div class="definicao"><span class="rotulo">Regra do dia</span>
-  Uma descrição honesta tem <strong>duas medidas</strong>: onde está o centro e
-  <strong>quanto os casos se afastam</strong> dele. Uma medida só esconde metade da
-  história.</div>
+  <div class="definicao"><span class="rotulo">Medidas de dispersão</span>
+  São as estatísticas que caracterizam o quanto um conjunto de dados está disperso em torno da
+  sua medida de tendência central, ou seja, identificam a <strong>variabilidade</strong> do
+  conjunto. Elas ajudam a compreender como os dados estão espalhados em torno do centro.</div>
+  <p>As notas da turma A estão mais dispersas que as da turma B, e a média não mostra isso.
+  <strong>Por isso é necessária uma medida da variabilidade dos dados.</strong></p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 <section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>As medidas de dispersão</h2>
+  <h2>As medidas de dispersão: dois tipos e a amplitude</h2>
+  <div class="definicao"><span class="rotulo">Dois tipos</span>
+  <strong>Absolutas</strong>: amplitude total, desvio médio, variância e desvio padrão, na
+  unidade dos dados. <strong>Relativa</strong>: o coeficiente de variação de Pearson, em % da
+  média.</div>
+  <div class="definicao"><span class="rotulo">Amplitude total</span>
+  AT = V<sub>máx</sub> − V<sub>mín</sub>. É a diferença entre o maior e o menor valor de um
+  conjunto, <strong>ignorando os demais</strong>, o que torna a medida suscetível aos valores
+  extremos.</div>
+  <!-- figura -->
+  <div class="figura" data-fig="amplitude" style="--fig-h:29vh">
+    <svg viewBox="0 0 1000 292" role="img" aria-label="A amplitude das duas turmas: 10 na turma A e 2 na turma B, medida só entre a menor e a maior nota">
+    <line x1="150.0" y1="72.0" x2="950.0" y2="72.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="150.0" y1="72.0" x2="150.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="150.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >0</text>
+    <line x1="230.0" y1="72.0" x2="230.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="230.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >1</text>
+    <line x1="310.0" y1="72.0" x2="310.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="310.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >2</text>
+    <line x1="390.0" y1="72.0" x2="390.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="390.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >3</text>
+    <line x1="470.0" y1="72.0" x2="470.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="470.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >4</text>
+    <line x1="550.0" y1="72.0" x2="550.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="550.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >5</text>
+    <line x1="630.0" y1="72.0" x2="630.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="630.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >6</text>
+    <line x1="710.0" y1="72.0" x2="710.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="710.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >7</text>
+    <line x1="790.0" y1="72.0" x2="790.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="790.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >8</text>
+    <line x1="870.0" y1="72.0" x2="870.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="870.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >9</text>
+    <line x1="950.0" y1="72.0" x2="950.0" y2="78.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="950.0" y="94.0" text-anchor="middle" font-size="15.0" fill="#777" >10</text>
+    <circle cx="150.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="310.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="470.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="39.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="630.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="790.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <circle cx="950.0" cy="58.0" r="8.5" fill="#8D0333" stroke="#fff" stroke-width="2"/>
+    <text x="132.0" y="63.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">Turma A</text>
+    <path d="M150.0,112.0 V104.0 H950.0 V112.0" fill="none" stroke="#8D0333" stroke-width="2.6" stroke-linejoin="round"/>
+    <text x="550.0" y="130.0" text-anchor="middle" font-size="18.8" fill="#8D0333" font-weight="700">AT = 10 − 0 = 10</text>
+    <line x1="150.0" y1="226.0" x2="950.0" y2="226.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="150.0" y1="226.0" x2="150.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="150.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >0</text>
+    <line x1="230.0" y1="226.0" x2="230.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="230.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >1</text>
+    <line x1="310.0" y1="226.0" x2="310.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="310.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >2</text>
+    <line x1="390.0" y1="226.0" x2="390.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="390.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >3</text>
+    <line x1="470.0" y1="226.0" x2="470.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="470.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >4</text>
+    <line x1="550.0" y1="226.0" x2="550.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="550.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >5</text>
+    <line x1="630.0" y1="226.0" x2="630.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="630.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >6</text>
+    <line x1="710.0" y1="226.0" x2="710.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="710.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >7</text>
+    <line x1="790.0" y1="226.0" x2="790.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="790.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >8</text>
+    <line x1="870.0" y1="226.0" x2="870.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="870.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >9</text>
+    <line x1="950.0" y1="226.0" x2="950.0" y2="232.0" stroke="#bbb" stroke-width="1.4"/>
+    <text x="950.0" y="248.0" text-anchor="middle" font-size="15.0" fill="#777" >10</text>
+    <circle cx="470.0" cy="212.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="510.0" cy="212.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="212.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="193.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="174.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="550.0" cy="155.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="590.0" cy="212.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <circle cx="630.0" cy="212.0" r="8.5" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
+    <text x="132.0" y="217.0" text-anchor="end" font-size="18.8" fill="#444" font-weight="700">Turma B</text>
+    <path d="M470.0,266.0 V258.0 H630.0 V266.0" fill="none" stroke="#0AB0AB" stroke-width="2.6" stroke-linejoin="round"/>
+    <text x="550.0" y="284.0" text-anchor="middle" font-size="18.8" fill="#0AB0AB" font-weight="700">AT = 6 − 4 = 2</text>
+    </svg>
+  </div>
+  <p>A amplitude separa as duas turmas, mas olha só para dois alunos. Se o aluno que tirou 10
+  faltasse à prova, a amplitude da turma A cairia de 10 para 8 sem que nenhuma outra nota
+  mudasse. Por isso as medidas seguintes usam <strong>todos os valores</strong>.</p>
+  <p class="fonte">Fonte: adaptado de ANDERSON; SWEENEY; WILLIAMS (2013).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Desvio médio: por que o módulo</h2>
+  <div class="definicao"><span class="rotulo">Desvio médio</span>
+  Para considerar <strong>todos</strong> os valores, subtrai-se de cada um a média do conjunto: são
+  os <strong>desvios</strong>. Porém a soma dos desvios é sempre igual a zero, porque os positivos e
+  os negativos se cancelam. Então se considera apenas o <strong>módulo</strong> de cada diferença,
+  que torna o resultado positivo. O desvio médio é a média aritmética dos módulos.</div>
+  <div class="colunas">
+    <table style="width:auto; flex:0 0 46%">
+      <tr><th>Aluno</th><th>Nota</th><th>x<sub>i</sub> − μ</th><th>|x<sub>i</sub> − μ|</th></tr>
+      <tr><td>1</td><td>0</td><td>−5</td><td>5</td></tr>
+      <tr><td>2</td><td>2</td><td>−3</td><td>3</td></tr>
+      <tr><td>3</td><td>4</td><td>−1</td><td>1</td></tr>
+      <tr><td>4</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>5</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>6</td><td>6</td><td>+1</td><td>1</td></tr>
+      <tr><td>7</td><td>8</td><td>+3</td><td>3</td></tr>
+      <tr><td>8</td><td>10</td><td>+5</td><td>5</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>40</strong></td><td><strong>0</strong></td><td><strong>18</strong></td></tr>
+    </table>
+    <div style="flex:1">
+      <div class="formula">
+        <span class="expr">DM<span class="op">=</span><span class="frac"><span class="cima">Σ|x<sub>i</sub> − μ|</span>
+          <span class="baixo">N</span></span><span class="op">=</span><span class="frac"><span class="cima">18</span>
+          <span class="baixo">8</span></span><span class="op">=</span>2,25</span>
+      </div>
+      <div class="exemplo"><span class="rotulo">Em linguagem corrente</span>
+      Turma A, média 5. A coluna dos desvios soma <strong>zero</strong>; a dos módulos soma 18. Em
+      média, cada aluno está <strong>2,25 pontos</strong> longe da média da turma.</div>
+      <p class="menor">Apesar de pouco usado, o desvio médio ajuda a compreender o desvio
+      padrão: é a mesma ideia, com outra forma de tirar o sinal.</p>
+    </div>
+  </div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Variância: o quadrado no lugar do módulo</h2>
+  <div class="definicao"><span class="rotulo">Variância</span>
+  É a média aritmética dos <strong>quadrados</strong> dos desvios. Em vez do módulo do desvio
+  médio, eleva-se cada desvio ao quadrado: o sinal some do mesmo jeito, e os desvios grandes
+  passam a pesar mais.</div>
+  <!-- figura -->
+  <div class="figura" data-fig="quadrado" style="--fig-h:27vh">
+    <svg viewBox="0 0 1000 266" role="img" aria-label="Os desvios da turma A somam zero; elevados ao quadrado viram quadrados que somam 70; a média das áreas, 8,75, é a variância, e o lado do quadrado médio, 2,96, é o desvio padrão">
+    <text x="150.0" y="22.0" text-anchor="middle" font-size="21.8" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">1. Os desvios</text>
+    <line x1="14.0" y1="104.0" x2="290.0" y2="104.0" stroke="#bbb" stroke-width="1.6"/>
+    <rect x="22.0" y="104.0" width="26.0" height="60.0" rx="3" fill="#8D0333" />
+    <text x="35.0" y="181.0" text-anchor="middle" font-size="16.1" fill="#444" >−5</text>
+    <rect x="56.0" y="104.0" width="26.0" height="36.0" rx="3" fill="#8D0333" />
+    <text x="69.0" y="157.0" text-anchor="middle" font-size="16.1" fill="#444" >−3</text>
+    <rect x="90.0" y="104.0" width="26.0" height="12.0" rx="3" fill="#8D0333" />
+    <text x="103.0" y="133.0" text-anchor="middle" font-size="16.1" fill="#444" >−1</text>
+    <text x="137.0" y="98.0" text-anchor="middle" font-size="16.1" fill="#444" >0</text>
+    <text x="171.0" y="98.0" text-anchor="middle" font-size="16.1" fill="#444" >0</text>
+    <rect x="192.0" y="92.0" width="26.0" height="12.0" rx="3" fill="#0AB0AB" />
+    <text x="205.0" y="86.0" text-anchor="middle" font-size="16.1" fill="#444" >+1</text>
+    <rect x="226.0" y="68.0" width="26.0" height="36.0" rx="3" fill="#0AB0AB" />
+    <text x="239.0" y="62.0" text-anchor="middle" font-size="16.1" fill="#444" >+3</text>
+    <rect x="260.0" y="44.0" width="26.0" height="60.0" rx="3" fill="#0AB0AB" />
+    <text x="273.0" y="38.0" text-anchor="middle" font-size="16.1" fill="#444" >+5</text>
+    <text x="150.0" y="236.0" text-anchor="middle" font-size="21.8" fill="#8D0333" font-weight="700">somam zero</text>
+    <line x1="298.0" y1="120.0" x2="334.0" y2="120.0" stroke="#777" stroke-width="2.6" marker-end="url(#sc)"/>
+    <text x="540.0" y="22.0" text-anchor="middle" font-size="21.8" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">2. Cada desvio ao quadrado</text>
+    <polygon points="346.0,105.0 354.0,97.0 439.0,97.0 431.0,105.0" fill="#7fd3d1"/>
+    <polygon points="431.0,105.0 439.0,97.0 439.0,182.0 431.0,190.0" fill="#05635f"/>
+    <rect x="346.0" y="105.0" width="85.0" height="85.0" fill="#0AB0AB"/>
+    <text x="388.5" y="210.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">25</text>
+    <polygon points="447.0,139.0 455.0,131.0 506.0,131.0 498.0,139.0" fill="#7fd3d1"/>
+    <polygon points="498.0,139.0 506.0,131.0 506.0,182.0 498.0,190.0" fill="#05635f"/>
+    <rect x="447.0" y="139.0" width="51.0" height="51.0" fill="#0AB0AB"/>
+    <text x="472.5" y="210.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">9</text>
+    <polygon points="514.0,173.0 522.0,165.0 539.0,165.0 531.0,173.0" fill="#7fd3d1"/>
+    <polygon points="531.0,173.0 539.0,165.0 539.0,182.0 531.0,190.0" fill="#05635f"/>
+    <rect x="514.0" y="173.0" width="17.0" height="17.0" fill="#0AB0AB"/>
+    <text x="522.5" y="210.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">1</text>
+    <polygon points="547.0,173.0 555.0,165.0 572.0,165.0 564.0,173.0" fill="#7fd3d1"/>
+    <polygon points="564.0,173.0 572.0,165.0 572.0,182.0 564.0,190.0" fill="#05635f"/>
+    <rect x="547.0" y="173.0" width="17.0" height="17.0" fill="#0AB0AB"/>
+    <text x="555.5" y="210.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">1</text>
+    <polygon points="580.0,139.0 588.0,131.0 639.0,131.0 631.0,139.0" fill="#7fd3d1"/>
+    <polygon points="631.0,139.0 639.0,131.0 639.0,182.0 631.0,190.0" fill="#05635f"/>
+    <rect x="580.0" y="139.0" width="51.0" height="51.0" fill="#0AB0AB"/>
+    <text x="605.5" y="210.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">9</text>
+    <polygon points="647.0,105.0 655.0,97.0 740.0,97.0 732.0,105.0" fill="#7fd3d1"/>
+    <polygon points="732.0,105.0 740.0,97.0 740.0,182.0 732.0,190.0" fill="#05635f"/>
+    <rect x="647.0" y="105.0" width="85.0" height="85.0" fill="#0AB0AB"/>
+    <text x="689.5" y="210.0" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">25</text>
+    <text x="540.0" y="236.0" text-anchor="middle" font-size="21.8" fill="#05635f" font-weight="700">só somam: 70</text>
+    <text x="540.0" y="256.0" text-anchor="middle" font-size="14.9" fill="#777" >os dois alunos com nota 5 têm desvio zero: nenhum quadrado</text>
+    <line x1="742.0" y1="120.0" x2="778.0" y2="120.0" stroke="#777" stroke-width="2.6" marker-end="url(#sc)"/>
+    <text x="890.0" y="22.0" text-anchor="middle" font-size="21.8" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">3. A média e a raiz</text>
+    <polygon points="864.9,139.7 872.9,131.7 923.1,131.7 915.1,139.7" fill="#d9c08f"/>
+    <polygon points="915.1,139.7 923.1,131.7 923.1,182.0 915.1,190.0" fill="#7a5a1f"/>
+    <rect x="864.9" y="139.7" width="50.3" height="50.3" fill="#a67c2e"/>
+    <text x="890.0" y="121.7" text-anchor="middle" font-size="16.1" fill="#444" font-weight="700">área: 70 ÷ 8 = 8,75</text>
+    <line x1="864.9" y1="199.0" x2="915.1" y2="199.0" stroke="#444" stroke-width="2.4"/>
+    <text x="890.0" y="218.0" text-anchor="middle" font-size="17.2" fill="#a67c2e" font-weight="700">lado = √8,75 = 2,96</text>
+    <text x="890.0" y="236.0" text-anchor="middle" font-size="17.2" fill="#444" font-weight="700">variância: 8,75 pontos²</text>
+    <text x="890.0" y="256.0" text-anchor="middle" font-size="17.2" fill="#a67c2e" font-weight="700">desvio padrão: 2,96 pontos</text>
+    </svg>
+    <p class="legenda">Turma A, média 5. A variância é a área do quadrado médio, em pontos²; o desvio padrão é o lado dele, de volta em pontos.</p>
+  </div>
+  <div class="formula">
+    <span class="expr">σ<sup>2</sup><span class="op">=</span><span class="frac"><span class="cima">Σ(x<sub>i</sub> − μ)<sup>2</sup></span>
+      <span class="baixo">N</span></span><span class="op">=</span><span class="frac"><span class="cima">70</span>
+      <span class="baixo">8</span></span><span class="op">=</span>8,75</span>
+  </div>
+  <div class="alerta"><span class="rotulo">E agora?</span>
+  O valor está em <strong>pontos ao quadrado</strong>, o que não facilita a interpretação: ninguém
+  tira “8,75 pontos²” numa prova. Aí entra o desvio padrão.</div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Desvio padrão: a raiz que volta à unidade</h2>
+  <div class="colunas">
+    <div class="formula">
+      <span class="expr">σ<span class="op">=</span>√<span class="raiz"><span class="frac"><span class="cima">Σ(x<sub>i</sub> − μ)<sup>2</sup></span>
+        <span class="baixo">N</span></span></span></span>
+      <span class="legenda-formula"><strong>Populacional</strong>: os dados são o conjunto
+      inteiro, como os 8 alunos da turma.</span>
+    </div>
+    <div class="formula">
+      <span class="expr">s<span class="op">=</span>√<span class="raiz"><span class="frac"><span class="cima">Σ(x<sub>i</sub> − x&#772;)<sup>2</sup></span>
+        <span class="baixo">n − 1</span></span></span></span>
+      <span class="legenda-formula"><strong>Amostral</strong>: os dados são uma parte, como as
+      coletas de preço da gasolina.</span>
+    </div>
+  </div>
+  <div class="definicao"><span class="rotulo">Desvio padrão</span>
+  É a raiz quadrada da variância: a raiz da média dos quadrados dos desvios. Na turma A,
+  σ = √8,75 = <strong>2,96 pontos</strong>; na turma B, <strong>0,56</strong>. O resultado está na
+  <strong>mesma unidade</strong> dos dados, o que facilita a interpretação.</div>
+  <div class="exemplo"><span class="rotulo">A leitura</span>
+  Quanto menor o desvio padrão, mais homogênea é a distribuição: os dados estão próximos da
+  média. Quanto menor, portanto, melhor. A turma B aprendeu de modo mais parecido entre os
+  alunos; a turma A tem alunos muito acima e muito abaixo da média.</div>
+  <p class="menor">Por que <em>n − 1</em> na amostra? Porque a média foi estimada dos próprios
+  dados, o que “gasta” um grau de liberdade. É o que o pandas faz em <code>.std()</code>, e é a
+  fórmula do exemplo da gasolina.</p>
+  <p class="fonte">Fonte: adaptado de ANDERSON; SWEENEY; WILLIAMS (2013).</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>Coeficiente de variação: a dispersão em proporção da média</h2>
+  <div class="definicao"><span class="rotulo">Coeficiente de variação</span>
+  O CV mede a variabilidade dos dados <strong>em relação à média</strong> e permite comparar a
+  dispersão de dois conjuntos. Cálculo: divide-se o desvio padrão pela média e multiplica-se
+  por 100, para ter o resultado em %.</div>
+  <!-- figura -->
+  <div class="figura" data-fig="cv_pares" style="--fig-h:30vh">
+    <svg viewBox="0 0 1000 264" role="img" aria-label="Coeficientes de variação: turma A 59,2% e turma B 11,2%; altura 4,02% e peso 15,4%; Google 9,17% e Amazon 14,48%">
+    <text x="14.0" y="22.0" text-anchor="start" font-size="15.6" fill="#777" font-weight="700">Duas turmas, a mesma média</text>
+    <text x="180.0" y="49.0" text-anchor="end" font-size="18.0" fill="#444" font-weight="700">Turma A</text>
+    <text x="318.0" y="49.0" text-anchor="end" font-size="14.4" fill="#777" >2,96 ÷ 5</text>
+    <rect x="330.0" y="35.0" width="552.5" height="20.0" rx="3" fill="#8D0333" />
+    <text x="890.5" y="50.0" text-anchor="start" font-size="18.0" fill="#8D0333" font-weight="700">59,2%</text>
+    <text x="180.0" y="77.0" text-anchor="end" font-size="18.0" fill="#444" font-weight="700">Turma B</text>
+    <text x="318.0" y="77.0" text-anchor="end" font-size="14.4" fill="#777" >0,56 ÷ 5</text>
+    <rect x="330.0" y="63.0" width="104.5" height="20.0" rx="3" fill="#0AB0AB" />
+    <text x="442.5" y="78.0" text-anchor="start" font-size="18.0" fill="#0AB0AB" font-weight="700">11,2%</text>
+    <text x="14.0" y="104.0" text-anchor="start" font-size="15.6" fill="#777" font-weight="700">Unidades diferentes</text>
+    <text x="180.0" y="131.0" text-anchor="end" font-size="18.0" fill="#444" font-weight="700">Altura</text>
+    <text x="318.0" y="131.0" text-anchor="end" font-size="14.4" fill="#777" >7 cm ÷ 174 cm</text>
+    <rect x="330.0" y="117.0" width="37.5" height="20.0" rx="3" fill="#0AB0AB" />
+    <text x="375.5" y="132.0" text-anchor="start" font-size="18.0" fill="#0AB0AB" font-weight="700">4,0%</text>
+    <text x="180.0" y="159.0" text-anchor="end" font-size="18.0" fill="#444" font-weight="700">Peso</text>
+    <text x="318.0" y="159.0" text-anchor="end" font-size="14.4" fill="#777" >12 kg ÷ 78 kg</text>
+    <rect x="330.0" y="145.0" width="143.6" height="20.0" rx="3" fill="#8D0333" />
+    <text x="481.6" y="160.0" text-anchor="start" font-size="18.0" fill="#8D0333" font-weight="700">15,4%</text>
+    <text x="14.0" y="186.0" text-anchor="start" font-size="15.6" fill="#777" font-weight="700">Ações</text>
+    <text x="180.0" y="213.0" text-anchor="end" font-size="18.0" fill="#444" font-weight="700">Google</text>
+    <text x="318.0" y="213.0" text-anchor="end" font-size="14.4" fill="#777" >5,10 ÷ 55,62</text>
+    <rect x="330.0" y="199.0" width="85.6" height="20.0" rx="3" fill="#0AB0AB" />
+    <text x="423.6" y="214.0" text-anchor="start" font-size="18.0" fill="#0AB0AB" font-weight="700">9,17%</text>
+    <text x="180.0" y="241.0" text-anchor="end" font-size="18.0" fill="#444" font-weight="700">Amazon</text>
+    <text x="318.0" y="241.0" text-anchor="end" font-size="14.4" fill="#777" >3,60 ÷ 24,86</text>
+    <rect x="330.0" y="227.0" width="135.2" height="20.0" rx="3" fill="#8D0333" />
+    <text x="473.2" y="242.0" text-anchor="start" font-size="18.0" fill="#8D0333" font-weight="700">14,48%</text>
+    </svg>
+    <p class="legenda">Em cada par, a barra vinho é a de maior dispersão relativa. Dados ilustrativos.</p>
+  </div>
+  <div class="exemplo"><span class="rotulo">O que cada comparação mostra</span>
+  <ul>
+    <li>A <strong>turma B</strong> tem menor dispersão: maior homogeneidade no aprendizado;</li>
+    <li><strong>Altura e peso</strong> estão em unidades diferentes, e os desvios não se comparam
+        diretamente. Pelo CV, o <strong>peso</strong> varia mais;</li>
+    <li>Para um investidor que não gosta de oscilação, a ação do <strong>Google</strong> é a mais
+        estável das duas.</li>
+  </ul></div>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
+</section>
+<section class="slide estatistica compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <span class="marca-estatistica">Parte 2 · Estatística</span>
+  <h2>As cinco medidas na base real</h2>
   <div class="figura" data-fig="medidas" style="--fig-h:50vh">
     <svg viewBox="0 0 1000 358" role="img" aria-label="Histograma dos preços da gasolina no Maranhão em 2025 com amplitude, IQR, desvio padrão, variância e coeficiente de variação, cada um com sua definição e seu valor">
     <rect x="245.5" y="14" width="383.2" height="140" fill="#e3f6f5"/>
@@ -585,129 +910,6 @@
     um único extremo a destrói.</div>
   </div>
   <p class="fonte">Fonte: adaptado de ANDERSON; SWEENEY; WILLIAMS (2013).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>A fórmula, com cada símbolo nomeado</h2>
-  <div class="formula">
-    <span class="expr">s<span class="op">=</span>√<span class="raiz"><span class="frac"><span class="cima">(x<sub>1</sub> − x&#772;)<sup>2</sup>
-        + … + (x<sub>n</sub> − x&#772;)<sup>2</sup></span>
-        <span class="baixo">n − 1</span></span></span></span>
-    <span class="simbolos">
-      <span><b>x<sub>i</sub></b>cada valor observado</span>
-      <span><b>x&#772;</b>a média dos valores</span>
-      <span><b>n</b>a quantidade de valores</span>
-      <span><b>s</b>o desvio padrão</span>
-    </span>
-    <span class="legenda-formula"><strong>Em linguagem corrente:</strong> veja quanto cada valor
-    se afasta da média, eleve esses desvios ao quadrado, tire a média deles e, por fim, a raiz.
-    A raiz é o que devolve o número à <strong>unidade original</strong>: a variância está em
-    R$ ao quadrado, o desvio padrão está em reais.</span>
-  </div>
-  <div class="figura" data-fig="simbolos" style="--fig-h:21vh">
-    <svg viewBox="0 0 1000 172" role="img" aria-label="Cinco postos numa reta de preços, com a seta de cada um até a média: o desvio x menos x barra">
-    <line x1="60" y1="138" x2="970" y2="138" stroke="#bbb" stroke-width="1.6"/>
-    <text x="158.7" y="162.0" text-anchor="middle" font-size="16.2" fill="#777" >R$ 5,75</text>
-    <text x="432.8" y="162.0" text-anchor="middle" font-size="16.2" fill="#777" >R$ 6,00</text>
-    <text x="706.9" y="162.0" text-anchor="middle" font-size="16.2" fill="#777" >R$ 6,25</text>
-    <line x1="542.4" y1="30.0" x2="542.4" y2="138.0" stroke="#8D0333" stroke-width="2.4" stroke-dasharray="6 4"/>
-    <text x="542.4" y="20.0" text-anchor="middle" font-size="18.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">x̄ = 6,10</text>
-    <line x1="542.4" y1="52.0" x2="158.7" y2="52.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
-    <text x="350.5" y="44.0" text-anchor="middle" font-size="16.2" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">−0,35</text>
-    <line x1="158.7" y1="52.0" x2="158.7" y2="138" stroke="#eee" stroke-width="1.4"/>
-    <circle cx="158.7" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <line x1="542.4" y1="78.0" x2="378.0" y2="78.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
-    <text x="460.2" y="70.0" text-anchor="middle" font-size="16.2" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">−0,15</text>
-    <line x1="378.0" y1="78.0" x2="378.0" y2="138" stroke="#eee" stroke-width="1.4"/>
-    <circle cx="378.0" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <line x1="542.4" y1="104.0" x2="597.2" y2="104.0" stroke="#05635f" stroke-width="2.4" marker-end="url(#sg)"/>
-    <text x="569.8" y="96.0" text-anchor="middle" font-size="16.2" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+0,05</text>
-    <line x1="597.2" y1="104.0" x2="597.2" y2="138" stroke="#eee" stroke-width="1.4"/>
-    <circle cx="597.2" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <line x1="542.4" y1="78.0" x2="706.9" y2="78.0" stroke="#05635f" stroke-width="2.4" marker-end="url(#sg)"/>
-    <text x="624.6" y="70.0" text-anchor="middle" font-size="16.2" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+0,15</text>
-    <line x1="706.9" y1="78.0" x2="706.9" y2="138" stroke="#eee" stroke-width="1.4"/>
-    <circle cx="706.9" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    <line x1="542.4" y1="52.0" x2="871.3" y2="52.0" stroke="#05635f" stroke-width="2.4" marker-end="url(#sg)"/>
-    <text x="706.9" y="44.0" text-anchor="middle" font-size="16.2" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">+0,30</text>
-    <line x1="871.3" y1="52.0" x2="871.3" y2="138" stroke="#eee" stroke-width="1.4"/>
-    <circle cx="871.3" cy="138" r="9" fill="#0AB0AB" stroke="#fff" stroke-width="2"/>
-    </svg>
-    <p class="legenda">Cinco postos, dados ilustrativos. Cada seta é um desvio xᵢ − x̄: negativo à esquerda da média, positivo à direita.</p>
-  </div>
-  <p class="fonte">Fonte: ANDERSON; SWEENEY; WILLIAMS (2013).</p>
-  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
-</section>
-<section class="slide estatistica">
-  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>Por que elevar ao quadrado e por que tirar a raiz</h2>
-  <div class="definicao"><span class="rotulo">Por que o quadrado</span>
-  Se somássemos os desvios <em>como eles são</em>, os positivos e os negativos se
-  cancelariam e a soma daria sempre perto de zero. Elevar ao quadrado resolve isso e
-  <strong>pune mais os desvios grandes</strong>, o que é proposital: um caso que se afasta
-  muito deve pesar mais.</div>
-  <div class="definicao"><span class="rotulo">Por que a raiz</span>
-  A variância fica na unidade <em>ao quadrado</em>, e isso não se interpreta: R$ 0,18 ao
-  quadrado não quer dizer nada. A raiz devolve o número à unidade original, e aí a leitura
-  fica direta: “o preço típico é R$ 6,13, e a oscilação típica em torno dele é R$ 0,42”.</div>
-  <div class="figura" data-fig="quadrado" style="--fig-h:29vh">
-    <svg viewBox="0 0 1000 282" role="img" aria-label="Os desvios de cinco postos somam zero; elevados ao quadrado viram quadrados que só somam; a média das áreas é a variância e o lado do quadrado médio é o desvio padrão">
-    <text x="140.0" y="22.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">1. Os desvios</text>
-    <line x1="18" y1="132" x2="262" y2="132" stroke="#bbb" stroke-width="1.6"/>
-    <rect x="30" y="132.0" width="36" height="80.5" rx="3" fill="#8D0333"/>
-    <text x="48.0" y="231.5" text-anchor="middle" font-size="15.0" fill="#444" >−0,35</text>
-    <rect x="77" y="132.0" width="36" height="34.5" rx="3" fill="#8D0333"/>
-    <text x="95.0" y="185.5" text-anchor="middle" font-size="15.0" fill="#444" >−0,15</text>
-    <rect x="124" y="120.5" width="36" height="11.5" rx="3" fill="#0AB0AB"/>
-    <text x="142.0" y="113.5" text-anchor="middle" font-size="15.0" fill="#444" >+0,05</text>
-    <rect x="171" y="97.5" width="36" height="34.5" rx="3" fill="#0AB0AB"/>
-    <text x="189.0" y="90.5" text-anchor="middle" font-size="15.0" fill="#444" >+0,15</text>
-    <rect x="218" y="63.0" width="36" height="69.0" rx="3" fill="#0AB0AB"/>
-    <text x="236.0" y="56.0" text-anchor="middle" font-size="15.0" fill="#444" >+0,30</text>
-    <text x="140.0" y="248.0" text-anchor="middle" font-size="19.0" fill="#8D0333" font-weight="700">somam zero</text>
-    <line x1="272.0" y1="140.0" x2="318.0" y2="140.0" stroke="#777" stroke-width="2.6" marker-end="url(#sc)"/>
-    <text x="525.0" y="22.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">2. Cada desvio ao quadrado</text>
-    <polygon points="332.0,91.0 342.0,81.0 447.0,81.0 437.0,91.0" fill="#7fd3d1"/>
-    <polygon points="437.0,91.0 447.0,81.0 447.0,186.0 437.0,196.0" fill="#05635f"/>
-    <rect x="332.0" y="91.0" width="105.0" height="105.0" fill="#0AB0AB"/>
-    <text x="384.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,1225</text>
-    <polygon points="459.0,151.0 469.0,141.0 514.0,141.0 504.0,151.0" fill="#7fd3d1"/>
-    <polygon points="504.0,151.0 514.0,141.0 514.0,186.0 504.0,196.0" fill="#05635f"/>
-    <rect x="459.0" y="151.0" width="45.0" height="45.0" fill="#0AB0AB"/>
-    <text x="481.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0225</text>
-    <polygon points="526.0,181.0 536.0,171.0 551.0,171.0 541.0,181.0" fill="#7fd3d1"/>
-    <polygon points="541.0,181.0 551.0,171.0 551.0,186.0 541.0,196.0" fill="#05635f"/>
-    <rect x="526.0" y="181.0" width="15.0" height="15.0" fill="#0AB0AB"/>
-    <text x="533.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0025</text>
-    <polygon points="563.0,151.0 573.0,141.0 618.0,141.0 608.0,151.0" fill="#7fd3d1"/>
-    <polygon points="608.0,151.0 618.0,141.0 618.0,186.0 608.0,196.0" fill="#05635f"/>
-    <rect x="563.0" y="151.0" width="45.0" height="45.0" fill="#0AB0AB"/>
-    <text x="585.5" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0225</text>
-    <polygon points="630.0,106.0 640.0,96.0 730.0,96.0 720.0,106.0" fill="#7fd3d1"/>
-    <polygon points="720.0,106.0 730.0,96.0 730.0,186.0 720.0,196.0" fill="#05635f"/>
-    <rect x="630.0" y="106.0" width="90.0" height="90.0" fill="#0AB0AB"/>
-    <text x="675.0" y="218.0" text-anchor="middle" font-size="14.0" fill="#444" >0,0900</text>
-    <text x="525.0" y="248.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-weight="700">só somam: 0,26</text>
-    <line x1="728.0" y1="140.0" x2="774.0" y2="140.0" stroke="#777" stroke-width="2.6" marker-end="url(#sc)"/>
-    <text x="890.0" y="22.0" text-anchor="middle" font-size="19.0" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">3. A média e a raiz</text>
-    <polygon points="851.8,119.5 861.8,109.5 938.2,109.5 928.2,119.5" fill="#d9c08f"/>
-    <polygon points="928.2,119.5 938.2,109.5 938.2,186.0 928.2,196.0" fill="#7a5a1f"/>
-    <rect x="851.8" y="119.5" width="76.5" height="76.5" fill="#a67c2e"/>
-    <text x="890.0" y="155.8" text-anchor="middle" font-size="14.0" fill="#fff" font-weight="700">área</text>
-    <text x="890.0" y="173.8" text-anchor="middle" font-size="14.0" fill="#fff" font-weight="700">0,065</text>
-    <line x1="851.8" y1="206" x2="928.2" y2="206" stroke="#444" stroke-width="2.4"/>
-    <text x="890.0" y="226.0" text-anchor="middle" font-size="15.0" fill="#444" font-weight="700">lado = R$ 0,25</text>
-    <text x="890.0" y="248.0" text-anchor="middle" font-size="19.0" fill="#a67c2e" font-weight="700">√0,065 = R$ 0,25 = s</text>
-    <text x="890.0" y="272.0" text-anchor="middle" font-size="14.0" fill="#777" >variância: 0,26 ÷ (5 − 1) = 0,065 R$²</text>
-    </svg>
-    <p class="legenda">Cinco postos, dados ilustrativos. A variância é a área do quadrado médio, em R$²; o desvio padrão é o lado dele, de volta em reais.</p>
-  </div>
-  <p class="menor">E por que dividir por <em>n − 1</em> em vez de <em>n</em>? Porque a média foi
-  estimada a partir dos próprios dados, o que “gasta” um grau de liberdade. Com n grande a
-  diferença é pequena; com n pequeno, ela importa.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
 <section class="slide estatistica">
@@ -832,7 +1034,7 @@ iqr    = serie.quantile(0.75) - serie.quantile(0.25)
 <section class="slide estatistica compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <span class="marca-estatistica">Parte 2 · Estatística</span>
-  <h2>De volta à pergunta: as duas empresas de R$ 1 milhão</h2>
+  <h2>Em gestão: duas empresas com o mesmo faturamento médio</h2>
   <table>
     <tr><th>R$ mil</th><th>Jan</th><th>Fev</th><th>Mar</th><th>Abr</th><th>Mai</th><th>Jun</th>
         <th>Média</th><th>Desvio</th><th>CV</th></tr>
@@ -844,13 +1046,15 @@ iqr    = serie.quantile(0.75) - serie.quantile(0.25)
   <p class="fonte">Dados ilustrativos.</p>
   <p>A média é a mesma, R$ 1 milhão por mês. O desvio da Empresa B é <strong>22 vezes</strong> o
   da A (860 ÷ 39). É o desvio, e não a média, que separa as duas.</p>
-  <div class="exemplo"><span class="rotulo">O que isso significa para a gestão</span>
+  <div class="exemplo"><span class="rotulo">Ao interpretar o desvio padrão, as decisões</span>
   <ul>
-    <li>A <strong>Empresa A</strong> pode planejar folha e fornecedores pela média: o faturamento
-        oscila cerca de R$ 39 mil em torno dela;</li>
-    <li>A <strong>Empresa B</strong> não pode: em três dos seis meses faturou R$ 400 mil ou menos.
-        Precisa de reserva de capital de giro para os meses fracos e, para um analista de
-        crédito, representa mais risco que a A, com o mesmo faturamento médio.</li>
+    <li><strong>Estimativa de demanda</strong>: o desvio alto da B diz que as vendas são voláteis;
+        prever pela média erra, e é preciso planejar estoque para os picos;</li>
+    <li><strong>Planejamento financeiro</strong>: o desvio baixo da A diz que o faturamento é estável
+        e previsível; a B precisa de reserva de capital de giro para os meses fracos e, para um
+        analista de crédito, é mais arriscada com a mesma média;</li>
+    <li><strong>Gestão de pessoas</strong>: o mesmo vale para salários. Um desvio padrão alto pode
+        indicar desigualdade salarial ou níveis hierárquicos com remunerações muito diferentes.</li>
   </ul></div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 4</div>
 </section>
@@ -862,7 +1066,8 @@ iqr    = serie.quantile(0.75) - serie.quantile(0.25)
     <div>
       <h4>A fórmula</h4>
       <span class="expr">s = √(Σ(x<sub>i</sub> − x&#772;)² ÷ (n − 1))</span>
-      <p>Desvio médio ao quadrado, com a raiz de volta à unidade original.</p>
+      <p>A média dos quadrados dos desvios, com a raiz de volta à unidade. Na população,
+      divide-se por N; na amostra, por n − 1.</p>
     </div>
     <div>
       <h4>No Colab</h4>
@@ -1554,42 +1759,45 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
   </section>
   <section class="secao-conducao" id="det-3">
-    <p class="telas-da-secao"><b>telas 25 a 36</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a></p>
+    <p class="telas-da-secao"><b>telas 25 a 39</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a></p>
     <h2>Parte 2: dispersão <span class="min">(55 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
     <tr><th>Bloco</th><th>Minutos</th></tr>
-      <tr><td>A pergunta: dois grupos, a mesma média</td><td>8</td></tr>
-      <tr><td>As cinco medidas de dispersão</td><td>13</td></tr>
-      <tr><td>Por que o quadrado e por que a raiz</td><td>10</td></tr>
-      <tr><td>O exemplo resolvido: a gasolina no Maranhão</td><td>14</td></tr>
+      <tr><td>A pergunta: duas turmas, a mesma média 5</td><td>5</td></tr>
+      <tr><td>Dois tipos de medida e a amplitude</td><td>5</td></tr>
+      <tr><td>Desvio médio: por que o módulo</td><td>7</td></tr>
+      <tr><td>Variância: o quadrado no lugar do módulo</td><td>6</td></tr>
+      <tr><td>Desvio padrão: a raiz que volta à unidade</td><td>6</td></tr>
+      <tr><td>Coeficiente de variação</td><td>5</td></tr>
+      <tr><td>As cinco medidas na base real</td><td>3</td></tr>
+      <tr><td>O exemplo resolvido: a gasolina no Maranhão</td><td>10</td></tr>
       <tr><td>Erro comum</td><td>3</td></tr>
-      <tr><td>De volta às duas empresas: a decisão</td><td>5</td></tr>
+      <tr><td>Em gestão: duas empresas</td><td>3</td></tr>
       <tr><td>Ficha</td><td>2</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
-            <p>Uma frase, repetida: <strong>“uma medida só descreve metade da história”</strong>.
-            Duas empresas com faturamento médio de R$ 1 milhão podem ser idênticas, ou uma
-            faturar R$ 1 milhão todo mês e a outra oscilar entre R$ 100 mil e R$ 2 milhões. A
-            média não distingue. A dispersão, sim.</p>
-            <p>A pergunta volta no fim do bloco, na tela <strong>“De volta à pergunta: as duas
-            empresas de R$ 1 milhão”</strong>, com os números: desvio de 39 contra 860, CV de 3,9%
-            contra 86%. Feche pela decisão (capital de giro e risco de crédito), e não pelo
-            cálculo.</p>
+            <p>O bloco é uma escada, e cada degrau corrige o defeito do anterior. A
+            <strong>amplitude</strong> olha só dois valores; o <strong>desvio médio</strong> usa todos,
+            mas precisa tirar o sinal, e tira pelo módulo; a <strong>variância</strong> tira o sinal
+            pelo quadrado, mas muda a unidade; o <strong>desvio padrão</strong> volta à unidade; e o
+            <strong>CV</strong> compara conjuntos com médias ou unidades diferentes.</p>
+            <p>Use as mesmas duas turmas do começo ao fim: a mesma média 5, e notas muito
+            diferentes. Só depois de fechada a escada o bloco passa para a base real da gasolina.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">A figura das cinco medidas</span>
-            <p>A tela das medidas de dispersão não traz mais as definições em texto: elas estão
-            na figura, cada uma sobre o histograma real e com o número ao lado. Conduza de cima
-            para baixo: a amplitude pega as duas pontas, o IQR só a metade central, o desvio
-            padrão sai da média, e a variância e o CV fecham a lista. Pergunte, antes de passar,
-            por que o IQR é tão menor que a amplitude.</p>
-            </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">O ponto que mais rende: por que o quadrado</span>
-            <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir
-            pelo número?”</em>. A resposta (eles se cancelam) costuma sair de algum estudante, e
-            o quadrado passa a fazer sentido em vez de ser regra decorada.</p>
-            <p>Em seguida, a segunda pergunta: <em>“e por que tirar a raiz depois?”</em>. Aí é a
-            interpretação: sem a raiz, o número fica em R$ ao quadrado, que não se lê.</p>
+    <div class="caixa pergunta-aula"><span class="rotulo">As perguntas que fazem a escada andar</span>
+            <ol>
+              <li>Na tela do desvio médio, antes de mostrar a coluna: <em>“quanto dá a soma dos
+              desvios?”</em>. Zero, e é daí que nasce o módulo;</li>
+              <li>Na variância: <em>“se o módulo já tirava o sinal, por que o quadrado?”</em>. O
+              quadrado pesa mais os desvios grandes, e é a forma que o resto da estatística usa;</li>
+              <li>No desvio padrão: <em>“em que unidade está 8,75?”</em>. Em pontos ao quadrado, que
+              ninguém tira numa prova: a raiz devolve 2,96 pontos;</li>
+              <li>No CV: <em>“altura em centímetros e peso em quilos: qual varia mais?”</em>. Só o CV
+              responde.</li>
+            </ol>
+            <p>Na tela da variância, a figura mostra a mesma conta: os desvios viram quadrados de
+            verdade, a variância é a área do quadrado médio e o desvio padrão é o lado dele.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O exemplo e a frase que sai dele</span>
             <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
@@ -1617,12 +1825,22 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
               <tr><td>Amplitude</td><td>R$ 1,82</td></tr>
               <tr><td>Q1 / Q3 / IQR</td><td>5,79 / 6,45 / 0,66</td></tr>
             </table>
+            <table>
+              <tr><th>Medida</th><th>Turma A</th><th>Turma B</th></tr>
+              <tr><td>Notas</td><td>0, 2, 4, 5, 5, 6, 8, 10</td><td>4; 4,5; 5; 5; 5; 5; 5,5; 6</td></tr>
+              <tr><td>Média</td><td>5</td><td>5</td></tr>
+              <tr><td>Amplitude</td><td>10</td><td>2</td></tr>
+              <tr><td>Desvio médio</td><td>18 ÷ 8 = 2,25</td><td>3 ÷ 8 = 0,375</td></tr>
+              <tr><td>Variância (÷ N)</td><td>70 ÷ 8 = 8,75</td><td>2,5 ÷ 8 = 0,3125</td></tr>
+              <tr><td>Desvio padrão</td><td>2,96</td><td>0,56</td></tr>
+              <tr><td>CV</td><td>59,2%</td><td>11,2%</td></tr>
+            </table>
             <p>E a comparação de CV que o notebook faz: gasolina <strong>6,87%</strong> contra IPCA
             <strong>79,90%</strong>. É o par que inverte a conclusão do erro comum.</p>
             </div>
   </section>
   <section class="secao-conducao" id="det-4">
-    <p class="telas-da-secao"><b>telas 37 a 47</b> <a class="chip-tela" href="#37">37</a> <a class="chip-tela" href="#38">38</a> <a class="chip-tela" href="#39">39</a> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a> <a class="chip-tela" href="#45">45</a> <a class="chip-tela" href="#46">46</a> <a class="chip-tela" href="#47">47</a></p>
+    <p class="telas-da-secao"><b>telas 40 a 50</b> <a class="chip-tela" href="#40">40</a> <a class="chip-tela" href="#41">41</a> <a class="chip-tela" href="#42">42</a> <a class="chip-tela" href="#43">43</a> <a class="chip-tela" href="#44">44</a> <a class="chip-tela" href="#45">45</a> <a class="chip-tela" href="#46">46</a> <a class="chip-tela" href="#47">47</a> <a class="chip-tela" href="#48">48</a> <a class="chip-tela" href="#49">49</a> <a class="chip-tela" href="#50">50</a></p>
     <h2>Parte 2: forma da distribuição <span class="min">(55 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
@@ -1685,7 +1903,7 @@ s.hist(bins=20)   <span class="cmt"># a forma, desenhada</span></pre>
             </div>
   </section>
   <section class="secao-conducao" id="det-5">
-    <p class="telas-da-secao"><b>telas 48 a 57</b> <a class="chip-tela" href="#48">48</a> <a class="chip-tela" href="#49">49</a> <a class="chip-tela" href="#50">50</a> <a class="chip-tela" href="#51">51</a> <a class="chip-tela" href="#52">52</a> <a class="chip-tela" href="#53">53</a> <a class="chip-tela" href="#54">54</a> <a class="chip-tela" href="#55">55</a> <a class="chip-tela" href="#56">56</a> <a class="chip-tela" href="#57">57</a></p>
+    <p class="telas-da-secao"><b>telas 51 a 60</b> <a class="chip-tela" href="#51">51</a> <a class="chip-tela" href="#52">52</a> <a class="chip-tela" href="#53">53</a> <a class="chip-tela" href="#54">54</a> <a class="chip-tela" href="#55">55</a> <a class="chip-tela" href="#56">56</a> <a class="chip-tela" href="#57">57</a> <a class="chip-tela" href="#58">58</a> <a class="chip-tela" href="#59">59</a> <a class="chip-tela" href="#60">60</a></p>
     <h2>Prática, fechamento do Módulo I e tarefa <span class="min">(60 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">

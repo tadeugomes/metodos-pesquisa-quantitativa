@@ -190,6 +190,9 @@ def posicao(tela, regra):
     if regra in ("before_menor", "before_menor_ou_fim"):
         j = tela.find('  <p class="menor">')
         return j if j != -1 else tela.index('  <div class="rodape">')
+    if regra == "marcador":
+        # a tela marca o lugar com <!-- figura -->: a figura entra logo depois
+        return tela.index("  <!-- figura -->\n") + len("  <!-- figura -->\n")
     if regra == "before_fim":
         return tela.index('  <div class="rodape">')
     raise ValueError(regra)

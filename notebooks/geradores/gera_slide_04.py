@@ -133,37 +133,40 @@ SECOES = [
         "entre": ["Parte 2: estatística", "A forma da distribuição"],
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
-                ("A pergunta: dois grupos, a mesma média", "8"),
-                ("As cinco medidas de dispersão", "13"),
-                ("Por que o quadrado e por que a raiz", "10"),
-                ("O exemplo resolvido: a gasolina no Maranhão", "14"),
+                ("A pergunta: duas turmas, a mesma média 5", "5"),
+                ("Dois tipos de medida e a amplitude", "5"),
+                ("Desvio médio: por que o módulo", "7"),
+                ("Variância: o quadrado no lugar do módulo", "6"),
+                ("Desvio padrão: a raiz que volta à unidade", "6"),
+                ("Coeficiente de variação", "5"),
+                ("As cinco medidas na base real", "3"),
+                ("O exemplo resolvido: a gasolina no Maranhão", "10"),
                 ("Erro comum", "3"),
-                ("De volta às duas empresas: a decisão", "5"),
+                ("Em gestão: duas empresas", "3"),
                 ("Ficha", "2"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
-            <p>Uma frase, repetida: <strong>“uma medida só descreve metade da história”</strong>.
-            Duas empresas com faturamento médio de R$ 1 milhão podem ser idênticas, ou uma
-            faturar R$ 1 milhão todo mês e a outra oscilar entre R$ 100 mil e R$ 2 milhões. A
-            média não distingue. A dispersão, sim.</p>
-            <p>A pergunta volta no fim do bloco, na tela <strong>“De volta à pergunta: as duas
-            empresas de R$ 1 milhão”</strong>, com os números: desvio de 39 contra 860, CV de 3,9%
-            contra 86%. Feche pela decisão (capital de giro e risco de crédito), e não pelo
-            cálculo.</p>
+            <p>O bloco é uma escada, e cada degrau corrige o defeito do anterior. A
+            <strong>amplitude</strong> olha só dois valores; o <strong>desvio médio</strong> usa todos,
+            mas precisa tirar o sinal, e tira pelo módulo; a <strong>variância</strong> tira o sinal
+            pelo quadrado, mas muda a unidade; o <strong>desvio padrão</strong> volta à unidade; e o
+            <strong>CV</strong> compara conjuntos com médias ou unidades diferentes.</p>
+            <p>Use as mesmas duas turmas do começo ao fim: a mesma média 5, e notas muito
+            diferentes. Só depois de fechada a escada o bloco passa para a base real da gasolina.</p>
             """, "falar"),
-            ("A figura das cinco medidas", """
-            <p>A tela das medidas de dispersão não traz mais as definições em texto: elas estão
-            na figura, cada uma sobre o histograma real e com o número ao lado. Conduza de cima
-            para baixo: a amplitude pega as duas pontas, o IQR só a metade central, o desvio
-            padrão sai da média, e a variância e o CV fecham a lista. Pergunte, antes de passar,
-            por que o IQR é tão menor que a amplitude.</p>
-            """, "falar"),
-            ("O ponto que mais rende: por que o quadrado", """
-            <p>Perguntar à turma antes de mostrar: <em>“por que não somar os desvios e dividir
-            pelo número?”</em>. A resposta (eles se cancelam) costuma sair de algum estudante, e
-            o quadrado passa a fazer sentido em vez de ser regra decorada.</p>
-            <p>Em seguida, a segunda pergunta: <em>“e por que tirar a raiz depois?”</em>. Aí é a
-            interpretação: sem a raiz, o número fica em R$ ao quadrado, que não se lê.</p>
+            ("As perguntas que fazem a escada andar", """
+            <ol>
+              <li>Na tela do desvio médio, antes de mostrar a coluna: <em>“quanto dá a soma dos
+              desvios?”</em>. Zero, e é daí que nasce o módulo;</li>
+              <li>Na variância: <em>“se o módulo já tirava o sinal, por que o quadrado?”</em>. O
+              quadrado pesa mais os desvios grandes, e é a forma que o resto da estatística usa;</li>
+              <li>No desvio padrão: <em>“em que unidade está 8,75?”</em>. Em pontos ao quadrado, que
+              ninguém tira numa prova: a raiz devolve 2,96 pontos;</li>
+              <li>No CV: <em>“altura em centímetros e peso em quilos: qual varia mais?”</em>. Só o CV
+              responde.</li>
+            </ol>
+            <p>Na tela da variância, a figura mostra a mesma conta: os desvios viram quadrados de
+            verdade, a variância é a área do quadrado médio e o desvio padrão é o lado dele.</p>
             """, "pergunta-aula"),
             ("O exemplo e a frase que sai dele", """
             <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
@@ -190,6 +193,16 @@ SECOES = [
               <tr><td>CV</td><td>6,87%</td></tr>
               <tr><td>Amplitude</td><td>R$ 1,82</td></tr>
               <tr><td>Q1 / Q3 / IQR</td><td>5,79 / 6,45 / 0,66</td></tr>
+            </table>
+            <table>
+              <tr><th>Medida</th><th>Turma A</th><th>Turma B</th></tr>
+              <tr><td>Notas</td><td>0, 2, 4, 5, 5, 6, 8, 10</td><td>4; 4,5; 5; 5; 5; 5; 5,5; 6</td></tr>
+              <tr><td>Média</td><td>5</td><td>5</td></tr>
+              <tr><td>Amplitude</td><td>10</td><td>2</td></tr>
+              <tr><td>Desvio médio</td><td>18 ÷ 8 = 2,25</td><td>3 ÷ 8 = 0,375</td></tr>
+              <tr><td>Variância (÷ N)</td><td>70 ÷ 8 = 8,75</td><td>2,5 ÷ 8 = 0,3125</td></tr>
+              <tr><td>Desvio padrão</td><td>2,96</td><td>0,56</td></tr>
+              <tr><td>CV</td><td>59,2%</td><td>11,2%</td></tr>
             </table>
             <p>E a comparação de CV que o notebook faz: gasolina <strong>6,87%</strong> contra IPCA
             <strong>79,90%</strong>. É o par que inverte a conclusão do erro comum.</p>

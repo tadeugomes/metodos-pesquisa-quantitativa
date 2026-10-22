@@ -77,38 +77,38 @@ REG = Registro(4)
 figura = REG.figura
 
 
-# ================================================================== 1. a pergunta
+# ================================================================== 1. a pergunta: duas turmas, a mesma media
 fonte(1.25)
-A = [950, 1020, 980, 1050, 970, 1030]
-B = [100, 2000, 400, 1800, 200, 1500]
-MESES = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"]
-xm = lambda i: 130 + i * 128
-ym = lambda v: 196 - v / 2100 * 176
-c = [f'<line x1="90" y1="{ym(0):.1f}" x2="800" y2="{ym(0):.1f}" stroke="{EIXO}" stroke-width="1.6"/>']
-for v in (500, 1500, 2000):
-    c.append(f'<line x1="90" y1="{ym(v):.1f}" x2="800" y2="{ym(v):.1f}" stroke="{GRADE}" stroke-width="1"/>')
-for v in (0, 1000, 2000):
-    c.append(txt(80, ym(v) + 5, br(v, 0), 13, CINZA, "end"))
-c.append(txt(80, 12, "R$ mil", 13, CINZA, "end"))
-for i, m in enumerate(MESES):
-    c.append(txt(xm(i), 222, m, 13, CINZA))
-c.append(f'<line x1="90" y1="{ym(1000):.1f}" x2="800" y2="{ym(1000):.1f}" stroke="{DOURADO}" stroke-width="2.6" stroke-dasharray="8 5"/>')
-for valores, cor in ((B, VINHO), (A, VERDE)):
-    pts = " ".join(f"{xm(i):.1f},{ym(v):.1f}" for i, v in enumerate(valores))
-    c.append(f'<polyline points="{pts}" fill="none" stroke="{cor}" stroke-width="3.2" stroke-linejoin="round"/>')
-    for i, v in enumerate(valores):
-        c.append(f'<circle cx="{xm(i):.1f}" cy="{ym(v):.1f}" r="7" fill="{cor}" stroke="#fff" stroke-width="2"/>')
-c += [f'<circle cx="822" cy="{ym(1150):.1f}" r="7" fill="{VERDE}"/>',
-      txt(836, ym(1150) + 6, "Empresa A", 15, TINTA, "start", NEGRITO),
-      f'<circle cx="822" cy="{ym(1500):.1f}" r="7" fill="{VINHO}"/>',
-      txt(836, ym(1500) + 6, "Empresa B", 15, TINTA, "start", NEGRITO),
-      f'<line x1="810" y1="{ym(800):.1f}" x2="834" y2="{ym(800):.1f}" stroke="{DOURADO}" stroke-width="2.6" stroke-dasharray="8 5"/>',
-      txt(840, ym(800) + 6, "a mesma média", 15, TINTA, "start", NEGRITO)]
-figura("pergunta", "A pergunta que a estatística do dia responde", "after_pergunta", "27vh",
-       "Faturamento mensal de duas empresas, em R$ mil. Dados ilustrativos, os mesmos da tela "
-       "“De volta à pergunta”.",
-       svg(232, "Faturamento mensal de duas empresas com a mesma média de R$ 1 milhão: a A oscila "
-                "pouco, a B oscila muito", c))
+NOTAS_A = [0, 2, 4, 5, 5, 6, 8, 10]
+NOTAS_B = [4, 4.5, 5, 5, 5, 5, 5.5, 6]
+XT = escala(0, 10, 150, 950)
+
+
+def fileira_notas(notas, y, cor):
+    """As notas de uma turma como pontos sobre a regua de 0 a 10; notas repetidas se empilham."""
+    out, vistos = [], {}
+    for v in notas:
+        k = vistos.get(v, 0)
+        vistos[v] = k + 1
+        out.append(f'<circle cx="{XT(v):.1f}" cy="{y - k * 19:.1f}" r="8.5" fill="{cor}" stroke="#fff" stroke-width="2"/>')
+    return out
+
+
+def regua_notas(y):
+    out = [linha_h(y + 14, XT(0), XT(10), EIXO, larg=1.6)]
+    for v in range(0, 11):
+        out += [linha_v(XT(v), y + 14, y + 20, EIXO, larg=1.4), txt(XT(v), y + 36, str(v), 12, CINZA)]
+    return out
+
+
+c = []
+for nome, notas, y, cor in (("Turma A", NOTAS_A, 70, VINHO), ("Turma B", NOTAS_B, 176, VERDE)):
+    c += regua_notas(y) + fileira_notas(notas, y, cor) + [txt(132, y + 5, nome, 15, TINTA, "end", NEGRITO)]
+c += [linha_v(XT(5), 4, 214, DOURADO, tracejada=True, larg=2.4),
+      halo(XT(5) + 8, 14, "média 5 nas duas turmas", 14, DOURADO_ESC, "start", NEGRITO)]
+figura("pergunta", "A pergunta que a estatística do dia responde", "marcador", "25vh",
+       "Cada ponto é um aluno; notas iguais se empilham. Dados ilustrativos.",
+       svg(222, "Notas de duas turmas com média 5: a turma A espalhada de 0 a 10, a turma B concentrada entre 4 e 6", c))
 
 # ================================================================== 2. as medidas sobre o histograma
 fonte(1.12)
@@ -154,73 +154,73 @@ c += [t.replace('x="0"', f'x="{X(5.30):.1f}"') for t in
       linha_medida(y, "Variância", f"s² = {br(VARIANCIA, 3)} R$²", "a média dos quadrados dos desvios", TINTA)]
 c += [t.replace('x="0"', f'x="{X(6.50):.1f}"') for t in
       linha_medida(y, "CV", f"s ÷ média = {br(CV, 1)}%", "compara escalas", TINTA)]
-figura("medidas", "As medidas de dispersão", "after_h2", "50vh",
+figura("medidas", "As cinco medidas na base real", "after_h2", "50vh",
        f"Preço da gasolina comum em {br(N, 0)} coletas no Maranhão, 2025: as cinco medidas sobre o "
        "mesmo eixo, cada uma com o número real. Fonte: ANP, SHPC, 2025.",
        svg(358, "Histograma dos preços da gasolina no Maranhão em 2025 com amplitude, IQR, desvio padrão, "
                 "variância e coeficiente de variação, cada um com sua definição e seu valor", c))
 
-# ================================================================== 3. os simbolos: x_i - x barra
+# ================================================================== 3. a amplitude das duas turmas
 fonte(1.25)
-X5 = escala(5.66, 6.49, 60, 970)
-c = [f'<line x1="60" y1="138" x2="970" y2="138" stroke="{EIXO}" stroke-width="1.6"/>']
-for p in (5.75, 6.00, 6.25):
-    c.append(txt(X5(p), 162, "R$ " + br(p), 13, CINZA))
-c += [linha_v(X5(M5), 30, 138, VINHO, tracejada=True),
-      halo(X5(M5), 20, f"x̄ = {br(M5)}", 15, VINHO, extra=NEGRITO)]
-for p, d, h in zip(POSTOS, DESVIOS5, (52, 78, 104, 78, 52)):
-    cor = VERDE_ESC if d > 0 else VINHO
-    c += [seta(X5(M5), h, X5(p), h, cor, 2.4),
-          halo((X5(M5) + X5(p)) / 2, h - 8, ("+" if d > 0 else "") + br(d), 13, cor, extra=NEGRITO),
-          f'<line x1="{X5(p):.1f}" y1="{h:.1f}" x2="{X5(p):.1f}" y2="138" stroke="{GRADE}" stroke-width="1.4"/>',
-          f'<circle cx="{X5(p):.1f}" cy="138" r="9" fill="{VERDE}" stroke="#fff" stroke-width="2"/>']
-figura("simbolos", "A fórmula, com cada símbolo nomeado", "after_formula", "21vh",
-       "Cinco postos, dados ilustrativos. Cada seta é um desvio xᵢ − x̄: negativo à esquerda da média, "
-       "positivo à direita.",
-       svg(172, "Cinco postos numa reta de preços, com a seta de cada um até a média: o desvio x menos x barra", c))
+c = []
+for nome, notas, y, cor in (("Turma A", NOTAS_A, 58, VINHO), ("Turma B", NOTAS_B, 212, VERDE)):
+    lo, hi = min(notas), max(notas)
+    c += regua_notas(y) + fileira_notas(notas, y, cor) + [txt(132, y + 5, nome, 15, TINTA, "end", NEGRITO)]
+    c += [colchete_baixo(XT(lo), XT(hi), y + 46, cor),
+          txt((XT(lo) + XT(hi)) / 2, y + 72, f"AT = {br(hi, 0)} − {br(lo, 0)} = {br(hi - lo, 0)}", 15, cor, extra=NEGRITO)]
+figura("amplitude", "As medidas de dispersão: dois tipos e a amplitude", "marcador", "29vh", "",
+       svg(292, "A amplitude das duas turmas: 10 na turma A e 2 na turma B, medida só entre a menor e a maior nota", c))
 
-# ================================================================== 4. por que o quadrado
-fonte(1.0)
-K1, K2 = 230, 300
+# ================================================================== 4. a variancia: os desvios viram quadrados
+fonte(1.15)
+DESV_A = [n - 5 for n in NOTAS_A]
+QUAD_A = [d * d for d in DESV_A]
+VAR_A = sum(QUAD_A) / len(NOTAS_A)
+DP_A = VAR_A ** 0.5
+K1, K2 = 12, 17
 c = []
 # painel 1: os desvios com sinal
-c.append(txt(140, 22, "1. Os desvios", 19, VERDE_ESC, extra=TITULO))
-base1 = 132
-c.append(f'<line x1="18" y1="{base1}" x2="262" y2="{base1}" stroke="{EIXO}" stroke-width="1.6"/>')
-for i, d in enumerate(DESVIOS5):
-    x, h = 30 + i * 47, abs(d) * K1
+c.append(txt(150, 22, "1. Os desvios", 19, VERDE_ESC, extra=TITULO))
+base1 = 104
+c.append(linha_h(base1, 14, 290, EIXO, larg=1.6))
+for i, d in enumerate(DESV_A):
+    x, h = 22 + i * 34, abs(d) * K1
     cor = VERDE if d > 0 else VINHO
     yr = base1 - h if d > 0 else base1
-    c.append(f'<rect x="{x}" y="{yr:.1f}" width="36" height="{h:.1f}" rx="3" fill="{cor}"/>')
-    c.append(txt(x + 18, (yr - 7) if d > 0 else (yr + h + 19), ("+" if d > 0 else "") + br(d), 15, TINTA))
-c.append(txt(140, 248, "somam zero", 19, VINHO, extra=NEGRITO))
-c.append(seta(272, 140, 318, 140, CINZA, 2.6))
-# painel 2: os quadrados com relevo
-c.append(txt(525, 22, "2. Cada desvio ao quadrado", 19, VERDE_ESC, extra=TITULO))
-base2, x = 196, 332
-for d, q in zip(DESVIOS5, QUAD5):
+    if d:
+        c.append(ret(x, yr, 26, h, cor, 3))
+    c.append(txt(x + 13, (yr - 6) if d > 0 else (base1 + h + 17) if d < 0 else base1 - 6,
+                 ("+" if d > 0 else "") + br(d, 0), 14, TINTA))
+c.append(txt(150, 236, "somam zero", 19, VINHO, extra=NEGRITO))
+c.append(seta(298, 120, 334, 120, CINZA, 2.6))
+# painel 2: os quadrados, com relevo
+c.append(txt(540, 22, "2. Cada desvio ao quadrado", 19, VERDE_ESC, extra=TITULO))
+base2, x = 190, 346
+for d, q in zip(DESV_A, QUAD_A):
+    if not d:
+        continue
     lado = abs(d) * K2
-    c += bloco_3d(x, base2, lado, VERDE, VERDE_MEDIO, VERDE_ESC)
-    c.append(txt(x + lado / 2, base2 + 22, br(q, 4), 14, TINTA))
-    x += lado + 22
-c.append(txt(525, 248, f"só somam: {br(sum(QUAD5))}", 19, VERDE_ESC, extra=NEGRITO))
-c.append(seta(728, 140, 774, 140, CINZA, 2.6))
+    c += bloco_3d(x, base2, lado, VERDE, VERDE_MEDIO, VERDE_ESC, 8)
+    c.append(txt(x + lado / 2, base2 + 20, br(q, 0), 14, TINTA, extra=NEGRITO))
+    x += lado + 16
+c.append(txt(540, 236, f"só somam: {br(sum(QUAD_A), 0)}", 19, VERDE_ESC, extra=NEGRITO))
+c.append(txt(540, 256, "os dois alunos com nota 5 têm desvio zero: nenhum quadrado", 13, CINZA))
+c.append(seta(742, 120, 778, 120, CINZA, 2.6))
 # painel 3: o quadrado medio e o seu lado
 c.append(txt(890, 22, "3. A média e a raiz", 19, VERDE_ESC, extra=TITULO))
-lado = S5 * K2
+lado = DP_A * K2
 x = 890 - lado / 2
-c += bloco_3d(x, base2, lado, DOURADO, DOURADO_CLARO, DOURADO_ESC)
-c += [txt(x + lado / 2, base2 - lado / 2 - 2, "área", 14, "#fff", extra=NEGRITO),
-      txt(x + lado / 2, base2 - lado / 2 + 16, br(VAR5, 3), 14, "#fff", extra=NEGRITO),
-      f'<line x1="{x:.1f}" y1="{base2 + 10}" x2="{x + lado:.1f}" y2="{base2 + 10}" stroke="{TINTA}" stroke-width="2.4"/>',
-      txt(890, base2 + 30, f"lado = R$ {br(S5)}", 15, TINTA, extra=NEGRITO),
-      txt(890, 248, f"√{br(VAR5, 3)} = R$ {br(S5)} = s", 19, DOURADO, extra=NEGRITO),
-      txt(890, 272, f"variância: {br(sum(QUAD5))} ÷ (5 − 1) = {br(VAR5, 3)} R$²", 14, CINZA)]
-figura("quadrado", "Por que elevar ao quadrado e por que tirar a raiz", "before_menor", "29vh",
-       "Cinco postos, dados ilustrativos. A variância é a área do quadrado médio, em R$²; o desvio "
-       "padrão é o lado dele, de volta em reais.",
-       svg(282, "Os desvios de cinco postos somam zero; elevados ao quadrado viram quadrados que só "
-                "somam; a média das áreas é a variância e o lado do quadrado médio é o desvio padrão", c))
+c += bloco_3d(x, base2, lado, DOURADO, DOURADO_CLARO, DOURADO_ESC, 8)
+c += [txt(890, base2 - lado - 18, f"área: {br(sum(QUAD_A), 0)} ÷ 8 = {br(VAR_A)}", 14, TINTA, extra=NEGRITO),
+      linha_h(base2 + 9, x, x + lado, TINTA, larg=2.4),
+      txt(890, base2 + 28, f"lado = √{br(VAR_A)} = {br(DP_A)}", 15, DOURADO, extra=NEGRITO),
+      txt(890, 236, "variância: 8,75 pontos²", 15, TINTA, extra=NEGRITO),
+      txt(890, 256, f"desvio padrão: {br(DP_A)} pontos", 15, DOURADO, extra=NEGRITO)]
+figura("quadrado", "Variância: o quadrado no lugar do módulo", "marcador", "27vh",
+       "Turma A, média 5. A variância é a área do quadrado médio, em pontos²; o desvio padrão é o lado "
+       "dele, de volta em pontos.",
+       svg(266, "Os desvios da turma A somam zero; elevados ao quadrado viram quadrados que somam 70; a média "
+                "das áreas, 8,75, é a variância, e o lado do quadrado médio, 2,96, é o desvio padrão", c))
 
 # ================================================================== 5. o desvio em proporcao da media
 fonte(1.25)
@@ -242,6 +242,30 @@ figura("cv", "Erro comum: comparar desvios de escalas diferentes", "before_menor
        "duas se comparam.",
        svg(142, "Barras com a média de cada variável e o desvio em proporção dela: 6,87% na gasolina e "
                 "79,90% no IPCA mensal", c))
+
+# ================================================================== 5b. o coeficiente de variacao, em tres comparacoes
+fonte(1.2)
+XC = escala(0, 60, 330, 890)
+GRUPOS = (("Duas turmas, a mesma média", 1, (("Turma A", "2,96 ÷ 5", 2.96 / 5 * 100), ("Turma B", "0,56 ÷ 5", 0.56 / 5 * 100))),
+          ("Unidades diferentes", 1, (("Altura", "7 cm ÷ 174 cm", 7 / 174 * 100), ("Peso", "12 kg ÷ 78 kg", 12 / 78 * 100))),
+          ("Ações", 2, (("Google", "5,10 ÷ 55,62", 5.10 / 55.62 * 100), ("Amazon", "3,60 ÷ 24,86", 3.60 / 24.86 * 100))))
+c, y = [], 18
+for titulo, casas, pares in GRUPOS:
+    c.append(txt(14, y + 4, titulo, 13, CINZA, "start", NEGRITO))
+    y += 14
+    maior = max(v for _, _, v in pares)
+    for nome, conta, v in pares:
+        cor = VINHO if v == maior else VERDE
+        c += [txt(180, y + 17, nome, 15, TINTA, "end", NEGRITO),
+              txt(318, y + 17, conta, 12, CINZA, "end"),
+              ret(XC(0), y + 3, XC(v) - XC(0), 20, cor, 3),
+              txt(XC(v) + 8, y + 18, f"{br(v, casas)}%", 15, cor, "start", NEGRITO)]
+        y += 28
+    y += 12
+figura("cv_pares", "Coeficiente de variação: a dispersão em proporção da média", "marcador", "30vh",
+       "Em cada par, a barra vinho é a de maior dispersão relativa. Dados ilustrativos.",
+       svg(y, "Coeficientes de variação: turma A 59,2% e turma B 11,2%; altura 4,02% e peso 15,4%; Google "
+                "9,17% e Amazon 14,48%", c))
 
 # ================================================================== 6. a pergunta da forma
 fonte(1.25)
