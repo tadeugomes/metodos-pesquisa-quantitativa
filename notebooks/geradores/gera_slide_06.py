@@ -74,7 +74,7 @@ SECOES = [
             pergunta é que decide — e a escolha tem custo: o experimental convence mais e exige
             mais.</p>
             """, "falar"),
-            ("O ponto que mais rende da manhã", """
+            ("O ponto que mais rende do encontro", """
             <p><strong>Correlação não é causalidade</strong>, com as três razões: variável de
             confusão, causa inversa e coincidência. Este é o ponto que mais aparece em relatório
             malfeito e ele volta no Módulo IV, quando a correlação virar regressão. Não por

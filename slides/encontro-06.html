@@ -18,7 +18,7 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
-<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
 <div id="deck" data-conducao="1">
 <div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
 <section class="secao-projecao" id="sec-1" data-conducao="1">
@@ -46,7 +46,7 @@
   falam?</strong></p>
   <div class="colunas">
     <div>
-      <h3>De manhã, o delineamento</h3>
+      <h3>Primeiro, o delineamento</h3>
       <p>O que é um delineamento e por que a pergunta de pesquisa manda nele. Descritiva,
       correlacional, experimental, quase-experimental, coorte, caso-controle e survey — os
       sete delineamentos que interessam à Administração.</p>
@@ -54,7 +54,7 @@
     <div>
       <h3>Depois, a leitura crítica</h3>
       <p>Como ler o método de um artigo e como classificar o delineamento a partir da
-      pergunta. O exercício que fecha a manhã.</p>
+      pergunta. O exercício que fecha o encontro.</p>
       <h3>Amostragem</h3>
       <p>A segunda metade do módulo, no próximo encontro: população, amostra e as técnicas de
       sorteio.</p>
@@ -447,12 +447,22 @@
   grupo de tratamento e grupo de controle. Para Gil (2022, seção 4.4), é a pesquisa em
   que o pesquisador é "um <strong>agente ativo</strong>, e não um observador passivo": o
   delineamento mais prestigiado nos meios científicos.</div>
-  <p>Os três pilares:</p>
-  <ul>
-    <li><strong>Manipulação</strong>: o pesquisador decide quem recebe o quê;</li>
-    <li><strong>Controle</strong>: as demais condições são mantidas iguais;</li>
-    <li><strong>Aleatorização</strong>: o sorteio define os grupos.</li>
-  </ul>
+  <p>As duas variáveis que o desenho separa:</p>
+  <div class="cartoes">
+    <div class="cartao">
+      <h4>Variável independente (x)</h4>
+      <p>A que o pesquisador <strong>manipula</strong>: a causa suposta, aquela de que ele
+      decide o valor.</p>
+      <p class="menor">Teste A/B de preço: a versão da página que o visitante vê.</p>
+    </div>
+    <div class="cartao alt-verde">
+      <h4>Variável dependente (y)</h4>
+      <p>A que ele <strong>mede</strong> ao final: o efeito, aquela cujo valor depende de x.</p>
+      <p class="menor">No mesmo teste: a taxa de compra de cada versão.</p>
+    </div>
+  </div>
+  <p class="menor">Quem é x e quem é y não está no dado, está na pergunta: a empresa decide a
+  versão e observa a compra, nunca o contrário.</p>
   <div class="exemplo"><span class="rotulo">Por que o sorteio é mágico</span>
   Com grupos sorteados, eles ficam <strong>equivalentes em tudo</strong> (idade, renda,
   motivação, inclusive no que não medimos). Se ao final diferem, a única explicação
@@ -546,17 +556,26 @@
   (A2); compara-se a venda média por vendedor.</div>
   <div class="definicao"><span class="rotulo">Plano fatorial</span>
   Duas ou mais variáveis independentes <strong>ao mesmo tempo</strong>, para estudar
-  efeitos separados e <strong>conjuntos</strong> (interação). Três testes num só
-  experimento.</div>
+  efeitos separados e <strong>conjuntos</strong> (interação). Duas variáveis de duas
+  condições formam um plano <strong>2 × 2</strong>: quatro grupos sorteados, três
+  perguntas.</div>
   <table>
-    <tr><th>Vendas médias (fictícias)</th><th>Presencial (B1)</th><th>On-line (B2)</th></tr>
-    <tr><td><strong>Com treinamento (A1)</strong></td><td>7</td><td>3</td></tr>
-    <tr><td><strong>Sem treinamento (A2)</strong></td><td>5</td><td>5</td></tr>
+    <tr><th>Vendas por vendedor no mês (fictícias)</th><th>Presencial (B1)</th>
+      <th>On-line (B2)</th><th>Média da linha</th></tr>
+    <tr><td><strong>Com treinamento (A1)</strong></td><td>7</td><td>3</td><td>5</td></tr>
+    <tr><td><strong>Sem treinamento (A2)</strong></td><td>5</td><td>5</td><td>5</td></tr>
+    <tr><td><strong>Média da coluna</strong></td><td>6</td><td>4</td><td>—</td></tr>
   </table>
-  <p class="menor">Leitura: o treinamento <strong>ajuda no presencial e atrapalha no
-  on-line</strong>. Se só tivéssemos testado "treinou × não treinou", a média (5 × 5)
-  esconderia tudo. É a <strong>interação</strong> que o plano fatorial revela e é o
-  achado mais comum em people analytics: o efeito depende do contexto.</p>
+  <ul>
+    <li><strong>Efeito do treinamento</strong>: 5 contra 5 nas médias das linhas — nenhum;</li>
+    <li><strong>Efeito do canal</strong>: 6 contra 4 nas médias das colunas — o presencial
+        vende mais;</li>
+    <li><strong>Interação</strong>: treinar soma 2 no presencial (7 contra 5) e tira 2 no
+        on-line (3 contra 5). O efeito <strong>muda de sinal</strong> conforme o canal.</li>
+  </ul>
+  <p class="menor">Testado só "treinou contra não treinou", a conclusão seria "não muda nada",
+  e o programa seria cortado. O fatorial aponta outra decisão: <strong>treinar quem vende no
+  presencial</strong> e descobrir o que atrapalha no on-line.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 6</div>
 </section>
 <section class="slide compacto">
@@ -1521,7 +1540,7 @@
             pergunta é que decide — e a escolha tem custo: o experimental convence mais e exige
             mais.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">O ponto que mais rende da manhã</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">O ponto que mais rende do encontro</span>
             <p><strong>Correlação não é causalidade</strong>, com as três razões: variável de
             confusão, causa inversa e coincidência. Este é o ponto que mais aparece em relatório
             malfeito e ele volta no Módulo IV, quando a correlação virar regressão. Não por
