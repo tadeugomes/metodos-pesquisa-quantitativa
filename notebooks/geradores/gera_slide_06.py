@@ -88,10 +88,10 @@ SECOES = [
             diferentes e que a escolha muda o que se pode concluir.</p>
             """, "pergunta-aula"),
             ("A tela de coorte e por que ela é aqui", """
-            <p>A base do IBGE da tabela 9949 serve a dois propósitos: ela <strong>define</strong>
-            coorte e taxa de sobrevivência, e ela vai ser usada de novo quando o Módulo II
-            chegar à amostragem. Vale dizer isso em voz alta: a mesma base volta, o que muda é
-            a pergunta.</p>
+            <p>A base do IBGE da tabela 9949 é a mesma que a turma usou nos encontros 2 a 4.
+            Lá ela serviu para <strong>descrever</strong>; aqui ela <strong>define</strong>
+            coorte e taxa de sobrevivência. Vale dizer isso em voz alta: a base é a mesma, o que
+            muda é a pergunta.</p>
             <p>Aproveitar para apresentar as <strong>três perguntas</strong> de um estudo de
             coorte e para a advertência: uma coorte compara grupos que já existiam e por isso
             mostra <em>associação</em>, não efeito.</p>
