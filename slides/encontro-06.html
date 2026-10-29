@@ -557,8 +557,8 @@
   <div class="definicao"><span class="rotulo">Plano fatorial</span>
   Duas ou mais variáveis independentes <strong>ao mesmo tempo</strong>, para estudar
   efeitos separados e <strong>conjuntos</strong> (interação). Duas variáveis de duas
-  condições formam um plano <strong>2 × 2</strong>: quatro grupos sorteados, três
-  perguntas.</div>
+  condições formam um plano <strong>2 × 2</strong>: quatro grupos sorteados e as três
+  perguntas abaixo respondidas de uma vez.</div>
   <table>
     <tr><th>Vendas por vendedor no mês (fictícias)</th><th>Presencial (B1)</th>
       <th>On-line (B2)</th><th>Média da linha</th></tr>
@@ -566,13 +566,14 @@
     <tr><td><strong>Sem treinamento (A2)</strong></td><td>5</td><td>5</td><td>5</td></tr>
     <tr><td><strong>Média da coluna</strong></td><td>6</td><td>4</td><td>—</td></tr>
   </table>
-  <ul>
-    <li><strong>Efeito do treinamento</strong>: 5 contra 5 nas médias das linhas — nenhum;</li>
-    <li><strong>Efeito do canal</strong>: 6 contra 4 nas médias das colunas — o presencial
-        vende mais;</li>
-    <li><strong>Interação</strong>: treinar soma 2 no presencial (7 contra 5) e tira 2 no
-        on-line (3 contra 5). O efeito <strong>muda de sinal</strong> conforme o canal.</li>
-  </ul>
+  <ol>
+    <li><strong>O treinamento muda as vendas?</strong> Médias das linhas: 5 contra 5. Na
+        média, não;</li>
+    <li><strong>O canal muda as vendas?</strong> Médias das colunas: 6 contra 4. O
+        presencial vende mais;</li>
+    <li><strong>O efeito do treinamento depende do canal?</strong> É a interação. Sim:
+        treinar soma 2 no presencial (7 contra 5) e tira 2 no on-line (3 contra 5).</li>
+  </ol>
   <p class="menor">Testado só "treinou contra não treinou", a conclusão seria "não muda nada",
   e o programa seria cortado. O fatorial aponta outra decisão: <strong>treinar quem vende no
   presencial</strong> e descobrir o que atrapalha no on-line.</p>
