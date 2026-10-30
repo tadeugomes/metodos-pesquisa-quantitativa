@@ -209,7 +209,9 @@ body.modo-detalhe .numero-slide { display: none; }
 #conducao .caixa.nao-falar { border-left-color: #c0392b; background: #fdf3f3; }
 #conducao .caixa.pergunta-aula { border-left-color: var(--verde); background: #f0faf9; font-style: italic; }
 #conducao .caixa.gabarito { border-left-color: var(--vinho); background: #faf3f6; }
-#conducao .caixa.alerta { border-left-color: #8a6400; background: #fff8e6; }
+#conducao .caixa.alerta { border-left-color: #8a6400; background: #fff8e6;
+  /* a regra .alerta das telas usa fonte em vh: na condução vale a fonte do texto */
+  font-size: inherit; line-height: inherit; padding: 1.1vh 1.1em; margin: 1.1vh 0; }
 #conducao .caixa .rotulo {
   display: block;
   font-family: var(--fonte-titulo);

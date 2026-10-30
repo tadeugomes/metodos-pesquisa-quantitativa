@@ -34,19 +34,19 @@ CABECALHO_CONDUCAO = """
 <div class="cabecalho-conducao">
   <h1>%(encontro)s</h1>
   <p>%(disciplina)s &middot; %(curso)s &middot; %(periodo)s &middot; %(docente)s</p>
-  <p class="aviso">Camada de conducao. No projetor, use o deck (tecla <strong>D</strong> volta
-  para ele). Em casa, este e o texto que explica a aula. Ao imprimir, o PDF sai em duas
-  partes: primeiro as telas, depois estas instrucoes.</p>
+  <p class="aviso">Camada de condução. No projetor, use o deck (a tecla <strong>D</strong> volta
+  para ele). Em casa, este é o texto que explica a aula. Ao imprimir, o PDF sai em duas
+  partes: primeiro as telas, depois estas instruções.</p>
 </div>
 """
 
 CAIXAS = {
     # nome da classe -> rotulo automatico, quando o bloco nao traz um
-    "falar": "Conducao sugerida",
+    "falar": "Condução sugerida",
     "nao-falar": "Evitar no bloco",
     "pergunta-aula": "Pergunta para a turma",
-    "gabarito": "Gabarito / numeros que voce precisa ter na mao",
-    "alerta": "Atencao",
+    "gabarito": "Gabarito e números que você precisa ter na mão",
+    "alerta": "Atenção",
 }
 
 

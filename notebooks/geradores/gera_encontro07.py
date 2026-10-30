@@ -5,18 +5,22 @@ E7: o mesmo cadastro de postos do encontro 6 (ANP, SHPC 2025, gasolina comum,
 Maranhao), agora sorteado mil vezes.
 
 Parte 1, mil sorteios por tecnica (n = 50, conglomerados em dois estagios):
-  aleatoria simples  centro R$ 6,0082 | EP R$ 0,0418
-  sistematica        centro R$ 6,0091 | EP R$ 0,0190 (passo fracionario 4,72)
-  estratificada      centro R$ 6,0127 | EP R$ 0,0219 (por municipio, proporcional)
-  conglomerados      centro R$ 6,0074 | EP R$ 0,1709 (3 municipios, 16 postos em cada)
-  conveniencia       R$ 6,2458 sempre (os 50 primeiros da lista), erro +R$ 0,2371
+  aleatoria simples  centro R$ 5,9727 | EP R$ 0,0482
+  sistematica        centro R$ 5,9722 | EP R$ 0,0396 (passo fracionario 4,72)
+  estratificada      centro R$ 5,9732 | EP R$ 0,0218 (por municipio, proporcional com
+                     minimo de 1 por estrato, media ponderada por Nh/N)
+  conglomerados      centro R$ 5,9719 | EP R$ 0,1972 (3 municipios, 16 postos em cada)
+  conveniencia       R$ 6,1421 sempre (os 50 primeiros por CNPJ), erro +R$ 0,1676
 
 Parte 2, a distribuicao amostral da aleatoria simples:
-  populacao: 236 postos | media R$ 6,0087 | desvio R$ 0,3402
-  centro das 1000 medias: R$ 6,0082 (a 0,0005 do parametro)
-  largura observada: R$ 0,0418  vs  erro padrao s/raiz(n) = R$ 0,0481 (13% mais estreita)
-  a dispersao dos precos e 8,1 vezes a das estimativas
-  74,8% das medias a 1 erro padrao; 98,2% a 2; 99,9% a 3
+  cadastro: preco medio anual de cada posto (media das coletas do ano por CNPJ)
+  populacao: 236 postos | media R$ 5,9744 | desvio R$ 0,3755
+  centro das 1000 medias: R$ 5,9727 (a 0,0017 do parametro)
+  largura observada: R$ 0,0482  vs  erro padrao s/raiz(n) = R$ 0,0531 (9% mais estreita)
+  com a correcao para populacao finita (fator 0,8897): R$ 0,0472
+  a dispersao dos precos e 7,8 vezes a das estimativas
+  72,1% das medias a 1 erro padrao; 97,1% a 2; 100,0% a 3
+  (com a correcao: 66,5% e 95,7%)
   a diferenca com a regra 68-95-99,7 e a correcao para populacao finita,
   deixada como pergunta aberta para o encontro 8
 
@@ -50,8 +54,8 @@ as estimativas se distribuem?
 |---|---|
 | **Fonte** | ANP, Série Histórica de Preços de Combustíveis (SHPC) |
 | **Cadastro** | Maranhão, 2025, gasolina comum: **236 postos** em 11 municípios |
-| **Preço médio da população** | **R$ 6,0087** (o valor verdadeiro, aqui conhecido) |
-| **Desvio padrão da população** | **R$ 0,3402** |
+| **Preço médio da população** | **R$ 5,9744** (o valor verdadeiro, aqui conhecido) |
+| **Desvio padrão da população** | **R$ 0,3755** |
 
 > **Por que este exercício é raro.** Em pesquisa de verdade, o valor verdadeiro da
 > população é **desconhecido**: é ele que se quer estimar. Aqui ele é conhecido, e por isso
@@ -84,8 +88,8 @@ vamos sortear **mil** e olhar a distribuição das estimativas.
 > sabe o preço médio da população: é ele que se estima. Aqui ele é conhecido, e é o que
 > permite medir o erro.'''},
     {"tipo": "code", "texto": '''# ================= O cadastro e a população do exercício =================
-# O mesmo cadastro do encontro 6: um registro por posto, com o preço da primeira
-# pesquisa em que o posto aparece no ano.
+# O mesmo cadastro do encontro 6: um registro por posto, com o preço médio do ano
+# (a média de todas as coletas do posto em 2025).
 
 import pandas as pd
 import numpy as np
@@ -101,19 +105,17 @@ except Exception:
     anp = pd.read_csv("dados/anp_precos_revenda_ma_2025.csv")
 
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes_arquivo")
-               .drop_duplicates("cnpj_da_revenda", keep="first")
-               [["cnpj_da_revenda", "municipio", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco_medio"})
-               .reset_index(drop=True))
+cadastro = (gas.groupby(["cnpj_da_revenda", "municipio"], as_index=False)["valor_venda"]
+               .mean()
+               .rename(columns={"valor_venda": "preco_medio"}))
 
 populacao = cadastro["preco_medio"]
 print(f"População: {len(populacao)} postos em {cadastro['municipio'].nunique()} municípios")
 print(f"  média (o parâmetro) = R$ {populacao.mean():.4f}")
 print(f"  desvio padrão        = R$ {populacao.std():.4f}")
 
-conferir("média da população", populacao.mean(), 6.0087, tolerancia=0.001, unidade=" R$")
-conferir("desvio padrão da população", populacao.std(), 0.3402, tolerancia=0.001, unidade=" R$")'''},
+conferir("média da população", populacao.mean(), 5.9744, tolerancia=0.001, unidade=" R$")
+conferir("desvio padrão da população", populacao.std(), 0.3755, tolerancia=0.001, unidade=" R$")'''},
     {"tipo": "md", "texto": '''## Parte 1. As quatro técnicas e a conveniência, mil sorteios cada
 
 No encontro 6 você sorteou **uma** amostra com cada técnica. Uma amostra só não mostra se a
@@ -124,7 +126,7 @@ técnica é repetida mil vezes, sempre com cerca de 50 postos:
 |---|---|
 | **Aleatória simples** | 50 postos direto da lista |
 | **Sistemática** | passo k = 236 ÷ 50 = 4,72, início sorteado entre 0 e 4,72, um posto a cada 4,72 posições |
-| **Estratificada** | dentro de cada município, na proporção do município no cadastro (21 de São Luís, 6 de São José de Ribamar e assim por diante) |
+| **Estratificada** | dentro de cada município, na proporção do município no cadastro, com pelo menos 1 posto por município (20 de São Luís, 6 de São José de Ribamar e assim por diante, até 1 de Amarante do Maranhão); a média final pondera cada município pelo seu peso no cadastro |
 | **Conglomerados** | 3 municípios sorteados com chance proporcional ao número de postos e 16 postos em cada um (dois estágios) |
 | **Conveniência** | os 50 primeiros postos da lista, sem sorteio |
 
@@ -147,9 +149,15 @@ sistematica = [populacao.iloc[(np.random.default_rng(s).uniform(0, passo)
                                + passo * np.arange(N_AMOSTRA)).astype(int)].mean()
                for s in range(N_VEZES)]
 
-# 3. estratificada: a mesma fração de postos dentro de cada município
-estratificada = [cadastro.groupby("municipio").sample(frac=N_AMOSTRA / N, random_state=s)
-                 ["preco_medio"].mean() for s in range(N_VEZES)]
+# 3. estratificada: alocação proporcional, com pelo menos 1 posto por município
+#    (o arredondamento é ajustado no maior município para fechar em N_AMOSTRA),
+#    e média ponderada pelo peso de cada município no cadastro (Nh ÷ N)
+peso = tamanho / N
+alocacao = (peso * N_AMOSTRA).round().clip(lower=1).astype(int)
+alocacao[alocacao.idxmax()] += N_AMOSTRA - alocacao.sum()
+estratificada = [(cadastro.groupby("municipio")["preco_medio"]
+                          .apply(lambda g: g.sample(n=alocacao[g.name], random_state=s).mean())
+                  * peso).sum() for s in range(N_VEZES)]
 
 # 4. conglomerados: 3 municípios (chance proporcional ao tamanho), por_grupo postos em cada
 um_conglomerado = lambda s: np.mean([
@@ -178,11 +186,15 @@ print(quadro.to_string())
 print()
 print("A conveniência tem erro padrão zero porque dá sempre o mesmo número.")
 print("O erro dela não é aleatório: é viés.")
+print()
+print("Por que ela erra para cima: entre os 50 primeiros postos, por município,")
+print(cadastro.head(N_AMOSTRA)["municipio"].value_counts().head(3).to_string())
+print("Imperatriz, onde a gasolina é mais cara, entra demais, e São Luís entra de menos.")
 
-conferir("EP da aleatória simples", np.std(aas), 0.0418, tolerancia=0.001, unidade=" R$")
-conferir("EP da estratificada", np.std(estratificada), 0.0219, tolerancia=0.001, unidade=" R$")
-conferir("EP dos conglomerados", np.std(conglomerados), 0.1709, tolerancia=0.002, unidade=" R$")
-conferir("estimativa da conveniência", conveniencia, 6.2458, tolerancia=0.001, unidade=" R$")'''},
+conferir("EP da aleatória simples", np.std(aas), 0.0482, tolerancia=0.001, unidade=" R$")
+conferir("EP da estratificada", np.std(estratificada), 0.0218, tolerancia=0.001, unidade=" R$")
+conferir("EP dos conglomerados", np.std(conglomerados), 0.1972, tolerancia=0.002, unidade=" R$")
+conferir("estimativa da conveniência", conveniencia, 6.1421, tolerancia=0.001, unidade=" R$")'''},
     {"tipo": "code", "texto": '''# O quadro em figura: a faixa de 95% das mil estimativas de cada técnica.
 import matplotlib.pyplot as plt
 
@@ -208,8 +220,9 @@ plt.show()
 print("As quatro técnicas sorteadas se centram no valor verdadeiro. A largura muda:")
 print("a estratificada estreita a faixa porque o preço varia muito de um município")
 print("para outro, e os conglomerados a alargam pelo mesmo motivo, visto do outro lado.")
-print("A sistemática também sai estreita: a lista vem em blocos de municípios, e o passo")
-print("espalha a amostra pelos blocos, como uma estratificação implícita.")'''},
+print("A sistemática sai um pouco mais estreita que a simples: na ordem de CNPJ, postos do")
+print("mesmo município ficam próximos, e o passo espalha a amostra pela lista, como uma")
+print("estratificação implícita.")'''},
     {"tipo": "md", "texto": '''## Parte 2 · Estatística: a distribuição amostral
 
 A partir daqui olhamos de perto as mil médias da **aleatória simples**, a lista `aas`.
@@ -256,9 +269,9 @@ print("Duas leituras:")
 print("  o centro mostra que a estimativa não é viciada,")
 print("  e a largura mostra quanto ela ainda varia.")
 
-conferir("centro das mil médias", medias.mean(), 6.0082, tolerancia=0.001, unidade=" R$")
-conferir("largura observada", medias.std(), 0.0418, tolerancia=0.001, unidade=" R$")
-conferir("erro padrão previsto", erro_padrao, 0.0481, tolerancia=0.001, unidade=" R$")'''},
+conferir("centro das mil médias", medias.mean(), 5.9727, tolerancia=0.001, unidade=" R$")
+conferir("largura observada", medias.std(), 0.0482, tolerancia=0.001, unidade=" R$")
+conferir("erro padrão previsto", erro_padrao, 0.0531, tolerancia=0.001, unidade=" R$")'''},
     {"tipo": "code", "texto": '''# A regra 68-95-99,7 aplicada às estimativas, com o EP da fórmula.
 dentro = lambda k: (np.abs(medias - populacao.mean()) < k * erro_padrao).mean() * 100
 
@@ -268,7 +281,7 @@ for k, esperado in [(1, 68.3), (2, 95.4), (3, 99.7)]:
           f"|  diferença {dentro(k) - esperado:+.1f}")
 print()
 print("É a mesma régua do encontro 4, agora sobre ESTIMATIVAS em vez de preços.")
-print("Repare que sobram médias perto do centro: 74,8% em vez de 68,3%. É a mesma")
+print("Repare que sobram médias perto do centro: 72,1% em vez de 68,3%. É a mesma")
 print("diferença da largura, que saiu mais estreita que s ÷ √n. A pista: os 50 postos")
 print(f"são {N_AMOSTRA / len(populacao):.0%} do cadastro. O encontro 8 traz a correção que fecha a conta.")'''},
     {"tipo": "code", "texto": '''# O histograma das estimativas: a distribuição amostral, desenhada.
@@ -291,9 +304,9 @@ print("A forma é aproximadamente normal e o centro está no valor verdadeiro, e
 print("preços dos postos sejam assimétricos. É o teorema central do limite em dado real.")'''},
     {"tipo": "md", "texto": '''**A frase que vai para o relatório**
 
-> "O preço médio dos postos do Maranhão é de **R$ 6,01**. Uma amostra aleatória de 50 postos
+> "O preço médio dos postos do Maranhão é de **R$ 5,97**. Uma amostra aleatória de 50 postos
 > estima esse valor com **erro padrão de cerca de R$ 0,05**: em dois de cada três sorteios a
-> estimativa fica a menos de R$ 0,05 do valor verdadeiro, e em 95% deles, a menos de R$ 0,10
+> estimativa fica a menos de R$ 0,05 do valor verdadeiro, e em 95% deles, a menos de R$ 0,11
 > (ANP, SHPC, 2025)."
 
 **O que essa frase não diz.** Que a estimativa está errada. O erro padrão não é um erro
@@ -312,7 +325,7 @@ _(dica: 200 postos são 85% do cadastro)_
 
 ---
 '''},
-    {"tipo": "md", "texto": '''**3. Na Parte 1, as quatro técnicas sorteadas se centraram no valor verdadeiro e a conveniência errou R$ 0,24, sempre para o mesmo lado. Por que aumentar a amostra de conveniência não corrigiria esse erro?**
+    {"tipo": "md", "texto": '''**3. Na Parte 1, as quatro técnicas sorteadas se centraram no valor verdadeiro e a conveniência errou R$ 0,17, sempre para o mesmo lado. Por que aumentar a amostra de conveniência não corrigiria esse erro?**
 
 ---
 '''},

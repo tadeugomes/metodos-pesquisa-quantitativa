@@ -92,17 +92,20 @@ SECOES = [
             técnica e uma por conveniência. A tela 10 repete o exercício <strong>mil
             vezes</strong> por técnica, sobre o mesmo cadastro de 236 postos, e mostra três
             coisas: as quatro probabilísticas se centram no valor verdadeiro; a estratificada
-            por município tem metade do erro padrão da aleatória simples (R$ 0,022 contra
-            R$ 0,042), porque o preço varia mais entre municípios do que dentro deles; os
-            conglomerados têm quatro vezes o erro padrão (R$ 0,171), pelo mesmo motivo visto do
+            por município tem menos da metade do erro padrão da aleatória simples (R$ 0,022 contra
+            R$ 0,048), porque o preço varia mais entre municípios do que dentro deles; os
+            conglomerados têm quatro vezes o erro padrão (R$ 0,197), pelo mesmo motivo visto do
             outro lado.</p>
-            <p>A conveniência (os 50 primeiros postos da lista) dá sempre R$ 6,25, um erro de
-            R$ 0,24. Não há barra porque não há sorteio. É a frase que fecha a Parte 1: o erro da
+            <p>A conveniência (os 50 primeiros postos da lista, em ordem de CNPJ) dá sempre R$ 6,14, um
+            erro de R$ 0,17, três erros padrão e meio acima do valor verdadeiro. Entre esses 50 há
+            21 postos de Imperatriz, onde a gasolina é mais cara, e só 11 de São Luís. Não há barra porque não há sorteio. É a frase que fecha a Parte 1: o erro da
             conveniência <strong>não é aleatório</strong>, é viés.</p>
             <p>Os números da tela 10 são os da Parte 1 do notebook do encontro, que a turma roda
-            no Colab. No arredondamento da estratificada, Amarante do Maranhão, com um único
-            posto, fica sem representante: é um bom gancho para discutir alocação mínima por
-            estrato.</p>
+            no Colab. A estratificada usa alocação proporcional com pelo menos um posto por
+            município e média ponderada pelo peso de cada município (Nh ÷ N). Sem o mínimo, Amarante
+            do Maranhão, com um único posto, ficaria fora do sorteio e a estimativa deixaria de
+            representar o cadastro inteiro. São Luís recebe 20 postos: a proporção daria 21,4, e o
+            ajuste fecha a amostra em 50.</p>
             """, "falar"),
         ],
     },
@@ -129,9 +132,9 @@ SECOES = [
             """, "falar"),
             ("Prever antes de rodar", """
             <p>Peça à turma que <strong>preveja antes de rodar</strong>: se os preços têm desvio de
-            R$ 0,34 e a amostra é de 50 postos, a média das 50 vai variar mais ou menos que
-            R$ 0,34? Muitos dirão “mais”. Ao rodar, a largura das mil médias é de R$ 0,04, cerca
-            de <strong>oito vezes menor</strong>. A figura da tela 17 mostra a diferença no mesmo
+            R$ 0,38 e a amostra é de 50 postos, a média das 50 vai variar mais ou menos que
+            R$ 0,38? Muitos dirão “mais”. Ao rodar, a largura das mil médias é de R$ 0,05, quase
+            <strong>oito vezes menor</strong>. A figura da tela 17 mostra a diferença no mesmo
             eixo.</p>
             <p>A fórmula da tela 14 se apoia nessa surpresa: <code>EP = s ÷ √n</code>. A curva ao
             lado dela mostra o custo de precisão: de 50 para 200 postos o erro cai à metade.</p>
@@ -140,16 +143,17 @@ SECOES = [
             <p>O notebook verifica a teoria em três frentes, e a tela 18 mostra as três:</p>
             <ol>
               <li>o <strong>centro</strong> das mil estimativas cai praticamente no valor
-              verdadeiro (6,0082 contra 6,0087): a estimativa não é viciada;</li>
-              <li>a <strong>largura</strong> observada (0,0418) fica 13% abaixo da prevista pela
-              fórmula (0,0481);</li>
+              verdadeiro (5,9727 contra 5,9744): a estimativa não é viciada;</li>
+              <li>a <strong>largura</strong> observada (0,0482) fica 9% abaixo da prevista pela
+              fórmula (0,0531);</li>
               <li>por isso as faixas de 1 e 2 erros padrão contêm mais médias do que a regra
-              68-95-99,7 do encontro 4 prevê: 74,8% e 98,2%, contra 68,3% e 95,4%.</li>
+              68-95-99,7 do encontro 4 prevê: 72,1% e 97,1%, contra 68,3% e 95,4%.</li>
             </ol>
-            <p>Não apresentar 74,8% e 98,2% como confirmação da regra. A diferença é real e tem
+            <p>Não apresentar 72,1% e 97,1% como confirmação da regra. A diferença é real e tem
             causa: 50 postos são 21% do cadastro, e amostras que cobrem uma fatia grande da
             população variam menos do que s ÷ √n supõe. A correção para população finita
-            (fator 0,8897 neste caso) leva o erro padrão a R$ 0,0428 e as faixas a 69,2% e 95,9%.
+            (fator 0,8897 neste caso) leva o erro padrão a R$ 0,0472, perto dos R$ 0,0482
+            observados, e as faixas a 66,5% e 95,7%.
             Ela é o assunto de abertura do encontro 8, que retoma esta tela como “o mistério do
             encontro 7”.</p>
             <p>A régua é a mesma do encontro 4. O que mudou foi o objeto medido: antes os preços,
@@ -174,21 +178,21 @@ SECOES = [
             <table>
               <tr><th>Medida</th><th>Valor</th></tr>
               <tr><td>População</td><td>236 postos, 11 municípios</td></tr>
-              <tr><td>Média (o parâmetro)</td><td>R$ 6,0087</td></tr>
-              <tr><td>Desvio padrão da população</td><td>R$ 0,3402</td></tr>
-              <tr><td>Centro das 1.000 estimativas</td><td>R$ 6,0082</td></tr>
-              <tr><td>Largura observada</td><td>R$ 0,0418</td></tr>
-              <tr><td>Erro padrão pela fórmula (s ÷ √50)</td><td>R$ 0,0481</td></tr>
-              <tr><td>Erro padrão com correção para população finita</td><td>R$ 0,0428 (encontro 8)</td></tr>
-              <tr><td>A 1 EP do valor verdadeiro</td><td>74,8% (a regra: 68,3%)</td></tr>
-              <tr><td>A 2 EP</td><td>98,2% (a regra: 95,4%)</td></tr>
-              <tr><td>EP da estratificada por município (tela 10)</td><td>R$ 0,022</td></tr>
-              <tr><td>EP da sistemática, passo 4,72 (tela 10)</td><td>R$ 0,019</td></tr>
-              <tr><td>EP dos conglomerados, 3 municípios (tela 10)</td><td>R$ 0,171</td></tr>
-              <tr><td>Conveniência, 50 primeiros da lista</td><td>R$ 6,2458 (erro de +R$ 0,24)</td></tr>
+              <tr><td>Média (o parâmetro)</td><td>R$ 5,9744</td></tr>
+              <tr><td>Desvio padrão da população</td><td>R$ 0,3755</td></tr>
+              <tr><td>Centro das 1.000 estimativas</td><td>R$ 5,9727</td></tr>
+              <tr><td>Largura observada</td><td>R$ 0,0482</td></tr>
+              <tr><td>Erro padrão pela fórmula (s ÷ √50)</td><td>R$ 0,0531</td></tr>
+              <tr><td>Erro padrão com correção para população finita</td><td>R$ 0,0472 (fator 0,8897, encontro 8)</td></tr>
+              <tr><td>A 1 EP do valor verdadeiro</td><td>72,1% (a regra: 68,3%; com a correção: 66,5%)</td></tr>
+              <tr><td>A 2 EP</td><td>97,1% (a regra: 95,4%; com a correção: 95,7%)</td></tr>
+              <tr><td>EP da estratificada por município (tela 10)</td><td>R$ 0,022 (média ponderada)</td></tr>
+              <tr><td>EP da sistemática, passo 4,72 (tela 10)</td><td>R$ 0,040</td></tr>
+              <tr><td>EP dos conglomerados, 3 municípios (tela 10)</td><td>R$ 0,197</td></tr>
+              <tr><td>Conveniência, 50 primeiros da lista</td><td>R$ 6,1421 (erro de +R$ 0,17)</td></tr>
             </table>
             <p>E o contraste que resume o dia: a variação dos <strong>preços</strong> é de
-            R$ 0,34, e a das <strong>estimativas</strong>, R$ 0,04, ou <strong>8,1 vezes</strong>
+            R$ 0,38, e a das <strong>estimativas</strong>, R$ 0,05, ou <strong>7,8 vezes</strong>
             menor.</p>
             """, "gabarito"),
         ],

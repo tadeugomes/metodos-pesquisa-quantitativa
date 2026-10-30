@@ -191,8 +191,8 @@ SECOES = [
             verdadeiro é conhecido, e a turma vê o erro de cada amostra de 100 postos: uma
             aleatória simples, uma sistemática, uma estratificada por município e uma por
             conveniência (os 100 primeiros da lista). A tela 47 mostra o resultado.</p>
-            <p>Ponto a destacar: a conveniência erra quase quatro vezes mais que a pior das
-            sorteadas, e o motivo está nos dados. Os 100 primeiros da lista têm 25% de postos
+            <p>Ponto a destacar: a conveniência erra mais de cinco vezes o pior erro das
+            sorteadas, e o motivo está nos dados. Os 100 primeiros da lista têm 34% de postos
             de São Luís, onde a gasolina é mais barata, contra 43% no cadastro.</p>
             <p>A CÉLULA A baixa os arquivos da ANP. Se a rede da sala falhar, use a CÉLULA B,
             com o upload do arquivo <code>dados/anp_precos_revenda_ma_2025.csv</code>.</p>
@@ -200,7 +200,8 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>Achar que a amostra sorteada é boa porque acertou.</strong> Ela errou
-              R$ 0,03. É boa porque o erro se pode medir e declarar.</li>
+              R$ 0,004, e outro sorteio poderia errar dez vezes mais. É boa porque o erro se
+              pode medir e declarar.</li>
               <li><strong>Achar que cotas é estratificada.</strong> Sem sorteio dentro da cota,
               não é.</li>
               <li><strong>Achar que uma conveniência maior resolve.</strong> O erro da
@@ -214,13 +215,13 @@ SECOES = [
             <table>
               <tr><th>Medida</th><th>Valor</th></tr>
               <tr><td>Cadastro</td><td>236 postos, 11 municípios, 9 bandeiras</td></tr>
-              <tr><td>Média da população (o parâmetro)</td><td>R$ 6,0087</td></tr>
-              <tr><td>Desvio padrão da população</td><td>R$ 0,3402</td></tr>
-              <tr><td>Aleatória simples, 100 postos (semente 2025)</td><td>R$ 5,9753, erro −0,0334</td></tr>
-              <tr><td>Sistemática, passo 2,36 (semente 2025)</td><td>R$ 5,9929, erro −0,0158</td></tr>
-              <tr><td>Estratificada por município, 99 postos</td><td>R$ 6,0129, erro +0,0042</td></tr>
-              <tr><td>Conveniência, os 100 primeiros</td><td>R$ 6,1306, erro +0,1219</td></tr>
-              <tr><td>São Luís na conveniência e no cadastro</td><td>25% e 43%</td></tr>
+              <tr><td>Média da população (o parâmetro)</td><td>R$ 5,9744</td></tr>
+              <tr><td>Desvio padrão da população</td><td>R$ 0,3755</td></tr>
+              <tr><td>Aleatória simples, 100 postos (semente 2025)</td><td>R$ 5,9708, erro −0,0036</td></tr>
+              <tr><td>Sistemática, passo 2,36 (semente 2025)</td><td>R$ 5,9636, erro −0,0108</td></tr>
+              <tr><td>Estratificada por município, 100 postos, média ponderada por Nh/N</td><td>R$ 5,9935, erro +0,0191</td></tr>
+              <tr><td>Conveniência, os 100 primeiros</td><td>R$ 6,0795, erro +0,1051</td></tr>
+              <tr><td>São Luís na conveniência e no cadastro</td><td>34% e 43%</td></tr>
             </table>
             <p>A sistemática usa passo fracionário (236 ÷ 100 = 2,36) e percorre a lista
             inteira. Arredondar o passo para 2 e parar no 100º posto deixaria o fim da lista sem

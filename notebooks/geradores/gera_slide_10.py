@@ -62,7 +62,7 @@ SECOES = [
             <p>Não reexplicar o Módulo II: puxar da turma os números que ficaram, na ordem
             da tela 3. O erro padrão de R$ 0,05 (encontro 7), o z de 1,96 (encontro 8), os 385
             casos para uma proporção (encontro 8) e a correção para população finita
-            (encontro 8), que volta na tela 10 para explicar os 95,9% de cobertura. Perguntar: <em>“se a margem de
+            (encontro 8): com a regra do cadastro, o EP de R$ 0,053 cai para R$ 0,047 com 50 postos. Perguntar: <em>“se a margem de
             erro é z vezes o erro padrão, o que acontece se eu somar e subtrair a margem da
             estimativa?”</em> A resposta é o intervalo de confiança, e a turma chega nele antes
             de o slide dizer o nome.</p>
@@ -99,30 +99,33 @@ SECOES = [
             ("O momento central da Parte 1: os cem intervalos", """
             <p>Antes de mostrar a figura, perguntar: <em>“se eu sortear cem amostras e calcular
             cem intervalos de 95%, quantos vão cobrir o preço médio verdadeiro?”</em> A
-            maioria dirá 95 e está quase certa. Mostrar: <strong>94</strong>. Com
-            mil amostras, 959.</p>
-            <p>A pergunta seguinte é a que ensina: <em>“olhando só o intervalo da amostra 19,
+            maioria dirá 95 e está certa. Mostrar: <strong>95</strong>. Com
+            mil amostras, 940.</p>
+            <p>A pergunta seguinte é a que ensina: <em>“olhando só o intervalo da amostra 1,
             sem a linha preta, dá para saber que ele errou?”</em> Não dá. Por isso a confiança
             é do <strong>método</strong>, e não do intervalo que se tem na mão.</p>
             """, "pergunta-aula"),
-            ("Se a turma perguntar por que 94 e não 95", """
-            <p>Duas razões, nessa ordem. Primeira: cem amostras são poucas, e o número varia
-            de um conjunto de sementes para outro (93, 96, 97 são igualmente normais).
-            Segunda: com mil amostras a taxa fica em 95,9%, um pouco acima de 95%, porque 30
-            postos são 13% de um cadastro pequeno: é a correção para população finita do
-            encontro 8. Com n = 50, a fatia é maior e a taxa sobe para cerca de 98%; foi por
-            isso que a simulação de hoje usa 30.</p>
+            ("Se a turma perguntar por que mil amostras dão 94,0% e não 95%", """
+            <p>Duas forças puxam em sentidos opostos. A primeira puxa para baixo: os preços
+            dos postos são assimétricos, com cauda à direita (assimetria de 0,90), e com 30
+            casos a média da amostra ainda não é perfeitamente normal. O t supõe essa
+            normalidade e por isso fica um pouco otimista. A segunda puxa para cima: 30
+            postos são 13% de um cadastro pequeno, e a amostra varia menos do que s ÷ √n
+            supõe, que é a correção para população finita do encontro 8. Com n = 30 vence a
+            assimetria (94,0%). Com n = 50 a fatia do cadastro passa a 21%, vence a correção
+            e a taxa sobe para 96,4%. Cem amostras, por sua vez, são poucas: 93, 95 ou 97
+            são igualmente normais.</p>
             """, "falar"),
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>“Há 95% de chance de a média estar no intervalo.”</strong> É o erro
               da tela 9. Corrigir toda vez: o intervalo já calculado cobre ou não cobre;</li>
               <li><strong>Confundir o intervalo da média com a faixa dos casos.</strong> O IC
-              de R$ 5,93 a R$ 6,12 não diz que 95% dos postos cobram nessa faixa: os preços
-              da amostra vão de R$ 5,55 a R$ 6,59. É o erro do encontro 7 (desvio × erro
+              de R$ 5,92 a R$ 6,23 não diz que 95% dos postos cobram nessa faixa: os preços
+              da amostra vão de R$ 5,59 a R$ 6,98. É o erro do encontro 7 (desvio × erro
               padrão), com outra roupa;</li>
               <li><strong>Achar que 99% é “melhor” que 95%.</strong> É mais confiável e mais
-              largo: um intervalo de R$ 5,90 a R$ 6,15 informa menos;</li>
+              largo: o de 99% vai de R$ 5,87 a R$ 6,28 e informa menos;</li>
               <li><strong>Calcular intervalo para amostra por conveniência.</strong> O
               intervalo mede o erro do sorteio; sem sorteio, ele não mede nada.</li>
             </ol>
@@ -137,19 +140,20 @@ SECOES = [
             ("Gabarito da Parte 1", """
             <table>
               <tr><th>Medida</th><th>Valor</th></tr>
-              <tr><td>População (cadastro)</td><td>236 postos; média R$ 6,0087; desvio R$ 0,3402</td></tr>
-              <tr><td>Bandeira branca no cadastro</td><td>118 de 236 = 50,0%</td></tr>
+              <tr><td>População (cadastro)</td><td>236 postos; preço médio do ano de cada posto; média R$ 5,9744; desvio R$ 0,3755</td></tr>
+              <tr><td>Bandeira branca no cadastro</td><td>119 de 236 = 50,4% (a bandeira mais frequente do posto no ano)</td></tr>
               <tr><td>Amostra do dia</td><td>30 postos, <code>random_state=2025</code></td></tr>
-              <tr><td>Média e desvio da amostra</td><td>R$ 6,0267 e R$ 0,2530</td></tr>
-              <tr><td>Erro padrão e t crítico (29 gl)</td><td>0,0462 e 2,0452</td></tr>
-              <tr><td>Margem e IC de 95% da média</td><td>0,0945; [R$ 5,9322 ; R$ 6,1211]</td></tr>
-              <tr><td>IC de 90% e de 99%</td><td>[5,9482 ; 6,1051] e [5,8994 ; 6,1540]</td></tr>
-              <tr><td>Bandeira branca na amostra</td><td>19 de 30 = 63,33%; EP 0,0880; margem 0,1724</td></tr>
-              <tr><td>IC de 95% da proporção</td><td>[46,09% ; 80,58%], que cobre os 50,0%</td></tr>
-              <tr><td>Cem intervalos (sementes 0 a 99)</td><td>94 cobrem; erram as amostras 19, 52, 62, 82, 85 e 93</td></tr>
-              <tr><td>Mil intervalos (sementes 0 a 999)</td><td>959 cobrem (95,9%)</td></tr>
-              <tr><td>Cem intervalos de 90% (sementes 0 a 99)</td><td>89 cobrem, 11 erram</td></tr>
-              <tr><td>Mil intervalos com n = 50</td><td>cerca de 98% cobrem (a fatia do cadastro é maior)</td></tr>
+              <tr><td>Média e desvio da amostra</td><td>R$ 6,0745 e R$ 0,4038</td></tr>
+              <tr><td>Erro padrão e t crítico (29 gl)</td><td>0,0737 e 2,0452</td></tr>
+              <tr><td>Margem e IC de 95% da média</td><td>0,1508; [R$ 5,9237 ; R$ 6,2253]</td></tr>
+              <tr><td>IC de 90% e de 99%</td><td>[5,9492 ; 6,1998] e [5,8713 ; 6,2777]</td></tr>
+              <tr><td>Bandeira branca na amostra</td><td>16 de 30 = 53,33%; EP 0,0911; margem 0,1785</td></tr>
+              <tr><td>IC de 95% da proporção</td><td>[35,48% ; 71,19%], que cobre os 50,4%</td></tr>
+              <tr><td>Cem intervalos (sementes 0 a 99)</td><td>95 cobrem; erram as amostras 1, 28, 37, 53 e 61</td></tr>
+              <tr><td>Mil intervalos (sementes 0 a 999)</td><td>940 cobrem (94,0%)</td></tr>
+              <tr><td>Cem intervalos de 90% (sementes 0 a 99)</td><td>92 cobrem, 8 erram</td></tr>
+              <tr><td>Mil intervalos de 90% e de 99%</td><td>902 (90,2%) e 981 (98,1%)</td></tr>
+              <tr><td>Mil intervalos de 95% com n = 50</td><td>964 cobrem (96,4%)</td></tr>
             </table>
             """, "gabarito"),
         ],
@@ -180,28 +184,35 @@ SECOES = [
             “não rejeita H0”.</p>
             """, "falar"),
             ("Pergunta para a turma antes da decisão desenhada", """
-            <p>Mostrar só o resultado: a amostra deu R$ 6,03, a referência é R$ 6,19, o erro
-            padrão é R$ 0,046. Perguntar: <em>“quantos erros padrão separam a amostra da
-            referência?”</em> A turma chega a três e meio sem conta formal (16 centavos
-            divididos por 4,6). Só então mostrar a curva: três erros padrão e meio está fora
-            das caudas de 2,045. A fórmula do t vem depois da intuição, como no encontro 7.</p>
+            <p>Mostrar só o resultado: a amostra deu R$ 6,07, a referência é R$ 6,19, o erro
+            padrão é R$ 0,074. Perguntar: <em>“quantos erros padrão separam a amostra da
+            referência?”</em> A turma chega a um e meio sem conta formal (12 centavos
+            divididos por 7,4). Só então mostrar a curva: um erro padrão e meio fica dentro
+            das caudas de 2,045, e o teste não rejeita. A fórmula do t vem depois da
+            intuição, como no encontro 7.</p>
+            <p>Em seguida, a revelação que só este cadastro permite: a média verdadeira é
+            R$ 5,97, 22 centavos abaixo da referência. H0 é falsa e o teste não a derrubou.
+            Não é defeito do teste: com 30 postos e desvio de R$ 0,40, ele só enxerga
+            diferenças maiores. É o <strong>erro tipo II</strong>, e a pergunta de quanto o
+            teste enxerga (o poder) abre o encontro 11.</p>
             """, "pergunta-aula"),
             ("A ponte com a Parte 1", """
             <p>Na tela 20, antes de ler a tabela dos cinco valores, pedir à turma que diga a
-            decisão de cada um olhando só a faixa do intervalo na figura (R$ 5,93 a R$ 6,12).
+            decisão de cada um olhando só a faixa do intervalo na figura (R$ 5,92 a R$ 6,23).
             Todos acertam.
             A frase que fecha: <strong>“o intervalo de 95% é a lista de todos os valores que o
             teste a 5% não rejeita.”</strong></p>
             """, "falar"),
             ("Erros que vão aparecer na turma", """
             <ol>
-              <li><strong>“Não rejeitei H0, então provei que a média é R$ 6,00.”</strong> É o
-              erro da tela 23. A mesma amostra não rejeita R$ 6,00 nem R$ 6,10;</li>
-              <li><strong>“p = 0,0014 quer dizer 0,14% de chance de H0 ser
+              <li><strong>“Não rejeitei H0, então provei que o Maranhão paga o mesmo que o
+              Brasil.”</strong> É o erro da tela 23. A mesma amostra não rejeita R$ 6,19 nem
+              R$ 6,00, e a média verdadeira é R$ 5,97;</li>
+              <li><strong>“p = 0,128 quer dizer 12,8% de chance de H0 ser
               verdadeira.”</strong> Não: é a chance da amostra, supondo H0;</li>
-              <li><strong>“Significativo quer dizer importante.”</strong> A diferença de 16
-              centavos se julga em centavos: para uma frota, é muito; para um motorista, pouco.
-              O valor-p não sabe disso;</li>
+              <li><strong>“Significativo quer dizer importante.”</strong> Na Questão 2 a
+              diferença para R$ 5,85 é de 22 centavos e se julga em centavos: para uma frota, é
+              muito; para um motorista, pouco. O valor-p não sabe disso;</li>
               <li><strong>Escrever H0 com o sinal de diferente.</strong> H0 sempre tem o sinal
               de igual; a pergunta de pesquisa costuma estar em H1.</li>
             </ol>
@@ -209,16 +220,17 @@ SECOES = [
             ("Gabarito do que o professor precisa ter na mão", """
             <table>
               <tr><th>Medida</th><th>Valor</th></tr>
-              <tr><td>Referência nacional</td><td>R$ 6,19 (8.635 postos do Brasil, média R$ 6,1930, mesma regra)</td></tr>
+              <tr><td>Referência nacional</td><td>R$ 6,19 (8.635 postos do Brasil, média R$ 6,1930, calculada com a regra anterior, um preço por posto do primeiro mês)</td></tr>
               <tr><td>H0 e H1</td><td>μ = 6,19 e μ ≠ 6,19; α = 5%</td></tr>
-              <tr><td>Diferença</td><td>6,0267 − 6,19 = −0,1633</td></tr>
-              <tr><td>t e gl</td><td>−3,536 e 29</td></tr>
-              <tr><td>Valor-p</td><td>0,0014 → rejeita H0</td></tr>
+              <tr><td>Diferença</td><td>6,0745 − 6,19 = −0,1155</td></tr>
+              <tr><td>t e gl</td><td>−1,567 e 29</td></tr>
+              <tr><td>Valor-p</td><td>0,128 → não rejeita H0 (erro tipo II: a média verdadeira é R$ 5,9744)</td></tr>
               <tr><td>t crítico a 5% (29 gl)</td><td>±2,045</td></tr>
-              <tr><td>Contra R$ 5,90</td><td>t = 2,743; p = 0,0103 → rejeita (fora do IC)</td></tr>
-              <tr><td>Contra R$ 6,00</td><td>t = 0,577; p = 0,5681 → não rejeita (dentro)</td></tr>
-              <tr><td>Contra R$ 6,10</td><td>t = −1,588; p = 0,1232 → não rejeita (dentro)</td></tr>
-              <tr><td>Contra R$ 6,15</td><td>t = −2,670; p = 0,0123 → rejeita (fora)</td></tr>
+              <tr><td>Contra R$ 5,85</td><td>t = 3,045; p = 0,0049 → rejeita (fora do IC)</td></tr>
+              <tr><td>Contra R$ 6,00</td><td>t = 1,010; p = 0,3207 → não rejeita (dentro)</td></tr>
+              <tr><td>Contra R$ 6,10</td><td>t = −0,346; p = 0,7318 → não rejeita (dentro)</td></tr>
+              <tr><td>Contra R$ 6,25</td><td>t = −2,381; p = 0,0241 → rejeita (fora)</td></tr>
+              <tr><td>Contra a média verdadeira, R$ 5,9744</td><td>t = 1,358; p = 0,185 → não rejeita (dentro)</td></tr>
             </table>
             """, "gabarito"),
         ],
@@ -242,11 +254,17 @@ SECOES = [
               (dois minutos, às vezes mais). Se aparecer <em>could not resolve host</em> ou
               <em>timed out</em>, ou se passar de cinco minutos, mandar usar a CÉLULA B, com
               upload de <code>anp_precos_revenda_ma_2025.csv</code>. A referência nacional já
-              está no bloco de configuração e não depende da CÉLULA A;</li>
+              está no bloco de configuração e não depende da CÉLULA A. Antes da aula, rodar a
+              CÉLULA A uma vez: ela imprime a média nacional com a regra do cadastro (média
+              das coletas do ano de cada posto). Os R$ 6,19 do material foram calculados com a
+              regra anterior, e o ambiente desta revisão não alcança o site da ANP para
+              recalcular. Se o número impresso arredondar para outro valor, atualizar
+              <code>VALOR_REFERENCIA</code>;</li>
               <li><strong>Os primeiros <code>[ok]</code>.</strong> A célula do cadastro confere
-              R$ 6,0087 e 50,0%. Se der <code>[X]</code> aqui, o estudante pulou a carga;</li>
+              R$ 5,9744 e 50,4%. Se der <code>[X]</code> aqui, o estudante pulou a carga;</li>
               <li><strong>A simulação.</strong> Pedir que todos rodem e digam o número: deve ser
-              94 em todas as máquinas, porque as sementes são fixas. É a prova de que o
+              95 em todas as máquinas, porque as sementes são fixas e o cadastro é a média do ano
+              de cada posto, que não depende da versão do pandas. É a prova de que o
               notebook é reprodutível;</li>
               <li><strong>As questões.</strong> Circular pela sala lendo as frases, não o
               código. O código já funciona; o que se avalia é a leitura;</li>
@@ -258,27 +276,29 @@ SECOES = [
             ("O que observar nas frases", """
             <p>Três marcas de uma frase boa, para usar na correção coletiva: (1) traz t, gl e
             valor-p; (2) diz a decisão com o α; (3) traz a diferença em <strong>unidade
-            original</strong>, em centavos por litro. A Questão 2 é a que separa: a frase certa é
-            “não há evidência de que a média seja diferente de R$ 6,00”, e não “a média é
-            R$ 6,00”.</p>
+            original</strong>, em centavos por litro. A Questão 1 é a que separa: a frase certa é
+            “não há evidência de que a média seja diferente da nacional”, e não “a média é
+            igual à nacional”.</p>
             """, "pergunta-aula"),
             ("Gabarito das questões", """
             <table>
               <tr><th>Questão</th><th>Resultado</th><th>A frase esperada</th></tr>
-              <tr><td>1 (R$ 6,19)</td><td>t = −3,536; gl = 29; p = 0,0014</td>
-                  <td>Rejeita H0: o preço médio no Maranhão (R$ 6,03) é inferior ao nacional,
-                  em cerca de 16 centavos</td></tr>
-              <tr><td>2 (R$ 6,00)</td><td>t = 0,577; gl = 29; p = 0,5681</td>
-                  <td>Não rejeita H0: não há evidência de que a média seja diferente de R$ 6,00</td></tr>
-              <tr><td>3 (R$ 6,10)</td><td>t = −1,588; gl = 29; p = 0,1232</td>
-                  <td>Não rejeita H0. Como 6,00 e 6,10 sobrevivem os dois, não rejeitar não é
+              <tr><td>1 (R$ 6,19)</td><td>t = −1,567; gl = 29; p = 0,128</td>
+                  <td>Não rejeita H0: a amostra não traz evidência de que o preço médio do
+                  Maranhão (R$ 6,07 na amostra) seja diferente do nacional. A média verdadeira
+                  (R$ 5,97) mostra que H0 era falsa: erro tipo II</td></tr>
+              <tr><td>2 (R$ 5,85)</td><td>t = 3,045; gl = 29; p = 0,0049</td>
+                  <td>Rejeita H0: o preço médio é diferente de R$ 5,85, acima dele em cerca de
+                  22 centavos na estimativa</td></tr>
+              <tr><td>3 (R$ 6,00)</td><td>t = 1,010; gl = 29; p = 0,3207</td>
+                  <td>Não rejeita H0. Como 6,19 e 6,00 sobrevivem os dois, não rejeitar não é
                   provar: a amostra é compatível com todos os valores do IC</td></tr>
               <tr><td>4 (R$ 6,25)</td><td>pelo IC, sem teste</td>
-                  <td>Rejeitado a 5%: R$ 6,25 está fora do IC de 95% (R$ 5,93 a R$ 6,12)</td></tr>
+                  <td>Rejeitado a 5%: R$ 6,25 está fora do IC de 95% (R$ 5,92 a R$ 6,23)</td></tr>
             </table>
-            <p>O que cada frase não diz: na 1, que a diferença é importante ou por que existe;
-            na 2 e na 3, que a média é igual ao valor testado. A média verdadeira, que aqui se
-            conhece, é R$ 6,0087.</p>
+            <p>O que cada frase não diz: na 1 e na 3, que a média é igual ao valor testado; na 2,
+            que a diferença é importante ou por que existe. A média verdadeira, que aqui se
+            conhece, é R$ 5,9744.</p>
             """, "gabarito"),
             ("Evitar na prática", """
             <p>Não deixar a prática virar caça a erro no código: nenhuma célula precisa ser
@@ -297,8 +317,8 @@ SECOES = [
             <ol>
               <li><strong>O intervalo é a estimativa com a régua ao lado</strong>: para a média,
               com o t; para a proporção, com o z;</li>
-              <li><strong>O 95% é a taxa de acerto do procedimento</strong>: 94 de 100
-              intervalos cobriram; o seu, ou cobre, ou não;</li>
+              <li><strong>O 95% é a taxa de acerto do procedimento</strong>: 95 de 100
+              intervalos cobriram (em mil, 94,0%); o seu, ou cobre, ou não;</li>
               <li><strong>O teste pergunta quão rara seria a amostra se H0 fosse
               verdadeira</strong>, e o valor-p responde;</li>
               <li><strong>Intervalo e teste nunca se contradizem</strong>: fora do IC de 95%,
@@ -314,9 +334,10 @@ SECOES = [
               dois grupos, entre pares ou entre categorias;</li>
               <li>No notebook, mude <code>NIVEL_CONFIANCA</code> para 0.90 e anote quantos dos
               cem intervalos erram. A previsão é cerca de dez (com as sementes do notebook,
-              erram 11);</li>
-              <li>Pense na pergunta que fica: na Questão 2, o teste não rejeitou R$ 6,00, e a
-              média verdadeira é R$ 6,0087. <strong>O teste errou?</strong></li>
+              erram 8);</li>
+              <li>Pense na pergunta que fica: na Questão 1, o teste não rejeitou a média
+              nacional de R$ 6,19, e a média verdadeira é R$ 5,97. <strong>O teste
+              errou?</strong></li>
             </ol>
             <p>A pergunta 3 é a ponte: o próximo encontro abre com os <strong>erros tipo I e
             II</strong> e o poder do teste, e segue para os testes de duas amostras, o pareado e

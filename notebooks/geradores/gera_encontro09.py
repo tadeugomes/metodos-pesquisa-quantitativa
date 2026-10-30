@@ -11,26 +11,30 @@ A base e uma que a turma ja conhece, com um produto novo: o cadastro de postos d
 registro por posto, com municipio e bandeira); os numeros sao outros, e por isso a prova
 mede a transferencia, e nao a memoria.
 
-Numeros verificados na geracao (30/10/2026), os mesmos da conducao. O cadastro usa
-sort_values(..., kind="stable"): sem isso, o registro que fica para cada posto dependia da
-versao do pandas, e os conferir da prova podiam falhar no Colab.
+Numeros verificados na geracao (30/10/2026), os mesmos da conducao. O cadastro tem um
+posto por linha: o preco e a media de todas as coletas de 2025 do posto (mediana de 14,5
+coletas) e a bandeira e a mais frequente no ano (5 postos trocaram de bandeira). A regra e
+deterministica: da o mesmo cadastro em qualquer versao do pandas.
 
   cadastro: N = 148 postos de etanol | 11 municipios | 8 bandeiras
-  Q1 bandeira branca: 69 de 148 = 46,6% do cadastro
+  Q1 bandeira branca: 70 de 148 = 47,3% do cadastro
      em Sao Luis: 28 postos de bandeira branca, 71 postos no municipio
        28 / 71  = 39,4%  <- o denominador certo (entre os postos de Sao Luis)
        28 / 148 = 18,9%  (sobre o cadastro inteiro)
-       28 / 69  = 40,6%  (entre os de bandeira branca: e outra pergunta)
-  Q2 media R$ 4,7826 | mediana R$ 4,6900 (a media fica R$ 0,0926 acima)
-  Q3 desvio R$ 0,2763 | CV 5,78% | Q1 4,59 | Q3 4,99 | IQR R$ 0,40 | min 4,29 | max 5,75
-  Q4 assimetria 0,753 (cauda a direita)
-  Q6 estratos: Ilha (Sao Luis e Sao Jose de Ribamar) 92 postos, media R$ 4,6498, desvio 0,1828
-               Interior (9 municipios) 56 postos, media R$ 5,0007, desvio 0,2660
-               diferenca entre as medias R$ 0,35; desvio do cadastro inteiro 0,2763
-  Q7 media, margem R$ 0,05, 95%: n0 = 117,3 -> 118 | com correcao para N = 148: 65,7 -> 66
+       28 / 70  = 40,0%  (entre os de bandeira branca: e outra pergunta)
+  Q2 media R$ 4,8187 | mediana R$ 4,7140 (a media fica R$ 0,1047 acima)
+  Q3 desvio R$ 0,3066 | CV 6,36% | Q1 4,59 | Q3 4,99 | IQR R$ 0,40 | min 4,39 | max 5,75
+  Q4 assimetria 0,943 (cauda a direita)
+  Q6 estratos: Ilha (Sao Luis e Sao Jose de Ribamar) 92 postos, media R$ 4,6298, desvio 0,1309
+               Interior (9 municipios) 56 postos, media R$ 5,1291, desvio 0,2552
+               diferenca entre as medias R$ 0,50; desvio do cadastro inteiro 0,3066
+  Q7 media, margem R$ 0,05, 95%: n0 = 144,5 -> 145 | com correcao para N = 148: 73,4 -> 74
   Q8 proporcao, margem 5 p.p., 95%, p = 0,5: n0 = 384,1 -> 385 | com correcao: 107,0 -> 108
-  Q9 estratificada proporcional com n = 66: Ilha 41 + Interior 25
-     semente 2026: estimativa R$ 4,7980 (erro +0,0155, dentro da margem)
+     o n adotado e o maior, 108, que atende as duas perguntas
+  Q9 estratificada proporcional com o n da Q8 (108): Ilha 67 + Interior 41
+     estimador ponderado pelo peso do estrato (92/148 e 56/148)
+     semente 2026: estimativa R$ 4,8243 (erro +0,0056, dentro da margem)
+     em 1.000 sementes, o erro padrao da estimativa e R$ 0,0093 e 100% ficam a menos de R$ 0,05
 """
 import os
 import sys
@@ -98,8 +102,8 @@ o mesmo dos encontros 6 a 8, agora para o **etanol hidratado**.
 | Item | Valor |
 |---|---|
 | **Fonte** | ANP, Série Histórica de Preços de Combustíveis (SHPC), 2025 |
-| **Cada linha** | Um posto que vende etanol: CNPJ, município, bandeira e preço |
-| **Preço** | R\\$ por litro, no primeiro mês em que o posto aparece na pesquisa de 2025 |
+| **Cada linha** | Um posto que vende etanol: CNPJ, município, bandeira (a mais frequente no ano) e preço |
+| **Preço** | R\\$ por litro, a média de todas as coletas do posto em 2025 |
 | **Recorte** | Maranhão, 11 municípios pesquisados pela ANP |
 
 Execute a **CÉLULA A**. A **CÉLULA B** é de contingência: só se o professor mandar."""
@@ -121,13 +125,12 @@ except Exception:
     anp = pd.read_csv("dados/anp_precos_revenda_ma_2025.csv")
 
 etanol = anp[anp["produto"] == "ETANOL"].dropna(subset=["valor_venda"])
-# kind="stable": entre os registros do mesmo mês, fica o primeiro do arquivo, em qualquer
-# versão do pandas. Sem ele, o posto escolhido muda de uma máquina para outra.
-cadastro = (etanol.sort_values("mes_arquivo", kind="stable")
-                  .drop_duplicates("cnpj_da_revenda", keep="first")
-                  [["cnpj_da_revenda", "municipio", "bandeira", "valor_venda"]]
-                  .rename(columns={"cnpj_da_revenda": "cnpj", "valor_venda": "preco"})
-                  .reset_index(drop=True))
+# Um posto por linha. O preço é a média de todas as coletas do posto no ano, e a
+# bandeira é a mais frequente no ano (alguns postos trocaram de bandeira em 2025).
+cadastro = (etanol.groupby(["cnpj_da_revenda", "municipio"], as_index=False)
+                  .agg(bandeira=("bandeira", lambda b: b.mode().iloc[0]),
+                       preco=("valor_venda", "mean"))
+                  .rename(columns={"cnpj_da_revenda": "cnpj"}))
 N = len(cadastro)
 
 print(f"Cadastro: N = {N} postos de etanol, em {cadastro['municipio'].nunique()} municípios "
@@ -146,11 +149,10 @@ from scipy.stats import norm
 
 anp = pd.read_csv("anp_precos_revenda_ma_2025.csv")
 etanol = anp[anp["produto"] == "ETANOL"].dropna(subset=["valor_venda"])
-cadastro = (etanol.sort_values("mes_arquivo", kind="stable")
-                  .drop_duplicates("cnpj_da_revenda", keep="first")
-                  [["cnpj_da_revenda", "municipio", "bandeira", "valor_venda"]]
-                  .rename(columns={"cnpj_da_revenda": "cnpj", "valor_venda": "preco"})
-                  .reset_index(drop=True))
+cadastro = (etanol.groupby(["cnpj_da_revenda", "municipio"], as_index=False)
+                  .agg(bandeira=("bandeira", lambda b: b.mode().iloc[0]),
+                       preco=("valor_venda", "mean"))
+                  .rename(columns={"cnpj_da_revenda": "cnpj"}))
 N = len(cadastro)
 print(f"Cadastro montado do arquivo local: N = {N} postos")'''
 
@@ -194,7 +196,7 @@ print(f"  (c) {contagem} de {branca.sum():3d} postos de bandeira branca .. "
 print()
 print("O numerador é o mesmo nas três linhas. Qual denominador responde à pergunta?")
 print()
-conferir("bandeira branca no cadastro inteiro", branca.mean() * 100, 46.62,
+conferir("bandeira branca no cadastro inteiro", branca.mean() * 100, 47.30,
          tolerancia=0.01, unidade="%")
 conferir("bandeira branca entre os postos de São Luís",
          contagem / sao_luis.sum() * 100, 39.44, tolerancia=0.01, unidade="%")'''
@@ -202,10 +204,10 @@ conferir("bandeira branca entre os postos de São Luís",
 Q1_GAB = ("Gabarito Q1: a resposta é a linha (a), **39,4%**: 28 dos 71 postos de São Luís. "
           "O denominador é o grupo sobre o qual a pergunta fala (“entre os postos de São "
           "Luís”). A linha (b), 18,9%, divide pelo cadastro inteiro e responde “que parte de "
-          "todos os postos é de bandeira branca em São Luís”; a (c), 40,6%, responde “que "
+          "todos os postos é de bandeira branca em São Luís”; a (c), 40,0%, responde “que "
           "parte dos postos de bandeira branca fica em São Luís”. Frase esperada: “Entre os 71 "
           "postos de São Luís que vendem etanol, 39,4% (28) são de bandeira branca (ANP, SHPC, "
-          "2025).” No cadastro inteiro, a bandeira branca é 46,6% (69 de 148).")
+          "2025).” No cadastro inteiro, a bandeira branca é 47,3% (70 de 148).")
 
 Q2_MD = """### Q2. A medida de posição e a justificativa
 
@@ -219,14 +221,14 @@ print(f"média   = R$ {preco.mean():.4f}")
 print(f"mediana = R$ {preco.median():.4f}")
 print(f"a média fica R$ {preco.mean() - preco.median():.4f} acima da mediana")
 print()
-conferir("média do preço do etanol (R$)", preco.mean(), 4.7826, tolerancia=0.0001, unidade="")
-conferir("mediana do preço do etanol (R$)", preco.median(), 4.69, tolerancia=0.0001, unidade="")'''
+conferir("média do preço do etanol (R$)", preco.mean(), 4.8187, tolerancia=0.0001, unidade="")
+conferir("mediana do preço do etanol (R$)", preco.median(), 4.7140, tolerancia=0.0001, unidade="")'''
 
-Q2_GAB = ("Gabarito Q2: média **R$ 4,7826** e mediana **R$ 4,6900**; a média fica R$ 0,0926 "
+Q2_GAB = ("Gabarito Q2: média **R$ 4,8187** e mediana **R$ 4,7140**; a média fica R$ 0,1047 "
           "acima. A resposta mais forte é a **mediana**: a média acima da mediana sinaliza "
-          "cauda à direita (confirmada na Q4, assimetria 0,75), puxada pelos postos do "
+          "cauda à direita (confirmada na Q4, assimetria 0,94), puxada pelos postos do "
           "interior, mais caros. Aceita-se a média **se** a justificativa declarar a "
-          "assimetria e disser que ela é moderada (CV de 5,8%). Perde ponto quem escolhe sem "
+          "assimetria e disser que ela é moderada (CV de 6,4%). Perde ponto quem escolhe sem "
           "citar os números ou sem dizer o nível da variável.")
 
 Q3_MD = """### Q3. A dispersão
@@ -244,16 +246,16 @@ print(f"quartis .................. Q1 = R$ {q1:.2f} | Q3 = R$ {q3:.2f}")
 print(f"intervalo interquartílico  R$ {q3 - q1:.2f}   (a faixa da metade central dos postos)")
 print(f"mínimo e máximo .......... R$ {preco.min():.2f} a R$ {preco.max():.2f}")
 print()
-conferir("desvio padrão do preço (R$)", desvio, 0.2763, tolerancia=0.0001, unidade="")
-conferir("coeficiente de variação", cv, 5.78, tolerancia=0.005, unidade="%")
-conferir("intervalo interquartílico (R$)", q3 - q1, 0.40, tolerancia=0.0001, unidade="")'''
+conferir("desvio padrão do preço (R$)", desvio, 0.3066, tolerancia=0.0001, unidade="")
+conferir("coeficiente de variação", cv, 6.36, tolerancia=0.005, unidade="%")
+conferir("intervalo interquartílico (R$)", q3 - q1, 0.4025, tolerancia=0.0001, unidade="")'''
 
-Q3_GAB = ("Gabarito Q3: desvio **R$ 0,2763**; CV **5,78%**; IQR **R$ 0,40** (Q1 R$ 4,59, Q3 "
-          "R$ 4,99); amplitude de R$ 4,29 a R$ 5,75. Frase esperada: “a metade central dos "
-          "postos cobra entre R$ 4,59 e R$ 4,99 o litro; o CV de 5,8% indica dispersão baixa "
-          "em relação à média, mas a diferença de R$ 1,46 entre o mais barato e o mais caro é "
+Q3_GAB = ("Gabarito Q3: desvio **R$ 0,3066**, CV **6,36%**, IQR **R$ 0,40** (Q1 R$ 4,59, Q3 "
+          "R$ 4,99), amplitude de R$ 4,39 a R$ 5,75. Frase esperada: “a metade central dos "
+          "postos cobra entre R$ 4,59 e R$ 4,99 o litro. O CV de 6,4% indica dispersão baixa "
+          "em relação à média, mas a diferença de R$ 1,36 entre o mais barato e o mais caro é "
           "relevante para o consumidor.” O CV é a medida para comparar com a gasolina "
-          "(encontro 4), não o desvio.")
+          "(encontro 4), e não o desvio.")
 
 Q4_MD = """### Q4. O gráfico e a forma da distribuição
 
@@ -276,11 +278,12 @@ plt.tight_layout()
 plt.show()
 
 print(f"assimetria = {preco.skew():.2f}")
-conferir("assimetria do preço", preco.skew(), 0.753, tolerancia=0.001, unidade="")'''
+conferir("assimetria do preço", preco.skew(), 0.943, tolerancia=0.001, unidade="")'''
 
-Q4_GAB = ("Gabarito Q4: assimetria **0,753** (0,75), positiva: cauda à direita. A maior parte dos "
-          "postos fica entre R$ 4,50 e R$ 4,80, e um grupo menor, sobretudo do interior, "
-          "chega a R$ 5,00–5,75. É a forma que explica a média acima da mediana na Q2.")
+Q4_GAB = ("Gabarito Q4: assimetria **0,943** (0,94), positiva: cauda à direita. A maior parte "
+          "dos postos fica entre R$ 4,50 e R$ 4,80, e um grupo menor, sobretudo do interior, "
+          "chega a R$ 5,00 e passa disso até R$ 5,75. É a forma que explica a média acima da "
+          "mediana na Q2.")
 
 Q5_MD = """### Q5. A frase de leitura
 
@@ -290,10 +293,10 @@ frequência da Q1, **com a fonte, o recorte, o ano e a unidade**."""
 
 Q5_GAB = ("Gabarito Q5: um parágrafo que use os números certos e diga de onde, de quando e em "
           "que unidade. Exemplo: “Nos 148 postos do Maranhão que vendem etanol no cadastro da "
-          "ANP (SHPC, 2025), o preço mediano foi de R$ 4,69 por litro, com metade dos postos "
-          "entre R$ 4,59 e R$ 4,99. A distribuição tem cauda à direita (assimetria de 0,75), "
-          "o que puxa a média para R$ 4,78. Entre os 71 postos de São Luís, 39,4% são de "
-          "bandeira branca.”")
+          "ANP (SHPC, 2025), o preço mediano do ano foi de R$ 4,71 por litro, com metade dos "
+          "postos entre R$ 4,59 e R$ 4,99. A distribuição tem cauda à direita (assimetria de "
+          "0,94), o que puxa a média para R$ 4,82. Entre os 71 postos de São Luís, 39,4% são "
+          "de bandeira branca.”")
 
 # ------------------------------------------------------------------ Parte 2
 P2_MD = """---
@@ -338,22 +341,22 @@ print(por_estrato.to_string())
 print(f"\\ndesvio do cadastro inteiro: R$ {preco.std():.4f}")
 print()
 conferir("postos na Ilha", por_estrato.loc["Ilha", "postos"], 92, tolerancia=0, unidade=" postos")
-conferir("preço médio na Ilha (R$)", por_estrato.loc["Ilha", "média"], 4.6498,
+conferir("preço médio na Ilha (R$)", por_estrato.loc["Ilha", "média"], 4.6298,
          tolerancia=0.0001, unidade="")
-conferir("preço médio no Interior (R$)", por_estrato.loc["Interior", "média"], 5.0007,
+conferir("preço médio no Interior (R$)", por_estrato.loc["Interior", "média"], 5.1291,
          tolerancia=0.0001, unidade="")'''
 
-Q6_GAB = ("Gabarito Q6: **estratificada**, com dois estratos (Ilha: 92 postos, média R$ 4,6498, "
-          "desvio 0,1828; Interior: 56 postos, média R$ 5,0007, desvio 0,2660) e alocação "
+Q6_GAB = ("Gabarito Q6: **estratificada**, com dois estratos (Ilha: 92 postos, média R$ 4,6298, "
+          "desvio 0,1309; Interior: 56 postos, média R$ 5,1291, desvio 0,2552) e alocação "
           "proporcional. Justificativa: o cadastro traz a variável de estrato (município), os "
-          "grupos são diferentes entre si (R$ 0,35 de diferença de média) e a Ilha, com 62% "
-          "dos postos, é bem mais homogênea por dentro (desvio 0,18 contra 0,28 do cadastro "
+          "grupos são diferentes entre si (R$ 0,50 de diferença de média) e a Ilha, com 62% "
+          "dos postos, é bem mais homogênea por dentro (desvio 0,13 contra 0,31 do cadastro "
           "inteiro). É o caso em que a estratificação garante a representação dos dois "
           "grupos e ganha precisão. "
           "**Conglomerados** (sortear municípios) seria o pior: são só 11, de tamanhos muito "
           "desiguais, e é justamente entre municípios que o preço varia. **Sistemática** sobre "
           "a lista ordenada por município espalha a amostra pelos municípios, como uma "
-          "estratificação implícita (encontro 7), e é aceitável; mas não declara a alocação "
+          "estratificação implícita (encontro 7), e é aceitável, mas não declara a alocação "
           "por estrato que o relatório de sorteio pede. **Aleatória simples** é "
           "aceitável, com a justificativa de que o cadastro é completo, mas perde a garantia "
           "de representar o Interior. Pontua quem justifica pelo formato do cadastro; não "
@@ -379,23 +382,24 @@ print(f"  passo 2: n  = {n0_media:.1f} ÷ (1 + {n0_media - 1:.1f} ÷ {N}) = {n_m
 print(f"  passo 3: arredondando para cima: n = {n_media_final} postos "
       f"({n_media_final / N:.0%} do cadastro)")
 print()
-conferir("n sem correção (média)", np.ceil(n0_media), 118, tolerancia=0, unidade=" postos")
-conferir("n com correção para N = 148 (média)", n_media_final, 66, tolerancia=0,
+conferir("n sem correção (média)", np.ceil(n0_media), 145, tolerancia=0, unidade=" postos")
+conferir("n com correção para N = 148 (média)", n_media_final, 74, tolerancia=0,
          unidade=" postos")'''
 
-Q7_GAB = ("Gabarito Q7: n0 = (1,960 × 0,2763 ÷ 0,05)² = 117,3 → 118; com a correção para N = 148, "
-          "n = 65,7 → **66 postos** (45% do cadastro). Frase esperada: “Para estimar o preço "
-          "médio do etanol com margem de R$ 0,05 e 95% de confiança, sorteiam-se 66 dos 148 "
-          "postos do cadastro (desvio de R$ 0,28; com correção para população finita).” "
-          "Perde ponto quem arredonda para baixo (65).")
+Q7_GAB = ("Gabarito Q7: n0 = (1,960 × 0,3066 ÷ 0,05)² = 144,5 → 145. Com a correção para "
+          "N = 148, n = 73,4 → **74 postos** (50% do cadastro). Frase esperada: “Para estimar o "
+          "preço médio do etanol com margem de R$ 0,05 e 95% de confiança, são precisos 74 dos "
+          "148 postos do cadastro (desvio de R$ 0,31, com correção para população finita).” "
+          "Perde ponto quem arredonda para baixo (73).")
 
 Q8_MD = """### Q8. O tamanho da amostra para a proporção e a decisão
 
 A pergunta secundária é a **proporção de postos de bandeira branca**, com margem de **5 pontos
 percentuais** e 95% de confiança. Use **p = 0,5**.
 
-Responda: (a) **por que p = 0,5**, se a Q1 já mostrou que a proporção é 46,6%?; (b) a pesquisa
-tem as duas perguntas, e as duas pedem um n diferente: **qual n você adota e por quê?**"""
+Responda: (a) **por que p = 0,5**, se a Q1 já mostrou que a proporção é 47,3%? (b) a pesquisa
+tem as duas perguntas, e as duas pedem um n diferente: **qual n você adota e por quê?** O n
+adotado aqui é o que a Q9 vai sortear."""
 
 Q8_COD = '''# CÉLULA Q8: o tamanho da amostra para a proporção.
 P = 0.5
@@ -413,14 +417,14 @@ conferir("n sem correção (proporção)", np.ceil(n0_prop), 385, tolerancia=0, 
 conferir("n com correção para N = 148 (proporção)", n_prop_final, 108, tolerancia=0,
          unidade=" postos")'''
 
-Q8_GAB = ("Gabarito Q8: n0 = 384,1 → 385; com a correção para N = 148, n = 107,0 → **108 "
+Q8_GAB = ("Gabarito Q8: n0 = 384,1 → 385. Com a correção para N = 148, n = 107,0 → **108 "
           "postos**. (a) p = 0,5 é o caso **conservador**: é o valor que maximiza p(1 − p) e, "
-          "portanto, o n; a proporção do cadastro não é conhecida antes de uma pesquisa real, "
-          "e 46,6% daria um n quase igual (p(1 − p) = 0,249). (b) Adota-se o **maior n, 108**: "
-          "ele atende às duas perguntas; com 66, a margem da proporção ficaria acima de 5 p.p. "
-          "Aceita-se 66 só se o estudante declarar que abre mão da margem da pergunta "
-          "secundária. Observação para a correção: a Q9 usa o n da média (66), a pergunta "
-          "principal; quem justificou 108 na Q8 não perde ponto na Q9.")
+          "portanto, o n. A proporção não é conhecida antes de uma pesquisa real, e 47,3% daria "
+          "um n quase igual (p(1 − p) = 0,249). (b) Adota-se o **maior n, 108**: ele atende às "
+          "duas perguntas. Com 108 postos, a margem da média cai para cerca de R$ 0,03, abaixo "
+          "dos R$ 0,05 pedidos, e a da proporção fica nos 5 p.p. Com 74, a margem da proporção "
+          "passaria de 5 p.p. Perde ponto quem adota 74 sem dizer que abre mão da precisão da "
+          "pergunta secundária.")
 
 # ------------------------------------------------------------------ Parte 3
 P3_MD = """---
@@ -429,17 +433,23 @@ P3_MD = """---
 
 ### Q9. O sorteio estratificado proporcional
 
-A célula sorteia a amostra da **pergunta principal** (o n da Q7), estratificada pelos dois
-grupos da Q6, com **alocação proporcional**: cada grupo entra na amostra na proporção que
-tem no cadastro. A semente é a do bloco de configuração.
+A célula sorteia a amostra com o **n adotado na Q8** (108 postos, o que atende às duas
+perguntas), estratificada pelos dois grupos da Q6, com **alocação proporcional**: cada grupo
+entra na amostra na proporção que tem no cadastro, com pelo menos um posto por grupo. A
+estimativa é a **média ponderada** das médias dos dois grupos, com o peso de cada grupo no
+cadastro (92/148 e 56/148). A semente é a do bloco de configuração.
 
 Depois de executar, **preencha o relatório de sorteio** logo abaixo. É ele que garante que
 qualquer pessoa consiga **refazer exatamente o mesmo sorteio**."""
 
-Q9_COD = '''# CÉLULA Q9: o sorteio estratificado proporcional.
-alocacao = (cadastro["estrato"].value_counts(normalize=True) * n_media_final).round().astype(int)
+Q9_COD = '''# CÉLULA Q9: o sorteio estratificado proporcional, com o n adotado na Q8.
+n_adotado = max(n_media_final, n_prop_final)           # o maior n atende às duas perguntas
+peso = cadastro["estrato"].value_counts(normalize=True)  # Nh / N de cada estrato
+alocacao = (peso * n_adotado).round().astype(int).clip(lower=1)
+print(f"n adotado: {n_adotado} postos (média pedia {n_media_final}, proporção pedia {n_prop_final})")
 print("Alocação proporcional:")
 print(pd.DataFrame({"no cadastro": cadastro["estrato"].value_counts(),
+                    "peso": peso.round(3),
                     "na amostra": alocacao}).to_string())
 print(f"total da amostra: {alocacao.sum()} postos")
 print()
@@ -448,11 +458,14 @@ amostra = pd.concat([
     cadastro[cadastro["estrato"] == "Ilha"].sample(n=alocacao["Ilha"], random_state=SEMENTE),
     cadastro[cadastro["estrato"] == "Interior"].sample(n=alocacao["Interior"], random_state=SEMENTE),
 ])
-estimativa = amostra["preco"].mean()
+media_por_estrato = amostra.groupby("estrato")["preco"].mean()
+estimativa = (media_por_estrato * peso).sum()          # média ponderada pelos pesos do cadastro
 erro = estimativa - preco.mean()
 
+print("média de cada estrato na amostra:")
+print(media_por_estrato.round(4).to_string())
 print(f"semente do sorteio ........ {SEMENTE}")
-print(f"estimativa da amostra ..... R$ {estimativa:.4f}")
+print(f"estimativa ponderada ...... R$ {estimativa:.4f}")
 print(f"valor verdadeiro .......... R$ {preco.mean():.4f}   (conhecido só porque o cadastro é a população)")
 print(f"erro de amostragem ........ {erro:+.4f}")
 print(f"dentro da margem de R$ {MARGEM:.2f}? {'sim' if abs(erro) <= MARGEM else 'não'}")
@@ -460,18 +473,21 @@ print()
 print("Os cinco primeiros postos sorteados (o CNPJ é o identificador):")
 print(amostra.head().to_string(index=False))
 print()
-conferir("tamanho da amostra sorteada", len(amostra), 66, tolerancia=0, unidade=" postos")
-conferir("postos sorteados na Ilha", alocacao["Ilha"], 41, tolerancia=0, unidade=" postos")
-conferir("postos sorteados no Interior", alocacao["Interior"], 25, tolerancia=0,
+conferir("tamanho da amostra sorteada", len(amostra), 108, tolerancia=0, unidade=" postos")
+conferir("postos sorteados na Ilha", alocacao["Ilha"], 67, tolerancia=0, unidade=" postos")
+conferir("postos sorteados no Interior", alocacao["Interior"], 41, tolerancia=0,
          unidade=" postos")'''
 
-Q9_GAB = ("Gabarito Q9: n = 66, com **41 na Ilha e 25 no Interior** (92/148 e 56/148 de 66). "
-          "Com a semente 2026, a estimativa é R$ 4,7980 (erro +0,0155), dentro da margem; com "
-          "outra semente o número muda, e é por isso que a semente vai no relatório. O "
-          "relatório nota cheia tem os oito campos preenchidos, com a fonte e a data do "
-          "cadastro, a técnica e os estratos, o n e a fórmula que o gerou, a semente, a "
-          "alocação, a estimativa e o erro, e a frase sobre o que o sorteio autoriza concluir "
-          "(o cadastro da ANP, e não todos os postos do Maranhão).")
+Q9_GAB = ("Gabarito Q9: n = 108 (o n da Q8), com **67 na Ilha e 41 no Interior** (92/148 e "
+          "56/148 de 108). A estimativa é a média ponderada: 92/148 × média da Ilha + 56/148 × "
+          "média do Interior. Com a semente 2026, ela é R$ 4,8243 (erro +0,0056), dentro da "
+          "margem. Em 1.000 sementes, o erro padrão da estimativa é R$ 0,0093 e todas ficam a "
+          "menos de R$ 0,05 do valor verdadeiro. Com outra semente o número muda, e é por isso "
+          "que a semente vai no relatório. O relatório nota cheia tem os oito campos "
+          "preenchidos: a fonte e a data do cadastro, a técnica e os estratos, o n e a fórmula "
+          "que o gerou, a semente, a alocação, a estimativa ponderada e o erro, e a frase sobre "
+          "o que o sorteio autoriza concluir (o cadastro da ANP, e não todos os postos do "
+          "Maranhão).")
 
 RELATORIO = """**Relatório de sorteio**: preencha a segunda coluna
 
@@ -480,10 +496,10 @@ RELATORIO = """**Relatório de sorteio**: preencha a segunda coluna
 | 1. Cadastro (fonte, ano, N) | |
 | 2. População-alvo e a diferença para o cadastro | |
 | 3. Técnica e estratos | |
-| 4. Tamanho da amostra e de onde ele saiu | |
+| 4. Tamanho da amostra e de onde ele saiu (Q7 e Q8) | |
 | 5. Semente | |
 | 6. Alocação por estrato | |
-| 7. Estimativa e erro de amostragem | |
+| 7. Estimativa ponderada e erro de amostragem | |
 | 8. O que este sorteio autoriza concluir e o que não autoriza | |
 
 ---

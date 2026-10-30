@@ -6,12 +6,14 @@ municipio e bandeira). E o unico cadastro de estabelecimentos que a disciplina t
 maos e serve para ensinar sorteio com dado real.
 
   N = 236 postos unicos | 11 municipios | 9 bandeiras
-  populacao: media R$ 6,0087 | desvio R$ 0,3402
+  cadastro: um registro por posto, com o preco medio do ano (media das coletas de 2025)
+  populacao: media R$ 5,9744 | desvio R$ 0,3755
   amostras de n=100 (o deck mostra estes numeros na tela "No Colab"):
-    aleatoria simples (semente 2025)      R$ 5,9753  erro -0,0334
-    sistematica, passo 2,36 (semente 2025) R$ 5,9929  erro -0,0158
-    estratificada por municipio (frac)     R$ 6,0129  erro +0,0042  (99 postos)
-    conveniencia, os 100 primeiros         R$ 6,1306  erro +0,1219  (25% de Sao Luis, contra 43%)
+    aleatoria simples (semente 2025)      R$ 5,9708  erro -0,0036
+    sistematica, passo 2,36 (semente 2025) R$ 5,9636  erro -0,0108
+    estratificada por municipio            R$ 5,9935  erro +0,0191  (100 postos, minimo 1 por
+                                           municipio, media ponderada por Nh/N)
+    conveniencia, os 100 primeiros         R$ 6,0795  erro +0,1051  (34% de Sao Luis, contra 43%)
 
 A sistematica percorre a lista inteira com passo fracionario (N / n). A versao anterior
 arredondava o passo para baixo e parava no n-esimo posto, e o fim da lista nunca entrava.
@@ -54,7 +56,7 @@ pesquisa todo mês, cada posto com CNPJ, município e bandeira.
 | **O que é** | O **cadastro** de postos: um registro por posto, com CNPJ e município |
 | **Recorte** | Maranhão, 2025, gasolina comum |
 | **População do exercício** | **236 postos**, em 11 municípios |
-| **Unidade** | R$ por litro (o preço do posto no primeiro mês em que ele aparece na pesquisa) |
+| **Unidade** | R$ por litro (o preço médio do posto no ano: a média das coletas de 2025) |
 
 > **O que a disciplina faz com esta base hoje** é o que se faz com um cadastro de
 > empresas: **sortear**. E o que se aprende aqui vale para qualquer cadastro: o CEMPRE,
@@ -98,15 +100,13 @@ anp = anp.rename(columns={"Municipio": "municipio", "CNPJ da Revenda": "cnpj",
                           "Bandeira": "bandeira"})
 anp["valor_venda"] = pd.to_numeric(anp["valor_venda"], errors="coerce")
 
-# O CADASTRO: um registro por posto, com o preço do primeiro mês em que aparece.
-# A chave é o CNPJ, e não a combinação de município e bandeira, que muda de grafia
-# entre os arquivos e criaria postos duplicados no cadastro.
+# O CADASTRO: um registro por posto, com o preço médio do ano (a média de todas as
+# coletas do posto em 2025). A chave é o CNPJ, e não a combinação de município e
+# bandeira, que muda de grafia entre os arquivos e criaria postos duplicados.
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes")
-               .drop_duplicates("cnpj", keep="first")
-               [["cnpj", "municipio", "bandeira", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco_medio"})
-               .reset_index(drop=True))
+cadastro = (gas.groupby("cnpj", as_index=False)
+               .agg(municipio=("municipio", "first"), bandeira=("bandeira", "first"),
+                    preco_medio=("valor_venda", "mean")))
 
 N = len(cadastro)
 print(f"CADASTRO montado: {N} postos, em {cadastro['municipio'].nunique()} municípios")
@@ -122,12 +122,11 @@ import pandas as pd
 
 anp = pd.read_csv("anp_precos_revenda_ma_2025.csv")
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes_arquivo")
-               .drop_duplicates("cnpj_da_revenda", keep="first")
-               [["cnpj_da_revenda", "municipio", "bandeira", "valor_venda"]]
-               .rename(columns={"cnpj_da_revenda": "cnpj",
-                                "valor_venda": "preco_medio"})
-               .reset_index(drop=True))
+# um registro por posto, com o preço médio do ano (a média das coletas de 2025)
+cadastro = (gas.groupby("cnpj_da_revenda", as_index=False)
+               .agg(municipio=("municipio", "first"), bandeira=("bandeira", "first"),
+                    preco_medio=("valor_venda", "mean"))
+               .rename(columns={"cnpj_da_revenda": "cnpj"}))
 N = len(cadastro)
 print(f"CADASTRO montado do arquivo local: {N} postos")
 cadastro.head(4)'''
@@ -195,8 +194,8 @@ print(f"Erro de amostragem = {erro:+.4f}")
 print()
 print("A estimativa NÃO é o valor verdadeiro: ela erra. E é isso que se mede.")
 
-conferir("média da população", parametro, 6.0087, tolerancia=0.001, unidade=" R$")
-conferir("média da amostra de 100", estimativa, 5.9753, tolerancia=0.001, unidade=" R$")'''},
+conferir("média da população", parametro, 5.9744, tolerancia=0.001, unidade=" R$")
+conferir("média da amostra de 100", estimativa, 5.9708, tolerancia=0.001, unidade=" R$")'''},
 
     {"tipo": "md", "texto": """### As três técnicas, lado a lado
 
@@ -221,8 +220,14 @@ partida = np.random.default_rng(2025).uniform(0, k)
 posicoes = np.floor(partida + k * np.arange(N_AMOSTRA)).astype(int)
 sist = cadastro.iloc[posicoes]
 
-# 3. estratificada: a mesma fração de postos dentro de cada município
-estrat = cadastro.groupby("municipio").sample(frac=N_AMOSTRA / N, random_state=1)
+# 3. estratificada: alocação proporcional por município, com pelo menos 1 posto em
+#    cada estrato, e estimativa ponderada pelo peso do município no cadastro (Nh / N)
+peso = cadastro["municipio"].value_counts() / N
+alocacao = (peso * N_AMOSTRA).round().astype(int).clip(lower=1)
+alocacao[alocacao.idxmax()] += N_AMOSTRA - alocacao.sum()   # o total fecha em N_AMOSTRA
+estrat = pd.concat([d.sample(n=alocacao[m], random_state=1)
+                    for m, d in cadastro.groupby("municipio")])
+media_estrat = (estrat.groupby("municipio")["preco_medio"].mean() * peso).sum()
 
 print(f"PARÂMETRO (a verdade): R$ {parametro:.4f}")
 print()
@@ -230,14 +235,14 @@ print(f"  aleatória simples  n={len(aas):3d}  estimativa = R$ {aas['preco_medio
       f"erro = {aas['preco_medio'].mean() - parametro:+.4f}")
 print(f"  sistemática (k={k:.2f}) n={len(sist):3d}  estimativa = R$ {sist['preco_medio'].mean():.4f}  "
       f"erro = {sist['preco_medio'].mean() - parametro:+.4f}")
-print(f"  estratificada      n={len(estrat):3d}  estimativa = R$ {estrat['preco_medio'].mean():.4f}  "
-      f"erro = {estrat['preco_medio'].mean() - parametro:+.4f}")
+print(f"  estratificada      n={len(estrat):3d}  estimativa = R$ {media_estrat:.4f}  "
+      f"erro = {media_estrat - parametro:+.4f}  (média ponderada por Nh/N)")
 print()
 print("As três estimativas são diferentes e as três erram um pouco.")
 print("É isso que a margem de erro de uma pesquisa mede.")
 
-conferir("estimativa da sistemática", sist["preco_medio"].mean(), 5.9929, tolerancia=0.001, unidade=" R$")
-conferir("estimativa da estratificada", estrat["preco_medio"].mean(), 6.0129, tolerancia=0.001, unidade=" R$")'''},
+conferir("estimativa da sistemática", sist["preco_medio"].mean(), 5.9636, tolerancia=0.001, unidade=" R$")
+conferir("estimativa da estratificada", media_estrat, 5.9935, tolerancia=0.001, unidade=" R$")'''},
 
     {"tipo": "code", "texto": '''# A amostra por conveniência: pegar os primeiros da lista, sem sortear.
 conveniencia = cadastro.head(N_AMOSTRA)
@@ -250,18 +255,18 @@ fatia = (conveniencia["municipio"] == "SAO LUIS").mean()
 fatia_pop = (cadastro["municipio"] == "SAO LUIS").mean()
 print(f"  São Luís na conveniência: {fatia:.0%} dos postos | no cadastro: {fatia_pop:.0%}")
 print()
-print("Repare no erro. Os primeiros da lista têm poucos postos de São Luís, onde a")
+print("Repare no erro. Os primeiros da lista têm menos postos de São Luís, onde a")
 print("gasolina é mais barata, e o preço sobe. O erro da conveniência é o maior dos quatro")
 print("e ele NÃO é aleatório: é um viés, e viés não se conserta aumentando a amostra.")
 
-conferir("estimativa da conveniência", conveniencia["preco_medio"].mean(), 6.1306, tolerancia=0.001, unidade=" R$")'''},
+conferir("estimativa da conveniência", conveniencia["preco_medio"].mean(), 6.0795, tolerancia=0.001, unidade=" R$")'''},
 
     {"tipo": "code", "texto": '''# As quatro estimativas em uma figura, com o valor verdadeiro ao lado.
 import matplotlib.pyplot as plt
 
 nomes = ["aleatória simples", "sistemática", "estratificada", "conveniência"]
 valores = [aas["preco_medio"].mean(), sist["preco_medio"].mean(),
-           estrat["preco_medio"].mean(), conveniencia["preco_medio"].mean()]
+           media_estrat, conveniencia["preco_medio"].mean()]
 cores = ["#8D0333", "#a67c2e", "#0AB0AB", "#5a5a5a"]
 
 fig, ax = plt.subplots(figsize=(9, 3.6))
@@ -280,8 +285,8 @@ plt.show()'''},
     {"tipo": "md", "texto": """**A frase que vai para o relatório**
 
 > "Sobre um cadastro de **236 postos** de combustível do Maranhão, cujo preço médio é
-> **R$ 6,01**, uma amostra aleatória simples de 100 postos estimou o preço médio em
-> **R$ 5,98**, um erro de amostragem de **−R$ 0,03**, ou 0,6% do valor verdadeiro
+> **R$ 5,97**, uma amostra aleatória simples de 100 postos estimou o preço médio em
+> **R$ 5,971**, um erro de amostragem de **−R$ 0,004**, ou 0,06% do valor verdadeiro
 > (ANP, SHPC, 2025)."
 
 **O que essa frase não diz.** Que a amostra "acertou". Ela errou, e o erro está declarado.

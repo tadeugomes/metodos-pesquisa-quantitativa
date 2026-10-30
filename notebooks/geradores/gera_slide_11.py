@@ -59,7 +59,7 @@ SECOES = [
             """, "falar"),
             ("A retomada começa pela pergunta que ficou", """
             <p>Projetar a tela 3 e pôr a pergunta para a turma: <em>“contra R$ 6,00 o teste não
-            rejeitou H0, mas a média verdadeira é R$ 6,0087. O teste errou?”</em> Deixar a
+            rejeitou H0, mas a média verdadeira é R$ 5,9744. O teste errou?”</em> Deixar a
             turma votar: sim ou não. As duas respostas têm razão em parte, e a Parte 1 vai
             mostrar por quê: tecnicamente é um erro tipo II, e é um erro que não importa.</p>
             """, "pergunta-aula"),
@@ -92,22 +92,23 @@ SECOES = [
             mostrar cada número, pedir o palpite:</p>
             <ul>
               <li><em>“Com H0 verdadeira e α de 5%, quantas de mil amostras vão rejeitar?”</em>
-              Resposta: 41 (4,1%), perto dos 50 prometidos.</li>
-              <li><em>“Com H0 falsa por menos de 1 centavo, quantas vão rejeitar?”</em>
-              Resposta: 3,4%. O teste quase nunca percebe, e não precisa.</li>
-              <li><em>“Com H0 falsa por 9 centavos, quantos postos são precisos para o teste
-              perceber em 80% das vezes?”</em> Resposta: cerca de 100.</li>
+              Resposta: 60 (6,0%), perto dos 50 prometidos, dentro da folga de mil amostras.</li>
+              <li><em>“Com H0 falsa por menos de 3 centavos, quantas vão rejeitar?”</em>
+              Resposta: 9,0%. O teste quase nunca percebe, e não precisa.</li>
+              <li><em>“Com H0 falsa por 11 centavos, quantos postos são precisos para o teste
+              perceber em 80% das vezes?”</em> Resposta: cerca de 90.</li>
             </ul>
             <p>A curva da tela 7 mostra o caminho inteiro, de 10 a 160 postos: o poder passa de
-            80% perto dos 100 postos e chega a 99,5% com 160. A figura da tela 8 dá a imagem
+            80% perto dos 90 postos e chega a 99,6% com 160. A figura da tela 8 dá a imagem
             da troca: a linha de decisão separa α (vinho) de β (dourado), e só curvas mais
             afastadas ou mais estreitas reduzem os dois.</p>
             """, "pergunta-aula"),
-            ("Por que 4,1% e não exatamente 5%", """
-            <p>Se perguntarem: é o mesmo efeito dos 95,9% de cobertura do encontro 10. Trinta
-            postos são 13% de um cadastro pequeno, e o teste sem correção para população
-            finita fica um pouco conservador. Em um cadastro grande, a taxa ficaria colada em
-            5%.</p>
+            ("Por que 6,0% e não exatamente 5%", """
+            <p>Se perguntarem: mil amostras medem a taxa com folga de cerca de 1,4 ponto para
+            cada lado (duas vezes √(0,05 × 0,95 ÷ 1.000)), e 6,0% está dentro dela. Com 20 mil
+            amostras a taxa fica em 4,4%, um pouco abaixo de 5%: trinta postos são 13% de um
+            cadastro pequeno, e o teste sem a correção para população finita do encontro 8
+            fica um pouco conservador. Em um cadastro grande, a taxa ficaria colada em 5%.</p>
             """, "falar"),
             ("Erros que vão aparecer na turma", """
             <ol>
@@ -144,14 +145,14 @@ SECOES = [
             ("Gabarito da Parte 1", """
             <table>
               <tr><th>Simulação (1.000 amostras de 30, sementes 0 a 999, α = 5%)</th><th>Resultado</th></tr>
-              <tr><td>H0 verdadeira (μ = 6,0087): rejeições</td><td>41 = 4,1% (erro tipo I)</td></tr>
-              <tr><td>H0: μ = 6,00 (falsa por menos de 1 centavo)</td><td>3,4% de rejeições; β = 96,6%</td></tr>
-              <tr><td>H0: μ = 6,10, poder com n = 10</td><td>17,6% (β = 82,4%)</td></tr>
-              <tr><td>H0: μ = 6,10, poder com n = 30</td><td>32,0% (β = 68,0%)</td></tr>
-              <tr><td>H0: μ = 6,10, poder com n = 50</td><td>45,9% (β = 54,1%)</td></tr>
-              <tr><td>H0: μ = 6,10, poder com n = 100</td><td>81,0% (β = 19,0%)</td></tr>
-              <tr><td>H0: μ = 6,10, poder com n = 120 e 160 (curva da tela 7)</td><td>90,6% e 99,5%</td></tr>
-              <tr><td>Tarefa: erro tipo I com <code>N_AMOSTRA = 100</code></td><td>1,1% (100 postos são 42% do cadastro)</td></tr>
+              <tr><td>H0 verdadeira (μ = 5,9744): rejeições</td><td>60 = 6,0% (erro tipo I); com 20 mil amostras, 4,4%</td></tr>
+              <tr><td>H0: μ = 6,00 (falsa por menos de 3 centavos)</td><td>9,0% de rejeições; β = 91,0%</td></tr>
+              <tr><td>H0: μ = 6,08, poder com n = 10</td><td>18,5% (β = 81,5%)</td></tr>
+              <tr><td>H0: μ = 6,08, poder com n = 30</td><td>33,8% (β = 66,2%)</td></tr>
+              <tr><td>H0: μ = 6,08, poder com n = 50</td><td>50,2% (β = 49,8%)</td></tr>
+              <tr><td>H0: μ = 6,08, poder com n = 100</td><td>85,0% (β = 15,0%)</td></tr>
+              <tr><td>H0: μ = 6,08, poder com n = 120 e 160 (curva da tela 7)</td><td>92,5% e 99,6%</td></tr>
+              <tr><td>Tarefa: erro tipo I com <code>N_AMOSTRA = 100</code></td><td>1,2% (100 postos são 42% do cadastro)</td></tr>
             </table>
             """, "gabarito"),
         ],
@@ -204,7 +205,7 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>Usar o t de duas amostras em dados pareados.</strong> É o erro da tela
-              25: com o mesmo dado, t = 32,79 em vez de 56,72.</li>
+              25: com o mesmo dado, t = 27,92 em vez de 66,27.</li>
               <li><strong>Rodar o qui-quadrado com célula esperada menor que 5.</strong> Foi
               por isso que o exemplo usa os cinco maiores setores; com oito setores, o menor
               esperado cai para 4,3.</li>
@@ -218,21 +219,22 @@ SECOES = [
             <table>
               <tr><th>Teste</th><th>Números</th></tr>
               <tr><td>t de uma amostra: razão etanol/gasolina, H0 = 0,70</td>
-                  <td>148 postos; média 0,8007 (mín. 0,7013); t = 34,14; gl = 147; p &lt; 0,0001;
+                  <td>148 postos; média 0,8098 (mín. 0,7298); t = 47,84; gl = 147; p &lt; 0,0001;
                   nenhum posto a 70% ou menos</td></tr>
               <tr><td>t de Welch: São Luís × demais</td>
-                  <td>101 × 135 postos; 5,8000 × 6,1649; diferença −0,3649; EP 0,0346;
-                  t = −10,56; gl = 199,0; p &lt; 0,0001</td></tr>
+                  <td>101 × 135 postos; 5,7189 × 6,1656; diferença −0,4467; EP 0,0355;
+                  t = −12,59; gl = 168,3; p &lt; 0,0001</td></tr>
               <tr><td>t pareado: gasolina × etanol</td>
-                  <td>148 pares; 5,9786 × 4,7826; diferença 1,1960 (desvio 0,2565; EP 0,0211);
-                  t = 56,72; gl = 147; p &lt; 0,0001. Tratado como independente: t = 32,79</td></tr>
+                  <td>148 pares (médias do ano por posto); 5,9546 × 4,8187; diferença 1,1359
+                  (desvio 0,2085; EP 0,0171); t = 66,27; gl = 147; p &lt; 0,0001. Tratado como
+                  independente: t = 27,92</td></tr>
               <tr><td>χ² de independência: setor × prejuízo</td>
                   <td>159 companhias, 5 setores; prejuízo de 16,7% a 42,9%; χ² = 4,388; gl = 4;
                   p = 0,3561; menor esperado 5,94 → não rejeita</td></tr>
               <tr><td>χ² de aderência: amostra × cadastro, por região</td>
-                  <td>proporções 42,8 / 12,7 / 11,4 / 33,1%. Sorteada [44, 10, 10, 36]:
-                  χ² = 1,057; p = 0,7875. Conveniência [25, 9, 17, 49]: χ² = 18,882;
-                  p = 0,0003</td></tr>
+                  <td>proporções 42,8 / 12,7 / 11,4 / 33,1%. Sorteada [40, 15, 11, 34]:
+                  χ² = 0,639; p = 0,8875. Conveniência, os 100 primeiros em ordem de CNPJ
+                  [34, 4, 27, 35]: χ² = 29,054; p &lt; 0,0001</td></tr>
             </table>
             """, "gabarito"),
         ],
@@ -313,8 +315,8 @@ SECOES = [
             ("Os aprendizados do dia", """
             <ol>
               <li><strong>Todo teste pode errar de dois jeitos</strong>, e os dois se contam:
-              4,1% de alarmes falsos para α de 5%.</li>
-              <li><strong>O poder se compra com n</strong>: de 17,6% a 81,0% contra a mesma
+              6,0% de alarmes falsos para α de 5% em mil amostras.</li>
+              <li><strong>O poder se compra com n</strong>: de 18,5% a 85,0% contra a mesma
               diferença, de 10 para 100 postos.</li>
               <li><strong>O teste se escolhe pelo fluxograma</strong>: o que se compara, quantos
               grupos, se os casos são os mesmos.</li>
@@ -332,8 +334,9 @@ SECOES = [
               <li>Se a sua base tem três ou mais grupos, anote quais são: é a ANOVA do próximo
               encontro.</li>
               <li>No notebook, mude <code>N_AMOSTRA</code> para 100 e anote a taxa de erro tipo
-              I. Ela cai para 1,1%, mais longe dos 5% do que com 30 postos. Por quê? (Dica: que
-              fração do cadastro são 100 postos? É o mesmo motivo do 4,1%.)</li>
+              I. Ela cai para 1,2%, mais longe dos 5% do que com 30 postos. Por quê? (Dica: que
+              fração do cadastro são 100 postos? É a correção para população finita do
+              encontro 8.)</li>
             </ol>
             <p>O próximo encontro fecha o Módulo III: <strong>ANOVA</strong> e os testes para
             quando o t não cabe (<strong>Mann-Whitney e Wilcoxon</strong>), com revisão

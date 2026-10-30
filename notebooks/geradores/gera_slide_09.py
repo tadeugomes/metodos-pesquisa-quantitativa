@@ -59,14 +59,10 @@ SECOES = [
               <code>[ok]</code> dos 148 postos.</li>
               <li>Tenha à mão o arquivo <code>dados/anp_precos_revenda_ma_2025.csv</code>: se a
               CÉLULA A falhar no laboratório, a turma faz upload e executa a CÉLULA B.</li>
-              <li>O cadastro do notebook usa <code>sort_values(..., kind="stable")</code>: o
-              registro que fica para cada posto é o mesmo em qualquer versão do pandas, e os
-              <code>conferir</code> valem no Colab. Os números do gabarito já são os dessa
-              versão.</li>
-              <li>O cadastro do notebook usa <code>sort_values(..., kind="stable")</code>: o
-              registro que fica para cada posto é o mesmo em qualquer versão do pandas, e os
-              <code>conferir</code> do gabarito valem no Colab. Os números abaixo já são os
-              dessa versão.</li>
+              <li>O cadastro do notebook tem um posto por linha: o preço é a média de todas as
+              coletas do posto em 2025 e a bandeira é a mais frequente no ano. A regra não
+              depende da ordem dos registros, e os <code>conferir</code> valem em qualquer
+              versão do pandas.</li>
             </ol>
             """, "falar"),
             ("As regras de IA, anunciadas na abertura", """
@@ -110,18 +106,19 @@ SECOES = [
             <table>
               <tr><th>Questão</th><th>Resposta esperada</th></tr>
               <tr><td>Cadastro</td><td>148 postos de etanol, 11 municípios, 8 bandeiras (ANP, SHPC, 2025)</td></tr>
-              <tr><td>Q1 frequência</td><td><strong>39,4%</strong>: 28 dos 71 postos de São Luís são de bandeira branca (linha a). As outras divisões: 18,9% (28 de 148, o cadastro inteiro) e 40,6% (28 de 69, os de bandeira branca). No cadastro inteiro, bandeira branca é 46,6% (69 de 148)</td></tr>
-              <tr><td>Q2 posição</td><td>Média R$ 4,7826; mediana R$ 4,6900 (a média R$ 0,0926 acima). Resposta mais forte: <strong>mediana</strong>, pela cauda à direita; aceita-se a média se a assimetria for declarada</td></tr>
-              <tr><td>Q3 dispersão</td><td>Desvio R$ 0,2763; CV 5,78%; Q1 R$ 4,59 e Q3 R$ 4,99; IQR R$ 0,40; de R$ 4,29 a R$ 5,75</td></tr>
-              <tr><td>Q4 forma</td><td>Assimetria 0,753: cauda à direita, puxada pelos postos do interior</td></tr>
+              <tr><td>Q1 frequência</td><td><strong>39,4%</strong>: 28 dos 71 postos de São Luís são de bandeira branca (linha a). As outras divisões: 18,9% (28 de 148, o cadastro inteiro) e 40,0% (28 de 70, os de bandeira branca). No cadastro inteiro, bandeira branca é 47,3% (70 de 148)</td></tr>
+              <tr><td>Q2 posição</td><td>Média R$ 4,8187, mediana R$ 4,7140 (a média fica R$ 0,1047 acima). Resposta mais forte: <strong>mediana</strong>, pela cauda à direita. Aceita-se a média se a assimetria for declarada</td></tr>
+              <tr><td>Q3 dispersão</td><td>Desvio R$ 0,3066, CV 6,36%, Q1 R$ 4,59 e Q3 R$ 4,99, IQR R$ 0,40, de R$ 4,39 a R$ 5,75</td></tr>
+              <tr><td>Q4 forma</td><td>Assimetria 0,943: cauda à direita, puxada pelos postos do interior</td></tr>
               <tr><td>Q5 frase</td><td>Um parágrafo com a mediana, a faixa interquartílica, a forma e a Q1, com fonte, recorte, ano e unidade</td></tr>
-              <tr><td>Q6 técnica</td><td><strong>Estratificada</strong> por Ilha (São Luís e São José de Ribamar: 92 postos, média R$ 4,6498, desvio 0,1828) e Interior (56 postos, média R$ 5,0007, desvio 0,2660). Conglomerados é a pior escolha: 11 municípios desiguais, e o preço varia justamente entre eles. Sistemática sobre a lista ordenada por município é aceitável (estratificação implícita, encontro 7), mas não declara a alocação por estrato</td></tr>
-              <tr><td>Q7 n da média</td><td>±R$ 0,05, 95%: n<sub>0</sub> = 117,3 → 118; com a correção para N = 148: 65,7 → <strong>66 postos</strong></td></tr>
-              <tr><td>Q8 n da proporção</td><td>±5 p.p., 95%, p = 0,5: n<sub>0</sub> = 384,1 → 385; corrigido: 107,0 → <strong>108 postos</strong>. Adota-se o maior n (108), que atende às duas perguntas</td></tr>
-              <tr><td>Q9 sorteio</td><td>Estratificada proporcional com n = 66: <strong>41 na Ilha e 25 no Interior</strong>. Com a semente 2026: estimativa R$ 4,7980, erro +0,0155, dentro da margem</td></tr>
+              <tr><td>Q6 técnica</td><td><strong>Estratificada</strong> por Ilha (São Luís e São José de Ribamar: 92 postos, média R$ 4,6298, desvio 0,1309) e Interior (56 postos, média R$ 5,1291, desvio 0,2552). Conglomerados é a pior escolha: 11 municípios desiguais, e o preço varia justamente entre eles. Sistemática sobre a lista ordenada por município é aceitável (estratificação implícita, encontro 7), mas não declara a alocação por estrato</td></tr>
+              <tr><td>Q7 n da média</td><td>±R$ 0,05, 95%: n<sub>0</sub> = 144,5 → 145. Com a correção para N = 148: 73,4 → <strong>74 postos</strong></td></tr>
+              <tr><td>Q8 n da proporção</td><td>±5 p.p., 95%, p = 0,5: n<sub>0</sub> = 384,1 → 385. Corrigido: 107,0 → <strong>108 postos</strong>. Adota-se o maior n (108), que atende às duas perguntas: com ele a margem da média cai para cerca de R$ 0,03</td></tr>
+              <tr><td>Q9 sorteio</td><td>Estratificada proporcional com o n da Q8 (108): <strong>67 na Ilha e 41 no Interior</strong>. Estimativa ponderada pelos pesos 92/148 e 56/148. Com a semente 2026: R$ 4,8243, erro +0,0056, dentro da margem. Em 1.000 sementes, erro padrão de R$ 0,0093</td></tr>
             </table>
-            <p>A Q9 usa o n da pergunta principal (66). Quem justificou 108 na Q8 não perde ponto
-            na Q9: a pergunta da Q8 é a decisão, e a da Q9 é o sorteio reprodutível.</p>
+            <p>A Q9 sorteia com o n adotado na Q8. Quem adotou 74 na Q8 e declarou que abria mão
+            da margem da proporção não perde ponto na Q9: o sorteio é o mesmo para todos, e a
+            decisão é avaliada na Q8.</p>
             """, "gabarito"),
             ("Erros que vão aparecer e quanto custam", """
             <ol>
@@ -130,7 +127,7 @@ SECOES = [
               <li><strong>Escolher a técnica pela fama</strong> (“a estratificada é a mais
               precisa”) sem citar o município e os números da Q6. Técnica certa, justificativa
               errada: nota parcial.</li>
-              <li><strong>Arredondar o n para baixo</strong> (65 em vez de 66).</li>
+              <li><strong>Arredondar o n para baixo</strong> (73 em vez de 74).</li>
               <li><strong>Relatório de sorteio sem a semente</strong>, ou sem dizer o que o
               sorteio não autoriza concluir (o cadastro da ANP não é o universo dos postos do
               Maranhão).</li>
@@ -149,7 +146,7 @@ SECOES = [
               <li>O notebook <strong>tem saídas</strong> e todos os <code>conferir</code> estão em
               <code>[ok]</code>.</li>
               <li>O <strong>relatório de sorteio</strong> tem os oito campos, com a semente e a
-              alocação (41 e 25 com a semente do enunciado).</li>
+              alocação (67 e 41).</li>
               <li>O <strong>registro de IA</strong> está preenchido, ou marcado como “não
               usei”, e o link foi compartilhado.</li>
             </ol>

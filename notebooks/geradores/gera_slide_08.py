@@ -90,7 +90,7 @@ SECOES = [
             acertou?”</em>. A turma aposta na maior. A resposta, a menor, é o argumento mais
             forte do semestre contra “amostra boa é amostra grande”.</p>
             <p>Feche ligando ao encontro 7 (tela 10 de lá): os 50 primeiros postos da lista, por
-            conveniência, erraram R$ 0,24, sempre para o mesmo lado e quase seis erros padrão longe
+            conveniência, erraram R$ 0,17, sempre para o mesmo lado e mais de três erros padrão longe
             do valor verdadeiro, enquanto as quatro técnicas sorteadas se centraram nele. É o
             mesmo fenômeno de 1936, em escala de sala de aula.</p>
             """, "pergunta-aula"),
@@ -157,12 +157,12 @@ SECOES = [
             """, "pergunta-aula"),
             ("O mistério do encontro 7, resolvido", """
             <p>O encontro 7 (tela 18) deixou uma pergunta aberta: a largura observada das mil médias
-            (R$ 0,0418) saiu 13% menor que a da fórmula (R$ 0,0481), e por isso 74,8% e 98,2% das
+            (R$ 0,0482) saiu 9% menor que a da fórmula (R$ 0,0531), e por isso 72,1% e 97,1% das
             médias caíram a 1 e a 2 erros padrão, contra 68,3% e 95,4% da regra. A explicação é a
             <strong>correção para população finita</strong>: 50 postos são 21% do cadastro, e o
-            fator √((236 − 50) ÷ 235) = 0,8897 leva o erro padrão a R$ 0,0428, a 2% da largura
-            observada. Com ele, as faixas passam a 69,2% e 95,9%, e a margem a 95% cai de
-            R$ 0,0943 para R$ 0,0839, com 95,6% das amostras dentro. A promessa era 95%.</p>
+            fator √((236 − 50) ÷ 235) = 0,8897 leva o erro padrão a R$ 0,0472, a 2% da largura
+            observada. Com ele, as faixas passam a 66,5% e 95,7%, e a margem a 95% cai de
+            R$ 0,1041 para R$ 0,0926, com 95,3% das amostras dentro. A promessa era 95%.</p>
             <p>A tela 20 mostra as duas leituras lado a lado: a do erro padrão (a pergunta do
             encontro 7) e a da margem (a de hoje).</p>
             <p>Vale a frase: <em>“quando a amostra é uma fatia grande da população, ela varia
@@ -172,7 +172,7 @@ SECOES = [
             <ol>
               <li><strong>Escolher o n como porcentagem da população.</strong> É o erro do
               slide: gasta demais no cadastro grande e sorteia de menos no pequeno;</li>
-              <li><strong>Arredondar para baixo.</strong> 101,7 vira 102, e não 101: com menos,
+              <li><strong>Arredondar para baixo.</strong> 113,2 vira 114, e não 113: com menos,
               a margem fica um pouco maior que a pedida;</li>
               <li><strong>Usar p = 0,5 sem saber por quê.</strong> É o caso conservador: o valor
               de p que maximiza p(1 − p) e portanto o n;</li>
@@ -186,18 +186,18 @@ SECOES = [
             <table>
               <tr><th>Medida</th><th>Valor</th></tr>
               <tr><td>Cadastro de postos (ANP, gasolina comum, MA, 2025)</td><td>236 postos</td></tr>
-              <tr><td>Média e desvio da população</td><td>R$ 6,0087 e R$ 0,3402</td></tr>
-              <tr><td>Erro padrão, n = 50: sem e com correção</td><td>R$ 0,0481 e R$ 0,0428 (a largura simulada no encontro 7: R$ 0,0418)</td></tr>
-              <tr><td>Médias a 1 e a 2 EP: sem e com correção</td><td>74,8% e 98,2%; 69,2% e 95,9%</td></tr>
-              <tr><td>Margem a 95%, n = 50: sem e com correção</td><td>R$ 0,0943 (98,0% dentro) e R$ 0,0839 (95,6% dentro)</td></tr>
+              <tr><td>Média e desvio da população</td><td>R$ 5,9744 e R$ 0,3755 (média das coletas do ano de cada posto)</td></tr>
+              <tr><td>Erro padrão, n = 50: sem e com correção</td><td>R$ 0,0531 e R$ 0,0472 (a largura simulada no encontro 7: R$ 0,0482)</td></tr>
+              <tr><td>Médias a 1 e a 2 EP: sem e com correção</td><td>72,1% e 97,1%; 66,5% e 95,7%</td></tr>
+              <tr><td>Margem a 95%, n = 50: sem e com correção</td><td>R$ 0,1041 (96,9% dentro) e R$ 0,0926 (95,3% dentro)</td></tr>
               <tr><td>z para 90%, 95% e 99%</td><td>1,645; 1,960; 2,576</td></tr>
-              <tr><td>n para a média, ±R$ 0,05, 95%: sem correção</td><td>177,8 → 178 postos</td></tr>
-              <tr><td>n com correção para N = 236</td><td>101,7 → 102 postos (43% do cadastro)</td></tr>
-              <tr><td>Simulação: 1.000 amostras de 102</td><td>96,2% dentro de R$ 0,05</td></tr>
+              <tr><td>n para a média, ±R$ 0,05, 95%: sem correção</td><td>216,6 → 217 postos</td></tr>
+              <tr><td>n com correção para N = 236</td><td>113,2 → 114 postos (48% do cadastro)</td></tr>
+              <tr><td>Simulação: 1.000 amostras de 114</td><td>94,2% dentro de R$ 0,05 (a flutuação de mil sorteios é de cerca de 1,4 ponto)</td></tr>
               <tr><td>n para a proporção, ±5 p.p., 95%, p = 0,5</td><td>384,1 → 385</td></tr>
               <tr><td>Corrigido: N = 236 / 5.572 / 168.098 / 10.607.110</td><td>147 / 360 / 384 / 385</td></tr>
-              <tr><td>Bandeira branca no cadastro de postos</td><td>50,0% (118 de 236)</td></tr>
-              <tr><td>Simulação: 1.000 amostras de 147</td><td>95,1% dentro de 5 p.p.</td></tr>
+              <tr><td>Bandeira branca no cadastro de postos</td><td>50,4% (119 de 236, bandeira mais frequente no ano)</td></tr>
+              <tr><td>Simulação: 1.000 amostras de 147</td><td>96,0% dentro de 5 p.p.</td></tr>
             </table>
             """, "gabarito"),
         ],
@@ -274,9 +274,9 @@ SECOES = [
             ("Gabarito das rodadas e do alfa", """
             <table>
               <tr><th>Rodada</th><th>Resultado</th></tr>
-              <tr><td>Configuração do slide</td><td>n = 102 postos; 96,2% dentro de R$ 0,05; proporção: 385 sem correção, 360 para N = 5.572</td></tr>
-              <tr><td>1. <code>MARGEM = 0.03</code></td><td>n<sub>0</sub> = 494,0 → 495; n = 160 postos; 95,8% dentro de R$ 0,03</td></tr>
-              <tr><td>2. <code>CONFIANCA = 0.99</code></td><td>z = 2,576; n<sub>0</sub> = 307,2 → 308; n = 134 postos; 99,1% dentro de R$ 0,05. Proporção: 664 sem correção, 593 para N = 5.572</td></tr>
+              <tr><td>Configuração do slide</td><td>n = 114 postos; 94,2% dentro de R$ 0,05; proporção: 385 sem correção, 360 para N = 5.572</td></tr>
+              <tr><td>1. <code>MARGEM = 0.03</code></td><td>n<sub>0</sub> = 601,8 → 602; n = 170 postos; 94,7% dentro de R$ 0,03</td></tr>
+              <tr><td>2. <code>CONFIANCA = 0.99</code></td><td>z = 2,576; n<sub>0</sub> = 374,2 → 375; n = 145 postos; 98,9% dentro de R$ 0,05. Proporção: 664 sem correção, 593 para N = 5.572</td></tr>
               <tr><td>3. <code>N_POPULACAO = 168098</code></td><td>n = 384 (era 360 com N = 5.572)</td></tr>
               <tr><td>Alfa, item 6 sem recodificar</td><td>0,561 (correlações do item 6: −0,42 a −0,53)</td></tr>
               <tr><td>Alfa, item 6 recodificado</td><td>0,857</td></tr>
@@ -284,8 +284,7 @@ SECOES = [
               <tr><td>Alfa com o mesmo r̄: k = 2, 3, 6, 12</td><td>0,668; 0,751; 0,858; 0,923</td></tr>
             </table>
             <p>Resposta esperada da pergunta 1 do notebook: “para estimar o preço médio com
-            margem de R$ 0,03 e 95% de confiança, sorteiam-se 160 dos 236 postos; em 1.000
-            sorteios, 95,8% das estimativas ficaram dentro da margem”.</p>
+            margem de R$ 0,03 e 95% de confiança, sorteiam-se 170 dos 236 postos; em 1.000 sorteios, 94,7% das estimativas ficaram dentro da margem”.</p>
             """, "gabarito"),
         ],
     },
@@ -301,7 +300,7 @@ SECOES = [
               de não resposta e de mensuração não diminuem com n;</li>
               <li><strong>Confiabilidade não é validade</strong>, e o alfa sobe com o número de
               itens tanto quanto com a correlação entre eles;</li>
-              <li><strong>O tamanho da amostra é a margem de erro lida ao contrário</strong>: 102
+              <li><strong>O tamanho da amostra é a margem de erro lida ao contrário</strong>: 114
               postos para ±R$ 0,05; 385 casos para ±5 pontos, em qualquer cadastro grande;</li>
               <li><strong>Coleta primária pede ética desde o desenho</strong>: CEP, TCLE, LGPD.</li>
             </ol>

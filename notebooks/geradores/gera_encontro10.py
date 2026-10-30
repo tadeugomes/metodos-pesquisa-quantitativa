@@ -3,32 +3,33 @@
 
 Do intervalo de confianca a logica do teste. A base e a mesma dos encontros 6 a 8: o
 cadastro de 236 postos de gasolina comum do Maranhao (ANP, SHPC, 2025), um registro por
-posto, com um preco do primeiro mes em que o posto aparece no ano. Como o parametro e conhecido, da para
-VER o que o "95%" quer dizer: quantos de cem intervalos cobrem a media verdadeira.
+posto, com o preco medio do ano (a media de todas as coletas do posto) e a bandeira mais
+frequente. A regra nao depende de ordenacao e da o mesmo resultado em qualquer versao do
+pandas. Como o parametro e conhecido, da para VER o que o "95%" quer dizer.
 
-A referencia nacional (R$ 6,19) sai dos mesmos 12 arquivos da ANP, com a mesma regra
-do cadastro aplicada ao Brasil inteiro: 8.635 postos, media R$ 6,1930. A CELULA A
-recalcula e imprime esse numero; a CELULA B (contingencia) so tem o Maranhao, e por
-isso a referencia fica fixa no bloco de configuracao.
+A referencia nacional (R$ 6,19, 8.635 postos, media R$ 6,1930) foi calculada com a regra
+anterior do cadastro (um preco por posto, do primeiro mes). A CELULA A recalcula com a regra
+nova e imprime o numero; o ambiente desta revisao nao alcanca o site da ANP, e por isso a
+referencia segue fixa no bloco de configuracao ate o professor conferir.
 
-Numeros verificados na geracao (14/10/2026), os mesmos do slide e da conducao:
+Numeros verificados na geracao (30/10/2026), os mesmos do slide e da conducao:
 
-  populacao: N = 236 postos | media R$ 6,0087 | desvio R$ 0,3402
-  bandeira branca: 118 de 236 = 50,0% (a proporcao verdadeira)
+  populacao: N = 236 postos | media R$ 5,9744 | desvio R$ 0,3755 | assimetria 0,90
+  bandeira branca: 119 de 236 = 50,4% (a proporcao verdadeira)
   a amostra do dia: n = 30, random_state = 2025
-    media 6,0267 | desvio 0,2530 | EP 0,0462 | t critico (29 gl) 2,0452
-    margem 0,0945 | IC 95% [5,9322 ; 6,1211] (largura 0,1889)
-    IC 90% [5,9482 ; 6,1051] | IC 99% [5,8994 ; 6,1540]
-    bandeira branca: 19 de 30 = 63,33% | EP 0,0880 | margem 0,1724
-    IC 95% da proporcao [46,09% ; 80,58%] -> contem os 50,0% verdadeiros
-  simulacao: 100 amostras de 30 (sementes 0 a 99) -> 94 intervalos cobrem 6,0087
-             1.000 amostras de 30 (sementes 0 a 999) -> 959 cobrem (95,9%)
+    media 6,0745 | desvio 0,4038 | EP 0,0737 | t critico (29 gl) 2,0452
+    margem 0,1508 | IC 95% [5,9237 ; 6,2253] (largura 0,3016)
+    IC 90% [5,9492 ; 6,1998] | IC 99% [5,8713 ; 6,2777]
+    bandeira branca: 16 de 30 = 53,33% | EP 0,0911 | margem 0,1785
+    IC 95% da proporcao [35,48% ; 71,19%] -> contem os 50,4% verdadeiros
+  simulacao: 100 amostras de 30 (sementes 0 a 99) -> 95 intervalos cobrem 5,9744
+             1.000 amostras de 30 (sementes 0 a 999) -> 940 cobrem (94,0%)
   teste t de uma amostra (a mesma amostra de 30, alfa = 5%):
-    H0: mu = 6,19 (nacional) -> t = -3,536 | gl = 29 | p = 0,0014 -> rejeita
-    H0: mu = 6,00            -> t =  0,577 | gl = 29 | p = 0,5681 -> nao rejeita
-    H0: mu = 6,10            -> t = -1,588 | gl = 29 | p = 0,1232 -> nao rejeita
-    H0: mu = 5,90            -> t =  2,743 | p = 0,0103 -> rejeita (fora do IC)
-    H0: mu = 6,15            -> t = -2,670 | p = 0,0123 -> rejeita (fora do IC)
+    H0: mu = 6,19 (nacional) -> t = -1,567 | gl = 29 | p = 0,1280 -> nao rejeita (erro tipo II)
+    H0: mu = 5,85            -> t =  3,045 | gl = 29 | p = 0,0049 -> rejeita (fora do IC)
+    H0: mu = 6,00            -> t =  1,010 | gl = 29 | p = 0,3207 -> nao rejeita
+    H0: mu = 6,10            -> t = -0,346 | gl = 29 | p = 0,7318 -> nao rejeita
+    H0: mu = 6,25            -> t = -2,381 | p = 0,0241 -> rejeita (fora do IC)
 """
 import os
 import sys
@@ -61,11 +62,11 @@ que risco?** A Parte 1 responde com um **intervalo**; a Parte 2, com um **teste*
 |---|---|
 | **Fonte** | ANP, Série Histórica de Preços de Combustíveis (SHPC) |
 | **Cadastro** | Maranhão, 2025, gasolina comum: **236 postos** (os mesmos dos encontros 6 a 8) |
-| **O que é cada linha** | Um posto, com CNPJ, município, bandeira e um preço da gasolina do primeiro mês em que o posto aparece no ano (R\\$ por litro) |
-| **Preço médio da população** | **R\\$ 6,0087**, o valor verdadeiro, aqui conhecido |
-| **Desvio padrão da população** | **R\\$ 0,3402** |
-| **Bandeira branca** | **118 de 236 postos (50,0%)**, a proporção verdadeira |
-| **Referência nacional** | **R\\$ 6,19**: a média dos 8.635 postos do Brasil, com a mesma regra, nos mesmos arquivos da ANP |
+| **O que é cada linha** | Um posto, com CNPJ, município, a bandeira mais frequente no ano e o preço médio da gasolina no ano, a média de todas as coletas do posto (R\\$ por litro) |
+| **Preço médio da população** | **R\\$ 5,9744**, o valor verdadeiro, aqui conhecido |
+| **Desvio padrão da população** | **R\\$ 0,3755** |
+| **Bandeira branca** | **119 de 236 postos (50,4%)**, a proporção verdadeira |
+| **Referência nacional** | **R\\$ 6,19**: a média dos 8.635 postos do Brasil nos mesmos arquivos da ANP; a CÉLULA A a recalcula com a regra do cadastro |
 
 **As colunas do cadastro**
 
@@ -73,8 +74,8 @@ que risco?** A Parte 1 responde com um **intervalo**; a Parte 2, com um **teste*
 |---|---|
 | `cnpj` | O CNPJ do posto, a chave do registro |
 | `municipio` | O município do posto |
-| `bandeira` | A bandeira (BRANCA é o posto sem marca de distribuidora) |
-| `preco` | O preço da gasolina comum, em R\\$ por litro |
+| `bandeira` | A bandeira mais frequente do posto no ano (BRANCA é o posto sem marca de distribuidora) |
+| `preco` | O preço médio da gasolina comum no ano, em R\\$ por litro |
 
 **Glossário do dia**
 
@@ -247,12 +248,12 @@ brasil = brasil.rename(columns={"Estado - Sigla": "uf", "Municipio": "municipio"
                                 "Valor de Venda": "valor_venda", "Bandeira": "bandeira"})
 brasil["valor_venda"] = pd.to_numeric(brasil["valor_venda"], errors="coerce")
 
-# A referência nacional: a MESMA regra do cadastro (um preço por posto, do
-# primeiro mês em que ele aparece), aplicada ao Brasil inteiro.
+# A referência nacional: a MESMA regra do cadastro (o preço médio do ano de cada
+# posto, a média de todas as coletas), aplicada ao Brasil inteiro.
 gas_br = brasil[brasil["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-postos_br = gas_br.sort_values("mes").drop_duplicates("cnpj", keep="first")
+postos_br = gas_br.groupby("cnpj", as_index=False)["valor_venda"].mean()
 print(f"Brasil: {len(postos_br)} postos | preço médio da gasolina = "
-      f"R$ {postos_br['valor_venda'].mean():.4f}  (a referência de R$ 6,19)")
+      f"R$ {postos_br['valor_venda'].mean():.4f}  (a referência do bloco de configuração)")
 
 anp = brasil[brasil["uf"] == "MA"].copy()
 print(f"Maranhão: {len(anp)} posto-mês carregados")'''
@@ -270,14 +271,13 @@ anp = anp.rename(columns={"estado_-_sigla": "uf", "mes_arquivo": "mes",
 print(f"Maranhão: {len(anp)} posto-mês carregados do arquivo local")'''
 
 CADASTRO = '''# ================= O cadastro: um registro por posto =================
-# A mesma regra dos encontros 6 a 8: um preço da gasolina comum por posto, do
-# primeiro mês em que ele aparece no ano, com o CNPJ como chave.
+# A mesma regra dos encontros 6 a 8: o preço médio da gasolina comum no ano, a média
+# de todas as coletas do posto, com o CNPJ como chave. A bandeira é a mais frequente do
+# posto no ano (no empate, a primeira em ordem alfabética).
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes")
-               .drop_duplicates("cnpj", keep="first")
-               [["cnpj", "municipio", "bandeira", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco"})
-               .reset_index(drop=True))
+cadastro = (gas.groupby(["cnpj", "municipio"], as_index=False)
+               .agg(preco=("valor_venda", "mean"),
+                    bandeira=("bandeira", lambda b: b.mode().iloc[0])))
 populacao = cadastro["preco"]
 
 print(f"POPULAÇÃO: {len(cadastro)} postos, em {cadastro['municipio'].nunique()} municípios")
@@ -286,9 +286,9 @@ print(f"  desvio padrão ................... R$ {populacao.std():.4f}")
 print(f"  bandeira branca ................. {(cadastro['bandeira'] == 'BRANCA').sum()} postos "
       f"({(cadastro['bandeira'] == 'BRANCA').mean():.1%})")
 print()
-conferir("preço médio da população", populacao.mean(), 6.0087, tolerancia=0.0005, unidade="")
+conferir("preço médio da população", populacao.mean(), 5.9744, tolerancia=0.0005, unidade="")
 conferir("proporção de bandeira branca", (cadastro["bandeira"] == "BRANCA").mean(),
-         0.50, tolerancia=0.0005, unidade="")'''
+         0.5042, tolerancia=0.0005, unidade="")'''
 
 AMOSTRA = '''# A amostra do dia: 30 postos sorteados do cadastro, com semente fixa.
 amostra = cadastro.sample(n=N_AMOSTRA, random_state=2025)
@@ -306,10 +306,10 @@ print(f"  a estimativa: R$ {ic['media']:.4f}, mais ou menos R$ {ic['margem']:.4f
 print(f"  o intervalo:  [R$ {ic['limite_inf']:.4f} ; R$ {ic['limite_sup']:.4f}]")
 print(f"  o valor verdadeiro (que na vida real ninguém conhece): R$ {populacao.mean():.4f}")
 print()
-conferir("média da amostra", ic["media"], 6.0267, tolerancia=0.0005, unidade="")
-conferir("erro padrão (s ÷ √n)", ic["erro_padrao"], 0.0462, tolerancia=0.0005, unidade="")
-conferir("limite inferior do IC de 95%", ic["limite_inf"], 5.9322, tolerancia=0.0005, unidade="")
-conferir("limite superior do IC de 95%", ic["limite_sup"], 6.1211, tolerancia=0.0005, unidade="")'''
+conferir("média da amostra", ic["media"], 6.0745, tolerancia=0.0005, unidade="")
+conferir("erro padrão (s ÷ √n)", ic["erro_padrao"], 0.0737, tolerancia=0.0005, unidade="")
+conferir("limite inferior do IC de 95%", ic["limite_inf"], 5.9237, tolerancia=0.0005, unidade="")
+conferir("limite superior do IC de 95%", ic["limite_sup"], 6.2253, tolerancia=0.0005, unidade="")'''
 
 IC_PROP = '''# O intervalo de confiança de uma PROPORÇÃO: a fatia de postos de bandeira branca.
 icp = ic_proporcao(amostra["bandeira"] == "BRANCA", nivel=NIVEL_CONFIANCA)
@@ -321,10 +321,10 @@ print(f"  o intervalo: [{icp['limite_inf']:.1%} ; {icp['limite_sup']:.1%}]")
 print(f"  a proporção verdadeira no cadastro: "
       f"{(cadastro['bandeira'] == 'BRANCA').mean():.1%}")
 print()
-conferir("proporção na amostra", icp["proporcao"], 0.6333, tolerancia=0.0005, unidade="")
-conferir("limite inferior do IC da proporção", icp["limite_inf"], 0.4609,
+conferir("proporção na amostra", icp["proporcao"], 0.5333, tolerancia=0.0005, unidade="")
+conferir("limite inferior do IC da proporção", icp["limite_inf"], 0.3548,
          tolerancia=0.0005, unidade="")
-conferir("limite superior do IC da proporção", icp["limite_sup"], 0.8058,
+conferir("limite superior do IC da proporção", icp["limite_sup"], 0.7119,
          tolerancia=0.0005, unidade="")'''
 
 LARGURA = '''# O que muda a largura do intervalo: o nível de confiança.
@@ -350,8 +350,8 @@ print(f"E com mil amostras: {int(mil['cobre'].sum())} de 1.000 cobrem "
 print()
 print("Nenhum intervalo sabe se acertou. O 95% é a taxa de acerto do PROCEDIMENTO.")
 print()
-conferir("intervalos que cobrem, em 100", cobrem, 94, tolerancia=0, unidade="")
-conferir("intervalos que cobrem, em 1.000", int(mil["cobre"].sum()), 959,
+conferir("intervalos que cobrem, em 100", cobrem, 95, tolerancia=0, unidade="")
+conferir("intervalos que cobrem, em 1.000", int(mil["cobre"].sum()), 940,
          tolerancia=0, unidade="")'''
 
 FIGURA_IC = '''# Os cem intervalos, desenhados. Em verde, os que cobrem; em vinho, os que erram.
@@ -377,8 +377,8 @@ TESTE_NACIONAL = '''# O teste t de uma amostra: H0 diz que a média do Maranhão
 resultado = teste_t_uma(amostra["preco"], VALOR_REFERENCIA, alfa=ALFA)
 print(resultado.to_string())
 print()
-conferir("t contra R$ 6,19", resultado["t"], -3.536, tolerancia=0.01, unidade="")
-conferir("valor-p contra R$ 6,19", resultado["valor_p"], 0.0014, tolerancia=0.0005,
+conferir("t contra R$ 6,19", resultado["t"], -1.567, tolerancia=0.01, unidade="")
+conferir("valor-p contra R$ 6,19", resultado["valor_p"], 0.128, tolerancia=0.0005,
          unidade="")'''
 
 FIGURA_TESTE = '''# A decisão desenhada: a curva é o que se esperaria de t SE H0 fosse verdadeira.
@@ -403,29 +403,32 @@ plt.tight_layout()
 plt.show()'''
 
 LIGACAO = '''# A ligação entre o intervalo e o teste: o que fica FORA do IC de 95% é rejeitado a 5%.
-compara_referencias(amostra["preco"], [5.90, 6.00, 6.10, 6.15, 6.19],
+compara_referencias(amostra["preco"], [5.85, 6.00, 6.10, 6.19, 6.25],
                     nivel=0.95, alfa=0.05)'''
 
 Q1 = '''# Questão 1: a média do Maranhão é a média nacional?
 q1 = teste_t_uma(amostra["preco"], 6.19, alfa=ALFA)
 print(q1.to_string())
 print()
-conferir("Q1: t", q1["t"], -3.536, tolerancia=0.01, unidade="")
-conferir("Q1: valor-p", q1["valor_p"], 0.0014, tolerancia=0.0005, unidade="")'''
+print(f"E aqui sabemos mais que o teste: a média verdadeira do cadastro é "
+      f"R$ {populacao.mean():.4f}.")
+print()
+conferir("Q1: t", q1["t"], -1.567, tolerancia=0.01, unidade="")
+conferir("Q1: valor-p", q1["valor_p"], 0.128, tolerancia=0.0005, unidade="")'''
 
-Q2 = '''# Questão 2: a média do Maranhão é R$ 6,00?
-q2 = teste_t_uma(amostra["preco"], 6.00, alfa=ALFA)
+Q2 = '''# Questão 2: a média do Maranhão é R$ 5,85?
+q2 = teste_t_uma(amostra["preco"], 5.85, alfa=ALFA)
 print(q2.to_string())
 print()
-conferir("Q2: t", q2["t"], 0.577, tolerancia=0.01, unidade="")
-conferir("Q2: valor-p", q2["valor_p"], 0.5681, tolerancia=0.0005, unidade="")'''
+conferir("Q2: t", q2["t"], 3.045, tolerancia=0.01, unidade="")
+conferir("Q2: valor-p", q2["valor_p"], 0.0049, tolerancia=0.0005, unidade="")'''
 
-Q3 = '''# Questão 3: a média do Maranhão é R$ 6,10?
-q3 = teste_t_uma(amostra["preco"], 6.10, alfa=ALFA)
+Q3 = '''# Questão 3: a média do Maranhão é R$ 6,00?
+q3 = teste_t_uma(amostra["preco"], 6.00, alfa=ALFA)
 print(q3.to_string())
 print()
-conferir("Q3: t", q3["t"], -1.588, tolerancia=0.01, unidade="")
-conferir("Q3: valor-p", q3["valor_p"], 0.1232, tolerancia=0.0005, unidade="")'''
+conferir("Q3: t", q3["t"], 1.010, tolerancia=0.01, unidade="")
+conferir("Q3: valor-p", q3["valor_p"], 0.3207, tolerancia=0.0005, unidade="")'''
 
 CARTAO = '''# Se quiser a ajuda de um assistente para redigir a frase, copie o cartão abaixo
 # e cole no pedido, junto com o resultado do teste. A IA explica; o número é o daqui.
@@ -475,16 +478,17 @@ Primeiro, a amostra do dia: **30 postos**, sorteados com semente fixa."""},
     {"tipo": "md", "texto": """**A leitura do intervalo da média**
 
 > "Com base em uma amostra aleatória de **30 postos**, o preço médio da gasolina comum no
-> Maranhão está entre **R\\$ 5,93 e R\\$ 6,12**, com 95% de confiança (ANP, SHPC, 2025)."
+> Maranhão está entre **R\\$ 5,92 e R\\$ 6,23**, com 95% de confiança (ANP, SHPC, 2025)."
 
-Aqui, e só aqui, dá para conferir: o valor verdadeiro, **R\\$ 6,0087**, está dentro."""},
+Aqui, e só aqui, dá para conferir: o valor verdadeiro, **R\\$ 5,9744**, está dentro, embora a
+amostra tenha saído 10 centavos acima dele."""},
     {"tipo": "code", "texto": IC_PROP},
     {"tipo": "md", "texto": """**A leitura do intervalo da proporção**
 
-> "Entre 46,1% e 80,6% dos postos do Maranhão são de bandeira branca, com 95% de
+> "Entre 35,5% e 71,2% dos postos do Maranhão são de bandeira branca, com 95% de
 > confiança, segundo uma amostra de 30 postos."
 
-O intervalo tem **34 pontos percentuais** de largura. A proporção pede amostra bem maior
+O intervalo tem **36 pontos percentuais** de largura. A proporção pede amostra bem maior
 que a média para a mesma precisão: é a conta do encontro 8, que chegava a 385 casos
 para uma margem de 5 pontos."""},
     {"tipo": "code", "texto": LARGURA},
@@ -495,26 +499,28 @@ a não ser com mais casos.
 ### O que o "95%" **não** significa
 
 A frase errada e muito comum: *"há 95% de probabilidade de o preço médio estar entre
-R\\$ 5,93 e R\\$ 6,12"*. O preço médio verdadeiro não é sorteado: ele é um só, e o
+R\\$ 5,92 e R\\$ 6,23"*. O preço médio verdadeiro não é sorteado: ele é um só, e o
 intervalo calculado **ou o contém, ou não o contém**. O 95% é a **taxa de acerto do
 procedimento**: de cada cem amostras, cerca de 95 produzem um intervalo que cobre o valor
 verdadeiro. A simulação abaixo mostra isso, porque aqui o valor verdadeiro é conhecido."""},
     {"tipo": "code", "texto": SIMULA},
     {"tipo": "code", "texto": FIGURA_IC},
-    {"tipo": "md", "texto": """**Por que 94, e não exatamente 95?** Porque cem amostras são poucas: em outro conjunto
-de sementes daria 93, 96 ou 97. Com mil, a taxa chega a 95,9%. E o leve excesso sobre 95%
-é o que o encontro 8 já explicou: 30 postos são uma fatia de 13% de um cadastro pequeno,
-e a fórmula sem correção finita é um pouco conservadora.
+    {"tipo": "md", "texto": """**Por que 95 em cem, mas 94,0% em mil?** Cem amostras são poucas: em outro conjunto de
+sementes daria 93, 96 ou 97. Com mil, a taxa fica em 94,0%, um pouco abaixo de 95%. Duas
+forças puxam em sentidos opostos. Os preços são assimétricos, com cauda à direita, e com
+30 postos o t ainda fica um pouco otimista: isso puxa a taxa para baixo. E 30 postos são
+13% de um cadastro pequeno, que varia menos do que a fórmula supõe (a correção para
+população finita do encontro 8): isso puxa para cima. Com n = 30, vence a assimetria.
 
 > **Para pensar:** cada um dos cem intervalos foi calculado do mesmo jeito. Olhando só
-> para um deles, sem saber o valor verdadeiro, dá para dizer se ele é um dos 94 que
+> para um deles, sem saber o valor verdadeiro, dá para dizer se ele é um dos 95 que
 > acertaram? Não dá, e é por isso que a confiança é do **método**, e não do intervalo."""},
 
     {"tipo": "md", "texto": """## Parte 2 · Estatística: a lógica do teste
 
 **A pergunta que a estatística do dia responde.** *O preço médio da gasolina no Maranhão
-é diferente da média nacional de R\\$ 6,19?* A amostra de 30 postos deu R\\$ 6,03. A
-diferença de 16 centavos é real, ou é o acaso do sorteio?
+é diferente da média nacional de R\\$ 6,19?* A amostra de 30 postos deu R\\$ 6,07. A
+diferença de 12 centavos é real, ou é o acaso do sorteio?
 
 **Os conceitos em linguagem corrente**
 
@@ -524,7 +530,7 @@ diferença de 16 centavos é real, ou é o acaso do sorteio?
 | **H1, hipótese alternativa** | O que se aceita se H0 cair | A média do Maranhão é diferente de R\\$ 6,19 |
 | **α, nível de significância** | O risco de rejeitar uma H0 verdadeira que se aceita correr | 5% |
 | **Valor-p** | A chance de uma amostra tão afastada de H0 quanto a nossa, **se H0 fosse verdadeira** | o número que o teste devolve |
-| **Decisão** | Valor-p menor que α: rejeita H0. Maior ou igual: não rejeita | 0,0014 contra 0,05: rejeita |
+| **Decisão** | Valor-p menor que α: rejeita H0. Maior ou igual: não rejeita | 0,128 contra 0,05: não rejeita |
 
 **A fórmula, com cada símbolo nomeado**
 
@@ -548,12 +554,16 @@ valor-p; (4) compare o valor-p com α e decida.
     {"tipo": "code", "texto": FIGURA_TESTE},
     {"tipo": "md", "texto": """**O exemplo, passo a passo, com os números da saída**
 
-1. A média da amostra é **R\\$ 6,0267**; a referência, **R\\$ 6,19**: a diferença é **−R\\$ 0,1633**;
-2. O erro padrão é **R\\$ 0,0462** (o desvio de R\\$ 0,2530 dividido por √30);
-3. t = −0,1633 ÷ 0,0462 = **−3,54**: a amostra está a três erros padrão e meio da referência;
+1. A média da amostra é **R\\$ 6,0745** e a referência, **R\\$ 6,19**: a diferença é **−R\\$ 0,1155**.
+2. O erro padrão é **R\\$ 0,0737** (o desvio de R\\$ 0,4038 dividido por √30).
+3. t = −0,1155 ÷ 0,0737 = **−1,57**: a amostra está a um erro padrão e meio da referência.
 4. Com 29 graus de liberdade, a chance de um t tão longe de zero, se H0 fosse verdadeira,
-   é **0,0014**, ou 14 em 10 mil;
-5. 0,0014 é menor que 0,05: **rejeita-se H0**.
+   é **0,128**, ou cerca de 13 em 100.
+5. 0,128 é maior que 0,05: **não se rejeita H0**.
+
+E aqui sabemos mais que o teste: a média verdadeira do cadastro é **R\\$ 5,9744**, 22
+centavos abaixo da referência. H0 era falsa e o teste não a derrubou: é o **erro tipo II**,
+o assunto da abertura do encontro 11.
 
 ### A ligação entre o intervalo e o teste
 
@@ -561,27 +571,28 @@ O teste e o intervalo usam o mesmo erro padrão e o mesmo t crítico, e por isso
 contradizem**: um valor de referência que fica **fora** do IC de 95% é **rejeitado** a
 5%; um que fica **dentro** não é rejeitado. A tabela abaixo testa cinco valores."""},
     {"tipo": "code", "texto": LIGACAO},
-    {"tipo": "md", "texto": """O IC de 95% vai de R\\$ 5,93 a R\\$ 6,12. Os dois valores de dentro (6,00 e 6,10) não
-são rejeitados; os três de fora (5,90, 6,15 e 6,19) são. A regra vale nos dois sentidos,
+    {"tipo": "md", "texto": """O IC de 95% vai de R\\$ 5,92 a R\\$ 6,23. Os três valores de dentro (6,00, 6,10 e a
+referência nacional de 6,19) não são rejeitados. Os dois de fora (5,85 e 6,25) são. A regra vale nos dois sentidos,
 e é por isso que muitos relatórios trazem só o intervalo: quem lê o IC já sabe o
 resultado do teste para qualquer valor de referência.
 
 **A frase que vai para o relatório**
 
 > "O preço médio da gasolina comum em uma amostra aleatória de 30 postos do Maranhão foi
-> de **R\\$ 6,03**, inferior à média nacional de R\\$ 6,19 (**t = −3,54; gl = 29;
-> p = 0,0014**). A diferença, de **16 centavos por litro**, é estatisticamente
-> significativa a 5% (ANP, SHPC, 2025)."
+> de **R\\$ 6,07**, contra a média nacional de R\\$ 6,19 (**t = −1,57; gl = 29;
+> p = 0,128**). A amostra **não traz evidência**, a 5%, de que o preço médio do Maranhão
+> seja diferente do nacional (ANP, SHPC, 2025)."
 
-**O que essa frase não diz.** Que a diferença é *grande* ou *importante*: isso é
-julgamento de gestão e se faz em centavos, não em valor-p. Nem que há 0,14% de chance de
-H0 ser verdadeira: o valor-p é calculado **supondo** H0 verdadeira e não é a
+**O que essa frase não diz.** Que o preço do Maranhão é *igual* ao nacional: não rejeitar
+não é provar, e com 30 postos o teste só enxerga diferenças grandes. Nem que há 12,8% de
+chance de H0 ser verdadeira: o valor-p é calculado **supondo** H0 verdadeira e não é a
 probabilidade dela.
 
-**O erro comum: "não rejeitar" lido como "provar".** Contra R\\$ 6,00, o teste dá
-p = 0,57 e não rejeita. Contra R\\$ 6,10, dá p = 0,12 e também não rejeita. Se "não
-rejeitar" fosse "provar", a média seria R\\$ 6,00 **e** R\\$ 6,10 ao mesmo tempo. A
-leitura certa: a amostra **não tem evidência** contra nenhum dos dois valores."""},
+**O erro comum: "não rejeitar" lido como "provar".** Contra R\\$ 6,19, o teste dá
+p = 0,13 e não rejeita. Contra R\\$ 6,00, dá p = 0,32 e também não rejeita. Se "não
+rejeitar" fosse "provar", a média seria R\\$ 6,19 **e** R\\$ 6,00 ao mesmo tempo. A
+leitura certa: a amostra **não tem evidência** contra nenhum dos dois valores. E a média
+verdadeira, R\\$ 5,97, não é nenhum dos dois."""},
 
     {"tipo": "md", "texto": """## Prática. Três testes e uma decisão pelo intervalo
 
@@ -589,16 +600,8 @@ Para cada questão: execute a célula, confira o `[ok]` e escreva, na célula de
 abaixo, **a frase de leitura** (com t, gl, valor-p e a decisão) e **o que a frase não diz**.
 Use o modelo do slide. Nenhuma conta à mão: os números estão na saída."""},
     {"tipo": "code", "texto": Q1},
-    {"tipo": "md", "texto": """**Questão 1. A média do Maranhão é a média nacional (R\\$ 6,19)?**
-
-*A frase de leitura:*
-
-*O que a frase não diz:*
-
----
-"""},
-    {"tipo": "code", "texto": Q2},
-    {"tipo": "md", "texto": """**Questão 2. A média do Maranhão é R\\$ 6,00?**
+    {"tipo": "md", "texto": """**Questão 1. A média do Maranhão é a média nacional (R\\$ 6,19)? E o que a média
+verdadeira do cadastro diz sobre a decisão do teste?**
 
 *A frase de leitura (atenção à forma de dizer quando H0 não é rejeitada):*
 
@@ -606,8 +609,17 @@ Use o modelo do slide. Nenhuma conta à mão: os números estão na saída."""},
 
 ---
 """},
+    {"tipo": "code", "texto": Q2},
+    {"tipo": "md", "texto": """**Questão 2. A média do Maranhão é R\\$ 5,85?**
+
+*A frase de leitura (com a decisão de rejeitar e a diferença em centavos):*
+
+*O que a frase não diz:*
+
+---
+"""},
     {"tipo": "code", "texto": Q3},
-    {"tipo": "md", "texto": """**Questão 3. A média do Maranhão é R\\$ 6,10? E por que as Questões 2 e 3 juntas mostram
+    {"tipo": "md", "texto": """**Questão 3. A média do Maranhão é R\\$ 6,00? E por que as Questões 1 e 3 juntas mostram
 que "não rejeitar H0" não é o mesmo que "provar H0"?**
 
 *A frase de leitura:*
@@ -643,8 +655,8 @@ imprime o cartão de contexto e o resultado do teste para colar no pedido. Depoi
 
 > No próximo encontro o teste ganha **dois grupos**, **pares** e **categorias**: o teste t
 > de duas amostras, o pareado e o qui-quadrado. E a pergunta que fica de hoje: na
-> Questão 2, o teste não rejeitou R\\$ 6,00, mas a média verdadeira é R\\$ 6,0087. O
-> teste errou? É o **erro tipo II**, o assunto da abertura do encontro 11."""},
+> Questão 1, o teste não rejeitou a média nacional de R\\$ 6,19, mas a média verdadeira é
+> R\\$ 5,9744. O teste errou? É o **erro tipo II**, o assunto da abertura do encontro 11."""},
 ]
 
 if __name__ == "__main__":

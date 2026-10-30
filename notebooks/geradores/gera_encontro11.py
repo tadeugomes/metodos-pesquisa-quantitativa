@@ -10,31 +10,37 @@ POPULACAO do exercicio. Hoje a pergunta e sobre os postos do Maranhao em geral, 
 sao os que a ANP pesquisou: uma selecao de postos em 11 municipios, e nao um sorteio
 aleatorio simples. A generalizacao e feita com essa limitacao declarada.
 
-Numeros verificados na geracao (14/10/2026), os mesmos do slide e da conducao:
+Numeros verificados na geracao (30/10/2026), os mesmos do slide e da conducao. Regra do
+cadastro: um registro por posto, com o preco medio de todas as coletas do ano (a mesma
+regra do encontro 14), o que da o mesmo resultado em qualquer versao do pandas.
 
-  cadastro ANP: 236 postos | media R$ 6,0087 | desvio R$ 0,3402
+  cadastro ANP: 236 postos | media R$ 5,9744 | desvio R$ 0,3755
   PARTE 1: erros tipo I e II (1.000 amostras de 30, sementes 0 a 999, alfa = 5%)
-    H0 verdadeira (mu0 = 6,0087): 41 rejeicoes = 4,1% (erro tipo I; alfa = 5%)
-    H0: mu = 6,00 (falsa por menos de 1 centavo): 3,4% de rejeicoes -> beta = 96,6%
-    H0: mu = 6,10 (falsa por 9 centavos), poder por tamanho de amostra:
-      n = 10: 17,6% | n = 30: 32,0% | n = 50: 45,9% | n = 100: 81,0%
+    H0 verdadeira (mu0 = 5,9744): 60 rejeicoes = 6,0% (erro tipo I; alfa = 5%)
+      com 20.000 amostras a taxa e 4,4%; os 6,0% estao dentro da folga de mil amostras
+    H0: mu = 6,00 (falsa por menos de 3 centavos): 9,0% de rejeicoes -> beta = 91,0%
+    H0: mu = 6,08 (falsa por 11 centavos, 0,28 desvio), poder por tamanho de amostra:
+      n = 10: 18,5% | n = 30: 33,8% | n = 50: 50,2% | n = 100: 85,0%
+      (curva da tela 7: n = 90: 80,1% | n = 120: 92,5% | n = 160: 99,6%)
+    tarefa: com N_AMOSTRA = 100 o erro tipo I cai para 1,2%
   PARTE 2: os cinco testes
     t de uma amostra: razao etanol/gasolina nos 148 postos com os dois produtos
-      media 0,8007 (min 0,7013) | H0: 0,70 | t = 34,14 | gl = 147 | p = 9,0e-72
+      (preco medio do ano de cada produto no mesmo posto)
+      media 0,8098 (min 0,7298) | H0: 0,70 | t = 47,84 | gl = 147 | p = 1,6e-91
       nenhum dos 148 postos tinha etanol a 70% da gasolina ou menos
     t de duas amostras (Welch): Sao Luis (101) x demais (135)
-      medias 5,8000 x 6,1649 | diferenca -0,3649 | t = -10,56 | gl = 199,0 | p = 5,6e-21
-    t pareado: gasolina x etanol no mesmo posto e mes (148 pares)
-      medias 5,9786 x 4,7826 | diferenca media 1,1960 (desvio 0,2565)
-      t = 56,72 | gl = 147 | p = 7,9e-102
-      o mesmo dado tratado como independente (erro): t = 32,79
+      medias 5,7189 x 6,1656 | diferenca -0,4467 | EP 0,0355 | t = -12,59 | gl = 168,3 | p = 5,0e-26
+    t pareado: gasolina x etanol no mesmo posto (148 pares, medias do ano)
+      medias 5,9546 x 4,8187 | diferenca media 1,1359 (desvio 0,2085)
+      t = 66,27 | gl = 147 | p = 2,2e-111
+      o mesmo dado tratado como independente (erro): t = 27,92
     qui-quadrado de independencia: setor x prejuizo, os 5 setores com mais companhias
       159 companhias | prejuizo de 16,7% (Energia) a 42,9% (Maquinas)
       chi2 = 4,388 | gl = 4 | p = 0,3561 | menor esperado 5,94 -> nao rejeita
     qui-quadrado de aderencia: amostra de 100 postos x cadastro, por regiao
       (Sao Luis 42,8% | S. J. de Ribamar 12,7% | Imperatriz 11,4% | demais 33,1%)
-      aleatoria simples (random_state=2025): [44, 10, 10, 36] chi2 = 1,057 | gl = 3 | p = 0,7875
-      conveniencia (os 100 primeiros): [25, 9, 17, 49] chi2 = 18,882 | gl = 3 | p = 0,0003
+      aleatoria simples (random_state=2025): [40, 15, 11, 34] chi2 = 0,639 | gl = 3 | p = 0,8875
+      conveniencia (os 100 primeiros, em ordem de CNPJ): [34, 4, 27, 35] chi2 = 29,054 | gl = 3 | p < 0,0001
 """
 import os
 import sys
@@ -66,7 +72,7 @@ tipo I e II.
 
 | Item | Valor |
 |---|---|
-| **Base 1** | ANP, Série Histórica de Preços de Combustíveis (SHPC): **236 postos** de gasolina comum no Maranhão, 2025, e **148 postos** com gasolina e etanol no mesmo mês |
+| **Base 1** | ANP, Série Histórica de Preços de Combustíveis (SHPC): **236 postos** de gasolina comum no Maranhão, 2025, e **148 postos** com gasolina e etanol no ano |
 | **Base 2** | CVM, Demonstrações Financeiras Padronizadas (DFP) 2024: **451 companhias abertas**, com receita, lucro líquido e setor |
 | **Unidade** | R\\$ por litro (ANP); milhares de reais (CVM) |
 
@@ -81,8 +87,8 @@ tipo I e II.
 | Base | Coluna | O que é |
 |---|---|---|
 | ANP | `municipio` | O município do posto |
-| ANP | `preco` | O preço da gasolina comum no primeiro mês em que o posto aparece (R\\$ por litro) |
-| ANP | `gasolina`, `etanol` | Os dois preços do **mesmo posto, no mesmo mês** |
+| ANP | `preco` | O preço médio da gasolina comum no posto, média das coletas do ano (R\\$ por litro) |
+| ANP | `gasolina`, `etanol` | Os dois preços médios do ano do **mesmo posto** |
 | ANP | `regiao` | São Luís, São José de Ribamar, Imperatriz ou demais municípios |
 | CVM | `setor` | O setor de atividade da companhia, no cadastro da CVM |
 | CVM | `resultado` | `lucro` ou `prejuizo` no exercício de 2024 |
@@ -283,35 +289,30 @@ anp = anp.rename(columns={"estado_-_sigla": "uf", "mes_arquivo": "mes",
 print(f"ANP: {len(anp)} posto-mês do Maranhão carregados do arquivo local")'''
 
 MONTA_ANP = '''# ================= As três tabelas da ANP que o encontro usa =================
-# 1. o cadastro: um registro por posto, o preço da gasolina no primeiro mês em que o posto aparece
+# 1. o cadastro: um registro por posto, com o preço médio da gasolina em todas as coletas
+#    do ano. É a mesma regra dos encontros 6 a 14, e dá o mesmo resultado em qualquer
+#    versão do pandas.
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes")
-               .drop_duplicates("cnpj", keep="first")
-               [["cnpj", "municipio", "bandeira", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco"})
-               .reset_index(drop=True))
+cadastro = (gas.groupby(["cnpj", "municipio"], as_index=False)["valor_venda"].mean()
+               .rename(columns={"valor_venda": "preco"}))
 cadastro["regiao"] = cadastro["municipio"].where(
     cadastro["municipio"].isin(["SAO LUIS", "SAO JOSE DE RIBAMAR", "IMPERATRIZ"]), "DEMAIS")
 populacao = cadastro["preco"]
 
-# 2. os pares: gasolina e etanol do MESMO posto, no MESMO mês (o primeiro em que há os dois)
-gasolina = (anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-               .drop_duplicates(["cnpj", "mes"])[["cnpj", "mes", "municipio", "valor_venda"]]
-               .rename(columns={"valor_venda": "gasolina"}))
-etanol = (anp[anp["produto"] == "ETANOL"].dropna(subset=["valor_venda"])
-             .drop_duplicates(["cnpj", "mes"])[["cnpj", "mes", "valor_venda"]]
-             .rename(columns={"valor_venda": "etanol"}))
-pares = (gasolina.merge(etanol, on=["cnpj", "mes"])
-                 .sort_values("mes").drop_duplicates("cnpj").reset_index(drop=True))
+# 2. os pares: o preço médio do ano da gasolina e o do etanol, no MESMO posto
+media_do_ano = lambda produto: (anp[anp["produto"] == produto].dropna(subset=["valor_venda"])
+                                   .groupby("cnpj")["valor_venda"].mean())
+pares = (pd.concat([media_do_ano("GASOLINA").rename("gasolina"),
+                    media_do_ano("ETANOL").rename("etanol")], axis=1, join="inner")
+           .reset_index())
 pares["razao"] = pares["etanol"] / pares["gasolina"]
 
 print(f"cadastro: {len(cadastro)} postos | preço médio R$ {populacao.mean():.4f} | "
       f"desvio R$ {populacao.std():.4f}")
-print(f"pares gasolina × etanol: {len(pares)} postos com os dois produtos no mesmo mês")
+print(f"pares gasolina × etanol: {len(pares)} postos com os dois produtos no ano")
 print()
-conferir("preço médio dos 236 postos", populacao.mean(), 6.0087, tolerancia=0.0005, unidade="")
-conferir("postos com gasolina e etanol no mesmo mês", len(pares), 148, tolerancia=0,
-         unidade="")'''
+conferir("preço médio dos 236 postos", populacao.mean(), 5.9744, tolerancia=0.0005, unidade="")
+conferir("postos com gasolina e etanol", len(pares), 148, tolerancia=0, unidade="")'''
 
 CELULA_A_CVM = '''# ================= CÉLULA A: as demonstrações da CVM =================
 # Se esta célula falhar, peça ao professor para usar a CÉLULA B.
@@ -382,27 +383,27 @@ print(f"  o α prometia ................... {ALFA:.1%}")
 print()
 print("Cada rejeição aqui é um ERRO TIPO I: o teste acusou uma diferença que não existe.")
 print()
-conferir("taxa de erro tipo I", taxa_I, 0.041, tolerancia=0.0005, unidade="")'''
+conferir("taxa de erro tipo I", taxa_I, 0.060, tolerancia=0.0005, unidade="")'''
 
 TIPO_II = '''# ERRO TIPO II: H0 é FALSA. O teste percebe?
-# Caso 1: o encontro 10. H0 dizia R$ 6,00; a verdade é R$ 6,0087, menos de 1 centavo.
+# Caso 1: o encontro 10. H0 dizia R$ 6,00; a verdade é R$ 5,9744, menos de 3 centavos.
 taxa_600 = taxa_rejeicao(populacao, 6.00, N_AMOSTRA, N_SIMULACOES, ALFA)
-print("H0: média = R$ 6,00  (falsa por menos de 1 centavo)")
+print("H0: média = R$ 6,00  (falsa por menos de 3 centavos)")
 print(f"  rejeitaram H0 ... {taxa_600:.1%}   →  erro tipo II (β) = {1 - taxa_600:.1%}")
 print()
 
-# Caso 2: H0 diz R$ 6,10; a verdade é R$ 6,0087, 9 centavos. O poder cresce com n.
-poder = poder_por_n(populacao, 6.10, [10, 30, 50, 100], N_SIMULACOES, ALFA)
+# Caso 2: H0 diz R$ 6,08; a verdade é R$ 5,9744, 11 centavos. O poder cresce com n.
+poder = poder_por_n(populacao, 6.08, [10, 30, 50, 100], N_SIMULACOES, ALFA)
 poder["erro tipo II (β)"] = 1 - poder["rejeições (poder)"]
-print("H0: média = R$ 6,10  (falsa por 9 centavos)")
+print("H0: média = R$ 6,08  (falsa por 11 centavos)")
 print(poder.to_string(index=False))
 print()
-conferir("rejeições de H0: 6,00 com n = 30", taxa_600, 0.034, tolerancia=0.0005, unidade="")
-conferir("poder contra 6,10 com n = 10", poder["rejeições (poder)"][0], 0.176,
+conferir("rejeições de H0: 6,00 com n = 30", taxa_600, 0.090, tolerancia=0.0005, unidade="")
+conferir("poder contra 6,08 com n = 10", poder["rejeições (poder)"][0], 0.185,
          tolerancia=0.0005, unidade="")
-conferir("poder contra 6,10 com n = 30", poder["rejeições (poder)"][1], 0.320,
+conferir("poder contra 6,08 com n = 30", poder["rejeições (poder)"][1], 0.338,
          tolerancia=0.0005, unidade="")
-conferir("poder contra 6,10 com n = 100", poder["rejeições (poder)"][3], 0.810,
+conferir("poder contra 6,08 com n = 100", poder["rejeições (poder)"][3], 0.850,
          tolerancia=0.0005, unidade="")'''
 
 FIG_PODER = '''# O poder, desenhado: a mesma H0 falsa, amostras cada vez maiores.
@@ -414,7 +415,7 @@ ax.axhline(80, color="#8D0333", linestyle="--", linewidth=1.5,
            label="80%: o poder que se costuma exigir")
 ax.set_xlabel("tamanho da amostra (postos)")
 ax.set_ylabel("% de amostras que rejeitam H0")
-ax.set_title("Poder do teste contra H0: média = R$ 6,10 (a verdade é R$ 6,0087)")
+ax.set_title("Poder do teste contra H0: média = R$ 6,08 (a verdade é R$ 5,9744)")
 ax.set_ylim(0, 100)
 ax.legend(loc="upper left")
 plt.tight_layout()
@@ -429,8 +430,8 @@ print()
 print(f"postos com etanol a 70% da gasolina ou menos: {(pares['razao'] <= 0.70).sum()} "
       f"de {len(pares)} | menor razão: {pares['razao'].min():.4f}")
 print()
-conferir("razão média etanol/gasolina", r1["média"], 0.8007, tolerancia=0.0005, unidade="")
-conferir("t da razão contra 0,70", r1["t"], 34.14, tolerancia=0.01, unidade="")'''
+conferir("razão média etanol/gasolina", r1["média"], 0.8098, tolerancia=0.0005, unidade="")
+conferir("t da razão contra 0,70", r1["t"], 47.84, tolerancia=0.01, unidade="")'''
 
 T_DUAS = '''# TESTE 2: t de duas amostras independentes (Welch). Pergunta: o preço médio da
 # gasolina em São Luís é diferente do preço nos demais municípios?
@@ -441,12 +442,12 @@ r2 = teste_t_duas(sao_luis, demais, alfa=ALFA)
 print("grupo A: São Luís | grupo B: demais municípios")
 print(r2.to_string())
 print()
-conferir("diferença São Luís − demais", r2["diferença (A − B)"], -0.3649,
+conferir("diferença São Luís − demais", r2["diferença (A − B)"], -0.4467,
          tolerancia=0.0005, unidade="")
-conferir("t de Welch", r2["t"], -10.56, tolerancia=0.01, unidade="")
-conferir("graus de liberdade de Welch", r2["gl"], 199.0, tolerancia=0.05, unidade="")'''
+conferir("t de Welch", r2["t"], -12.59, tolerancia=0.01, unidade="")
+conferir("graus de liberdade de Welch", r2["gl"], 168.3, tolerancia=0.05, unidade="")'''
 
-T_PAR = '''# TESTE 3: t pareado. Pergunta: no mesmo posto e no mesmo mês, quanto a gasolina custa
+T_PAR = '''# TESTE 3: t pareado. Pergunta: no mesmo posto, quanto a gasolina custa
 # a mais que o etanol?
 #   H0: a diferença média gasolina − etanol é zero      H1: é diferente de zero
 r3 = teste_t_pareado(pares["gasolina"], pares["etanol"], alfa=ALFA)
@@ -457,10 +458,10 @@ errado = teste_t_duas(pares["gasolina"], pares["etanol"], alfa=ALFA)
 print(f"O MESMO dado tratado como independente (errado): t = {errado['t']}  "
       f"(o pareado dá t = {r3['t']})")
 print()
-conferir("diferença média gasolina − etanol", r3["média da diferença"], 1.1960,
+conferir("diferença média gasolina − etanol", r3["média da diferença"], 1.1359,
          tolerancia=0.0005, unidade="")
-conferir("t pareado", r3["t"], 56.72, tolerancia=0.01, unidade="")
-conferir("t tratado como independente", errado["t"], 32.79, tolerancia=0.01, unidade="")'''
+conferir("t pareado", r3["t"], 66.27, tolerancia=0.01, unidade="")
+conferir("t tratado como independente", errado["t"], 27.92, tolerancia=0.01, unidade="")'''
 
 QUI_IND = '''# TESTE 4: qui-quadrado de independência. Pergunta: ter prejuízo depende do setor?
 #   H0: setor e resultado são independentes      H1: estão associados
@@ -487,19 +488,19 @@ proporcoes = (cadastro["regiao"].value_counts(normalize=True)
 print("Proporções do cadastro:", (proporcoes * 100).round(1).tolist())
 print()
 aas = cadastro.sample(n=100, random_state=2025)       # sorteada (a do encontro 6)
-conveniencia = cadastro.head(100)                     # os 100 primeiros da lista
+conveniencia = cadastro.head(100)                     # os 100 primeiros da lista (ordem de CNPJ)
 r5a = teste_qui_aderencia(aas["regiao"].value_counts(), proporcoes, alfa=ALFA)
 r5b = teste_qui_aderencia(conveniencia["regiao"].value_counts(), proporcoes, alfa=ALFA)
 pd.DataFrame({"aleatória simples": r5a, "conveniência": r5b})'''
 
-QUI_ADE_CONF = '''conferir("aderência da amostra sorteada: qui-quadrado", r5a["qui_quadrado"], 1.057,
+QUI_ADE_CONF = '''conferir("aderência da amostra sorteada: qui-quadrado", r5a["qui_quadrado"], 0.639,
          tolerancia=0.005, unidade="")
-conferir("aderência da amostra sorteada: valor-p", r5a["valor_p"], 0.7875,
+conferir("aderência da amostra sorteada: valor-p", r5a["valor_p"], 0.8875,
          tolerancia=0.0005, unidade="")
-conferir("aderência da conveniência: qui-quadrado", r5b["qui_quadrado"], 18.882,
+conferir("aderência da conveniência: qui-quadrado", r5b["qui_quadrado"], 29.054,
          tolerancia=0.005, unidade="")
-conferir("aderência da conveniência: valor-p", r5b["valor_p"], 0.0003,
-         tolerancia=0.0001, unidade="")'''
+conferir("aderência da conveniência: valor-p abaixo de 0,0001", r5b["valor_p"] == "< 0.0001", 1,
+         tolerancia=0, unidade="")'''
 
 RESUMO = '''# Os cinco testes, lado a lado: a pergunta, o teste e a decisão a 5%.
 pd.DataFrame([
@@ -593,28 +594,29 @@ Todo teste termina em uma decisão, e toda decisão pode estar errada de dois je
 | **O teste não rejeita H0** | Acerto. Chance: 1 − α | **Erro tipo II**: o efeito passou despercebido. Chance: **β** |
 
 Em pesquisa de verdade, ninguém sabe em que coluna está, e é por isso que se testa. Aqui,
-com o cadastro de 236 postos, **a média verdadeira é conhecida** (R\\$ 6,0087), e dá
+com o cadastro de 236 postos, **a média verdadeira é conhecida** (R\\$ 5,9744), e dá
 para contar os erros. Primeiro, uma H0 verdadeira."""},
     {"tipo": "code", "texto": TIPO_I},
-    {"tipo": "md", "texto": """**4,1% contra os 5% prometidos.** O α é exatamente isso: a taxa de alarme falso que se
-aceita de antemão. Ficou um pouco abaixo porque 30 postos são 13% de um cadastro pequeno,
-e o teste sem correção finita é ligeiramente conservador: o mesmo efeito dos 95,9% de
-cobertura do encontro 10.
+    {"tipo": "md", "texto": """**6,0% contra os 5% prometidos.** O α é exatamente isso: a taxa de alarme falso que se
+aceita de antemão. Mil amostras medem essa taxa com folga de cerca de 1,4 ponto para cada
+lado (duas vezes √(0,05 × 0,95 ÷ 1.000)), e 6,0% está dentro dela. Com 20 mil amostras a
+taxa fica em 4,4%, um pouco abaixo de 5%: 30 postos são 13% de um cadastro pequeno, e o
+teste sem a correção para população finita do encontro 8 fica ligeiramente conservador.
 
 Agora uma H0 **falsa**. Primeiro, o caso que ficou do encontro 10: o teste não rejeitou
-R\\$ 6,00, e a média verdadeira é R\\$ 6,0087. Depois, uma diferença maior, de 9 centavos,
+R\\$ 6,00, e a média verdadeira é R\\$ 5,9744. Depois, uma diferença maior, de 11 centavos,
 com amostras de tamanhos diferentes."""},
     {"tipo": "code", "texto": TIPO_II},
     {"tipo": "code", "texto": FIG_PODER},
     {"tipo": "md", "texto": """**A leitura.**
 
-* Contra R\\$ 6,00, o teste rejeita em só **3,4%** das amostras: o erro tipo II é de
-  **96,6%**. A diferença de menos de 1 centavo é **invisível** com 30 postos, e também
+* Contra R\\$ 6,00, o teste rejeita em só **9,0%** das amostras: o erro tipo II é de
+  **91,0%**. A diferença de menos de 3 centavos é **invisível** com 30 postos, e também
   **irrelevante** para qualquer decisão de gestão. Não rejeitar, aqui, não é falha: é o
   teste ignorando o que não importa.
-* Contra R\\$ 6,10, a diferença é de 9 centavos. Com 10 postos, o teste percebe em
-  **17,6%** das amostras; com 30, em **32,0%**; com 50, em **45,9%**; com 100, em
-  **81,0%**. **O poder se compra com n.** A convenção da área é planejar a amostra para
+* Contra R\\$ 6,08, a diferença é de 11 centavos. Com 10 postos, o teste percebe em
+  **18,5%** das amostras; com 30, em **33,8%**; com 50, em **50,2%**; com 100, em
+  **85,0%**. **O poder se compra com n.** A convenção da área é planejar a amostra para
   um poder de pelo menos 80%.
 * E a troca: diminuir α (exigir 1% em vez de 5%) reduz o alarme falso, mas **aumenta**
   o erro tipo II. Não existe teste que zere os dois."""},
@@ -661,9 +663,9 @@ O etanol rende menos que a gasolina; a regra de bolso é que ele compensa quando
 **até 70%** do preço da gasolina. A comparação é com um valor de fora (0,70), como no
 encontro 10."""},
     {"tipo": "code", "texto": T_UMA},
-    {"tipo": "md", "texto": """> "Nos 148 postos pesquisados pela ANP no Maranhão que vendiam gasolina e etanol no
-> mesmo mês, o etanol custou em média **80,1%** do preço da gasolina, acima do ponto de
-> equilíbrio de 70% (**t = 34,14; gl = 147; p < 0,001**). Em nenhum dos 148 postos o
+    {"tipo": "md", "texto": """> "Nos 148 postos pesquisados pela ANP no Maranhão que vendiam gasolina e etanol, o preço
+> médio do etanol no ano foi **81,0%** do da gasolina, acima do ponto de equilíbrio de 70%
+> (**t = 47,84; gl = 147; p < 0,001**). Em nenhum dos 148 postos o
 > etanol compensou (ANP, SHPC, 2025)."
 
 **O que a frase não diz.** Que o etanol nunca compensa no Maranhão: a base é de 2025 e de
@@ -676,9 +678,9 @@ Dois grupos de postos **diferentes**, sem ligação entre si. A versão de Welch
 os dois grupos tenham a mesma dispersão, e aqui não têm: os preços do interior variam mais
 que os da capital."""},
     {"tipo": "code", "texto": T_DUAS},
-    {"tipo": "md", "texto": """> "O preço médio da gasolina comum nos postos de São Luís (**R\\$ 5,80**, 101 postos) foi
-> **37 centavos** menor que nos demais municípios pesquisados (**R\\$ 6,16**, 135 postos),
-> diferença estatisticamente significativa (**t de Welch = −10,56; gl = 199; p < 0,001**)
+    {"tipo": "md", "texto": """> "O preço médio da gasolina comum nos postos de São Luís (**R\\$ 5,72**, 101 postos) foi
+> **45 centavos** menor que nos demais municípios pesquisados (**R\\$ 6,17**, 135 postos),
+> diferença estatisticamente significativa (**t de Welch = −12,59; gl = 168; p < 0,001**)
 > (ANP, SHPC, 2025)."
 
 **O que a frase não diz.** Por que a capital é mais barata: concorrência, logística e
@@ -691,11 +693,11 @@ Aqui cada posto aparece **duas vezes**, uma com o preço da gasolina e outra com
 etanol. O teste olha para a **diferença dentro de cada posto** e por isso tira da conta
 a variação de preço entre postos, que não interessa à pergunta."""},
     {"tipo": "code", "texto": T_PAR},
-    {"tipo": "md", "texto": """> "No mesmo posto e no mesmo mês, a gasolina comum custou em média **R\\$ 1,20 a mais**
-> que o etanol (148 postos; **t pareado = 56,72; gl = 147; p < 0,001**) (ANP, SHPC, 2025)."
+    {"tipo": "md", "texto": """> "No mesmo posto, o preço médio da gasolina comum no ano foi **R\\$ 1,14 maior** que o do
+> etanol (148 postos; **t pareado = 66,27; gl = 147; p < 0,001**) (ANP, SHPC, 2025)."
 
 **O erro comum, à vista.** Tratados como dois grupos independentes, os mesmos dados dão
-t = 32,79 em vez de 56,72. A conclusão não mudou aqui, porque a diferença é enorme; com uma
+t = 27,92 em vez de 66,27. A conclusão não mudou aqui, porque a diferença é enorme; com uma
 diferença pequena, o teste errado pode **esconder** um efeito que o pareado encontra. O
 pareamento é uma informação do delineamento, e jogá-la fora custa poder."""},
 
@@ -720,16 +722,16 @@ ordem, o teste tem **pouco poder**: é a Parte 1 de hoje aparecendo em dado real
 Uma variável categórica (a região do posto) contra proporções **conhecidas**, as do
 cadastro. É o teste que confere se uma amostra se parece com a população de onde saiu.
 Duas amostras de 100 postos: a **sorteada** do encontro 6 e a de **conveniência** (os 100
-primeiros da lista)."""},
+primeiros da lista, que está em ordem de CNPJ)."""},
     {"tipo": "code", "texto": QUI_ADE},
     {"tipo": "code", "texto": QUI_ADE_CONF},
     {"tipo": "md", "texto": """> "A distribuição por região da amostra aleatória simples de 100 postos não difere da do
-> cadastro (**χ² = 1,06; gl = 3; p = 0,79**). A da amostra por conveniência difere
-> (**χ² = 18,88; gl = 3; p < 0,001**): ela tem 25 postos de São Luís, onde se esperariam
-> 43 (ANP, SHPC, 2025)."
+> cadastro (**χ² = 0,64; gl = 3; p = 0,89**). A da amostra por conveniência difere
+> (**χ² = 29,05; gl = 3; p < 0,001**): ela tem 27 postos de Imperatriz, onde se esperariam
+> 11, e 4 de São José de Ribamar, onde se esperariam 13 (ANP, SHPC, 2025)."
 
 **O que a frase não diz.** Que a amostra sorteada é “perfeita”: o teste só não encontrou
-desvio. E repare no que o teste encontrou na conveniência: o **viés** do encontro 6, agora
+desvio. E repare no que o teste encontrou na conveniência: o **viés de seleção** do encontro 6, agora
 com um valor-p.
 
 ### Os cinco testes, lado a lado"""},

@@ -8,18 +8,18 @@ fecha com o fluxograma completo de escolha do teste. A pratica e a celula de esc
 do teste, com a base trocavel no bloco de configuracao.
 
 Duas bases do modulo:
-  ANP, SHPC 2025: o cadastro de 236 postos do Maranhao (gasolina comum; o preco do
-                   posto e o do primeiro mes em que ele aparece, como nos encontros 6 a 11)
+    ANP, SHPC 2025: o cadastro de 236 postos do Maranhao (gasolina comum; o preco do
+                   posto e a media de todas as coletas do ano, como nos encontros 6 a 14)
   CVM, DFP 2024: 449 companhias com receita positiva; margem liquida = lucro / receita
 
-Numeros verificados na geracao (14/10/2026):
+Numeros verificados na geracao (30/10/2026):
 
   ANOVA, preco por municipio (7 municipios com 10 ou mais postos, 210 postos)
-    F = 97,38 (gl 6 e 203), p < 0,001 | eta2 = 0,742 | Kruskal-Wallis H = 136,64, p < 0,001
-    medias: Sao Jose de Ribamar R$ 5,731 (a menor) ... Balsas R$ 6,869 (a maior)
+        F = 150,83 (gl 6 e 203), p < 0,001 | eta2 = 0,817 | Kruskal-Wallis H = 152,52, p < 0,001
+    medias: Sao Jose de Ribamar R$ 5,649 (a menor) ... Balsas R$ 6,758 (a maior)
   Varios testes t: 21 comparacoes; 1 - 0,95^21 = 65,9% (teto);
     simulacao (semente 12, 1.000 repeticoes, 7 grupos iguais de 30): 45,7% com algum "achado"
-    nos 7 municipios reais: 15 dos 21 pares com p < 0,05; 14 sobrevivem a Bonferroni (0,0024)
+    nos 7 municipios reais: 18 dos 21 pares com p < 0,05; 16 sobrevivem a Bonferroni (0,0024)
   Kruskal-Wallis x ANOVA, margem por setor (os 3 setores com 30 ou mais companhias, 111)
     ANOVA F = 1,62, p = 0,2017 | Kruskal-Wallis H = 12,05, p = 0,0024
     medianas: Comercio 2,1% | Construcao 5,7% | Energia 14,8%
@@ -33,8 +33,9 @@ Numeros verificados na geracao (14/10/2026):
     t pareado = -7,99, p < 0,001 | Wilcoxon W = 385, p < 0,001
   Celula de escolha (configuracao original: BASE = "CVM", MIN_POR_GRUPO = 30)
     indica Kruskal-Wallis, H = 12,05, p = 0,0024
-  (com BASE = "ANP" e MIN_POR_GRUPO = 30: Sao Jose de Ribamar x Sao Luis, indica t
-   de Welch, t = -2,39, p = 0,0202; Mann-Whitney p = 0,0175)
+    (com BASE = "ANP" e MIN_POR_GRUPO = 30: Sao Jose de Ribamar x Sao Luis; Sao Luis tem
+   assimetria de +1,65, e a celula indica o Mann-Whitney, U = 913,5, p = 0,0010; o t de
+   Welch daria t = -3,61, p = 0,0006)
 
 Os mesmos numeros estao no deck (slides/encontro-12.html) e na conducao
 (gera_slide_12.py). Execute de dentro de notebooks/geradores:
@@ -78,7 +79,7 @@ O Módulo III termina hoje com duas perguntas que os encontros 10 e 11 deixaram 
 | Coluna | Base | Significado |
 |---|---|---|
 | `municipio` | ANP | O município do posto |
-| `preco` | ANP | R$ por litro: o preço do posto no primeiro mês em que ele aparece no ano |
+| `preco` | ANP | R$ por litro: o preço médio do posto, média das coletas do ano |
 | `setor` | CVM | O setor de atividade declarado à CVM |
 | `margem` | CVM | Margem líquida, em %: lucro líquido ÷ receita × 100 |
 
@@ -281,14 +282,11 @@ REPO = ("https://raw.githubusercontent.com/tadeugomes/"
 anp = pd.read_csv(REPO + "anp_precos_revenda_ma_2025.csv")
 cvm = pd.read_csv(REPO + "cvm_dre_2024.csv", dtype={"CD_CVM": str})
 
-# ANP: o cadastro de postos, um registro por posto (a chave é o CNPJ), com o preço do
-# primeiro mês em que ele aparece. É o mesmo cadastro dos encontros 6 a 11.
+# ANP: o cadastro de postos, um registro por posto (a chave é o CNPJ), com o preço médio
+# de todas as coletas do ano. É o mesmo cadastro dos encontros 6 a 14.
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes_arquivo")
-               .drop_duplicates("cnpj_da_revenda", keep="first")
-               [["cnpj_da_revenda", "municipio", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco"})
-               .reset_index(drop=True))
+cadastro = (gas.groupby(["cnpj_da_revenda", "municipio"], as_index=False)["valor_venda"].mean()
+               .rename(columns={"valor_venda": "preco"}))
 
 # CVM: só companhias com receita positiva; margem líquida em %
 cvm = cvm[cvm["receita"] > 0].copy()
@@ -309,11 +307,8 @@ anp = pd.read_csv("anp_precos_revenda_ma_2025.csv")
 cvm = pd.read_csv("cvm_dre_2024.csv", dtype={"CD_CVM": str})
 
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes_arquivo")
-               .drop_duplicates("cnpj_da_revenda", keep="first")
-               [["cnpj_da_revenda", "municipio", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco"})
-               .reset_index(drop=True))
+cadastro = (gas.groupby(["cnpj_da_revenda", "municipio"], as_index=False)["valor_venda"].mean()
+               .rename(columns={"valor_venda": "preco"}))
 
 cvm = cvm[cvm["receita"] > 0].copy()
 cvm["margem"] = cvm["lucro_liquido"] / cvm["receita"] * 100
@@ -401,23 +396,23 @@ print()
 print(f"graus de liberdade: {k - 1} (entre) e {N - k} (dentro)")
 print(f"η² = {eta2:.3f}: {eta2:.0%} da variação do preço está ENTRE os municípios")
 
-conferir("F da ANOVA (preço por município)", F_anp, 97.38, tolerancia=0.01, unidade="")
-conferir("eta ao quadrado", eta2, 0.742, tolerancia=0.001, unidade="")
-conferir("H de Kruskal-Wallis (ANP)", H_anp, 136.64, tolerancia=0.01, unidade="")'''},
+conferir("F da ANOVA (preço por município)", F_anp, 150.83, tolerancia=0.01, unidade="")
+conferir("eta ao quadrado", eta2, 0.817, tolerancia=0.001, unidade="")
+conferir("H de Kruskal-Wallis (ANP)", H_anp, 152.52, tolerancia=0.01, unidade="")'''},
     {"tipo": "md", "texto": """**A leitura.** A ANOVA rejeita H0 com folga: o preço médio da gasolina **não** é o mesmo nos
-sete municípios, e 74% da variação está entre eles. E o Kruskal-Wallis diz o mesmo. Quando
+sete municípios, e 82% da variação está entre eles. E o Kruskal-Wallis diz o mesmo. Quando
 o teste paramétrico e o não paramétrico **concordam**, a conclusão é robusta.
 
 **O que a ANOVA não diz.** **Quais** municípios diferem. Ela responde se há diferença, não
 onde. Para saber onde, comparam-se os pares com um α corrigido (Bonferroni: 0,05 ÷ 21 =
 0,0024), e é o que a célula abaixo faz. O resumo da Seção 2 já mostra o desenho: a Grande
-São Luís (São Luís e São José de Ribamar) abaixo de R$ 5,81, e Balsas acima de R$ 6,85."""},
+São Luís (São Luís e São José de Ribamar) abaixo de R$ 5,72, e Balsas acima de R$ 6,75."""},
     {"tipo": "code", "texto": '''# Onde estão as diferenças: os 21 pares, com e sem a correção de Bonferroni.
 pares_anp = conta_pares_t(sete, "preco", "municipio", alfa=ALFA)
 
-conferir("pares com p < 0,05 (sem correção)", pares_anp["sem_correcao"], 15,
+conferir("pares com p < 0,05 (sem correção)", pares_anp["sem_correcao"], 18,
          tolerancia=0, unidade="")
-conferir("pares que sobram com Bonferroni", pares_anp["bonferroni"], 14,
+conferir("pares que sobram com Bonferroni", pares_anp["bonferroni"], 16,
          tolerancia=0, unidade="")'''},
 
     # ------------------------------------------------------------ quando nao cabe
@@ -455,7 +450,7 @@ grupo, e a ANOVA, que compara médias, vai comparar a coisa errada."""},
 ANOVA diz que não (p = 0,20). O Kruskal-Wallis diz que sim (p = 0,002). Em quem acreditar?
 
 **2. O conceito.** Os testes de **postos** trocam cada valor pela sua **posição na fila**
-ordenada (o menor vira 1, o seguinte 2...). Um extremo de −452% vira apenas "o último da
+ordenada (o menor vira 1, o seguinte 2...). Um extremo de −452% vira apenas "o primeiro da
 fila" e deixa de arrastar o resultado.
 
 | Situação | Paramétrico (compara médias) | Não paramétrico (compara postos) |
@@ -641,7 +636,7 @@ print("LEITURA 1: 'a ANOVA deu p = 0,20, logo comércio, construção e energia 
 print("            margem líquida'")
 print("            (não rejeitar H0 prova igualdade? a ANOVA era o teste certo para estes dados?)")
 print()
-print("LEITURA 2: 'fiz os 21 testes t entre os municípios e 15 deram p < 0,05; logo 15 pares")
+print("LEITURA 2: 'fiz os 21 testes t entre os municípios e 18 deram p < 0,05; logo 18 pares")
 print("            de municípios diferem'")
 print("            (quantos alarmes falsos se espera em 21 testes? com o α corrigido de")
 print("             Bonferroni, quantos pares sobram?)")

@@ -102,8 +102,8 @@ SECOES_E5 = [
               <tr><th>Questão</th><th>O que o notebook confere</th></tr>
               <tr><td>B0</td><td>449 companhias (451 no arquivo, 2 com receita negativa saem), 7
               convertidas de reais para milhares, 33 sem setor declarado</td></tr>
-              <tr><td>B1</td><td>Construção Civil, Mat. Constr. e Decoração: 42 companhias, 9,4%
-              das 449</td></tr>
+              <tr><td>B1</td><td>Construção Civil, Mat. Constr. e Decoração: 42 companhias, 10,1%
+              das 416 com setor declarado (as 33 sem setor ficam fora do denominador)</td></tr>
               <tr><td>B2</td><td>Média 12.348.764 e mediana 2.109.725 mil reais, razão de 5,9.
               A medida é a mediana</td></tr>
               <tr><td>B3</td><td>Desvio 40.915.645, CV 331,33%, IQR 7.168.750 (Q1 581.866, Q3

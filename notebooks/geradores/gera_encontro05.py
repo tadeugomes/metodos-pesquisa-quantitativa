@@ -16,7 +16,8 @@ Numeros da base (verificados em 28/09/2026):
   desvio 40.915.645 | CV 331,33% | Q1 581.866 | Q3 7.750.616 | IQR 7.168.750
   assimetria 7,56 | 55 companhias acima de Q3 + 1,5 IQR (12,2%)
   33 das 449 companhias sem setor declarado (35 das 451 no arquivo)
-  B1: 42 companhias no setor mais frequente (9,4% de 449)
+  B1: 42 companhias no setor mais frequente (10,1% das 416 com setor declarado;
+      as 33 sem setor ficam fora do denominador e sao relatadas a parte)
   B5: 48,6% das companhias faturam menos que R$ 2 bilhoes
 
 A funcao conferir entra no topo da Parte B, porque o deck e a conducao prometem a
@@ -126,8 +127,9 @@ alterá-la.**"""
 GABARITO_B = """## Gabarito da Parte B (este texto não vai para o aluno)
 
 **B1.** O setor mais frequente é **Construção Civil, Mat. Constr. e Decoração**, com 42
-companhias (9,4% do total). E a leitura precisa dizer o recorte: “das 449 companhias
-abertas com demonstrações de 2024, 42 são do setor X, ou 9,4%”.
+companhias (10,1% das 416 com setor declarado). E a leitura precisa dizer o recorte e o
+denominador: “das 416 companhias abertas com setor declarado nas demonstrações de 2024,
+42 são do setor X, ou 10,1%. Outras 33 não declaram setor”.
 
 **B2.** A medida de posição adequada é a **mediana**. A média da receita é
 **12.348.764** e a mediana é **2.109.725**: a média é **5,9 vezes** a mediana. Isso
@@ -194,24 +196,26 @@ base.head(3)'''},
     {"tipo": "md", "texto": """### B1. A tabela de frequências e a leitura
 
 Monte a tabela de frequências do **setor** e escreva, embaixo, a **frase de leitura** do
-setor mais frequente: **o percentual, a contagem entre parênteses e o total declarado**."""},
+setor mais frequente: **o percentual, a contagem entre parênteses e o total declarado**.
+O percentual de cada setor se calcula sobre as companhias **com setor declarado**: as que não
+declaram setor não pertencem a nenhuma categoria da tabela e são relatadas à parte."""},
 
     {"tipo": "code", "texto": '''# CÉLULA B1: a tabela de frequências do setor.
 freq = base["setor"].value_counts()
 tabela_setor = (freq.rename_axis("setor").reset_index(name="companhias"))
-tabela_setor["pct"] = (tabela_setor["companhias"] / len(base) * 100).round(1)
-n_total = len(base)
-print(f"total declarado: {n_total} companhias, das quais "
-      f"{base['setor'].isna().sum()} sem setor")
+com_setor = base["setor"].notna().sum()          # o denominador: quem tem setor
+tabela_setor["pct"] = (tabela_setor["companhias"] / com_setor * 100).round(1)
+print(f"{len(base)} companhias na base: {com_setor} com setor declarado "
+      f"(o denominador) e {base['setor'].isna().sum()} sem setor, relatadas à parte")
 
 conferir("companhias do setor mais frequente", tabela_setor["companhias"].iloc[0], 42,
          tolerancia=0, unidade=" cias")
-conferir("percentual do setor mais frequente", tabela_setor["pct"].iloc[0], 9.4,
+conferir("percentual do setor mais frequente", tabela_setor["pct"].iloc[0], 10.1,
          tolerancia=0.05, unidade="%")
 tabela_setor.head(5)'''},
     {"tipo": "nota", "texto": "Gabarito B1: o setor mais frequente tem 42 companhias, "
-                              "9,4% de 449. O aluno deve escrever a frase com o recorte "
-                              "e o total declarado."},
+                              "10,1% das 416 com setor declarado. O aluno deve escrever a frase com o "
+                              "recorte e o denominador, e citar as 33 sem setor à parte."},
     {"tipo": "md", "texto": "_(escreva aqui a frase de leitura do setor mais frequente)_\n\n---\n"},
 
     {"tipo": "md", "texto": """### B2. A medida de posição e a justificativa

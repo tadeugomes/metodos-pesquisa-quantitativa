@@ -7,25 +7,26 @@ padrao, nivel de confianca, margem de erro e o tamanho da amostra derivado do
 intervalo, com a verificacao por simulacao) e a escala Likert com o alfa de Cronbach,
 sobre respostas SIMULADAS com semente fixa.
 
-Numeros verificados na geracao (14/10/2026), os mesmos do slide e da conducao:
+Numeros verificados na geracao (30/10/2026), os mesmos do slide e da conducao:
 
   cadastro ANP (gasolina comum, MA, 2025): N = 236 postos
-    media R$ 6,0087 | desvio R$ 0,3402
+        um posto por linha, com o preco medio das coletas do ano
+    media R$ 5,9744 | desvio R$ 0,3755
   n = 50 (o exemplo do encontro 7):
-    erro padrao 0,0481 | margem a 95% 0,0943 | com correcao finita 0,0839
-    das 1.000 amostras: 98,0% dentro de 0,0943 e 95,6% dentro de 0,0839
-    erro padrao com correcao 0,0428 (a largura simulada no E7 foi 0,0418)
-    medias a 1 e a 2 EP: 74,8% e 98,2% sem correcao; 69,2% e 95,9% com correcao
+    erro padrao 0,0531 | margem a 95% 0,1041 | com correcao finita 0,0926
+    das 1.000 amostras: 96,9% dentro de 0,1041 e 95,3% dentro de 0,0926
+    erro padrao com correcao 0,0472 (a largura simulada no E7 foi 0,0482)
+    medias a 1 e a 2 EP: 72,1% e 97,1% sem correcao; 66,5% e 95,7% com correcao
   z: 90% 1,645 | 95% 1,960 | 99% 2,576
   n para a MEDIA, margem R$ 0,05, 95%:
-    n0 = 177,8 -> 178 | com correcao para N = 236: 101,7 -> 102 postos
-    simulacao: 1.000 amostras de 102 -> 96,2% dentro de R$ 0,05
+    n0 = 216,6 -> 217 | com correcao para N = 236: 113,2 -> 114 postos
+    simulacao: 1.000 amostras de 114 -> 94,2% dentro de R$ 0,05
   n para a PROPORCAO, margem 5 p.p., 95%, p = 0,5:
     n0 = 384,1 -> 385
     N = 236 -> 147 | N = 5.572 (municipios, Receita) -> 360
     N = 168.098 (empresas MA, CEMPRE 2024) -> 384 | N = 10.607.110 (Brasil) -> 385
-  proporcao real de bandeira branca no cadastro: 50,0% (118 de 236)
-    simulacao: 1.000 amostras de 147 -> 95,1% dentro de 5 p.p.
+  proporcao real de bandeira branca no cadastro: 50,4% (119 de 236)
+    simulacao: 1.000 amostras de 147 -> 96,0% dentro de 5 p.p.
   alfa de Cronbach (200 respostas simuladas, 6 itens, semente 2026):
     item 6 sem recodificar: alfa = 0,561 | recodificado: alfa = 0,857
     correlacoes do item 6 com os demais, antes de recodificar: -0,42 a -0,53
@@ -63,8 +64,8 @@ preciso sortear para errar no máximo tanto, com tanta confiança?**
 | Item | Valor |
 |---|---|
 | **Base 1** | ANP, Série Histórica de Preços de Combustíveis (SHPC): o **cadastro de 236 postos** do Maranhão, gasolina comum, 2025 |
-| **O que é cada linha** | Um posto, com CNPJ, município, bandeira e o preço da gasolina (R\\$ por litro) na primeira coleta do ano |
-| **Média e desvio da população** | **R\\$ 6,0087** e **R\\$ 0,3402** (os mesmos dos encontros 6 e 7) |
+| **O que é cada linha** | Um posto, com CNPJ, município, bandeira e o preço médio da gasolina no ano (R\\$ por litro), a média das coletas do ano |
+| **Média e desvio da população** | **R\\$ 5,9744** e **R\\$ 0,3755** (os mesmos dos encontros 6 e 7) |
 | **Base 2** | Receita Federal, base CNPJ, tabela de municípios: **5.572 linhas**, o exemplo de cadastro grande |
 | **Base 3** | Respostas a uma escala Likert de 6 itens, de **200 gestores SIMULADOS**. Não são dados reais: foram gerados por código, com semente fixa, para ensinar o alfa de Cronbach |
 
@@ -105,7 +106,7 @@ print(f"Confiança {CONFIANCA:.0%} | margem da média R$ {MARGEM:.2f} | "
 print(f"Cadastro grande: {N_POPULACAO} | simulação com {N_VEZES} amostras")'''
 
 CELULA_A1 = '''# ================= CÉLULA A1: o cadastro de postos (ANP) =================
-# O mesmo cadastro dos encontros 6 e 7: um registro por posto.
+# O mesmo cadastro dos encontros 6 e 7: um registro por posto, com o preço médio do ano.
 # Se esta célula falhar, peça ao professor para usar a CÉLULA B1.
 
 import pandas as pd
@@ -120,11 +121,11 @@ except Exception:
     anp = pd.read_csv("dados/anp_precos_revenda_ma_2025.csv")
 
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes_arquivo")
-               .drop_duplicates("cnpj_da_revenda", keep="first")
-               [["cnpj_da_revenda", "municipio", "bandeira", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco_medio"})
-               .reset_index(drop=True))
+# um posto por linha: o preço é a média de todas as coletas do ano, e a bandeira, a
+# mais frequente no ano (alguns postos trocam de bandeira)
+cadastro = (gas.groupby(["cnpj_da_revenda", "municipio"], as_index=False)
+               .agg(bandeira=("bandeira", lambda b: b.mode().iloc[0]),
+                    preco_medio=("valor_venda", "mean")))
 
 populacao = cadastro["preco_medio"]
 N = len(cadastro)
@@ -134,9 +135,9 @@ print(f"  média da população (o parâmetro) = R$ {populacao.mean():.4f}")
 print(f"  desvio padrão da população       = R$ {populacao.std():.4f}")
 print()
 conferir("postos no cadastro", N, 236, tolerancia=0, unidade=" postos")
-conferir("média da população (R$ por litro)", populacao.mean(), 6.0087,
+conferir("média da população (R$ por litro)", populacao.mean(), 5.9744,
          tolerancia=0.0001, unidade="")
-conferir("desvio padrão da população (R$ por litro)", populacao.std(), 0.3402,
+conferir("desvio padrão da população (R$ por litro)", populacao.std(), 0.3755,
          tolerancia=0.0001, unidade="")'''
 
 CELULA_B1 = '''# ================= CÉLULA B1: CONTINGÊNCIA, leia antes =================
@@ -147,11 +148,11 @@ import pandas as pd
 
 anp = pd.read_csv("anp_precos_revenda_ma_2025.csv")
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
-cadastro = (gas.sort_values("mes_arquivo")
-               .drop_duplicates("cnpj_da_revenda", keep="first")
-               [["cnpj_da_revenda", "municipio", "bandeira", "valor_venda"]]
-               .rename(columns={"valor_venda": "preco_medio"})
-               .reset_index(drop=True))
+# um posto por linha: o preço é a média de todas as coletas do ano, e a bandeira, a
+# mais frequente no ano (alguns postos trocam de bandeira)
+cadastro = (gas.groupby(["cnpj_da_revenda", "municipio"], as_index=False)
+               .agg(bandeira=("bandeira", lambda b: b.mode().iloc[0]),
+                    preco_medio=("valor_venda", "mean")))
 populacao = cadastro["preco_medio"]
 N = len(cadastro)
 print(f"Cadastro montado do arquivo local: N = {N} postos")'''
@@ -270,10 +271,10 @@ largura = medias_50.std()
 dentro_ep = lambda k, e: (erros_50 < k * e).mean() * 100
 print("O mistério do encontro 7, na régua do erro padrão:")
 print(f"  largura observada das {N_VEZES} médias ........ R$ {largura:.4f}")
-print(f"  erro padrão sem correção (s ÷ √50) ...... R$ {ep:.4f}   "
-      f"(a observada é {(1 - largura / ep) * 100:.0f}% menor)")
-print(f"  erro padrão com correção (× {fpc:.4f}) ... R$ {ep_corrigido:.4f}   "
-      f"(a observada é {(1 - largura / ep_corrigido) * 100:.0f}% menor)")
+compara = lambda e: (f"a observada é {abs(1 - largura / e) * 100:.0f}% "
+                     + ("menor" if largura < e else "maior"))
+print(f"  erro padrão sem correção (s ÷ √50) ...... R$ {ep:.4f}   ({compara(ep)})")
+print(f"  erro padrão com correção (× {fpc:.4f}) ... R$ {ep_corrigido:.4f}   ({compara(ep_corrigido)})")
 print(f"  médias a 1 e a 2 EP, sem correção ....... {dentro_ep(1, ep):.1f}% e {dentro_ep(2, ep):.1f}%")
 print(f"  médias a 1 e a 2 EP, com correção ....... {dentro_ep(1, ep_corrigido):.1f}% e "
       f"{dentro_ep(2, ep_corrigido):.1f}%   (a regra: 68,3% e 95,4%)")
@@ -281,13 +282,13 @@ print()
 print("A amostra de 50 é 21% do cadastro: é por isso que a largura do encontro 7 saiu")
 print("menor que a fórmula previa. A correção para população finita explica a diferença.")
 print()
-conferir("erro padrão com correção finita, n = 50 (R$)", ep_corrigido, 0.0428,
+conferir("erro padrão com correção finita, n = 50 (R$)", ep_corrigido, 0.0472,
          tolerancia=0.0001, unidade="")
-conferir("médias a 1 EP corrigido (%)", dentro_ep(1, ep_corrigido), 69.2, tolerancia=0.05, unidade="%")
-conferir("médias a 2 EP corrigidos (%)", dentro_ep(2, ep_corrigido), 95.9, tolerancia=0.05, unidade="%")
-conferir("erro padrão, n = 50 (R$)", ep, 0.0481, tolerancia=0.0001, unidade="")
-conferir("margem de erro a 95%, n = 50 (R$)", margem_e7, 0.0943, tolerancia=0.0001, unidade="")
-conferir("margem com correção finita, n = 50 (R$)", margem_e7_corrigida, 0.0839,
+conferir("médias a 1 EP corrigido (%)", dentro_ep(1, ep_corrigido), 66.5, tolerancia=0.05, unidade="%")
+conferir("médias a 2 EP corrigidos (%)", dentro_ep(2, ep_corrigido), 95.7, tolerancia=0.05, unidade="%")
+conferir("erro padrão, n = 50 (R$)", ep, 0.0531, tolerancia=0.0001, unidade="")
+conferir("margem de erro a 95%, n = 50 (R$)", margem_e7, 0.1041, tolerancia=0.0001, unidade="")
+conferir("margem com correção finita, n = 50 (R$)", margem_e7_corrigida, 0.0926,
          tolerancia=0.0001, unidade="")'''
 
 COD_Z = '''# O nível de confiança vira um número: o z.
@@ -318,9 +319,9 @@ print()
 print(f"Sem a correção, a fórmula pediria {int(np.ceil(n0_media))} postos; com ela, "
       f"{n_media_final} bastam, porque o cadastro inteiro tem só {N}.")
 print()
-conferir("n sem correção (média, ±R$ 0,05, 95%)", np.ceil(n0_media), 178,
+conferir("n sem correção (média, ±R$ 0,05, 95%)", np.ceil(n0_media), 217,
          tolerancia=0, unidade=" postos")
-conferir("n com correção para N = 236", n_media_final, 102, tolerancia=0, unidade=" postos")'''
+conferir("n com correção para N = 236", n_media_final, 114, tolerancia=0, unidade=" postos")'''
 
 COD_SIMULA = '''# A verificação: a margem prometida se cumpre? Sorteamos N_VEZES amostras de n postos.
 estimativas = np.array([populacao.sample(n=n_media_final, random_state=k).mean()
@@ -335,9 +336,10 @@ print(f"  erro máximo aceito (a margem) ..... R$ {MARGEM:.2f}")
 print(f"  amostras dentro da margem ......... {dentro:.1f}%")
 print(f"  o que a confiança prometia ........ {CONFIANCA * 100:.0f}%")
 print()
-print("A fórmula foi feita ANTES de sortear; a simulação confere DEPOIS. As duas batem.")
+print("A fórmula foi feita ANTES de sortear, e a simulação confere DEPOIS. Com mil sorteios,")
+print("a porcentagem dentro da margem flutua cerca de 1,4 ponto em torno da promessa.")
 print()
-conferir("amostras dentro de ±R$ 0,05 (simulação)", dentro, 96.2, tolerancia=0.05, unidade="%")'''
+conferir("amostras dentro de ±R$ 0,05 (simulação)", dentro, 94.2, tolerancia=0.05, unidade="%")'''
 
 COD_GRAFICO = '''# O gráfico da verificação: o erro de cada amostra, com a margem marcada.
 import matplotlib.pyplot as plt
@@ -406,18 +408,18 @@ print(f"n para ±{MARGEM_PROP * 100:.0f} p.p. num cadastro de {N}: {n_branca} po
 print(f"Das {N_VEZES} amostras de {n_branca}: {dentro_prop:.1f}% ficaram a menos de "
       f"{MARGEM_PROP * 100:.0f} p.p. do valor verdadeiro")
 print()
-conferir("postos de bandeira branca no cadastro", p_verdadeiro * 100, 50.0,
+conferir("postos de bandeira branca no cadastro", p_verdadeiro * 100, 50.4,
          tolerancia=0.05, unidade="%")
 conferir("n para a proporção, N = 236", n_branca, 147, tolerancia=0, unidade=" postos")
-conferir("amostras dentro de ±5 p.p. (simulação)", dentro_prop, 95.1,
+conferir("amostras dentro de ±5 p.p. (simulação)", dentro_prop, 96.0,
          tolerancia=0.05, unidade="%")'''
 
 FRASE_N = """**A frase que vai para o relatório**
 
 > "Para estimar o preço médio da gasolina comum nos postos do Maranhão com margem de erro de
-> **R\\$ 0,05** e **95% de confiança**, sorteiam-se **102 dos 236 postos** do cadastro da ANP
-> (desvio padrão de R\\$ 0,34; tamanho calculado com correção para população finita). Em
-> 1.000 sorteios simulados, **96,2%** das estimativas ficaram dentro da margem (ANP, SHPC,
+> **R\\$ 0,05** e **95% de confiança**, sorteiam-se **114 dos 236 postos** do cadastro da ANP
+> (desvio padrão de R\\$ 0,38; tamanho calculado com correção para população finita). Em
+> 1.000 sorteios simulados, **94,2%** das estimativas ficaram dentro da margem (ANP, SHPC,
 > 2025)."
 
 **O que essa frase não diz.** Que a estimativa vai errar menos de R\\$ 0,05 com certeza. Cerca
@@ -586,16 +588,16 @@ CELULAS = [
     {"tipo": "md", "texto": PARTE2},
     {"tipo": "md", "texto": """### 1. Do erro padrão à margem de erro
 
-O encontro 7 terminou com uma pergunta em aberto: a largura das mil médias (R\\$ 0,0418)
-saiu **13% menor** que a prevista pela fórmula (R\\$ 0,0481), e por isso 74,8% e 98,2% das
+O encontro 7 terminou com uma pergunta em aberto: a largura das mil médias (R\\$ 0,0482)
+saiu **9% menor** que a prevista pela fórmula (R\\$ 0,0531), e por isso 72,1% e 97,1% das
 médias caíram a 1 e a 2 erros padrão, contra 68,3% e 95,4% da regra. A célula abaixo
 transforma o erro padrão em margem de erro e resolve o mistério nas duas réguas: a do erro
 padrão, que era a pergunta do encontro 7, e a da margem, que é a de hoje."""},
     {"tipo": "code", "texto": COD_MARGEM},
     {"tipo": "nota", "texto": "a correção para população finita só importa quando a amostra é "
                               "uma fatia grande do cadastro (acima de uns 5%). Com 50 de 236 "
-                              "(21%), ela leva o erro padrão de 0,0481 para 0,0428 e a margem de "
-                              "0,0943 para 0,0839."},
+                              "(21%), ela leva o erro padrão de 0,0531 para 0,0472 e a margem de "
+                              "0,1041 para 0,0926."},
 
     {"tipo": "md", "texto": """### 2. O nível de confiança vira um número
 

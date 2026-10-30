@@ -77,7 +77,7 @@ SECOES = [
             <p>A tela do gráfico dos sete municípios é a porta de entrada. Perguntar à turma, antes
             de qualquer conta: <em>“o preço muda de município para município?”</em>. Todo mundo dirá
             que sim. A pergunta da estatística é outra: <strong>a diferença é maior do que a que o
-            acaso produziria?</strong> Com 210 postos e médias de R$ 5,73 a R$ 6,87, a resposta vai
+            acaso produziria?</strong> Com 210 postos e médias de R$ 5,65 a R$ 6,76, a resposta vai
             ser um sim enfático, e é bom que o primeiro exemplo seja fácil.</p>
             """, "falar"),
             ("Pedir a previsão antes da simulação", """
@@ -96,8 +96,8 @@ SECOES = [
             A figura da tela 6 traz os dois casos lado a lado: médias afastadas com grupos
             compactos, e médias próximas com grupos espalhados. Perguntar o que acontece com F em
             cada um.</p>
-            <p>O η² entra como o tamanho do efeito: 0,742 quer dizer que três quartos da variação do
-            preço estão <em>entre</em> os municípios. Retomar a regra do encontro 11: o p diz se a
+            <p>O η² entra como o tamanho do efeito: 0,817 quer dizer que cerca de quatro quintos da
+            variação do preço estão <em>entre</em> os municípios. Retomar a regra do encontro 11: o p diz se a
             diferença existe; o tamanho do efeito diz se ela importa.</p>
             """, "falar"),
             ("Gabarito do exercício em duplas", """
@@ -180,10 +180,10 @@ SECOES = [
             <table>
               <tr><th>Medida</th><th>Valor</th></tr>
               <tr><td>ANP: postos e municípios na ANOVA</td><td>210 postos, 7 municípios (10 ou mais postos)</td></tr>
-              <tr><td>ANOVA, preço por município</td><td>F = 97,38 (gl 6 e 203), p &lt; 0,001, η² = 0,742</td></tr>
-              <tr><td>Kruskal-Wallis, preço por município</td><td>H = 136,64, p &lt; 0,001</td></tr>
+              <tr><td>ANOVA, preço por município</td><td>F = 150,83 (gl 6 e 203), p &lt; 0,001, η² = 0,817</td></tr>
+              <tr><td>Kruskal-Wallis, preço por município</td><td>H = 152,52, p &lt; 0,001</td></tr>
               <tr><td>21 testes t: teto e simulação</td><td>65,9% e 45,7% (semente 12, 1.000 repetições)</td></tr>
-              <tr><td>Pares reais com p &lt; 0,05 / com Bonferroni</td><td>15 e 14, de 21</td></tr>
+              <tr><td>Pares reais com p &lt; 0,05 / com Bonferroni</td><td>18 e 16, de 21</td></tr>
               <tr><td>Wilcoxon de uma amostra (tabela do módulo)</td><td>não foi ensinado à parte: é o
                   Wilcoxon pareado aplicado às diferenças x − μ<sub>0</sub></td></tr>
               <tr><td>CVM: três setores com 30 ou mais companhias</td><td>111 (39 + 42 + 30)</td></tr>
@@ -229,10 +229,10 @@ SECOES = [
               <li>Primeiro, todos executam a configuração original e mostram o <code>[ok]</code> da
               célula de escolha (Kruskal-Wallis, H = 12,05). Ninguém avança sem isso.</li>
               <li>Depois, a troca de base. Com <code>BASE = "ANP"</code> e mínimo 30 sobram dois
-              municípios, simétricos e com 30 ou mais postos: a célula indica o <strong>t de
-              Welch</strong> (t = −2,39, p = 0,0202; o Mann-Whitney dá p = 0,0175). Com mínimo 10,
-              volta a indicar <strong>Kruskal-Wallis</strong>, porque há grupos com menos de 15
-              postos e Açailândia tem assimetria de −2,2.</li>
+              municípios com 30 ou mais postos, mas São Luís tem assimetria de +1,65: a célula
+              indica o <strong>Mann-Whitney</strong> (U = 913,5, p = 0,0010; o t de Welch daria
+              t = −3,61, p = 0,0006). Com mínimo 10, indica <strong>Kruskal-Wallis</strong>,
+              porque há grupos com menos de 15 postos e Açailândia tem assimetria de −2,3.</li>
               <li>Por fim, o projeto. Circular priorizando quem ainda não rodou nenhum teste sobre a
               base própria.</li>
             </ol>
