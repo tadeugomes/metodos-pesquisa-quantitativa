@@ -3,7 +3,7 @@
 
 Do intervalo de confianca a logica do teste. A base e a mesma dos encontros 6 a 8: o
 cadastro de 236 postos de gasolina comum do Maranhao (ANP, SHPC, 2025), um registro por
-posto, com o preco da primeira coleta do ano. Como o parametro e conhecido, da para
+posto, com um preco do primeiro mes em que o posto aparece no ano. Como o parametro e conhecido, da para
 VER o que o "95%" quer dizer: quantos de cem intervalos cobrem a media verdadeira.
 
 A referencia nacional (R$ 6,19) sai dos mesmos 12 arquivos da ANP, com a mesma regra
@@ -39,7 +39,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 10. Do intervalo de confiança à lógica do teste
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje**
@@ -54,24 +54,24 @@ PAINEL = """# Encontro 10. Do intervalo de confiança à lógica do teste
 ## Painel do encontro
 
 O Módulo II terminou com o erro padrão e a margem de erro. Hoje começa o **Módulo III**,
-e a pergunta muda de tom: **o que uma amostra autoriza dizer sobre a população — e com
+e a pergunta muda de tom: **o que uma amostra autoriza dizer sobre a população, e com
 que risco?** A Parte 1 responde com um **intervalo**; a Parte 2, com um **teste**.
 
 | Item | Valor |
 |---|---|
-| **Fonte** | ANP — Série Histórica de Preços de Combustíveis (SHPC) |
+| **Fonte** | ANP, Série Histórica de Preços de Combustíveis (SHPC) |
 | **Cadastro** | Maranhão, 2025, gasolina comum: **236 postos** (os mesmos dos encontros 6 a 8) |
-| **O que é cada linha** | Um posto, com CNPJ, município, bandeira e o preço da gasolina na primeira coleta do ano (R\\$ por litro) |
-| **Preço médio da população** | **R\\$ 6,0087** — o valor verdadeiro, aqui conhecido |
+| **O que é cada linha** | Um posto, com CNPJ, município, bandeira e um preço da gasolina do primeiro mês em que o posto aparece no ano (R\\$ por litro) |
+| **Preço médio da população** | **R\\$ 6,0087**, o valor verdadeiro, aqui conhecido |
 | **Desvio padrão da população** | **R\\$ 0,3402** |
-| **Bandeira branca** | **118 de 236 postos (50,0%)** — a proporção verdadeira |
+| **Bandeira branca** | **118 de 236 postos (50,0%)**, a proporção verdadeira |
 | **Referência nacional** | **R\\$ 6,19**: a média dos 8.635 postos do Brasil, com a mesma regra, nos mesmos arquivos da ANP |
 
 **As colunas do cadastro**
 
 | Coluna | O que é |
 |---|---|
-| `cnpj` | O CNPJ do posto — a chave do registro |
+| `cnpj` | O CNPJ do posto, a chave do registro |
 | `municipio` | O município do posto |
 | `bandeira` | A bandeira (BRANCA é o posto sem marca de distribuidora) |
 | `preco` | O preço da gasolina comum, em R\\$ por litro |
@@ -121,7 +121,7 @@ UTILITARIOS_NOTA = """## Utilitários da disciplina
 `conferir` compara o seu resultado com o número que já estava resolvido no slide.
 **Não precisa alterá-la.** A segunda célula traz as ferramentas do encontro: cada uma
 devolve uma **leitura arrumada em poucas linhas**, no lugar da saída bruta do pacote
-estatístico. Também não precisa alterá-las — só executar.
+estatístico. Também não precisa alterá-las: basta executar.
 
 > **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.*"""
@@ -247,8 +247,8 @@ brasil = brasil.rename(columns={"Estado - Sigla": "uf", "Municipio": "municipio"
                                 "Valor de Venda": "valor_venda", "Bandeira": "bandeira"})
 brasil["valor_venda"] = pd.to_numeric(brasil["valor_venda"], errors="coerce")
 
-# A referência nacional: a MESMA regra do cadastro (um preço por posto, o da
-# primeira coleta do ano), aplicada ao Brasil inteiro.
+# A referência nacional: a MESMA regra do cadastro (um preço por posto, do
+# primeiro mês em que ele aparece), aplicada ao Brasil inteiro.
 gas_br = brasil[brasil["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
 postos_br = gas_br.sort_values("mes").drop_duplicates("cnpj", keep="first")
 print(f"Brasil: {len(postos_br)} postos | preço médio da gasolina = "
@@ -257,7 +257,7 @@ print(f"Brasil: {len(postos_br)} postos | preço médio da gasolina = "
 anp = brasil[brasil["uf"] == "MA"].copy()
 print(f"Maranhão: {len(anp)} posto-mês carregados")'''
 
-CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv.
 # O arquivo só tem o Maranhão: a referência nacional fica fixa na configuração.
@@ -270,8 +270,8 @@ anp = anp.rename(columns={"estado_-_sigla": "uf", "mes_arquivo": "mes",
 print(f"Maranhão: {len(anp)} posto-mês carregados do arquivo local")'''
 
 CADASTRO = '''# ================= O cadastro: um registro por posto =================
-# A mesma regra dos encontros 6 a 8: o preço da gasolina comum na primeira
-# coleta do ano, com o CNPJ como chave.
+# A mesma regra dos encontros 6 a 8: um preço da gasolina comum por posto, do
+# primeiro mês em que ele aparece no ano, com o CNPJ como chave.
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
 cadastro = (gas.sort_values("mes")
                .drop_duplicates("cnpj", keep="first")
@@ -445,7 +445,7 @@ CELULAS = [
     {"tipo": "md", "texto": """## Seção 1. O cadastro e o valor verdadeiro
 
 A base é a mesma dos encontros 6 a 8. A **CÉLULA A** baixa os 12 arquivos mensais da
-ANP — do Brasil inteiro, porque é do Brasil que sai a referência nacional — e recorta o
+ANP do Brasil inteiro, porque é do Brasil que sai a referência nacional, e recorta o
 Maranhão. A **CÉLULA B** é o caminho alternativo, já escrito: só se o professor mandar.
 
 > **Sintoma que pede a CÉLULA B:** a CÉLULA A demora mais de cinco minutos ou termina
@@ -485,12 +485,12 @@ Aqui, e só aqui, dá para conferir: o valor verdadeiro, **R\\$ 6,0087**, está 
 > confiança, segundo uma amostra de 30 postos."
 
 O intervalo tem **34 pontos percentuais** de largura. A proporção pede amostra bem maior
-que a média para a mesma precisão — é a conta do encontro 8, que chegava a 385 casos
+que a média para a mesma precisão: é a conta do encontro 8, que chegava a 385 casos
 para uma margem de 5 pontos."""},
     {"tipo": "code", "texto": LARGURA},
     {"tipo": "md", "texto": """Mais confiança custa **largura**: o intervalo de 99% é cerca de 35% mais largo que o de
-95%, com a mesma amostra. Não existe intervalo estreito e muito confiável ao mesmo tempo
-— a não ser com mais casos.
+95%, com a mesma amostra. Não existe intervalo estreito e muito confiável ao mesmo tempo,
+a não ser com mais casos.
 
 ### O que o "95%" **não** significa
 
@@ -508,7 +508,7 @@ e a fórmula sem correção finita é um pouco conservadora.
 
 > **Para pensar:** cada um dos cem intervalos foi calculado do mesmo jeito. Olhando só
 > para um deles, sem saber o valor verdadeiro, dá para dizer se ele é um dos 94 que
-> acertaram? Não dá — e é por isso que a confiança é do **método**, e não do intervalo."""},
+> acertaram? Não dá, e é por isso que a confiança é do **método**, e não do intervalo."""},
 
     {"tipo": "md", "texto": """## Parte 2 · Estatística: a lógica do teste
 
@@ -524,7 +524,7 @@ diferença de 16 centavos é real, ou é o acaso do sorteio?
 | **H1, hipótese alternativa** | O que se aceita se H0 cair | A média do Maranhão é diferente de R\\$ 6,19 |
 | **α, nível de significância** | O risco de rejeitar uma H0 verdadeira que se aceita correr | 5% |
 | **Valor-p** | A chance de uma amostra tão afastada de H0 quanto a nossa, **se H0 fosse verdadeira** | o número que o teste devolve |
-| **Decisão** | Valor-p menor que α: rejeita H0. Maior ou igual: não rejeita | — |
+| **Decisão** | Valor-p menor que α: rejeita H0. Maior ou igual: não rejeita | 0,0014 contra 0,05: rejeita |
 
 **A fórmula, com cada símbolo nomeado**
 
@@ -534,7 +534,7 @@ $$t = \\frac{\\bar{x} - \\mu_0}{s / \\sqrt{n}}$$
 * $s / \\sqrt{n}$ é o erro padrão; $n - 1$ são os graus de liberdade (gl)
 
 **A fórmula como receita.** (1) Meça a distância entre a média da amostra e o valor de
-referência; (2) divida pelo erro padrão — a distância vira "quantos erros padrão";
+referência; (2) divida pelo erro padrão, e a distância vira "quantos erros padrão";
 (3) pergunte quão raro seria um t tão longe de zero se H0 fosse verdadeira: isso é o
 valor-p; (4) compare o valor-p com α e decida.
 
@@ -552,7 +552,7 @@ valor-p; (4) compare o valor-p com α e decida.
 2. O erro padrão é **R\\$ 0,0462** (o desvio de R\\$ 0,2530 dividido por √30);
 3. t = −0,1633 ÷ 0,0462 = **−3,54**: a amostra está a três erros padrão e meio da referência;
 4. Com 29 graus de liberdade, a chance de um t tão longe de zero, se H0 fosse verdadeira,
-   é **0,0014** — 14 em 10 mil;
+   é **0,0014**, ou 14 em 10 mil;
 5. 0,0014 é menor que 0,05: **rejeita-se H0**.
 
 ### A ligação entre o intervalo e o teste
@@ -570,10 +570,10 @@ resultado do teste para qualquer valor de referência.
 
 > "O preço médio da gasolina comum em uma amostra aleatória de 30 postos do Maranhão foi
 > de **R\\$ 6,03**, inferior à média nacional de R\\$ 6,19 (**t = −3,54; gl = 29;
-> p = 0,001**). A diferença, de **16 centavos por litro**, é estatisticamente
+> p = 0,0014**). A diferença, de **16 centavos por litro**, é estatisticamente
 > significativa a 5% (ANP, SHPC, 2025)."
 
-**O que essa frase não diz.** Que a diferença é *grande* ou *importante* — isso é
+**O que essa frase não diz.** Que a diferença é *grande* ou *importante*: isso é
 julgamento de gestão e se faz em centavos, não em valor-p. Nem que há 0,14% de chance de
 H0 ser verdadeira: o valor-p é calculado **supondo** H0 verdadeira e não é a
 probabilidade dela.
@@ -583,7 +583,7 @@ p = 0,57 e não rejeita. Contra R\\$ 6,10, dá p = 0,12 e também não rejeita. 
 rejeitar" fosse "provar", a média seria R\\$ 6,00 **e** R\\$ 6,10 ao mesmo tempo. A
 leitura certa: a amostra **não tem evidência** contra nenhum dos dois valores."""},
 
-    {"tipo": "md", "texto": """## Prática. Três testes, três frases
+    {"tipo": "md", "texto": """## Prática. Três testes e uma decisão pelo intervalo
 
 Para cada questão: execute a célula, confira o `[ok]` e escreva, na célula de texto logo
 abaixo, **a frase de leitura** (com t, gl, valor-p e a decisão) e **o que a frase não diz**.
@@ -643,7 +643,7 @@ imprime o cartão de contexto e o resultado do teste para colar no pedido. Depoi
 
 > No próximo encontro o teste ganha **dois grupos**, **pares** e **categorias**: o teste t
 > de duas amostras, o pareado e o qui-quadrado. E a pergunta que fica de hoje: na
-> Questão 2, o teste não rejeitou R\\$ 6,00 — mas a média verdadeira é R\\$ 6,0087. O
+> Questão 2, o teste não rejeitou R\\$ 6,00, mas a média verdadeira é R\\$ 6,0087. O
 > teste errou? É o **erro tipo II**, o assunto da abertura do encontro 11."""},
 ]
 

@@ -14,6 +14,8 @@ Numeros verificados na geracao (14/10/2026), os mesmos do slide e da conducao:
   n = 50 (o exemplo do encontro 7):
     erro padrao 0,0481 | margem a 95% 0,0943 | com correcao finita 0,0839
     das 1.000 amostras: 98,0% dentro de 0,0943 e 95,6% dentro de 0,0839
+    erro padrao com correcao 0,0428 (a largura simulada no E7 foi 0,0418)
+    medias a 1 e a 2 EP: 74,8% e 98,2% sem correcao; 69,2% e 95,9% com correcao
   z: 90% 1,645 | 95% 1,960 | 99% 2,576
   n para a MEDIA, margem R$ 0,05, 95%:
     n0 = 177,8 -> 178 | com correcao para N = 236: 101,7 -> 102 postos
@@ -39,7 +41,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 8. Erro de amostragem, tamanho da amostra e instrumentos de coleta
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje**
@@ -60,10 +62,10 @@ preciso sortear para errar no máximo tanto, com tanta confiança?**
 
 | Item | Valor |
 |---|---|
-| **Base 1** | ANP — Série Histórica de Preços de Combustíveis (SHPC): o **cadastro de 236 postos** do Maranhão, gasolina comum, 2025 |
+| **Base 1** | ANP, Série Histórica de Preços de Combustíveis (SHPC): o **cadastro de 236 postos** do Maranhão, gasolina comum, 2025 |
 | **O que é cada linha** | Um posto, com CNPJ, município, bandeira e o preço da gasolina (R\\$ por litro) na primeira coleta do ano |
 | **Média e desvio da população** | **R\\$ 6,0087** e **R\\$ 0,3402** (os mesmos dos encontros 6 e 7) |
-| **Base 2** | Receita Federal — base CNPJ, tabela de municípios: **5.572 linhas**, o exemplo de cadastro grande |
+| **Base 2** | Receita Federal, base CNPJ, tabela de municípios: **5.572 linhas**, o exemplo de cadastro grande |
 | **Base 3** | Respostas a uma escala Likert de 6 itens, de **200 gestores SIMULADOS**. Não são dados reais: foram gerados por código, com semente fixa, para ensinar o alfa de Cronbach |
 
 **Glossário do dia**
@@ -89,7 +91,7 @@ e execute de novo: as células recalculam o tamanho da amostra e a simulação c
 margem prevista se cumpre.
 
 > O `conferir` compara com os números do slide, que usam os valores originais. Se você
-> mudar a configuração, ele vai mostrar `[X ]` — e isso é esperado: o número mudou porque
+> mudar a configuração, ele vai mostrar `[X ]`, e isso é esperado: o número mudou porque
 > você mudou a pergunta."""
 
 CONFIG = '''CONFIANCA   = 0.95   # nível de confiança: 0.90, 0.95 ou 0.99
@@ -137,7 +139,7 @@ conferir("média da população (R$ por litro)", populacao.mean(), 6.0087,
 conferir("desvio padrão da população (R$ por litro)", populacao.std(), 0.3402,
          tolerancia=0.0001, unidade="")'''
 
-CELULA_B1 = '''# ================= CÉLULA B1: CONTINGÊNCIA — leia antes =================
+CELULA_B1 = '''# ================= CÉLULA B1: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Só se a CÉLULA A1 falhar e o professor mandar, depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv (ícone de pasta, à esquerda).
 
@@ -179,7 +181,7 @@ print()
 conferir("municípios no cadastro da Receita", len(municipios), 5572,
          tolerancia=0, unidade=" munic.")'''
 
-CELULA_B2 = '''# ================= CÉLULA B2: CONTINGÊNCIA — leia antes =================
+CELULA_B2 = '''# ================= CÉLULA B2: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Só se a CÉLULA A2 falhar e o professor mandar, depois de fazer
 # upload do arquivo dados/rf_cnpj_municipios.csv.
 
@@ -262,9 +264,27 @@ print(f"  {(erros_50 <= margem_e7).mean() * 100:.1f}% erraram menos que R$ {marg
 print(f"  {(erros_50 <= margem_e7_corrigida).mean() * 100:.1f}% erraram menos que "
       f"R$ {margem_e7_corrigida:.4f}   (a promessa era 95%)")
 print()
+print()
+ep_corrigido = ep * fpc
+largura = medias_50.std()
+dentro_ep = lambda k, e: (erros_50 < k * e).mean() * 100
+print("O mistério do encontro 7, na régua do erro padrão:")
+print(f"  largura observada das {N_VEZES} médias ........ R$ {largura:.4f}")
+print(f"  erro padrão sem correção (s ÷ √50) ...... R$ {ep:.4f}   "
+      f"(a observada é {(1 - largura / ep) * 100:.0f}% menor)")
+print(f"  erro padrão com correção (× {fpc:.4f}) ... R$ {ep_corrigido:.4f}   "
+      f"(a observada é {(1 - largura / ep_corrigido) * 100:.0f}% menor)")
+print(f"  médias a 1 e a 2 EP, sem correção ....... {dentro_ep(1, ep):.1f}% e {dentro_ep(2, ep):.1f}%")
+print(f"  médias a 1 e a 2 EP, com correção ....... {dentro_ep(1, ep_corrigido):.1f}% e "
+      f"{dentro_ep(2, ep_corrigido):.1f}%   (a regra: 68,3% e 95,4%)")
+print()
 print("A amostra de 50 é 21% do cadastro: é por isso que a largura do encontro 7 saiu")
 print("menor que a fórmula previa. A correção para população finita explica a diferença.")
 print()
+conferir("erro padrão com correção finita, n = 50 (R$)", ep_corrigido, 0.0428,
+         tolerancia=0.0001, unidade="")
+conferir("médias a 1 EP corrigido (%)", dentro_ep(1, ep_corrigido), 69.2, tolerancia=0.05, unidade="%")
+conferir("médias a 2 EP corrigidos (%)", dentro_ep(2, ep_corrigido), 95.9, tolerancia=0.05, unidade="%")
 conferir("erro padrão, n = 50 (R$)", ep, 0.0481, tolerancia=0.0001, unidade="")
 conferir("margem de erro a 95%, n = 50 (R$)", margem_e7, 0.0943, tolerancia=0.0001, unidade="")
 conferir("margem com correção finita, n = 50 (R$)", margem_e7_corrigida, 0.0839,
@@ -278,7 +298,7 @@ print()
 
 z = norm.ppf(1 - (1 - CONFIANCA) / 2)
 print(f"Na sua configuração: confiança de {CONFIANCA:.0%}  →  z = {z:.3f}")
-print("Mais confiança exige um z maior — e, com ele, uma amostra maior.")
+print("Mais confiança exige um z maior e, com ele, uma amostra maior.")
 print()
 conferir("z para 95% de confiança", z, 1.960, tolerancia=0.001, unidade="")'''
 
@@ -401,7 +421,7 @@ FRASE_N = """**A frase que vai para o relatório**
 > 2025)."
 
 **O que essa frase não diz.** Que a estimativa vai errar menos de R\\$ 0,05 com certeza. Cerca
-de 1 amostra em 20 erra mais que isso — é o que os 95% admitem. E ela não diz nada sobre
+de 1 amostra em 20 erra mais que isso, e é o que os 95% admitem. E ela não diz nada sobre
 **viés**: se o sorteio for trocado por conveniência, a margem calculada deixa de valer."""
 
 LIKERT_MD = """## Seção 3. A escala Likert e o alfa de Cronbach
@@ -436,7 +456,7 @@ $$\\alpha = \\frac{k}{k-1}\\left(1 - \\frac{\\sum s^2_{item}}{s^2_{total}}\\righ
 há mais itens (k alto). É por isso que um alfa alto não prova, sozinho, que a escala mede o
 que diz medir."""
 
-COD_LIKERT = '''# ============ RESPOSTAS SIMULADAS — não são dados reais ============
+COD_LIKERT = '''# ============ RESPOSTAS SIMULADAS: não são dados reais ============
 rng = np.random.default_rng(2026)            # semente fixa: todos veem os mesmos números
 N_RESP = 200
 satisfacao = rng.normal(0, 1, N_RESP)        # a satisfação "verdadeira" de cada gestor
@@ -498,7 +518,7 @@ tabela_alfa = pd.DataFrame({"itens (k)": ks,
 print(tabela_alfa.to_string(index=False))
 print()
 print("Com a MESMA correlação média, só acrescentar itens empurra o alfa para cima.")
-print("Alfa alto mede consistência — não prova que a escala mede satisfação.")
+print("Alfa alto mede consistência, e não prova que a escala mede satisfação.")
 print()
 conferir("correlação média entre os itens", r_medio, 0.501, tolerancia=0.001, unidade="")
 conferir("alfa padronizado (k = 6)", alfa_padronizado, 0.858, tolerancia=0.001, unidade="")
@@ -511,7 +531,7 @@ FRASE_ALFA = """**A frase que vai para o relatório**
 > recodificado), apresentou **alfa de Cronbach de 0,857** em 200 respondentes, acima do piso
 > usual de 0,7. *(Dados simulados, para fins didáticos.)*"
 
-**O que essa frase não diz.** Que a escala é **válida**. O alfa mede **confiabilidade** — se
+**O que essa frase não diz.** Que a escala é **válida**. O alfa mede **confiabilidade**, isto é, se
 os itens andam juntos. Se a escala medir, com muita consistência, outra coisa que não a
 satisfação, o alfa continua alto."""
 
@@ -545,7 +565,7 @@ ANTES_DE_SAIR = """## Antes de sair
 - [ ] Respondi as três perguntas, uma delas sobre o meu projeto
 
 > **O próximo encontro é a AV2**, sobre os Módulos I e II: descrição completa de uma base,
-> plano de amostragem e tamanho da amostra calculado — exatamente o que este notebook e os
+> plano de amostragem e tamanho da amostra calculado, que é o que este notebook e os
 > dos encontros 6 e 7 fizeram. Traga o seu sorteio do encontro 6 salvo: ele vira o
 > **relatório de sorteio**."""
 
@@ -567,12 +587,15 @@ CELULAS = [
     {"tipo": "md", "texto": """### 1. Do erro padrão à margem de erro
 
 O encontro 7 terminou com uma pergunta em aberto: a largura das mil médias (R\\$ 0,0418)
-saiu **menor** que a prevista pela fórmula (R\\$ 0,0481). A célula abaixo transforma o erro
-padrão em margem de erro e resolve o mistério."""},
+saiu **13% menor** que a prevista pela fórmula (R\\$ 0,0481), e por isso 74,8% e 98,2% das
+médias caíram a 1 e a 2 erros padrão, contra 68,3% e 95,4% da regra. A célula abaixo
+transforma o erro padrão em margem de erro e resolve o mistério nas duas réguas: a do erro
+padrão, que era a pergunta do encontro 7, e a da margem, que é a de hoje."""},
     {"tipo": "code", "texto": COD_MARGEM},
     {"tipo": "nota", "texto": "a correção para população finita só importa quando a amostra é "
                               "uma fatia grande do cadastro (acima de uns 5%). Com 50 de 236 "
-                              "(21%), ela reduz a margem de 0,0943 para 0,0839."},
+                              "(21%), ela leva o erro padrão de 0,0481 para 0,0428 e a margem de "
+                              "0,0943 para 0,0839."},
 
     {"tipo": "md", "texto": """### 2. O nível de confiança vira um número
 

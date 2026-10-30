@@ -2,8 +2,7 @@
 """Camada de conducao do encontro 8, que fecha o Modulo II.
 
 Estrutura do deck:
-  capa · abertura · PARTE 1 — o erro e o instrumento (divisor + 9 telas) ·
-  PARTE 2 — margem de erro e tamanho da amostra (12 telas: divisor + 10 elementos,
+  capa · abertura · PARTE 1: o erro e o instrumento (divisor + 9 telas) · PARTE 2: margem de erro e tamanho da amostra (12 telas: divisor + 10 elementos,
   com dois exemplos resolvidos) · ETICA DA COLETA PRIMARIA (divisor + 4 telas) ·
   PRATICA NO COLAB (divisor + 2 telas) · sintese · estudo
 
@@ -56,7 +55,7 @@ SECOES = [
             <p>Há dois tipos de erro, e o encontro trata dos dois. O <strong>aleatório</strong>
             se controla com o tamanho da amostra, e a Parte 2 dá a fórmula. O
             <strong>sistemático</strong> não se controla com tamanho nenhum: se controla com o
-            cadastro, com o sorteio e com o instrumento — que é a Parte 1.</p>
+            cadastro, com o sorteio e com o instrumento, que é a Parte 1.</p>
             <p>E o encontro fecha o Módulo II: o que se vê hoje, junto com os encontros 6 e 7,
             é exatamente o que a AV2 cobra no próximo encontro.</p>
             """, "falar"),
@@ -76,21 +75,24 @@ SECOES = [
                 ("O alfa de Cronbach como função de k e de r̄", "12"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
-            <p>Repetir até a turma devolver: <strong>a margem de erro mede só o erro
+            <p>A frase que a turma precisa levar: <strong>a margem de erro mede só o erro
             aleatório</strong>. Quando um relatório diz “margem de 3 pontos”, ele está dizendo
             “supondo que não haja viés”. Por isso o cadastro, o sorteio e o instrumento vêm
-            antes da conta — e é por isso que a Parte 1 vem antes da Parte 2.</p>
-            <p>A imagem do alvo serve aos dois momentos do bloco: no começo, para os dois tipos
-            de erro (tiros espalhados em torno do centro × agrupados longe dele); no fim, para
-            validade e confiabilidade. Use a mesma imagem de propósito.</p>
+            antes da conta, e é por isso que a Parte 1 vem antes da Parte 2.</p>
+            <p>A imagem do alvo aparece nos dois momentos do bloco, de propósito: na tela 4, para os
+            dois tipos de erro (tiros espalhados em torno do centro × agrupados longe dele), e na
+            tela 10, para validade e confiabilidade. O alvo do viés da tela 4 é o mesmo do
+            instrumento confiável e não válido da tela 10.</p>
             """, "falar"),
             ("O caso de 1936, contado como história", """
             <p>Pergunte antes de mostrar o resultado: <em>“uma revista recebeu 2,4 milhões de
             respostas; uma pesquisa concorrente ouviu algumas dezenas de milhares. Qual
-            acertou?”</em>. A turma aposta na maior. A resposta — a menor — é o argumento mais
+            acertou?”</em>. A turma aposta na maior. A resposta, a menor, é o argumento mais
             forte do semestre contra “amostra boa é amostra grande”.</p>
-            <p>Feche ligando ao encontro 7: a amostra por conveniência dos postos errava mais
-            que as sorteadas, e o erro dela não diminuía com n. É o mesmo fenômeno.</p>
+            <p>Feche ligando ao encontro 7 (tela 10 de lá): os 50 primeiros postos da lista, por
+            conveniência, erraram R$ 0,24, sempre para o mesmo lado e quase seis erros padrão longe
+            do valor verdadeiro, enquanto as quatro técnicas sorteadas se centraram nele. É o
+            mesmo fenômeno de 1936, em escala de sala de aula.</p>
             """, "pergunta-aula"),
             ("O exercício dos defeitos de redação", """
             <p>Projete só a coluna do item com defeito e peça à turma que diga o defeito e
@@ -102,12 +104,11 @@ SECOES = [
             ("O alfa, sem fórmula decorada", """
             <p>O plano pede o alfa <strong>depois</strong> da dispersão do encontro 4 porque ele
             é uma função da variância e da correlação entre itens. Apresente a forma
-            padronizada, α = k × r̄ ÷ (1 + (k − 1) × r̄), e leia a tabela: com a mesma
+            padronizada, α = k × r̄ ÷ (1 + (k − 1) × r̄), e leia a curva da tela 11: com a mesma
             correlação média (0,501), o alfa vai de 0,668 com 2 itens a 0,923 com 12. A
             conclusão sai sozinha: <strong>alfa alto pode ser só escala longa</strong>.</p>
             <p>O caso do item invertido (0,561 → 0,857) é o fechamento: o defeito não estava na
-            escala, e sim na análise que esqueceu de recodificar. Diga que os dados são
-            simulados — e diga de novo na prática.</p>
+            escala, e sim na análise que esqueceu de recodificar. Os dados são simulados, e isso precisa ser dito aqui e de novo na prática.</p>
             """, "falar"),
             ("Erros que vão aparecer na turma", """
             <ol>
@@ -149,16 +150,21 @@ SECOES = [
             ("O momento que mais ensina: a tabela dos quatro cadastros", """
             <p>Antes de projetar a tabela, pergunte: <em>“se 147 postos bastam para um cadastro
             de 236, quantas empresas bastam para o Brasil, com 10,6 milhões?”</em>. A turma
-            chuta milhares. A resposta é 385 — e o cadastro cresce 45 mil vezes enquanto o n
-            cresce 2,6 vezes.</p>
+            chuta milhares. A resposta é 385, e o cadastro cresce 45 mil vezes enquanto o n cresce 2,6 vezes.
+            A curva da tela 19 mostra o mesmo em escala logarítmica: o n sobe rápido até alguns
+            milhares de casos e depois encosta no teto de 385.</p>
             <p>É a tela que desmonta a regra dos 10% e que o erro comum retoma.</p>
             """, "pergunta-aula"),
             ("O mistério do encontro 7, resolvido", """
-            <p>No encontro 7 a largura observada das mil médias (R$ 0,0418) saiu menor que a da
-            fórmula (R$ 0,0481), e a diferença ficou sem explicação. A explicação é a
-            <strong>correção para população finita</strong>: 50 postos são 21% do cadastro, e
-            o fator √((236 − 50) ÷ 235) = 0,8897 reduz a margem de R$ 0,0943 para R$ 0,0839.
-            Com a correção, 95,6% das amostras ficam dentro — a promessa era 95%.</p>
+            <p>O encontro 7 (tela 18) deixou uma pergunta aberta: a largura observada das mil médias
+            (R$ 0,0418) saiu 13% menor que a da fórmula (R$ 0,0481), e por isso 74,8% e 98,2% das
+            médias caíram a 1 e a 2 erros padrão, contra 68,3% e 95,4% da regra. A explicação é a
+            <strong>correção para população finita</strong>: 50 postos são 21% do cadastro, e o
+            fator √((236 − 50) ÷ 235) = 0,8897 leva o erro padrão a R$ 0,0428, a 2% da largura
+            observada. Com ele, as faixas passam a 69,2% e 95,9%, e a margem a 95% cai de
+            R$ 0,0943 para R$ 0,0839, com 95,6% das amostras dentro. A promessa era 95%.</p>
+            <p>A tela 20 mostra as duas leituras lado a lado: a do erro padrão (a pergunta do
+            encontro 7) e a da margem (a de hoje).</p>
             <p>Vale a frase: <em>“quando a amostra é uma fatia grande da população, ela varia
             menos, e a correção diz quanto”</em>.</p>
             """, "falar"),
@@ -181,7 +187,8 @@ SECOES = [
               <tr><th>Medida</th><th>Valor</th></tr>
               <tr><td>Cadastro de postos (ANP, gasolina comum, MA, 2025)</td><td>236 postos</td></tr>
               <tr><td>Média e desvio da população</td><td>R$ 6,0087 e R$ 0,3402</td></tr>
-              <tr><td>Erro padrão, n = 50</td><td>R$ 0,0481</td></tr>
+              <tr><td>Erro padrão, n = 50: sem e com correção</td><td>R$ 0,0481 e R$ 0,0428 (a largura simulada no encontro 7: R$ 0,0418)</td></tr>
+              <tr><td>Médias a 1 e a 2 EP: sem e com correção</td><td>74,8% e 98,2%; 69,2% e 95,9%</td></tr>
               <tr><td>Margem a 95%, n = 50: sem e com correção</td><td>R$ 0,0943 (98,0% dentro) e R$ 0,0839 (95,6% dentro)</td></tr>
               <tr><td>z para 90%, 95% e 99%</td><td>1,645; 1,960; 2,576</td></tr>
               <tr><td>n para a média, ±R$ 0,05, 95%: sem correção</td><td>177,8 → 178 postos</td></tr>
@@ -213,8 +220,7 @@ SECOES = [
             e agregados, que a Resolução CNS 510/2016 dispensa de registro no CEP; o encontro de
             hoje é o primeiro em que se planeja uma coleta própria, e é aí que a ética deixa de
             ser citação de fonte e vira desenho do instrumento.</p>
-            <p>Ser preciso: a 510/2016 (art. 1º, parágrafo único) lista o que não vai ao CEP —
-            entre outros, informação de acesso público, informação de domínio público e banco
+            <p>Ser preciso: a 510/2016 (art. 1º, parágrafo único) lista o que não vai ao CEP: entre outros, informação de acesso público, informação de domínio público e banco
             de dados agregado sem identificação individual. Questionário com gestores
             identificáveis <strong>vai</strong>, pela Plataforma Brasil, antes da coleta.</p>
             <p>E a dispensa só vale se o protocolo <strong>inteiro</strong> se enquadrar
@@ -233,7 +239,7 @@ SECOES = [
               no cronograma de um TCC, e quem descobre isso tarde perde o semestre;</li>
               <li><strong>Confundir tirar o nome com anonimizar</strong>: o cruzamento de cargo,
               setor e idade reidentifica numa empresa pequena;</li>
-              <li><strong>Fazer do bloco uma aula de direito</strong>: o foco é o instrumento —
+              <li><strong>Fazer do bloco uma aula de direito</strong>: o foco é o instrumento:
               o que o TCLE diz, o que o questionário deixa de pedir.</li>
             </ol>
             """, "nao-falar"),
@@ -256,9 +262,9 @@ SECOES = [
             conferem os <code>[ok]</code>. Só depois liberar as rodadas, <strong>uma mudança de
             cada vez</strong>, voltando ao valor original antes da seguinte. Avise que, com a
             configuração mudada, o <code>conferir</code> mostra <code>[X ]</code> e que isso é
-            esperado — o número mudou porque a pergunta mudou.</p>
-            <p>Se a CÉLULA A2 (Receita Federal) falhar — “could not resolve host”, 401 ou tempo
-            esgotado —, a turma faz upload de <code>dados/rf_cnpj_municipios.csv</code> e
+            esperado: o número mudou porque a pergunta mudou.</p>
+            <p>Se a CÉLULA A2 (Receita Federal) falhar (“could not resolve host”, 401 ou tempo
+            esgotado), a turma faz upload de <code>dados/rf_cnpj_municipios.csv</code> e
             executa a CÉLULA B2. Se a A1 falhar, o mesmo com a B1 e o CSV da ANP.</p>
             """, "falar"),
             ("Pergunta para a turma, durante a rodada 3", """
@@ -302,8 +308,8 @@ SECOES = [
             """, "falar"),
             ("Tarefa para o próximo encontro", """
             <ol>
-              <li>Revise os notebooks dos encontros 6, 7 e 8: <strong>a AV2 é feita sobre eles</strong>
-              — descrição de uma base, plano de amostragem, tamanho da amostra e o relatório de
+              <li>Revise os notebooks dos encontros 6, 7 e 8: <strong>a AV2 é feita sobre eles</strong>:
+              descrição de uma base, plano de amostragem, tamanho da amostra e o relatório de
               sorteio;</li>
               <li>Releia as fichas de revisão dos encontros 1 a 4 (frequência, posição,
               dispersão e forma): a primeira parte da AV2 é a descrição completa de uma base;</li>
