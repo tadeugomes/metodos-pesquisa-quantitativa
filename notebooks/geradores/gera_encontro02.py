@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook do encontro 2 (Módulo I — Parte 2: tipos de dado e a regra da medida).
+"""Gera o notebook do encontro 2 (Módulo I, Parte 2: tipos de dado e a regra da medida).
 
 Segue o PLANO_REFORMULACAO.md, secao 9: pre-executado, painel do encontro, CONFIG,
 utilitarios no topo, zero diagnostico, `conferir` em cada questao, e nenhuma tarefa
@@ -26,7 +26,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 2. Variáveis, tipos de dado e a regra da medida
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje, em três passos**
@@ -61,8 +61,8 @@ As três bases de hoje, todas do IBGE, cada uma escolhida por trazer um nível d
 
 > **Uma observação de honestidade.** Não existe exemplo oficial de nível **intervalo**
 > nessas três bases. O exemplo do intervalo no slide é uma escala de satisfação de
-> 0 a 10, que é variável de verdade em pesquisa em Administração — e é o tipo de
-> escala que você vai construir no questionário do Módulo II."""
+> 0 a 10, que, a rigor, é ordinal e, por convenção, é tratada como intervalo (tela 12
+> do deck). É o tipo de escala que você vai construir no questionário do Módulo II."""
 
 CONFIG = """## Bloco de configuração
 
@@ -76,7 +76,7 @@ BASE = "ordinal"   # "nominal", "ordinal" ou "razao"
 
 UTILITARIOS_NOTA = """## Utilitários da disciplina
 
-As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá-las** — e
+As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá-las**, e
 não precisa entender o que fazem para seguir. `conferir` é a que mais importa: ela
 compara o seu resultado com o número que já estava resolvido no slide e diz se bateu.
 
@@ -156,7 +156,7 @@ print("ORDINAL  |", len(ordinal), "faixas |",
 # --- 3. RAZÃO: empresas de alojamento e alimentação, Brasil
 pas = baixa_sidra("2325", "1", "all", variable="all", period="last")
 # o SIDRA devolve a coluna "Valor" com V maiúsculo; a Célula B lê "valor" do
-# CSV. Renomear aqui deixa as duas células produzindo a MESMA tabela — sem isso,
+# CSV. Renomear aqui deixa as duas células produzindo a MESMA tabela. Sem isso,
 # a base razão quebra com a Célula A e funciona com a B.
 razao = (pas.dropna(subset=["Variável", "Valor"])
            .loc[:, ["Variável", "Unidade de Medida", "Valor", "Ano"]]
@@ -170,7 +170,7 @@ print("RAZAO    |", len(razao), "variáveis | ano de referência:",
 razao''' 
 
 
-CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B = '''# ================= CÉLULA B, CONTINGÊNCIA: leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload dos três arquivos de dados/ indicados no enunciado.
 #
@@ -250,7 +250,7 @@ nada, você precisa saber em que nível a variável está.
 | **Intervalo** | Ordem e intervalos iguais, mas o **zero não é ausência** | Escala de satisfação de 0 a 10 |
 | **Razão** | Ordem, intervalos iguais e o **zero é ausência real** | Receita, pessoal ocupado, nº de empresas |
 
-**O que cada nível permite — esta é a tabela que importa**
+**O que cada nível permite: esta é a tabela que importa**
 
 | Nível | Ordenar | Somar valores | Média | Mediana | "O dobro" |
 |---|---|---|---|---|---|
@@ -284,7 +284,7 @@ print(f"  ordenar? {ordena}   somar? {soma}   média? {media}   mediana? "
 #
 # Nominal e ordinal são UMA variável com categorias: cabe a tabela de frequências.
 # Razão não é: o PAS traz QUATRO variáveis medidas, em unidades diferentes. Somar
-# receita (mil reais) com pessoal ocupado (pessoas) não significa nada — e é por
+# receita (mil reais) com pessoal ocupado (pessoas) não significa nada, e é por
 # isso que a tabela de frequências não se aplica. O que se aplica é a RAZÃO entre
 # elas, que só o nível de razão permite.
 if BASE == "nominal":
@@ -307,7 +307,7 @@ elif BASE == "ordinal":
 
 else:
     tabela = razao[["variavel", "unidade", "valor"]].copy()
-    print(f"Base {BASE}: {len(tabela)} variáveis medidas — não é uma variável com "
+    print(f"Base {BASE}: {len(tabela)} variáveis medidas: não é uma variável com "
           f"categorias, e por isso não há tabela de frequências.")
     print("O que este nível permite é DIVIDIR um valor pelo outro:")
     print()
@@ -354,13 +354,13 @@ if BASE == "nominal":
 
 if BASE == "razao":
     # as conferências da base razão são os valores das variáveis e as razões entre
-    # elas — e não uma soma, que aqui não significaria nada
+    # elas, e não uma soma, que aqui não significaria nada
     conferir("número de empresas", empresas, 281133.0, tolerancia=1, unidade="")
     conferir("pessoal ocupado", pessoas, 1420230.0, tolerancia=1, unidade="")
     conferir("pessoas por empresa", pessoas / empresas, 5.05, tolerancia=0.01, unidade="")'''},
 
     {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número
-> do slide. Se apareceu `[X]` em um número que ontem batia, quase sempre é que a
+> do slide. Se apareceu `[X]` em um número que antes batia, quase sempre é que a
 > base foi atualizada: o IBGE divulga dados novos todo ano. Nesse caso, copie o
 > número novo, anote o ano ao lado e siga. **O número que vale é o que saiu do
 > código, não o do slide.** É assim que se trabalha com dado real."""},
@@ -372,7 +372,7 @@ responde: *"quantas empresas têm **até** tal tamanho?"*. E ela só tem sentido
 porque a variável **tem ordem**. Numa base nominal, acumular seria absurdo.
 
 Na base de hoje, a resposta é direta: **até 49 pessoas, 99,3% dos nascimentos.**
-E apenas 0,65% nasceram com 50 pessoas ou mais — cerca de **uma em cada 150**
+E apenas 0,65% nasceram com 50 pessoas ou mais, cerca de **uma em cada 150**
 empresas."""},
 
     {"tipo": "code", "texto": '''# A acumulada só faz sentido em ordinal. Rode depois de escolher BASE = "ordinal".
@@ -383,7 +383,7 @@ if BASE == "ordinal":
               f"({r['nascimentos']:,.0f} nascimentos)".replace(",", "."))
     print()
     print("E se a pergunta fosse 'em que faixa cai a mediana dos nascimentos'?")
-    # a mediana é a primeira faixa cujo acumulado passa de 50% — e não o índice
+    # a mediana é a primeira faixa cujo acumulado passa de 50%, e não o índice
     # do meio da lista, que é outra coisa
     faixa_mediana = ordinal.loc[ordinal["pct_acumulado"] >= 50, "faixa"].iloc[0]
     print(f"  a mediana cai na faixa: {faixa_mediana}")
@@ -401,7 +401,7 @@ else:
 **O que essa frase não diz.** Ela não diz que a empresa pequena é mais eficiente,
 nem que a empresa grande é melhor administrada. Ela diz **quantas** empresas nasceram
 em cada faixa de tamanho, em um ano, no Brasil. Conclusões sobre eficiência
-administrativa precisariam de outro desenho de pesquisa — e é por isso que o
+administrativa precisariam de outro desenho de pesquisa, e é por isso que o
 delineamento vem no Módulo II."""},
 
     # ------------------------------------------------------------ IA
@@ -410,10 +410,10 @@ delineamento vem no Módulo II."""},
 Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
 explica, o código calcula e você confere e escreve.**
 
-### Modo 1 — Pergunta
+### Modo 1: pergunta
 
 Copie o cartão de contexto abaixo e cole na conversa do assistente. Sem o contexto, a
-IA inventa número — e você não tem como perceber."""},
+IA inventa número, e você não tem como perceber."""},
 
     {"tipo": "code", "texto": 'cartao(ordinal, "categoria", nome_base="Demografia das Empresas / IBGE")'},
 
@@ -423,20 +423,20 @@ IA inventa número — e você não tem como perceber."""},
 2. "Neste cartão, o que a coluna `pct_acumulado` está somando e a partir de quê?"
 3. "Se a base fosse de CNAE em vez de faixa de pessoal, a acumulada faria sentido?"
 
-### Modo 2 — Encomenda
+### Modo 2: encomenda
 
 Escreva o que você quer, peça o código e cole na **célula cinza** abaixo. Só mude os
 **parâmetros de consulta**: qual base, qual recorte, qual ordenação. **Nunca** peça
-para mudar a lógica do cálculo — os números do slide foram conferidos, e trocar a
+para mudar a lógica do cálculo: os números do slide foram conferidos, e trocar a
 lógica quebra a conferência.
 
-### Modo 3 — Ler um resultado errado
+### Modo 3: ler um resultado errado
 
 O professor preparou três classificações de nível de mensuração **erradas**. Todas as
 variáveis são reais. O erro está no nível atribuído. Diga qual é o erro e qual é o
 nível certo."""},
 
-    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
+    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA: cole aqui o código do assistente =====================
 # Sugestão de pedido: "liste as dez seções da CNAE com mais empresas no Brasil,
 # com a contagem e a porcentagem, ordenado da maior para a menor"
 #
@@ -468,7 +468,7 @@ print("           (o zero numa escala de satisfação significa ausência de sat
 |---|---|
 | **1** | "Número de funcionários" tem valor numérico exato, não é categoria: entra em contagem, que é **razão**. Uma empresa com 0 funcionários não tem nenhum funcionário, e esse zero é ausência real. Com contagem, a média faz sentido. |
 | **2** | **O erro mais sutil do dia.** As letras A a U estão em ordem alfabética, mas essa ordem é do **código**, não do mundo. Não existe "Comércio antes de Indústria". Por isso a CNAE é **nominal**: dá para contar, e a média da letra não significa nada. |
-| **3** | Numa escala de 0 a 10, o zero é um ponto **escolhido por quem montou a escala**, e não ausência de satisfação. Quem marca 0 respondeu e está muito insatisfeito, e não sem satisfação nenhuma. Por isso não se pode dizer que 8 pontos são "o dobro" de 4. A variável é **intervalo**, e não razão. |
+| **3** | Numa escala de 0 a 10, o zero é um ponto **escolhido por quem montou a escala**, e não ausência de satisfação. Quem marca 0 respondeu e está muito insatisfeito, e não sem satisfação nenhuma. Por isso não se pode dizer que 8 pontos são "o dobro" de 4. A variável não é razão. A rigor, uma escala de satisfação é ordinal; por convenção, a disciplina a trata como **intervalo**, e é essa a resposta esperada. |
 
 Repare que a análise 2 é a mais instrutiva: **a ordem do código não é a ordem do
 fenômeno.** A letra identifica a categoria, e não a coloca antes ou depois de outra."""},
@@ -509,7 +509,7 @@ _(pense em pelo menos uma coisa que o dado não diz)_
 - [ ] Compartilhei o link do notebook
 
 **Para o próximo encontro:** leia o capítulo de GIL (2022) sobre como formular um
-problema de pesquisa — as seis regras e a definição operacional. Traga uma pergunta de
+problema de pesquisa: as seis regras e a definição operacional. Traga uma pergunta de
 pesquisa, mesmo que ainda mal formulada.
 
 > Guarde este arquivo. Ele é a **segunda parte do guia de estatística descritiva** da

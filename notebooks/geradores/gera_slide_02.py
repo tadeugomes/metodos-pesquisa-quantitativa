@@ -2,8 +2,7 @@
 """Camada de conducao do encontro 2 (v3).
 
 Estrutura do deck depois da reestruturacao:
-  capa · abertura · objetivos · VARIÁVEIS (9 telas) · PARTE 2 — ESTATÍSTICA (11) ·
-  prática (7) · fecho · síntese · estudo
+  capa · abertura · objetivos · VARIÁVEIS (9 telas) · PARTE 2, ESTATÍSTICA (11) · prática (7) · fecho · a frase do encontro 1 testada (tela 34) · síntese · estudo
 
 As ancoras sao por TITULO de tela.
 """
@@ -37,9 +36,7 @@ SECOES = [
             mensurável.</p>
             """, "bruto"),
             ("A retomada que faz a ponte", """
-            <p>Retomar a frase do encontro 1 que organiza o dia: <strong>mensurar é atribuir
-            números a conceitos</strong>. Hoje vamos ao passo seguinte — decidir <em>o que
-            exatamente</em> medir e <em>como</em> o número que resultar da medição poderá ser
+            <p>Retomar a definição do encontro 1 que organiza o dia: <strong>mensurar é traduzir conceitos em variáveis, com regras claras de atribuição de valores</strong>. Hoje vamos ao passo seguinte: decidir <em>o que exatamente</em> medir e <em>como</em> o número que resultar da medição poderá ser
             usado.</p>
             """, "falar"),
             ("Onde está a minutagem", """
@@ -63,19 +60,17 @@ SECOES = [
                 ("Operacionalização: do conceito ao indicador", "5"),
             ]), "bruto"),
             ("A ideia que organiza o bloco", """
-            <p>Uma frase, repetida: <strong>o nível de mensuração decide a análise.</strong> Não
+            <p>A frase do bloco: <strong>o nível de mensuração decide a análise.</strong> Não
             é uma classificação decorativa: é o que autoriza (ou proíbe) a média, o gráfico, o
             teste. E é a resposta à pergunta que abre o bloco de estatística daqui a pouco.</p>
             """, "falar"),
-            ("A ponte para a Parte 2, feita duas vezes", """
+            ("A ponte para a Parte 2", """
             <p>Anunciar no fim deste bloco que <strong>a mesma matéria volta</strong> no bloco de
             estatística, agora com dado oficial e com a tabela de permissões. Não é repetição: é
-            o conceito virando operação. Avisar que a turma vai ver o mesmo conteúdo duas vezes
-            <em>de propósito</em>.</p>
+            o conceito virando operação. Avisar que o conteúdo volta <em>de propósito</em>.</p>
             """, "falar"),
             ("O exercício que mais rende", """
-            <p>“Classifique o nível”: a turma classifica variáveis reais em voz alta e justifica.
-            Depois, os <strong>casos traiçoeiros</strong> — e o melhor deles é a seção da CNAE:
+            <p>“Classifique o nível”: a turma classifica variáveis reais e justifica cada nível. Depois, os <strong>casos traiçoeiros</strong>, e o melhor deles é a seção da CNAE:
             as letras vão de A a U, e mesmo assim a variável é nominal.</p>
             <p>A frase que fecha: <em>“a ordem do código não é a ordem do mundo”</em>. É a mesma
             lição do encontro 1 sobre código e rótulo, agora aplicada ao nível de mensuração.</p>
@@ -84,8 +79,7 @@ SECOES = [
             <ol>
               <li><strong>Promover nominal a ordinal</strong> por causa da ordem alfabética do
               código.</li>
-              <li><strong>Tratar escala de satisfação como razão</strong>, porque “tem zero”. O
-              zero significa <em>ninguém respondeu</em>, e não ausência do fenômeno.</li>
+              <li><strong>Tratar escala de satisfação como razão</strong>, porque “tem zero”. Na escala, o zero é só o ponto de partida escolhido por quem a montou, e não ausência de satisfação.</li>
               <li><strong>Achar que número é sinônimo de quantitativo.</strong> Código de
               município é número e é nominal.</li>
               <li><strong>Confundir o papel na hipótese com o nível.</strong> São duas
@@ -101,7 +95,7 @@ SECOES = [
     },
     {
         "num": 3,
-        "titulo": "Parte 2: estatística — a regra da medida",
+        "titulo": "Parte 2: estatística, a regra da medida",
         "minutos": 90,
         "entre": ["Parte 2", "Mão na massa"],
         "blocos": [
@@ -113,25 +107,22 @@ SECOES = [
                 ("Erro comum e ficha de revisão", "10"),
             ]), "bruto"),
             ("A ideia que organiza o bloco inteiro", """
-            <p>Repetir, em voz alta: <strong>“antes de calcular, identifique o nível”</strong>. O
+            <p>A frase do bloco: <strong>“antes de calcular, identifique o nível”</strong>. O
             nível não é detalhe técnico de quem trabalha com estatística: é o que define a
-            ferramenta. E é a primeira coisa que impede um erro caro — a média de uma
-            categoria.</p>
+            ferramenta. E é a primeira coisa que impede um erro caro: a média de uma categoria.</p>
             """, "falar"),
             ("Um exemplo real por nível e a honestidade do intervalo", """
             <p>As três bases do notebook foram escolhidas por trazerem um nível cada:</p>
             <ul>
-              <li><strong>Nominal</strong> — a seção da CNAE, letras de A a U. 10.607.110
+              <li><strong>Nominal</strong>: a seção da CNAE, letras de A a U. 10.607.110
               empresas, comércio 27,42%;</li>
-              <li><strong>Ordinal</strong> — a faixa de pessoal assalariado. 337.330 nascimentos,
+              <li><strong>Ordinal</strong>: a faixa de pessoal assalariado. 337.330 nascimentos,
               93,01% na menor faixa e 99,35% até 49 pessoas;</li>
-              <li><strong>Razão</strong> — receita, pessoal ocupado, número de empresas. 281.133
-              empresas e 1.420.230 pessoas no alojamento e alimentação.</li>
+              <li><strong>Razão</strong>: receita, pessoal ocupado, número de empresas. 281.133
+              empresas e 1.420.230 pessoas no alojamento e alimentação (PAS, 2001, o último ano que a tabela publica).</li>
             </ul>
             <p>E o <strong>intervalo</strong> fica sem exemplo oficial: as bases do dia não têm
-            nenhuma variável assim. O exemplo é uma escala de satisfação de 0 a 10.
-            <strong>Dizer isso em voz alta é honesto e ensina:</strong> nem toda variável do
-            mundo tem exemplo na fonte oficial.</p>
+            nenhuma variável assim. Os exemplos são o ano de fundação e, por convenção, a escala de satisfação de 0 a 10 (a tela 12 diz que, a rigor, ela é ordinal). <strong>Vale dizer isso à turma:</strong> nem toda variável do mundo tem exemplo na fonte oficial.</p>
             """, "falar"),
             ("As duas figuras do bloco", """
             <p>A tela dos quatro níveis não traz mais a lista em texto: os níveis estão na
@@ -141,9 +132,9 @@ SECOES = [
             as duas escalas de satisfação: a diferença de 4 pontos se mantém, e a razão muda de
             2 para 1,8. É o teste do zero visto, e não só dito.</p>
             """, "falar"),
-            ("O teste do zero, repetido até virar hábito", """
+            ("O teste do zero, como hábito", """
             <p>Uma pergunta só: <strong>“o zero significa ausência da coisa?”</strong> Se
-            significa, é razão. Se significa “ninguém respondeu”, é intervalo. Se a variável é
+            significa, é razão. Se o zero é só o ponto de partida da escala, é intervalo. Se a variável é
             categoria, o zero nem existe. Leva trinta segundos e resolve a maior parte dos casos
             de pesquisa aplicada.</p>
             """, "pergunta-aula"),
@@ -158,8 +149,7 @@ SECOES = [
               das faixas” não faz sentido: as faixas não são valores.</li>
               <li><strong>Usar a média em ordinal.</strong> A média de três faixas não
               corresponde a nenhuma faixa real.</li>
-              <li><strong>Concluir que a base menor é mais frágil</strong> a partir do 93,01%.
-              O dado diz quantas nasceram pequenas, não que pequenas fracassam mais.</li>
+              <li><strong>Concluir que as pequenas são mais frágeis</strong> a partir do 93,01%. O dado de nascimentos diz quantas nasceram pequenas. Se elas fecham mais é outra pergunta, que pede a taxa de sobrevivência por faixa (o encontro 3 mostra esse dado).</li>
             </ol>
             """, "nao-falar"),
             ("Gabarito do que o professor precisa ter na mão", """
@@ -186,46 +176,52 @@ SECOES = [
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("Seção 1: como se usa um notebook", "8"),
-                ("Seção 2: as três bases de hoje", "18"),
+                ("Seção 2: as três bases de hoje", "13"),
                 ("Seção 3: a tabela que decide", "12"),
                 ("Seção 4: a base escolhida e a conferência", "10"),
                 ("Seção 5: a frequência acumulada", "8"),
                 ("Seção 6: o assistente", "4"),
+                ("A frase do encontro 1, testada (tela 34)", "5"),
             ]), "bruto"),
             ("A regra didática do dia", """
             <p>A única edição de código é trocar <code>BASE = "ordinal"</code> por
             <code>"nominal"</code> e <code>"razao"</code>. Nada além disso.</p>
             """, "falar"),
-            ("Seção 2 — as três bases (18 min)", """
+            ("Seção 2: as três bases (13 min)", """
             <p>Antes de executar, perguntar: <em>“qual delas vocês acham que é ordinal e por
             quê?”</em>. A resposta sai da base, não da opinião.</p>
-            <p>Chamar atenção para o detalhe novo em relação ao encontro 1: a API do IBGE
-            <strong>não traz os nomes das categorias da faixa de pessoal</strong> — o notebook
-            pede tudo e escolhe a variável no pandas. É a primeira vez que o estudante vê que
+            <p>Chamar atenção para o detalhe novo em relação ao encontro 1: o código da variável de nascimentos mudou no SIDRA, e por isso <strong>o notebook pede todas as variáveis da tabela 9949 e escolhe a de nascimentos no pandas</strong>. É a primeira vez que o estudante vê que
             filtrar também é analisar.</p>
             """, "pergunta-aula"),
-            ("Seção 3 — a tabela que decide (12 min)", """
+            ("Seção 3: a tabela que decide (12 min)", """
             <p>A sessão mais curta e mais importante da prática: o aluno troca o valor de
             <code>BASE</code> e vê a linha de permissões mudar. Em qual das três a média entra?
             Em qual a soma?</p>
             <p>Perguntar também: <em>“e a base do intervalo, por que ela não está na Célula
-            A?”</em> A resposta honesta — porque o IBGE não publica uma assim nessas tabelas — é
-            a mesma que vale para a vida profissional.</p>
+            A?”</em> A resposta honesta (o IBGE não publica uma assim nessas tabelas) é a mesma que vale para a vida profissional.</p>
             """, "pergunta-aula"),
-            ("Seção 5 — a frequência acumulada (8 min)", """
+            ("Seção 5: a frequência acumulada (8 min)", """
             <p>Rodar com <code>BASE = "ordinal"</code> e depois trocar para
             <code>"nominal"</code>. A diferença no comportamento do notebook é o argumento: com
             ordem, acumula; sem ordem, “até” não quer dizer nada.</p>
             """, "falar"),
-            ("Seção 6 — o modo 3 e por que ele é o mais importante", """
+            ("Seção 6: o modo 3 e por que ele é o mais importante", """
             <p>As três classificações erradas do professor. A segunda é a pérola do encontro: a
             CNAE classificada como ordinal “porque as letras vão de A a U”. Pedir que a turma
             argumente <strong>contra</strong> antes de revelar o gabarito.</p>
             """, "falar"),
             ("Se o aluno travar", """
-            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. A
-            Célula B já está escrita e só exige upload.</p>
+            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. A Célula B já está escrita e só exige upload.</p>
             """, "alerta"),
+            ("A frase do encontro 1, testada (tela 34, 5 min)", """
+            <p>Fechar a prática voltando à frase do encontro 1: <em>“a maioria das empresas fecha
+            no primeiro ano”</em>. Perguntar antes de mostrar: <em>“que variável responde, e em
+            que nível ela está?”</em>. A resposta é a taxa de sobrevivência, de razão.</p>
+            <p>O dado: das 261.302 empresas empregadoras nascidas em 2017, 76,2% seguiam ativas
+            após um ano, 49,4% após três e 37,3% após cinco. A frase não se sustenta: no primeiro
+            ano fechou cerca de uma em cada quatro. O recorte importa: a base cobre só empresas
+            com empregados.</p>
+            """, "pergunta-aula"),
             ("O que coletar antes do fim da aula", """
             <p>O link do notebook e as respostas da primeira pergunta de interpretação. Elas
             dizem de que variável a turma fala e alimentam o problema e a hipótese do encontro
@@ -242,9 +238,9 @@ SECOES = [
             ("Os três aprendizados do dia", """
             <ol>
               <li><strong>Mensurar é decidir.</strong> Antes de qualquer cálculo, o nível da
-              variável está decidido — e o nível decide a ferramenta.</li>
+              variável está decidido, e o nível decide a ferramenta.</li>
               <li><strong>O teste do zero</strong> resolve a maior parte dos casos: zero de
-              ausência é razão; zero de ausência de resposta é intervalo.</li>
+              ausência é razão, e zero escolhido pela escala é intervalo.</li>
               <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE
               vão de A a U, e isso não faz do comércio uma seção “maior” que a indústria.</li>
             </ol>

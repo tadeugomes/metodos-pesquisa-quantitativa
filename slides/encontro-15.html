@@ -18,7 +18,7 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
-<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
 <div id="deck" data-conducao="1">
 <div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
 <section class="secao-projecao" id="sec-1" data-conducao="1">
@@ -53,8 +53,32 @@
     <tr><td><strong>B</strong></td><td>Prática: seis questões no Colab, base da CVM</td>
         <td>150 min</td><td>Permitidas, <strong>com registro</strong></td><td>60</td></tr>
   </table>
+  <div class="figura">
+<!--FIG:F15_DIA-->
+<svg viewBox="0 0 990 106" role="img" aria-label="Linha do tempo dos 240 minutos da prova final">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<rect x="10.0" y="10" width="57.6" height="48" rx="6" fill="#888"/>
+<text x="40.3" y="40.0" text-anchor="middle" font-size="16.0" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">15</text>
+<text x="40.3" y="80.0" text-anchor="middle" font-size="13.0" fill="#333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Abertura</text>
+<text x="40.3" y="98.0" text-anchor="middle" font-size="13.0" fill="#666" font-family="Source Sans 3, Calibri, sans-serif">regras</text>
+<rect x="70.6" y="10" width="239.5" height="48" rx="6" fill="#8D0333"/>
+<text x="191.9" y="40.0" text-anchor="middle" font-size="16.0" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">60 min</text>
+<text x="191.9" y="80.0" text-anchor="middle" font-size="14.0" fill="#333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Parte A</text>
+<text x="191.9" y="98.0" text-anchor="middle" font-size="13.0" fill="#666" font-family="Source Sans 3, Calibri, sans-serif">sem consulta, sem IA</text>
+<rect x="313.1" y="10" width="603.2" height="48" rx="6" fill="#0AB0AB"/>
+<text x="616.2" y="40.0" text-anchor="middle" font-size="16.0" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">150 min</text>
+<text x="616.2" y="80.0" text-anchor="middle" font-size="14.0" fill="#333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Parte B</text>
+<text x="616.2" y="98.0" text-anchor="middle" font-size="13.0" fill="#666" font-family="Source Sans 3, Calibri, sans-serif">com consulta e IA, com registro</text>
+<rect x="919.4" y="10" width="57.6" height="48" rx="6" fill="#a67c2e"/>
+<text x="949.7" y="40.0" text-anchor="middle" font-size="16.0" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">15</text>
+<text x="949.7" y="80.0" text-anchor="middle" font-size="13.0" fill="#333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Entrega</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">Os 240 minutos do dia. A Parte A termina por anúncio, e a hora anunciada é a que vale.</p>
+  </div>
   <div class="pergunta">A prova é <strong>inteiramente no notebook</strong> do encontro, e
-  você <strong>não escreve código</strong>: decide, executa, confere e escreve — como em todo
+  você <strong>não escreve código</strong>: decide, executa, confere e escreve, como em todo
   o semestre.</div>
   <div class="instrucao"><span class="rotulo">Antes de começar</span>
   Abra o notebook no link enviado, faça <em>Arquivo → Salvar uma cópia no Drive</em> e
@@ -72,7 +96,7 @@
     <tr><td>Outras abas e outros arquivos</td><td><strong>Não</strong>: só o notebook da prova</td><td>Sim</td></tr>
     <tr><td>Conversa com colegas</td><td><strong>Não</strong></td><td><strong>Não</strong></td></tr>
     <tr><td>Celular</td><td>Fora da mesa</td><td>Fora da mesa</td></tr>
-    <tr><td>Voltar à Parte A depois do encerramento</td><td>—</td><td><strong>Não</strong>: a resposta é anulada</td></tr>
+    <tr><td>Voltar à Parte A depois do encerramento</td><td>Não se aplica</td><td><strong>Não</strong>: a resposta é anulada</td></tr>
   </table>
   <div class="alerta"><span class="rotulo">Como o encerramento da Parte A é registrado</span>
   Aos 60 minutos o professor anuncia o fim. Você escreve a hora na célula indicada e salva.
@@ -129,16 +153,42 @@
     <li><strong>Execute</strong> a célula de decisão e, em seguida, a célula de cálculo, que
         já vem pronta;</li>
     <li><strong>Confira.</strong> <code>[ok]</code>: a sua decisão produziu o número certo.
-        <code>[X ]</code>: produziu outro — repense e execute de novo;</li>
+        <code>[X ]</code>: produziu outro. Repense e execute de novo;</li>
     <li><strong>Escreva</strong> a frase de leitura: quanto, em quem, com que incerteza e o
         que o resultado não autoriza.</li>
   </ol>
-  <pre class="codigo"><span class="cmt"># CÉLULA DE DECISÃO B1 — escreva entre as aspas UMA das opções</span>
+  <div class="figura" style="--fig-h: 15vh">
+<!--FIG:F15_FLUXO-->
+<svg viewBox="0 0 1000 140" role="img" aria-label="Fluxo de resposta das questões da Parte B">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<rect x="10" y="20" width="200" height="64" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+<text x="110.0" y="48.0" text-anchor="middle" font-size="19.8" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">1. Decida</text>
+<text x="110.0" y="71.0" text-anchor="middle" font-size="15.4" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">na célula de decisão</text>
+<path d="M214 52 H256" stroke="#888" stroke-width="2.2" marker-end="url(#sc)"/>
+<rect x="260" y="20" width="200" height="64" rx="8" fill="#fbf5ea" stroke="#a67c2e" stroke-width="2"/>
+<text x="360.0" y="48.0" text-anchor="middle" font-size="19.8" fill="#a67c2e" font-weight="700" font-family="Montserrat, Calibri, sans-serif">2. Execute</text>
+<text x="360.0" y="71.0" text-anchor="middle" font-size="15.4" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">decisão e cálculo</text>
+<path d="M464 52 H506" stroke="#888" stroke-width="2.2" marker-end="url(#sc)"/>
+<rect x="510" y="20" width="200" height="64" rx="8" fill="#eefafa" stroke="#0AB0AB" stroke-width="2"/>
+<text x="610.0" y="48.0" text-anchor="middle" font-size="19.8" fill="#0AB0AB" font-weight="700" font-family="Montserrat, Calibri, sans-serif">3. Confira</text>
+<text x="610.0" y="71.0" text-anchor="middle" font-size="15.4" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">[ok] ou [X ]</text>
+<path d="M714 52 H756" stroke="#888" stroke-width="2.2" marker-end="url(#sc)"/>
+<rect x="760" y="20" width="200" height="64" rx="8" fill="#eefafa" stroke="#077f7b" stroke-width="2"/>
+<text x="860.0" y="48.0" text-anchor="middle" font-size="19.8" fill="#077f7b" font-weight="700" font-family="Montserrat, Calibri, sans-serif">4. Escreva</text>
+<text x="860.0" y="71.0" text-anchor="middle" font-size="15.4" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">a frase de leitura</text>
+<path d="M610.0 86 V112 H110.0 V90" fill="none" stroke="#8D0333" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#sv)"/>
+<text x="360.0" y="132.0" text-anchor="middle" font-size="16.5" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">[X ]: repense a decisão e execute de novo</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">Os quatro passos de cada questão. O [X ] devolve ao passo 1.</p>
+  </div>
+  <pre class="codigo"><span class="cmt"># CÉLULA DE DECISÃO B1: escreva entre as aspas UMA das opções</span>
 DENOMINADOR_B1 = <span class="str">""</span>
 
 <span class="cmt">  [X ] nao deu para comparar: obtido = None      &lt;- antes de decidir</span></pre>
   <div class="alerta"><span class="rotulo">O que faz perder ponto sem perceber</span>
-  Escrever o número na unidade errada — 5 em vez de 0.05, 1 em vez de 1000 milhões — ou
+  Escrever o número na unidade errada (5 em vez de 0.05, 1 em vez de 1000 milhões) ou
   usar vírgula no lugar do ponto. O <code>conferir</code> avisa: leia a saída.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 15</div>
 </section>
@@ -174,6 +224,41 @@ DENOMINADOR_B1 = <span class="str">""</span>
     <tr><td><strong>B</strong> prática</td><td>60</td>
         <td>A decisão com o <code>conferir</code> executado (4 por questão) e a frase de leitura (6)</td></tr>
   </table>
+  <div class="figura" style="--fig-h: 15vh">
+<!--FIG:F15_NOTA-->
+<svg viewBox="0 0 990 140" role="img" aria-label="Composição da nota da prova final">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<rect x="10" y="30" width="385.0" height="50" rx="6" fill="#8D0333"/>
+<text x="204.0" y="61.0" text-anchor="middle" font-size="18.7" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">Parte A: 10 questões × 4 = 40</text>
+<rect x="398.0" y="30" width="36.8" height="50" fill="#a67c2e"/>
+<rect x="436.8" y="30" width="54.2" height="50" fill="#0AB0AB"/>
+<text x="465.9" y="61.0" text-anchor="middle" font-size="17.6" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">B1</text>
+<rect x="495.0" y="30" width="36.8" height="50" fill="#a67c2e"/>
+<rect x="533.8" y="30" width="54.2" height="50" fill="#0AB0AB"/>
+<text x="562.9" y="61.0" text-anchor="middle" font-size="17.6" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">B2</text>
+<rect x="592.0" y="30" width="36.8" height="50" fill="#a67c2e"/>
+<rect x="630.8" y="30" width="54.2" height="50" fill="#0AB0AB"/>
+<text x="659.9" y="61.0" text-anchor="middle" font-size="17.6" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">B3</text>
+<rect x="689.0" y="30" width="36.8" height="50" fill="#a67c2e"/>
+<rect x="727.8" y="30" width="54.2" height="50" fill="#0AB0AB"/>
+<text x="756.9" y="61.0" text-anchor="middle" font-size="17.6" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">B4</text>
+<rect x="786.0" y="30" width="36.8" height="50" fill="#a67c2e"/>
+<rect x="824.8" y="30" width="54.2" height="50" fill="#0AB0AB"/>
+<text x="853.9" y="61.0" text-anchor="middle" font-size="17.6" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">B5</text>
+<rect x="883.0" y="30" width="36.8" height="50" fill="#a67c2e"/>
+<rect x="921.8" y="30" width="54.2" height="50" fill="#0AB0AB"/>
+<text x="950.9" y="61.0" text-anchor="middle" font-size="17.6" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">B6</text>
+<text x="10.0" y="20.0" text-anchor="start" font-size="16.5" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">100 pontos</text>
+<rect x="398.0" y="96" width="14" height="14" fill="#a67c2e"/>
+<text x="418.0" y="108.0" text-anchor="start" font-size="16.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">4: decisão com o conferir executado</text>
+<rect x="398.0" y="118" width="14" height="14" fill="#0AB0AB"/>
+<text x="418.0" y="130.0" text-anchor="start" font-size="16.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">6: frase de leitura</text>
+<text x="10.0" y="108.0" text-anchor="start" font-size="16.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">conceitual, sem consulta e sem IA</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">Os 100 pontos da prova. Em cada questão da Parte B, a frase vale mais que a decisão.</p>
+  </div>
   <div class="exemplo"><span class="rotulo">Os descontos que valem para a prova inteira</span>
   <ul>
     <li><strong>Número sem frase</strong> de leitura: perde a parte da frase;</li>
@@ -215,7 +300,7 @@ DENOMINADOR_B1 = <span class="str">""</span>
   </table>
   <div class="definicao"><span class="rotulo">A regra que fica</span>
   <strong>A IA explica, o código calcula e o estudante confere e escreve.</strong> Nenhum
-  número vai para um relatório sem ter saído de uma célula executada — e sem a frase que diz
+  número vai para um relatório sem ter saído de uma célula executada, e sem a frase que diz
   o que ele não autoriza.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 15</div>
 </section>
@@ -261,7 +346,7 @@ DENOMINADOR_B1 = <span class="str">""</span>
               anunciada é a que vale.</li>
             </ol>
             </div>
-    <div class="caixa alerta"><span class="rotulo">As regras, ditas em voz alta</span>
+    <div class="caixa falar"><span class="rotulo">As regras que precisam ser ditas</span>
             <p>Projete “O que pode e o que não pode” e leia as linhas. Três pontos que precisam
             ser ditos, e não apenas projetados: (1) na Parte A, <strong>só o notebook da prova
             aberto</strong>, sem material e sem IA; (2) <strong>voltar à Parte A depois do
@@ -273,11 +358,11 @@ DENOMINADOR_B1 = <span class="str">""</span>
     <p class="telas-da-secao"><b>tela 5</b> <a class="chip-tela" href="#5">5</a></p>
     <h2>Parte A: o conceitual, sem consulta <span class="min">(60 min)</span></h2>
     <div class="caixa falar"><span class="rotulo">O que se cobra e o que não se cobra</span>
-            <p>Diga antes de começar: <strong>não há conta na Parte A</strong> — a disciplina
+            <p>Diga antes de começar: <strong>não há conta na Parte A</strong>. A disciplina
             não faz conta à mão em nenhum encontro. Cobra-se a decisão e o porquê. Resposta
             certa sem justificativa vale metade.</p>
             </div>
-    <div class="caixa alerta"><span class="rotulo">A supervisão que importa</span>
+    <div class="caixa falar"><span class="rotulo">A supervisão que importa</span>
             <p>Telas com uma única aba, celular fora da mesa e caminhar pela sala. Se alguém
             travar, o empurrão é de <strong>método</strong>, nunca de conteúdo: <em>“qual é o
             nível dessa variável?”</em>, <em>“qual é o denominador?”</em>, <em>“isso é sobre
@@ -287,9 +372,9 @@ DENOMINADOR_B1 = <span class="str">""</span>
             </div>
     <div class="caixa falar"><span class="rotulo">O encerramento da Parte A</span>
             <p>Aos 15 e aos 5 minutos do fim, avise o tempo. Aos 60, anuncie
-            <strong>em voz alta a hora exata</strong> do encerramento e peça que cada estudante
+            <strong>a hora exata</strong> do encerramento, para a turma inteira, e peça que cada estudante
             a escreva na célula indicada e salve (Ctrl+S). Na correção, uma resposta da Parte
-            A editada depois dessa hora — o histórico de revisões mostra — é anulada.</p>
+            A editada depois dessa hora (o histórico de revisões mostra) é anulada.</p>
             </div>
     <div class="caixa gabarito"><span class="rotulo">Onde está o gabarito da Parte A</span>
             <p>Esta camada de condução é pública: está no mesmo HTML que a turma lê em casa.
@@ -322,7 +407,7 @@ DENOMINADOR_B1 = <span class="str">""</span>
             <p>A pergunta que vale dez segundos em cada mesa: <em>“por que esse teste, e não o
             outro?”</em>. Se a resposta não citar o fluxograma, a frase de B4 não vem.</p>
             </div>
-    <div class="caixa alerta"><span class="rotulo">Contingência</span>
+    <div class="caixa falar"><span class="rotulo">Contingência</span>
             <p>Se a célula B0 não carregar a base (sem internet), o estudante executa a célula
             de contingência, faz o upload de <code>cvm_dre_2024.csv</code> e executa a B0 de
             novo. Nada mais muda, e os números são os mesmos.</p>
@@ -367,7 +452,7 @@ DENOMINADOR_B1 = <span class="str">""</span>
               <li><strong>Ler p = 0,3759 como “os setores são iguais”</strong>: é ausência de
               evidência, com grupos pequenos;</li>
               <li><strong>Escrever “a probabilidade de prejuízo cai 52%”</strong> em B6: chance
-              não é probabilidade — a leitura em probabilidade é a do cenário.</li>
+              não é probabilidade, e a leitura em probabilidade é a do cenário.</li>
             </ol>
             </div>
   </section>
@@ -381,7 +466,7 @@ DENOMINADOR_B1 = <span class="str">""</span>
             registro de IA está preenchido, ou marcado “não usei”.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">A síntese da disciplina</span>
-            <p>Feche com a última tela: os quatro módulos e o que cada um entregou —
+            <p>Feche com a última tela: os quatro módulos e o que cada um entregou:
             <strong>descrever, sortear, inferir e modelar</strong>. E a regra que fica para além
             da disciplina: <strong>a IA explica, o código calcula e o estudante confere e
             escreve</strong>. Nenhum número vai para um relatório sem ter saído de uma célula

@@ -86,7 +86,7 @@ SECOES = [
             ("Como abrir", """
             <p>A aula inaugural tem uma tarefa só: mostrar que o semestre inteiro é a
             construção de <strong>um único projeto</strong>, o do estudante, e que tudo o que
-            vem depois — estatística, fontes, amostragem, testes — são ferramentas para
+            vem depois (estatística, fontes, amostragem, testes) são ferramentas para
             fazê-lo. Dizer isso nos primeiros cinco minutos e voltar a dizer no fim.</p>
             <p>Projetar o plano do dia (tela 2) e ler os objetivos (tela 3) sem demorar: o
             ritmo da aula está nas dinâmicas, não na abertura.</p>
@@ -121,7 +121,7 @@ SECOES = [
             <p>O conhecimento científico se distingue pelo <strong>procedimento</strong>: parte
             de uma pergunta delimitada, adota definições explícitas, submete-se à verificação
             por terceiros e admite revisão. A pesquisa é, portanto, uma <strong>empresa
-            deliberada</strong> de construção de respostas — e, como toda construção, exige
+            deliberada</strong> de construção de respostas, e, como toda construção, exige
             projeto antes da execução. É a ponte para o bloco seguinte.</p>
             """, "falar"),
             ("Os ditados como ponte para os dados do semestre", """
@@ -158,7 +158,7 @@ SECOES = [
             ("Evitar no bloco", """
             <p>Não hierarquizar opinião e ciência em tom de desprezo: o senso comum é o ponto
             de partida de muitas boas perguntas. O que se critica é tomá-lo como resposta. E
-            não entrar em epistemologia além do necessário — a aula é de projeto, e o bloco
+            não entrar em epistemologia além do necessário: a aula é de projeto, e o bloco
             dura vinte minutos.</p>
             """, "nao-falar"),
         ],
@@ -181,7 +181,7 @@ SECOES = [
             <p>Usar no quadro a metáfora cara aos autores: ninguém ergue um prédio sem planta;
             o engenheiro desenha portas, vigas e prazos <em>antes</em> de assentar o primeiro
             tijolo. O pesquisador faz o mesmo: converte uma curiosidade vaga em um
-            <strong>problema de pesquisa</strong> e desenha o caminho para respondê-lo — isso é
+            <strong>problema de pesquisa</strong> e desenha o caminho para respondê-lo. Isso é
             o projeto. Pesquisa sem projeto é obra sem planta: atividade intensa, resultado
             imprevisível.</p>
             """, "falar"),
@@ -189,24 +189,24 @@ SECOES = [
             <p>Pedir que cada um diga, em uma frase, o que entende por “projeto de pesquisa”.
             Anotar três ou quatro respostas no quadro e só então projetar a definição:
             <strong>documento-plano que formaliza a intenção de investigar</strong>,
-            especificando o que se quer saber, por que, como e em quanto tempo — antes de
+            especificando o que se quer saber, por que, como e em quanto tempo, antes de
             coletar o primeiro dado. Comparar com as respostas anotadas: costuma faltar o
             “quando” e o “com base em quê”.</p>
             """, "pergunta-aula"),
             ("Os sete componentes, cada um com a pergunta que responde", """
             <ol>
               <li><strong>Tema e delimitação</strong>: o que vou estudar, dentro de que
-              fronteiras (geográficas, temporais, de setor);</li>
+              fronteiras (geográficas, temporais, de setor).</li>
               <li><strong>Problema de pesquisa</strong>: a pergunta central que orienta
-              tudo;</li>
-              <li><strong>Objetivos</strong>: geral e específicos — o que preciso responder para
-              chegar à pergunta central;</li>
+              tudo.</li>
+              <li><strong>Objetivos</strong>: geral e específicos, o que preciso responder para
+              chegar à pergunta central.</li>
               <li><strong>Hipóteses</strong>: respostas provisórias que o estudo poderá
-              confirmar ou refutar;</li>
+              confirmar ou refutar.</li>
               <li><strong>Referencial teórico</strong>: o quadro de conceitos e autores que dá
-              significado aos dados;</li>
+              significado aos dados.</li>
               <li><strong>Metodologia</strong>: como os dados serão obtidos e analisados
-              (delineamento, população e amostra, instrumentos, técnicas);</li>
+              (delineamento, população e amostra, instrumentos, técnicas).</li>
               <li><strong>Cronograma e bibliografia</strong>: quando cada etapa entrega e com
               base em que fontes.</li>
             </ol>
@@ -214,7 +214,7 @@ SECOES = [
             ("O exemplo-âncora, que volta a aula inteira", """
             <p>O comércio eletrônico no varejo maranhense (telas 14, 15, 17, 19, 21, 22, 24 e
             39) é o fio da aula: cada componente e cada especificidade é mostrado sobre o mesmo
-            projeto. Anunciar isso na tela 14 — “vamos usar este exemplo até o fim” — ajuda a
+            projeto. Anunciar isso na tela 14 (“vamos usar este exemplo até o fim”) ajuda a
             turma a ver as peças se encaixando, em vez de uma lista de conceitos soltos.</p>
             <p>Na tela 15, insistir na regra do verbo: se o problema não vira verbo de ação
             (analisar, comparar, estimar, testar), o objetivo ainda é uma intenção vaga.</p>
@@ -226,14 +226,14 @@ SECOES = [
             fragiliza o conjunto.</p>
             <p>É por isso que a disciplina usa a <strong>matriz de amarração</strong>, a tabela
             que verifica essa cadeia linha a linha (tela 17). Ela é rascunhada depois do
-            encontro 3, construída na oficina do encontro 4 e revista nos encontros 7 e 9.
+            encontro 3, construída na oficina do encontro 4 e revista nos encontros 7 e 8.
             Hoje basta a turma reconhecer a ideia: se uma coluna contradiz a anterior, o
             projeto quebra.</p>
             """, "falar"),
             ("Evitar no bloco", """
             <p>Não pedir que a turma preencha uma matriz própria hoje: ainda não há tema, e a
             dinâmica do fim da aula faz isso coletivamente, no quadro. E não discutir o
-            referencial teórico em profundidade — ele é o componente menos quantitativo e o
+            referencial teórico em profundidade: ele é o componente menos quantitativo e o
             que mais se aprende em outras disciplinas.</p>
             """, "nao-falar"),
         ],
@@ -271,8 +271,8 @@ SECOES = [
             ("A promessa que organiza o bloco", """
             <p>O projeto quantitativo herda todos os componentes do bloco anterior e acrescenta
             exigências próprias. Percorrer as seis especificidades com a promessa explícita de
-            que <strong>cada uma tem encontro dedicado</strong> — o número do encontro está no
-            rodapé de cada tela, e vale lê-lo em voz alta:</p>
+            que <strong>cada uma tem encontro dedicado</strong>. O número do encontro está no
+            pé de cada tela:</p>
             <table>
               <tr><th>Especificidade</th><th>Onde volta</th></tr>
               <tr><td>1. Mensuração e operacionalização</td><td>Encontro 2 (variáveis e níveis
@@ -293,20 +293,20 @@ SECOES = [
             <ol>
               <li><strong>Mensuração</strong>: conceitos abstratos (“satisfação”, “porte”,
               “desempenho”) precisam virar variáveis com regras claras de atribuição de valores.
-              Sem operacionalização não há comparação possível;</li>
+              Sem operacionalização não há comparação possível.</li>
               <li><strong>Hipóteses testáveis</strong>: a hipótese quantitativa afirma uma
               relação esperada entre variáveis (“quanto maior o porte, maior a taxa de
-              sobrevivência”) e precisa ser <em>falseável</em> — os dados devem poder
-              contrariá-la;</li>
+              sobrevivência”) e precisa ser <em>falseável</em>: os dados devem poder
+              contrariá-la.</li>
               <li><strong>População e amostra</strong>: o projeto define a população-alvo e o
               modo de selecionar a amostra, para que as conclusões se estendam com
-              <strong>margem de erro conhecida</strong>;</li>
+              <strong>margem de erro conhecida</strong>.</li>
               <li><strong>Instrumentos</strong>: questionários fechados, escalas, bases
-              secundárias (IBGE, BCB, IPEA, CVM) — a coleta é padronizada e uniforme para todos
-              os casos;</li>
+              secundárias (IBGE, BCB, IPEA, CVM), com coleta padronizada e uniforme para todos
+              os casos.</li>
               <li><strong>Validade e confiabilidade</strong>: o instrumento mede o que pretende
               (validade) e mede de modo consistente (confiabilidade); o projeto precisa
-              declarar como garante as duas;</li>
+              declarar como garante as duas.</li>
               <li><strong>Estatística como linguagem</strong>: descrição, visualização,
               inferência, testes, correlação e regressão são o idioma em que os resultados são
               analisados e comunicados.</li>
@@ -331,7 +331,7 @@ SECOES = [
             pessoas vivenciam</em>. Isso é território do qualitativo, e o contraste volta no
             encontro 1. As telas 33 a 35, logo depois do bloco de estatística, retomam esse
             ponto com o exercício.</p>
-            """, "alerta"),
+            """, "nao-falar"),
         ],
     },
 
@@ -364,7 +364,7 @@ SECOES = [
             encontros 11 e 13.</p>
             """, "falar"),
             ("A tabela de notação, devagar (tela 28)", """
-            <p>Ler a tabela de notação linha a linha — μ e x̄, σ e s, p e p̂, N e n —
+            <p>Ler a tabela de notação linha a linha (μ e x̄, σ e s, p e p̂, N e n),
             pronunciando cada símbolo. É a primeira vez que a turma vê esses símbolos, e eles
             reaparecem em todos os encontros.</p>
             <p>O ponto que amarra tudo: <strong>calcula-se x̄ e quer-se falar de μ</strong>. É
@@ -401,7 +401,7 @@ SECOES = [
             sempre a mesma pergunta: <strong>houve sorteio?</strong> Sem sorteio há um recorte,
             e não uma amostra probabilística, e nada pode ser generalizado. É o erro 1 da
             tela 31 e é o tema do Módulo II.</p>
-            """, "alerta"),
+            """, "nao-falar"),
             ("Gabarito dos dois erros (tela 31)", """
             <table>
               <tr><th>Erro</th><th>Por que é erro</th><th>A frase certa</th></tr>
@@ -413,7 +413,7 @@ SECOES = [
               categoria não significa nada</td><td>“A seção mais frequente é o comércio, com
               42% das empresas”</td></tr>
             </table>
-            <p>Os dois são <strong>erro de escolha</strong>, e não erro de conta — que é
+            <p>Os dois são <strong>erro de escolha</strong>, e não erro de conta, que é
             exatamente o que a disciplina cobra.</p>
             """, "gabarito"),
         ],
@@ -440,16 +440,16 @@ SECOES = [
             ("Gabarito da tela 35", """
             <ul>
               <li>Participação do e-commerce no varejo do MA → <strong>quanti</strong>
-              (mede);</li>
+              (mede).</li>
               <li>Porte associado à adoção de crédito → <strong>quanti</strong>
-              (associa);</li>
+              (associa).</li>
               <li>Por que microempresárias desistem de formalizar → <strong>ambígua</strong>:
               quali para explorar motivos; quanti para medir a frequência de motivos já
-              conhecidos;</li>
+              conhecidos.</li>
               <li>Satisfação entre lojas físicas e online → <strong>quanti</strong>
-              (compara);</li>
+              (compara).</li>
               <li>Como feirantes enxergam os aplicativos → <strong>quali</strong>
-              (compreende);</li>
+              (compreende).</li>
               <li>Inadimplência PJ e Selic → <strong>quanti</strong>, correlação e regressão do
               encontro 13.</li>
             </ul>
@@ -490,7 +490,7 @@ SECOES = [
                   amostra, instrumentos</td><td>AV2 no encontro 9</td></tr>
               <tr><td>III. Inferência estatística</td><td>10 a 12</td>
                   <td>Inferir: intervalo de confiança, testes, escolha do teste</td>
-                  <td>— (o produto vai para a AV3)</td></tr>
+                  <td>Sem avaliação própria: o produto vai para a AV3</td></tr>
               <tr><td>IV. Associação, modelagem e comunicação</td><td>13 a 15</td>
                   <td>Modelar e comunicar: correlação, regressão linear e logística,
                   relatório</td><td>AV3 no encontro 14; prova final no 15</td></tr>
@@ -505,22 +505,22 @@ SECOES = [
             (IBGE, Banco Central, IPEA, CVM, ANP, Receita Federal). As entregas:</p>
             <ul>
               <li><strong>Encontro 3:</strong> o cardápio de temas e bases, e o rascunho do
-              problema;</li>
+              problema.</li>
               <li><strong>Encontro 4:</strong> a fonte passada pelos seis critérios e a matriz
-              de amarração;</li>
-              <li><strong>Encontro 5:</strong> 1ª entrega, junto com a AV1 — tema, pergunta de
-              pesquisa e a base carregando por API, na frente do professor;</li>
+              de amarração.</li>
+              <li><strong>Encontro 5:</strong> 1ª entrega, junto com a AV1: tema, pergunta de
+              pesquisa e a base carregando por API, na frente do professor.</li>
               <li><strong>Encontros 7 e 9:</strong> o projeto completo, formativo no 7 e
-              reescrito para a AV2;</li>
+              reescrito para a AV2.</li>
               <li><strong>Encontro 14:</strong> relatório final, notebook reprodutível e
               apresentação de três a cinco minutos (AV3).</li>
             </ul>
             """, "falar"),
             ("As duas ansiedades (tela 43)", """
             <p>Tranquilizar sobre os dois temores recorrentes, que voltam no encontro 1:
-            <strong>o computador faz os cálculos</strong> — cobra-se a decisão sobre qual
+            <strong>o computador faz os cálculos</strong>: cobra-se a decisão sobre qual
             cálculo fazer e a interpretação, e nenhuma conta é feita à mão em nenhum encontro;
-            e <strong>não é preciso saber programar</strong> — os notebooks vêm com o código
+            e <strong>não é preciso saber programar</strong>: os notebooks vêm com o código
             pronto, comentado e já executado, com as saídas salvas. O estudante executa, troca
             um ou dois valores no bloco de configuração e escreve frases.</p>
             """, "falar"),
@@ -552,8 +552,8 @@ SECOES = [
             """, "nao-falar"),
             ("Pergunta para a tela 45", """
             <p>Projetar só o “prompt fraco” e perguntar: <em>“o que falta neste pedido para a
-            IA não inventar?”</em>. Deixar a turma listar — o nome da tabela, as colunas, o tipo
-            de gráfico, a ordem — antes de mostrar o prompt útil. A resposta antecipa o
+            IA não inventar?”</em>. Deixar a turma listar (o nome da tabela, as colunas, o tipo
+            de gráfico, a ordem) antes de mostrar o prompt útil. A resposta antecipa o
             <strong>cartão de contexto</strong> dos notebooks, que imprime exatamente o que se
             cola no assistente.</p>
             """, "pergunta-aula"),
@@ -570,7 +570,7 @@ SECOES = [
             ("Minutagem do bloco", sb.tabela_minutagem([
                 ("Construindo um projeto no quadro (tela 47)", "40"),
                 ("Verificação em duplas (tela 48)", "15"),
-                ("A folha do projeto (tela 49), durante a verificação", "—"),
+                ("A folha do projeto (tela 49), dentro da verificação", "0"),
             ]), "bruto"),
             ("Construindo um projeto no quadro (40 min)", """
             <p>Sem prática de código nesta aula, a exercitação vem de uma dinâmica coletiva,
@@ -578,11 +578,11 @@ SECOES = [
             exemplo, “comércio eletrônico em São Luís”) e o professor preenche no quadro cada
             componente em sequência, verbalizando as decisões:</p>
             <ol>
-              <li>delimitar o tema: onde, quando, que setor;</li>
-              <li>redigir o problema em forma de pergunta;</li>
-              <li>derivar um objetivo geral e dois específicos, com verbo de ação;</li>
-              <li>formular uma hipótese com duas variáveis;</li>
-              <li>indicar onde encontrar os dados (fonte oficial);</li>
+              <li>delimitar o tema: onde, quando, que setor.</li>
+              <li>redigir o problema em forma de pergunta.</li>
+              <li>derivar um objetivo geral e dois específicos, com verbo de ação.</li>
+              <li>formular uma hipótese com duas variáveis.</li>
+              <li>indicar onde encontrar os dados (fonte oficial).</li>
               <li>esboçar um cronograma de oito semanas.</li>
             </ol>
             """, "falar"),
@@ -601,11 +601,11 @@ SECOES = [
             ("Os elos frágeis que devem aparecer", """
             <ul>
               <li><strong>Problema amplo demais</strong>: não cabe em um semestre nem em uma
-              base;</li>
+              base.</li>
               <li><strong>Hipótese sem variável</strong>: afirma importância, não relação
-              mensurável (“o marketing é importante”);</li>
+              mensurável (“o marketing é importante”).</li>
               <li><strong>Dado que a fonte não tem</strong>: a variável foi inventada, e a base
-              não a registra;</li>
+              não a registra.</li>
               <li><strong>Objetivo sem verbo de ação</strong>: “entender”, “abordar” em vez de
               comparar, estimar, testar.</li>
             </ul>
@@ -623,7 +623,7 @@ SECOES = [
             """, "falar"),
             ("Evitar na dinâmica", """
             <p>Não escrever o projeto pela turma: o professor organiza e verbaliza as decisões,
-            mas as escolhas são da turma, inclusive as ruins — são elas que a verificação em
+            mas as escolhas são da turma, inclusive as ruins: são elas que a verificação em
             duplas vai encontrar. E não corrigir o tema sugerido logo de saída, mesmo que
             amplo: delimitar é o primeiro passo da própria dinâmica.</p>
             """, "nao-falar"),
@@ -640,9 +640,9 @@ SECOES = [
             ("A síntese em três afirmações", """
             <p>Pedir que a turma complete cada afirmação antes de mostrar a lista da tela 50:</p>
             <ol>
-              <li><strong>Pesquisa é construção</strong>, e construção exige projeto;</li>
+              <li><strong>Pesquisa é construção</strong>, e construção exige projeto.</li>
               <li><strong>Projeto é uma cadeia coerente</strong>: problema → objetivos →
-              hipóteses → variáveis → método → cronograma;</li>
+              hipóteses → variáveis → método → cronograma.</li>
               <li><strong>O projeto quantitativo acrescenta</strong> exigências específicas de
               mensuração, amostragem, instrumento e estatística, que o semestre desenvolve uma a
               uma.</li>
@@ -651,10 +651,10 @@ SECOES = [
             ("Tarefa para o encontro 1", """
             <ol>
               <li>Ler em Laville e Dionne (1999) o trecho que discute os <strong>tipos de
-              conhecimento</strong> e o início da problemática (parte I);</li>
+              conhecimento</strong> e o início da problemática (parte I).</li>
               <li>Garantir <strong>acesso funcional ao Google Colab</strong>: quem tiver
               problema de conta resolve durante a semana, porque o encontro 1 já usa o notebook
-              e baixa a primeira base pela API do IBGE;</li>
+              e baixa a primeira base pela API do IBGE.</li>
               <li>Opcional: reler as telas do bloco de estatística (26 a 32) e a leitura de apoio
               de Pinto e Silva (2020), capítulo 1.</li>
             </ol>

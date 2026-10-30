@@ -13,12 +13,12 @@ aleatorio simples. A generalizacao e feita com essa limitacao declarada.
 Numeros verificados na geracao (14/10/2026), os mesmos do slide e da conducao:
 
   cadastro ANP: 236 postos | media R$ 6,0087 | desvio R$ 0,3402
-  PARTE 1 — erros tipo I e II (1.000 amostras de 30, sementes 0 a 999, alfa = 5%)
+  PARTE 1: erros tipo I e II (1.000 amostras de 30, sementes 0 a 999, alfa = 5%)
     H0 verdadeira (mu0 = 6,0087): 41 rejeicoes = 4,1% (erro tipo I; alfa = 5%)
     H0: mu = 6,00 (falsa por menos de 1 centavo): 3,4% de rejeicoes -> beta = 96,6%
     H0: mu = 6,10 (falsa por 9 centavos), poder por tamanho de amostra:
       n = 10: 17,6% | n = 30: 32,0% | n = 50: 45,9% | n = 100: 81,0%
-  PARTE 2 — os cinco testes
+  PARTE 2: os cinco testes
     t de uma amostra: razao etanol/gasolina nos 148 postos com os dois produtos
       media 0,8007 (min 0,7013) | H0: 0,70 | t = 34,14 | gl = 147 | p = 9,0e-72
       nenhum dos 148 postos tinha etanol a 70% da gasolina ou menos
@@ -45,13 +45,13 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 11. Testes de média e qui-quadrado
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje**
 > 1. **Executar** as células de cima para baixo.
 > 2. **Escolher** o teste certo para seis situações, pelo fluxograma.
-> 3. **Escrever** a frase de leitura de um qui-quadrado — e trocar a base pela do seu projeto.
+> 3. **Escrever** a frase de leitura de um qui-quadrado e trocar a base pela do seu projeto.
 >
 > Você não vai escrever código. Se algo não funcionar, **chame o professor**.
 
@@ -60,14 +60,14 @@ PAINEL = """# Encontro 11. Testes de média e qui-quadrado
 ## Painel do encontro
 
 O encontro 10 ensinou a lógica do teste com **um** grupo e **um** valor de referência.
-Hoje o teste ganha **dois grupos**, **pares** e **categorias** — e a pergunta passa a
+Hoje o teste ganha **dois grupos**, **pares** e **categorias**, e a pergunta passa a
 ser também *qual* teste usar. Antes, a Parte 1 mede o **risco** de cada decisão: os erros
 tipo I e II.
 
 | Item | Valor |
 |---|---|
-| **Base 1** | ANP — Série Histórica de Preços de Combustíveis (SHPC): **236 postos** de gasolina comum no Maranhão, 2025, e **148 postos** com gasolina e etanol no mesmo mês |
-| **Base 2** | CVM — Demonstrações Financeiras Padronizadas (DFP) 2024: **451 companhias abertas**, com receita, lucro líquido e setor |
+| **Base 1** | ANP, Série Histórica de Preços de Combustíveis (SHPC): **236 postos** de gasolina comum no Maranhão, 2025, e **148 postos** com gasolina e etanol no mesmo mês |
+| **Base 2** | CVM, Demonstrações Financeiras Padronizadas (DFP) 2024: **451 companhias abertas**, com receita, lucro líquido e setor |
 | **Unidade** | R\\$ por litro (ANP); milhares de reais (CVM) |
 
 > **Uma mudança de papel.** Nos encontros 6 a 10, os 236 postos foram a *população* do
@@ -81,7 +81,7 @@ tipo I e II.
 | Base | Coluna | O que é |
 |---|---|---|
 | ANP | `municipio` | O município do posto |
-| ANP | `preco` | O preço da gasolina comum na primeira coleta do ano (R\\$ por litro) |
+| ANP | `preco` | O preço da gasolina comum no primeiro mês em que o posto aparece (R\\$ por litro) |
 | ANP | `gasolina`, `etanol` | Os dois preços do **mesmo posto, no mesmo mês** |
 | ANP | `regiao` | São Luís, São José de Ribamar, Imperatriz ou demais municípios |
 | CVM | `setor` | O setor de atividade da companhia, no cadastro da CVM |
@@ -134,8 +134,8 @@ UTILITARIOS_NOTA = """## Utilitários da disciplina
 
 `conferir` compara o seu resultado com o número que já estava resolvido no slide.
 **Não precisa alterá-la.** A segunda célula traz os testes do encontro: cada função
-devolve uma **leitura arrumada em poucas linhas** — a estatística, os graus de liberdade,
-o valor-p e a decisão —, no lugar da saída bruta do pacote. Também não precisa alterá-las.
+devolve uma **leitura arrumada em poucas linhas** (a estatística, os graus de liberdade,
+o valor-p e a decisão), no lugar da saída bruta do pacote. Também não precisa alterá-las.
 
 > **Regra de ouro do semestre:** *a IA explica, o código calcula e você confere e
 > escreve.*"""
@@ -271,7 +271,7 @@ anp = anp.rename(columns={"Estado - Sigla": "uf", "Municipio": "municipio",
 anp["valor_venda"] = pd.to_numeric(anp["valor_venda"], errors="coerce")
 print(f"ANP: {len(anp)} posto-mês do Maranhão carregados")'''
 
-CELULA_B_ANP = '''# ================= CÉLULA B: CONTINGÊNCIA DA ANP — leia antes =================
+CELULA_B_ANP = '''# ================= CÉLULA B: CONTINGÊNCIA DA ANP, leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv.
 
@@ -283,7 +283,7 @@ anp = anp.rename(columns={"estado_-_sigla": "uf", "mes_arquivo": "mes",
 print(f"ANP: {len(anp)} posto-mês do Maranhão carregados do arquivo local")'''
 
 MONTA_ANP = '''# ================= As três tabelas da ANP que o encontro usa =================
-# 1. o cadastro: um registro por posto, o preço da gasolina na primeira coleta do ano
+# 1. o cadastro: um registro por posto, o preço da gasolina no primeiro mês em que o posto aparece
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
 cadastro = (gas.sort_values("mes")
                .drop_duplicates("cnpj", keep="first")
@@ -349,7 +349,7 @@ cvm = (cvm.merge(cad_cvm.drop_duplicates("chave")[["chave", "SETOR_ATIV"]],
           .rename(columns={"SETOR_ATIV": "setor"}).drop(columns="chave"))
 print(f"CVM: {len(cvm)} companhias com receita e lucro em 2024")'''
 
-CELULA_B_CVM = '''# ================= CÉLULA B: CONTINGÊNCIA DA CVM — leia antes =================
+CELULA_B_CVM = '''# ================= CÉLULA B: CONTINGÊNCIA DA CVM, leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/cvm_dre_2024.csv.
 
@@ -385,13 +385,13 @@ print()
 conferir("taxa de erro tipo I", taxa_I, 0.041, tolerancia=0.0005, unidade="")'''
 
 TIPO_II = '''# ERRO TIPO II: H0 é FALSA. O teste percebe?
-# Caso 1: o encontro 10. H0 dizia R$ 6,00; a verdade é R$ 6,0087 — menos de 1 centavo.
+# Caso 1: o encontro 10. H0 dizia R$ 6,00; a verdade é R$ 6,0087, menos de 1 centavo.
 taxa_600 = taxa_rejeicao(populacao, 6.00, N_AMOSTRA, N_SIMULACOES, ALFA)
 print("H0: média = R$ 6,00  (falsa por menos de 1 centavo)")
 print(f"  rejeitaram H0 ... {taxa_600:.1%}   →  erro tipo II (β) = {1 - taxa_600:.1%}")
 print()
 
-# Caso 2: H0 diz R$ 6,10; a verdade é R$ 6,0087 — 9 centavos. O poder cresce com n.
+# Caso 2: H0 diz R$ 6,10; a verdade é R$ 6,0087, 9 centavos. O poder cresce com n.
 poder = poder_por_n(populacao, 6.10, [10, 30, 50, 100], N_SIMULACOES, ALFA)
 poder["erro tipo II (β)"] = 1 - poder["rejeições (poder)"]
 print("H0: média = R$ 6,10  (falsa por 9 centavos)")
@@ -420,7 +420,7 @@ ax.legend(loc="upper left")
 plt.tight_layout()
 plt.show()'''
 
-T_UMA = '''# TESTE 1 — t de uma amostra. Pergunta: nos postos do Maranhão, o etanol custa 70% da
+T_UMA = '''# TESTE 1: t de uma amostra. Pergunta: nos postos do Maranhão, o etanol custa 70% da
 # gasolina do mesmo posto? (70% é o ponto em que o etanol passa a compensar no tanque)
 #   H0: a razão média etanol/gasolina é 0,70      H1: é diferente de 0,70
 r1 = teste_t_uma(pares["razao"], 0.70, alfa=ALFA)
@@ -432,7 +432,7 @@ print()
 conferir("razão média etanol/gasolina", r1["média"], 0.8007, tolerancia=0.0005, unidade="")
 conferir("t da razão contra 0,70", r1["t"], 34.14, tolerancia=0.01, unidade="")'''
 
-T_DUAS = '''# TESTE 2 — t de duas amostras independentes (Welch). Pergunta: o preço médio da
+T_DUAS = '''# TESTE 2: t de duas amostras independentes (Welch). Pergunta: o preço médio da
 # gasolina em São Luís é diferente do preço nos demais municípios?
 #   H0: as duas médias são iguais      H1: são diferentes
 sao_luis = cadastro[cadastro["municipio"] == "SAO LUIS"]["preco"]
@@ -446,7 +446,7 @@ conferir("diferença São Luís − demais", r2["diferença (A − B)"], -0.3649
 conferir("t de Welch", r2["t"], -10.56, tolerancia=0.01, unidade="")
 conferir("graus de liberdade de Welch", r2["gl"], 199.0, tolerancia=0.05, unidade="")'''
 
-T_PAR = '''# TESTE 3 — t pareado. Pergunta: no mesmo posto e no mesmo mês, quanto a gasolina custa
+T_PAR = '''# TESTE 3: t pareado. Pergunta: no mesmo posto e no mesmo mês, quanto a gasolina custa
 # a mais que o etanol?
 #   H0: a diferença média gasolina − etanol é zero      H1: é diferente de zero
 r3 = teste_t_pareado(pares["gasolina"], pares["etanol"], alfa=ALFA)
@@ -462,7 +462,7 @@ conferir("diferença média gasolina − etanol", r3["média da diferença"], 1.
 conferir("t pareado", r3["t"], 56.72, tolerancia=0.01, unidade="")
 conferir("t tratado como independente", errado["t"], 32.79, tolerancia=0.01, unidade="")'''
 
-QUI_IND = '''# TESTE 4 — qui-quadrado de independência. Pergunta: ter prejuízo depende do setor?
+QUI_IND = '''# TESTE 4: qui-quadrado de independência. Pergunta: ter prejuízo depende do setor?
 #   H0: setor e resultado são independentes      H1: estão associados
 tab4 = pd.crosstab(cvm5["setor"], cvm5["resultado"])
 tab4["% prejuízo"] = (tab4["prejuizo"] / tab4.sum(axis=1) * 100).round(1)
@@ -479,7 +479,7 @@ conferir("qui-quadrado setor × prejuízo", r4["qui_quadrado"], 4.388, toleranci
          unidade="")
 conferir("valor-p setor × prejuízo", r4["valor_p"], 0.3561, tolerancia=0.0005, unidade="")'''
 
-QUI_ADE = '''# TESTE 5 — qui-quadrado de aderência. Pergunta: uma amostra de 100 postos reproduz a
+QUI_ADE = '''# TESTE 5: qui-quadrado de aderência. Pergunta: uma amostra de 100 postos reproduz a
 # distribuição do cadastro por região?
 #   H0: a amostra segue as proporções do cadastro      H1: não segue
 proporcoes = (cadastro["regiao"].value_counts(normalize=True)
@@ -511,7 +511,7 @@ pd.DataFrame([
     ["conveniência segue o cadastro?", "qui-quadrado de aderência", r5b["qui_quadrado"], r5b["gl"], r5b["valor_p"], r5b["decisão"]],
 ], columns=["pergunta", "teste", "estatística", "gl", "valor_p", "decisão"], dtype=object)'''
 
-FLUXO_ALUNO = '''# PRÁTICA 1 — o fluxograma. Troque cada 0 pelo número do teste:
+FLUXO_ALUNO = '''# PRÁTICA 1: o fluxograma. Troque cada 0 pelo número do teste:
 #   1 = t de uma amostra          2 = t de duas amostras (Welch)     3 = t pareado
 #   4 = qui-quadrado de independência                                5 = qui-quadrado de aderência
 escolha = {"a": 0, "b": 0, "c": 0, "d": 0, "e": 0, "f": 0}
@@ -527,7 +527,7 @@ FLUXO_PROF = FLUXO_ALUNO.replace(
     'escolha = {"a": 0, "b": 0, "c": 0, "d": 0, "e": 0, "f": 0}',
     'escolha = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 3}')
 
-PRATICA_QUI = '''# PRÁTICA 2 e 3 — o qui-quadrado aplicado. Com ARQUIVO_PROJETO vazio, a base é a da CVM
+PRATICA_QUI = '''# PRÁTICA 2 e 3: o qui-quadrado aplicado. Com ARQUIVO_PROJETO vazio, a base é a da CVM
 # (os cinco maiores setores). Para usar a base do seu projeto: faça upload do CSV, escreva
 # o nome dele em ARQUIVO_PROJETO, ponha as duas colunas categóricas em COLUNA_A e COLUNA_B,
 # execute o bloco de configuração e depois esta célula.
@@ -589,16 +589,16 @@ Todo teste termina em uma decisão, e toda decisão pode estar errada de dois je
 
 | | **H0 é verdadeira** | **H0 é falsa** |
 |---|---|---|
-| **O teste rejeita H0** | **Erro tipo I** — alarme falso. Chance: **α** | Acerto. Chance: **poder = 1 − β** |
-| **O teste não rejeita H0** | Acerto. Chance: 1 − α | **Erro tipo II** — o efeito passou despercebido. Chance: **β** |
+| **O teste rejeita H0** | **Erro tipo I**: alarme falso. Chance: **α** | Acerto. Chance: **poder = 1 − β** |
+| **O teste não rejeita H0** | Acerto. Chance: 1 − α | **Erro tipo II**: o efeito passou despercebido. Chance: **β** |
 
-Em pesquisa de verdade, ninguém sabe em que coluna está — é por isso que se testa. Aqui,
+Em pesquisa de verdade, ninguém sabe em que coluna está, e é por isso que se testa. Aqui,
 com o cadastro de 236 postos, **a média verdadeira é conhecida** (R\\$ 6,0087), e dá
 para contar os erros. Primeiro, uma H0 verdadeira."""},
     {"tipo": "code", "texto": TIPO_I},
     {"tipo": "md", "texto": """**4,1% contra os 5% prometidos.** O α é exatamente isso: a taxa de alarme falso que se
 aceita de antemão. Ficou um pouco abaixo porque 30 postos são 13% de um cadastro pequeno,
-e o teste sem correção finita é ligeiramente conservador — o mesmo efeito dos 95,9% de
+e o teste sem correção finita é ligeiramente conservador: o mesmo efeito dos 95,9% de
 cobertura do encontro 10.
 
 Agora uma H0 **falsa**. Primeiro, o caso que ficou do encontro 10: o teste não rejeitou
@@ -609,7 +609,7 @@ com amostras de tamanhos diferentes."""},
     {"tipo": "md", "texto": """**A leitura.**
 
 * Contra R\\$ 6,00, o teste rejeita em só **3,4%** das amostras: o erro tipo II é de
-  **96,6%**. A diferença de menos de 1 centavo é **invisível** com 30 postos — e também
+  **96,6%**. A diferença de menos de 1 centavo é **invisível** com 30 postos, e também
   **irrelevante** para qualquer decisão de gestão. Não rejeitar, aqui, não é falha: é o
   teste ignorando o que não importa.
 * Contra R\\$ 6,10, a diferença é de 9 centavos. Com 10 postos, o teste percebe em
@@ -622,7 +622,7 @@ com amostras de tamanhos diferentes."""},
     {"tipo": "md", "texto": """## Parte 2 · Estatística: os testes de média e o qui-quadrado
 
 **A pergunta que a estatística do dia responde.** *Diante de uma pergunta de pesquisa,
-qual teste usar — e como ler o que ele devolve?* Cinco perguntas, cinco testes:
+qual teste usar, e como ler o que ele devolve?* Cinco perguntas, cinco testes:
 
 | Pergunta | Variáveis | Teste |
 |---|---|---|
@@ -643,7 +643,7 @@ t_{pareado} = \\frac{\\bar{d}}{s_d / \\sqrt{n}} \\qquad
 * $O$: a contagem observada em cada célula; $E$: a contagem esperada se H0 fosse verdadeira
 
 **As fórmulas como receita.** Os dois testes t fazem o que o encontro 10 fez: medem uma
-diferença em erros padrão. O que muda é o erro padrão — no de duas amostras, ele soma a
+diferença em erros padrão. O que muda é o erro padrão: no de duas amostras, ele soma a
 incerteza dos dois grupos; no pareado, ele olha só para a diferença dentro de cada par. O
 qui-quadrado compara, célula a célula, o que se observou com o que se esperaria se H0
 fosse verdadeira e soma as distâncias.
@@ -658,7 +658,7 @@ fosse verdadeira e soma as distâncias.
     {"tipo": "md", "texto": """### Teste 1. t de uma amostra: o etanol compensa?
 
 O etanol rende menos que a gasolina; a regra de bolso é que ele compensa quando custa
-**até 70%** do preço da gasolina. A comparação é com um valor de fora — 0,70 —, como no
+**até 70%** do preço da gasolina. A comparação é com um valor de fora (0,70), como no
 encontro 10."""},
     {"tipo": "code", "texto": T_UMA},
     {"tipo": "md", "texto": """> "Nos 148 postos pesquisados pela ANP no Maranhão que vendiam gasolina e etanol no
@@ -673,7 +673,7 @@ rendimento."""},
     {"tipo": "md", "texto": """### Teste 2. t de duas amostras (Welch): São Luís × demais municípios
 
 Dois grupos de postos **diferentes**, sem ligação entre si. A versão de Welch não supõe que
-os dois grupos tenham a mesma dispersão — e aqui não têm: os preços do interior variam mais
+os dois grupos tenham a mesma dispersão, e aqui não têm: os preços do interior variam mais
 que os da capital."""},
     {"tipo": "code", "texto": T_DUAS},
     {"tipo": "md", "texto": """> "O preço médio da gasolina comum nos postos de São Luís (**R\\$ 5,80**, 101 postos) foi
@@ -681,7 +681,7 @@ que os da capital."""},
 > diferença estatisticamente significativa (**t de Welch = −10,56; gl = 199; p < 0,001**)
 > (ANP, SHPC, 2025)."
 
-**O que a frase não diz.** Por que a capital é mais barata — concorrência, logística,
+**O que a frase não diz.** Por que a capital é mais barata: concorrência, logística e
 escala são hipóteses, e o teste não escolhe entre elas. E nem que vale para todos os
 municípios do estado: a ANP pesquisou 11."""},
 
@@ -689,7 +689,7 @@ municípios do estado: a ANP pesquisou 11."""},
 
 Aqui cada posto aparece **duas vezes**, uma com o preço da gasolina e outra com o do
 etanol. O teste olha para a **diferença dentro de cada posto** e por isso tira da conta
-a variação de preço entre postos — que não interessa à pergunta."""},
+a variação de preço entre postos, que não interessa à pergunta."""},
     {"tipo": "code", "texto": T_PAR},
     {"tipo": "md", "texto": """> "No mesmo posto e no mesmo mês, a gasolina comum custou em média **R\\$ 1,20 a mais**
 > que o etanol (148 postos; **t pareado = 56,72; gl = 147; p < 0,001**) (ANP, SHPC, 2025)."
@@ -701,7 +701,7 @@ pareamento é uma informação do delineamento, e jogá-la fora custa poder."""}
 
     {"tipo": "md", "texto": """### Teste 4. Qui-quadrado de independência: o prejuízo depende do setor?
 
-Duas variáveis **categóricas** — setor e resultado — cruzadas em uma tabela. O teste
+Duas variáveis **categóricas** (setor e resultado) cruzadas em uma tabela. O teste
 compara o observado com o que se esperaria se o prejuízo se distribuísse igual entre os
 setores. Usamos os **cinco setores com mais companhias**: com eles, toda célula esperada
 passa de 5, a condição do teste."""},
@@ -712,12 +712,12 @@ passa de 5, a condição do teste."""},
 > estatisticamente significativa** (**χ² = 4,39; gl = 4; p = 0,36**) (CVM, DFP 2024)."
 
 **O que a frase não diz.** Que o setor não importa. Não rejeitar H0 não prova
-independência — é o mesmo cuidado do encontro 10. Com 159 companhias e diferenças dessa
+independência: é o mesmo cuidado do encontro 10. Com 159 companhias e diferenças dessa
 ordem, o teste tem **pouco poder**: é a Parte 1 de hoje aparecendo em dado real."""},
 
     {"tipo": "md", "texto": """### Teste 5. Qui-quadrado de aderência: a amostra representa o cadastro?
 
-Uma variável categórica — a região do posto — contra proporções **conhecidas**, as do
+Uma variável categórica (a região do posto) contra proporções **conhecidas**, as do
 cadastro. É o teste que confere se uma amostra se parece com a população de onde saiu.
 Duas amostras de 100 postos: a **sorteada** do encontro 6 e a de **conveniência** (os 100
 primeiros da lista)."""},
@@ -773,7 +773,7 @@ execute: o `conferir` diz onde você acertou. *(Nesta versão do notebook as res
 vêm preenchidas, como gabarito.)*"""},
     {"tipo": "code", "aluno": FLUXO_ALUNO, "professor": FLUXO_PROF},
     {"tipo": "md", "texto": """**Por que a situação f é pareada?** Os mesmos 30 hotéis aparecem duas vezes, uma em cada
-temporada. Tratá-los como dois grupos independentes jogaria fora o pareamento — o erro do
+temporada. Tratá-los como dois grupos independentes jogaria fora o pareamento, o erro do
 Teste 3.
 
 ---
@@ -799,8 +799,8 @@ valor-p e a decisão) **e o que ela não diz.**
    colunas **categóricas** em `COLUNA_A` e `COLUNA_B`;
 3. Execute o bloco de configuração e, depois, a célula da Prática 2. Os `[X]` são
    esperados: os números agora são os da sua base;
-4. Se aparecer o aviso de célula esperada menor que 5, junte categorias pequenas — peça
-   ajuda ao professor — antes de confiar no valor-p.
+4. Se aparecer o aviso de célula esperada menor que 5, junte categorias pequenas (peça
+   ajuda ao professor) antes de confiar no valor-p.
 
 Se o seu projeto não tem duas variáveis categóricas, escreva qual teste do fluxograma a
 sua hipótese pede e por quê.

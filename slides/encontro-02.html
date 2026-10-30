@@ -43,7 +43,7 @@
   <div class="afirmacao">"A maioria das empresas fecha no primeiro ano."</div>
   <p>Hoje esta frase será <strong>testada com dados oficiais</strong>: a pesquisa
   Demografia das Empresas (IBGE) registra os nascimentos de empresas e suas taxas de
-  sobrevivência após 1, 2 e 3 anos.</p>
+  sobrevivência após 1, 2 e 3 anos. O teste vem no fim da prática, na tela 34.</p>
   <p>Antes, porém, precisamos decidir <strong>o que exatamente será medido</strong>:
   é disso que trata a Parte 1 de hoje, e é o que transforma uma afirmação vaga em algo
   que se pode testar.</p>
@@ -56,10 +56,8 @@
   <div class="colunas">
     <div>
       <h3>Parte 1: a variável</h3>
-      <p>O que é uma variável e o que significa <strong>medir</strong> uma coisa. A boa notícia:
-      o encontro 1 deixou uma frase que organiza tudo — <em>mensurar é atribuir números a
-      conceitos</em>.</p>
-      <h3>Parte 2: estatística — a regra da medida</h3>
+      <p>O que é uma variável e o que significa <strong>medir</strong> uma coisa. O encontro 1 já deu a definição: <em>mensurar é traduzir conceitos em variáveis, com regras claras de atribuição de valores</em>.</p>
+      <h3>Parte 2: estatística, a regra da medida</h3>
       <p>Os quatro níveis de mensuração e a regra que decorre deles: <strong>o nível decide
       qual medida você pode calcular.</strong></p>
     </div>
@@ -81,8 +79,7 @@
   <ol>
     <li><strong>explicar</strong> o que é uma variável e distinguir o papel dela na hipótese
         (independente, dependente, de controle);</li>
-    <li><strong>classificar</strong> uma variável quanto ao tipo e ao nível de mensuração —
-        nominal, ordinal, intervalo ou razão;</li>
+    <li><strong>classificar</strong> uma variável quanto ao tipo e ao nível de mensuração (nominal, ordinal, intervalo ou razão);</li>
     <li><strong>aplicar</strong> a regra que decorre do nível: qual medida de resumo cabe em
         cada variável e qual não cabe;</li>
     <li><strong>usar o teste do zero</strong> para decidir entre intervalo e razão;</li>
@@ -114,6 +111,29 @@
       <h3>Dependente</h3>
       <p>O suposto <strong>efeito</strong>: ex.: taxa de sobrevivência</p>
     </div>
+  </div>
+  <div class="figura" data-fig="papel" style="--fig-h:22vh">
+    <svg viewBox="0 0 1000 250" role="img" aria-label="Porte da empresa, a variável independente, leva à sobrevivência, a dependente, passando pelo acesso a crédito, interveniente; o setor é a variável de controle">
+    <rect x="40.0" y="60.0" width="250.0" height="76.0" rx="10" fill="#f6e3e9" stroke="#8D0333" stroke-width="2.4"/>
+    <text x="165.0" y="94.0" text-anchor="middle" font-size="19.2" fill="#8D0333" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Independente (x)</text>
+    <text x="165.0" y="118.0" text-anchor="middle" font-size="15.6" fill="#444" >porte da empresa</text>
+    <rect x="710.0" y="60.0" width="250.0" height="76.0" rx="10" fill="#e3f6f5" stroke="#05635f" stroke-width="2.4"/>
+    <text x="835.0" y="94.0" text-anchor="middle" font-size="19.2" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Dependente (y)</text>
+    <text x="835.0" y="118.0" text-anchor="middle" font-size="15.6" fill="#444" >sobrevivência em 3 anos</text>
+    <rect x="375.0" y="60.0" width="250.0" height="76.0" rx="10" fill="#fbf5ea" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="500.0" y="94.0" text-anchor="middle" font-size="19.2" fill="#a67c2e" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Interveniente</text>
+    <text x="500.0" y="118.0" text-anchor="middle" font-size="15.6" fill="#444" >acesso a crédito</text>
+    <rect x="375.0" y="176.0" width="250.0" height="64.0" rx="10" fill="#f2f2f2" stroke="#777" stroke-width="2.4"/>
+    <text x="500.0" y="204.0" text-anchor="middle" font-size="19.2" fill="#777" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Controle</text>
+    <text x="500.0" y="228.0" text-anchor="middle" font-size="15.6" fill="#444" >setor de atividade</text>
+    <line x1="292.0" y1="98.0" x2="372.0" y2="98.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
+    <line x1="627.0" y1="98.0" x2="707.0" y2="98.0" stroke="#8D0333" stroke-width="2.4" marker-end="url(#sv)"/>
+    <path d="M165,58 C165,14 835,14 835,56" fill="none" stroke="#8D0333" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#sv)"/>
+    <text x="500.0" y="30.0" text-anchor="middle" font-size="16.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">a hipótese: x afeta y</text>
+    <line x1="500" y1="176" x2="500" y2="140" stroke="#777" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="640.0" y="214.0" text-anchor="start" font-size="15.6" fill="#777" >mantido constante, ou comparado dentro de cada setor</text>
+    </svg>
+    <p class="legenda">O porte é a causa suposta, a sobrevivência o efeito. O crédito é um caminho possível entre as duas, e o setor fica sob controle para não confundir a comparação.</p>
   </div>
   <p class="menor">Há ainda variáveis <strong>de controle</strong> (mantidas constantes ou
   consideradas na análise, ex.: setor) e <strong>intervenientes</strong> (explicam o
@@ -156,8 +176,8 @@
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
-  <h2>Níveis 3 e 4: Intervalar e Razão</h2>
-  <div class="definicao"><span class="rotulo">Intervalar</span>
+  <h2>Níveis 3 e 4: intervalo e razão</h2>
+  <div class="definicao"><span class="rotulo">Intervalo</span>
   Números com distâncias iguais entre valores, mas <strong>zero arbitrário</strong> (o zero
   não significa ausência). Ex.: temperatura em °C, ano de fundação. 40°C não é "o dobro do
   calor" de 20°C.</div>
@@ -177,7 +197,7 @@
         <td>Contagem, proporção, moda</td><td>Seção CNAE</td></tr>
     <tr><td><strong>Ordinal</strong></td><td>Categorias ordenadas</td>
         <td>+ mediana, percentis</td><td>Faixa de porte</td></tr>
-    <tr><td><strong>Intervalar</strong></td><td>Distâncias iguais, zero arbitrário</td>
+    <tr><td><strong>Intervalo</strong></td><td>Distâncias iguais, zero arbitrário</td>
         <td>+ média, desvio padrão</td><td>Ano de fundação</td></tr>
     <tr><td><strong>Razão</strong></td><td>Zero absoluto</td>
         <td>+ razões ("o dobro de")</td><td>Receita, nº de empregados</td></tr>
@@ -222,12 +242,11 @@
   <ul>
     <li><strong>CEP</strong>: numérico na aparência, <strong>nominal</strong> na essência:
         somar CEPs não significa nada;</li>
-    <li><strong>Ano de fundação</strong>: <strong>intervalar</strong>: o ano zero é
+    <li><strong>Ano de fundação</strong>: <strong>intervalo</strong>: o ano zero é
         convenção; "2000 é o dobro de 1000" não faz sentido;</li>
     <li><strong>Porte</strong> depende da operacionalização: <strong>ordinal</strong> em
         faixas, <strong>razão</strong> em número de empregados;</li>
-    <li><strong>Nota de satisfação 1–5</strong>: a rigor ordinal; na prática, tratada como
-        intervalar (discutiremos no encontro 8).</li>
+    <li><strong>Nota de satisfação (1 a 5 ou 0 a 10)</strong>: a rigor ordinal; na prática, tratada como intervalo, e é assim que as telas seguintes a classificam (o encontro 8 volta ao tema com a escala Likert).</li>
     <li><strong>Salário</strong>: informado em valor (R$ 1.050, R$ 15.200) é <strong>razão</strong>;
         o mesmo dado agrupado em <strong>faixa de renda</strong> (R$ 1.050 a R$ 1.500, R$ 1.500
         a R$ 2.000) passa a ser <strong>ordinal</strong>. Calcular a média de uma faixa é o erro
@@ -251,6 +270,26 @@
     <tr><td>Inovação</td><td>gasto em P&amp;D · nº de produtos novos · % da receita de
         produtos recentes</td></tr>
   </table>
+  <div class="figura" data-fig="operacional" style="--fig-h:17vh">
+    <svg viewBox="0 0 1000 140" role="img" aria-label="Do conceito de porte à definição operacional por pessoas assalariadas, ao indicador em faixas e ao valor de um caso">
+    <rect x="10.0" y="14.0" width="222.0" height="84.0" rx="10" fill="#f6e3e9" stroke="#8D0333" stroke-width="2.4"/>
+    <text x="121.0" y="48.0" text-anchor="middle" font-size="18.8" fill="#8D0333" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Conceito</text>
+    <text x="121.0" y="76.0" text-anchor="middle" font-size="16.2" fill="#444" >porte da empresa</text>
+    <line x1="234.0" y1="56.0" x2="256.0" y2="56.0" stroke="#777" stroke-width="2" marker-end="url(#sc)"/>
+    <rect x="258.0" y="14.0" width="222.0" height="84.0" rx="10" fill="#fbf5ea" stroke="#a67c2e" stroke-width="2.4"/>
+    <text x="369.0" y="48.0" text-anchor="middle" font-size="18.8" fill="#a67c2e" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Definição operacional</text>
+    <text x="369.0" y="76.0" text-anchor="middle" font-size="16.2" fill="#444" >nº de pessoas assalariadas</text>
+    <line x1="482.0" y1="56.0" x2="504.0" y2="56.0" stroke="#777" stroke-width="2" marker-end="url(#sc)"/>
+    <rect x="506.0" y="14.0" width="222.0" height="84.0" rx="10" fill="#e3f6f5" stroke="#05635f" stroke-width="2.4"/>
+    <text x="617.0" y="48.0" text-anchor="middle" font-size="18.8" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Indicador</text>
+    <text x="617.0" y="76.0" text-anchor="middle" font-size="16.2" fill="#444" >faixa: 1 a 9, 10 a 49, 50+</text>
+    <line x1="730.0" y1="56.0" x2="752.0" y2="56.0" stroke="#777" stroke-width="2" marker-end="url(#sc)"/>
+    <rect x="754.0" y="14.0" width="222.0" height="84.0" rx="10" fill="#e3f6f5" stroke="#05635f" stroke-width="2.4"/>
+    <text x="865.0" y="48.0" text-anchor="middle" font-size="18.8" fill="#05635f" font-family="Montserrat, Calibri, sans-serif" font-weight="700">Valor de um caso</text>
+    <text x="865.0" y="76.0" text-anchor="middle" font-size="16.2" fill="#444" >“10 a 49 pessoas”</text>
+    <text x="500.0" y="128.0" text-anchor="middle" font-size="16.2" fill="#777" >Cada seta é uma decisão do pesquisador, e cada uma fixa o nível: aqui, o porte chega ao dado como ordinal.</text>
+    </svg>
+  </div>
   <div class="pergunta">A escolha é uma <strong>decisão do pesquisador</strong>: muda o
   resultado e por isso precisa ser justificada e registrada no relatório.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
@@ -379,8 +418,7 @@
     <span class="expr">média permitida <span class="op">⟺</span>
       nível <span class="op">≥</span> intervalo</span>
     <span class="legenda-formula">Se a variável é intervalo ou razão, a média
-    entra. Se é nominal ou ordinal, a média não entra — e a mediana entra a
-    partir do ordinal.</span>
+    entra. Se é nominal ou ordinal, a média não entra. A mediana entra a partir do ordinal.</span>
   </div>
   <div class="definicao"><span class="rotulo">O teste do zero, em uma pergunta</span>
   Pergunte: <strong>o zero significa ausência da coisa?</strong> Se sim, a variável é razão. Se o zero
@@ -511,7 +549,7 @@
     </svg>
     <p class="legenda">Barras: a frequência de cada faixa. Linha: a acumulada, que só existe porque a faixa tem ordem. Fonte: IBGE, Demografia das Empresas, 2021.</p>
   </div>
-  <p class="menor">Os passos 4 e 5 são novos em relação ao encontro 1. Ele só existe
+  <p class="menor">Os passos 4 e 5 são novos em relação ao encontro 1. O acumulado só existe
   porque a variável <strong>tem ordem</strong>.</p>
 </section>
 <section class="slide estatistica">
@@ -636,8 +674,7 @@
   </div>
   <p>Repare no que a frase faz:</p>
   <ul>
-    <li>traduz “99,35%” em “99,3% até 49 pessoas” — que é a pergunta que o
-        gestor faz de fato;</li>
+    <li>traduz “99,35%” em “99,3% até 49 pessoas”, que é a pergunta que o gestor faz de fato;</li>
     <li>diz <strong>quais</strong> casos (a faixa de pessoal),
         <strong>onde</strong> (no Brasil) e <strong>quando</strong> (em 2021);</li>
     <li>não diz nada sobre eficiência, lucro ou qualidade de gestão.</li>
@@ -655,7 +692,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
       ordinal[<span class="str">"pct_acumulado"</span>].iloc[1], 99.35)</pre>
               <p>Repare que a acumulada nasce de <strong>uma coluna e uma função</strong>:
               <code>cumsum()</code>, soma acumulada. Ela está em duas linhas, e a segunda
-              depende da primeira — por isso a ordem de execução importa.</p>
+              depende da primeira. Por isso a ordem de execução importa.</p>
               <p class="menor">E note o que <strong>não</strong> aparece: nenhuma média. Com
               uma variável ordinal, a média nem entra no código.</p>
             </section>
@@ -671,8 +708,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
   <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
   Que a empresa pequena é mais eficiente, nem que a grande é melhor administrada.
   A frase diz <strong>quantas</strong> empresas nasceram em cada faixa, em um ano,
-  no Brasil. Conclusões sobre eficiência administrativa exigem outro desenho de
-  pesquisa — e desenho de pesquisa é o tema do <strong>Módulo II</strong>.</div>
+  no Brasil. Conclusões sobre eficiência administrativa exigem outro desenho de pesquisa, e desenho de pesquisa é o tema do <strong>Módulo II</strong>.</div>
 </section>
 <section class="slide estatistica">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
@@ -684,7 +720,7 @@ ordinal[<span class="str">"pct_acumulado"</span>] = ordinal[<span class="str">"p
       Um analista classificou a <strong>seção da CNAE</strong> como
       <strong>ordinal</strong>, escreveu que “as letras vão de A a U, logo há
       ordem”.<br><br>
-      Com essa classificação, sentiu que podia calcular a média da seção e
+      Com essa classificação, sentiu que podia calcular a mediana da seção e
      publicou que “a empresa mediana está na seção I”.
     </div>
     <div class="exemplo">
@@ -878,7 +914,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
   Cada resultado é comparado com o número que já estava resolvido na tela da estatística, e a
   função <code>conferir</code> devolve o veredito: <code>[ok]</code> ou <code>[X]</code>. Você
   nunca precisa ficar adivinhando se acertou.</div>
-  <div class="alerta"><span class="rotulo">Se aparecer [X] em um número que ontem batia</span>
+  <div class="alerta"><span class="rotulo">Se aparecer [X] em um número que antes batia</span>
   Quase sempre é que o IBGE divulgou um corte novo. Copie o número novo, anote o ano e siga.
   <strong>O número que vale é o que saiu do código.</strong></div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
@@ -901,14 +937,14 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
   <h2>Seção 6: usando o assistente</h2>
 
   <div class="pergunta">A IA explica, o código calcula e você <strong>confere e escreve</strong>.</div>
-  <div class="instrucao"><span class="rotulo">Modo 1 — Pergunta</span>
+  <div class="instrucao"><span class="rotulo">Modo 1: pergunta</span>
   Rode a célula de contexto, que imprime as linhas que você precisa colar no assistente. Sem o
   contexto a IA inventa número, e você não tem como perceber.</div>
-  <div class="instrucao"><span class="rotulo">Modo 2 — Encomenda</span>
+  <div class="instrucao"><span class="rotulo">Modo 2: encomenda</span>
   Peça o código, cole na <strong>célula cinza</strong>. Só mude os <em>parâmetros de
   consulta</em>: qual base, qual recorte, qual ordenação. Nunca peça para mudar a lógica do
   cálculo.</div>
-  <div class="instrucao"><span class="rotulo">Modo 3 — Ler um resultado errado</span>
+  <div class="instrucao"><span class="rotulo">Modo 3: ler um resultado errado</span>
   O professor preparou três classificações de nível <strong>erradas</strong>, todas com
   variáveis reais. Diga qual é o erro e qual é o nível certo. A segunda é a mais sutil: as
   letras da CNAE vão de A a U, e mesmo assim a CNAE não é ordinal.</div>
@@ -938,15 +974,12 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
   <h2>Para fechar a prática</h2>
   <div class="pergunta">Por que a <strong>mesma pergunta</strong> exige uma análise
   diferente, conforme a base?</div>
-  <p>As três bases de hoje respondem à <em>mesma</em> pergunta de pesquisa — quantas
-  empresas há em cada grupo — e cada uma pediu uma análise diferente:</p>
+  <p>As três bases de hoje descrevem a mesma população, as empresas brasileiras, e cada uma pediu uma análise diferente:</p>
   <ul>
     <li>a <strong>CNAE</strong> é nominal: conta e compara proporções, e mais nada;</li>
     <li>a <strong>faixa de pessoal</strong> é ordinal: além de contar, acumula, porque
         “até tal tamanho” tem sentido;</li>
-    <li>o <strong>PAS</strong> é razão: não tem categorias para contar, e o que se faz é
-        <strong>dividir</strong> um valor pelo outro — pessoas por empresa, receita por
-        pessoa.</li>
+    <li>o <strong>PAS</strong> é razão: não tem categorias para contar, e o que se faz é <strong>dividir</strong> um valor pelo outro: pessoas por empresa, receita por pessoa.</li>
   </ul>
   <p class="menor">Foi o nível da variável que decidiu a análise, e não a preferência do
   pesquisador. É essa a lição do encontro e ela vale para qualquer base que você usar
@@ -955,9 +988,61 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
 </section>
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
+  <h2>A frase da aula passada, testada com dados oficiais</h2>
+  <div class="pergunta">“A maioria das empresas fecha no primeiro ano.” O dado confirma?</div>
+  <!-- figura -->
+  <div class="figura" data-fig="sobrevivencia" style="--fig-h:33vh">
+    <svg viewBox="0 0 1000 266" role="img" aria-label="Taxa de sobrevivência das empresas nascidas em 2017: 76,2% após 1 ano, 59,6% após 2 anos, 49,4% após 3 anos, 42,3% após 4 anos, 37,3% após 5 anos">
+    <line x1="100.0" y1="230.0" x2="930.0" y2="230.0" stroke="#bbb" stroke-width="1.6"/>
+    <line x1="100.0" y1="180.0" x2="930.0" y2="180.0" stroke="#eee" stroke-width="1"/>
+    <text x="92.0" y="185.0" text-anchor="end" font-size="14.4" fill="#777" >25%</text>
+    <line x1="100.0" y1="130.0" x2="930.0" y2="130.0" stroke="#eee" stroke-width="1"/>
+    <text x="92.0" y="135.0" text-anchor="end" font-size="14.4" fill="#777" >50%</text>
+    <line x1="100.0" y1="80.0" x2="930.0" y2="80.0" stroke="#eee" stroke-width="1"/>
+    <text x="92.0" y="85.0" text-anchor="end" font-size="14.4" fill="#777" >75%</text>
+    <line x1="100.0" y1="30.0" x2="930.0" y2="30.0" stroke="#eee" stroke-width="1"/>
+    <text x="92.0" y="35.0" text-anchor="end" font-size="14.4" fill="#777" >100%</text>
+    <line x1="100.0" y1="130.0" x2="930.0" y2="130.0" stroke="#8D0333" stroke-width="1.6" stroke-dasharray="7 5"/>
+    <text x="926.0" y="122.0" text-anchor="end" font-size="15.6" fill="#8D0333" font-weight="700">metade das empresas</text>
+    <polyline points="110.0,30.0 268.0,77.6 426.0,110.7 584.0,131.3 742.0,145.4 900.0,155.4" fill="none" stroke="#0AB0AB" stroke-width="3.4"/>
+    <circle cx="110.0" cy="30.0" r="7" fill="#777" stroke="#fff" stroke-width="2"/>
+    <text x="110.0" y="254.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">nascimento</text>
+    <circle cx="268.0" cy="77.6" r="7" fill="#05635f" stroke="#fff" stroke-width="2"/>
+    <text x="268.0" y="254.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">1 ano</text>
+    <text x="278.0" y="103.6" text-anchor="start" font-size="18.0" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">76,2%</text>
+    <circle cx="426.0" cy="110.7" r="7" fill="#05635f" stroke="#fff" stroke-width="2"/>
+    <text x="426.0" y="254.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">2 anos</text>
+    <text x="436.0" y="100.7" text-anchor="start" font-size="18.0" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">59,6%</text>
+    <circle cx="584.0" cy="131.3" r="7" fill="#05635f" stroke="#fff" stroke-width="2"/>
+    <text x="584.0" y="254.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">3 anos</text>
+    <text x="594.0" y="121.3" text-anchor="start" font-size="18.0" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">49,4%</text>
+    <circle cx="742.0" cy="145.4" r="7" fill="#05635f" stroke="#fff" stroke-width="2"/>
+    <text x="742.0" y="254.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">4 anos</text>
+    <text x="752.0" y="135.4" text-anchor="start" font-size="18.0" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">42,3%</text>
+    <circle cx="900.0" cy="155.4" r="7" fill="#05635f" stroke="#fff" stroke-width="2"/>
+    <text x="900.0" y="254.0" text-anchor="middle" font-size="15.6" fill="#444" font-weight="700">5 anos</text>
+    <text x="910.0" y="145.4" text-anchor="start" font-size="18.0" fill="#05635f" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">37,3%</text>
+    <line x1="118.0" y1="30.0" x2="268.0" y2="30.0" stroke="#8D0333" stroke-width="1.6" stroke-dasharray="7 5"/>
+    <line x1="268.0" y1="30.0" x2="268.0" y2="69.6" stroke="#8D0333" stroke-width="2.4"/>
+    <text x="280.0" y="55.8" text-anchor="start" font-size="16.8" fill="#8D0333" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">23,8% fecharam no 1º ano</text>
+    </svg>
+    <p class="legenda">Sobrevivência da coorte de 2017: 261.302 empresas empregadoras nascidas no Brasil. Fonte: IBGE, Demografia das Empresas.</p>
+  </div>
+  <div class="frase-resultado"><span class="rotulo">Em linguagem corrente</span>
+  Das 261.302 empresas empregadoras nascidas no Brasil em 2017, <strong>76,2%</strong>
+  continuavam ativas um ano depois. A fatia de sobreviventes só fica abaixo da metade no
+  terceiro ano (49,4%), e após cinco anos restavam 37,3% (IBGE, Demografia das Empresas).</div>
+  <p class="menor">A frase não se sustenta: no primeiro ano fechou cerca de uma empresa em cada
+  quatro. Repare no nível da variável: a taxa de sobrevivência é de razão, porque o zero seria
+  nenhuma empresa ativa. E repare no recorte: a base cobre só empresas com empregados, então a
+  conclusão vale para elas, e não para os microempreendedores sem empregados.</p>
+  <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
+</section>
+<section class="slide compacto">
+  <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Síntese teórica do encontro</h2>
   <ul>
-    <li><strong>Mensurar é atribuir números a conceitos</strong>, e a primeira decisão de
+    <li><strong>Mensurar é traduzir conceitos em variáveis</strong>, e a primeira decisão de
         qualquer pesquisa quantitativa é <em>o que exatamente</em> será medido;</li>
     <li><strong>Variável</strong> é a característica que assume valores diferentes entre os
         casos. Na hipótese, ela tem papel: independente, dependente ou de controle;</li>
@@ -971,7 +1056,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
     <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE vão de A a
         U, e isso não faz do comércio uma seção “maior” que a indústria;</li>
     <li><strong>A frequência acumulada só existe em ordinal</strong>, porque ela responde
-        “quantos <em>até</em> tal ponto?” — e sem ordem essa pergunta não tem sentido.</li>
+        “quantos <em>até</em> tal ponto?”, e sem ordem essa pergunta não tem sentido.</li>
   </ul>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 2</div>
 </section>
@@ -1024,9 +1109,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             entre intervalo e razão; (v) operacionalizar um conceito de gestão em uma variável
             mensurável.</p>
                 <div class="caixa falar"><span class="rotulo">A retomada que faz a ponte</span>
-            <p>Retomar a frase do encontro 1 que organiza o dia: <strong>mensurar é atribuir
-            números a conceitos</strong>. Hoje vamos ao passo seguinte — decidir <em>o que
-            exatamente</em> medir e <em>como</em> o número que resultar da medição poderá ser
+            <p>Retomar a definição do encontro 1 que organiza o dia: <strong>mensurar é traduzir conceitos em variáveis, com regras claras de atribuição de valores</strong>. Hoje vamos ao passo seguinte: decidir <em>o que exatamente</em> medir e <em>como</em> o número que resultar da medição poderá ser
             usado.</p>
             </div>
     <h3>Onde está a minutagem</h3>
@@ -1044,19 +1127,17 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
       <tr><td>Operacionalização: do conceito ao indicador</td><td>5</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco</span>
-            <p>Uma frase, repetida: <strong>o nível de mensuração decide a análise.</strong> Não
+            <p>A frase do bloco: <strong>o nível de mensuração decide a análise.</strong> Não
             é uma classificação decorativa: é o que autoriza (ou proíbe) a média, o gráfico, o
             teste. E é a resposta à pergunta que abre o bloco de estatística daqui a pouco.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">A ponte para a Parte 2, feita duas vezes</span>
+    <div class="caixa falar"><span class="rotulo">A ponte para a Parte 2</span>
             <p>Anunciar no fim deste bloco que <strong>a mesma matéria volta</strong> no bloco de
             estatística, agora com dado oficial e com a tabela de permissões. Não é repetição: é
-            o conceito virando operação. Avisar que a turma vai ver o mesmo conteúdo duas vezes
-            <em>de propósito</em>.</p>
+            o conceito virando operação. Avisar que o conteúdo volta <em>de propósito</em>.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">O exercício que mais rende</span>
-            <p>“Classifique o nível”: a turma classifica variáveis reais em voz alta e justifica.
-            Depois, os <strong>casos traiçoeiros</strong> — e o melhor deles é a seção da CNAE:
+            <p>“Classifique o nível”: a turma classifica variáveis reais e justifica cada nível. Depois, os <strong>casos traiçoeiros</strong>, e o melhor deles é a seção da CNAE:
             as letras vão de A a U, e mesmo assim a variável é nominal.</p>
             <p>A frase que fecha: <em>“a ordem do código não é a ordem do mundo”</em>. É a mesma
             lição do encontro 1 sobre código e rótulo, agora aplicada ao nível de mensuração.</p>
@@ -1065,8 +1146,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             <ol>
               <li><strong>Promover nominal a ordinal</strong> por causa da ordem alfabética do
               código.</li>
-              <li><strong>Tratar escala de satisfação como razão</strong>, porque “tem zero”. O
-              zero significa <em>ninguém respondeu</em>, e não ausência do fenômeno.</li>
+              <li><strong>Tratar escala de satisfação como razão</strong>, porque “tem zero”. Na escala, o zero é só o ponto de partida escolhido por quem a montou, e não ausência de satisfação.</li>
               <li><strong>Achar que número é sinônimo de quantitativo.</strong> Código de
               município é número e é nominal.</li>
               <li><strong>Confundir o papel na hipótese com o nível.</strong> São duas
@@ -1081,7 +1161,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
   </section>
   <section class="secao-conducao" id="det-3">
     <p class="telas-da-secao"><b>telas 14 a 24</b> <a class="chip-tela" href="#14">14</a> <a class="chip-tela" href="#15">15</a> <a class="chip-tela" href="#16">16</a> <a class="chip-tela" href="#17">17</a> <a class="chip-tela" href="#18">18</a> <a class="chip-tela" href="#19">19</a> <a class="chip-tela" href="#20">20</a> <a class="chip-tela" href="#21">21</a> <a class="chip-tela" href="#22">22</a> <a class="chip-tela" href="#23">23</a> <a class="chip-tela" href="#24">24</a></p>
-    <h2>Parte 2: estatística — a regra da medida <span class="min">(90 min)</span></h2>
+    <h2>Parte 2: estatística, a regra da medida <span class="min">(90 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
     <tr><th>Bloco</th><th>Minutos</th></tr>
@@ -1092,25 +1172,22 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
       <tr><td>Erro comum e ficha de revisão</td><td>10</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
-            <p>Repetir, em voz alta: <strong>“antes de calcular, identifique o nível”</strong>. O
+            <p>A frase do bloco: <strong>“antes de calcular, identifique o nível”</strong>. O
             nível não é detalhe técnico de quem trabalha com estatística: é o que define a
-            ferramenta. E é a primeira coisa que impede um erro caro — a média de uma
-            categoria.</p>
+            ferramenta. E é a primeira coisa que impede um erro caro: a média de uma categoria.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">Um exemplo real por nível e a honestidade do intervalo</span>
             <p>As três bases do notebook foram escolhidas por trazerem um nível cada:</p>
             <ul>
-              <li><strong>Nominal</strong> — a seção da CNAE, letras de A a U. 10.607.110
+              <li><strong>Nominal</strong>: a seção da CNAE, letras de A a U. 10.607.110
               empresas, comércio 27,42%;</li>
-              <li><strong>Ordinal</strong> — a faixa de pessoal assalariado. 337.330 nascimentos,
+              <li><strong>Ordinal</strong>: a faixa de pessoal assalariado. 337.330 nascimentos,
               93,01% na menor faixa e 99,35% até 49 pessoas;</li>
-              <li><strong>Razão</strong> — receita, pessoal ocupado, número de empresas. 281.133
-              empresas e 1.420.230 pessoas no alojamento e alimentação.</li>
+              <li><strong>Razão</strong>: receita, pessoal ocupado, número de empresas. 281.133
+              empresas e 1.420.230 pessoas no alojamento e alimentação (PAS, 2001, o último ano que a tabela publica).</li>
             </ul>
             <p>E o <strong>intervalo</strong> fica sem exemplo oficial: as bases do dia não têm
-            nenhuma variável assim. O exemplo é uma escala de satisfação de 0 a 10.
-            <strong>Dizer isso em voz alta é honesto e ensina:</strong> nem toda variável do
-            mundo tem exemplo na fonte oficial.</p>
+            nenhuma variável assim. Os exemplos são o ano de fundação e, por convenção, a escala de satisfação de 0 a 10 (a tela 12 diz que, a rigor, ela é ordinal). <strong>Vale dizer isso à turma:</strong> nem toda variável do mundo tem exemplo na fonte oficial.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">As duas figuras do bloco</span>
             <p>A tela dos quatro níveis não traz mais a lista em texto: os níveis estão na
@@ -1120,9 +1197,9 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             as duas escalas de satisfação: a diferença de 4 pontos se mantém, e a razão muda de
             2 para 1,8. É o teste do zero visto, e não só dito.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">O teste do zero, repetido até virar hábito</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">O teste do zero, como hábito</span>
             <p>Uma pergunta só: <strong>“o zero significa ausência da coisa?”</strong> Se
-            significa, é razão. Se significa “ninguém respondeu”, é intervalo. Se a variável é
+            significa, é razão. Se o zero é só o ponto de partida da escala, é intervalo. Se a variável é
             categoria, o zero nem existe. Leva trinta segundos e resolve a maior parte dos casos
             de pesquisa aplicada.</p>
             </div>
@@ -1137,8 +1214,7 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
               das faixas” não faz sentido: as faixas não são valores.</li>
               <li><strong>Usar a média em ordinal.</strong> A média de três faixas não
               corresponde a nenhuma faixa real.</li>
-              <li><strong>Concluir que a base menor é mais frágil</strong> a partir do 93,01%.
-              O dado diz quantas nasceram pequenas, não que pequenas fracassam mais.</li>
+              <li><strong>Concluir que as pequenas são mais frágeis</strong> a partir do 93,01%. O dado de nascimentos diz quantas nasceram pequenas. Se elas fecham mais é outra pergunta, que pede a taxa de sobrevivência por faixa (o encontro 3 mostra esse dado).</li>
             </ol>
             </div>
     <div class="caixa gabarito"><span class="rotulo">Gabarito do que o professor precisa ter na mão</span>
@@ -1157,51 +1233,57 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             </div>
   </section>
   <section class="secao-conducao" id="det-4">
-    <p class="telas-da-secao"><b>telas 25 a 33</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a></p>
+    <p class="telas-da-secao"><b>telas 25 a 34</b> <a class="chip-tela" href="#25">25</a> <a class="chip-tela" href="#26">26</a> <a class="chip-tela" href="#27">27</a> <a class="chip-tela" href="#28">28</a> <a class="chip-tela" href="#29">29</a> <a class="chip-tela" href="#30">30</a> <a class="chip-tela" href="#31">31</a> <a class="chip-tela" href="#32">32</a> <a class="chip-tela" href="#33">33</a> <a class="chip-tela" href="#34">34</a></p>
     <h2>Prática no Colab: três bases, uma tabela que decide <span class="min">(60 min)</span></h2>
     <h3>Minutagem do bloco</h3>
   <table class="minutagem">
     <tr><th>Bloco</th><th>Minutos</th></tr>
       <tr><td>Seção 1: como se usa um notebook</td><td>8</td></tr>
-      <tr><td>Seção 2: as três bases de hoje</td><td>18</td></tr>
+      <tr><td>Seção 2: as três bases de hoje</td><td>13</td></tr>
       <tr><td>Seção 3: a tabela que decide</td><td>12</td></tr>
       <tr><td>Seção 4: a base escolhida e a conferência</td><td>10</td></tr>
       <tr><td>Seção 5: a frequência acumulada</td><td>8</td></tr>
       <tr><td>Seção 6: o assistente</td><td>4</td></tr>
+      <tr><td>A frase do encontro 1, testada (tela 34)</td><td>5</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A regra didática do dia</span>
             <p>A única edição de código é trocar <code>BASE = "ordinal"</code> por
             <code>"nominal"</code> e <code>"razao"</code>. Nada além disso.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">Seção 2 — as três bases (18 min)</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seção 2: as três bases (13 min)</span>
             <p>Antes de executar, perguntar: <em>“qual delas vocês acham que é ordinal e por
             quê?”</em>. A resposta sai da base, não da opinião.</p>
-            <p>Chamar atenção para o detalhe novo em relação ao encontro 1: a API do IBGE
-            <strong>não traz os nomes das categorias da faixa de pessoal</strong> — o notebook
-            pede tudo e escolhe a variável no pandas. É a primeira vez que o estudante vê que
+            <p>Chamar atenção para o detalhe novo em relação ao encontro 1: o código da variável de nascimentos mudou no SIDRA, e por isso <strong>o notebook pede todas as variáveis da tabela 9949 e escolhe a de nascimentos no pandas</strong>. É a primeira vez que o estudante vê que
             filtrar também é analisar.</p>
             </div>
-    <div class="caixa pergunta-aula"><span class="rotulo">Seção 3 — a tabela que decide (12 min)</span>
+    <div class="caixa pergunta-aula"><span class="rotulo">Seção 3: a tabela que decide (12 min)</span>
             <p>A sessão mais curta e mais importante da prática: o aluno troca o valor de
             <code>BASE</code> e vê a linha de permissões mudar. Em qual das três a média entra?
             Em qual a soma?</p>
             <p>Perguntar também: <em>“e a base do intervalo, por que ela não está na Célula
-            A?”</em> A resposta honesta — porque o IBGE não publica uma assim nessas tabelas — é
-            a mesma que vale para a vida profissional.</p>
+            A?”</em> A resposta honesta (o IBGE não publica uma assim nessas tabelas) é a mesma que vale para a vida profissional.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">Seção 5 — a frequência acumulada (8 min)</span>
+    <div class="caixa falar"><span class="rotulo">Seção 5: a frequência acumulada (8 min)</span>
             <p>Rodar com <code>BASE = "ordinal"</code> e depois trocar para
             <code>"nominal"</code>. A diferença no comportamento do notebook é o argumento: com
             ordem, acumula; sem ordem, “até” não quer dizer nada.</p>
             </div>
-    <div class="caixa falar"><span class="rotulo">Seção 6 — o modo 3 e por que ele é o mais importante</span>
+    <div class="caixa falar"><span class="rotulo">Seção 6: o modo 3 e por que ele é o mais importante</span>
             <p>As três classificações erradas do professor. A segunda é a pérola do encontro: a
             CNAE classificada como ordinal “porque as letras vão de A a U”. Pedir que a turma
             argumente <strong>contra</strong> antes de revelar o gabarito.</p>
             </div>
     <div class="caixa alerta"><span class="rotulo">Se o aluno travar</span>
-            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. A
-            Célula B já está escrita e só exige upload.</p>
+            <p>Regra do laboratório: <strong>ninguém mexe em código por conta própria</strong>. A Célula B já está escrita e só exige upload.</p>
+            </div>
+    <div class="caixa pergunta-aula"><span class="rotulo">A frase do encontro 1, testada (tela 34, 5 min)</span>
+            <p>Fechar a prática voltando à frase do encontro 1: <em>“a maioria das empresas fecha
+            no primeiro ano”</em>. Perguntar antes de mostrar: <em>“que variável responde, e em
+            que nível ela está?”</em>. A resposta é a taxa de sobrevivência, de razão.</p>
+            <p>O dado: das 261.302 empresas empregadoras nascidas em 2017, 76,2% seguiam ativas
+            após um ano, 49,4% após três e 37,3% após cinco. A frase não se sustenta: no primeiro
+            ano fechou cerca de uma em cada quatro. O recorte importa: a base cobre só empresas
+            com empregados.</p>
             </div>
     <div class="caixa gabarito"><span class="rotulo">O que coletar antes do fim da aula</span>
             <p>O link do notebook e as respostas da primeira pergunta de interpretação. Elas
@@ -1210,14 +1292,14 @@ t[<span class="str">"acum"</span>] = t[<span class="str">"pct"</span>].cumsum()
             </div>
   </section>
   <section class="secao-conducao" id="det-5">
-    <p class="telas-da-secao"><b>telas 34 a 35</b> <a class="chip-tela" href="#34">34</a> <a class="chip-tela" href="#35">35</a></p>
+    <p class="telas-da-secao"><b>telas 35 a 36</b> <a class="chip-tela" href="#35">35</a> <a class="chip-tela" href="#36">36</a></p>
     <h2>Síntese e tarefa <span class="min">(15 min)</span></h2>
     <div class="caixa falar"><span class="rotulo">Os três aprendizados do dia</span>
             <ol>
               <li><strong>Mensurar é decidir.</strong> Antes de qualquer cálculo, o nível da
-              variável está decidido — e o nível decide a ferramenta.</li>
+              variável está decidido, e o nível decide a ferramenta.</li>
               <li><strong>O teste do zero</strong> resolve a maior parte dos casos: zero de
-              ausência é razão; zero de ausência de resposta é intervalo.</li>
+              ausência é razão, e zero escolhido pela escala é intervalo.</li>
               <li><strong>A ordem do código não é a ordem do mundo.</strong> As letras da CNAE
               vão de A a U, e isso não faz do comércio uma seção “maior” que a indústria.</li>
             </ol>

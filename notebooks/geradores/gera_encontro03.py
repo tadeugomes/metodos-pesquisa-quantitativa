@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook do encontro 3 (Módulo I — Parte 2: medidas de tendência central).
+"""Gera o notebook do encontro 3 (Módulo I, Parte 2: medidas de tendência central).
 
 Segue o PLANO_REFORMULACAO.md, secao 9. A Parte 2 do encontro ensina media, mediana e moda, e
 a regra que decide entre elas: o formato da distribuicao. E o bloco que prepara a
@@ -22,7 +22,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 3. Problema, hipóteses e as medidas de tendência central
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje, em três passos**
@@ -47,15 +47,15 @@ aritmética e vira decisão.
 
 | Série | Código | Unidade | Recorte |
 |---|---|---|---|
-| IPCA — variação mensal | 433 | por cento | 36 meses, 2023-09 a 2026-08 |
+| IPCA, variação mensal | 433 | por cento | 36 meses, 2023-09 a 2026-08 |
 | Inadimplência da carteira PJ | 21086 | por cento | 36 meses, 2023-08 a 2026-07 |
 
 **Confira em:** <https://www.bcb.gov.br/estabilidadefinanceira/seriesestatisticas>
 
 > **Por que a API do SGS por URL, e não por biblioteca.** A chamada é um endereço
 > da internet que devolve um JSON. Escrever a URL na mão deixa visível o que é
-> pedido e o que é recebido — e a turma não precisa instalar nada. Compare com a
-> chamada de ontem, que vinha pronta dentro de uma biblioteca."""
+> pedido e o que é recebido, e a turma não precisa instalar nada. Compare com a
+> chamada do encontro 2, que vinha pronta dentro de uma biblioteca."""
 
 CONFIG = """## Bloco de configuração
 
@@ -86,7 +86,7 @@ import urllib.request
 import pandas as pd
 
 NOME_DA_SERIE = {
-    433: "IPCA — variação mensal (%)",
+    433: "IPCA, variação mensal (%)",
     21086: "Inadimplência da carteira PJ (%)",
 }
 
@@ -125,7 +125,7 @@ def monta_base(ultimos=36):
     """Junta as duas séries numa base só, por mês.
 
     O join é externo (`outer`) de propósito: as duas séries não terminam no mesmo
-    mês, e um `inner` apagaria o último mês de uma delas — o que faria a contagem
+    mês, e um `inner` apagaria o último mês de uma delas, o que faria a contagem
     de observações errada sem nenhum aviso.
     """
     a = baixa_sgs(433, ultimos)[["data", "valor"]].rename(columns={"valor": "ipca"})
@@ -142,7 +142,7 @@ print("  (as duas séries não começam e terminam no mesmo mês: cada uma tem 3
 print("   e a base reúne os dois períodos)")
 base.head(6)'''
 
-CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B = '''# ================= CÉLULA B, CONTINGÊNCIA: leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload dos dois arquivos de dados/ indicados no enunciado.
 #
@@ -159,7 +159,7 @@ ipca["data"] = pd.to_datetime(ipca["data"], format="%Y-%m")
 inad["data"] = pd.to_datetime(inad["data"], format="%Y-%m")
 
 # o join é EXTERNO, igual ao da Célula A: as duas séries não terminam no mesmo
-# mês, e um join interno apagaria as pontas — deixando 35 meses em vez de 36 e
+# mês, e um join interno apagaria as pontas, deixando 35 meses em vez de 36 e
 # fazendo a conferência da quantidade de meses falhar
 base = (ipca.merge(inad, on="data", how="outer")
             .sort_values("data").reset_index(drop=True))
@@ -171,7 +171,7 @@ base.head(6)'''
 CELULAS = [
     {"tipo": "md", "texto": PAINEL},
     {"tipo": "md", "texto": CONFIG},
-    {"tipo": "code", "texto": 'NOME_DA_SERIE = {433: "IPCA — variação mensal (%)",\n'
+    {"tipo": "code", "texto": 'NOME_DA_SERIE = {433: "IPCA, variação mensal (%)",\n'
                               '                21086: "Inadimplência da carteira PJ (%)"}\n'
                               '\n'
                               'SERIE = 433   # 433 = IPCA mensal (%)   |   '
@@ -199,7 +199,7 @@ upload). Execute a A. Se a API não responder, o professor manda você executar 
 
 Uma diferença em relação ao IBGE, que vale notar: **a API do Banco Central devolve
 JSON, e o IBGE devolve uma tabela pronta.** Por isso aqui a coluna de data precisa
-ser convertida com o formato brasileiro `DD/MM/AAAA` — é a primeira vez que você
+ser convertida com o formato brasileiro `DD/MM/AAAA`. É a primeira vez que você
 precisa prestar atenção a um detalhe de formato."""},
 
     {"tipo": "code", "texto": CELULA_A},
@@ -212,11 +212,11 @@ precisa prestar atenção a um detalhe de formato."""},
 
 **As três medidas de tendência central**
 
-| Medida | O que é | Em corrente | Quando pedir |
+| Medida | O que é | Em linguagem corrente | Quando pedir |
 |---|---|---|---|
 | **Média** | Soma de todos dividida pela quantidade | Some tudo e divida pelo número de valores | Nível intervalo ou razão **e** distribuição sem extremos |
 | **Mediana** | O valor do meio, com os dados em ordem | Coloque em ordem e pegue o do meio | Nível ordinal, intervalo ou razão; **sempre** que houver extremos |
-| **Moda** | O valor que mais se repete | O que aparece mais vezes | Nível nominal, ordinal ou razão; para descrever a categoria mais comum |
+| **Moda** | O valor que mais se repete | O que aparece mais vezes | Qualquer nível; é a única das três que serve ao nominal |
 
 **A fórmula da média, com cada símbolo nomeado**
 
@@ -224,10 +224,10 @@ $$\\bar{x} = \\frac{\\sum x_i}{n}$$
 
 * $x_i$ é o valor observado
 * $n$ é a quantidade de valores
-* $\\bar{x}$ é a média, e a barra significa "valor típico"
+* $\\bar{x}$ é a média (a barra sobre o $x$ indica média)
 
-Em corrente: **some todos os valores e divida pela quantidade.** Uma média só
-existe quando a soma e a divisão fazem sentido — e isso depende do nível.
+Em linguagem corrente: **some todos os valores e divida pela quantidade.** Uma média só
+existe quando a soma e a divisão fazem sentido, e isso depende do nível.
 
 **Quando usar e quando não usar**
 
@@ -260,7 +260,7 @@ print("O que essa diferença diz:")
 if abs(media - mediana) < 0.05:
     print("  média e mediana próximas -> a média descreve bem o centro do conjunto.")
     print("  Atenção: isso NÃO prova que a distribuição é simétrica. Para isso, olhe")
-    print("  o mínimo e o máximo — a distância de cada um até o centro é parecida?")
+    print("  o mínimo e o máximo: a distância de cada um até o centro é parecida?")
 else:
     print("  média e mediana distantes -> a distribuição é assimétrica, e a média")
     print("  está sendo puxada por algum valor extremo. Descreva com a mediana.")'''},
@@ -309,7 +309,7 @@ serie.tail(8)'''},
 
     {"tipo": "md", "texto": """### A média ponderada, que aparece em todo relatório
 
-Nem todo mês vale o mesmo. Um mês de Pandemia não tem o mesmo peso de um mês comum,
+Nem todo mês vale o mesmo. Um mês de pandemia não tem o mesmo peso de um mês comum,
 e um mês de alta temporada pesa mais. Nesses casos a média é **ponderada**: cada valor
 entra com um peso.
 
@@ -318,8 +318,8 @@ $$\\bar{x}_p = \\frac{\\sum w_i x_i}{\\sum w_i}$$
 * $w_i$ é o **peso** do mês $i$
 * $\\sum w_i$ é a soma dos pesos
 
-Em corrente: **multiplique cada valor pelo peso, some tudo e divida pela soma dos
-pesos.** Se todos os pesos forem iguais, a ponderada vira a média simples — é por isso
+Em linguagem corrente: **multiplique cada valor pelo peso, some tudo e divida pela soma dos
+pesos.** Se todos os pesos forem iguais, a ponderada vira a média simples. É por isso
 que a fórmula é a mesma."""},
 
     {"tipo": "code", "texto": '''# Média ponderada: o uso mais frequente em relatório de gestão é o PREÇO MÉDIO
@@ -337,7 +337,7 @@ print()
 print(f"  média simples dos preços ......... R$ {simples:.2f}")
 print(f"  média ponderada pela quantidade .. R$ {ponderada:.2f}")
 print()
-print("A média simples trata as duas lojas como se vendessem o mesmo tanto —")
+print("A média simples trata as duas lojas como se vendessem o mesmo tanto,")
 print("e a Loja B vendeu nove vezes mais. O preço que de fato se praticou foi")
 print(f"R$ {ponderada:.2f}, e não R$ {simples:.2f}.")
 print()
@@ -347,8 +347,8 @@ print("a média simples responde à pergunta errada.")'''},
     {"tipo": "md", "texto": """**A frase que vai para o relatório**
 
 > "A inadimplência da carteira de empresas de pessoa jurídica do Sistema Financeiro
-> Nacional foi, em média, de **3,54%** ao mês entre agosto de 2023 e julho de 2026, com
-> **mediana de 3,53%** — as duas medidas praticamente coincidem, o que sugere
+> Nacional foi, em média, de **3,54%** da carteira entre agosto de 2023 e julho de 2026, com
+> **mediana de 3,53%**: as duas medidas praticamente coincidem, o que sugere
 > distribuição simétrica ao longo do período (Banco Central, SGS, série 21086)."
 
 **O que essa frase não diz.** 3,54% é a média de um nível alto e baixo ao longo de 36
@@ -361,25 +361,25 @@ uma afirmação sobre o período, e quem lê precisa saber qual é ele."""},
 Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
 explica, o código calcula e você confere e escreve.**
 
-### Modo 1 — Pergunta
+### Modo 1: pergunta
 
 Copie o cartão de contexto abaixo e cole na conversa do assistente. Sem o contexto, a
-IA inventa número — e você não tem como perceber.
+IA inventa número, e você não tem como perceber.
 
-### Modo 2 — Encomenda
+### Modo 2: encomenda
 
 Escreva o que você quer, peça o código e cole na **célula cinza**. Só mude os
 **parâmetros de consulta**: qual série, qual recorte, quantos meses. **Nunca** peça
-para mudar a lógica do cálculo — os números do slide foram conferidos.
+para mudar a lógica do cálculo: os números do slide foram conferidos.
 
-### Modo 3 — Ler um resultado errado
+### Modo 3: ler um resultado errado
 
 O professor preparou três leituras de resultado **erradas**. Todas usam a série real.
 O erro está no que se concluiu dela. Diga qual é o erro."""},
 
     {"tipo": "code", "texto": 'cartao(base, "mes", nome_base="Banco Central, SGS")'},
 
-    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
+    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA: cole aqui o código do assistente =====================
 # Sugestão de pedido: "calcule a média, a mediana e a moda do IPCA mensal nos
 # últimos 12 meses, e diga qual das duas medidas descreve melhor o período"
 #
@@ -411,14 +411,14 @@ print("           (uma diferença de 0,015 basta para concluir isso?)")'''},
 | Análise | O que há de errado |
 |---|---|
 | **1** | **Não são o mesmo número.** A média do período é 3,54%; o valor de julho de 2026 é 4,19%. A média resume 36 meses, e o último valor é um mês só. Citar a média como se fosse o número de hoje é o erro mais comum em relatório com série temporal. |
-| **2** | **Transformou média em frequência.** A média diz qual o valor típico ao longo do período; não diz que 4% estavam inadimplentes em cada mês. A taxa mensal só se obtém mês a mês. Um relatório honesto diria: *"a inadimplência variou de 2,77% a 4,19% no período, com média de 3,54%."* |
+| **2** | **Transformou média em frequência.** A média diz qual o valor típico ao longo do período; não diz que 4% estavam inadimplentes em cada mês. A taxa de cada mês só se obtém no próprio mês, e ela é uma fatia do saldo da carteira, e não da quantidade de empresas. Um relatório honesto diria: *"a inadimplência variou de 2,77% a 4,19% no período, com média de 3,54%."* |
 | **3** | **A conclusão é mais forte do que o dado.** A diferença de 0,015 ponto percentual entre média e mediana sugere simetria aproximada, mas **sugerir** não é **demonstrar**: para afirmar, seria preciso ver o gráfico da distribuição, que é o assunto do encontro 4. |\n\n\nRepare que a análise 2 é a mais perigosa: usa um número certo e tira dele uma afirmação que o número não sustenta. É o mesmo cuidado da tela de leitura do encontro 1, aplicado a uma série temporal."""},
 
     # ------------------------------------------------------------ perguntas
     {"tipo": "md", "texto": """## Seção 4. Oficina do projeto: o cardápio de temas
 
-Escolha um tema do cardápio — ou proponha outro, desde que a base seja pública e
-acessível com as ferramentas da disciplina — e escreva, nas células do fim, a sua
+Escolha um tema do cardápio, ou proponha outro, desde que a base seja pública e
+acessível com as ferramentas da disciplina, e escreva, nas células do fim, a sua
 pergunta delimitada.
 
 **Todas as fontes abaixo foram testadas e entregam dado** (ver `dados/FONTES.md`).
@@ -427,7 +427,7 @@ pergunta delimitada.
 |---|---|---|
 | Sobrevivência de empresas por porte ou setor | Demografia das Empresas (SIDRA **9949**) | Empresas empregadoras de maior porte sobrevivem mais que as de menor porte? |
 | Estrutura empresarial do Maranhão vs. Brasil | CEMPRE (SIDRA **9582**) | A economia maranhense é mais concentrada em comércio? |
-| Preço de combustíveis por município | ANP — SHPC (dados abertos) | O preço da gasolina difere sistematicamente entre os municípios do Maranhão? |
+| Preço de combustíveis por município | ANP, SHPC (dados abertos) | O preço da gasolina difere sistematicamente entre os municípios do Maranhão? |
 | Crédito e inadimplência empresarial | SGS/BCB (**20543**, **21086**) | A inadimplência PJ sobe quando o crédito encarece? |
 | Inflação e inadimplência | SGS/BCB (**433**, **21086**) | A inadimplência PJ acompanha a inflação? |
 | Setor de serviços: emprego e receita | PAS (SIDRA **2325–2330**) | Que segmento de serviços mais emprega por real de receita? |
@@ -436,7 +436,7 @@ pergunta delimitada.
 | Universo de empresas por município e atividade | Receita Federal (Base CNPJ) e CEMPRE (9582, N6) | Quantas empresas do comércio há em São Luís, e como isso se compara ao estado? |
 | Demografia empresarial municipal | CEMPRE (9582, N6) | Como São Luís se compara às demais capitais do NE? |
 
-> **Antes de escolher, passe a fonte pelos seis critérios do encontro 4** —
+> **Antes de escolher, passe a fonte pelos seis critérios do encontro 4**:
 > periodicidade, granularidade, cobertura, metadado, licença e acesso. O mais
 > frequente é o tema ter a variável desejada, mas para outro período ou território.
 
@@ -480,7 +480,7 @@ _(a diferença entre sugerir e demonstrar)_
 
 **Para o próximo encontro:** leia o capítulo de GIL (2022) sobre a matriz de
 amarração metodológica e traga a sua rascunhada. No próximo encontro a estatística
-passa a ter duas medidas: tendência central e **dispersão** — e você vai ver por que
+passa a ter duas medidas: tendência central e **dispersão**, e você vai ver por que
 uma medida só não basta.
 
 > Guarde este arquivo. Ele é a **terceira parte do guia de estatística descritiva** da

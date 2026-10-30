@@ -18,7 +18,7 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
-<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
 <div id="deck" data-conducao="1">
 <div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
 <section class="secao-projecao" id="sec-1" data-conducao="1">
@@ -41,17 +41,17 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
   <p>Os encontros 10 e 11 ensinaram a testar uma hipótese com <strong>um</strong> grupo e com
-  <strong>dois</strong>. Hoje o Módulo III termina com as duas perguntas que ficaram abertas —
+  <strong>dois</strong>. Hoje o Módulo III termina com as duas perguntas que ficaram abertas,
   e com a revisão de tudo o que ele ensinou.</p>
   <div class="colunas">
     <div>
       <h3>Parte 1: mais de dois grupos</h3>
       <p>A <strong>ANOVA de um fator</strong>, sobre o preço da gasolina em sete municípios do
-      Maranhão. Por que não se fazem 21 testes t e o que a ANOVA diz — e não diz.</p>
+      Maranhão. Por que não se fazem 21 testes t e o que a ANOVA diz e o que não diz.</p>
     </div>
     <div>
       <h3>Parte 2: quando a média não serve</h3>
-      <p>Os três testes de <strong>postos</strong> — Mann-Whitney, Wilcoxon e Kruskal-Wallis —
+      <p>Os três testes de <strong>postos</strong> (Mann-Whitney, Wilcoxon e Kruskal-Wallis)
       sobre a margem líquida das companhias abertas. E o <strong>fluxograma completo</strong> de
       escolha do teste.</p>
     </div>
@@ -59,7 +59,7 @@
   <div class="instrucao"><span class="rotulo">O fio que liga os dois blocos</span>
   A Parte 1 compara <strong>médias</strong> de muitos grupos; a Parte 2 mostra o que fazer
   quando a média <strong>mente</strong>. Na prática, uma célula do notebook escolhe o teste
-  para a base do seu projeto — e você escreve a frase.</div>
+  para a base do seu projeto, e você escreve a frase.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
 </section><!-- /secao-projecao -->
@@ -316,7 +316,7 @@
     <line x1="874.3" y1="45.0" x2="962.8" y2="45.0" stroke="#8D0333" stroke-width="4"/>
     <text x="918.6" y="237" text-anchor="middle" font-size="15" fill="#444">Balsas</text>
     <text x="918.6" y="257" text-anchor="middle" font-size="13" fill="#888">n = 11 · média 6,87</text>
-    <text x="128" y="24" font-size="15" fill="#8D0333" font-weight="700">— média do município</text>
+    <text x="128" y="24" font-size="15" fill="#8D0333" font-weight="700">traço: média do município</text>
     </svg>
   </div>
   <p>O cadastro de <strong>236 postos</strong> da ANP, o mesmo dos encontros 6 a 11. Entram os
@@ -341,8 +341,43 @@
     Em <strong>45,7%</strong> das vezes, algum dos 21 testes deu “significativo”. Em vez de 5%,
     quase metade.</div>
   </div>
-  <p><strong>A saída:</strong> uma pergunta só — <em>há diferença entre alguma das médias?</em> —
+  <p><strong>A saída:</strong> uma pergunta só, <em>há diferença entre alguma das médias?</em>,
   respondida por um único teste, com α = 5%. É a <strong>ANOVA de um fator</strong>.</p>
+  <div class="figura" style="--fig-h: 29vh">
+<svg viewBox="0 0 1000 302" role="img" aria-label="Chance de ao menos um alarme falso conforme o número de testes">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<line x1="70" y1="240.0" x2="960" y2="240.0" stroke="#eee"/>
+<text x="60.0" y="246.0" text-anchor="end" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0%</text>
+<line x1="70" y1="196.0" x2="960" y2="196.0" stroke="#eee"/>
+<text x="60.0" y="202.0" text-anchor="end" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">20%</text>
+<line x1="70" y1="152.0" x2="960" y2="152.0" stroke="#eee"/>
+<text x="60.0" y="158.0" text-anchor="end" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">40%</text>
+<line x1="70" y1="108.0" x2="960" y2="108.0" stroke="#eee"/>
+<text x="60.0" y="114.0" text-anchor="end" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">60%</text>
+<line x1="70" y1="64.0" x2="960" y2="64.0" stroke="#eee"/>
+<text x="60.0" y="70.0" text-anchor="end" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">80%</text>
+<line x1="70" y1="20.0" x2="960" y2="20.0" stroke="#eee"/>
+<text x="60.0" y="26.0" text-anchor="end" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">100%</text>
+<text x="99.7" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1</text>
+<text x="218.3" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">5</text>
+<text x="366.7" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">10</text>
+<text x="515.0" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">15</text>
+<text x="693.0" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">21</text>
+<text x="811.7" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">25</text>
+<text x="960.0" y="266.0" text-anchor="middle" font-size="17" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">30</text>
+<line x1="70" y1="240" x2="960" y2="240" stroke="#999"/>
+<polyline points="99.7,229.0 129.3,218.5 159.0,208.6 188.7,199.2 218.3,190.2 248.0,181.7 277.7,173.6 307.3,166.0 337.0,158.7 366.7,151.7 396.3,145.1 426.0,138.9 455.7,132.9 485.3,127.3 515.0,121.9 544.7,116.8 574.3,112.0 604.0,107.4 633.7,103.0 663.3,98.9 693.0,94.9 722.7,91.2 752.3,87.6 782.0,84.2 811.7,81.0 841.3,78.0 871.0,75.1 900.7,72.3 930.3,69.7 960.0,67.2" fill="none" stroke="#8D0333" stroke-width="3.5"/>
+<line x1="70" y1="229.0" x2="960" y2="229.0" stroke="#0AB0AB" stroke-width="2.4" stroke-dasharray="6 4"/>
+<text x="960.0" y="221.0" text-anchor="end" font-size="17" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">uma ANOVA: 5%, qualquer que seja o número de grupos</text>
+<line x1="693.0" y1="95.0" x2="693.0" y2="240" stroke="#999" stroke-dasharray="4 4"/>
+<circle cx="693.0" cy="95.0" r="8" fill="#8D0333"/>
+<text x="679.0" y="83.0" text-anchor="end" font-size="17" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">21 testes independentes: 65,9%</text>
+<circle cx="693.0" cy="139.5" r="8" fill="#a67c2e"/>
+<text x="707.0" y="145.5" text-anchor="start" font-size="17" fill="#a67c2e" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">simulação, 7 grupos iguais: 45,7%</text>
+<text x="515.0" y="294.0" text-anchor="middle" font-size="17" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">Número de testes t feitos a 5% (os pares de 7 grupos são 21)</text>
+</g>
+</svg>
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
 <section class="slide compacto">
@@ -357,13 +392,109 @@
     parecidos, F é grande. Se a diferença entre municípios é do tamanho da variação interna, F fica
     perto de 1.</span>
   </div>
+  <div class="figura" style="--fig-h: 25vh">
+<svg viewBox="0 0 1000 246" role="img" aria-label="Dois cenários de três grupos: médias afastadas e grupos compactos contra o oposto">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<text x="240.0" y="22.0" text-anchor="middle" font-size="18" fill="#333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">F grande</text>
+<text x="240.0" y="46.0" text-anchor="middle" font-size="16" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">médias afastadas, grupos compactos</text>
+<line x1="20" y1="210" x2="460" y2="210" stroke="#999"/>
+<circle cx="83.6" cy="178.7" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="109.0" cy="200.3" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="122.0" cy="181.5" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="87.2" cy="178.8" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="97.9" cy="168.0" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="99.8" cy="166.4" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="81.9" cy="181.7" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="88.3" cy="192.6" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="95.9" cy="182.8" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="117.7" cy="176.0" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="89.4" cy="171.4" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="121.6" cy="178.4" r="5" fill="#8D0333" opacity="0.75"/>
+<line x1="66" y1="175.0" x2="134" y2="175.0" stroke="#8D0333" stroke-width="4"/>
+<text x="100.0" y="234.0" text-anchor="middle" font-size="16" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">grupo A</text>
+<circle cx="234.6" cy="142.8" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="247.1" cy="135.4" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="239.9" cy="121.9" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="246.6" cy="143.0" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="224.3" cy="140.7" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="220.8" cy="122.3" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="226.5" cy="140.9" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="259.6" cy="126.1" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="256.8" cy="115.8" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="230.6" cy="122.3" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="223.9" cy="117.3" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="251.6" cy="146.1" r="5" fill="#a67c2e" opacity="0.75"/>
+<line x1="206" y1="130.0" x2="274" y2="130.0" stroke="#a67c2e" stroke-width="4"/>
+<text x="240.0" y="234.0" text-anchor="middle" font-size="16" fill="#a67c2e" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">grupo B</text>
+<circle cx="388.9" cy="97.5" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="399.8" cy="93.8" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="366.7" cy="91.6" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="364.6" cy="75.1" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="361.1" cy="73.3" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="397.7" cy="82.9" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="367.7" cy="69.5" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="368.7" cy="84.3" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="369.7" cy="94.1" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="376.6" cy="85.7" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="397.2" cy="71.4" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="365.7" cy="98.2" r="5" fill="#0AB0AB" opacity="0.75"/>
+<line x1="346" y1="85.0" x2="414" y2="85.0" stroke="#0AB0AB" stroke-width="4"/>
+<text x="380.0" y="234.0" text-anchor="middle" font-size="16" fill="#0AB0AB" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">grupo C</text>
+<text x="760.0" y="22.0" text-anchor="middle" font-size="18" fill="#333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">F perto de 1</text>
+<text x="760.0" y="46.0" text-anchor="middle" font-size="16" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">médias próximas, grupos espalhados</text>
+<line x1="540" y1="210" x2="980" y2="210" stroke="#999"/>
+<circle cx="627.2" cy="124.6" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="640.9" cy="150.0" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="611.2" cy="154.3" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="598.6" cy="187.8" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="605.5" cy="141.5" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="617.2" cy="111.7" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="617.6" cy="142.5" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="616.4" cy="169.6" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="602.2" cy="118.0" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="601.8" cy="125.9" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="613.8" cy="167.5" r="5" fill="#8D0333" opacity="0.75"/>
+<circle cx="633.5" cy="161.6" r="5" fill="#8D0333" opacity="0.75"/>
+<line x1="586" y1="139.0" x2="654" y2="139.0" stroke="#8D0333" stroke-width="4"/>
+<text x="620.0" y="234.0" text-anchor="middle" font-size="16" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">grupo A</text>
+<circle cx="781.1" cy="82.9" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="740.8" cy="128.5" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="755.0" cy="146.4" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="763.2" cy="131.8" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="780.5" cy="128.9" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="738.1" cy="102.1" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="776.5" cy="140.6" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="739.5" cy="112.3" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="781.6" cy="179.4" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="763.5" cy="119.0" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="757.4" cy="164.8" r="5" fill="#a67c2e" opacity="0.75"/>
+<circle cx="741.7" cy="201.4" r="5" fill="#a67c2e" opacity="0.75"/>
+<line x1="726" y1="130.0" x2="794" y2="130.0" stroke="#a67c2e" stroke-width="4"/>
+<text x="760.0" y="234.0" text-anchor="middle" font-size="16" fill="#a67c2e" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">grupo B</text>
+<circle cx="898.8" cy="93.3" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="884.8" cy="99.4" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="897.9" cy="149.5" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="883.6" cy="148.4" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="909.5" cy="76.2" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="898.7" cy="138.9" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="887.9" cy="98.7" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="886.7" cy="138.6" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="909.9" cy="107.5" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="909.2" cy="125.8" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="894.0" cy="116.1" r="5" fill="#0AB0AB" opacity="0.75"/>
+<circle cx="897.0" cy="116.9" r="5" fill="#0AB0AB" opacity="0.75"/>
+<line x1="866" y1="121.0" x2="934" y2="121.0" stroke="#0AB0AB" stroke-width="4"/>
+<text x="900.0" y="234.0" text-anchor="middle" font-size="16" fill="#0AB0AB" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">grupo C</text>
+</g>
+</svg>
+  </div>
   <div class="colunas">
     <div class="definicao"><span class="rotulo">As hipóteses</span>
     <strong>H0:</strong> as sete médias são iguais.<br>
     <strong>H1:</strong> pelo menos uma média é diferente.</div>
     <div class="definicao"><span class="rotulo">O tamanho do efeito: η²</span>
     A parte da variação total que está <strong>entre</strong> os grupos. Vai de 0 a 1 e é ela
-    que diz se a diferença é grande — o p só diz se ela existe.</div>
+    que diz se a diferença é grande. O p só diz se ela existe.</div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
@@ -390,16 +521,15 @@
   <h2>Os pressupostos da ANOVA</h2>
   <ul>
     <li><strong>Independência:</strong> cada caso está em um grupo só, e um caso não interfere no
-        outro. É questão de delineamento, e nenhum teste conserta a falta dela;</li>
-    <li><strong>A média representa cada grupo:</strong> distribuição sem assimetria forte em cada
-        grupo — ou grupos grandes o bastante para o teorema central do limite do encontro 7 socorrer;</li>
+        outro. É questão de delineamento, e nenhum teste conserta a falta dela.</li>
+    <li><strong>A média representa cada grupo:</strong> distribuição sem assimetria forte em cada grupo, ou grupos grandes o bastante para o teorema central do limite do encontro 7 socorrer.</li>
     <li><strong>Variâncias parecidas</strong> entre os grupos. Nos preços da ANP elas não são
         (o desvio vai de R$ 0,04 em Balsas a R$ 0,30 em Imperatriz): por isso o notebook roda o
         Kruskal-Wallis ao lado.</li>
   </ul>
   <div class="pergunta">Regra de leitura: quando a ANOVA e o Kruskal-Wallis <strong>concordam</strong>,
   a conclusão é robusta. Quando <strong>discordam</strong>, é sinal de que a média não está
-  representando os grupos — e é o caso da próxima tela.</div>
+  representando os grupos, e é o caso da próxima tela.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
 <section class="slide compacto">
@@ -560,7 +690,7 @@
     <text x="286" y="170.7" text-anchor="end" font-size="16" fill="#333" font-weight="600">Energia elétrica (n = 30)</text>
     <text x="286" y="188.7" text-anchor="end" font-size="13.5" fill="#555">mediana 14,8% · média 14,1%</text>
     <text x="286" y="204.7" text-anchor="end" font-size="12" fill="#999">fora: 2 abaixo de −60% (mín. −230%); 4 acima de 60%</text>
-    <text x="300" y="247" font-size="15" fill="#8D0333" font-weight="700">— mediana</text>
+    <text x="300" y="247" font-size="15" fill="#8D0333" font-weight="700">traço: mediana</text>
     <text x="420" y="247" font-size="15" fill="#a67c2e" font-weight="700">- - média</text>
     </svg>
   </div>
@@ -578,11 +708,11 @@
   ou ANOVA) ou pelos <strong>postos</strong> e qual dos três sinais pesou. Depois, uma dupla
   responde para a turma.</div>
   <ol>
-    <li>Comparar a nota de satisfação (1 a 5) de clientes de três agências bancárias;</li>
+    <li>Comparar a nota de satisfação (1 a 5) de clientes de três agências bancárias.</li>
     <li>Comparar o tempo de entrega, em dias, de duas transportadoras, com 400 entregas de cada
-        e poucos atrasos muito longos;</li>
+        e poucos atrasos muito longos.</li>
     <li>Comparar o faturamento mensal de quatro filiais de uma rede de farmácias, com 12 meses de
-        cada;</li>
+        cada.</li>
     <li>Comparar o preço da gasolina em sete municípios, com 10 a 101 postos por município.</li>
   </ol>
   <p class="menor">A resposta não sai de decorar uma tabela: sai de perguntar <em>a média
@@ -603,12 +733,11 @@
   elétrica? A ANOVA diz que <strong>não</strong> (p = 0,20). O Kruskal-Wallis diz que
   <strong>sim</strong> (p = 0,002). Em quem acreditar?</div>
   <p>Os mesmos 111 dados, dois testes, duas respostas opostas. A diferença não está no
-  computador: está em <strong>o que cada teste compara</strong>. A ANOVA compara médias — e a
-  média do comércio é arrastada por uma única companhia. O Kruskal-Wallis compara a
+  computador: está em <strong>o que cada teste compara</strong>. A ANOVA compara médias, e a média do comércio é arrastada por uma única companhia. O Kruskal-Wallis compara a
   <strong>ordem</strong> dos valores.</p>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
   Quando a média não representa o grupo, <strong>compare os postos</strong>. E o teste se escolhe
-  <strong>antes</strong> de olhar o valor-p, pelo tipo de dado — nunca depois, pelo resultado
+  <strong>antes</strong> de olhar o valor-p, pelo tipo de dado, e nunca depois, pelo resultado
   que se prefere.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
@@ -617,8 +746,8 @@
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Os três testes de postos, em linguagem corrente</h2>
   <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
-  <strong>Posto</strong>: a posição do valor na fila ordenada — o menor vira 1, o seguinte 2. Um
-  extremo de −452% vira apenas “o último da fila” e deixa de arrastar o resultado.<br>
+  <strong>Posto</strong>: a posição do valor na fila ordenada: o menor vira 1, o seguinte 2. Um
+  extremo de −452% vira apenas “o primeiro da fila” e deixa de arrastar o resultado.<br>
   <strong>Mann-Whitney</strong>: dois grupos independentes. <strong>Wilcoxon</strong>: duas
   medidas do mesmo caso. <strong>Kruskal-Wallis</strong>: três ou mais grupos.</div>
   <table>
@@ -670,21 +799,155 @@
   <span class="marca-estatistica">Parte 2 · Estatística</span>
   <h2>Exemplo resolvido, passo a passo: a margem em três setores</h2>
   <ol class="passos">
-    <li>Os dados: <span class="num">111 companhias</span> — <span class="num">39</span> do
+    <li>Os dados: <span class="num">111 companhias</span>: <span class="num">39</span> do
         comércio, <span class="num">42</span> da construção civil e <span class="num">30</span> de
-        energia elétrica;</li>
+        energia elétrica.</li>
     <li>A fila única: as 111 margens em ordem, da menor (<span class="num">−452%</span>, posto 1)
-        à maior (posto 111). O centro da fila é <span class="num">(111 + 1) ÷ 2 = 56,0</span>;</li>
+        à maior (posto 111). O centro da fila é <span class="num">(111 + 1) ÷ 2 = 56,0</span>.</li>
     <li>O posto médio de cada setor: comércio <span class="num">44,6</span>, construção
-        <span class="num">55,4</span>, energia <span class="num">71,7</span>;</li>
-    <li>A estatística: <span class="num">H = 12,05</span>, com <span class="num">p = 0,0024</span>
-        — abaixo de 0,05, rejeita H0;</li>
+        <span class="num">55,4</span>, energia <span class="num">71,7</span>.</li>
+    <li>A estatística: <span class="num">H = 12,05</span>, com <span class="num">p = 0,0024</span>,
+        abaixo de 0,05: rejeita H0.</li>
     <li>A ANOVA, sobre os mesmos dados: <span class="num">F = 1,62</span>,
-        <span class="num">p = 0,2017</span> — não rejeita.</li>
+        <span class="num">p = 0,2017</span>: não rejeita.</li>
   </ol>
   <p class="menor">O passo 3 é o coração do exemplo: energia elétrica está bem acima do centro, e o
-  comércio, abaixo. Na fila, a companhia de −452% é só o posto 1 — o mesmo lugar que teria com
+  comércio, abaixo. Na fila, a companhia de −452% é só o posto 1, o mesmo lugar que teria com
   −250%.</p>
+  <div class="figura" style="--fig-h: 27vh">
+<svg viewBox="0 0 1000 246" role="img" aria-label="As 111 margens em fila única, com o posto de cada companhia por setor">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<line x1="605.0" y1="14" x2="605.0" y2="220" stroke="#555" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="605.0" y="236.0" text-anchor="middle" font-size="16" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">centro da fila: 56,0</text>
+<text x="224.0" y="56.0" text-anchor="end" font-size="17" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Comércio (39)</text>
+<line x1="240" y1="50" x2="970" y2="50" stroke="#eee" stroke-width="20"/>
+<line x1="930.2" y1="41" x2="930.2" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="478.9" y1="41" x2="478.9" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="525.4" y1="41" x2="525.4" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="558.5" y1="41" x2="558.5" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="618.3" y1="41" x2="618.3" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="445.7" y1="41" x2="445.7" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="240.0" y1="41" x2="240.0" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="810.7" y1="41" x2="810.7" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="379.4" y1="41" x2="379.4" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="565.2" y1="41" x2="565.2" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="465.6" y1="41" x2="465.6" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="346.2" y1="41" x2="346.2" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="658.1" y1="41" x2="658.1" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="386.0" y1="41" x2="386.0" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="352.8" y1="41" x2="352.8" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="611.6" y1="41" x2="611.6" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="518.7" y1="41" x2="518.7" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="757.6" y1="41" x2="757.6" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="279.8" y1="41" x2="279.8" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="332.9" y1="41" x2="332.9" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="412.5" y1="41" x2="412.5" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="439.1" y1="41" x2="439.1" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="870.5" y1="41" x2="870.5" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="571.8" y1="41" x2="571.8" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="259.9" y1="41" x2="259.9" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="717.8" y1="41" x2="717.8" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="472.3" y1="41" x2="472.3" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="339.5" y1="41" x2="339.5" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="459.0" y1="41" x2="459.0" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="890.4" y1="41" x2="890.4" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="585.1" y1="41" x2="585.1" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="326.3" y1="41" x2="326.3" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="538.6" y1="41" x2="538.6" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="419.2" y1="41" x2="419.2" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="711.2" y1="41" x2="711.2" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="770.9" y1="41" x2="770.9" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="492.2" y1="41" x2="492.2" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="671.4" y1="41" x2="671.4" y2="59" stroke="#8D0333" stroke-width="3"/>
+<line x1="432.5" y1="41" x2="432.5" y2="59" stroke="#8D0333" stroke-width="3"/>
+<path d="M529.3 63 l-8 13 h16 z" fill="#8D0333"/>
+<text x="517.3" y="78.0" text-anchor="end" font-size="15" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">posto médio 44,6</text>
+<text x="224.0" y="118.0" text-anchor="end" font-size="17" fill="#a67c2e" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Construção civil (42)</text>
+<line x1="240" y1="112" x2="970" y2="112" stroke="#eee" stroke-width="20"/>
+<line x1="399.3" y1="103" x2="399.3" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="578.5" y1="103" x2="578.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="704.5" y1="103" x2="704.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="306.4" y1="103" x2="306.4" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="631.5" y1="103" x2="631.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="299.7" y1="103" x2="299.7" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="372.7" y1="103" x2="372.7" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="817.4" y1="103" x2="817.4" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="963.4" y1="103" x2="963.4" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="598.4" y1="103" x2="598.4" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="744.4" y1="103" x2="744.4" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="452.4" y1="103" x2="452.4" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="425.8" y1="103" x2="425.8" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="804.1" y1="103" x2="804.1" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="956.7" y1="103" x2="956.7" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="830.6" y1="103" x2="830.6" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="737.7" y1="103" x2="737.7" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="505.5" y1="103" x2="505.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="684.6" y1="103" x2="684.6" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="498.8" y1="103" x2="498.8" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="777.5" y1="103" x2="777.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="863.8" y1="103" x2="863.8" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="850.5" y1="103" x2="850.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="266.5" y1="103" x2="266.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="664.7" y1="103" x2="664.7" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="366.1" y1="103" x2="366.1" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="638.2" y1="103" x2="638.2" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="751.0" y1="103" x2="751.0" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="651.5" y1="103" x2="651.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="697.9" y1="103" x2="697.9" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="545.3" y1="103" x2="545.3" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="253.3" y1="103" x2="253.3" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="313.0" y1="103" x2="313.0" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="293.1" y1="103" x2="293.1" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="532.0" y1="103" x2="532.0" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="843.9" y1="103" x2="843.9" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="392.6" y1="103" x2="392.6" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="405.9" y1="103" x2="405.9" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="923.5" y1="103" x2="923.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="624.9" y1="103" x2="624.9" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="784.2" y1="103" x2="784.2" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<line x1="485.5" y1="103" x2="485.5" y2="121" stroke="#a67c2e" stroke-width="3"/>
+<path d="M601.0 125 l-8 13 h16 z" fill="#a67c2e"/>
+<text x="589.0" y="140.0" text-anchor="end" font-size="15" fill="#a67c2e" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">posto médio 55,4</text>
+<text x="224.0" y="180.0" text-anchor="end" font-size="17" fill="#0AB0AB" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Energia elétrica (30)</text>
+<line x1="240" y1="174" x2="970" y2="174" stroke="#eee" stroke-width="20"/>
+<line x1="943.5" y1="165" x2="943.5" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="797.5" y1="165" x2="797.5" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="790.8" y1="165" x2="790.8" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="837.3" y1="165" x2="837.3" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="512.1" y1="165" x2="512.1" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="691.3" y1="165" x2="691.3" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="903.6" y1="165" x2="903.6" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="916.9" y1="165" x2="916.9" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="678.0" y1="165" x2="678.0" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="764.3" y1="165" x2="764.3" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="877.1" y1="165" x2="877.1" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="605.0" y1="165" x2="605.0" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="936.8" y1="165" x2="936.8" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="883.7" y1="165" x2="883.7" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="286.5" y1="165" x2="286.5" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="273.2" y1="165" x2="273.2" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="824.0" y1="165" x2="824.0" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="910.3" y1="165" x2="910.3" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="591.7" y1="165" x2="591.7" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="551.9" y1="165" x2="551.9" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="970.0" y1="165" x2="970.0" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="897.0" y1="165" x2="897.0" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="359.5" y1="165" x2="359.5" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="246.6" y1="165" x2="246.6" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="319.6" y1="165" x2="319.6" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="950.1" y1="165" x2="950.1" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="724.5" y1="165" x2="724.5" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="731.1" y1="165" x2="731.1" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="644.8" y1="165" x2="644.8" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<line x1="857.2" y1="165" x2="857.2" y2="183" stroke="#0AB0AB" stroke-width="3"/>
+<path d="M709.2 187 l-8 13 h16 z" fill="#0AB0AB"/>
+<text x="721.2" y="202.0" text-anchor="start" font-size="15" fill="#0AB0AB" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">posto médio 71,7</text>
+<text x="240.0" y="236.0" text-anchor="start" font-size="15" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">posto 1: −452%</text>
+<text x="970.0" y="236.0" text-anchor="end" font-size="15" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">posto 111</text>
+</g>
+</svg>
+    <p class="legenda">Cada traço é uma companhia, na posição que a margem dela ocupa na fila única de 111. O triângulo marca o posto médio do setor.</p>
+  </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
 <section class="slide estatistica compacto">
@@ -740,7 +1003,7 @@ W, p = stats.<span class="fn">wilcoxon</span>(pares[<span class="str">"dezembro"
   Usou-se o teste de postos porque a margem é fortemente assimétrica (CVM, DFP 2024).”</div>
   <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
   Que <strong>todos</strong> os pares de setores diferem, nem <strong>por que</strong> energia
-  elétrica tem margem maior — regulação, escala, estrutura de capital? O teste diz que há
+  elétrica tem margem maior (regulação, escala, estrutura de capital?). O teste diz que há
   diferença na posição típica; a explicação é trabalho da teoria e do delineamento.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 12</div>
 </section>
@@ -853,7 +1116,7 @@ stats.wilcoxon(depois, antes)</pre>
   <h2>Os testes do Módulo III, lado a lado</h2>
   <table>
     <tr><th>A pergunta</th><th>Paramétrico</th><th>De postos</th><th>Encontro</th></tr>
-    <tr><td>A média de um grupo difere de um valor de referência?</td><td>t de uma amostra</td><td>Wilcoxon de uma amostra</td><td>10</td></tr>
+    <tr><td>A média de um grupo difere de um valor de referência?</td><td>t de uma amostra</td><td>Wilcoxon de uma amostra (o pareado aplicado a x − μ<sub>0</sub>)</td><td>10 (o t) e 12</td></tr>
     <tr><td>Dois grupos independentes diferem?</td><td>t de Welch</td><td>Mann-Whitney</td><td>11 e 12</td></tr>
     <tr><td>O mesmo caso mudou entre duas medidas?</td><td>t pareado</td><td>Wilcoxon</td><td>11 e 12</td></tr>
     <tr><td>Três ou mais grupos diferem?</td><td>ANOVA de um fator</td><td>Kruskal-Wallis</td><td>12</td></tr>
@@ -895,13 +1158,12 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
   <h2>Roteiro da prática (105 minutos)</h2>
   <ol>
     <li><strong>Executar o notebook</strong> de cima para baixo e conferir: todos os
-        <code>conferir</code> devem dar <code>[ok]</code> (15 min);</li>
+        <code>conferir</code> devem dar <code>[ok]</code> (15 min).</li>
     <li><strong>Trocar a base:</strong> <code>BASE = "ANP"</code>, com mínimo 30 e depois 10. Anotar
-        o teste indicado em cada caso e por quê (15 min);</li>
+        o teste indicado em cada caso e por quê (15 min).</li>
     <li><strong>Levar ao projeto:</strong> upload do CSV, preencher as três variáveis do projeto,
-        rodar a célula de escolha (35 min);</li>
-    <li><strong>Escrever a frase</strong> do teste indicado: teste, estatística, p, n e a mediana de
-        cada grupo — e o motivo da escolha (25 min);</li>
+        rodar a célula de escolha (35 min).</li>
+    <li><strong>Escrever a frase</strong> do teste indicado: teste, estatística, p, n e a mediana de cada grupo, e o motivo da escolha (25 min).</li>
     <li><strong>Revisão do módulo:</strong> localizar a pergunta do projeto no fluxograma e responder
         as três perguntas do notebook (15 min).</li>
   </ol>
@@ -915,16 +1177,16 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
   <h2>Síntese teórica do encontro</h2>
   <ul>
     <li><strong>Mais de dois grupos pedem um teste só</strong>: a ANOVA de um fator. Vários testes t
-        multiplicam os alarmes falsos — quase metade das vezes, com sete grupos iguais;</li>
+        multiplicam os alarmes falsos: quase metade das vezes, com sete grupos iguais.</li>
     <li><strong>F compara a variação entre os grupos com a variação dentro deles</strong>, e o η²
-        diz o tamanho do efeito: 74% da variação do preço da gasolina está entre os municípios;</li>
+        diz o tamanho do efeito: 74% da variação do preço da gasolina está entre os municípios.</li>
     <li><strong>A ANOVA diz que há diferença, não onde.</strong> Para saber onde, comparam-se os
-        pares com o α corrigido;</li>
-    <li><strong>Quando a média não representa o grupo</strong> — assimetria forte, variável ordinal
-        ou n pequeno —, compare os <strong>postos</strong>: Mann-Whitney, Wilcoxon e
-        Kruskal-Wallis;</li>
+        pares com o α corrigido.</li>
+    <li><strong>Quando a média não representa o grupo</strong> (assimetria forte, variável ordinal
+        ou n pequeno), compare os <strong>postos</strong>: Mann-Whitney, Wilcoxon e
+        Kruskal-Wallis.</li>
     <li><strong>Concordância é robustez; discordância é aviso.</strong> Na margem da CVM, a ANOVA e
-        o Kruskal-Wallis discordam porque uma companhia arrasta a média;</li>
+        o Kruskal-Wallis discordam porque uma companhia arrasta a média.</li>
     <li><strong>O teste se escolhe antes de olhar o p</strong>, por três perguntas: que tipo de
         variável, quantos grupos e se são pareados, e se a média representa os grupos.</li>
   </ul>
@@ -947,7 +1209,7 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
   <h3>Antes de sair</h3>
   <ul>
     <li>Diga, para o <strong>seu</strong> projeto: qual linha do fluxograma corresponde à sua
-        pergunta e qual coluna — médias ou postos;</li>
+        pergunta e qual coluna, médias ou postos.</li>
     <li>O próximo encontro abre o Módulo IV: <strong>correlação, regressão linear e regressão
         logística</strong>. Traga o par de variáveis quantitativas do seu projeto.</li>
   </ul>
@@ -1016,38 +1278,40 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
             de qualquer conta: <em>“o preço muda de município para município?”</em>. Todo mundo dirá
             que sim. A pergunta da estatística é outra: <strong>a diferença é maior do que a que o
             acaso produziria?</strong> Com 210 postos e médias de R$ 5,73 a R$ 6,87, a resposta vai
-            ser um sim enfático — e é bom que o primeiro exemplo seja fácil.</p>
+            ser um sim enfático, e é bom que o primeiro exemplo seja fácil.</p>
             </div>
     <div class="caixa pergunta-aula"><span class="rotulo">Pedir a previsão antes da simulação</span>
             <p>Perguntar: <em>“se eu fizer 21 testes t, cada um com 5% de alarme falso, qual a chance
             de pelo menos um dar falso?”</em>. A intuição dirá 5% ou “um pouco mais”. A fórmula dá o
             teto de <strong>65,9%</strong>; a simulação do notebook, com sete grupos iguais e semente
             fixa, dá <strong>45,7%</strong>. A diferença entre os dois existe porque os 21 testes não
-            são independentes (cada grupo entra em seis deles) — não vale a pena aprofundar, basta
-            dizer que os dois números estão muito longe de 5%.</p>
+            são independentes (cada grupo entra em seis deles). Não vale a pena aprofundar: basta
+            dizer que os dois números estão muito longe de 5%. A curva da tela 5 mostra o teto
+            subindo com o número de testes e os dois pontos dos 21 testes.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">Como explicar F sem fórmula de soma de quadrados</span>
             <p>F é uma razão: o quanto os grupos se afastam uns dos outros, dividido pelo quanto os
             casos se afastam dentro de cada grupo. No gráfico, os traços vinho (as médias) estão
             longe uns dos outros, e as nuvens de pontos de cada município são estreitas: F grande.
-            Desenhar no quadro o caso oposto — médias próximas, nuvens largas — e perguntar o que
-            acontece com F.</p>
+            A figura da tela 6 traz os dois casos lado a lado: médias afastadas com grupos
+            compactos, e médias próximas com grupos espalhados. Perguntar o que acontece com F em
+            cada um.</p>
             <p>O η² entra como o tamanho do efeito: 0,742 quer dizer que três quartos da variação do
-            preço estão <em>entre</em> os municípios. Repetir o mantra do encontro 11: o p diz se a
+            preço estão <em>entre</em> os municípios. Retomar a regra do encontro 11: o p diz se a
             diferença existe; o tamanho do efeito diz se ela importa.</p>
             </div>
     <div class="caixa gabarito"><span class="rotulo">Gabarito do exercício em duplas</span>
             <ol>
               <li><strong>Satisfação de 1 a 5 em três agências:</strong> variável ordinal → postos
-              (Kruskal-Wallis). A média de uma escala Likert não tem unidade;</li>
+              (Kruskal-Wallis). A média de uma escala Likert não tem unidade.</li>
               <li><strong>Tempo de entrega, 400 por transportadora, poucos atrasos longos:</strong>
               depende da pergunta. Se interessa o tempo <em>típico</em>, a mediana e o
               Mann-Whitney; se interessa o tempo <em>médio</em> (por exemplo, para custo), com 400
               casos o teste t de Welch é válido. É a resposta que mostra que a escolha é decisão de
-              pesquisa;</li>
+              pesquisa.</li>
               <li><strong>Faturamento de quatro filiais, 12 meses cada:</strong> n pequeno → postos
               (Kruskal-Wallis). Vale mencionar, sem aprofundar, que meses da mesma filial não são
-              independentes — é série temporal, e o problema volta no Módulo IV;</li>
+              independentes: é série temporal, e o problema volta no Módulo IV.</li>
               <li><strong>Gasolina em sete municípios:</strong> a média representa a maioria dos
               grupos, mas há municípios com 10 a 12 postos e variâncias muito diferentes → rodar a
               ANOVA <em>e</em> o Kruskal-Wallis. Eles concordam: conclusão robusta.</li>
@@ -1056,12 +1320,12 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
     <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
             <ol>
               <li><strong>Achar que a ANOVA diz quais grupos diferem.</strong> Ela diz que pelo menos
-              um difere. O “onde” exige comparações par a par com α corrigido;</li>
+              um difere. O “onde” exige comparações par a par com α corrigido.</li>
               <li><strong>Achar que “não paramétrico” é “sem hipótese”.</strong> Os testes de postos
               têm H0 e H1 como qualquer teste; a diferença é que comparam a posição típica, e não a
-              média;</li>
+              média.</li>
               <li><strong>Usar o teste de postos sempre, “por segurança”.</strong> Quando a média
-              representa os grupos, o paramétrico é mais preciso — e responde a pergunta sobre a
+              representa os grupos, o paramétrico é mais preciso, e responde a pergunta sobre a
               média, que às vezes é a que interessa.</li>
             </ol>
             </div>
@@ -1080,12 +1344,12 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
       <tr><td>O fluxograma completo e a tabela do módulo</td><td>12</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
-            <p>Repetir: <strong>“quando a média não representa o grupo, compare os postos”</strong>.
+            <p>A regra do bloco: <strong>“quando a média não representa o grupo, compare os postos”</strong>.
             O exemplo é escolhido para provocar: os mesmos 111 dados, a ANOVA diz que não há
             diferença e o Kruskal-Wallis diz que há. A turma precisa sair entendendo que nenhum dos
-            dois “errou a conta” — eles respondem a perguntas diferentes, e só um deles combina com
+            dois “errou a conta”: eles respondem a perguntas diferentes, e só um deles combina com
             dados em que uma companhia tem margem de −452%.</p>
-            <p>Dizer em voz alta a regra que impede o uso oportunista: <strong>o teste se escolhe
+            <p>Deixar explícita a regra que impede o uso oportunista: <strong>o teste se escolhe
             antes de olhar o p</strong>. Escolher o de postos porque a ANOVA “não deu” é o mesmo
             erro de mudar a pergunta depois de ver a resposta.</p>
             </div>
@@ -1094,16 +1358,17 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
             no quadro e trocar cada um pelo posto. Depois trocar o maior por um número absurdo (um
             milhão) e perguntar: <em>“o que mudou na média? E no posto?”</em>. A média dispara; o
             posto continua 5. É a ideia inteira do bloco em um minuto e sem conta à mão: quem ordena
-            é a turma, quem calcula é o notebook.</p>
+            é a turma, quem calcula é o notebook. A figura da tela 16 mostra a fila real das 111
+            companhias, com o posto médio de cada setor contra o centro de 56,0.</p>
             </div>
     <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
             <ol>
               <li><strong>Relatar a média junto com o teste de postos.</strong> Se o teste é de postos
-              porque a média não representa, a frase traz a <strong>mediana</strong>;</li>
+              porque a média não representa, a frase traz a <strong>mediana</strong>.</li>
               <li><strong>Usar Mann-Whitney em dado pareado.</strong> O mesmo posto em janeiro e em
-              dezembro não são dois grupos independentes: é Wilcoxon (ou t pareado);</li>
+              dezembro não são dois grupos independentes: é Wilcoxon (ou t pareado).</li>
               <li><strong>Ler o p da ANOVA (0,20) como “os setores são iguais”.</strong> É o erro da
-              tela e o mais grave: não rejeitar H0 não prova igualdade;</li>
+              tela e o mais grave: não rejeitar H0 não prova igualdade.</li>
               <li><strong>Confundir o fluxograma com uma ordem de tentativa.</strong> Não se “tenta”
               a ANOVA e depois o Kruskal-Wallis: responde-se às três perguntas e roda-se o indicado
               (o outro vem ao lado, como verificação de robustez).</li>
@@ -1117,6 +1382,8 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
               <tr><td>Kruskal-Wallis, preço por município</td><td>H = 136,64, p &lt; 0,001</td></tr>
               <tr><td>21 testes t: teto e simulação</td><td>65,9% e 45,7% (semente 12, 1.000 repetições)</td></tr>
               <tr><td>Pares reais com p &lt; 0,05 / com Bonferroni</td><td>15 e 14, de 21</td></tr>
+              <tr><td>Wilcoxon de uma amostra (tabela do módulo)</td><td>não foi ensinado à parte: é o
+                  Wilcoxon pareado aplicado às diferenças x − μ<sub>0</sub></td></tr>
               <tr><td>CVM: três setores com 30 ou mais companhias</td><td>111 (39 + 42 + 30)</td></tr>
               <tr><td>Medianas: comércio, construção, energia</td><td>2,1% · 5,7% · 14,8%</td></tr>
               <tr><td>Médias: comércio, construção, energia</td><td>−13,6% · 2,9% · 14,1%</td></tr>
@@ -1131,8 +1398,8 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
             </div>
     <div class="caixa falar"><span class="rotulo">O fluxograma: conduzir pelas três perguntas</span>
             <p>Os doze minutos finais são a revisão do módulo. Projetar o fluxograma e percorrê-lo
-            com dois exemplos ditados pela turma — de preferência perguntas de projetos reais. Para
-            cada um, as três perguntas em voz alta: <em>que tipo de variável? quantos grupos, e são
+            com dois exemplos ditados pela turma, de preferência perguntas de projetos reais. Para
+            cada um, as três perguntas, uma a uma: <em>que tipo de variável? quantos grupos, e são
             pareados? a média representa os grupos?</em>. Depois, a tabela do módulo, com o encontro
             em que cada teste foi ensinado: é a tela que a turma vai fotografar.</p>
             </div>
@@ -1156,12 +1423,12 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
             bloco de configuração e escreve <strong>frases</strong>.</p>
             <ol>
               <li>Primeiro, todos executam a configuração original e mostram o <code>[ok]</code> da
-              célula de escolha (Kruskal-Wallis, H = 12,05). Ninguém avança sem isso;</li>
+              célula de escolha (Kruskal-Wallis, H = 12,05). Ninguém avança sem isso.</li>
               <li>Depois, a troca de base. Com <code>BASE = "ANP"</code> e mínimo 30 sobram dois
               municípios, simétricos e com 30 ou mais postos: a célula indica o <strong>t de
               Welch</strong> (t = −2,39, p = 0,0202; o Mann-Whitney dá p = 0,0175). Com mínimo 10,
               volta a indicar <strong>Kruskal-Wallis</strong>, porque há grupos com menos de 15
-              postos e Açailândia tem assimetria de −2,2;</li>
+              postos e Açailândia tem assimetria de −2,2.</li>
               <li>Por fim, o projeto. Circular priorizando quem ainda não rodou nenhum teste sobre a
               base própria.</li>
             </ol>
@@ -1175,8 +1442,8 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
     <div class="caixa nao-falar"><span class="rotulo">O que não fazer na circulação</span>
             <ul>
               <li>Não corrigir código do estudante: se a célula falhou na base do projeto, o caminho
-              é conferir o nome do arquivo e das colunas no bloco de configuração — e, se não
-              resolver, usar a base da CVM ou da ANP e escrever a frase sobre ela;</li>
+              é conferir o nome do arquivo e das colunas no bloco de configuração e, se não
+              resolver, usar a base da CVM ou da ANP e escrever a frase sobre ela.</li>
               <li>Não aceitar frase sem a mediana (ou a média) de cada grupo, sem o n e sem o motivo
               da escolha do teste. É o critério da AV3, antecipado aqui.</li>
             </ul>
@@ -1188,10 +1455,10 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
     <div class="caixa falar"><span class="rotulo">Os aprendizados do dia</span>
             <ol>
               <li><strong>Mais de dois grupos pedem um teste só</strong>: a ANOVA. Vários testes t
-              multiplicam o alarme falso;</li>
-              <li><strong>A ANOVA diz se há diferença, não onde</strong>; o η² diz o tamanho;</li>
+              multiplicam o alarme falso.</li>
+              <li><strong>A ANOVA diz se há diferença, não onde</strong>; o η² diz o tamanho.</li>
               <li><strong>Quando a média não representa o grupo, compare os postos</strong>:
-              Mann-Whitney, Wilcoxon, Kruskal-Wallis — e relate a mediana;</li>
+              Mann-Whitney, Wilcoxon, Kruskal-Wallis, e relate a mediana.</li>
               <li><strong>O teste se escolhe antes de olhar o p</strong>, pelas três perguntas do
               fluxograma.</li>
             </ol>
@@ -1200,14 +1467,14 @@ GRUPO_PROJETO    = <span class="str">""</span>   <span class="cmt"># a coluna qu
 
             <ol>
               <li>Feche no notebook a frase do teste indicado para a base do seu projeto, com o
-              motivo da escolha. Ela entra no relatório da AV3;</li>
+              motivo da escolha. Ela entra no relatório da AV3.</li>
               <li>Leia SILVA e SAMÁ (2021), volume II, os capítulos de análise de variância e de
-              testes não paramétricos;</li>
+              testes não paramétricos.</li>
               <li>Escolha o <strong>par de variáveis quantitativas</strong> do seu projeto: o próximo
               encontro abre o Módulo IV com correlação, regressão linear e regressão logística.</li>
             </ol>
-            <p>O Módulo III não tem avaliação própria: o que se produziu nele — o intervalo, o teste
-            escolhido e a frase — vai para a AV3, no encontro 14.</p>
+            <p>O Módulo III não tem avaliação própria: o que se produziu nele (o intervalo, o teste
+            escolhido e a frase) vai para a AV3, no encontro 14.</p>
               </section>
 </main><!-- /conducao -->
 

@@ -18,7 +18,7 @@
 <marker id="sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888"/></marker>
 </defs></svg>
 
-<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O &mdash; as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
+<div id="aviso-modo" data-conducao="1">MODO CONDU&Ccedil;&Atilde;O: as instru&ccedil;&otilde;es da aula. Tecla <strong>D</strong> volta ao deck.</div>
 <div id="deck" data-conducao="1">
 <div class="barra-detalhe" data-conducao="1"><button type="button" onclick="alternaDetalhe()">Condu&ccedil;&atilde;o da aula &nbsp;&middot;&nbsp; tecla D</button></div>
 <section class="secao-projecao" id="sec-1" data-conducao="1">
@@ -41,13 +41,13 @@
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>O que vamos fazer hoje</h2>
   <p>O Módulo III perguntava <em>“os grupos diferem?”</em>. O Módulo IV pergunta <em>“as variáveis
-  andam juntas — e quanto uma muda quando a outra muda?”</em>. Uma base só, a das companhias
+  andam juntas, e quanto uma muda quando a outra muda?”</em>. Uma base só, a das companhias
   abertas da CVM, e três ferramentas.</p>
   <div class="colunas">
     <div>
       <h3>Parte 1: correlação</h3>
       <p>O coeficiente de <strong>Pearson</strong>, o de <strong>Spearman</strong> como alternativa,
-      o <strong>R²</strong> — e o que nenhum deles diz sobre causa. Receita e lucro de 449
+      o <strong>R²</strong>, e o que nenhum deles diz sobre causa. Receita e lucro de 449
       companhias, em reais e em escala logarítmica.</p>
     </div>
     <div>
@@ -59,7 +59,7 @@
   </div>
   <div class="instrucao"><span class="rotulo">O fio que liga os dois blocos</span>
   A correlação diz <strong>se</strong> as variáveis andam juntas; a regressão diz
-  <strong>quanto</strong> — e prevê. A logística é a mesma ideia para quando a resposta é
+  <strong>quanto</strong>, e prevê. A logística é a mesma ideia para quando a resposta é
   <strong>sim ou não</strong>. Nenhuma das três, sozinha, diz o que causa o quê.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
@@ -76,7 +76,7 @@
   lucro maior? E, se tem, <strong>o quanto</strong> as duas coisas andam juntas?</div>
   <table>
     <tr><th>Item</th><th>Valor</th></tr>
-    <tr><td>Fonte</td><td>CVM — Demonstrações Financeiras Padronizadas (DFP 2024), DRE consolidada</td></tr>
+    <tr><td>Fonte</td><td>CVM, Demonstrações Financeiras Padronizadas (DFP 2024), DRE consolidada</td></tr>
     <tr><td>Casos</td><td><strong>449 companhias</strong> com receita positiva</td></tr>
     <tr><td>Com lucro / com prejuízo</td><td>318 / 131 (29,2%)</td></tr>
     <tr><td>Receita</td><td>de R$ 0,3 milhão a R$ 490,8 bilhões (a Petrobras)</td></tr>
@@ -144,6 +144,8 @@
 <section class="slide compacto">
   <img class="logo-slide" src="assets/logo-ufma.png" alt="">
   <h2>Receita e lucro, em reais: r = 0,69, puxado pelos gigantes</h2>
+  <div class="colunas" style="align-items:center">
+  <div>
   <table>
     <tr><th>O que se calculou</th><th>Valor</th></tr>
     <tr><td>Pearson, as 449 companhias</td><td><strong>r = 0,685</strong></td></tr>
@@ -151,12 +153,508 @@
     <tr><td>Pearson, sem as 5 maiores receitas</td><td>r = 0,483</td></tr>
     <tr><td>Spearman, as 449 companhias</td><td><strong>ρ = 0,512</strong></td></tr>
   </table>
-  <p>As cinco maiores receitas — Petrobras, JBS, Banco do Brasil, Raízen e Bradesco — vão de
+  <p>As cinco maiores receitas (Petrobras, JBS, Banco do Brasil, Raízen e Bradesco) vão de
   R$ 213 a R$ 491 bilhões. A mediana das 449 é R$ 2,1 bilhões. Em reais, essas cinco ocupam quase
   todo o gráfico, e o r de Pearson é, em boa parte, a opinião delas.</p>
+  </div>
+  <div style="flex:1.25">
+  <div class="figura">
+<!--FIG:F13_REAIS-->
+<svg viewBox="0 0 1000 356" role="img" aria-label="Dispersão de receita e lucro em reais das 449 companhias, com as cinco maiores destacadas">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<line x1="80.0" y1="20" x2="80.0" y2="300" stroke="#eee"/>
+<text x="80.0" y="322.0" text-anchor="middle" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0</text>
+<line x1="256.0" y1="20" x2="256.0" y2="300" stroke="#eee"/>
+<text x="256.0" y="322.0" text-anchor="middle" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">100</text>
+<line x1="432.0" y1="20" x2="432.0" y2="300" stroke="#eee"/>
+<text x="432.0" y="322.0" text-anchor="middle" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">200</text>
+<line x1="608.0" y1="20" x2="608.0" y2="300" stroke="#eee"/>
+<text x="608.0" y="322.0" text-anchor="middle" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">300</text>
+<line x1="784.0" y1="20" x2="784.0" y2="300" stroke="#eee"/>
+<text x="784.0" y="322.0" text-anchor="middle" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">400</text>
+<line x1="960.0" y1="20" x2="960.0" y2="300" stroke="#eee"/>
+<text x="960.0" y="322.0" text-anchor="middle" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">500</text>
+<line x1="80" y1="300.0" x2="960" y2="300.0" stroke="#eee"/>
+<text x="72.0" y="305.0" text-anchor="end" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">-10</text>
+<line x1="80" y1="244.0" x2="960" y2="244.0" stroke="#bbb"/>
+<text x="72.0" y="249.0" text-anchor="end" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0</text>
+<line x1="80" y1="188.0" x2="960" y2="188.0" stroke="#eee"/>
+<text x="72.0" y="193.0" text-anchor="end" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">10</text>
+<line x1="80" y1="132.0" x2="960" y2="132.0" stroke="#eee"/>
+<text x="72.0" y="137.0" text-anchor="end" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">20</text>
+<line x1="80" y1="76.0" x2="960" y2="76.0" stroke="#eee"/>
+<text x="72.0" y="81.0" text-anchor="end" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">30</text>
+<line x1="80" y1="20.0" x2="960" y2="20.0" stroke="#eee"/>
+<text x="72.0" y="25.0" text-anchor="end" font-size="19.5" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">40</text>
+<circle cx="95.7" cy="242.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="150.7" cy="185.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="242.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="92.8" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.1" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.1" cy="243.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="103.4" cy="232.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.3" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="105.3" cy="197.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="139.3" cy="218.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="98.1" cy="234.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="166.2" cy="223.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.6" cy="245.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="92.4" cy="236.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.4" cy="251.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="126.8" cy="238.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="188.0" cy="223.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.5" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.2" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.1" cy="240.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="93.6" cy="239.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="142.0" cy="228.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.2" cy="243.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="243.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.3" cy="239.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.1" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.7" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.4" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="104.5" cy="249.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="155.0" cy="211.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="99.7" cy="219.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.7" cy="242.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="178.3" cy="212.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="244.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="124.8" cy="230.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.4" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.1" cy="239.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.2" cy="238.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="118.3" cy="236.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.7" cy="248.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="93.1" cy="236.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="246.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.0" cy="224.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.3" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="159.8" cy="222.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.3" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.7" cy="241.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="106.2" cy="234.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.9" cy="248.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="342.0" cy="222.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.9" cy="231.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="110.7" cy="230.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.7" cy="244.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="97.4" cy="238.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.9" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.0" cy="236.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="100.0" cy="240.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.5" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="108.1" cy="242.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.1" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.5" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="130.9" cy="247.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.5" cy="254.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.8" cy="239.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.5" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="169.0" cy="222.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="113.7" cy="278.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="96.7" cy="241.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="102.2" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="240.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="90.8" cy="223.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.7" cy="243.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="166.1" cy="251.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="97.0" cy="240.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.2" cy="237.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="152.3" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="237.4" cy="160.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.8" cy="241.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="242.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.1" cy="241.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="142.3" cy="233.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.0" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="247.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.5" cy="236.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.7" cy="244.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.5" cy="234.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.1" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="244.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="197.8" cy="251.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.9" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.6" cy="245.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.0" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.2" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.8" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="239.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.7" cy="241.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.5" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="95.9" cy="246.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.0" cy="233.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.2" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="97.0" cy="242.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.4" cy="237.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="244.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="244.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="248.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.9" cy="246.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.9" cy="240.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.4" cy="240.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.4" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.4" cy="243.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="105.0" cy="230.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="96.7" cy="238.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="109.0" cy="218.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.1" cy="207.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.6" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.8" cy="244.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="244.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="252.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.0" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.2" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.6" cy="240.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="106.0" cy="240.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.7" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.7" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="114.4" cy="295.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="98.6" cy="218.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.1" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.1" cy="246.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.5" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.4" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.2" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="95.0" cy="239.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="105.3" cy="186.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.5" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.2" cy="243.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.6" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="242.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="95.4" cy="249.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.0" cy="248.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.8" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="100.4" cy="251.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.7" cy="249.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.3" cy="245.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.4" cy="247.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="92.6" cy="241.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.0" cy="244.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.0" cy="245.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.6" cy="242.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="114.1" cy="241.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.5" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.5" cy="242.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="242.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="105.0" cy="229.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.7" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="163.4" cy="283.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.7" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.9" cy="239.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="145.6" cy="233.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="245.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.2" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="92.5" cy="241.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="150.1" cy="204.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="90.4" cy="241.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="93.9" cy="236.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.8" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.8" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="90.2" cy="231.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.6" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.7" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.8" cy="242.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.1" cy="260.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="103.7" cy="242.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="112.4" cy="232.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="248.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="130.9" cy="242.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.6" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.3" cy="241.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.3" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.6" cy="241.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.6" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="241.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.7" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="136.5" cy="236.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.7" cy="245.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.2" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.7" cy="241.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.8" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="244.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="242.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.6" cy="242.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="245.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.1" cy="241.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.2" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.9" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="245.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.3" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.4" cy="244.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.9" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.6" cy="246.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="240.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.8" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="122.4" cy="294.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="245.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="127.9" cy="249.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="156.9" cy="252.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.8" cy="241.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.1" cy="241.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.5" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="315.0" cy="229.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="90.7" cy="239.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="92.3" cy="249.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.2" cy="227.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="442.6" cy="73.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="198.0" cy="218.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.5" cy="240.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.6" cy="240.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="383.2" cy="208.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="101.5" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.5" cy="241.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.8" cy="245.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="246.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="253.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.1" cy="241.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.7" cy="242.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="245.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="100.3" cy="234.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.6" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.4" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="216.2" cy="311.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.9" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.2" cy="242.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.3" cy="242.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.1" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.8" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.3" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="143.6" cy="190.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.7" cy="243.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="93.4" cy="241.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.4" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="97.9" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.4" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.5" cy="242.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="113.1" cy="257.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="146.9" cy="241.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.2" cy="243.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.0" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="252.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="157.4" cy="289.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.4" cy="240.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="242.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.9" cy="241.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.0" cy="242.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="92.1" cy="235.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.0" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="95.9" cy="242.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.2" cy="239.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.8" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.0" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.1" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.0" cy="241.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.1" cy="242.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="102.8" cy="238.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.5" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.0" cy="245.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="89.6" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="256.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.0" cy="241.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.2" cy="241.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="163.4" cy="283.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.4" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="93.5" cy="240.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="125.5" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.6" cy="238.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.2" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="267.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.8" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.0" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="107.0" cy="241.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.5" cy="245.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="99.3" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="245.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.4" cy="244.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="107.0" cy="250.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.5" cy="160.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="111.5" cy="232.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="148.4" cy="237.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="104.4" cy="234.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.8" cy="245.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.3" cy="242.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.5" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="99.8" cy="242.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="244.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="140.0" cy="252.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.0" cy="245.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.8" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="117.4" cy="239.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.0" cy="233.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="283.5" cy="233.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="91.8" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="119.9" cy="228.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.6" cy="190.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="245.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="85.3" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="86.5" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.6" cy="242.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="243.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="243.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.2" cy="243.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.0" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.4" cy="241.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.2" cy="244.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="98.8" cy="240.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="146.9" cy="208.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="98.8" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.5" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.5" cy="245.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.4" cy="242.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.7" cy="243.7" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.9" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.9" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.1" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.7" cy="242.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="87.0" cy="241.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.7" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="95.1" cy="237.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.3" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="101.0" cy="240.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="93.7" cy="241.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="244.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="114.6" cy="232.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.3" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.6" cy="239.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.6" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="321.4" cy="168.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.4" cy="243.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.0" cy="244.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.8" cy="242.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.3" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="80.2" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="88.7" cy="243.4" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="198.0" cy="218.2" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.7" cy="243.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="108.9" cy="239.9" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.6" cy="241.1" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="105.4" cy="237.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.9" cy="243.6" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="82.9" cy="242.3" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="102.6" cy="239.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="83.0" cy="242.5" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="84.7" cy="244.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="81.3" cy="243.8" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="94.5" cy="243.0" r="3.2" fill="#0AB0AB" opacity="0.55"/>
+<circle cx="943.9" cy="36.7" r="7" fill="#8D0333"/>
+<text x="931.9" y="28.7" text-anchor="end" font-size="20.8" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Petrobras</text>
+<circle cx="813.8" cy="184.1" r="7" fill="#8D0333"/>
+<text x="813.8" y="208.1" text-anchor="middle" font-size="20.8" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">JBS</text>
+<circle cx="561.4" cy="80.6" r="7" fill="#8D0333"/>
+<text x="561.4" y="68.6" text-anchor="middle" font-size="20.8" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Banco do Brasil</text>
+<circle cx="468.0" cy="240.6" r="7" fill="#8D0333"/>
+<text x="468.0" y="266.6" text-anchor="middle" font-size="20.8" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Raízen</text>
+<circle cx="455.3" cy="145.8" r="7" fill="#8D0333"/>
+<text x="445.3" y="150.8" text-anchor="end" font-size="20.8" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Bradesco</text>
+<text x="520.0" y="348.0" text-anchor="middle" font-size="19.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">Receita (R$ bilhões)</text>
+<text x="22" y="160.0" text-anchor="middle" font-size="15" fill="#555" transform="rotate(-90 22 160.0)" font-family="Source Sans 3, Calibri, sans-serif">Lucro (R$ bilhões)</text>
+<text x="104.6" y="39.6" text-anchor="start" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">444 companhias espremidas</text>
+<text x="104.6" y="56.4" text-anchor="start" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">perto da origem</text>
+<path d="M111.7 64.8 L94.1 216.0" fill="none" stroke="#0AB0AB" stroke-width="1.8" marker-end="url(#sg)"/>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">As 449 companhias em reais (CVM, DFP 2024). Em vinho, as cinco maiores receitas.</p>
+  </div>
+  </div>
+  </div>
   <div class="alerta"><span class="rotulo">O sintoma</span>
   Tirar <strong>uma</strong> companhia derruba o r de 0,69 para 0,57. Uma medida que muda tanto
-  com um caso não está descrevendo as 449: está descrevendo os extremos — o mesmo problema da média
+  com um caso não está descrevendo as 449: está descrevendo os extremos. É o mesmo problema da média
   da margem no encontro 12.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
@@ -165,7 +663,7 @@
   <h2>Spearman: a correlação dos postos</h2>
   <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
   O coeficiente de <strong>Spearman (ρ)</strong> é o de Pearson calculado sobre os
-  <strong>postos</strong> — a posição de cada companhia na fila da receita e na fila do lucro, como
+  <strong>postos</strong>: a posição de cada companhia na fila da receita e na fila do lucro, como
   nos testes do encontro 12. Ele mede se as duas sobem juntas, <strong>em qualquer ritmo</strong>, e
   a Petrobras vira apenas “a primeira da fila”.</div>
   <div class="limites">
@@ -177,7 +675,7 @@
     só enxerga relações que sobem (ou descem) o tempo todo.</div>
   </div>
   <p>Na receita e no lucro em reais, <strong>ρ = 0,512</strong> contra r = 0,685: a associação existe
-  e é moderada — mais fraca do que o Pearson, inflado pelos gigantes, fazia parecer.</p>
+  e é moderada, mais fraca do que o Pearson, inflado pelos gigantes, fazia parecer.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 <section class="slide compacto">
@@ -189,6 +687,369 @@
     <tr><th>log10 da receita (R$ mi)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
     <tr><td>Receita</td><td>R$ 10 mi</td><td>R$ 100 mi</td><td>R$ 1 bi</td><td>R$ 10 bi</td><td>R$ 100 bi</td></tr>
   </table>
+  <div class="figura" style="--fig-h: 30vh">
+<!--FIG:F13_LOG-->
+<svg viewBox="0 0 1000 312" role="img" aria-label="Dispersão de receita e lucro em escala logarítmica das 318 companhias com lucro">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<line x1="70.0" y1="16" x2="70.0" y2="260" stroke="#eee"/>
+<text x="70.0" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,1 mi</text>
+<line x1="197.1" y1="16" x2="197.1" y2="260" stroke="#eee"/>
+<text x="197.1" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1 mi</text>
+<line x1="324.3" y1="16" x2="324.3" y2="260" stroke="#eee"/>
+<text x="324.3" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">10 mi</text>
+<line x1="451.4" y1="16" x2="451.4" y2="260" stroke="#eee"/>
+<text x="451.4" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">100 mi</text>
+<line x1="578.6" y1="16" x2="578.6" y2="260" stroke="#eee"/>
+<text x="578.6" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1 bi</text>
+<line x1="705.7" y1="16" x2="705.7" y2="260" stroke="#eee"/>
+<text x="705.7" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">10 bi</text>
+<line x1="832.9" y1="16" x2="832.9" y2="260" stroke="#eee"/>
+<text x="832.9" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">100 bi</text>
+<line x1="960.0" y1="16" x2="960.0" y2="260" stroke="#eee"/>
+<text x="960.0" y="282.0" text-anchor="middle" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1 tri</text>
+<line x1="70" y1="260.0" x2="960" y2="260.0" stroke="#eee"/>
+<text x="62.0" y="265.0" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,01 mi</text>
+<line x1="70" y1="225.1" x2="960" y2="225.1" stroke="#eee"/>
+<text x="62.0" y="230.1" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,1 mi</text>
+<line x1="70" y1="190.3" x2="960" y2="190.3" stroke="#eee"/>
+<text x="62.0" y="195.3" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1 mi</text>
+<line x1="70" y1="155.4" x2="960" y2="155.4" stroke="#eee"/>
+<text x="62.0" y="160.4" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">10 mi</text>
+<line x1="70" y1="120.6" x2="960" y2="120.6" stroke="#eee"/>
+<text x="62.0" y="125.6" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">100 mi</text>
+<line x1="70" y1="85.7" x2="960" y2="85.7" stroke="#eee"/>
+<text x="62.0" y="90.7" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1 bi</text>
+<line x1="70" y1="50.9" x2="960" y2="50.9" stroke="#eee"/>
+<text x="62.0" y="55.9" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">10 bi</text>
+<line x1="70" y1="16.0" x2="960" y2="16.0" stroke="#eee"/>
+<text x="62.0" y="21.0" text-anchor="end" font-size="18.9" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">100 bi</text>
+<circle cx="888.4" cy="34.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="699.3" cy="103.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="782.5" cy="50.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="520.7" cy="108.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="688.1" cy="105.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="646.8" cy="139.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="610.0" cy="112.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="721.4" cy="74.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="657.1" cy="110.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="725.7" cy="53.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="772.8" cy="62.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="581.0" cy="141.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="707.3" cy="77.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="793.5" cy="66.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="686.2" cy="80.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="759.7" cy="84.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="805.9" cy="65.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="547.3" cy="122.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="570.3" cy="116.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="444.2" cy="134.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="558.7" cy="105.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="637.4" cy="92.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="691.6" cy="87.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="775.3" cy="70.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="611.3" cy="114.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="433.3" cy="219.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="580.0" cy="112.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="694.2" cy="88.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="313.8" cy="213.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="552.3" cy="129.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="619.3" cy="105.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="596.0" cy="133.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="785.8" cy="59.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="712.1" cy="63.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="619.0" cy="104.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="800.7" cy="59.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="757.3" cy="72.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="614.3" cy="123.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="637.4" cy="90.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="681.0" cy="85.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="748.7" cy="81.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="911.7" cy="49.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="689.4" cy="81.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="693.2" cy="66.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="594.0" cy="146.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="789.2" cy="65.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="563.0" cy="129.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="643.9" cy="98.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="727.6" cy="78.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="854.8" cy="65.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="667.9" cy="74.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="736.4" cy="72.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="581.4" cy="118.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="705.0" cy="87.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="541.1" cy="143.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="661.9" cy="81.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="712.9" cy="94.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="598.2" cy="128.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="731.6" cy="104.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="637.4" cy="123.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="634.2" cy="88.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="568.8" cy="139.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="795.2" cy="65.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="703.0" cy="95.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="718.7" cy="120.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="603.5" cy="91.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="678.5" cy="65.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="525.4" cy="114.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="703.8" cy="92.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="680.8" cy="84.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="783.7" cy="121.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="826.7" cy="44.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="673.5" cy="98.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="581.7" cy="108.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="589.5" cy="98.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="775.6" cy="75.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="607.3" cy="132.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="517.7" cy="118.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="630.1" cy="81.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="496.1" cy="149.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="651.1" cy="77.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="587.7" cy="126.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="487.5" cy="136.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="538.4" cy="126.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="585.3" cy="120.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="559.5" cy="115.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="653.5" cy="122.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="604.8" cy="88.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="603.1" cy="98.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="630.8" cy="134.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="655.1" cy="76.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="556.8" cy="152.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="703.7" cy="107.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="649.8" cy="82.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="387.3" cy="135.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="518.8" cy="137.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="382.9" cy="144.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="654.1" cy="91.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="595.5" cy="92.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="671.2" cy="102.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="595.0" cy="112.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="725.1" cy="72.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="576.0" cy="129.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="702.9" cy="85.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="733.4" cy="62.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="625.7" cy="57.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="494.9" cy="101.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="600.9" cy="117.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="591.1" cy="128.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="651.8" cy="91.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="727.3" cy="91.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="652.3" cy="109.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="528.0" cy="127.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="708.8" cy="62.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="588.0" cy="114.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="641.2" cy="105.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="535.9" cy="128.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="626.7" cy="122.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="696.8" cy="88.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="502.4" cy="175.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="725.7" cy="50.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="522.9" cy="110.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="612.3" cy="113.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="573.0" cy="125.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="603.8" cy="149.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="603.5" cy="106.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="621.1" cy="141.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="580.1" cy="115.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="687.2" cy="95.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="618.1" cy="108.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="423.3" cy="137.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="478.4" cy="116.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="742.2" cy="98.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="616.3" cy="132.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="641.1" cy="101.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="576.0" cy="165.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="623.0" cy="102.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="725.1" cy="71.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="530.6" cy="138.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="696.0" cy="102.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="645.3" cy="90.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="778.4" cy="76.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="557.2" cy="123.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="686.7" cy="98.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="782.0" cy="56.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="676.7" cy="95.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="580.6" cy="119.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="692.5" cy="81.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="667.6" cy="105.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="622.2" cy="124.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="621.9" cy="140.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="583.9" cy="139.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="575.0" cy="140.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="675.8" cy="73.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="573.0" cy="124.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="515.0" cy="142.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="672.9" cy="114.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="579.9" cy="116.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="620.6" cy="104.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="511.3" cy="120.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="722.2" cy="107.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="739.3" cy="74.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="518.3" cy="114.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="764.4" cy="103.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="599.6" cy="136.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="664.0" cy="100.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="392.5" cy="202.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="631.1" cy="99.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="659.0" cy="159.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="583.1" cy="95.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="528.7" cy="150.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="770.1" cy="81.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="656.3" cy="110.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="602.7" cy="99.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="580.2" cy="182.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="603.7" cy="104.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="572.3" cy="108.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="663.2" cy="98.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="604.2" cy="102.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="693.8" cy="105.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="592.8" cy="178.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="384.1" cy="176.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="475.6" cy="134.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="505.8" cy="94.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="653.4" cy="117.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="920.7" cy="31.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="621.4" cy="100.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="637.9" cy="96.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="478.3" cy="123.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="641.5" cy="116.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="848.8" cy="71.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="678.0" cy="89.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="489.1" cy="149.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="876.5" cy="93.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="512.3" cy="130.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="693.7" cy="69.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="872.8" cy="34.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="810.8" cy="62.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="630.8" cy="92.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="672.0" cy="94.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="862.9" cy="57.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="429.9" cy="141.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="642.0" cy="97.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="548.7" cy="127.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="587.3" cy="100.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="633.1" cy="108.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="430.4" cy="160.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="713.5" cy="78.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="631.3" cy="123.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="594.6" cy="110.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="635.3" cy="130.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="591.2" cy="104.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="656.8" cy="104.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="621.0" cy="116.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="562.4" cy="129.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="776.7" cy="51.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="602.6" cy="112.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="690.8" cy="97.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="565.3" cy="124.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="706.6" cy="117.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="657.5" cy="183.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="682.2" cy="101.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="779.5" cy="97.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="591.8" cy="113.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="584.4" cy="196.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="640.1" cy="94.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="489.8" cy="155.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="577.6" cy="105.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="582.0" cy="100.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="623.7" cy="108.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="685.2" cy="79.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="700.2" cy="109.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="669.9" cy="90.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="634.2" cy="118.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="636.6" cy="110.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="589.6" cy="118.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="624.1" cy="95.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="609.6" cy="109.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="719.9" cy="87.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="568.4" cy="118.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="672.0" cy="102.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="662.3" cy="95.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="590.3" cy="99.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="658.0" cy="102.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="478.4" cy="172.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="874.7" cy="42.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="691.2" cy="93.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="758.2" cy="171.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="599.8" cy="84.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="435.7" cy="158.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="472.5" cy="122.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="656.6" cy="119.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="533.0" cy="124.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="586.9" cy="134.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="729.3" cy="100.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="398.4" cy="130.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="710.8" cy="105.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="488.1" cy="139.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="695.0" cy="44.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="737.8" cy="75.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="780.7" cy="82.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="723.8" cy="77.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="613.8" cy="102.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="630.7" cy="115.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="712.2" cy="101.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="644.2" cy="120.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="747.4" cy="89.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="693.2" cy="75.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="840.9" cy="75.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="683.5" cy="120.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="750.9" cy="70.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="642.5" cy="51.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="577.2" cy="110.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="650.6" cy="123.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="618.5" cy="107.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="507.9" cy="111.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="518.4" cy="114.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="558.8" cy="118.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="547.0" cy="126.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="664.7" cy="95.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="709.2" cy="90.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="779.4" cy="57.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="709.3" cy="123.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="508.2" cy="137.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="615.3" cy="106.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="525.3" cy="128.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="541.1" cy="138.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="622.4" cy="139.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="416.2" cy="149.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="632.6" cy="104.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="654.6" cy="100.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="576.9" cy="170.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="697.3" cy="82.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="562.4" cy="136.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="715.4" cy="91.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="692.0" cy="96.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="743.0" cy="74.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="486.2" cy="121.3" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="631.9" cy="90.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="521.4" cy="152.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="850.3" cy="46.4" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="496.6" cy="152.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="604.8" cy="110.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="561.1" cy="119.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="468.6" cy="135.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="666.8" cy="119.8" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="810.8" cy="62.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="619.8" cy="123.1" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="733.1" cy="90.5" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="618.6" cy="95.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="726.0" cy="83.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="607.0" cy="124.6" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="605.5" cy="103.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="719.5" cy="89.9" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="607.6" cy="106.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="632.7" cy="219.0" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="561.4" cy="135.7" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<circle cx="695.0" cy="112.2" r="3.2" fill="#0AB0AB" opacity="0.6"/>
+<text x="515.0" y="306.0" text-anchor="middle" font-size="20.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">Receita (R$, escala log10: cada linha é 10 vezes a anterior)</text>
+<text x="16" y="138.0" text-anchor="middle" font-size="15" fill="#555" transform="rotate(-90 16 138.0)" font-family="Source Sans 3, Calibri, sans-serif">Lucro (R$, log10)</text>
+<text x="95.4" y="36.9" text-anchor="start" font-size="21.6" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">318 companhias com lucro</text>
+<text x="95.4" y="56.1" text-anchor="start" font-size="21.6" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">r = 0,742 · ρ = 0,768</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">As mesmas companhias da tela anterior, agora em log10: a nuvem vira uma faixa que sobe, sem ninguém dominar o gráfico.</p>
+  </div>
   <div class="colunas">
     <div class="exemplo"><span class="rotulo">O que se ganha</span>
     Em log, só as companhias com lucro: <strong>Pearson r = 0,742</strong> e <strong>Spearman
@@ -196,7 +1057,7 @@
     pontos.</div>
     <div class="alerta"><span class="rotulo">O que se perde</span>
     O logaritmo só existe para valores <strong>positivos</strong>. O lucro em log só pode ser lido
-    para as <strong>318 companhias com lucro</strong>: as 131 com prejuízo saem — e voltam na
+    para as <strong>318 companhias com lucro</strong>: as 131 com prejuízo saem, e voltam na
     regressão logística.</div>
   </div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
@@ -208,7 +1069,7 @@
     <span class="expr">R²<span class="op">=</span>r²<span class="op">=</span>0,742²<span class="op">=</span>0,550</span>
     <span class="legenda-formula"><strong>Em linguagem corrente:</strong> 55% da variação do log do
     lucro entre as companhias <strong>acompanha</strong> a variação do log da receita; os outros 45%
-    vêm de outras coisas — setor, endividamento, ciclo, gestão.</span>
+    vêm de outras coisas: setor, endividamento, ciclo, gestão.</span>
   </div>
   <table>
     <tr><th>r</th><th>0,9</th><th>0,742</th><th>0,6</th><th>0,4</th><th>0,2</th></tr>
@@ -226,6 +1087,41 @@
   <h2>O que nenhum dos três números diz: causa</h2>
   <p>r, ρ e R² descrevem o quanto as variáveis andam juntas. Nenhum deles diz que a receita
   <strong>faz</strong> o lucro subir. As três razões do encontro 6, agora com a base da CVM:</p>
+  <div class="figura" style="--fig-h: 21vh">
+<!--FIG:F13_CAUSA-->
+<svg viewBox="0 0 990 194" role="img" aria-label="Três diagramas: confusão, causa inversa e seleção">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<rect x="110" y="0" width="120" height="44" rx="8" fill="#fbf5ea" stroke="#a67c2e" stroke-width="2"/>
+<text x="170.0" y="28.0" text-anchor="middle" font-size="18.4" fill="#a67c2e" font-weight="700" font-family="Montserrat, Calibri, sans-serif">Setor</text>
+<rect x="10" y="96" width="130" height="44" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+<text x="75.0" y="124.0" text-anchor="middle" font-size="18.4" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">Receita</text>
+<rect x="200" y="96" width="130" height="44" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+<text x="265.0" y="124.0" text-anchor="middle" font-size="18.4" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">Lucro</text>
+<path d="M150 46 L95 92" stroke="#a67c2e" stroke-width="2.2" marker-end="url(#sd)"/>
+<path d="M190 46 L245 92" stroke="#a67c2e" stroke-width="2.2" marker-end="url(#sd)"/>
+<path d="M142 118 H196" stroke="#999" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="170.0" y="168.0" text-anchor="middle" font-size="17.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">Confusão: uma terceira variável</text>
+<text x="170.0" y="186.0" text-anchor="middle" font-size="17.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">mexe nas duas</text>
+<rect x="380" y="96" width="130" height="44" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+<text x="445.0" y="124.0" text-anchor="middle" font-size="18.4" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">Receita</text>
+<rect x="590" y="96" width="130" height="44" rx="8" fill="#faf3f6" stroke="#8D0333" stroke-width="2"/>
+<text x="655.0" y="124.0" text-anchor="middle" font-size="18.4" fill="#8D0333" font-weight="700" font-family="Montserrat, Calibri, sans-serif">Lucro</text>
+<path d="M512 110 H586" stroke="#8D0333" stroke-width="2.2" marker-end="url(#sv)"/>
+<path d="M588 130 H514" stroke="#8D0333" stroke-width="2.2" marker-end="url(#sv)"/>
+<text x="550.0" y="168.0" text-anchor="middle" font-size="17.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">Causa inversa: a seta pode</text>
+<text x="550.0" y="186.0" text-anchor="middle" font-size="17.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">apontar para o outro lado</text>
+<rect x="780" y="20" width="200" height="130" rx="10" fill="none" stroke="#bbb" stroke-dasharray="5 4"/>
+<rect x="810" y="60" width="140" height="70" rx="8" fill="#eefafa" stroke="#0AB0AB" stroke-width="2"/>
+<text x="880.0" y="42.0" text-anchor="middle" font-size="16.1" fill="#888" font-family="Source Sans 3, Calibri, sans-serif">empresas brasileiras</text>
+<text x="880.0" y="90.0" text-anchor="middle" font-size="17.2" fill="#077f7b" font-weight="700" font-family="Montserrat, Calibri, sans-serif">abertas</text>
+<text x="880.0" y="112.0" text-anchor="middle" font-size="17.2" fill="#077f7b" font-weight="700" font-family="Montserrat, Calibri, sans-serif">e com lucro</text>
+<text x="880.0" y="168.0" text-anchor="middle" font-size="17.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">Seleção: a nuvem é</text>
+<text x="880.0" y="186.0" text-anchor="middle" font-size="17.2" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">um recorte</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">Linha tracejada: a associação que o r mede. As setas: o que o r não sabe distinguir.</p>
+  </div>
   <div class="cartoes-3">
     <div class="cartao">
       <h4>Variável de confusão</h4>
@@ -235,7 +1131,7 @@
     <div class="cartao alt-dourado">
       <h4>Causa inversa</h4>
       <p>O lucro de ontem financia a expansão que gera a receita de hoje. A seta pode apontar para
-      o outro lado — e o r é simétrico, não sabe.</p>
+      o outro lado, e o r, simétrico, não sabe distinguir.</p>
     </div>
     <div class="cartao alt-verde">
       <h4>Seleção</h4>
@@ -251,7 +1147,7 @@
   <h2>Exercício: o que a frase autoriza dizer?</h2>
   <div class="instrucao"><span class="rotulo">Em duplas, 10 minutos</span>
   Para cada frase, digam se ela <strong>pode</strong> ir para o relatório, se precisa de
-  <strong>ressalva</strong> ou se está <strong>errada</strong> — e reescrevam as que não podem.</div>
+  <strong>ressalva</strong> ou se está <strong>errada</strong>, e reescrevam as que não podem.</div>
   <ol>
     <li>“A correlação entre receita e lucro é de 0,69: aumentar a receita aumenta o lucro.”</li>
     <li>“Entre as 318 companhias com lucro, a correlação entre o log da receita e o log do lucro é
@@ -281,7 +1177,7 @@
   duas coisas: ajusta a <strong>reta</strong> que passa pelo meio da nuvem.</p>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
   O <strong>coeficiente</strong> da regressão é um <strong>efeito na unidade de y</strong>: quanto y
-  muda quando x aumenta 1. Ler a regressão é ler o coeficiente nessa unidade — e saber em que
+  muda quando x aumenta 1. Ler a regressão é ler o coeficiente nessa unidade e saber em que
   escala estão x e y.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
@@ -293,9 +1189,9 @@
   <strong>Simples</strong>: uma reta que prevê y a partir de um x. O coeficiente <strong>b</strong>
   é quanto y muda quando x aumenta 1.<br>
   <strong>Múltipla</strong>: a mesma ideia com vários x. Cada coeficiente é o efeito daquela
-  variável <strong>com as outras fixas</strong> — por exemplo, o efeito do setor entre companhias
+  variável <strong>com as outras fixas</strong>. Por exemplo, o efeito do setor entre companhias
   com a mesma receita.<br>
-  <strong>Resíduo</strong>: o que a reta errou num caso — o valor observado menos o previsto.</div>
+  <strong>Resíduo</strong>: o que a reta errou num caso: o valor observado menos o previsto.</div>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     Quando y é <strong>quantitativo</strong> e se quer o tamanho da relação, comparar o efeito de
@@ -315,7 +1211,7 @@
     <span class="simbolos">
       <span><b>ŷ</b>o valor previsto de y</span>
       <span><b>a</b>o intercepto: ŷ quando x = 0; a reta passa pelo ponto das médias, a = ȳ − b·x̄</span>
-      <span><b>b</b>a inclinação: quanto y muda quando x aumenta 1 — o efeito</span>
+      <span><b>b</b>a inclinação: quanto y muda quando x aumenta 1, ou seja, o efeito</span>
       <span><b>r, s<sub>x</sub>, s<sub>y</sub></b>a correlação e os dois desvios padrão</span>
       <span><b>e</b>o resíduo: o observado menos o previsto</span>
     </span>
@@ -717,7 +1613,7 @@
   </table>
   <p class="menor">Com a <strong>mesma receita</strong>, as companhias de energia elétrica lucram 2,5
   vezes mais. Previsão para R$ 1 bi: R$ 89,9 mi (outro setor) e R$ 226,6 mi (energia). É a tabela que
-  o notebook entrega — o <code>summary()</code> do pacote nunca aparece.</p>
+  o notebook entrega. O <code>summary()</code> do pacote nunca aparece.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 <section class="slide estatistica">
@@ -749,7 +1645,7 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
   lucro (R² = 0,550). Com a mesma receita, as companhias de energia elétrica lucram
   <strong>2,5 vezes</strong> mais que as dos outros setores (CVM, DFP 2024).”</div>
   <div class="alerta"><span class="rotulo">O que essa frase não diz</span>
-  Que aumentar a receita <strong>faz</strong> o lucro subir — é associação entre companhias, e não
+  Que aumentar a receita <strong>faz</strong> o lucro subir. É associação entre companhias, e não
   o que acontece com uma companhia que cresce. E nada sobre as <strong>131 companhias com
   prejuízo</strong>: elas não estão no modelo.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
@@ -815,10 +1711,10 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
   <div class="pergunta">Qual a chance de uma companhia com receita de <strong>R$ 1 bilhão</strong>
   fechar o ano no <strong>prejuízo</strong>?</div>
   <p>Das 449 companhias, <strong>131 tiveram prejuízo</strong> em 2024: 29,2%. Agora y não é um
-  valor em reais — é <strong>sim ou não</strong> (prejuízo = 1, lucro = 0). E as 131 que a regressão
+  valor em reais: é <strong>sim ou não</strong> (prejuízo = 1, lucro = 0). E as 131 que a regressão
   linear em log deixou de fora são justamente o assunto.</p>
   <div class="definicao"><span class="rotulo">Regra do dia</span>
-  Na logística, o coeficiente <strong>multiplica a chance</strong> do evento — e não a
+  Na logística, o coeficiente <strong>multiplica a chance</strong> do evento, e não a
   probabilidade. A probabilidade sai de uma célula de previsão, para um cenário escolhido.</div>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
@@ -827,12 +1723,31 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
   <span class="marca-estatistica">Parte 2 · Estatística · Regressão logística</span>
   <h2>Chance, log-odds e razão de chances, em linguagem corrente</h2>
   <div class="definicao"><span class="rotulo">Em linguagem corrente</span>
-  <strong>Probabilidade</strong>: quantos casos com prejuízo em cada 100 — 29,2 em 100.<br>
-  <strong>Chance (odds)</strong>: quantos com prejuízo para cada um com lucro — 131 ÷ 318 =
+  <strong>Probabilidade</strong>: quantos casos com prejuízo em cada 100: 29,2 em 100.<br>
+  <strong>Chance (odds)</strong>: quantos com prejuízo para cada um com lucro: 131 ÷ 318 =
   <strong>0,41</strong>.<br>
   <strong>Log-odds</strong>: o logaritmo da chance. É a escala em que a logística vira uma reta.<br>
   <strong>Razão de chances (OR)</strong>: quanto a chance se multiplica quando x aumenta 1.
   OR = 1: nenhum efeito; abaixo de 1, a chance cai; acima, sobe.</div>
+  <div class="figura" style="--fig-h: 17vh">
+<!--FIG:F13_CHANCE-->
+<svg viewBox="0 0 980 166" role="img" aria-label="Barra das 449 companhias separando prejuízo e lucro, com probabilidade e chance">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<rect x="40" y="30" width="262.6" height="54" fill="#8D0333"/>
+<rect x="302.6" y="30" width="637.4" height="54" fill="#0AB0AB"/>
+<text x="171.3" y="64.0" text-anchor="middle" font-size="19.8" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">131 com prejuízo</text>
+<text x="621.3" y="64.0" text-anchor="middle" font-size="19.8" fill="#fff" font-weight="700" font-family="Montserrat, Calibri, sans-serif">318 com lucro</text>
+<text x="40.0" y="20.0" text-anchor="start" font-size="17.6" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">As 449 companhias</text>
+<path d="M40 96 V106 H940 V96" fill="none" stroke="#888" stroke-width="1.6"/>
+<text x="40.0" y="132.0" text-anchor="start" font-size="19.8" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Probabilidade: 131 em 449 = 29,2%</text>
+<text x="40.0" y="156.0" text-anchor="start" font-size="16.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">a parte vinho dividida pela barra inteira</text>
+<text x="940.0" y="132.0" text-anchor="end" font-size="19.8" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">Chance (odds): 131 para 318 = 0,41</text>
+<text x="940.0" y="156.0" text-anchor="end" font-size="16.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">a parte vinho dividida pela parte verde</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">A mesma barra lida de dois jeitos: a probabilidade divide pelo total, a chance divide uma parte pela outra.</p>
+  </div>
   <div class="limites">
     <div class="usa"><span class="rotulo">Use</span>
     Quando y é binário: prejuízo ou não, inadimplente ou não, cliente que volta ou não, empresa que
@@ -857,7 +1772,7 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
     </span>
     <span class="legenda-formula"><strong>Em linguagem corrente:</strong> o modelo dá o log-odds;
     e elevado a ele dá a chance; a chance dividida por 1 mais ela dá a probabilidade. A curva
-    resultante fica sempre entre 0 e 1 — é o “S” da logística.</span>
+    resultante fica sempre entre 0 e 1: é o “S” da logística.</span>
   </div>
   <p class="menor">O <em>e</em> é o número de Euler (2,718...), a base do logaritmo natural. Quem faz
   a conta é o computador; o que se lê é a razão de chances e a probabilidade prevista.</p>
@@ -873,7 +1788,7 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
         receita em R$ milhões;</li>
     <li>O log-odds para R$ 1 bilhão (x = 3): <span class="num">1,451 + (−0,736) × 3 =
         −0,756</span>;</li>
-    <li>A chance: <span class="num">e<sup>−0,756</sup> = 0,470</span> — 0,47 companhia com prejuízo
+    <li>A chance: <span class="num">e<sup>−0,756</sup> = 0,470</span>, ou 0,47 companhia com prejuízo
         para cada uma com lucro;</li>
     <li>A probabilidade: <span class="num">0,470 ÷ (1 + 0,470) = 0,320</span>, ou
         <span class="num">32,0%</span>;</li>
@@ -918,7 +1833,7 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
     <text x="774.3" y="178.0" font-size="14" fill="#8D0333">20,0%</text>
     <line x1="587.1" y1="230" x2="587.1" y2="162.9" stroke="#a67c2e" stroke-width="2" stroke-dasharray="5 3"/>
     <text x="577.1" y="206.9" text-anchor="end" font-size="15" fill="#a67c2e" font-weight="700" stroke="#fff" stroke-width="5" paint-order="stroke">R$ 1 bi: 32,0%</text>
-    <text x="960" y="36" text-anchor="end" font-size="15" fill="#0AB0AB" font-weight="700">— probabilidade prevista pelo modelo</text>
+    <text x="960" y="36" text-anchor="end" font-size="15" fill="#0AB0AB" font-weight="700">linha: probabilidade prevista pelo modelo</text>
     <text x="960" y="58" text-anchor="end" font-size="15" fill="#8D0333" font-weight="700">● taxa observada na faixa de receita</text>
     <text x="525" y="276" text-anchor="middle" font-size="15" fill="#777">receita (escala log10) · eixo vertical: probabilidade de prejuízo</text>
     </svg>
@@ -948,7 +1863,7 @@ lucro_previsto = 10 ** linear.<span class="fn">predict</span>(cenario).iloc[0]</
     <tr><td>P(prejuízo) prevista</td><td>49,5%</td><td><strong>32,0%</strong></td><td>18,4%</td><td>9,7%</td></tr>
   </table>
   <p class="menor">Repare: de R$ 100 mi para R$ 1 bi a <strong>chance</strong> se multiplica por 0,48,
-  mas a <strong>probabilidade</strong> vai de 49,5% para 32,0% — não cai à metade.</p>
+  mas a <strong>probabilidade</strong> vai de 49,5% para 32,0%, e não cai à metade.</p>
   <div class="rodape">Métodos e Técnicas de Pesquisa Quantitativa · Encontro 13</div>
 </section>
 <section class="slide estatistica">
@@ -1000,9 +1915,55 @@ p_cenario = logit.<span class="fn">predict</span>(cenario).iloc[0]   <span class
       <span class="rotulo">O caso certo</span>
       Quem se multiplica por 0,48 é a <strong>chance</strong>:<br><br>
       R$ 100 mi: chance 0,98 (quase uma com prejuízo para cada uma com lucro);<br>
-      R$ 1 bi: chance 0,47 — <strong>0,98 × 0,48</strong>.<br><br>
+      R$ 1 bi: chance 0,47, ou <strong>0,98 × 0,48</strong>.<br><br>
       A probabilidade se lê na célula de previsão, cenário a cenário.
     </div>
+  </div>
+  <div class="figura" style="--fig-h: 29vh">
+<!--FIG:F13_CENARIOS-->
+<svg viewBox="0 0 980 270" role="img" aria-label="Chance e probabilidade de prejuízo em quatro cenários de receita">
+<g font-family="Source Sans 3, Calibri, sans-serif">
+<line x1="70" y1="220.0" x2="940" y2="220.0" stroke="#eee"/>
+<text x="62.0" y="225.0" text-anchor="end" font-size="18.2" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,00</text>
+<line x1="70" y1="172.5" x2="940" y2="172.5" stroke="#eee"/>
+<text x="62.0" y="177.5" text-anchor="end" font-size="18.2" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,25</text>
+<line x1="70" y1="125.0" x2="940" y2="125.0" stroke="#eee"/>
+<text x="62.0" y="130.0" text-anchor="end" font-size="18.2" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,50</text>
+<line x1="70" y1="77.5" x2="940" y2="77.5" stroke="#eee"/>
+<text x="62.0" y="82.5" text-anchor="end" font-size="18.2" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">0,75</text>
+<line x1="70" y1="30.0" x2="940" y2="30.0" stroke="#eee"/>
+<text x="62.0" y="35.0" text-anchor="end" font-size="18.2" fill="#777" font-family="Source Sans 3, Calibri, sans-serif">1,00</text>
+<rect x="104.8" y="33.8" width="70" height="186.2" fill="#0AB0AB"/>
+<rect x="182.8" y="126.0" width="70" height="94.0" fill="#8D0333"/>
+<text x="139.8" y="27.8" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">0,98</text>
+<text x="217.8" y="120.0" text-anchor="middle" font-size="19.5" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">49,5%</text>
+<text x="178.8" y="242.0" text-anchor="middle" font-size="19.5" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">R$ 100 mi</text>
+<text x="287.5" y="43.3" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">× 0,48</text>
+<rect x="322.2" y="130.7" width="70" height="89.3" fill="#0AB0AB"/>
+<rect x="400.2" y="159.2" width="70" height="60.8" fill="#8D0333"/>
+<text x="357.2" y="124.7" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">0,47</text>
+<text x="435.2" y="153.2" text-anchor="middle" font-size="19.5" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">32,0%</text>
+<text x="396.2" y="242.0" text-anchor="middle" font-size="19.5" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">R$ 1 bi</text>
+<text x="505.0" y="43.3" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">× 0,48</text>
+<rect x="539.8" y="176.3" width="70" height="43.7" fill="#0AB0AB"/>
+<rect x="617.8" y="185.0" width="70" height="35.0" fill="#8D0333"/>
+<text x="574.8" y="170.3" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">0,23</text>
+<text x="652.8" y="179.0" text-anchor="middle" font-size="19.5" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">18,4%</text>
+<text x="613.8" y="242.0" text-anchor="middle" font-size="19.5" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">R$ 10 bi</text>
+<text x="722.5" y="43.3" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">× 0,48</text>
+<rect x="757.2" y="199.1" width="70" height="20.9" fill="#0AB0AB"/>
+<rect x="835.2" y="201.6" width="70" height="18.4" fill="#8D0333"/>
+<text x="792.2" y="193.1" text-anchor="middle" font-size="19.5" fill="#077f7b" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">0,11</text>
+<text x="870.2" y="195.6" text-anchor="middle" font-size="19.5" fill="#8D0333" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">9,7%</text>
+<text x="831.2" y="242.0" text-anchor="middle" font-size="19.5" fill="#555" font-weight="700" font-family="Source Sans 3, Calibri, sans-serif">R$ 100 bi</text>
+<rect x="70" y="254" width="14" height="14" fill="#0AB0AB"/>
+<text x="90.0" y="266.0" text-anchor="start" font-size="19.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">chance: cai à metade a cada degrau</text>
+<rect x="400" y="254" width="14" height="14" fill="#8D0333"/>
+<text x="420.0" y="266.0" text-anchor="start" font-size="19.5" fill="#555" font-family="Source Sans 3, Calibri, sans-serif">probabilidade: 49,5% → 32,0% → 18,4% → 9,7%, não cai à metade</text>
+</g>
+</svg>
+<!--/FIG-->
+    <p class="legenda">Os quatro cenários da célula de previsão (CVM, DFP 2024). A chance se multiplica por 0,48 a cada degrau, a probabilidade não.</p>
   </div>
   <p class="menor">Chance e probabilidade só ficam parecidas quando o evento é raro (abaixo de uns
   10%). Com 29% de prejuízo, a diferença é grande.</p>
@@ -1089,7 +2050,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
     <li><strong>Mexer no cenário</strong> junto com a Parte 2B: <code>ENERGIA_CENARIO = 1</code> e
         outra receita; rodar de novo as células de previsão e anotar o que muda;</li>
     <li><strong>Trocar o modelo:</strong> <code>MODELO_PROJETO = "linear"</code> e
-        <code>Y_PROJETO = "log_lucro"</code> — é a múltipla da Parte 2;</li>
+        <code>Y_PROJETO = "log_lucro"</code>: é a múltipla da Parte 2;</li>
     <li><strong>Levar ao projeto</strong>, nos 15 minutos finais: upload do CSV; y quantitativo →
         <code>"linear"</code>; y de 0 e 1 → <code>"logistica"</code>; ler as cinco colunas;</li>
     <li><strong>Escrever a frase</strong>: o coeficiente como efeito (ou razão de chances), o p, o n
@@ -1108,7 +2069,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
         relação linear. Antes do r, o gráfico de dispersão;</li>
     <li><strong>Com extremos, Spearman ou escala log</strong>: em reais, uma companhia derruba o r de
         0,69 para 0,57; em log, Pearson e Spearman concordam (0,74 e 0,77);</li>
-    <li><strong>R² = r²</strong> na regressão simples: a parte da variação que a reta acompanha — e um
+    <li><strong>R² = r²</strong> na regressão simples: a parte da variação que a reta acompanha, e um
         r de 0,4 acompanha só 16%;</li>
     <li><strong>O coeficiente da regressão linear é um efeito na unidade de y</strong>: em log10,
         receita 10 vezes maior, lucro 6,9 vezes maior. Na múltipla, cada efeito vale com as outras
@@ -1177,19 +2138,20 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
       <tr><td>Síntese e tarefa</td><td>15</td></tr>
       <tr><td><strong>Total</strong></td><td><strong>240</strong></td></tr>
   </table>
-    <div class="caixa alerta"><span class="rotulo">Por que a prática aparece dentro da Parte 2</span>
+    <div class="caixa falar"><span class="rotulo">Onde cabem os 75 minutos de prática</span>
             <p>A seção 6.3 do plano lista, para o encontro 13, estatística 90 e prática 75 como
-            blocos separados; somados aos outros (15 + 90 + 30 + 15), dariam 315 minutos. A conta
-            fecha em 240 porque os <strong>75 minutos de prática acontecem dentro dos 90 da Parte
-            2</strong>: cada bloco de estatística é exposto com a célula correspondente aberta no
-            Colab, e a turma executa junto — o passo a passo, a tabela de cinco colunas e as duas
-            células de previsão. Os últimos 15 minutos do bloco são só do projeto.</p>
+            blocos separados. Somados aos outros (15 + 90 + 30 + 15), dariam 315 minutos. A conta
+            fecha em 240 porque <strong>os 75 minutos de prática acontecem dentro dos blocos
+            expositivos</strong>: 45 durante a Parte 2 (cada bloco de estatística é exposto com a
+            célula correspondente aberta no Colab, e a turma executa junto o passo a passo, a tabela
+            de cinco colunas e as duas células de previsão), 15 no exercício de frases da Parte 1 e
+            15 no bloco final, só do projeto. A tabela da seção de prática detalha a conta.</p>
             <p>Se a aula correr atrás, o que encolhe é a Parte 1 (o exercício de frases pode virar
             tarefa), nunca a logística, que é conteúdo novo da ementa.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">A retomada que abre o dia</span>
             <p>Dois minutos para fechar o Módulo III: o fluxograma do encontro 12 terminava em
-            <em>“os grupos diferem?”</em>. A pergunta muda: <em>“as variáveis andam juntas — e
+            <em>“os grupos diferem?”</em>. A pergunta muda: <em>“as variáveis andam juntas, e
             quanto?”</em>. Anunciar que a base é uma só, a da CVM, e que o dia tem um fio: a
             regressão linear vai deixar 131 companhias de fora, e a logística vai trazê-las de
             volta.</p>
@@ -1221,8 +2183,8 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
             companhia das 449, o r muda muito?”</em>. A intuição diz que não. Tirando a Petrobras,
             o r cai de <strong>0,685</strong> para <strong>0,573</strong>; tirando as cinco maiores,
             para <strong>0,483</strong>. O Spearman, com as 449, dá <strong>0,512</strong>. É o mesmo
-            fenômeno da média da margem no encontro 12, e vale dizer isso em voz alta: o Pearson é
-            uma média de produtos, e médias se deixam arrastar.</p>
+            fenômeno da média da margem no encontro 12, e vale dizer isso à turma com todas as
+            letras: o Pearson é uma média de produtos, e médias se deixam arrastar.</p>
             </div>
     <div class="caixa falar"><span class="rotulo">A escala log, sem medo</span>
             <p>Apresentar o log10 como “quantos zeros”: 1 = R$ 10 mi, 3 = R$ 1 bi, 5 = R$ 100 bi.
@@ -1231,13 +2193,13 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
             Anotar o 131 no quadro: ele volta na Parte 2B.</p>
             <p>Em log, Pearson e Spearman concordam (<strong>0,742</strong> e
             <strong>0,768</strong>): quando os dois concordam, a relação é linear e não é efeito de
-            extremos — a mesma regra de leitura da ANOVA com o Kruskal-Wallis.</p>
+            extremos. É a mesma regra de leitura da ANOVA com o Kruskal-Wallis.</p>
             </div>
     <div class="caixa gabarito"><span class="rotulo">Gabarito do exercício de frases</span>
             <ol>
               <li><strong>Errada.</strong> Verbo de causa (“aumentar... aumenta”) e um r inflado
               pelos gigantes. Reescrita: “em reais, a correlação é de 0,69, mas cai para 0,57 sem a
-              Petrobras; pelos postos (Spearman), é de 0,51 — associação moderada”;</li>
+              Petrobras. Pelos postos (Spearman), é de 0,51: associação moderada”.</li>
               <li><strong>Pode ir</strong>, porque declara o recorte (318 com lucro) e usa
               “tendem”. Ressalva desejável: só companhias abertas;</li>
               <li><strong>Errada.</strong> R² não diz de onde o lucro “vem” e se refere ao
@@ -1249,7 +2211,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
     <div class="caixa nao-falar"><span class="rotulo">Erros que vão aparecer na turma</span>
             <ol>
               <li><strong>r = 0 quer dizer “sem relação”.</strong> Quer dizer “sem relação
-              linear” — o painel em U da tela dos quatro padrões é o contraexemplo;</li>
+              linear”. O painel em U da tela dos quatro padrões é o contraexemplo.</li>
               <li><strong>r alto quer dizer causa.</strong> As três razões (confusão, causa inversa,
               seleção) com exemplos da própria base;</li>
               <li><strong>R² como “nota” do modelo.</strong> R² baixo não invalida um coeficiente, e
@@ -1275,10 +2237,11 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
       <tr><td>A frase, o erro comum e a ficha</td><td>7</td></tr>
   </table>
     <div class="caixa falar"><span class="rotulo">A ideia que organiza o bloco inteiro</span>
-            <p>Repetir: <strong>“o coeficiente é um efeito na unidade de y”</strong>. Toda a
+            <p>A frase que organiza o bloco: <strong>“o coeficiente é um efeito na unidade de
+            y”</strong>. Toda a
             leitura da regressão depende de saber em que unidade y está. No exemplo, y está em
-            log10, e por isso b = 0,838 se lê como “receita 10 vezes maior, lucro 6,89 vezes maior”
-            — ou, como elasticidade, “1% a mais de receita, 0,84% a mais de lucro”.</p>
+            log10, e por isso b = 0,838 se lê como “receita 10 vezes maior, lucro 6,89 vezes maior”,
+            ou, como elasticidade, “1% a mais de receita, 0,84% a mais de lucro”.</p>
             <p>A regra operacional do plano vale aqui pela primeira vez: <strong>nada de
             <code>summary()</code></strong>. A célula entrega a tabela de cinco colunas, e a coluna
             <code>efeito</code> já traz a tradução. Se algum estudante abrir o
@@ -1343,7 +2306,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
             <p>A regressão logística entra na disciplina por decisão do professor (decisão 5 do
             plano), e o ponto em que a turma tropeça é a <strong>chance</strong>. Antes de qualquer
             fórmula, a conta com os números da base: 131 com prejuízo e 318 com lucro. Probabilidade:
-            131 em 449, 29,2%. Chance: 131 para 318, <strong>0,41</strong> — “0,41 companhia com
+            131 em 449, 29,2%. Chance: 131 para 318, <strong>0,41</strong>, ou “0,41 companhia com
             prejuízo para cada uma com lucro”. Usar a linguagem das apostas (“a chance é de 2 para
             1”) ajuda.</p>
             <p>Depois, o log-odds como “a escala em que a curva vira reta” e a razão de chances como
@@ -1408,7 +2371,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
             <ol>
               <li>Na configuração original (logística múltipla), os <code>[ok]</code> da prática: OR
               da receita 0,476, OR de energia 0,413 e P = 33,8% no cenário;</li>
-              <li>Com <code>ENERGIA_CENARIO = 1</code>, a probabilidade cai para 17,4% — é a mesma
+              <li>Com <code>ENERGIA_CENARIO = 1</code>, a probabilidade cai para 17,4%: é a mesma
               receita, outro setor;</li>
               <li>Com <code>MODELO_PROJETO = "linear"</code> e <code>Y_PROJETO = "log_lucro"</code>,
               aparece a múltipla da Parte 2A (b de energia 0,402). O <code>conferir</code> da prática
@@ -1420,7 +2383,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
     <div class="caixa pergunta-aula"><span class="rotulo">Pergunta para quem termina antes</span>
             <p><em>“A regressão linear usou 318 companhias e a logística, 449. Se você só pudesse
             relatar um dos dois modelos sobre ‘porte e resultado’, qual seria e por quê?”</em> A
-            resposta esperada: a logística, porque não descarta quem teve prejuízo — ou os dois, com
+            resposta esperada: a logística, porque não descarta quem teve prejuízo. Ou os dois, com
             o recorte de cada um declarado.</p>
             </div>
     <div class="caixa nao-falar"><span class="rotulo">O que não fazer na circulação</span>
@@ -1440,7 +2403,7 @@ MODELO_PROJETO  = <span class="str">"logistica"</span>                <span clas
               <li><strong>A correlação diz se as variáveis andam juntas</strong> e se deixa arrastar
               por extremos: Spearman ou escala log;</li>
               <li><strong>R² é a parte da variação acompanhada</strong>, não a parte “causada”;</li>
-              <li><strong>O coeficiente linear é um efeito na unidade de y</strong> — e em log, é
+              <li><strong>O coeficiente linear é um efeito na unidade de y</strong>, e em log é
               “vezes”;</li>
               <li><strong>Na logística, e<sup>b</sup> multiplica a chance</strong>; a probabilidade
               sai da célula de previsão;</li>

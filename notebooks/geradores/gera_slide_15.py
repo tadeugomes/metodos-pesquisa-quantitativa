@@ -59,13 +59,13 @@ SECOES = [
               anunciada é a que vale.</li>
             </ol>
             """, "falar"),
-            ("As regras, ditas em voz alta", """
+            ("As regras que precisam ser ditas", """
             <p>Projete “O que pode e o que não pode” e leia as linhas. Três pontos que precisam
             ser ditos, e não apenas projetados: (1) na Parte A, <strong>só o notebook da prova
             aberto</strong>, sem material e sem IA; (2) <strong>voltar à Parte A depois do
             anúncio anula a resposta</strong>, e o histórico de revisões do Colab mostra a hora
             de cada edição; (3) na Parte B, a IA é permitida <strong>com registro</strong>.</p>
-            """, "alerta"),
+            """, "falar"),
         ],
     },
     {
@@ -75,7 +75,7 @@ SECOES = [
         "entre": ["Parte A", "Parte B"],
         "blocos": [
             ("O que se cobra e o que não se cobra", """
-            <p>Diga antes de começar: <strong>não há conta na Parte A</strong> — a disciplina
+            <p>Diga antes de começar: <strong>não há conta na Parte A</strong>. A disciplina
             não faz conta à mão em nenhum encontro. Cobra-se a decisão e o porquê. Resposta
             certa sem justificativa vale metade.</p>
             """, "falar"),
@@ -86,12 +86,12 @@ SECOES = [
             os casos ou sobre a estimativa?”</em>.</p>
             <p>Perguntas de conteúdo se anotam e se respondem na devolutiva, não durante a
             prova.</p>
-            """, "alerta"),
+            """, "falar"),
             ("O encerramento da Parte A", """
             <p>Aos 15 e aos 5 minutos do fim, avise o tempo. Aos 60, anuncie
-            <strong>em voz alta a hora exata</strong> do encerramento e peça que cada estudante
+            <strong>a hora exata</strong> do encerramento, para a turma inteira, e peça que cada estudante
             a escreva na célula indicada e salve (Ctrl+S). Na correção, uma resposta da Parte
-            A editada depois dessa hora — o histórico de revisões mostra — é anulada.</p>
+            A editada depois dessa hora (o histórico de revisões mostra) é anulada.</p>
             """, "falar"),
             ("Onde está o gabarito da Parte A", """
             <p>Esta camada de condução é pública: está no mesmo HTML que a turma lê em casa.
@@ -130,7 +130,7 @@ SECOES = [
             <p>Se a célula B0 não carregar a base (sem internet), o estudante executa a célula
             de contingência, faz o upload de <code>cvm_dre_2024.csv</code> e executa a B0 de
             novo. Nada mais muda, e os números são os mesmos.</p>
-            """, "alerta"),
+            """, "falar"),
             ("Gabarito da Parte B: os números do conferir", """
             <p><strong>Base:</strong> 451 companhias no arquivo; 7 convertidas de reais para
             milhares; 2 excluídas por receita negativa; <strong>449</strong> na prova, das quais
@@ -171,7 +171,7 @@ SECOES = [
               <li><strong>Ler p = 0,3759 como “os setores são iguais”</strong>: é ausência de
               evidência, com grupos pequenos;</li>
               <li><strong>Escrever “a probabilidade de prejuízo cai 52%”</strong> em B6: chance
-              não é probabilidade — a leitura em probabilidade é a do cenário.</li>
+              não é probabilidade, e a leitura em probabilidade é a do cenário.</li>
             </ol>
             """, "nao-falar"),
         ],
@@ -189,7 +189,7 @@ SECOES = [
             registro de IA está preenchido, ou marcado “não usei”.</p>
             """, "falar"),
             ("A síntese da disciplina", """
-            <p>Feche com a última tela: os quatro módulos e o que cada um entregou —
+            <p>Feche com a última tela: os quatro módulos e o que cada um entregou:
             <strong>descrever, sortear, inferir e modelar</strong>. E a regra que fica para além
             da disciplina: <strong>a IA explica, o código calcula e o estudante confere e
             escreve</strong>. Nenhum número vai para um relatório sem ter saído de uma célula

@@ -3,9 +3,9 @@
 
 Estrutura do deck (29 telas):
   capa · abertura · retomada do encontro 10
-  PARTE 1 — os dois erros de um teste (6 telas): a tabela de decisao, erro tipo I, erro
+  PARTE 1: os dois erros de um teste (6 telas): a tabela de decisao, erro tipo I, erro
             tipo II, o poder, a troca entre os erros, exercicio
-  PARTE 2 — os testes de media e o qui-quadrado (17 telas: divisor + os dez elementos,
+  PARTE 2: os testes de media e o qui-quadrado (17 telas: divisor + os dez elementos,
             com as formulas, o fluxograma e um exemplo resolvido por teste)
   pratica no Colab · sintese · estudo
 
@@ -53,12 +53,12 @@ SECOES = [
             ]), "bruto"),
             ("O fio que liga as duas partes do dia", """
             <p>Anunciar: <strong>há dois jeitos de errar com um teste</strong>. Um é dentro do
-            teste — o alarme falso e o efeito despercebido, que a Parte 1 mede. O outro é
-            antes dele — escolher o teste errado, que a Parte 2 evita com o fluxograma. O
+            teste (o alarme falso e o efeito despercebido), que a Parte 1 mede. O outro é
+            antes dele: escolher o teste errado, que a Parte 2 evita com o fluxograma. O
             software não avisa nenhum dos dois.</p>
             """, "falar"),
             ("A retomada começa pela pergunta que ficou", """
-            <p>Projetar a tela 3 e ler a pergunta em voz alta: <em>“contra R$ 6,00 o teste não
+            <p>Projetar a tela 3 e pôr a pergunta para a turma: <em>“contra R$ 6,00 o teste não
             rejeitou H0, mas a média verdadeira é R$ 6,0087. O teste errou?”</em> Deixar a
             turma votar: sim ou não. As duas respostas têm razão em parte, e a Parte 1 vai
             mostrar por quê: tecnicamente é um erro tipo II, e é um erro que não importa.</p>
@@ -92,12 +92,16 @@ SECOES = [
             mostrar cada número, pedir o palpite:</p>
             <ul>
               <li><em>“Com H0 verdadeira e α de 5%, quantas de mil amostras vão rejeitar?”</em>
-              Resposta: 41 (4,1%) — perto dos 50 prometidos;</li>
+              Resposta: 41 (4,1%), perto dos 50 prometidos.</li>
               <li><em>“Com H0 falsa por menos de 1 centavo, quantas vão rejeitar?”</em>
-              Resposta: 3,4%. O teste quase nunca percebe — e não precisa;</li>
+              Resposta: 3,4%. O teste quase nunca percebe, e não precisa.</li>
               <li><em>“Com H0 falsa por 9 centavos, quantos postos são precisos para o teste
               perceber em 80% das vezes?”</em> Resposta: cerca de 100.</li>
             </ul>
+            <p>A curva da tela 7 mostra o caminho inteiro, de 10 a 160 postos: o poder passa de
+            80% perto dos 100 postos e chega a 99,5% com 160. A figura da tela 8 dá a imagem
+            da troca: a linha de decisão separa α (vinho) de β (dourado), e só curvas mais
+            afastadas ou mais estreitas reduzem os dois.</p>
             """, "pergunta-aula"),
             ("Por que 4,1% e não exatamente 5%", """
             <p>Se perguntarem: é o mesmo efeito dos 95,9% de cobertura do encontro 10. Trinta
@@ -108,13 +112,13 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>Achar que α é a chance de a conclusão estar errada.</strong> α é a
-              chance de rejeitar <em>se</em> H0 for verdadeira — uma probabilidade
-              condicional, como o valor-p;</li>
+              chance de rejeitar <em>se</em> H0 for verdadeira, uma probabilidade
+              condicional, como o valor-p.</li>
               <li><strong>Achar que basta reduzir α para errar menos.</strong> Reduz um erro e
-              aumenta o outro; só o n reduz os dois juntos;</li>
+              aumenta o outro; só o n reduz os dois juntos.</li>
               <li><strong>Achar que todo erro tipo II é grave.</strong> Diferença irrelevante
               que passa despercebida não é problema: o que importa é ter poder para a diferença
-              que muda a decisão;</li>
+              que muda a decisão.</li>
               <li><strong>Confundir poder com significância.</strong> Poder é planejamento, feito
               antes de coletar; significância é o resultado, visto depois.</li>
             </ol>
@@ -146,6 +150,8 @@ SECOES = [
               <tr><td>H0: μ = 6,10, poder com n = 30</td><td>32,0% (β = 68,0%)</td></tr>
               <tr><td>H0: μ = 6,10, poder com n = 50</td><td>45,9% (β = 54,1%)</td></tr>
               <tr><td>H0: μ = 6,10, poder com n = 100</td><td>81,0% (β = 19,0%)</td></tr>
+              <tr><td>H0: μ = 6,10, poder com n = 120 e 160 (curva da tela 7)</td><td>90,6% e 99,5%</td></tr>
+              <tr><td>Tarefa: erro tipo I com <code>N_AMOSTRA = 100</code></td><td>1,1% (100 postos são 42% do cadastro)</td></tr>
             </table>
             """, "gabarito"),
         ],
@@ -165,7 +171,7 @@ SECOES = [
                 ("Erro comum e ficha de revisão", "7"),
             ]), "bruto"),
             ("A ideia que organiza o bloco inteiro", """
-            <p>Repetir: <strong>os três testes t fazem a mesma coisa</strong> — medem uma
+            <p>A ideia: <strong>os três testes t fazem a mesma coisa</strong>, medem uma
             diferença em erros padrão, como no encontro 10. O que muda é só o erro padrão. E o
             qui-quadrado faz a mesma coisa com contagens: mede a distância entre o observado e
             o esperado. A turma não precisa de cinco ideias novas; precisa de uma ideia e de
@@ -181,10 +187,10 @@ SECOES = [
             do mesmo posto é quem desenhou a pesquisa.</p>
             """, "pergunta-aula"),
             ("A mudança de papel dos 236 postos", """
-            <p>Dizer em voz alta, na tela do Exemplo 2: nos encontros 6 a 10 os 236 postos
+            <p>Na tela do Exemplo 2, deixar claro: nos encontros 6 a 10 os 236 postos
             foram a <strong>população</strong> do exercício, porque precisávamos de um valor
             verdadeiro conhecido. Hoje a pergunta é sobre os postos do Maranhão em geral, e os
-            236 são o que a ANP pesquisou — uma seleção em 11 municípios, e não um sorteio. A
+            236 são o que a ANP pesquisou: uma seleção em 11 municípios, e não um sorteio. A
             população de um estudo depende da pergunta, e a limitação vai declarada na frase.
             Na Parte 1, a simulação ainda usa os 236 como população: é isso que permite contar
             os erros.</p>
@@ -198,12 +204,12 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>Usar o t de duas amostras em dados pareados.</strong> É o erro da tela
-              25: com o mesmo dado, t = 32,79 em vez de 56,72;</li>
+              25: com o mesmo dado, t = 32,79 em vez de 56,72.</li>
               <li><strong>Rodar o qui-quadrado com célula esperada menor que 5.</strong> Foi
               por isso que o exemplo usa os cinco maiores setores; com oito setores, o menor
-              esperado cai para 4,3;</li>
+              esperado cai para 4,3.</li>
               <li><strong>Confundir independência com aderência.</strong> Duas variáveis
-              cruzadas: independência. Uma variável contra proporções conhecidas: aderência;</li>
+              cruzadas: independência. Uma variável contra proporções conhecidas: aderência.</li>
               <li><strong>Escrever “significativo” sem o tamanho.</strong> Toda frase leva a
               diferença na unidade original: centavos, porcentagem, contagem.</li>
             </ol>
@@ -243,7 +249,7 @@ SECOES = [
                 ("Prática 1: o fluxograma, seis situações", "15"),
                 ("Prática 2: o qui-quadrado da CVM e a frase", "15"),
                 ("Prática 3: o qui-quadrado na base do projeto", "20"),
-                ("Leitura em voz alta de três frases", "5"),
+                ("Correção coletiva de três frases", "5"),
             ]), "bruto"),
             ("Condução passo a passo", """
             <ol>
@@ -251,18 +257,18 @@ SECOES = [
               CVM (um zip de 13 MB e o cadastro). Se aparecer <em>could not resolve host</em>,
               <em>timed out</em> ou <em>BadZipFile</em>, mandar usar a CÉLULA B
               correspondente, com upload de <code>anp_precos_revenda_ma_2025.csv</code> ou
-              <code>cvm_dre_2024.csv</code>;</li>
+              <code>cvm_dre_2024.csv</code>.</li>
               <li><strong>A simulação da Parte 1</strong> leva meio minuto: avisar antes, para
-              ninguém executar duas vezes;</li>
+              ninguém executar duas vezes.</li>
               <li><strong>Prática 1.</strong> Pedir que decidam <em>no papel</em> antes de olhar
-              a célula — nesta versão do notebook as respostas já vêm preenchidas. Corrigir em
-              voz alta só a situação f, que é a que separa;</li>
+              a célula, porque nesta versão do notebook as respostas já vêm preenchidas. Corrigir com
+              a turma só a situação f, que é a que separa.</li>
               <li><strong>Prática 2.</strong> Circular lendo as frases: a frase boa traz a
               variação das proporções (16,7% a 42,9%), χ², gl, p e a decisão, e diz que não
-              rejeitar não prova independência;</li>
+              rejeitar não prova independência.</li>
               <li><strong>Prática 3.</strong> O estudante troca três valores na configuração.
               Os <code>[X]</code> são esperados. Se aparecer o aviso de esperado menor que 5,
-              ajudar a juntar categorias — é a única intervenção que pode exigir o professor.</li>
+              ajudar a juntar categorias: é a única intervenção que pode exigir o professor.</li>
             </ol>
             """, "falar"),
             ("Para quem não tem duas categóricas no projeto", """
@@ -275,17 +281,17 @@ SECOES = [
             ("Gabarito da prática", """
             <table>
               <tr><th>Situação (Prática 1)</th><th>Teste</th><th>Por quê</th></tr>
-              <tr><td>a. tempo de atendimento contra a meta de 5 minutos</td><td>1 — t de uma
+              <tr><td>a. tempo de atendimento contra a meta de 5 minutos</td><td>1, t de uma
                   amostra</td><td>uma média contra um valor de fora</td></tr>
-              <tr><td>b. margem de Energia × Comércio</td><td>2 — t de duas amostras</td>
+              <tr><td>b. margem de Energia × Comércio</td><td>2, t de duas amostras</td>
                   <td>dois grupos de companhias diferentes</td></tr>
-              <tr><td>c. vendedores antes e depois do treinamento</td><td>3 — t pareado</td>
+              <tr><td>c. vendedores antes e depois do treinamento</td><td>3, t pareado</td>
                   <td>os mesmos 35 vendedores, duas medidas</td></tr>
-              <tr><td>d. porte × loja virtual</td><td>4 — χ² de independência</td>
+              <tr><td>d. porte × loja virtual</td><td>4, χ² de independência</td>
                   <td>duas categóricas cruzadas</td></tr>
-              <tr><td>e. reclamações pelos dias úteis</td><td>5 — χ² de aderência</td>
+              <tr><td>e. reclamações pelos dias úteis</td><td>5, χ² de aderência</td>
                   <td>uma categórica contra proporções conhecidas (20% cada dia)</td></tr>
-              <tr><td>f. diária dos hotéis na alta e na baixa</td><td>3 — t pareado</td>
+              <tr><td>f. diária dos hotéis na alta e na baixa</td><td>3, t pareado</td>
                   <td>os mesmos 30 hotéis, duas temporadas</td></tr>
             </table>
             <p><strong>Prática 2:</strong> χ² = 4,388; gl = 4; p = 0,3561; não rejeita H0. A
@@ -307,13 +313,13 @@ SECOES = [
             ("Os aprendizados do dia", """
             <ol>
               <li><strong>Todo teste pode errar de dois jeitos</strong>, e os dois se contam:
-              4,1% de alarmes falsos para α de 5%;</li>
+              4,1% de alarmes falsos para α de 5%.</li>
               <li><strong>O poder se compra com n</strong>: de 17,6% a 81,0% contra a mesma
-              diferença, de 10 para 100 postos;</li>
+              diferença, de 10 para 100 postos.</li>
               <li><strong>O teste se escolhe pelo fluxograma</strong>: o que se compara, quantos
-              grupos, se os casos são os mesmos;</li>
+              grupos, se os casos são os mesmos.</li>
               <li><strong>Pares pedem o teste pareado</strong>; o qui-quadrado compara o
-              observado com o esperado;</li>
+              observado com o esperado.</li>
               <li><strong>Toda frase leva o tamanho do efeito</strong>, e não rejeitar continua
               não sendo provar.</li>
             </ol>
@@ -321,15 +327,16 @@ SECOES = [
             ("Tarefa para o próximo encontro", """
             <ol>
               <li>Escreva, para o <strong>seu</strong> projeto, o caminho no fluxograma: o que
-              se compara, quantos grupos, se os casos são os mesmos — e o teste a que se
-              chega;</li>
+              se compara, quantos grupos, se os casos são os mesmos, e o teste a que se
+              chega.</li>
               <li>Se a sua base tem três ou mais grupos, anote quais são: é a ANOVA do próximo
-              encontro;</li>
+              encontro.</li>
               <li>No notebook, mude <code>N_AMOSTRA</code> para 100 e anote a taxa de erro tipo
-              I. Ela continua perto de 5%? Por que o poder muda e o α não?</li>
+              I. Ela cai para 1,1%, mais longe dos 5% do que com 30 postos. Por quê? (Dica: que
+              fração do cadastro são 100 postos? É o mesmo motivo do 4,1%.)</li>
             </ol>
             <p>O próximo encontro fecha o Módulo III: <strong>ANOVA</strong> e os testes para
-            quando o t não cabe — <strong>Mann-Whitney e Wilcoxon</strong> —, com revisão
+            quando o t não cabe (<strong>Mann-Whitney e Wilcoxon</strong>), com revisão
             cumulativa pelos fluxogramas e prática guiada no projeto.</p>
             """, "bruto"),
         ],

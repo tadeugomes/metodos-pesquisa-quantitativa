@@ -4,6 +4,10 @@
 Estrutura do deck depois da reestruturacao:
   capa · abertura · objetivos · PROBLEMA E HIPÓTESES (20 telas) ·
   PARTE 2: ESTATÍSTICA (11) · prática (7) · oficina do projeto (2) · síntese · estudo
+
+Figuras da Parte 1 (figuras_encontro03.py): o funil (tela 9), os objetivos e as análises
+(tela 14), a sobrevivência em três anos por porte (tela 16) e as três formas de relação
+(tela 18).
 """
 import io
 import os
@@ -35,7 +39,7 @@ SECOES = [
             pelo formato da distribuição.</p>
             """, "bruto"),
             ("A ponte entre o dia e o bloco de estatística", """
-            <p>Anunciar a ligação já na abertura, para que a turma ouça duas vezes: uma hipótese
+            <p>Anunciar a ligação já na abertura, porque ela volta no fim do bloco: uma hipótese
             é <strong>uma frase sobre um número</strong>: “a mediana do setor A é maior que a
             do setor B”. Sem saber que número escolher, a hipótese não pode ser testada. É para
             isso que o bloco de hoje existe.</p>
@@ -56,8 +60,7 @@ SECOES = [
                 ("Os três defeitos clássicos de hipótese", "5"),
             ]), "bruto"),
             ("Como conduzir a retomada", """
-            <p>Abrir pedindo que <strong>três estudantes leiam em voz alta</strong> a pergunta de
-            pesquisa que trouxeram do encontro 2. O exercício funciona melhor com perguntas
+            <p>Abrir com <strong>três ou quatro perguntas de pesquisa</strong> trazidas do encontro 2, escritas no quadro sem identificar quem escreveu. O exercício funciona melhor com perguntas
             reais, ainda mal formuladas, do que com exemplos do livro: a turma vê a diferença
             entre tema e problema acontecendo na frente dela.</p>
             """, "pergunta-aula"),
@@ -82,7 +85,7 @@ SECOES = [
               Objetivo quantitativo pede verbo verificável: medir, comparar, estimar, testar.</li>
               <li><strong>Hipótese que não pode ser falseada.</strong> Se nenhum resultado
               possível a contradiz, não é hipótese.</li>
-              <li><strong>Hipótese sem o número.</strong> É o erro que a Parte 2 do encontro 3 desfaz.</li>
+              <li><strong>Hipótese sem o número.</strong> É o erro que a Parte 2 de hoje desfaz.</li>
             </ol>
             """, "nao-falar"),
             ("Gancho com o projeto individual", """
@@ -90,6 +93,16 @@ SECOES = [
             objetivo geral e uma hipótese. É o insumo da primeira etapa do projeto, no encontro
             5. Não deixar sair da sala sem isso.</p>
             """, "gabarito"),
+            ("As figuras do bloco", """
+            <p>O funil da tela 9 usa o mesmo problema das telas 5, 13 e 15: empresas comerciais
+            do Maranhão, coortes a partir de 2018. A tela 14 mostra cada objetivo específico
+            apontando para uma análise.</p>
+            <p>A tela 16 traz o dado nacional que motiva a hipótese direcional: na coorte de 2018,
+            sobreviveram três anos 48,9% das empresas de 1 a 9 pessoas, 69,5% das de 10 a 49 e
+            73,9% das de 50 ou mais (todas: 50,4%). Deixar claro que é o Brasil inteiro e todos
+            os setores: para o comércio do Maranhão, a hipótese continua por testar, e o teste
+            formal vem nos encontros 10 e 11.</p>
+            """, "falar"),
         ],
     },
     {
@@ -106,7 +119,7 @@ SECOES = [
                 ("Erro comum e ficha de revisão", "17"),
             ]), "bruto"),
             ("A ideia que organiza o bloco inteiro", """
-            <p>Repetir, em voz alta: <strong>“a medida que descreve bem é a que sobrevive a um
+            <p>A frase do bloco: <strong>“a medida que descreve bem é a que sobrevive a um
             valor extremo”</strong>. O bloco não é sobre três fórmulas: é sobre uma decisão. E a
             decisão tem um teste de trinta segundos: compare a média com a mediana. Se estão
             longe, use a mediana.</p>
@@ -124,8 +137,7 @@ SECOES = [
             outra 900 a R$ 20) mostra que a média simples e a ponderada <strong>respondem
             a perguntas diferentes</strong>. O ponto não é a fórmula, é a pergunta: os casos
             valem todos o mesmo, ou cada um pesa diferente?</p>
-            <p>Vale antecipar que a ponderada volta em dois lugares: na amostragem estratificada
-            do Módulo II e nos índices de preço do Módulo IV.</p>
+            <p>Vale antecipar que a ponderada volta em dois lugares: na amostragem estratificada do Módulo II e nos índices de preço, como o próprio IPCA, que pondera cada item pelo peso no orçamento das famílias.</p>
             """, "falar"),
             ("Erros que vão aparecer na turma", """
             <ol>

@@ -206,10 +206,97 @@ for i, r in enumerate(INAD.itertuples()):
     if r.data.endswith("-01") or i in (0, n - 1):
         c.append(txt(xn(i), 220, mes(r.data), 12, CINZA))
 figura("hoje", "Erro comum: transformar média em frequência", "after_colunas", "27vh",
-       "Inadimplência das operações de crédito às empresas, % ao mês. A média resume 36 meses; a taxa de cada "
-       "mês só se lê mês a mês. Fonte: SGS/Banco Central (série 21086).",
+       "Inadimplência das operações de crédito às empresas, em % do saldo da carteira. A média resume 36 "
+       "meses; a taxa de cada mês só se lê no próprio mês. Fonte: SGS/Banco Central (série 21086).",
        svg(230, "Inadimplência das empresas em 36 meses, de 2,77% no mínimo a 4,19% no último mês, com a média "
                 "de 3,54%", c))
+
+
+# ================================================================== 7. o funil do tema ao problema
+fonte(1.2)
+NIVEIS = (("Tema", "“Empreendedorismo”", 880, VINHO_CLARO, VINHO),
+          ("Delimitação", "sobrevivência de empresas comerciais no Maranhão, coortes a partir de 2018",
+           740, "#fbf5ea", DOURADO_ESC),
+          ("Problema", "as de menor porte sobrevivem menos em três anos?", 600, VERDE_CLARO, VERDE_ESC))
+c = []
+for i, (nome, ex, w, fundo, cor) in enumerate(NIVEIS):
+    y, h = 8 + i * 74, 64
+    x0 = (940 - w) / 2
+    c += [f'<polygon points="{x0:.1f},{y} {x0 + w:.1f},{y} {x0 + w - 80:.1f},{y + h} {x0 + 80:.1f},{y + h}" '
+          f'fill="{fundo}" stroke="{cor}" stroke-width="2"/>',
+          txt(500, y + 26, nome, 16, cor, extra=TITULO), txt(500, y + 50, ex, 13, TINTA)]
+c += [txt(975, 40, "amplo", 13, CINZA), txt(975, 196, "respondível", 13, CINZA),
+      seta(975, 52, 975, 172, CINZA, 2)]
+figura("funil", "O funil em ação", "marcador", "30vh",
+       "A cada etapa abre-se mão de amplitude para ganhar precisão: setor, território, período e população "
+       "ficam definidos no problema.",
+       svg(232, "Funil em três níveis: o tema empreendedorismo, a delimitação em empresas comerciais do "
+                "Maranhão e o problema sobre porte e sobrevivência em três anos", c))
+
+# ================================================================== 8. objetivos: do geral as analises
+fonte(1.2)
+ESP = (("1. descrever", "as taxas de sobrevivência", "por faixa de porte", "tabela de frequências"),
+       ("2. comparar", "as taxas entre", "as faixas", "diferença entre proporções"),
+       ("3. verificar", "se a relação se repete", "entre as coortes", "a mesma comparação, por coorte"))
+c = [ret(250, 6, 500, 58, VINHO_CLARO, 10, f'stroke="{VINHO}" stroke-width="2.4"'),
+     txt(500, 30, "Objetivo geral", 15, VINHO, extra=TITULO),
+     txt(500, 52, "analisar a relação entre porte e sobrevivência", 13, TINTA)]
+for i, (v, a, b, analise) in enumerate(ESP):
+    x = 30 + i * 330
+    c += [seta(500, 66, x + 140, 98, CINZA, 1.8),
+          ret(x, 100, 280, 78, VERDE_CLARO, 10, f'stroke="{VERDE_ESC}" stroke-width="2"'),
+          txt(x + 140, 124, v, 15, VERDE_ESC, extra=TITULO), txt(x + 140, 146, a, 13, TINTA),
+          txt(x + 140, 164, b, 13, TINTA),
+          seta(x + 140, 180, x + 140, 204, DOURADO, 2),
+          txt(x + 140, 226, analise, 13, DOURADO_ESC, extra=NEGRITO)]
+figura("objetivos", "Objetivos: geral e específicos", "after_exemplo", "27vh",
+       "",
+       svg(236, "O objetivo geral se decompõe em três específicos, descrever, comparar e verificar, e cada um "
+                "leva a uma análise", c))
+
+# ================================================================== 9. a hipotese diante do dado nacional
+SOB = pd.read_csv(os.path.join(DADOS, "demografia_sobrevivencia_empresas.csv"), skiprows=[1])
+SOB["V"] = pd.to_numeric(SOB["V"], errors="coerce")
+COORTE = 2018
+_s = SOB[(SOB["D2N"] == COORTE) & (SOB["D4N"] == "Total") & (SOB["D3N"] == "Taxa de 3 anos de sobrevivência")]
+FAIXAS = ["1 a 9 pessoas", "10 a 49 pessoas", "50 ou mais pessoas"]
+TX3 = [float(_s.loc[_s["D5N"] == f, "V"].iloc[0]) for f in FAIXAS]
+TX3_TOTAL = float(_s.loc[_s["D5N"] == "Total", "V"].iloc[0])
+fonte(1.25)
+Yh = lambda p: 170 - p * 1.9
+c = [linha_h(170, 150, 860, EIXO, larg=1.6),
+     linha_h(Yh(TX3_TOTAL), 150, 860, VINHO, tracejada=True, larg=1.6),
+     txt(864, Yh(TX3_TOTAL) + 5, f"todas: {br(TX3_TOTAL, 1)}%", 13, VINHO, "start", NEGRITO)]
+for i, (f, v) in enumerate(zip(FAIXAS, TX3)):
+    cx = 270 + i * 230
+    c += [ret(cx - 70, Yh(v), 140, 170 - Yh(v), VERDE if i else VERDE_MEDIO),
+          txt(cx, Yh(v) + 26, f"{br(v, 1)}%", 16, "#fff" if i else VERDE_ESC, extra=NEGRITO),
+          txt(cx, 192, f, 13, TINTA, extra=NEGRITO)]
+figura("porte", "Hipóteses", "marcador", "22vh",
+       f"Taxa de sobrevivência em três anos, coorte de {COORTE}, Brasil. Fonte: IBGE, Demografia das Empresas. "
+       "O dado nacional sugere a direção; para o comércio do Maranhão a hipótese continua por testar.",
+       svg(200, f"Sobrevivência em três anos da coorte de {COORTE}: {br(TX3[0], 1)}% de 1 a 9 pessoas, "
+                f"{br(TX3[1], 1)}% de 10 a 49 e {br(TX3[2], 1)}% de 50 ou mais", c))
+
+# ================================================================== 10. tres formas de relacao
+fonte(1.25)
+c = []
+for i, nome in enumerate(("simétrica", "assimétrica", "recíproca")):
+    x = 20 + i * 330
+    c += [ret(x, 14, 70, 44, VINHO_CLARO, 8, f'stroke="{VINHO}" stroke-width="2"'),
+          txt(x + 35, 43, "x", 18, VINHO, extra=TITULO),
+          ret(x + 220, 14, 70, 44, VERDE_CLARO, 8, f'stroke="{VERDE_ESC}" stroke-width="2"'),
+          txt(x + 255, 43, "y", 18, VERDE_ESC, extra=TITULO), txt(x + 145, 82, nome, 14, TINTA, extra=NEGRITO)]
+    if i == 0:
+        c.append(linha_h(36, x + 74, x + 216, CINZA, tracejada=True, larg=2.4))
+    elif i == 1:
+        c.append(seta(x + 74, 36, x + 214, 36, VINHO, 2.6))
+    else:
+        c += [seta(x + 74, 28, x + 214, 28, VINHO, 2.4), seta(x + 216, 44, x + 76, 44, VERDE_ESC, 2.4)]
+figura("relacoes", "Como as variáveis se relacionam na hipótese", "after_colunas", "11vh", "",
+       svg(92, "Três formas de relação: simétrica, x e y andam juntos; assimétrica, x afeta y; recíproca, "
+               "um afeta o outro", c))
+
 
 
 if __name__ == "__main__":

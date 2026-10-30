@@ -47,11 +47,11 @@ import nb_helper as nb
 
 # ====================================================================== cabecalho
 
-IDENTIFICACAO = """# Prova final — Métodos e Técnicas de Pesquisa Quantitativa
+IDENTIFICACAO = """# Prova final: Métodos e Técnicas de Pesquisa Quantitativa
 
 **Aluno(a):** _(escreva seu nome aqui)_
 **Matrícula:** _(escreva aqui)_
-**Curso:** Administração — UFMA
+**Curso:** Administração, UFMA
 **Data:** ____ / ____ / 2026
 
 ---
@@ -83,7 +83,7 @@ IDENTIFICACAO = """# Prova final — Métodos e Técnicas de Pesquisa Quantitati
 
 ---
 
-## Parte A — conceitual (60 minutos, sem consulta, sem IA)
+## Parte A: conceitual (60 minutos, sem consulta, sem IA)
 
 Responda em **duas a quatro frases** cada. O que se avalia é a **decisão e a
 justificativa**, não a conta: nenhuma questão exige cálculo. Cada questão vale 4 pontos."""
@@ -131,7 +131,7 @@ PARTE_A = [
      "conveniência**, a margem de 5 pontos continuaria valendo?",
      "GABARITO A4 (4 pts). (a) É preciso **quadruplicar** a amostra (cerca de 1.600): a margem "
      "cai com a **raiz** de n, não com n. (b) **Quase nada**: o tamanho depende da margem, da "
-     "confiança e da variabilidade, e não do tamanho da população — a população só pesa "
+     "confiança e da variabilidade, e não do tamanho da população. A população só pesa "
      "quando a amostra é uma fração grande dela (a correção de população finita). (c) **Não**: "
      "a margem supõe sorteio. Sem probabilidade conhecida de seleção não há distribuição "
      "amostral, e o viés da conveniência não é medido por margem nenhuma."),
@@ -163,9 +163,9 @@ PARTE_A = [
      "**reduz a inadimplência**, com α = 0,05. Descreva, **neste contexto**, o erro tipo I e o "
      "erro tipo II e diga qual deles o α controla.",
      "GABARITO A7 (4 pts). **Erro tipo I**: concluir que o processo reduz a inadimplência "
-     "quando, na verdade, não reduz (rejeitar uma H0 verdadeira) — o banco troca de processo à "
+     "quando, na verdade, não reduz (rejeitar uma H0 verdadeira): o banco troca de processo à "
      "toa. **Erro tipo II**: não detectar uma redução que existe (não rejeitar uma H0 falsa) "
-     "— o banco abandona um processo que funcionava. O **α controla o erro tipo I**: é a "
+     "e o banco abandona um processo que funcionava. O **α controla o erro tipo I**: é a "
      "probabilidade máxima de cometê-lo que se aceita. O tipo II depende do tamanho da "
      "amostra e do efeito (o poder do teste)."),
 
@@ -179,7 +179,7 @@ PARTE_A = [
      "GABARITO A8 (4 pts, 1 por item). (a) **Qui-quadrado de independência**: duas variáveis "
      "categóricas (filial × satisfeito). (b) **t pareado**: as mesmas pessoas medidas duas "
      "vezes, diferença aproximadamente simétrica (Wilcoxon, se assimétrica). (c) "
-     "**Mann-Whitney**: dois grupos independentes e variável **ordinal** — a média de uma "
+     "**Mann-Whitney**: dois grupos independentes e variável **ordinal**, e a média de uma "
      "escala de 1 a 5 não é a medida do nível. (d) **ANOVA**: variável numérica, três grupos, "
      "pressupostos razoáveis."),
 
@@ -200,7 +200,7 @@ PARTE_A = [
      "leitura**. (b) Por que é errado dizer *“a probabilidade de inadimplência é 40% "
      "menor”*?",
      "GABARITO A10 (4 pts). (a) “A **chance** de inadimplência das empresas com mais de 10 anos "
-     "é **0,60 vez** a das mais novas — 40% menor —, mantidas as demais variáveis do modelo "
+     "é **0,60 vez** a das mais novas (40% menor), mantidas as demais variáveis do modelo "
      "(p = 0,01)”. É associação, não causa. (b) Porque **chance não é probabilidade**: a "
      "chance é p ÷ (1 − p). Uma razão de chances de 0,60 corresponde a reduções diferentes "
      "na probabilidade, conforme o ponto de partida; para falar em probabilidade, usa-se a "
@@ -216,7 +216,7 @@ com registro. **Não volte às respostas da Parte A.**
 
 ---"""
 
-PARTE_B = """# Parte B — prática (150 minutos, com consulta e registro de IA)
+PARTE_B = """# Parte B: prática (150 minutos, com consulta e registro de IA)
 
 A base é a das **demonstrações financeiras de 2024 das companhias abertas** (CVM, DFP),
 a mesma dos encontros 4 e 5. Cada questão vale **10 pontos**: 4 pela decisão e pelo
@@ -269,7 +269,7 @@ def cinco_colunas(ajuste, nomes, logistica=False):
 
 print("Utilitario da prova carregado: cinco_colunas() esta pronta.")'''
 
-CARGA = '''# CÉLULA B0: a carga da base. Já vem pronta — execute.
+CARGA = '''# CÉLULA B0: a carga da base. Já vem pronta: execute.
 URL = ("https://raw.githubusercontent.com/tadeugomes/"
        "metodos-pesquisa-quantitativa/main/dados/cvm_dre_2024.csv")
 try:
@@ -302,7 +302,7 @@ print()
 conferir("companhias na base da prova", len(base), 449, tolerancia=0, unidade=" cias")
 conferir("companhias com prejuízo", base["prejuizo"].sum(), 131, tolerancia=0, unidade=" cias")'''
 
-CONTINGENCIA = '''# CONTINGÊNCIA — só se a célula B0 falhar por falta de internet.
+CONTINGENCIA = '''# CONTINGÊNCIA: só se a célula B0 falhar por falta de internet.
 # Execute esta célula, escolha o arquivo cvm_dre_2024.csv que o professor
 # entregou e, depois, execute a célula B0 de novo. Nada mais muda.
 from google.colab import files
@@ -312,7 +312,7 @@ PAINEL = """## A base da Parte B
 
 | Item | Valor |
 |---|---|
-| **Fonte** | CVM — Demonstrações Financeiras Padronizadas (DFP), exercício de 2024 |
+| **Fonte** | CVM, Demonstrações Financeiras Padronizadas (DFP), exercício de 2024 |
 | **Unidade de observação** | a companhia aberta (uma linha por companhia) |
 | **Companhias** | **449**, das quais **131** com prejuízo em 2024 |
 | **Tratamento** | 7 companhias que informam em reais foram convertidas para milhares; 2 com receita negativa saíram |
@@ -324,7 +324,7 @@ PAINEL = """## A base da Parte B
 | `lucro_mi` | lucro (ou prejuízo, se negativo) líquido de 2024, em **R$ milhões** |
 | `prejuizo` | 1 se a companhia teve prejuízo em 2024; 0 se teve lucro |
 
-> **Por que a conversão importa.** Sem ela, a Vivara — que informa em reais — aparece
+> **Por que a conversão importa.** Sem ela, a Vivara, que informa em reais, aparece
 > com receita de **R$ 2,6 trilhões** e vira a maior companhia do país, e a receita média
 > da base salta de R$ 12,3 bilhões para R$ 21,2 bilhões. É a leitura crítica do
 > encontro 14: **antes do número, a base**."""
@@ -335,19 +335,19 @@ cartao(base[["setor", "receita_mi", "lucro_mi", "prejuizo"]], "setor",
 
 # ---------------------------------------------------------------------- B1
 B1_MD = """---
-### B1. O denominador (Módulo I) — 10 pontos
+### B1. O denominador (Módulo I): 10 pontos
 
 A diretoria pergunta: **“entre as companhias do comércio, quantas tiveram prejuízo em
 2024?”**. A célula de cálculo mostra a mesma contagem dividida por **três denominadores**.
 Escolha o denominador que responde **a esta pergunta**."""
 
-B1_DEC_ALUNO = '''# CÉLULA DE DECISÃO B1 — escreva entre as aspas UMA das opções:
+B1_DEC_ALUNO = '''# CÉLULA DE DECISÃO B1: escreva entre as aspas UMA das opções:
 #   "setor"     -> dividir pelas companhias do comércio
 #   "prejuizo"  -> dividir pelas companhias com prejuízo
 #   "total"     -> dividir por todas as companhias da base
 DENOMINADOR_B1 = ""'''
 
-B1_DEC_PROF = '''# CÉLULA DE DECISÃO B1 — escreva entre as aspas UMA das opções:
+B1_DEC_PROF = '''# CÉLULA DE DECISÃO B1: escreva entre as aspas UMA das opções:
 #   "setor"     -> dividir pelas companhias do comércio
 #   "prejuizo"  -> dividir pelas companhias com prejuízo
 #   "total"     -> dividir por todas as companhias da base
@@ -381,19 +381,19 @@ B1_NOTA = ("GABARITO B1 (10 pts = 4 decisão + 6 frase). Denominador **setor**: 
 
 # ---------------------------------------------------------------------- B2
 B2_MD = """---
-### B2. A medida pela forma (Módulo I) — 10 pontos
+### B2. A medida pela forma (Módulo I): 10 pontos
 
 Você precisa descrever, **com uma medida de posição e uma de dispersão**, a receita
 **típica** das 449 companhias. A célula de cálculo mostra todas as candidatas e o
 histograma. Escolha as duas medidas que descrevem esta variável."""
 
-B2_DEC_ALUNO = '''# CÉLULA DE DECISÃO B2 — escreva entre as aspas:
+B2_DEC_ALUNO = '''# CÉLULA DE DECISÃO B2: escreva entre as aspas:
 #   posição:   "media"  ou  "mediana"
 #   dispersão: "desvio" ou  "iqr"     (iqr = intervalo interquartílico, Q3 - Q1)
 MEDIDA_B2 = ""
 DISPERSAO_B2 = ""'''
 
-B2_DEC_PROF = '''# CÉLULA DE DECISÃO B2 — escreva entre as aspas:
+B2_DEC_PROF = '''# CÉLULA DE DECISÃO B2: escreva entre as aspas:
 #   posição:   "media"  ou  "mediana"
 #   dispersão: "desvio" ou  "iqr"     (iqr = intervalo interquartílico, Q3 - Q1)
 MEDIDA_B2 = "mediana"
@@ -442,7 +442,7 @@ B2_NOTA = ("GABARITO B2 (10 pts = 4 decisão + 6 frase). **Mediana** (R$ 2.109,7
 
 # ---------------------------------------------------------------------- B3
 B3_MD = """---
-### B3. Tamanho da amostra e margem de erro (Módulo II) — 10 pontos
+### B3. Tamanho da amostra e margem de erro (Módulo II): 10 pontos
 
 **(a)** Uma pesquisa quer estimar, por amostra sorteada, a **proporção de companhias com
 prejuízo**, com **margem de erro de 5 pontos percentuais** e **95% de confiança**.
@@ -453,11 +453,11 @@ empresas do Maranhão (CEMPRE 2024) e as 449 companhias da base.
 **(b)** Em seguida, a célula sorteia **uma** amostra de 100 companhias (semente fixa
 2026) e estima a proporção com prejuízo, com o intervalo de 95%."""
 
-B3_DEC_ALUNO = '''# CÉLULA DE DECISÃO B3 — escreva os dois números, como proporção, com ponto:
+B3_DEC_ALUNO = '''# CÉLULA DE DECISÃO B3: escreva os dois números, como proporção, com ponto:
 MARGEM_B3 = None       # a margem de erro desejada
 CONFIANCA_B3 = None    # o nível de confiança'''
 
-B3_DEC_PROF = '''# CÉLULA DE DECISÃO B3 — escreva os dois números, como proporção, com ponto:
+B3_DEC_PROF = '''# CÉLULA DE DECISÃO B3: escreva os dois números, como proporção, com ponto:
 MARGEM_B3 = 0.05       # a margem de erro desejada
 CONFIANCA_B3 = 0.95    # o nível de confiança'''
 
@@ -496,7 +496,7 @@ conferir("B3b margem de erro, em pontos", margem * 100, 7.68, tolerancia=0.01, u
 
 B3_NOTA = ("GABARITO B3 (10 pts = 4 decisão + 6 frase). (a) MARGEM_B3 = 0.05 e CONFIANCA_B3 = "
            "0.95 (quem escreve 5 e 95 recebe nan e [X]). n sem correção = 385; para as "
-           "168.098 empresas do Maranhão, **384** — a população quase não pesa —; para as 449 "
+           "168.098 empresas do Maranhão, **384** (a população quase não pesa); para as 449 "
            "companhias, **208**, porque a amostra seria quase metade da população. (b) A "
            "amostra de 100 dá **27,00%** com prejuízo, margem de **7,68 pontos**, intervalo de "
            "**19,32% a 34,68%**, que contém o valor da população (29,18%). A margem passa de 5 "
@@ -506,24 +506,24 @@ B3_NOTA = ("GABARITO B3 (10 pts = 4 decisão + 6 frase). (a) MARGEM_B3 = 0.05 e 
 
 # ---------------------------------------------------------------------- B4
 B4_MD = """---
-### B4. A escolha do teste (Módulo III) — 10 pontos
+### B4. A escolha do teste (Módulo III): 10 pontos
 
 Duas perguntas, dois testes. A célula de cálculo executa **todos** os candidatos;
 **você** escolhe, pelo fluxograma, o que cabe em cada pergunta.
 
-**(a)** A **proporção de companhias com prejuízo** difere entre três setores — comércio,
-construção civil e energia elétrica?
+**(a)** A **proporção de companhias com prejuízo** difere entre três setores (comércio,
+construção civil e energia elétrica)?
 
 **(b)** A **receita** difere entre as companhias do **comércio** e as da **construção
 civil**? (Olhe a forma da receita na questão B2 e o tamanho de cada grupo.)"""
 
-B4_DEC_ALUNO = '''# CÉLULA DE DECISÃO B4 — escreva entre as aspas o teste de cada pergunta:
+B4_DEC_ALUNO = '''# CÉLULA DE DECISÃO B4: escreva entre as aspas o teste de cada pergunta:
 #   (a) "qui-quadrado"  ou  "anova"
 #   (b) "t"  (t de Welch)  ou  "mann-whitney"
 TESTE_B4A = ""
 TESTE_B4B = ""'''
 
-B4_DEC_PROF = '''# CÉLULA DE DECISÃO B4 — escreva entre as aspas o teste de cada pergunta:
+B4_DEC_PROF = '''# CÉLULA DE DECISÃO B4: escreva entre as aspas o teste de cada pergunta:
 #   (a) "qui-quadrado"  ou  "anova"
 #   (b) "t"  (t de Welch)  ou  "mann-whitney"
 TESTE_B4A = "qui-quadrado"
@@ -567,8 +567,8 @@ conferir("B4b valor-p do teste escolhido", opcoes_b.get(TESTE_B4B.strip().lower(
 B4_NOTA = ("GABARITO B4 (10 pts = 4 decisão + 6 frase). (a) **Qui-quadrado**: as duas "
            "variáveis são categóricas (setor × prejuízo). χ² = 1,957, gl = 2, **p = 0,3759**; "
            "as proporções são 30,77% (comércio), 28,57% (construção) e 16,67% (energia). Não "
-           "se rejeita H0: **não há evidência** de que a proporção de prejuízo dependa do setor "
-           "— o que não prova que seja igual; com 30 a 42 companhias por setor, o teste tem "
+           "se rejeita H0: **não há evidência** de que a proporção de prejuízo dependa do setor, "
+           "o que não prova que seja igual; com 30 a 42 companhias por setor, o teste tem "
            "pouco poder. (b) **Mann-Whitney**: receita fortemente assimétrica (assimetria 4,04 e "
            "4,40) e grupos de 39 e 42. U = 1230, **p = 0,0001**: a receita do comércio "
            "(mediana R$ 3.011,58 mi) tende a ser maior que a da construção (R$ 1.120,08 mi). "
@@ -577,7 +577,7 @@ B4_NOTA = ("GABARITO B4 (10 pts = 4 decisão + 6 frase). (a) **Qui-quadrado**: a
 
 # ---------------------------------------------------------------------- B5
 B5_MD = """---
-### B5. A regressão linear (Módulo IV) — 10 pontos
+### B5. A regressão linear (Módulo IV): 10 pontos
 
 Entre as companhias **com lucro**, o lucro acompanha a receita? Como as duas variáveis
 são muito assimétricas, o modelo usa o **logaritmo na base 10** das duas: assim, a
@@ -587,10 +587,10 @@ Na célula de decisão, escreva a receita do **cenário** que a diretoria quer p
 companhia com receita de **R$ 1 bilhão**. Atenção à unidade: a coluna está em **R$
 milhões**."""
 
-B5_DEC_ALUNO = '''# CÉLULA DE DECISÃO B5 — a receita do cenário, em R$ MILHÕES, com ponto:
+B5_DEC_ALUNO = '''# CÉLULA DE DECISÃO B5: a receita do cenário, em R$ MILHÕES, com ponto:
 RECEITA_B5 = None'''
 
-B5_DEC_PROF = '''# CÉLULA DE DECISÃO B5 — a receita do cenário, em R$ MILHÕES, com ponto:
+B5_DEC_PROF = '''# CÉLULA DE DECISÃO B5: a receita do cenário, em R$ MILHÕES, com ponto:
 RECEITA_B5 = 1000'''
 
 B5_CALC = '''# CÉLULA B5: a reta, lida em cinco colunas, e a previsão do cenário. Execute.
@@ -634,11 +634,11 @@ B5_NOTA = ("GABARITO B5 (10 pts = 4 decisão + 6 frase). RECEITA_B5 = 1000 (R$ 1
            "maior está associada a um lucro cerca de 0,84% maior; a receita acompanha 55% da "
            "variação do lucro (em log). Para uma receita de R$ 1 bilhão, o lucro previsto é de "
            "R$ 101 milhões”. Não autoriza: causa (é associação), nem as companhias com "
-           "prejuízo, que o log excluiu — limitação que precisa estar escrita.")
+           "prejuízo, que o log excluiu, limitação que precisa estar escrita.")
 
 # ---------------------------------------------------------------------- B6
 B6_MD = """---
-### B6. A regressão logística (Módulo IV) — 10 pontos
+### B6. A regressão logística (Módulo IV): 10 pontos
 
 A chance de uma companhia ter **prejuízo** muda com o porte? O modelo usa o logaritmo
 na base 10 da receita: uma unidade a mais de `log_receita` é uma receita **10 vezes
@@ -647,10 +647,10 @@ maior**. O efeito sai como **razão de chances** (odds ratio).
 Na célula de decisão, escreva a receita do cenário: uma companhia com receita de **R$ 100
 milhões**. A coluna está em **R$ milhões**."""
 
-B6_DEC_ALUNO = '''# CÉLULA DE DECISÃO B6 — a receita do cenário, em R$ MILHÕES, com ponto:
+B6_DEC_ALUNO = '''# CÉLULA DE DECISÃO B6: a receita do cenário, em R$ MILHÕES, com ponto:
 RECEITA_B6 = None'''
 
-B6_DEC_PROF = '''# CÉLULA DE DECISÃO B6 — a receita do cenário, em R$ MILHÕES, com ponto:
+B6_DEC_PROF = '''# CÉLULA DE DECISÃO B6: a receita do cenário, em R$ MILHÕES, com ponto:
 RECEITA_B6 = 100'''
 
 B6_CALC = '''# CÉLULA B6: a logística, lida em cinco colunas, e a probabilidade prevista. Execute.
@@ -676,7 +676,7 @@ conferir("B6 probabilidade prevista no cenário", probabilidade * 100, 49.50, to
 
 B6_NOTA = ("GABARITO B6 (10 pts = 4 decisão + 6 frase). RECEITA_B6 = 100. Razão de chances "
            "**0,4792** (p < 0,001): a cada receita **10 vezes maior**, a chance de prejuízo "
-           "fica multiplicada por 0,48 — cai pouco mais da metade. Probabilidade prevista: "
+           "fica multiplicada por 0,48, ou seja, cai pouco mais da metade. Probabilidade prevista: "
            "**49,50%** para R$ 100 milhões, 31,96% para R$ 1 bilhão, 18,37% para R$ 10 bilhões. "
            "Frase: “Entre as 449 companhias abertas, a chance de prejuízo em 2024 é 0,48 vez "
            "menor a cada receita dez vezes maior; uma companhia com receita de R$ 100 milhões "

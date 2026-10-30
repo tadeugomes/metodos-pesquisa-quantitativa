@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook do encontro 12 (Modulo III — ANOVA, testes nao parametricos e revisao).
+"""Gera o notebook do encontro 12 (Modulo III: ANOVA, testes nao parametricos e revisao).
 
 E12 fecha o Modulo III. A Parte 1 compara MAIS DE DOIS grupos (ANOVA de um fator) e
 mostra quando o teste parametrico nao cabe. A Parte 2 ensina os tres testes de postos
@@ -8,9 +8,9 @@ fecha com o fluxograma completo de escolha do teste. A pratica e a celula de esc
 do teste, com a base trocavel no bloco de configuracao.
 
 Duas bases do modulo:
-  ANP, SHPC 2025 — o cadastro de 236 postos do Maranhao (gasolina comum; o preco do
+  ANP, SHPC 2025: o cadastro de 236 postos do Maranhao (gasolina comum; o preco do
                    posto e o do primeiro mes em que ele aparece, como nos encontros 6 a 11)
-  CVM, DFP 2024  — 449 companhias com receita positiva; margem liquida = lucro / receita
+  CVM, DFP 2024: 449 companhias com receita positiva; margem liquida = lucro / receita
 
 Numeros verificados na geracao (14/10/2026):
 
@@ -45,7 +45,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 12. ANOVA, testes não paramétricos e a revisão do Módulo III
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje, em três passos**
@@ -72,8 +72,8 @@ O Módulo III termina hoje com duas perguntas que os encontros 10 e 11 deixaram 
 
 | Base | O que é | Recorte | Casos |
 |---|---|---|---|
-| **ANP — SHPC** | O cadastro de postos: o preço da gasolina comum em cada posto | Maranhão, 2025 | **236 postos**, 11 municípios |
-| **CVM — DFP** | Demonstrações financeiras das companhias abertas | Exercício de 2024 | **449 companhias** com receita positiva |
+| **ANP, SHPC** | O cadastro de postos: o preço da gasolina comum em cada posto | Maranhão, 2025 | **236 postos**, 11 municípios |
+| **CVM, DFP** | Demonstrações financeiras das companhias abertas | Exercício de 2024 | **449 companhias** com receita positiva |
 
 | Coluna | Base | Significado |
 |---|---|---|
@@ -114,7 +114,7 @@ GRUPO_PROJETO    = ""   # a coluna que define os grupos do seu projeto
 ```
 
 > Os `conferir` da Seção 4 valem para a configuração original (`BASE = "CVM"`,
-> `MIN_POR_GRUPO = 30`). Ao trocar a base, o `[X]` só quer dizer que o número mudou —
+> `MIN_POR_GRUPO = 30`). Ao trocar a base, o `[X]` só quer dizer que o número mudou:
 > e era isso que se queria ver."""
 
 CONFIG_CODIGO = '''BASE          = "CVM"   # "CVM" = margem líquida por setor | "ANP" = preço da gasolina por município
@@ -229,9 +229,9 @@ def escolhe_base(base_nome, arquivo, variavel, grupo, cadastro, cvm):
         print(f"Base do projeto: {arquivo} | {len(dados)} linhas")
         return dados, variavel, grupo
     if base_nome == "ANP":
-        print("Base: ANP — preço da gasolina por município (236 postos)")
+        print("Base: ANP, preço da gasolina por município (236 postos)")
         return cadastro, "preco", "municipio"
-    print("Base: CVM — margem líquida por setor (449 companhias)")
+    print("Base: CVM, margem líquida por setor (449 companhias)")
     return cvm, "margem", "setor"
 
 
@@ -281,7 +281,7 @@ REPO = ("https://raw.githubusercontent.com/tadeugomes/"
 anp = pd.read_csv(REPO + "anp_precos_revenda_ma_2025.csv")
 cvm = pd.read_csv(REPO + "cvm_dre_2024.csv", dtype={"CD_CVM": str})
 
-# ANP: o cadastro de postos — um registro por posto (a chave é o CNPJ), com o preço do
+# ANP: o cadastro de postos, um registro por posto (a chave é o CNPJ), com o preço do
 # primeiro mês em que ele aparece. É o mesmo cadastro dos encontros 6 a 11.
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
 cadastro = (gas.sort_values("mes_arquivo")
@@ -297,7 +297,7 @@ cvm["margem"] = cvm["lucro_liquido"] / cvm["receita"] * 100
 print(f"ANP: {len(cadastro)} postos, em {cadastro['municipio'].nunique()} municípios")
 print(f"CVM: {len(cvm)} companhias com receita positiva, {cvm['setor'].nunique()} setores")'''
 
-CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Só se o professor mandar e depois de fazer upload dos arquivos
 # dados/anp_precos_revenda_ma_2025.csv e dados/cvm_dre_2024.csv.
 #
@@ -338,12 +338,12 @@ manda você executar a B."""},
     {"tipo": "contingencia", "texto": CELULA_B},
 
     # ------------------------------------------------------------ Parte 1: ANOVA
-    {"tipo": "md", "texto": """## Seção 2. Parte 1: mais de dois grupos — a ANOVA de um fator
+    {"tipo": "md", "texto": """## Seção 2. Parte 1: mais de dois grupos, a ANOVA de um fator
 
 **A pergunta.** O preço da gasolina muda de município para município no Maranhão?
 
 São **sete** municípios com pelo menos 10 postos no cadastro. O teste t do encontro 11
-compara **dois** grupos. Com sete, seriam **21 testes t**, um para cada par — e é aí que
+compara **dois** grupos. Com sete, seriam **21 testes t**, um para cada par, e é aí que
 mora o problema."""},
     {"tipo": "code", "texto": '''# Os sete municípios com pelo menos 10 postos e o resumo de cada um.
 contagem = cadastro["municipio"].value_counts()
@@ -360,7 +360,7 @@ resumo'''},
 
 Cada teste t tem 5% de chance de acusar uma diferença que não existe (o erro tipo I do
 encontro 11). Com 21 testes, a chance de **pelo menos um** alarme falso cresce muito. A
-célula abaixo simula sete grupos **iguais** — sem diferença nenhuma — mil vezes e conta
+célula abaixo simula sete grupos **iguais**, sem diferença nenhuma, mil vezes e conta
 em quantas das mil alguma comparação deu "significativa"."""},
     {"tipo": "code", "texto": '''# Sete grupos IGUAIS, 21 testes t, mil repetições (semente fixa: o resultado não muda).
 pares = 7 * 6 // 2
@@ -372,7 +372,7 @@ print(f"chance de ao menos um alarme falso, se os testes fossem independentes: {
 print(f"na simulação (7 grupos iguais, 1.000 repetições): {achou:.1%}")
 print()
 print("Em vez de 5%, quase metade das vezes alguém 'acharia' uma diferença que não existe.")
-print("A ANOVA faz UMA pergunta só — há diferença entre alguma das médias? — com α = 5%.")
+print("A ANOVA faz UMA pergunta só (há diferença entre alguma das médias?), com α = 5%.")
 
 conferir("chance de alarme falso (teto, 21 testes)", teto * 100, 65.9, tolerancia=0.05)
 conferir("alarme falso na simulação", achou * 100, 45.7, tolerancia=0.05)'''},
@@ -446,7 +446,7 @@ print(f"{len(SETORES)} setores, {len(tres)} companhias")
 resumo_setor'''},
     {"tipo": "md", "texto": """Repare no **Comércio**: a mediana é **+2,1%**, e a média é **−13,6%**. Uma única companhia com
 margem de **−452%** arrasta a média do setor para o prejuízo. A média não representa o
-grupo — e a ANOVA, que compara médias, vai comparar a coisa errada."""},
+grupo, e a ANOVA, que compara médias, vai comparar a coisa errada."""},
 
     # ------------------------------------------------------------ Parte 2
     {"tipo": "md", "texto": """## Parte 2 · Estatística: os testes não paramétricos
@@ -456,7 +456,7 @@ ANOVA diz que não (p = 0,20). O Kruskal-Wallis diz que sim (p = 0,002). Em quem
 
 **2. O conceito.** Os testes de **postos** trocam cada valor pela sua **posição na fila**
 ordenada (o menor vira 1, o seguinte 2...). Um extremo de −452% vira apenas "o último da
-fila" — e deixa de arrastar o resultado.
+fila" e deixa de arrastar o resultado.
 
 | Situação | Paramétrico (compara médias) | Não paramétrico (compara postos) |
 |---|---|---|
@@ -566,33 +566,33 @@ conferir("W de Wilcoxon", w.statistic, 385, tolerancia=0.5, unidade="")'''},
 > "A margem líquida das companhias abertas difere entre os setores de comércio, construção
 > civil e energia elétrica (Kruskal-Wallis, H = 12,05, p = 0,002; n = 111): a margem
 > mediana vai de **2,1%** no comércio a **14,8%** em energia elétrica. Usou-se o teste de
-> postos porque a margem é fortemente assimétrica — uma companhia do comércio tem margem de
-> −452% — e a ANOVA, que compara médias, não detecta a diferença (p = 0,20) (CVM, DFP 2024)."
+> postos porque a margem é fortemente assimétrica (uma companhia do comércio tem margem de
+> −452%), e a ANOVA, que compara médias, não detecta a diferença (p = 0,20) (CVM, DFP 2024)."
 
 **O que essa frase não diz.** Que **todos** os pares de setores diferem, nem **por que**
 energia elétrica tem margem maior (regulação, escala, capital?). O teste diz que há diferença
 na posição típica; a explicação é trabalho da teoria e do delineamento.
 
 **9. Erro comum.** Ler o p = 0,20 da ANOVA como "os setores têm a mesma margem". Não rejeitar
-H0 não prova igualdade — e, aqui, o teste nem era o adequado aos dados.
+H0 não prova igualdade, e, aqui, o teste nem era o adequado aos dados.
 
 ### A revisão do Módulo III: o fluxograma completo
 
 | Pergunta | Tipo de dado | Paramétrico | Não paramétrico | Encontro |
 |---|---|---|---|---|
-| A média de um grupo difere de um valor de referência? | 1 quantitativa | t de uma amostra | Wilcoxon de uma amostra | 10 |
+| A média de um grupo difere de um valor de referência? | 1 quantitativa | t de uma amostra | Wilcoxon de uma amostra (o pareado aplicado a x − μ₀) | 10 (o t) e 12 |
 | Dois grupos independentes diferem? | quantitativa × 2 grupos | t de Welch | Mann-Whitney | 11 e 12 |
 | O mesmo caso mudou entre duas medidas? | quantitativa, pareada | t pareado | Wilcoxon | 11 e 12 |
 | Três ou mais grupos diferem? | quantitativa × k grupos | ANOVA de um fator | Kruskal-Wallis | 12 |
-| Duas categóricas estão associadas? | categórica × categórica | — | qui-quadrado de independência | 11 |
-| Uma categórica segue a proporção esperada? | 1 categórica | — | qui-quadrado de aderência | 11 |
+| Duas categóricas estão associadas? | categórica × categórica | não se aplica | qui-quadrado de independência | 11 |
+| Uma categórica segue a proporção esperada? | 1 categórica | não se aplica | qui-quadrado de aderência | 11 |
 
 E a pergunta que decide a coluna: **a média representa os grupos?** Se há assimetria forte,
 extremos, variável ordinal ou n pequeno, vá para a coluna dos postos.
 
 **10. Ficha de revisão.** `stats.mannwhitneyu(a, b)` · `stats.wilcoxon(depois, antes)` ·
 `stats.kruskal(g1, g2, g3)`. A frase sempre traz a **mediana** de cada grupo, o teste, a
-estatística, o p e o n — e o motivo de o teste ser de postos."""},
+estatística, o p e o n, e o motivo de o teste ser de postos."""},
 
     # ------------------------------------------------------------ pratica
     {"tipo": "md", "texto": """## Seção 4. Prática guiada: a célula de escolha do teste
@@ -627,11 +627,14 @@ conferir("valor-p do teste indicado", escolha["valor_p"], 0.0024,
 
 A regra: **a IA explica, o código calcula e você confere e escreve.**
 
-**Modo 1 — Pergunta.** Copie o cartão de contexto e cole no assistente antes de perguntar,
+**Modo 1, Pergunta.** Copie o cartão de contexto e cole no assistente antes de perguntar,
 por exemplo, *"por que o Kruskal-Wallis e a ANOVA discordam nesta base?"*. A resposta tem de
 citar um número que esteja no cartão ou nas saídas acima; se não citar, desconfie."""},
-    {"tipo": "code", "texto": 'cartao(tres[["setor", "margem"]], "setor", nome_base="CVM, DFP 2024 — margem líquida (%), três setores")'},
-    {"tipo": "md", "texto": """**Modo 3 — Ler um resultado errado.** As três leituras abaixo usam números certos e concluem
+    {"tipo": "code", "texto": 'cartao(tres[["setor", "margem"]], "setor", nome_base="CVM, DFP 2024: margem líquida (%), três setores")'},
+    {"tipo": "md", "texto": """**Modo 2, Encomenda.** Não entra hoje: a célula de escolha da Seção 4 já faz a consulta, e o que
+falta é a frase, que é sua.
+
+**Modo 3, Ler um resultado errado.** As três leituras abaixo usam números certos e concluem
 errado. Diga, para cada uma, qual é o erro e o que deveria ter sido dito."""},
     {"tipo": "code", "texto": '''# As três leituras erradas do professor.
 print("LEITURA 1: 'a ANOVA deu p = 0,20, logo comércio, construção e energia têm a mesma")

@@ -15,14 +15,20 @@ Numeros da base (verificados em 28/09/2026):
   n=449 companhias | receita: media 12.348.764 | mediana 2.109.725
   desvio 40.915.645 | CV 331,33% | Q1 581.866 | Q3 7.750.616 | IQR 7.168.750
   assimetria 7,56 | 55 companhias acima de Q3 + 1,5 IQR (12,2%)
+  33 das 449 companhias sem setor declarado (35 das 451 no arquivo)
+  B1: 42 companhias no setor mais frequente (9,4% de 449)
+  B5: 48,6% das companhias faturam menos que R$ 2 bilhoes
+
+A funcao conferir entra no topo da Parte B, porque o deck e a conducao prometem a
+conferencia tambem na prova. Cada celula de calculo termina com um conferir.
   Os mesmos numeros, em R$ milhoes, sao os da prova final (gera_encontro15.py).
 """
 import nb_helper as nb
 
-IDENTIFICACAO = """# Avaliação 1 — Métodos e Técnicas de Pesquisa Quantitativa
+IDENTIFICACAO = """# Avaliação 1. Métodos e Técnicas de Pesquisa Quantitativa
 
 **Aluno(a):** _(escreva seu nome aqui)_
-**Curso:** Administração — UFMA
+**Curso:** Administração, UFMA
 **Data:** ____ / ____ / 2026
 
 ---
@@ -31,7 +37,7 @@ IDENTIFICACAO = """# Avaliação 1 — Métodos e Técnicas de Pesquisa Quantita
 
 1. A avaliação é **inteiramente neste notebook**. Não há prova em papel.
 2. Ela tem **três partes**: a **A** (conceitual), a **B** (prática) e o **Projeto**.
-3. **A consulta é livre nas três partes** — material da disciplina, internet e assistente
+3. **A consulta é livre nas três partes**: material da disciplina, internet e assistente
    de IA. O que se exige é o **registro** de uso de IA, na célula própria.
 4. Responda **nas células indicadas**, que já vêm com as linhas `---`. Não apague os
    enunciados e não crie células novas.
@@ -42,11 +48,11 @@ IDENTIFICACAO = """# Avaliação 1 — Métodos e Técnicas de Pesquisa Quantita
 > inclusive na Parte A. Quem usar, **registra** o pedido, a checagem e o que mudou, na
 > célula de registro. O registro não desconta pontos; a omissão é falta de honestidade
 > acadêmica. Lembre que a IA não decide qual análise cabe, não confere o resultado e não
-> escreve a frase de leitura — e é aí que está a nota.
+> escreve a frase de leitura, e é aí que está a nota.
 
 ---
 
-## Parte A — conceitual (30 minutos)
+## Parte A: conceitual (30 minutos)
 
 Responda em **duas ou três frases** cada. O que se avalia é a **justificativa**, e não a
 fórmula. Não há conta a fazer."""
@@ -62,7 +68,7 @@ PARTE_A = [
 
     ("**A2.** Aplique o **teste do zero** à variável **“número de funcionários de uma "
      "empresa”** e diga em que nível ela está.",
-     "O zero significa **ausência real** — empresa sem funcionários. Logo é **razão**. Além "
+     "O zero significa **ausência real**: empresa sem funcionários. Logo é **razão**. Além "
      "disso é uma contagem e por isso permite tudo: ordenar, somar, média, mediana e razão "
      "(“tem o dobro de funcionários”)."),
 
@@ -74,7 +80,7 @@ PARTE_A = [
 
     ("**A4.** Por que **somar os desvios** de cada valor em relação à média **não** serve "
      "como medida de dispersão? E por que, então, se eleva ao quadrado?",
-     "Porque a soma dos desvios em relação à média é **sempre zero** — os positivos e os "
+     "Porque a soma dos desvios em relação à média é **sempre zero**, porque os positivos e os "
      "negativos se cancelam. Elevar ao quadrado resolve o cancelamento e, de passagem, pune "
      "mais os desvios grandes, que é o que se quer."),
 
@@ -86,10 +92,10 @@ PARTE_A = [
      "adimensional e por isso permite a comparação."),
 
     ("**A6.** A média de uma variável é R\\$ 6,13 e a mediana é R\\$ 6,08. **O que essa "
-     "diferença sugere** sobre a forma da distribuição — e o que ela **não** permite "
+     "diferença sugere** sobre a forma da distribuição, e o que ela **não** permite "
      "concluir?",
      "Sugere **assimetria à direita**: a média acima da mediana indica que há valores altos "
-     "puxando a média. **Não** permite concluir **causa**, nem afirmar a forma exata — para "
+     "puxando a média. **Não** permite concluir **causa**, nem afirmar a forma exata. Para "
      "isso seria preciso ver o histograma e a assimetria calculada."),
 
     ("**A7.** Uma empresa diz: *“a inadimplência média do período foi de 3,54%, e o valor "
@@ -99,15 +105,23 @@ PARTE_A = [
      "atual é o erro mais comum de relatório com série temporal."),
 ]
 
-PARTE_B = """## Parte B — prática (120 minutos)
+PARTE_B = """## Parte B: prática (120 minutos)
 
 A base é o **cadastro de companhias abertas com demonstrações financeiras de 2024**
-(CVM) — 449 companhias, com receita, lucro líquido e setor, em milhares de reais.
+(CVM): 449 companhias, com receita, lucro líquido e setor, em milhares de reais.
 
-A célula abaixo carrega a base. **Execute-a.**
+As células de cálculo já vêm prontas. O seu trabalho é **executar, conferir e escrever** a
+frase de leitura de cada resultado. Cada célula termina com a função `conferir`, que compara
+o resultado com o valor esperado e mostra `[ok]` quando ele bate.
 
-> **A base está no arquivo local**, e não em uma API: assim ela nunca falha durante a
-> avaliação. Se a célula der erro, chame o professor."""
+> **A base é um arquivo publicado no repositório da disciplina**, e não uma API: assim ela
+> não depende de um serviço externo durante a avaliação. Se a célula der erro, chame o
+> professor."""
+
+UTIL_MD = """### Utilitários da avaliação
+
+Execute a célula abaixo antes da B0. Ela carrega a função `conferir`. **Não precisa
+alterá-la.**"""
 
 GABARITO_B = """## Gabarito da Parte B (este texto não vai para o aluno)
 
@@ -116,19 +130,22 @@ companhias (9,4% do total). E a leitura precisa dizer o recorte: “das 449 comp
 abertas com demonstrações de 2024, 42 são do setor X, ou 9,4%”.
 
 **B2.** A medida de posição adequada é a **mediana**. A média da receita é
-**12.348.764** e a mediana é **2.109.725** — a média é **5,9 vezes** a mediana. Isso
+**12.348.764** e a mediana é **2.109.725**: a média é **5,9 vezes** a mediana. Isso
 mostra uma distribuição com assimetria extrema (assimetria calculada: **7,56**), e a
 média deixa de representar o conjunto.
 
-**B3.** Desvio padrão **40.915.645**; CV **331,33%**; IQR **7.168.750**. O CV acima de
-100% é o sinal numérico da assimetria: o desvio é maior que a própria média.
+**B3.** Desvio padrão **40.915.645**, CV **331,33%** e IQR **7.168.750**. Numa variável que
+não pode ser negativa, um desvio maior que a própria média só acontece quando poucos valores
+muito altos se afastam do resto: é compatível com a cauda à direita que o histograma da B4
+mostra.
 
 **B4.** O histograma mostra uma **cauda à direita** muito longa: quase todas as
 companhias se concentram nos valores baixos, e algumas poucas alcançam valores
 centenas de vezes maiores. A forma justifica a escolha da mediana em B2.
 
-**B5.** A resposta certa diz: **mediana**, porque a distribuição é assimétrica; e o
-**porquê** citando os números (média 5,9× a mediana, CV 331%)."""
+**B5.** A resposta certa diz: **mediana**, porque a distribuição é assimétrica, e R$ 2
+bilhões está um pouco **abaixo** dela (48,6% das companhias faturam menos). O **porquê**
+cita os números: média 5,9 vezes a mediana e CV de 331%."""
 
 # os gabaritos da Parte A, um a um
 GAB = [g for _, g in PARTE_A]
@@ -140,7 +157,9 @@ for (pergunta, _), gab in zip(PARTE_A, GAB):
 
 CELULAS += [
     {"tipo": "md", "texto": PARTE_B},
-    {"tipo": "code", "texto": '''# CÉLULA B0: carga da base. Já vem pronta — execute.
+    {"tipo": "md", "texto": UTIL_MD},
+    {"tipo": "util"},
+    {"tipo": "code", "texto": '''# CÉLULA B0: carga da base. Já vem pronta: execute.
 import pandas as pd
 
 URL = ("https://raw.githubusercontent.com/tadeugomes/"
@@ -151,7 +170,10 @@ try:
 except Exception:
     # contingência: só se a internet falhar. Nesse caso, faça upload do arquivo
     # dados/cvm_dre_2024.csv para o Colab e execute esta célula de novo.
-    base = pd.read_csv("cvm_dre_2024.csv")
+    try:
+        base = pd.read_csv("cvm_dre_2024.csv")
+    except FileNotFoundError:
+        base = pd.read_csv("dados/cvm_dre_2024.csv")   # na pasta do repositório
 
 # Sete companhias declaram os valores em REAIS, e não em milhares como as outras
 # (coluna ESCALA_MOEDA = "UNIDADE"). Sem esta conversão, uma delas apareceria com
@@ -162,7 +184,11 @@ base = base[base["receita"] > 0].reset_index(drop=True)
 
 print(f"Base carregada: {len(base)} companhias abertas, {base['setor'].nunique()} setores")
 print(f"  ({em_reais.sum()} convertidas de reais para milhares de reais)")
+print(f"  ({base['setor'].isna().sum()} companhias sem setor declarado: contam no total)")
 print("colunas:", list(base.columns))
+
+conferir("companhias na base", len(base), 449, tolerancia=0, unidade=" cias")
+conferir("convertidas de reais para milhares", em_reais.sum(), 7, tolerancia=0, unidade=" cias")
 base.head(3)'''},
 
     {"tipo": "md", "texto": """### B1. A tabela de frequências e a leitura
@@ -175,6 +201,13 @@ freq = base["setor"].value_counts()
 tabela_setor = (freq.rename_axis("setor").reset_index(name="companhias"))
 tabela_setor["pct"] = (tabela_setor["companhias"] / len(base) * 100).round(1)
 n_total = len(base)
+print(f"total declarado: {n_total} companhias, das quais "
+      f"{base['setor'].isna().sum()} sem setor")
+
+conferir("companhias do setor mais frequente", tabela_setor["companhias"].iloc[0], 42,
+         tolerancia=0, unidade=" cias")
+conferir("percentual do setor mais frequente", tabela_setor["pct"].iloc[0], 9.4,
+         tolerancia=0.05, unidade="%")
 tabela_setor.head(5)'''},
     {"tipo": "nota", "texto": "Gabarito B1: o setor mais frequente tem 42 companhias, "
                               "9,4% de 449. O aluno deve escrever a frase com o recorte "
@@ -191,8 +224,11 @@ receita = base["receita"].dropna()
 print(f"n = {len(receita)}")
 print(f"média   = {receita.mean():,.0f} milhares de reais".replace(",", "."))
 print(f"mediana = {receita.median():,.0f} milhares de reais".replace(",", "."))
-print(f"razão média/mediana = {receita.mean() / receita.median():.1f} vezes")'''},
-    {"tipo": "nota", "texto": "Gabarito B2: mediana. Média 12.348.764 e mediana 2.109.725 — "
+print(f"razão média/mediana = {receita.mean() / receita.median():.1f} vezes")
+
+conferir("média da receita", receita.mean(), 12348764, tolerancia=1, unidade=" mil R$")
+conferir("mediana da receita", receita.median(), 2109725, tolerancia=1, unidade=" mil R$")'''},
+    {"tipo": "nota", "texto": "Gabarito B2: mediana. Média 12.348.764 e mediana 2.109.725: "
                               "a média é 5,9 vezes a mediana, sinal de assimetria extrema."},
     {"tipo": "md", "texto": """_(qual medida você escolhe e por quê? cite os números)_
 
@@ -213,11 +249,13 @@ print(f"desvio padrão = {desvio:,.0f}".replace(",", "."))
 print(f"coeficiente de variação = {cv:.2f}%")
 print(f"IQR = {q3 - q1:,.0f}   (Q1 {q1:,.0f} | Q3 {q3:,.0f})".replace(",", "."))
 print()
-print("O CV acima de 100% é o sinal numérico da assimetria:")
-print("o desvio é maior que a própria média.")
+print("O desvio é maior que a própria média. Numa variável que não pode ser negativa,")
+print("isso só acontece quando poucos valores muito altos se afastam do resto.")
 print()
-print("Conferência (o valor esperado está no gabarito do professor):")'''},
-    {"tipo": "nota", "texto": "Gabarito B3: desvio 40.915.645; CV 331,33%; IQR 7.168.750. "
+conferir("desvio padrão da receita", desvio, 40915645, tolerancia=1, unidade=" mil R$")
+conferir("coeficiente de variação", cv, 331.33, tolerancia=0.01, unidade="%")
+conferir("IQR da receita", q3 - q1, 7168750, tolerancia=1, unidade=" mil R$")'''},
+    {"tipo": "nota", "texto": "Gabarito B3: desvio 40.915.645, CV 331,33% e IQR 7.168.750. "
                               "O CV acima de 100% indica que o desvio supera a média."},
     {"tipo": "md", "texto": "_(escreva aqui a frase sobre a dispersão)_\n\n---\n"},
 
@@ -240,7 +278,8 @@ ax.legend()
 plt.tight_layout()
 plt.show()
 
-print(f"assimetria calculada: {receita.skew():.2f}")'''},
+print(f"assimetria calculada: {receita.skew():.2f}")
+conferir("assimetria da receita", receita.skew(), 7.56, tolerancia=0.01, unidade="")'''},
     {"tipo": "nota", "texto": "Gabarito B4: cauda à direita longa; quase todas as companhias "
                               "nos valores baixos, poucas centenas de vezes maiores. "
                               "Assimetria 7,56."},
@@ -258,14 +297,15 @@ print(f"receita de R$ 2 bilhões: {abaixo:.1f}% das companhias faturam menos que
 print(f"mediana = {receita.median():,.0f}".replace(",", "."))
 print(f"média   = {receita.mean():,.0f}".replace(",", "."))
 print()
-print("A medida que responde é a MEDIANA: ela divide o conjunto ao meio.")'''},
+print("A medida que responde é a MEDIANA: ela divide o conjunto ao meio.")
+conferir("companhias abaixo de R$ 2 bilhões", abaixo, 48.6, tolerancia=0.05, unidade="%")'''},
     {"tipo": "nota", "texto": "Gabarito B5: a mediana (2.109.725). R$ 2 bilhões está um pouco "
                               "abaixo dela: 48,6% das companhias faturam menos."},
     {"tipo": "md", "texto": "_(responda aqui: acima ou abaixo e com que medida)_\n\n---\n"},
 
     {"tipo": "md", "texto": """## Registro de uso de IA
 
-**Obrigatório para quem usou o assistente em qualquer parte desta avaliação** — A, B ou
+**Obrigatório para quem usou o assistente em qualquer parte desta avaliação**: A, B ou
 Projeto. Preencha a tabela, ou escreva “não usei”. O registro não desconta pontos; a
 omissão é falta de honestidade acadêmica."""},
 
@@ -277,13 +317,13 @@ omissão é falta de honestidade acadêmica."""},
 ---
 """},
 
-    {"tipo": "md", "texto": """## Projeto — 1ª entrega (30 minutos)
+    {"tipo": "md", "texto": """## Projeto: 1ª entrega (30 minutos)
 
 Preencha os itens abaixo e **verifique que a base carrega sem erro**.
 
 **1. Tema**
 
-_(duas ou três frases: do que o projeto trata, com que recorte — onde e em que período)_
+_(duas ou três frases: do que o projeto trata, com que recorte, onde e em que período)_
 
 ---
 
@@ -301,7 +341,7 @@ _(uma frase, começando por um verbo no infinitivo: descrever, comparar, analisa
 
 **4. Fontes de dados**
 
-_(quais são, quem as produz, a que período se referem e o endereço de cada uma — arquivo
+_(quais são, quem as produz, a que período se referem e o endereço de cada uma: arquivo
 publicado, página de download ou API)_
 
 ---
@@ -309,7 +349,7 @@ publicado, página de download ou API)_
     {"tipo": "md", "texto": """**5. A base escolhida e a célula que a carrega**
 
 _(cole abaixo o código que carrega a sua base e execute-o. A fonte pode ser um arquivo
-publicado ou uma **API** — o que importa é que a célula rode sem erro)_
+publicado ou uma **API**. O que importa é que a célula rode sem erro)_
 """},
     {"tipo": "resposta", "texto": '''# A célula que carrega a base do MEU projeto.
 # A fonte pode ser um arquivo publicado (CSV, Excel) OU uma API.
@@ -350,7 +390,7 @@ análises vão aparecer no seu projeto. Diga, de forma concreta:
 
 - quais **variáveis** da sua base você vai descrever e em que **nível de mensuração** elas
   estão;
-- qual **medida de posição** você espera usar em cada uma, e por quê (média ou mediana —
+- qual **medida de posição** você espera usar em cada uma, e por quê (média ou mediana:
   a justificativa é a mesma da Parte A);
 - que **medida de dispersão** e que **gráfico** entram na caracterização da sua base;
 - que **frase de leitura** essa descrição vai permitir escrever no relatório, com o recorte

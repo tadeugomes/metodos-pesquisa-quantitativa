@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook do encontro 13 (Modulo IV — correlacao, regressao linear e logistica).
+"""Gera o notebook do encontro 13 (Modulo IV: correlacao, regressao linear e logistica).
 
 E13 abre o Modulo IV. A Parte 1 e a correlacao: Pearson, Spearman como alternativa, R²
 e o que nenhum deles diz sobre causa. A Parte 2 e a familia da regressao: linear
@@ -51,7 +51,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 13. Correlação, regressão linear e regressão logística
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje, em três passos**
@@ -67,7 +67,7 @@ PAINEL = """# Encontro 13. Correlação, regressão linear e regressão logísti
 ## Painel do encontro
 
 O Módulo III perguntava **"os grupos diferem?"**. O Módulo IV pergunta **"as variáveis
-andam juntas — e quanto uma muda quando a outra muda?"**. Hoje são três ferramentas,
+andam juntas, e quanto uma muda quando a outra muda?"**. Hoje são três ferramentas,
 sobre uma única base:
 
 | Ferramenta | A pergunta | A resposta |
@@ -80,7 +80,7 @@ sobre uma única base:
 
 | Item | Valor |
 |---|---|
-| **Fonte** | CVM — Demonstrações Financeiras Padronizadas (DFP), DRE consolidada |
+| **Fonte** | CVM, Demonstrações Financeiras Padronizadas (DFP), DRE consolidada |
 | **Exercício** | 2024 |
 | **Casos** | **449 companhias abertas** com receita positiva |
 | **Unidade** | R$ milhões |
@@ -131,7 +131,7 @@ MODELO_PROJETO  = "logistica"                # "linear" (y quantitativo) ou "log
 ```
 
 > Os `conferir` valem para a configuração original. Ao trocar o cenário ou o modelo, o
-> `[X]` só quer dizer que o número mudou — e era isso que se queria ver."""
+> `[X]` só quer dizer que o número mudou, e era isso que se queria ver."""
 
 CONFIG_CODIGO = '''RECEITA_CENARIO = 1000   # a receita do cenário, em R$ milhões (1000 = R$ 1 bilhão)
 ENERGIA_CENARIO = 0      # 1 = companhia de energia elétrica | 0 = outro setor
@@ -148,7 +148,7 @@ UTILITARIOS_NOTA = """## Utilitários da disciplina
 
 As células abaixo carregam as funções usadas no resto do notebook. **Não precisa
 alterá-las.** `conferir` compara o seu resultado com o número do slide; `cinco_colunas`
-transforma o ajuste do modelo na tabela de cinco colunas que vai para o relatório — e é
+transforma o ajuste do modelo na tabela de cinco colunas que vai para o relatório, e é
 por isso que você **nunca** vai ler o `summary()` do pacote."""
 
 UTIL_ENCONTRO = '''# =====================================================================
@@ -237,7 +237,8 @@ URL = ("https://raw.githubusercontent.com/tadeugomes/"
        "metodos-pesquisa-quantitativa/main/dados/cvm_dre_2024.csv")
 cvm = pd.read_csv(URL, dtype={"CD_CVM": str})
 
-# a escala: "MIL" = milhares de reais (442 companhias); "UNIDADE" = reais (7 companhias)
+# a escala: "MIL" = milhares de reais (444 no arquivo, 442 depois de tirar as 2 de
+# receita negativa); "UNIDADE" = reais (7 companhias)
 fator = np.where(cvm["ESCALA_MOEDA"] == "MIL", 1e-3, 1e-6)
 cvm["receita_mi"] = cvm["receita"] * fator
 cvm["lucro_mi"] = cvm["lucro_liquido"] * fator
@@ -254,7 +255,7 @@ print(f"  com lucro: {cvm['log_lucro'].notna().sum()} | com prejuízo: {cvm['pre
       f" | de energia elétrica: {cvm['energia'].sum()}")
 cvm[["DENOM_CIA", "receita_mi", "lucro_mi", "log_receita", "prejuizo", "energia"]].head(4)'''
 
-CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Só se o professor mandar e depois de fazer upload do arquivo
 # dados/cvm_dre_2024.csv.
 #
@@ -294,7 +295,7 @@ manda você executar a **Célula B**, depois do upload do CSV."""},
     {"tipo": "contingencia", "texto": CELULA_B},
 
     # ------------------------------------------------------------ Parte 1
-    {"tipo": "md", "texto": """## Seção 2. Parte 1: correlação — as duas variáveis andam juntas?
+    {"tipo": "md", "texto": """## Seção 2. Parte 1: correlação, as duas variáveis andam juntas?
 
 **A pergunta.** Companhia que vende mais lucra mais?
 
@@ -343,7 +344,7 @@ reais, 440 companhias se espremem num canto e cinco gigantes ocupam o resto. O *
 de base 10** troca "quanto" por "quantos zeros": 1 = R$ 10 mi, 2 = R$ 100 mi, 3 = R$ 1 bi.
 
 O preço: o logaritmo só existe para valores **positivos**. Na escala log, o lucro só pode
-ser lido para as companhias que **tiveram lucro** — as 131 com prejuízo ficam de fora e
+ser lido para as companhias que **tiveram lucro**: as 131 com prejuízo ficam de fora e
 voltam na regressão logística."""},
     {"tipo": "code", "texto": '''# Em escala log10, só as companhias com lucro.
 com_lucro = cvm.dropna(subset=["log_lucro"])
@@ -397,7 +398,7 @@ lucre?
 | | |
 |---|---|
 | **Use** | Quando y é **quantitativo** e se quer o tamanho da relação, ou prever y num cenário |
-| **Não use** | Com y **binário** (0 ou 1): a reta prevê probabilidade abaixo de 0 e acima de 1 — é o caso da logística. Nem para prever fora da faixa observada de x |
+| **Não use** | Com y **binário** (0 ou 1): a reta prevê probabilidade abaixo de 0 e acima de 1, e esse é o caso da logística. Nem para prever fora da faixa observada de x |
 
 **3. A fórmula**
 
@@ -433,7 +434,7 @@ conferir("erro padrão de b", linear.bse["log_receita"], 0.043, tolerancia=0.001
 conferir("R² da regressão simples", linear.rsquared, 0.550, tolerancia=0.001, unidade="")'''},
     {"tipo": "md", "texto": """**A célula de previsão.** Inteiramente pré-escrita: só o cenário muda e ele está no bloco
 de configuração (`RECEITA_CENARIO`)."""},
-    {"tipo": "code", "texto": '''# A PREVISÃO DA REGRESSÃO LINEAR — não altere esta célula; mude o cenário no bloco de configuração.
+    {"tipo": "code", "texto": '''# A PREVISÃO DA REGRESSÃO LINEAR: não altere esta célula; mude o cenário no bloco de configuração.
 x_cenario = np.log10(RECEITA_CENARIO)
 cenario = pd.DataFrame({"const": [1.0], "log_receita": [x_cenario]})
 log_previsto = linear.predict(cenario).iloc[0]
@@ -444,7 +445,7 @@ print(f"  log10 do lucro previsto = {linear.params['const']:.3f} + "
       f"{linear.params['log_receita']:.3f} × {x_cenario:.3f} = {log_previsto:.3f}")
 print(f"  lucro previsto = 10^{log_previsto:.3f} = R$ {lucro_previsto:,.1f} milhões".replace(",", "X").replace(".", ",").replace("X", "."))
 print()
-print("É o lucro TÍPICO de uma companhia COM LUCRO desse tamanho — e não uma promessa.")
+print("É o lucro TÍPICO de uma companhia COM LUCRO desse tamanho, e não uma promessa.")
 
 conferir("lucro previsto para R$ 1 bi (R$ mi)", lucro_previsto, 101.0, tolerancia=0.1, unidade="")'''},
     {"tipo": "md", "texto": """### O resíduo: o que a reta errou
@@ -461,7 +462,7 @@ print(maiores[["DENOM_CIA", "receita_mi", "lucro_mi", "lucro_previsto_mi", "resi
       .round(2).to_string(index=False))
 print()
 print("A Raízen lucrou muito abaixo do que a reta prevê para a sua receita: o resíduo")
-print("negativo é o que o modelo NÃO explica — margem apertada de distribuidora de combustível.")
+print("negativo é o que o modelo NÃO explica: margem apertada de distribuidora de combustível.")
 
 raizen = com_lucro.loc[com_lucro["DENOM_CIA"].str.startswith("RAÍZEN"), "residuo"].iloc[0]
 print(f"Resíduo da Raízen: {raizen:.2f} -> lucro 10^{-raizen:.2f} = {10 ** -raizen:.1f} vezes menor que o previsto")
@@ -495,11 +496,11 @@ conferir("lucro previsto, múltipla (R$ mi)", lucro_m, 89.9, tolerancia=0.1, uni
 > lucram **2,5 vezes** mais que as dos outros setores (CVM, DFP 2024)."
 
 **O que essa frase não diz.** Que aumentar a receita **faz** o lucro subir, nem nada sobre as
-131 companhias que tiveram prejuízo — elas não estão no modelo.
+131 companhias que tiveram prejuízo: elas não estão no modelo.
 
 **9. Erro comum.** Ler b = 0,838 como "cada real de receita gera R$ 0,84 de lucro". Com x e y
 em log, b é uma **elasticidade**: receita 1% maior, lucro cerca de 0,84% maior. Um real de
-receita gera, em média, alguns centavos de lucro — a margem.
+receita gera, em média, alguns centavos de lucro: a margem.
 
 **10. Ficha.** `ajusta_modelo(base, "y", ["x1", "x2"], tipo="linear")` → tabela de cinco
 colunas; leia **b** como efeito na unidade de y, **R²** como a parte acompanhada e o
@@ -518,7 +519,7 @@ escala em que ela vira reta: o **log-odds**.
 | | |
 |---|---|
 | **Use** | Quando y é binário: prejuízo ou não, inadimplente ou não, comprou ou não |
-| **Não use** | Com y quantitativo (é a linear), nem para ler e^b como "a probabilidade se multiplica" — quem se multiplica é a **chance** |
+| **Não use** | Com y quantitativo (é a linear), nem para ler e^b como "a probabilidade se multiplica". Quem se multiplica é a **chance** |
 
 **3. A fórmula**
 
@@ -565,7 +566,7 @@ conferir("b da logística", b_l, -0.736, tolerancia=0.001, unidade="")
 conferir("razão de chances (receita x 10)", np.exp(b_l), 0.479, tolerancia=0.001, unidade="")'''},
     {"tipo": "md", "texto": """**A célula de previsão.** Inteiramente pré-escrita: só o cenário muda, no bloco de
 configuração."""},
-    {"tipo": "code", "texto": '''# A PREVISÃO DA REGRESSÃO LOGÍSTICA — não altere esta célula; mude o cenário no bloco de configuração.
+    {"tipo": "code", "texto": '''# A PREVISÃO DA REGRESSÃO LOGÍSTICA: não altere esta célula; mude o cenário no bloco de configuração.
 cenario_l = pd.DataFrame({"const": [1.0], "log_receita": [np.log10(RECEITA_CENARIO)]})
 p_cenario = logit.predict(cenario_l).iloc[0]
 print(f"Cenário: receita de R$ {RECEITA_CENARIO:.0f} milhões")
@@ -579,7 +580,7 @@ cenarios["chance"] = (prob / (1 - prob)).round(2)
 print(cenarios.to_string(index=False))
 print()
 print("De R$ 100 mi para R$ 1 bi, a CHANCE cai à metade (× 0,48); a PROBABILIDADE cai")
-print("de 49,5% para 32,0% — não à metade. Chance e probabilidade não são a mesma coisa.")
+print("de 49,5% para 32,0%, e não à metade. Chance e probabilidade não são a mesma coisa.")
 
 conferir("P(prejuízo) com receita de R$ 1 bi", p_cenario * 100, 32.0, tolerancia=0.05)
 conferir("P(prejuízo) com receita de R$ 100 mi", cenarios["prob_prejuizo_%"].iloc[0], 49.5, tolerancia=0.05)'''},
@@ -603,7 +604,7 @@ plt.show()'''},
 
 > "Das 449 companhias abertas com receita em 2024, 29% fecharam o ano no prejuízo, e a chance
 > de prejuízo cai com o porte: a cada receita **10 vezes maior**, a chance se multiplica por
-> **0,48** — cai à metade (regressão logística; b = −0,736; EP = 0,128; p < 0,001). Para uma
+> **0,48**, ou seja, cai à metade (regressão logística; b = −0,736; EP = 0,128; p < 0,001). Para uma
 > companhia com receita de **R$ 1 bilhão**, a probabilidade prevista de prejuízo é de
 > **32%**; com R$ 100 milhões, de **49%** (CVM, DFP 2024)."
 
@@ -636,7 +637,7 @@ A célula abaixo ajusta o modelo que o bloco de configuração pede. Na configur
    `X_PROJETO` e `MODELO_PROJETO`, e rode de novo. Y quantitativo: `"linear"`. Y de 0 e 1:
    `"logistica"`.
 5. Escreva a frase de leitura na célula de texto do fim."""},
-    {"tipo": "code", "texto": '''# O MODELO DO PROJETO — muda conforme o bloco de configuração.
+    {"tipo": "code", "texto": '''# O MODELO DO PROJETO: muda conforme o bloco de configuração.
 base_projeto = escolhe_base_projeto(ARQUIVO_PROJETO, cvm)
 print()
 modelo_projeto = ajusta_modelo(base_projeto, Y_PROJETO, X_PROJETO, tipo=MODELO_PROJETO)
@@ -664,11 +665,15 @@ conferir("P(prejuízo), R$ 1 bi, outro setor", p_proj * 100, 33.8, tolerancia=0.
 
 A regra: **a IA explica, o código calcula e você confere e escreve.**
 
-**Modo 1 — Pergunta.** Copie o cartão e cole no assistente antes de perguntar, por exemplo,
+**Modo 1: Pergunta.** Copie o cartão e cole no assistente antes de perguntar, por exemplo,
 *"o que quer dizer uma razão de chances de 0,41 para a variável energia?"*. A resposta tem
-de usar os números da tabela de cinco colunas; se inventar outro, desconfie."""},
-    {"tipo": "code", "texto": 'cartao(cvm[["log_receita", "log_lucro", "prejuizo", "energia"]], "energia", nome_base="CVM, DFP 2024 — 449 companhias, valores em log10 de R$ milhões")'},
-    {"tipo": "md", "texto": """**Modo 3 — Ler um resultado errado.** As três leituras abaixo usam números certos e concluem
+de usar os números da tabela de cinco colunas; se inventar outro, desconfie.
+
+**Modo 2: Encomenda.** Não entra neste encontro: o modelo da prática já se troca no bloco de
+configuração, sem pedir código à IA. A encomenda (pedir uma troca de coluna, filtro ou
+agrupamento e conferir o resultado) volta na AV3, para adaptar a análise à base do projeto."""},
+    {"tipo": "code", "texto": 'cartao(cvm[["log_receita", "log_lucro", "prejuizo", "energia"]], "energia", nome_base="CVM, DFP 2024, 449 companhias, valores em log10 de R$ milhões")'},
+    {"tipo": "md", "texto": """**Modo 3: Ler um resultado errado.** As três leituras abaixo usam números certos e concluem
 errado. Diga, para cada uma, qual é o erro e o que deveria ter sido dito."""},
     {"tipo": "code", "texto": '''# As três leituras erradas do professor.
 print("LEITURA 1: 'a correlação entre receita e lucro é 0,69, logo aumentar a receita")

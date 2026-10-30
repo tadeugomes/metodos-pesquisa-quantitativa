@@ -11,7 +11,7 @@ seis valores da CONFIG; todas as secoes do relatorio se refazem sozinhas.
 
 A base de exemplo e a ANP (SHPC 2025, gasolina comum, Maranhao), reorganizada com uma
 linha por posto: o preco medio do ano, a bandeira, o municipio e se a ANP registrou
-preco de etanol no posto. E a mesma fonte dos encontros 6 e 7 — a prova final usa a CVM,
+preco de etanol no posto. E a mesma fonte dos encontros 6 e 7. A prova final usa a CVM,
 e por isso o exemplo da AV3 nao antecipa a prova.
 
 Numeros verificados em 14/10/2026 (executando este gerador):
@@ -42,11 +42,11 @@ import nb_helper as nb
 
 CABECALHO = """# Encontro 14. O relatório final: modelo pronto para a sua base (AV3)
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que é este notebook.** É o **molde do relatório final**, já funcionando. Ele traz as
-> quatro peças da seção de resultados — Tabela 1, Figura 1, inferência e modelo — sobre uma
+> quatro peças da seção de resultados (Tabela 1, Figura 1, inferência e modelo) sobre uma
 > base de exemplo, com a frase de leitura de cada uma escrita ao lado.
 >
 > **O que você faz hoje**
@@ -61,7 +61,7 @@ CABECALHO = """# Encontro 14. O relatório final: modelo pronto para a sua base 
 
 | Item | Valor |
 |---|---|
-| **Fonte** | ANP — Série Histórica de Preços de Combustíveis (SHPC), 2025 |
+| **Fonte** | ANP, Série Histórica de Preços de Combustíveis (SHPC), 2025 |
 | **Recorte** | Maranhão, gasolina comum, os 12 meses de 2025 |
 | **Unidade de observação** | o **posto** (uma linha por posto; o preço é a média dos meses pesquisados) |
 | **Observações** | **236 postos** em 11 municípios |
@@ -75,7 +75,7 @@ CABECALHO = """# Encontro 14. O relatório final: modelo pronto para a sua base 
 | `com_marca` | 1 se o posto tem marca, 0 se é bandeira branca | nominal (0/1) |
 | `ilha` | 1 se o posto está na Ilha de São Luís, 0 se no interior | nominal (0/1) |
 | `vende_etanol` | 1 se a ANP registrou preço de etanol no posto em 2025 | nominal (0/1) |
-| `municipio`, `meses_com_preco` | o município e quantos meses o posto foi pesquisado | — |
+| `municipio`, `meses_com_preco` | o município e quantos meses o posto foi pesquisado | não entram no modelo |
 
 > **A regra do semestre vale no relatório.** A IA explica, o código calcula e o
 > estudante confere e escreve. **Nenhum número entra no relatório sem ter saído de uma
@@ -88,7 +88,7 @@ e execute tudo de novo. Nada mais muda.
 
 | Valor | No exemplo | Na sua base |
 |---|---|---|
-| `ARQUIVO` | `"exemplo"` (os postos da ANP) | o nome do seu CSV, depois do upload — ex.: `"minha_base.csv"` |
+| `ARQUIVO` | `"exemplo"` (os postos da ANP) | o nome do seu CSV, depois do upload, por exemplo `"minha_base.csv"` |
 | `FONTE` | a citação da ANP | a citação da sua fonte, com o ano |
 | `RESPOSTA` | `"preco_gasolina"` | a variável **numérica** que a sua pergunta quer descrever e explicar |
 | `GRUPO` | `"regiao"` | a variável **categórica** cujos grupos o teste compara |
@@ -118,7 +118,7 @@ seção do relatório a partir da `CONFIG`. **Não precisa alterar nada nestas d
 > **Como o `conferir` se comporta aqui.** Com a base de exemplo, cada número é conferido
 > contra o valor já verificado, e aparece `[ok]`. Com a **sua** base, não há valor
 > esperado: aparece `[--]` com o seu número, para você anotar. A conferência que vale
-> para qualquer base — **os grupos somam o total** — continua com `[ok]` ou `[X ]`."""
+> para qualquer base (**os grupos somam o total**) continua com `[ok]` ou `[X ]`."""
 
 UTIL_RELATORIO = '''# =====================================================================
 #  UTILITARIOS DO RELATORIO - nao precisa alterar nada nesta celula
@@ -324,7 +324,7 @@ print(f"colunas: {list(base.columns)}")
 print()
 confere("observações na base", len(base), 236, tolerancia=0, unidade=" obs")'''
 
-CONTINGENCIA = '''# CONTINGÊNCIA — só se a célula de carga falhar por falta de internet (exemplo)
+CONTINGENCIA = '''# CONTINGÊNCIA: só se a célula de carga falhar por falta de internet (exemplo)
 # ou se o seu CSV ainda não estiver no Colab. Execute, escolha o arquivo e, depois,
 # execute a célula de carga de novo. Nada mais muda.
 from google.colab import files
@@ -411,7 +411,8 @@ F1_FRASE = """**A legenda do exemplo**
 
 > *Figura 1. Distribuição do preço médio anual da gasolina comum por posto, segundo a
 > região, Maranhão, 2025 (n = 236). Fonte: ANP, SHPC.* As duas caixas não se sobrepõem:
-> o posto mais caro da Ilha cobra menos que a maioria dos postos do interior.
+> três de cada quatro postos da Ilha cobram até R$ 5,77 (o Q3), e três de cada quatro do
+> interior cobram R$ 6,12 ou mais (o Q1).
 
 **A sua legenda** _(o que a figura mostra, em quem, com que fonte)_
 
@@ -494,7 +495,7 @@ LIN_FRASE = """**A frase de leitura do exemplo**
 CRITICA_MD = """### A leitura crítica: o mesmo coeficiente, sem controlar a região
 
 O que o número diz depende do que está no modelo. A célula abaixo ajusta o modelo
-**só com a primeira explicativa** — a comparação crua, sem controle."""
+**só com a primeira explicativa**: a comparação crua, sem controle."""
 
 CRITICA_CODE = '''# A comparação crua: o modelo só com a primeira explicativa.
 tabela_crua, ajuste_cru = modelo_linear(base, RESPOSTA, EXPLICATIVAS[:1])
@@ -511,9 +512,9 @@ onde a gasolina é mais barata (70 de 117 postos com marca, contra 61 de 119 de 
 branca): a região **esconde** parte do efeito da bandeira. É a variável de confusão do
 encontro 6, agora dentro de um modelo.
 
-**Duas lições para o relatório:** (1) “não significativo” não quer dizer “igual” — o
+**Duas lições para o relatório:** (1) “não significativo” não quer dizer “igual”: o
 teste cru dizia p = 0,863 e o efeito não era zero; (2) diga sempre **o que foi
-controlado** — o coeficiente muda com o que está ao lado dele.
+controlado**, porque o coeficiente muda com o que está ao lado dele.
 
 ---"""
 
@@ -580,7 +581,7 @@ GUIA_MD = """---
 
 Encontre a linha da sua pergunta, use a estatística da terceira coluna e escreva a frase
 no formato da quarta. **Se a sua pergunta não está na tabela, o problema é de
-delineamento, e não de redação** — fale com o professor antes de escrever.
+delineamento, e não de redação**: fale com o professor antes de escrever.
 
 | Módulo | A pergunta | A estatística | O formato da frase |
 |---|---|---|---|
@@ -604,16 +605,16 @@ delineamento, e não de redação** — fale com o professor antes de escrever.
 
 Antes de dar uma frase por pronta, verifique se ela diz:
 
-1. **Quanto** — o número, com a unidade;
-2. **Em quem** — o n, o recorte e o período;
-3. **Com que incerteza** — o intervalo, o erro padrão ou o valor-p;
-4. **O que não autoriza** — causa, generalização, o que ficou de fora.
+1. **Quanto**: o número, com a unidade;
+2. **Em quem**: o n, o recorte e o período;
+3. **Com que incerteza**: o intervalo, o erro padrão ou o valor-p;
+4. **O que não autoriza**: causa, generalização, o que ficou de fora.
 
 Se faltar uma das quatro, reescreva."""
 
 APRESENTACAO_MD = """# A apresentação de 3 a 5 minutos
 
-Um slide — no máximo dois, se o segundo for a Figura 1 — e cinco blocos de cerca de um
+Um slide (no máximo dois, se o segundo for a Figura 1) e cinco blocos de cerca de um
 minuto cada.
 
 | Bloco | O que dizer | No exemplo |

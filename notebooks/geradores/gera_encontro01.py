@@ -33,7 +33,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 1. O que é pesquisa quantitativa e como se mede
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje, em três passos**
@@ -53,11 +53,11 @@ Tudo o que você precisa saber sobre os dados, escrito aqui. Não precisa descob
 
 | Item | Valor |
 |---|---|
-| **Fonte** | IBGE — SIDRA, o Sistema IBGE de Recuperação Automática (**SIDRA**) |
-| **Base** | CEMPRE — Cadastro Central de Empresas, tabela 9582 |
+| **Fonte** | IBGE, Sistema IBGE de Recuperação Automática (**SIDRA**) |
+| **Base** | CEMPRE, Cadastro Central de Empresas, tabela 9582 |
 | **O que é** | Número de empresas cadastradas, por seção da CNAE 2.0, por Unidade da Federação |
 | **Recorte** | Brasil (nível 1) e Maranhão (nível 3, código 21) |
-| **Variável** | 2585 — número de empresas |
+| **Variável** | 2585, número de empresas |
 | **Unidade** | quantidade de empresas (contagem, não porcentagem) |
 | **Observações** | 20 seções da CNAE, **sem** a linha "Total" |
 | **Confira em** | <https://sidra.ibge.gov.br/tabela/9582> |
@@ -72,7 +72,7 @@ Tudo o que você precisa saber sobre os dados, escrito aqui. Não precisa descob
 > **Por que o número da linha "Total" aparece e precisa sair:** a tabela do SIDRA vem
 > com uma linha `Total` que é a soma de todas as seções. Se ela entrar na soma, cada
 > empresa é contada duas vezes. Por isso o notebook filtra essa linha antes de
-> qualquer conta — e essa é a primeira lição de qualidade de dado do semestre."""
+> qualquer conta, e essa é a primeira lição de qualidade de dado do semestre."""
 
 CONFIG = """## Bloco de configuração
 
@@ -93,7 +93,7 @@ SECAO   = "G"          # a LETRA do código da seção da CNAE, não o nome
 
 UTILITARIOS_NOTA = """## Utilitários da disciplina
 
-As duas funções abaixo são usadas o resto do notebook. **Não precisa alterá-las** — e
+As duas funções abaixo são usadas no resto do notebook. **Não precisa alterá-las**, e
 não precisa entender o que fazem para seguir. `conferir` é a que mais importa: ela
 compara o seu resultado com o número que já estava resolvido no slide e diz se bateu.
 
@@ -136,14 +136,14 @@ Um notebook é uma lista de blocos. Blocos de **texto** são explicação. Bloco
 **código** são instruções para o computador e precisam ser executados.
 
 Para executar um bloco: clique nele e aperte **Shift + Enter**. A célula de código
-transforma em texto, e o resultado aparece embaixo.
+executa, e o resultado aparece embaixo.
 
 **Três coisas que resolvem quase todo problema de laboratório:**
 
 | Se isso aconteceu | Faça isso |
 |---|---|
-| Executei uma coisa e o resultado não é o esperado | Execute de novo **toda vez de cima para baixo**: menu *Runtime → Run all* |
-| Quero recomeçar do zero | Menu *Runtime → Restart runtime* |
+| Executei uma coisa e o resultado não é o esperado | Execute de novo **toda vez de cima para baixo**: menu *Ambiente de execução → Executar tudo* |
+| Quero recomeçar do zero | Menu *Ambiente de execução → Reiniciar sessão* |
 | A célula de contingência pede um arquivo | Faça upload do arquivo `dados/` que o professor indicar e execute a célula **B** |"""},
 
     {"tipo": "code", "texto": "# Uma celula de codigo e uma instrucao. Execute e veja o que acontece.\n"
@@ -161,10 +161,11 @@ que devolve dados, e aqui ela devolve uma tabela.
 
 A chamada já está pronta. Execute a célula **A**.
 
-> **Célula B — contingência.** Se a API não responder (o IBGE derruba a conexão em
+> **Célula B, a contingência.** Se a API não responder (o IBGE derruba a conexão em
 > horário de pico, e acontece), o professor manda você executar a célula **B** logo
-> abaixo, que lê o mesmo arquivo de uma cópia local. As duas células produzem a mesma
-> tabela. Não tente descobrir qual deu errado: pergunte."""},
+> abaixo, que lê a mesma tabela de uma cópia local. As duas células produzem a mesma
+> tabela e deixam pronta a mesma função `baixa_cempre`, que a Seção 4 usa para o recorte
+> Brasil. Não tente descobrir qual deu errado: pergunte."""},
 
     {"tipo": "code", "texto": '''# ============ CÉLULA A: chamada à API do IBGE/SIDRA ============
 # Se esta célula falhar, peça ao professor para usar a CÉLULA B.
@@ -206,33 +207,38 @@ print(f"Base carregada: {RECORTE} | {len(dados)} seções | "
       f"{dados['Valor'].sum():,.0f} empresas".replace(",", "."))
 dados.head(3)'''},
 
-    {"tipo": "contingencia", "texto": '''# ============ CÉLULA B: CONTINGÊNCIA — leia antes ============
+    {"tipo": "contingencia", "texto": '''# ============ CÉLULA B: CONTINGÊNCIA, leia antes ============
 # NÃO EXECUTE AGORA. Execute esta célula apenas se o professor mandar,
-# e só depois de fazer upload do arquivo dados/cempre_<recorte>.csv.
-# Para fazer upload: menu Arquivo → Fazer upload → escolha o arquivo → arraste para
-# a célula abaixo.
+# e só depois de fazer upload dos arquivos dados/cempre_maranhao.csv e
+# dados/cempre_brasil.csv (menu Arquivos, à esquerda → ícone de upload).
 #
-# Esta célula produz exatamente a mesma tabela que a Célula A.
+# Esta célula produz exatamente a mesma tabela que a Célula A e define a mesma
+# função baixa_cempre, para que o resto do notebook funcione sem mudança.
 
-import os
 import pandas as pd
 
-NOME_ARQUIVO = {"Brasil": "cempre_brasil.csv", "Maranhao": "cempre_maranhao.csv"}[RECORTE]
+def baixa_cempre(recorte):
+    """Lê a cópia local da tabela 9582 (CEMPRE), no mesmo formato da API."""
+    arquivo = {"Brasil": "cempre_brasil.csv", "Maranhao": "cempre_maranhao.csv"}[recorte]
+    tabela = pd.read_csv(arquivo)
+    # o arquivo é a resposta da API gravada: a primeira linha traz os nomes das colunas
+    tabela.columns = tabela.iloc[0]
+    tabela = tabela.iloc[1:].reset_index(drop=True)
+    tabela["Valor"] = pd.to_numeric(tabela["Valor"], errors="coerce")
+    tabela = tabela.rename(columns={
+        "Classificação Nacional de Atividades Econômicas (CNAE 2.0)": "secao_cnae"})
 
-dados = pd.read_csv(NOME_ARQUIVO, sep=None, engine="python")
-dados.columns = [str(c).strip() for c in dados.columns]
-# estas cópias vêm com a seção na coluna NN e o valor em V
-if {"NN", "V"}.issubset(dados.columns):
-    dados = dados.rename(columns={"NN": "secao_cnae", "V": "Valor"})
-dados["Valor"] = pd.to_numeric(dados["Valor"], errors="coerce")
-dados = dados[dados["secao_cnae"].astype(str) != "Total"].dropna(subset=["Valor"])
-dados = dados.sort_values("Valor", ascending=False).reset_index(drop=True)
+    # tira a linha "Total": se ela entrar na soma, cada empresa conta duas vezes
+    tabela = tabela[tabela["secao_cnae"] != "Total"].dropna(subset=["Valor"])
+    return tabela.sort_values("Valor", ascending=False).reset_index(drop=True)
 
-print(f"Base carregada do arquivo local: {RECORTE} | {len(dados)} seções")
+dados = baixa_cempre(RECORTE)
+print(f"Base carregada do arquivo local: {RECORTE} | {len(dados)} seções | "
+      f"{dados['Valor'].sum():,.0f} empresas".replace(",", "."))
 dados.head(3)'''},
 
     # ------------------------------------------------------------------ estatistica (Parte 2)
-    {"tipo": "md", "texto": """## Estatística do encontro: frequência, divisão e o denominador
+    {"tipo": "md", "texto": """## Seção 3. A tabela de frequências e a conferência
 
 **O que é uma frequência.** Contar quantas observações caem em cada categoria é a
 **frequência absoluta**. Dividir essa contagem pelo total de observações é a
@@ -242,12 +248,12 @@ dados.head(3)'''},
 
 $$f = \\frac{n_i}{n}$$
 
-* $n_i$ é a contagem da categoria $i$ — a frequência absoluta
+* $n_i$ é a contagem da categoria $i$, a frequência absoluta
 * $n$ é o total de observações
 * $f$ é a frequência relativa, um número entre 0 e 1
 
-Em corrente: **conte a categoria e divida pelo total.** Multiplicado por 100, dá a
-porcentagem, e a soma de todas fecha em 100% — sempre.
+Em linguagem corrente: **conte a categoria e divida pelo total.** Multiplicado por 100,
+dá a porcentagem, e a soma de todas fecha em 100%, sempre.
 
 **Quando usar e quando não usar**
 
@@ -279,10 +285,40 @@ conferir("frequência do comércio (seção G)", float(tabela.loc[
     {"tipo": "md", "texto": """> **Sobre a conferência.** Se apareceu `[ok]`, o seu resultado bate com o número do
 > slide. Se apareceu `[X]` em um número que ontem batia, quase sempre é que o IBGE
 > divulgou um **corte novo** da base: o CEMPRE é atualizado todo ano. Nesse caso, copie
-> o número novo, anote o ano ao lado e siga — o número que vale é o que saiu do código,
+> o número novo, anote o ano ao lado e siga. O número que vale é o que saiu do código,
 > não o do slide. É assim que se trabalha com dado real."""},
 
-    {"tipo": "md", "texto": """### O mesmo número, três denominadores
+    # ------------------------------------------------------------------ grafico
+    {"tipo": "md", "texto": """### O gráfico de barras
+
+A tabela de frequências já é a resposta completa. O gráfico é a **mesma tabela,
+desenhada**: o comprimento da barra substitui o número, e o olho compara melhor do que
+a memória."""},
+
+    {"tipo": "code", "texto": '''import matplotlib.pyplot as plt
+
+top = tabela.head(10).copy()
+top["secao_curta"] = top["secao_cnae"].str.slice(0, 42)
+
+fig, ax = plt.subplots(figsize=(10, 5))
+barras = ax.barh(top["secao_curta"], top["pct"], color="#0AB0AB")
+ax.invert_yaxis()
+ax.set_xlabel("% das empresas do recorte")
+ax.set_title(f"As dez seções da CNAE com mais empresas, {RECORTE}")
+ax.grid(axis="x", alpha=0.3)
+
+# o número no fim de cada barra: o olho lê antes do eixo
+for barra, pct in zip(barras, top["pct"]):
+    ax.text(barra.get_width() + 0.3, barra.get_y() + barra.get_height() / 2,
+            f"{pct:.1f}%", va="center", fontsize=9)
+
+ax.set_xlim(0, max(top["pct"]) * 1.18)
+plt.tight_layout()
+plt.show()'''},
+
+    {"tipo": "md", "texto": """## Seção 4. Os três denominadores e a comparação com o Brasil
+
+### O mesmo número, três denominadores
 
 A pergunta do dia: **69.518 empresas de comércio no Maranhão. Quanto isso representa?**
 
@@ -325,41 +361,15 @@ do Maranhão. Contar empresas e medir peso econômico são coisas diferentes, e 
 é o erro mais comum de relatório.
 
 E repare na segunda metade: 41,4% contra 27,4% é uma diferença de **13,94 pontos
-percentuais** — não é "51% maior", que é a leitura errada."""},
-
-    # ------------------------------------------------------------------ grafico
-    {"tipo": "md", "texto": """## Seção 3. O gráfico de barras
-
-A tabela de frequências já é a resposta completa. O gráfico é a **mesma tabela,
-desenhada**: o comprimento da barra substitui o número, e o olho compara melhor do que
-a memória."""},
-
-    {"tipo": "code", "texto": '''import matplotlib.pyplot as plt
-
-top = tabela.head(10).copy()
-top["secao_curta"] = top["secao_cnae"].str.slice(0, 42)
-
-fig, ax = plt.subplots(figsize=(10, 5))
-barras = ax.barh(top["secao_curta"], top["pct"], color="#0AB0AB")
-ax.invert_yaxis()
-ax.set_xlabel("% das empresas do recorte")
-ax.set_title(f"As dez seções da CNAE com mais empresas — {RECORTE}")
-ax.grid(axis="x", alpha=0.3)
-
-# o número no fim de cada barra: o olho lê antes do eixo
-for barra, pct in zip(barras, top["pct"]):
-    ax.text(barra.get_width() + 0.3, barra.get_y() + barra.get_height() / 2,
-            f"{pct:.1f}%", va="center", fontsize=9)
-
-ax.set_xlim(0, max(top["pct"]) * 1.18)
-plt.tight_layout()
-plt.show()'''},
+percentuais**, e não de 13,94%. Dizer que a participação maranhense é 51% maior também está
+certo, mas é outra medida, a variação relativa. O erro é trocar uma pela outra."""},
 
     # ------------------------------------------------------------------ Brasil
-    {"tipo": "md", "texto": """## Seção 4. A sua vez: compare Maranhão e Brasil
+    {"tipo": "md", "texto": """### A sua vez: compare Maranhão e Brasil
 
 **Volte ao bloco de configuração** e troque `RECORTE = "Maranhao"` por
-`RECORTE = "Brasil"`. Execute de novo, **de cima para baixo** (menu *Runtime → Run all*).
+`RECORTE = "Brasil"`. Execute de novo, **de cima para baixo** (menu *Ambiente de execução →
+Executar tudo*).
 
 Faça isso agora e depois volte a linha para `"Maranhao"` antes de seguir."""},
 
@@ -376,8 +386,8 @@ Isso responde à pergunta que a turma deu como palpite no começo da aula: o com
 fato maior peso no estado. E note o que o dado **não** diz: que o comércio gere 41% da
 riqueza do Maranhão."""},
 
-    {"tipo": "code", "texto": '''# Os dois recortes, lado a lado. Só roda depois de ter executado a Seção 4.
-# Recarrega os dois recortes. A base e pequena, leva poucos segundos.
+    {"tipo": "code", "texto": '''# Os dois recortes, lado a lado. Esta célula recarrega o recorte Brasil sozinha.
+# A base é pequena: leva poucos segundos.
 brasil = baixa_cempre("Brasil")
 print(f"Brasil: {len(brasil)} seções | "
       f"{brasil['Valor'].sum():,.0f} empresas".replace(",", "."))
@@ -399,15 +409,15 @@ conferir("participação do comércio no Brasil", com_br, 27.42, tolerancia=0.02
 Três modos de uso, e todos os três são verificados. A regra do semestre é: **a IA
 explica, o código calcula e você confere e escreve.**
 
-### Modo 1 — Pergunta
+### Modo 1: pergunta
 
 Copie o cartão de contexto abaixo e cole na conversa do assistente (o painel do Colab,
 ou ChatGPT, Claude, Gemini ou Copilot). Depois pergunte o que quiser sobre a base.
 
-> Copie **tudo** que o cartão imprime. Sem isso, o assistente inventa número — e você
+> Copie **tudo** que o cartão imprime. Sem isso, o assistente inventa número, e você
 > não tem como perceber."""},
 
-    {"tipo": "code", "texto": 'cartao(tabela, "secao_cnae", nome_base=f"CEMPRE/IBGE — {RECORTE}")'},
+    {"tipo": "code", "texto": 'cartao(tabela, "secao_cnae", nome_base=f"CEMPRE/IBGE, {RECORTE}")'},
 
     {"tipo": "md", "texto": """Sugestões de pergunta, em ordem de dificuldade:
 
@@ -415,18 +425,18 @@ ou ChatGPT, Claude, Gemini ou Copilot). Depois pergunte o que quiser sobre a bas
 2. "Neste cartão, a soma dos valores é o total de empresas do Maranhão? Como eu sei?"
 3. "Se eu perguntasse a participação do comércio **no Brasil**, o que precisaria mudar?"
 
-### Modo 2 — Encomenda
+### Modo 2: encomenda
 
 Escreva o que você quer, peça o código e cole na **célula cinza** abaixo.
 
-> ⚠️ **Só mude os parâmetros de consulta**: qual coluna, qual filtro, qual agrupamento,
-> qual ordem. **Nunca** peça para mudar a lógica do cálculo — o número do slide foi
+> **Só mude os parâmetros de consulta**: qual coluna, qual filtro, qual agrupamento,
+> qual ordem. **Nunca** peça para mudar a lógica do cálculo: o número do slide foi
 > conferido, e trocar a lógica quebra a conferência.
 
 Depois de executar, confirme os três passos: o número bate com o esperado, os grupos somam
 o total e o gráfico é o que você pediu."""},
 
-    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
+    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA: cole aqui o código do assistente =====================
 # Sugestão de pedido: "liste as dez seções da CNAE com mais empresas no Maranhão,
 # em tabela, com a contagem e a porcentagem, ordenado da maior para a menor"
 #
@@ -438,10 +448,10 @@ sua_analise = None   # <-- o assistente escreve aqui embaixo
 
 # ====================================================================================='''},
 
-    {"tipo": "md", "texto": """### Modo 3 — Ler um resultado errado
+    {"tipo": "md", "texto": """### Modo 3: ler um resultado errado
 
-O professor preparou três análises que **contêm um erro de estatística**. Todas usam os
-dados certainíssimos. O erro está no que foi feito com eles.
+O professor preparou três análises, e pelo menos uma **contém um erro de estatística**.
+Todas usam dados certos. O erro está no que foi feito com eles.
 
 Rode a célula abaixo e responda, para cada linha: **qual é o erro e o que deveria ter
 sido dividido?**"""},
@@ -464,7 +474,7 @@ print("          (o número está certo? a afirmação, responde à pergunta do 
 |---|---|
 | **1** | Está certa. 41,4% é a resposta à pergunta do dia, com o denominador declarado |
 | **2** | O número está certo (75,8%), mas a **frase** está errada: "da economia do Maranhão" não é o que a contagem de empresas mede. Trocar por "das empresas de comércio e de outras atividades de serviços (seções G e S da CNAE)" |
-| **3** | O número está certo (0,66%) e é uma informação verdadeira e útil — mas responde a outra pergunta: a participação **no Brasil**, não "no Maranhão". Está errada **como resposta** à pergunta do dia |
+| **3** | O número está certo (0,66%) e é uma informação verdadeira, mas responde a outra pergunta: a parcela do comércio maranhense **no total de empresas do Brasil**, não a composição do Maranhão. E "da economia" repete o problema da análise 2. Está errada **como resposta** à pergunta do dia |
 
 Repare que a análise 3 é a mais instrutiva: um número verdadeiro pode ser uma resposta
 errada. É por isso que a frase importa tanto quanto o número."""},
@@ -491,7 +501,7 @@ _(pense em pelo menos uma coisa que o número não diz)_
 
     {"tipo": "md", "texto": """**3. Que pergunta de pesquisa você gostaria de responder com dados neste semestre?**
 
-_(esta resposta é lida pelo professor antes do encontro 2 e orienta a lista de temas
+_(esta resposta é lida pelo professor antes do encontro 3 e orienta o cardápio de temas
 do projeto individual)_
 
 ---
@@ -506,10 +516,9 @@ do projeto individual)_
 - [ ] Respondi as três perguntas por escrito
 - [ ] Compartilhei o link do notebook
 
-**Para o próximo encontro:** leia o capítulo de GIL (2022) sobre como formular um
-problema de pesquisa — as seis regras e a definição operacional. Traga uma pergunta de
-pesquisa, mesmo que ainda mal formulada. O encontro 2 é sobre variáveis, e a pergunta vem
-antes da variável.
+**Para o próximo encontro:** leia o capítulo inicial de GIL (2019), sobre pesquisa social
+e seus tipos. Traga uma pergunta de pesquisa, mesmo que ainda mal formulada. O encontro 2 é
+sobre variáveis, e a pergunta vem antes da variável.
 
 > Guarde este arquivo. Ele é a primeira parte do **guia de estatística descritiva** da
 > disciplina, que vai crescendo a cada encontro até o fim do Módulo I."""},

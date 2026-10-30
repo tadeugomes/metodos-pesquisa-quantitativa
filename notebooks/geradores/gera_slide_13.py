@@ -2,8 +2,8 @@
 """Camada de conducao do encontro 13.
 
 Estrutura do deck:
-  capa · abertura · PARTE 1 — correlacao (divisor + 8 telas + exercicio)
-  · PARTE 2 — regressao linear (divisor + 10 elementos) e regressao logistica (10
+  capa · abertura · PARTE 1: correlacao (divisor + 8 telas + exercicio)
+  · PARTE 2: regressao linear (divisor + 10 elementos) e regressao logistica (10
   elementos) · as tres ferramentas lado a lado · PRATICA NO PROJETO (divisor + 2 telas)
   · sintese · estudo
 
@@ -49,19 +49,20 @@ SECOES = [
                 ("Síntese e tarefa", "15"),
                 ("<strong>Total</strong>", "<strong>240</strong>"),
             ]), "bruto"),
-            ("Por que a prática aparece dentro da Parte 2", """
+            ("Onde cabem os 75 minutos de prática", """
             <p>A seção 6.3 do plano lista, para o encontro 13, estatística 90 e prática 75 como
-            blocos separados; somados aos outros (15 + 90 + 30 + 15), dariam 315 minutos. A conta
-            fecha em 240 porque os <strong>75 minutos de prática acontecem dentro dos 90 da Parte
-            2</strong>: cada bloco de estatística é exposto com a célula correspondente aberta no
-            Colab, e a turma executa junto — o passo a passo, a tabela de cinco colunas e as duas
-            células de previsão. Os últimos 15 minutos do bloco são só do projeto.</p>
+            blocos separados. Somados aos outros (15 + 90 + 30 + 15), dariam 315 minutos. A conta
+            fecha em 240 porque <strong>os 75 minutos de prática acontecem dentro dos blocos
+            expositivos</strong>: 45 durante a Parte 2 (cada bloco de estatística é exposto com a
+            célula correspondente aberta no Colab, e a turma executa junto o passo a passo, a tabela
+            de cinco colunas e as duas células de previsão), 15 no exercício de frases da Parte 1 e
+            15 no bloco final, só do projeto. A tabela da seção de prática detalha a conta.</p>
             <p>Se a aula correr atrás, o que encolhe é a Parte 1 (o exercício de frases pode virar
             tarefa), nunca a logística, que é conteúdo novo da ementa.</p>
-            """, "alerta"),
+            """, "falar"),
             ("A retomada que abre o dia", """
             <p>Dois minutos para fechar o Módulo III: o fluxograma do encontro 12 terminava em
-            <em>“os grupos diferem?”</em>. A pergunta muda: <em>“as variáveis andam juntas — e
+            <em>“os grupos diferem?”</em>. A pergunta muda: <em>“as variáveis andam juntas, e
             quanto?”</em>. Anunciar que a base é uma só, a da CVM, e que o dia tem um fio: a
             regressão linear vai deixar 131 companhias de fora, e a logística vai trazê-las de
             volta.</p>
@@ -95,8 +96,8 @@ SECOES = [
             companhia das 449, o r muda muito?”</em>. A intuição diz que não. Tirando a Petrobras,
             o r cai de <strong>0,685</strong> para <strong>0,573</strong>; tirando as cinco maiores,
             para <strong>0,483</strong>. O Spearman, com as 449, dá <strong>0,512</strong>. É o mesmo
-            fenômeno da média da margem no encontro 12, e vale dizer isso em voz alta: o Pearson é
-            uma média de produtos, e médias se deixam arrastar.</p>
+            fenômeno da média da margem no encontro 12, e vale dizer isso à turma com todas as
+            letras: o Pearson é uma média de produtos, e médias se deixam arrastar.</p>
             """, "pergunta-aula"),
             ("A escala log, sem medo", """
             <p>Apresentar o log10 como “quantos zeros”: 1 = R$ 10 mi, 3 = R$ 1 bi, 5 = R$ 100 bi.
@@ -105,13 +106,13 @@ SECOES = [
             Anotar o 131 no quadro: ele volta na Parte 2B.</p>
             <p>Em log, Pearson e Spearman concordam (<strong>0,742</strong> e
             <strong>0,768</strong>): quando os dois concordam, a relação é linear e não é efeito de
-            extremos — a mesma regra de leitura da ANOVA com o Kruskal-Wallis.</p>
+            extremos. É a mesma regra de leitura da ANOVA com o Kruskal-Wallis.</p>
             """, "falar"),
             ("Gabarito do exercício de frases", """
             <ol>
               <li><strong>Errada.</strong> Verbo de causa (“aumentar... aumenta”) e um r inflado
               pelos gigantes. Reescrita: “em reais, a correlação é de 0,69, mas cai para 0,57 sem a
-              Petrobras; pelos postos (Spearman), é de 0,51 — associação moderada”;</li>
+              Petrobras. Pelos postos (Spearman), é de 0,51: associação moderada”.</li>
               <li><strong>Pode ir</strong>, porque declara o recorte (318 com lucro) e usa
               “tendem”. Ressalva desejável: só companhias abertas;</li>
               <li><strong>Errada.</strong> R² não diz de onde o lucro “vem” e se refere ao
@@ -123,7 +124,7 @@ SECOES = [
             ("Erros que vão aparecer na turma", """
             <ol>
               <li><strong>r = 0 quer dizer “sem relação”.</strong> Quer dizer “sem relação
-              linear” — o painel em U da tela dos quatro padrões é o contraexemplo;</li>
+              linear”. O painel em U da tela dos quatro padrões é o contraexemplo.</li>
               <li><strong>r alto quer dizer causa.</strong> As três razões (confusão, causa inversa,
               seleção) com exemplos da própria base;</li>
               <li><strong>R² como “nota” do modelo.</strong> R² baixo não invalida um coeficiente, e
@@ -151,10 +152,11 @@ SECOES = [
                 ("A frase, o erro comum e a ficha", "7"),
             ]), "bruto"),
             ("A ideia que organiza o bloco inteiro", """
-            <p>Repetir: <strong>“o coeficiente é um efeito na unidade de y”</strong>. Toda a
+            <p>A frase que organiza o bloco: <strong>“o coeficiente é um efeito na unidade de
+            y”</strong>. Toda a
             leitura da regressão depende de saber em que unidade y está. No exemplo, y está em
-            log10, e por isso b = 0,838 se lê como “receita 10 vezes maior, lucro 6,89 vezes maior”
-            — ou, como elasticidade, “1% a mais de receita, 0,84% a mais de lucro”.</p>
+            log10, e por isso b = 0,838 se lê como “receita 10 vezes maior, lucro 6,89 vezes maior”,
+            ou, como elasticidade, “1% a mais de receita, 0,84% a mais de lucro”.</p>
             <p>A regra operacional do plano vale aqui pela primeira vez: <strong>nada de
             <code>summary()</code></strong>. A célula entrega a tabela de cinco colunas, e a coluna
             <code>efeito</code> já traz a tradução. Se algum estudante abrir o
@@ -221,7 +223,7 @@ SECOES = [
             <p>A regressão logística entra na disciplina por decisão do professor (decisão 5 do
             plano), e o ponto em que a turma tropeça é a <strong>chance</strong>. Antes de qualquer
             fórmula, a conta com os números da base: 131 com prejuízo e 318 com lucro. Probabilidade:
-            131 em 449, 29,2%. Chance: 131 para 318, <strong>0,41</strong> — “0,41 companhia com
+            131 em 449, 29,2%. Chance: 131 para 318, <strong>0,41</strong>, ou “0,41 companhia com
             prejuízo para cada uma com lucro”. Usar a linguagem das apostas (“a chance é de 2 para
             1”) ajuda.</p>
             <p>Depois, o log-odds como “a escala em que a curva vira reta” e a razão de chances como
@@ -288,7 +290,7 @@ SECOES = [
             <ol>
               <li>Na configuração original (logística múltipla), os <code>[ok]</code> da prática: OR
               da receita 0,476, OR de energia 0,413 e P = 33,8% no cenário;</li>
-              <li>Com <code>ENERGIA_CENARIO = 1</code>, a probabilidade cai para 17,4% — é a mesma
+              <li>Com <code>ENERGIA_CENARIO = 1</code>, a probabilidade cai para 17,4%: é a mesma
               receita, outro setor;</li>
               <li>Com <code>MODELO_PROJETO = "linear"</code> e <code>Y_PROJETO = "log_lucro"</code>,
               aparece a múltipla da Parte 2A (b de energia 0,402). O <code>conferir</code> da prática
@@ -300,7 +302,7 @@ SECOES = [
             ("Pergunta para quem termina antes", """
             <p><em>“A regressão linear usou 318 companhias e a logística, 449. Se você só pudesse
             relatar um dos dois modelos sobre ‘porte e resultado’, qual seria e por quê?”</em> A
-            resposta esperada: a logística, porque não descarta quem teve prejuízo — ou os dois, com
+            resposta esperada: a logística, porque não descarta quem teve prejuízo. Ou os dois, com
             o recorte de cada um declarado.</p>
             """, "pergunta-aula"),
             ("O que não fazer na circulação", """
@@ -324,7 +326,7 @@ SECOES = [
               <li><strong>A correlação diz se as variáveis andam juntas</strong> e se deixa arrastar
               por extremos: Spearman ou escala log;</li>
               <li><strong>R² é a parte da variação acompanhada</strong>, não a parte “causada”;</li>
-              <li><strong>O coeficiente linear é um efeito na unidade de y</strong> — e em log, é
+              <li><strong>O coeficiente linear é um efeito na unidade de y</strong>, e em log é
               “vezes”;</li>
               <li><strong>Na logística, e<sup>b</sup> multiplica a chance</strong>; a probabilidade
               sai da célula de previsão;</li>

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """Gera o notebook do encontro 6, do Modulo II (o do encontro 7 esta em gera_encontro07.py).
 
-E6 — o sorteio: a base de precos da ANP e, na verdade, um CADASTRO de postos (tem CNPJ,
+E6: o sorteio. A base de precos da ANP e, na verdade, um CADASTRO de postos (tem CNPJ,
 municipio e bandeira). E o unico cadastro de estabelecimentos que a disciplina tem em
 maos e serve para ensinar sorteio com dado real.
 
   N = 236 postos unicos | 11 municipios | 9 bandeiras
   populacao: media R$ 6,0087 | desvio R$ 0,3402
-  AAS n=100: media 5,9753 (erro -0,0334) | sistematica n=100: media 6,0561
+  amostras de n=100 (o deck mostra estes numeros na tela "No Colab"):
+    aleatoria simples (semente 2025)      R$ 5,9753  erro -0,0334
+    sistematica, passo 2,36 (semente 2025) R$ 5,9929  erro -0,0158
+    estratificada por municipio (frac)     R$ 6,0129  erro +0,0042  (99 postos)
+    conveniencia, os 100 primeiros         R$ 6,1306  erro +0,1219  (25% de Sao Luis, contra 43%)
 
-E7 — a distribuicao amostral: mil amostras de n=50 sorteadas da mesma populacao.
-
-  media das 1000 medias: 6,0081 (a 0,0006 da media populacional)
-  desvio das medias: 0,0425  vs  erro padrao teorico s/raiz(n) = 0,0481
-  a dispersao das medias e 8,0 vezes menor que a da populacao
-  74,4% das medias a 1 erro padrao; 97,5% a 2 erros padrao
+A sistematica percorre a lista inteira com passo fracionario (N / n). A versao anterior
+arredondava o passo para baixo e parava no n-esimo posto, e o fim da lista nunca entrava.
 """
 import io
 import os
@@ -27,7 +27,7 @@ import nb_helper as nb
 # ==================================================================== E6
 PAINEL_E6 = """# Encontro 6. População, amostra e o sorteio
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje**
@@ -46,18 +46,18 @@ depende de uma decisão sua: **quais casos entram na amostra e como eles foram e
 
 A base de hoje tem uma particularidade: ela é, ao mesmo tempo, **a população** e **o
 cadastro** do exercício. É a lista de postos de combustível do Maranhão que a ANP
-pesquisa todo mês — cada posto com CNPJ, município e bandeira.
+pesquisa todo mês, cada posto com CNPJ, município e bandeira.
 
 | Item | Valor |
 |---|---|
-| **Fonte** | ANP — Série Histórica de Preços de Combustíveis (SHPC) |
+| **Fonte** | ANP, Série Histórica de Preços de Combustíveis (SHPC) |
 | **O que é** | O **cadastro** de postos: um registro por posto, com CNPJ e município |
 | **Recorte** | Maranhão, 2025, gasolina comum |
 | **População do exercício** | **236 postos**, em 11 municípios |
-| **Unidade** | R$ por litro (o preço médio do posto no ano) |
+| **Unidade** | R$ por litro (o preço do posto no primeiro mês em que ele aparece na pesquisa) |
 
 > **O que a disciplina faz com esta base hoje** é o que se faz com um cadastro de
-> empresas: **sortear**. E o que se aprende aqui vale para qualquer cadastro — o CEMPRE,
+> empresas: **sortear**. E o que se aprende aqui vale para qualquer cadastro: o CEMPRE,
 > a RAIS, a base de clientes de uma empresa."""
 
 CONFIG_E6 = """## Bloco de configuração
@@ -99,7 +99,7 @@ anp = anp.rename(columns={"Municipio": "municipio", "CNPJ da Revenda": "cnpj",
 anp["valor_venda"] = pd.to_numeric(anp["valor_venda"], errors="coerce")
 
 # O CADASTRO: um registro por posto, com o preço do primeiro mês em que aparece.
-# A chave é o CNPJ — e não a combinação de município e bandeira, que muda de grafia
+# A chave é o CNPJ, e não a combinação de município e bandeira, que muda de grafia
 # entre os arquivos e criaria postos duplicados no cadastro.
 gas = anp[anp["produto"] == "GASOLINA"].dropna(subset=["valor_venda"])
 cadastro = (gas.sort_values("mes")
@@ -114,7 +114,7 @@ print(f"  preço médio da POPULAÇÃO: R$ {cadastro['preco_medio'].mean():.4f}"
 print(f"  desvio padrão da POPULAÇÃO: R$ {cadastro['preco_medio'].std():.4f}")
 cadastro.head(4)'''
 
-CELULA_B_E6 = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B_E6 = '''# ================= CÉLULA B: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Só se o professor mandar e depois de fazer upload do arquivo
 # dados/anp_precos_revenda_ma_2025.csv.
 
@@ -151,8 +151,8 @@ Antes de sortear, três definições que a disciplina vai usar o semestre inteir
 | **População** | O conjunto sobre o qual se quer falar | Os 236 postos do Maranhão |
 | **Cadastro** | A lista a que se tem acesso, de onde se sorteia | A mesma lista dos 236 postos |
 | **Amostra** | O subconjunto efetivamente estudado | Os postos sorteados |
-| **Parâmetro** | A medida da população &mdash; o valor verdadeiro, quase sempre desconhecido | O preço médio dos 236 postos |
-| **Estatística** | A medida da amostra &mdash; a estimativa | O preço médio dos postos sorteados |
+| **Parâmetro** | A medida da população: o valor verdadeiro, quase sempre desconhecido | O preço médio dos 236 postos |
+| **Estatística** | A medida da amostra: a estimativa | O preço médio dos postos sorteados |
 
 > **População-alvo ≠ cadastro**, e é aí que nasce o primeiro viés. Aqui os dois
 > coincidem de propósito, para que se veja o sorteio funcionando. Em um cadastro de
@@ -161,7 +161,7 @@ Antes de sortear, três definições que a disciplina vai usar o semestre inteir
     {"tipo": "code", "texto": CELULA_A_E6},
     {"tipo": "contingencia", "texto": CELULA_B_E6},
 
-    {"tipo": "md", "texto": """## Parte 2 · Estatística: o sorteio e a estimativa
+    {"tipo": "md", "texto": """## Seção 2. O sorteio e a estimativa
 
 **A ideia do bloco.** Uma amostra sorteada é uma **estimativa** de um valor que existe
 na população, e essa estimativa **erra**. A pergunta do bloco é: quanto ela costuma
@@ -178,8 +178,9 @@ errar e o que se pode fazer para errar menos.
 
 **A amostra tem erro, e ele pode ser medido.** O **erro de amostragem** é a diferença
 entre a estatística (a média da amostra) e o parâmetro (a média da população). Ninguém
-conhece o parâmetro na prática — e é por isso que este exercício é raro e valioso:
-aqui ele é conhecido, e a turma pode **ver** o erro acontecer."""},
+conhece o parâmetro na prática. Aqui ele é conhecido, e por isso a turma pode **ver** o
+erro acontecer. As técnicas, uma a uma, e o que acontece quando se sorteia mil vezes
+são o assunto do encontro 7."""},
 
     {"tipo": "code", "texto": '''# A amostra aleatória simples: o sorteio honesto.
 amostra = cadastro.sample(n=N_AMOSTRA, random_state=2025)
@@ -200,36 +201,43 @@ conferir("média da amostra de 100", estimativa, 5.9753, tolerancia=0.001, unida
     {"tipo": "md", "texto": """### As três técnicas, lado a lado
 
 Cada técnica constrói a amostra de um jeito e cada uma dá uma estimativa diferente. O
-exercício é comparar as três **com o mesmo valor verdadeiro ao lado**."""},
+exercício é comparar as três **com o mesmo valor verdadeiro ao lado**.
+
+> **A sistemática com passo fracionário.** Com 236 postos e amostra de 100, o passo é
+> 236 ÷ 100 = 2,36. Arredondar para 2 e parar no 100º posto deixaria o fim da lista sem
+> nenhuma chance de entrar. O código sorteia o início entre 0 e 2,36 e anda de 2,36 em
+> 2,36 até o fim da lista."""},
 
     {"tipo": "code", "texto": '''# As três probabilísticas, com o mesmo n, sobre o mesmo cadastro.
+import numpy as np
+
 # 1. aleatória simples
 aas = cadastro.sample(n=N_AMOSTRA, random_state=2025)
 
-# 2. sistemática: um a cada k, depois do ponto de partida sorteado
-k = N // N_AMOSTRA
-partida = 7
-passos = range(partida, N, k)
-sist = cadastro.iloc[list(passos)][:N_AMOSTRA]
+# 2. sistemática: início sorteado entre 0 e k, depois um posto a cada k posições,
+#    com k fracionário para percorrer a lista inteira
+k = N / N_AMOSTRA
+partida = np.random.default_rng(2025).uniform(0, k)
+posicoes = np.floor(partida + k * np.arange(N_AMOSTRA)).astype(int)
+sist = cadastro.iloc[posicoes]
 
-# 3. estratificada: proporcional ao tamanho de cada município
-pesos = cadastro["municipio"].value_counts(normalize=True)
-alocacao = (pesos * N_AMOSTRA).round().astype(int)
-estrat = (cadastro.groupby("municipio", group_keys=False)
-                 .apply(lambda g: g.sample(n=min(alocacao[g.name], len(g)),
-                                           random_state=1)))
+# 3. estratificada: a mesma fração de postos dentro de cada município
+estrat = cadastro.groupby("municipio").sample(frac=N_AMOSTRA / N, random_state=1)
 
 print(f"PARÂMETRO (a verdade): R$ {parametro:.4f}")
 print()
 print(f"  aleatória simples  n={len(aas):3d}  estimativa = R$ {aas['preco_medio'].mean():.4f}  "
       f"erro = {aas['preco_medio'].mean() - parametro:+.4f}")
-print(f"  sistemática (k={k})  n={len(sist):3d}  estimativa = R$ {sist['preco_medio'].mean():.4f}  "
+print(f"  sistemática (k={k:.2f}) n={len(sist):3d}  estimativa = R$ {sist['preco_medio'].mean():.4f}  "
       f"erro = {sist['preco_medio'].mean() - parametro:+.4f}")
 print(f"  estratificada      n={len(estrat):3d}  estimativa = R$ {estrat['preco_medio'].mean():.4f}  "
       f"erro = {estrat['preco_medio'].mean() - parametro:+.4f}")
 print()
 print("As três estimativas são diferentes e as três erram um pouco.")
-print("É isso que a margem de erro de uma pesquisa mede.")'''},
+print("É isso que a margem de erro de uma pesquisa mede.")
+
+conferir("estimativa da sistemática", sist["preco_medio"].mean(), 5.9929, tolerancia=0.001, unidade=" R$")
+conferir("estimativa da estratificada", estrat["preco_medio"].mean(), 6.0129, tolerancia=0.001, unidade=" R$")'''},
 
     {"tipo": "code", "texto": '''# A amostra por conveniência: pegar os primeiros da lista, sem sortear.
 conveniencia = cadastro.head(N_AMOSTRA)
@@ -238,22 +246,49 @@ print(f"  conveniência (os {N_AMOSTRA} primeiros)  estimativa = "
       f"R$ {conveniencia['preco_medio'].mean():.4f}  "
       f"erro = {conveniencia['preco_medio'].mean() - parametro:+.4f}")
 print()
-print("Repare no erro. Os primeiros da lista são os de um município, e o preço varia")
-print("por município: o erro da conveniência é o maior dos quatro e ele NÃO é aleatório.")
-print("É um viés — e viés não se conserta aumentando a amostra.")'''},
+fatia = (conveniencia["municipio"] == "SAO LUIS").mean()
+fatia_pop = (cadastro["municipio"] == "SAO LUIS").mean()
+print(f"  São Luís na conveniência: {fatia:.0%} dos postos | no cadastro: {fatia_pop:.0%}")
+print()
+print("Repare no erro. Os primeiros da lista têm poucos postos de São Luís, onde a")
+print("gasolina é mais barata, e o preço sobe. O erro da conveniência é o maior dos quatro")
+print("e ele NÃO é aleatório: é um viés, e viés não se conserta aumentando a amostra.")
+
+conferir("estimativa da conveniência", conveniencia["preco_medio"].mean(), 6.1306, tolerancia=0.001, unidade=" R$")'''},
+
+    {"tipo": "code", "texto": '''# As quatro estimativas em uma figura, com o valor verdadeiro ao lado.
+import matplotlib.pyplot as plt
+
+nomes = ["aleatória simples", "sistemática", "estratificada", "conveniência"]
+valores = [aas["preco_medio"].mean(), sist["preco_medio"].mean(),
+           estrat["preco_medio"].mean(), conveniencia["preco_medio"].mean()]
+cores = ["#8D0333", "#a67c2e", "#0AB0AB", "#5a5a5a"]
+
+fig, ax = plt.subplots(figsize=(9, 3.6))
+ax.hlines(range(4), parametro, valores, color=cores, linewidth=2)
+ax.scatter(valores, range(4), color=cores, s=90, zorder=3)
+ax.axvline(parametro, color="#8D0333", linewidth=2,
+           label=f"valor verdadeiro  R$ {parametro:.3f}")
+ax.set_yticks(range(4), nomes)
+ax.invert_yaxis()
+ax.set_xlabel("Preço médio estimado (R$ por litro)")
+ax.set_title(f"Quatro amostras de {N_AMOSTRA} postos do mesmo cadastro")
+ax.legend(loc="upper right")
+plt.tight_layout()
+plt.show()'''},
 
     {"tipo": "md", "texto": """**A frase que vai para o relatório**
 
 > "Sobre um cadastro de **236 postos** de combustível do Maranhão, cujo preço médio é
 > **R$ 6,01**, uma amostra aleatória simples de 100 postos estimou o preço médio em
-> **R$ 5,98** — um erro de amostragem de **−R$ 0,03**, ou 0,6% do valor verdadeiro
+> **R$ 5,98**, um erro de amostragem de **−R$ 0,03**, ou 0,6% do valor verdadeiro
 > (ANP, SHPC, 2025)."
 
 **O que essa frase não diz.** Que a amostra "acertou". Ela errou, e o erro está declarado.
-Uma amostra não é boa por acertar o valor verdadeiro — é boa por ter sido **sorteada** e
+Uma amostra não é boa por acertar o valor verdadeiro. Ela é boa por ter sido **sorteada** e
 por isso ter um erro que se pode **medir e declarar**."""},
 
-    {"tipo": "md", "texto": """## Seção 2. As três perguntas do dia
+    {"tipo": "md", "texto": """## Seção 3. As três perguntas do dia
 
 Responda por escrito, editando as células abaixo."""},
     {"tipo": "md", "texto": """**1. Qual é a população-alvo do seu projeto, e qual é o cadastro a que você tem acesso?
@@ -276,8 +311,8 @@ A diferença entre os dois é grande?**
 - [ ] Comparei as quatro amostras e sei qual erra mais, e por quê
 - [ ] Respondi as três perguntas, uma delas sobre o meu projeto
 
-> Guarde este notebook. No próximo encontro ele responde a outra pergunta: se eu
-> sorteasse **mil** amostras, como as estimativas se distribuíram?"""},
+> Guarde este notebook. O notebook do encontro 7 responde a outra pergunta: se eu
+> sorteasse **mil** amostras com cada técnica, como as estimativas se distribuiriam?"""},
 ]
 
 if __name__ == "__main__":

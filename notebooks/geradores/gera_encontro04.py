@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o notebook do encontro 4 (Modulo I — Parte 2: dispersao e forma).
+"""Gera o notebook do encontro 4 (Modulo I, Parte 2: dispersao e forma).
 
 A base e o painel de precos de revenda da ANP no Maranhao em 2025: 12 arquivos mensais,
 recortados para o estado. Sao 10.641 posto-mes, dos quais 4.816 de gasolina comum.
@@ -12,7 +12,7 @@ import nb_helper as nb
 
 PAINEL = """# Encontro 4. O projeto, as fontes de dados e a dispersão
 
-**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa — Administração/UFMA
+**Disciplina:** Métodos e Técnicas de Pesquisa Quantitativa, Administração/UFMA
 **Docente:** Prof. Dr. Tadeu Gomes Teixeira
 
 > **O que você vai fazer hoje, em três passos**
@@ -31,32 +31,34 @@ o centro de um conjunto de dados; hoje aprende que **uma medida só não descrev
 
 | Item | Valor |
 |---|---|
-| **Fonte** | ANP — Agência Nacional do Petróleo, Gás Natural e Biocombustíveis |
-| **Base** | SHPC — Série Histórica de Preços de Combustíveis |
+| **Fonte** | ANP, Agência Nacional do Petróleo, Gás Natural e Biocombustíveis |
+| **Base** | SHPC, Série Histórica de Preços de Combustíveis |
 | **O que é** | Preço de venda ao consumidor, **por posto**, por produto, por município |
 | **Recorte** | Maranhão, ano de 2025 (12 arquivos mensais) |
 | **Observações** | 10.641 posto-mês, dos quais **4.816 de gasolina comum** |
 | **Unidade** | R$ por litro |
 | **Confira em** | <https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/serie-historica-de-precos-de-combustiveis> |
 
-**As colunas da tabela, depois da limpeza:**
+**As colunas que o notebook usa, depois da limpeza** (a célula A mantém também as demais
+colunas do arquivo da ANP):
 
 | Coluna | O que é |
 |---|---|
-| `mes_arquivo` | O mês do arquivo de origem (1 a 12) |
+| `mes` | O mês do arquivo de origem, 1 a 12 (na célula B, `mes_arquivo`) |
 | `municipio` | O município do posto |
 | `revenda` | O nome do posto |
-| `cnpj_da_revenda` | O CNPJ do posto — é a **chave** do registro |
+| `cnpj` | O CNPJ do posto, a **chave** do registro (na célula B, `cnpj_da_revenda`) |
 | `produto` | Gasolina, gasolina aditivada ou etanol |
 | `valor_venda` | O preço de venda, em R$ por litro |
 | `bandeira` | A bandeira do posto |
 
 > **Três coisas que fazem desta base a mais interessante até aqui.** Primeira: é
-> **dado de registro**, uma linha por posto por mês, e não uma categoria já contada —
-> é isso que permite calcular dispersão. Segunda: o valor vem no **padrão brasileiro**,
-> com vírgula decimal, e sem `decimal=","` na leitura todos os valores viram `NaN` em
-> silêncio. Terceira: a base traz o código `..` para "sem valor disponível", que é o
-> **defeito de qualidade** do dia."""
+> **dado de registro**, uma linha por posto por mês, e não uma categoria já contada: é
+> isso que permite calcular dispersão. Segunda: o valor vem no **padrão brasileiro**, com
+> vírgula decimal. Sem `decimal=","` na leitura a coluna chega como texto, e a conversão
+> para número transforma todos os valores em `NaN` sem aviso. Terceira: a coluna **Valor
+> de Compra** vem inteiramente vazia nas 12 planilhas, e esse é o **defeito de qualidade**
+> do dia."""
 
 CONFIG = """## Bloco de configuração
 
@@ -128,7 +130,7 @@ vazias = [c for c in anp.columns if anp[c].isna().all()]
 print(f"  colunas inteiramente vazias: {vazias}")
 anp.head(4)'''
 
-CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA — leia antes =================
+CELULA_B = '''# ================= CÉLULA B: CONTINGÊNCIA, leia antes =================
 # NÃO EXECUTE AGORA. Execute apenas se o professor mandar e só depois de fazer
 # upload do arquivo dados/anp_precos_revenda_ma_2025.csv.
 
@@ -176,7 +178,7 @@ diferentes. Como distinguir?
 
 **As medidas de dispersão**
 
-| Medida | O que é | Em corrente |
+| Medida | O que é | Em linguagem corrente |
 |---|---|---|
 | **Amplitude** | maior − menor | o mais simples e o mais frágil |
 | **Variância** | média dos quadrados dos desvios | por que o quadrado: senão os desvios se cancelam |
@@ -193,7 +195,7 @@ $$s = \\sqrt{\\frac{(x_1 - \\bar{x})^2 + \\dots + (x_n - \\bar{x})^2}{n - 1}}$$
 * $n$ é a quantidade de valores
 * $s$ é o desvio padrão
 
-Em corrente: **veja quanto cada valor se afasta da média, eleve ao quadrado, tire a média
+Em linguagem corrente: **veja quanto cada valor se afasta da média, eleve ao quadrado, tire a média
 e depois a raiz.** A raiz é o que devolve o número à unidade original.
 
 **Quando usar e quando não usar**
@@ -201,7 +203,7 @@ e depois a raiz.** A raiz é o que devolve o número à unidade original.
 | | |
 |---|---|
 | **Use** | O desvio padrão para descrever a dispersão de uma variável; o **CV** quando for comparar variáveis **diferentes** |
-| **Não use** | A amplitude como medida principal — ela depende de dois valores só. E nunca compare desvios de variáveis medidas em unidades diferentes |"""},
+| **Não use** | A amplitude como medida principal: ela depende de dois valores só. E nunca compare desvios de variáveis medidas em unidades diferentes |"""},
 
     {"tipo": "code", "texto": '''# As medidas de dispersão, sobre o produto escolhido no CONFIG.
 serie = anp[anp["produto"] == PRODUTO]["valor_venda"].dropna().reset_index(drop=True)
@@ -213,7 +215,7 @@ cv = desvio / media * 100
 q1, q3 = serie.quantile(0.25), serie.quantile(0.75)
 iqr = q3 - q1
 
-print(f"{PRODUTO} no Maranhão, 2025 — {len(serie)} observações")
+print(f"{PRODUTO} no Maranhão, 2025: {len(serie)} observações")
 print(f"  média   = R$ {media:.2f}   (soma tudo e divide pelo número)")
 print(f"  mediana = R$ {mediana:.2f}")
 print(f"  desvio  = R$ {desvio:.2f}   (a oscilação típica em torno da média)")
@@ -235,15 +237,15 @@ conferir("IQR", iqr, 0.66, tolerancia=0.02, unidade=" R$")'''},
     {"tipo": "md", "texto": """### Por que o IQR é mais estável que a amplitude
 
 Olhe os dois números: a **amplitude é R$ 1,82** e o **IQR é R$ 0,66**. A amplitude é
-quase o triplo. Ela depende de dois valores apenas — o posto mais barato e o mais caro —
-e basta um deles mudar para o número inteiro mudar. O IQR olha o miolo, onde estão metade
+quase o triplo. Ela depende de dois valores apenas, o posto mais barato e o mais caro, e
+basta um deles mudar para o número inteiro mudar. O IQR olha o miolo, onde estão metade
 dos postos, e por isso não se abala com um extremo."""},
 
     {"tipo": "md", "texto": """### O CV permite comparar o que o desvio não permite
 
 O desvio acompanha a média: variável de média alta tende a ter desvio alto, sem que seja
 mais dispersa. É por isso que comparar desvios de variáveis diferentes é erro. O
-coeficiente de variação resolve — ele divide pelo próprio centro."""},
+coeficiente de variação resolve, porque divide pelo próprio centro."""},
 
     {"tipo": "code", "texto": '''# O mesmo problema, dois mercados: o preço da gasolina em R$ e o IPCA em %.
 # Os desvios não se comparam; os CV, sim.
@@ -281,7 +283,7 @@ $$z = \\frac{x - \\bar{x}}{s}$$
 * $\\bar{x}$ é a média e $s$ o desvio padrão
 * $z$ diz **quantos desvios** o valor está acima ou abaixo da média
 
-Em corrente: **tire a média do valor e divida pelo desvio.** O resultado é
+Em linguagem corrente: **tire a média do valor e divida pelo desvio.** O resultado é
 adimensional e é por isso que permite comparar grandezas medidas em escalas
 diferentes.
 
@@ -323,7 +325,7 @@ ax.axvline(mediana, color="#D4B277", linewidth=2, linestyle="--",
            label=f"mediana R$ {mediana:.2f}")
 ax.set_xlabel("Preço de venda (R$ por litro)")
 ax.set_ylabel("Número de postos")
-ax.set_title(f"{PRODUTO.title()} no Maranhão, 2025 — {len(serie)} observações")
+ax.set_title(f"{PRODUTO.title()} no Maranhão, 2025: {len(serie)} observações")
 ax.legend()
 ax.grid(axis="y", alpha=0.3)
 plt.tight_layout()
@@ -332,8 +334,8 @@ plt.show()
 print("Repare que a média fica à direita da mediana: a cauda puxa a média.")'''},
 
     {"tipo": "code", "texto": '''# A distribuição de frequência com classes: a tabela que desenha o histograma.
-# As classes são as do slide, de R$ 0,25 — e não as de largura automática, para que
-# a tabela daqui e a da tela sejam a MESMA tabela.
+# Oito classes fixas de R$ 0,25, e não as de largura automática. Logo abaixo, as quatro
+# faixas largas de R$ 0,50 são a MESMA tabela da tela 45 do deck.
 CLASSES = [5.30, 5.55, 5.80, 6.05, 6.30, 6.55, 6.80, 7.05, 7.30]
 classes = pd.cut(serie, bins=CLASSES, right=False)
 tabela = (classes.value_counts().sort_index()
@@ -370,7 +372,7 @@ conferir("postos entre R$ 6,80 e 7,30", float(resumo["postos"].iloc[3]), 370.0,
 > distribuição, e por isso o **preço típico** é descrito pela mediana (ANP, SHPC)."
 
 **O que essa frase não diz.** Que a gasolina está cara. O desvio de R$ 0,42 é pequeno em
-relação à média, o que indica **pouca variação entre postos** — mas isso não diz nada sobre
+relação à média, o que indica **pouca variação entre postos**, mas isso não diz nada sobre
 o nível do preço. Um mercado uniformemente caro tem desvio pequeno. São duas informações
 diferentes, e a segunda exigiria comparar com outros estados."""},
 
@@ -380,22 +382,22 @@ diferentes, e a segunda exigiria comparar com outros estados."""},
 Três modos de uso, todos verificados. A regra: **a IA explica, o código calcula e você
 confere e escreve.**
 
-### Modo 1 — Pergunta
+### Modo 1: pergunta
 
 Copie o cartão de contexto e cole no assistente. Sem o contexto, a IA inventa número."""},
 
-    {"tipo": "code", "texto": 'cartao(anp[anp["produto"] == PRODUTO][["municipio", "produto", "valor_venda", "bandeira"]], "municipio", nome_base="ANP/SHPC — Maranhão, 2025")'},
+    {"tipo": "code", "texto": 'cartao(anp[anp["produto"] == PRODUTO][["municipio", "produto", "valor_venda", "bandeira"]], "municipio", nome_base="ANP/SHPC, Maranhão, 2025")'},
 
-    {"tipo": "md", "texto": """### Modo 2 — Encomenda
+    {"tipo": "md", "texto": """### Modo 2: encomenda
 
 Peça o código, cole na **célula cinza**. Só mude os parâmetros de consulta.
 
-### Modo 3 — Ler um resultado errado
+### Modo 3: ler um resultado errado
 
 O professor preparou três leituras **erradas**, todas com números certos. O erro está no que
 se concluiu delas. Diga qual é o erro, e o que deveria ter sido dito."""},
 
-    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA — cole aqui o código do assistente =====================
+    {"tipo": "code", "texto": '''# ===================== CÉLULA CINZA: cole aqui o código do assistente =====================
 # Sugestão de pedido: "compare a dispersão do preço entre os municípios do Maranhão,
 # com média, desvio padrão e CV, ordenado pelo CV"
 #
@@ -423,9 +425,9 @@ print("           (a amplitude olha quantos valores? o IQR diz outra coisa?)")''
 
 | Análise | O que há de errado |
 |---|---|
-| **1** | As **unidades não são comparáveis** — reais contra pontos percentuais — e o desvio acompanha a média. Dividindo pela média (o CV), a conclusão se **inverte**: o IPCA tem CV de 79,9% e a gasolina, 6,9% |
+| **1** | As **unidades não são comparáveis** (reais contra pontos percentuais), e o desvio acompanha a média. Dividindo pela média (o CV), a conclusão se **inverte**: o IPCA tem CV de 79,9% e a gasolina, 6,9% |
 | **2** | Isso só vale em **distribuição simétrica**. Aqui a média (6,13) é maior que a mediana (6,08): **mais da metade** dos postos cobra abaixo da média, porque os caros puxam o número para cima |
-| **3** | A amplitude usa **dois valores**, o mais barato e o mais caro. O IQR, que olha o miolo, é R$ 0,66 — menos de 40% da amplitude. O mercado é bem mais uniforme do que a amplitude sugere |
+| **3** | A amplitude usa **dois valores**, o mais barato e o mais caro. O IQR, que olha o miolo, é R$ 0,66, menos de 40% da amplitude. O mercado é bem mais uniforme do que a amplitude sugere |
 
 A análise 3 é a mais instrutiva: os dois números são verdadeiros, e as duas conclusões são
 opostas. **Escolher a medida certa é o que decide a conclusão.**"""},
@@ -463,12 +465,12 @@ você escolheu, e ela será conferida na AV1 do encontro 5.
 
 | # | Critério | A sua fonte |
 |---|---|---|
-| 1 | **Periodicidade** — de quanto em quanto tempo é atualizada? | |
-| 2 | **Granularidade** — a observação é a empresa, o município, a UF ou o país? | |
-| 3 | **Cobertura** — quais territórios e quais anos existem de fato? | |
-| 4 | **Metadado** — quem produz, com que metodologia? | |
-| 5 | **Licença e citação** — o que posso publicar? Como cito? | |
-| 6 | **Acesso** — há API, arquivo, ou é preciso digitar? | |
+| 1 | **Periodicidade**: de quanto em quanto tempo é atualizada? | |
+| 2 | **Granularidade**: a observação é a empresa, o município, a UF ou o país? | |
+| 3 | **Cobertura**: quais territórios e quais anos existem de fato? | |
+| 4 | **Metadado**: quem produz, com que metodologia? | |
+| 5 | **Licença e citação**: o que posso publicar? Como cito? | |
+| 6 | **Acesso**: há API, arquivo, ou é preciso digitar? | |
 
 > **O critério que reprova mais projetos é a cobertura.** Muita base tem a variável que
 > você quer, mas para outro período ou outro território. Descobrir isso agora custa uma
@@ -483,7 +485,7 @@ você escolheu, e ela será conferida na AV1 do encontro 5.
 
 A matriz é a **verificação de coerência** do projeto: cada linha liga
 **problema → objetivo específico → hipótese → variáveis (e níveis) → base → técnica prevista**.
-Se qualquer elo falta ou não combina com o vizinho, o projeto tem um buraco — e é melhor
+Se qualquer elo falta ou não combina com o vizinho, o projeto tem um buraco, e é melhor
 descobri-lo agora do que na análise.
 
 Preencha a linha do **seu** projeto:
@@ -494,13 +496,13 @@ Preencha a linha do **seu** projeto:
 
 **Como preencher cada coluna**
 
-- **Problema:** a pergunta delimitada que você escreveu no encontro 3 — com população,
+- **Problema:** a pergunta delimitada que você escreveu no encontro 3, com população,
   território e período declarados.
 - **Objetivo específico:** o que a pesquisa vai fazer para responder. Comece com um verbo
   (comparar, medir, associar, descrever).
 - **Hipótese:** a resposta provável, com as variáveis nomeadas. "X é importante" não serve.
 - **Variáveis (nível):** cada variável com o nível de mensuração do encontro 2.
-- **Base:** a fonte e a tabela ou arquivo — a mesma que você passou pelos seis critérios.
+- **Base:** a fonte e a tabela ou arquivo, a mesma que você passou pelos seis critérios.
 - **Técnica prevista:** por ora basta o **tipo** ("comparação de grupos", "associação entre
   variáveis"). Os testes específicos vêm no Módulo III, e a coluna é revisitada lá.
 

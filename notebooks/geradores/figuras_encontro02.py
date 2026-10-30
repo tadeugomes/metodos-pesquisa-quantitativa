@@ -175,6 +175,90 @@ figura("codigo", "Erro comum: a ordem do código não é a ordem do mundo", "aft
                 "seções ordenadas por frequência", c))
 
 
+# ================================================================== 6. o papel da variavel na hipotese
+fonte(1.2)
+
+
+def caixa(x, y, w, h, titulo, sub, cor, fundo):
+    return [ret(x, y, w, h, fundo, 10, f'stroke="{cor}" stroke-width="2.4"'),
+            txt(x + w / 2, y + h / 2 - 4, titulo, 16, cor, extra=TITULO),
+            txt(x + w / 2, y + h / 2 + 20, sub, 13, TINTA)]
+
+
+c = []
+c += caixa(40, 60, 250, 76, "Independente (x)", "porte da empresa", VINHO, VINHO_CLARO)
+c += caixa(710, 60, 250, 76, "Dependente (y)", "sobrevivência em 3 anos", VERDE_ESC, VERDE_CLARO)
+c += caixa(375, 60, 250, 76, "Interveniente", "acesso a crédito", DOURADO, "#fbf5ea")
+c += caixa(375, 176, 250, 64, "Controle", "setor de atividade", CINZA, "#f2f2f2")
+c += [seta(292, 98, 372, 98, VINHO), seta(627, 98, 707, 98, VINHO),
+      f'<path d="M165,58 C165,14 835,14 835,56" fill="none" stroke="{VINHO}" stroke-width="2.4" '
+      f'stroke-dasharray="7 5" marker-end="url(#sv)"/>',
+      halo(500, 30, "a hipótese: x afeta y", 14, VINHO, extra=NEGRITO),
+      f'<line x1="500" y1="176" x2="500" y2="140" stroke="{CINZA}" stroke-width="2" stroke-dasharray="4 4"/>',
+      txt(640, 214, "mantido constante, ou comparado dentro de cada setor", 13, CINZA, "start")]
+figura("papel", "O que é uma variável e seu papel na hipótese", "after_colunas", "22vh",
+       "O porte é a causa suposta, a sobrevivência o efeito. O crédito é um caminho possível entre as duas, "
+       "e o setor fica sob controle para não confundir a comparação.",
+       svg(250, "Porte da empresa, a variável independente, leva à sobrevivência, a dependente, passando pelo "
+                "acesso a crédito, interveniente; o setor é a variável de controle", c))
+
+# ================================================================== 7. a operacionalizacao em cadeia
+fonte(1.25)
+ETAPAS = (("Conceito", "porte da empresa", VINHO, VINHO_CLARO),
+          ("Definição operacional", "nº de pessoas assalariadas", DOURADO, "#fbf5ea"),
+          ("Indicador", "faixa: 1 a 9, 10 a 49, 50+", VERDE_ESC, VERDE_CLARO),
+          ("Valor de um caso", "“10 a 49 pessoas”", VERDE_ESC, VERDE_CLARO))
+c = []
+for i, (t, sub, cor, fundo) in enumerate(ETAPAS):
+    x = 10 + i * 248
+    c += [ret(x, 14, 222, 84, fundo, 10, f'stroke="{cor}" stroke-width="2.4"'),
+          txt(x + 111, 48, t, 15, cor, extra=TITULO), txt(x + 111, 76, sub, 13, TINTA)]
+    if i < 3:
+        c.append(seta(x + 224, 56, x + 246, 56, CINZA, 2))
+c.append(txt(500, 128, "Cada seta é uma decisão do pesquisador, e cada uma fixa o nível: aqui, o porte "
+                       "chega ao dado como ordinal.", 13, CINZA))
+figura("operacional", "Operacionalização: do conceito ao indicador", "after_table", "17vh", "",
+       svg(140, "Do conceito de porte à definição operacional por pessoas assalariadas, ao indicador em faixas "
+                "e ao valor de um caso", c))
+
+# ================================================================== 8. a frase do encontro 1, testada
+SOB = pd.read_csv(os.path.join(DADOS, "demografia_sobrevivencia_empresas.csv"), skiprows=[1])
+SOB["V"] = pd.to_numeric(SOB["V"], errors="coerce")
+COORTE = 2017
+_t = SOB[(SOB["D2N"] == COORTE) & (SOB["D4N"] == "Total") & (SOB["D5N"] == "Total")]
+NASC_COORTE = int(_t.loc[_t["D3N"].str.startswith("Número"), "V"].iloc[0])
+TAXAS = [float(_t.loc[_t["D3N"] == f"Taxa de {k} {'ano' if k == 1 else 'anos'} de sobrevivência", "V"].iloc[0])
+         for k in range(1, 6)]
+fonte(1.2)
+X = escala(0, 5, 110, 900)
+Yp = lambda p: 230 - p * 2.0
+c = [linha_h(230, 100, 930, EIXO, larg=1.6)]
+for p in (25, 50, 75, 100):
+    c += [linha_h(Yp(p), 100, 930, GRADE, larg=1), txt(92, Yp(p) + 5, f"{p}%", 12, CINZA, "end")]
+c += [linha_h(Yp(50), 100, 930, VINHO, tracejada=True, larg=1.6),
+      txt(926, Yp(50) - 8, "metade das empresas", 13, VINHO, "end", NEGRITO)]
+pts = [(X(0), Yp(100))] + [(X(k), Yp(v)) for k, v in enumerate(TAXAS, start=1)]
+c.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pts)}" fill="none" '
+         f'stroke="{VERDE}" stroke-width="3.4"/>')
+for k, (x, y) in enumerate(pts):
+    c += [f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="{VERDE_ESC if k else CINZA}" stroke="#fff" '
+          f'stroke-width="2"/>', txt(x, 254, "nascimento" if k == 0 else f"{k} ano{'s' if k > 1 else ''}",
+                                     13, TINTA, extra=NEGRITO)]
+    if k:
+        dy = 26 if k == 1 else -10   # no 1º ano o rotulo vai abaixo, para nao bater no "fecharam"
+        c.append(halo(x + 10, y + dy, f"{br(TAXAS[k - 1], 1)}%", 15, VERDE_ESC, "start", NEGRITO))
+c += [linha_h(Yp(100), X(0) + 8, X(1), VINHO, tracejada=True, larg=1.6),
+      linha_v(X(1), Yp(100), Yp(TAXAS[0]) - 8, VINHO, larg=2.4),
+      halo(X(1) + 12, (Yp(100) + Yp(TAXAS[0])) / 2 + 2, f"{br(100 - TAXAS[0], 1)}% fecharam no 1º ano", 14,
+           VINHO, "start", NEGRITO)]
+figura("sobrevivencia", "A frase da aula passada, testada com dados oficiais", "marcador", "33vh",
+       f"Sobrevivência da coorte de {COORTE}: {br(NASC_COORTE, 0)} empresas empregadoras nascidas no Brasil. "
+       "Fonte: IBGE, Demografia das Empresas.",
+       svg(266, f"Taxa de sobrevivência das empresas nascidas em {COORTE}: "
+                + ", ".join(f"{br(v, 1)}% após {k} ano{'s' if k > 1 else ''}" for k, v in enumerate(TAXAS, 1)), c))
+
+
+
 if __name__ == "__main__":
-    REG.gravar(f"nascimentos {br(TOTAL_NASC, 0)} | acumulado {', '.join(br(p) for p in NASC['pct_acumulado'])} | "
+    REG.gravar(f"sobrevivência {COORTE}: {', '.join(br(v, 1) for v in TAXAS)} | nascimentos {br(TOTAL_NASC, 0)} | acumulado {', '.join(br(p) for p in NASC['pct_acumulado'])} | "
                f"CNAE: 50% acumulado em ordem alfabética na seção {LETRA_50}")

@@ -169,10 +169,11 @@ for i, (nome, p) in enumerate((("Maranhão", PCT_MA), ("Brasil", PCT_G_NO_BR))):
 c += [linha_v(X(PCT_G_NO_BR), 64, 114, CINZA, tracejada=True, larg=1.6),
       seta(X(PCT_G_NO_BR), 124, X(PCT_MA) - 3, 124, VINHO, 2.4),
       txt(X(PCT_MA) + 12, 129, f"diferença: {br(PCT_MA - PCT_G_NO_BR)} pontos percentuais", 15, VINHO, "start", NEGRITO)]
-c += riscado(X(PCT_MA) + 110, 158, "“51% maior”", 15, CINZA, "middle", 120)
+c += riscado(X(PCT_MA) + 110, 158, "“13,94%”", 15, CINZA, "middle", 100)
 figura("pp", "A frase de leitura que vai para o relatório", "before_alerta", "18vh",
        "Participação do comércio no total de empresas. A diferença entre duas porcentagens se diz em "
-       "pontos percentuais. Fonte: IBGE, CEMPRE, 2024.",
+       "pontos percentuais, e não em por cento. Em variação relativa, a participação maranhense é 51% "
+       "maior. Fonte: IBGE, CEMPRE, 2024.",
        svg(170, "Barras de 41,4% no Maranhão e 27,4% no Brasil, com a diferença de 13,94 pontos percentuais", c))
 
 # ================================================================== 7. tres denominadores

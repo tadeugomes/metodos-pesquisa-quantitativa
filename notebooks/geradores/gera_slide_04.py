@@ -32,16 +32,17 @@ SECOES = [
         "blocos": [
             ("Objetivos de aprendizagem", """
             <p>Ao final do encontro o estudante deverá ser capaz de: (i) situar o seu projeto nas
-            oito etapas do processo de pesquisa; (ii) aplicar os seis critérios de escolha de uma
-            fonte de dados; (iii) reconhecer os quatro defeitos de qualidade do dado e o que se
-            faz com cada um; (iv) explicar o risco de reidentificação em dado anonimizado;
-            (v) calcular e interpretar desvio padrão, CV e IQR; (vi) ler a forma de uma
-            distribuição pelos cinco números e pelo escore z.</p>
+            oito etapas do processo de pesquisa; (ii) construir a matriz de amarração do projeto;
+            (iii) aplicar os seis critérios de escolha de uma fonte de dados; (iv) reconhecer os
+            quatro defeitos de qualidade do dado e o que se faz com cada um; (v) explicar o risco
+            de reidentificação em dado anonimizado; (vi) calcular e interpretar desvio padrão, CV
+            e IQR; (vii) ler a forma de uma distribuição pelos cinco números, pelo histograma e
+            pelo escore z. São os sete objetivos da tela 3.</p>
             """, "bruto"),
             ("O fecho do Módulo I", """
             <p>Marcar com clareza: este é o <strong>último encontro de conteúdo do Módulo I</strong>.
             No próximo é a AV1, com a 1ª entrega do projeto: tema, questão de pesquisa, objetivo
-            geral, fontes de dados e a base carregando. Tudo o que
+            geral, fontes de dados, a base carregando e os seis critérios da fonte. Tudo o que
             a disciplina ensinou sobre descrever um conjunto de dados fecha hoje.</p>
             """, "falar"),
         ],
@@ -113,7 +114,7 @@ SECOES = [
             ("A ética, que fecha o bloco", """
             <p>O conceito do dia é o <strong>risco de reidentificação</strong>: quanto mais rara a
             combinação de características divulgadas, mais fácil reconstruir quem é o caso. Uma
-            tabela com município, porte, setor e faixa de faturamento consegue isolar uma única
+            tabela com município, setor e faixa de pessoal consegue isolar uma única
             empresa, e aí retirar o nome não impediu a identificação.</p>
             <p>Vale dizer que é a mesma exigência da pesquisa com seres humanos, aplicada a dado
             que já existe: é o que permite publicar a tabela sem expor nenhuma empresa.</p>
@@ -169,7 +170,7 @@ SECOES = [
             verdade, a variância é a área do quadrado médio e o desvio padrão é o lado dele.</p>
             """, "pergunta-aula"),
             ("O exemplo e a frase que sai dele", """
-            <p>Peça que a turma leia a frase completa em voz alta: <em>“o preço típico é R$ 6,13,
+            <p>Peça que cada estudante escreva a frase completa no notebook: <em>“o preço típico é R$ 6,13,
             com oscilação típica de R$ 0,42, ou 6,9% da média”</em>. A disciplina quer que essa
             forma de dizer vire hábito: <strong>centro e dispersão na mesma frase</strong>.</p>
             """, "pergunta-aula"),
@@ -239,7 +240,9 @@ SECOES = [
             o segundo bloco mede. Não são dois assuntos: são o mesmo, visto por dois ângulos.</p>
             <p>E a <strong>regra 68-95-99,7</strong> fecha o argumento com dado: 59,3% dos postos
             caem em |z| &lt; 1, contra 68,3% que a normal previria. A diferença é a assimetria,
-            medida em pontos percentuais.</p>
+            medida em pontos percentuais. A 2 e a 3 desvios a diferença é pequena (+1,2 e +0,3
+            ponto), e a figura da tela 54 mostra os três pares lado a lado: a assimetria aparece
+            no miolo da distribuição, e não nas pontas.</p>
             """, "falar"),
             ("O IQR contra a amplitude", """
             <p>A pergunta que rende: <em>“por que o IQR (R$ 0,66) é menos da metade da amplitude
@@ -281,19 +284,19 @@ SECOES = [
         "entre": ["Mão na massa", ""],
         "blocos": [
             ("Minutagem do bloco", sb.tabela_minutagem([
-                ("A base da ANP, por 12 arquivos mensais (notebook, Seção 2)", "18"),
-                ("A dispersão calculada (notebook, Parte 2)", "12"),
-                ("A forma e o escore z (notebook, Parte 2)", "12"),
+                ("A base da ANP, por 12 arquivos mensais (notebook, Seção 2)", "15"),
+                ("A dispersão calculada (notebook, Parte 2)", "10"),
+                ("A forma e o escore z (notebook, Parte 2)", "10"),
                 ("A sua base, contra os seis critérios (notebook, Seção 5)", "12"),
                 ("As três perguntas (notebook, Seção 4)", "6"),
-                ("A matriz de amarração (notebook, Seção 6)", "6"),
+                ("A matriz de amarração (notebook, Seção 6)", "7"),
             ]), "bruto"),
             ("A regra didática do dia", """
             <p>A única edição de código é trocar <code>PRODUTO</code> entre
             <code>"GASOLINA"</code>, <code>"GASOLINA ADITIVADA"</code> e
             <code>"ETANOL"</code>. Nada além disso.</p>
             """, "falar"),
-            ("A base da ANP, por 12 arquivos mensais (18 min)", """
+            ("A base da ANP, por 12 arquivos mensais (15 min)", """
             <p>Esta é a parte mais lenta da prática, e vale avisar antes: são
             <strong>12 arquivos mensais</strong>, um por mês, e o notebook baixa os 12. Enquanto
             roda, aproveitar para explicar a diferença das bases anteriores:</p>
@@ -309,12 +312,12 @@ SECOES = [
             <p>Se a rede da sala for lenta, rode a célula A antes de começar a aula, ou use a
             célula B com o arquivo de contingência. Não deixe a turma esperando 12 downloads.</p>
             """, "falar"),
-            ("A dispersão e a forma, sobre a mesma série (24 min)", """
+            ("A dispersão e a forma, sobre a mesma série (20 min)", """
             <p>O ponto de chegada da prática: o aluno vê média, desvio, CV, IQR, cinco números e
             escore z <strong>sobre a mesma série</strong> e depois o histograma com a média e a
             mediana desenhadas. A leitura que se quer ouvir:</p>
             <p><em>“a média é maior que a mediana, a assimetria é positiva e a regra da normal
-            não fecha em nenhum dos três intervalos.”</em></p>
+            falha no miolo: 59,3% dos preços em |z| &lt; 1, contra 68,3%.”</em></p>
             """, "pergunta-aula"),
             ("A oficina do projeto: os seis critérios (12 min)", """
             <p>A entrega parcial: cada estudante preenche os seis critérios para a

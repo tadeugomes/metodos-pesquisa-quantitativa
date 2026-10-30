@@ -33,7 +33,7 @@ SECOES = [
         "blocos": [
             ("Objetivos do dia", """
             <p>Ao final do encontro o estudante deverá ter: (i) escrito a seção de resultados do
-            seu projeto nas quatro peças — Tabela 1, Figura 1, inferência e modelo —, cada uma
+            seu projeto nas quatro peças (Tabela 1, Figura 1, inferência e modelo), cada uma
             com a frase de leitura; (ii) um notebook que executa do início ao fim sobre a base
             do projeto; (iii) apresentado o projeto em 3 a 5 minutos, nos cinco blocos; (iv)
             registrado o uso de IA. É o fechamento do <strong>Módulo IV</strong> e a
@@ -59,8 +59,8 @@ SECOES = [
             </ol>
             """, "falar"),
             ("O que dizer na abertura", """
-            <p>Duas frases bastam: <strong>hoje não tem conteúdo novo</strong> — tem o semestre
-            inteiro virando texto; e <strong>tudo o que vai ser avaliado está na tela de
+            <p>Duas frases bastam: <strong>hoje não tem conteúdo novo</strong>, tem o semestre
+            inteiro virando texto. E <strong>tudo o que vai ser avaliado está na tela de
             rubrica</strong>, que é projetada antes do intervalo. Quem souber como será
             avaliado escreve melhor.</p>
             """, "falar"),
@@ -88,8 +88,8 @@ SECOES = [
             agora do que na apresentação.</p>
             """, "falar"),
             ("Perguntas para a turma", """
-            <p>Nas duas tabelas: <em>“em qual linha está a sua pergunta?”</em> — peça que três
-            ou quatro estudantes respondam em voz alta, citando a linha.</p>
+            <p>Nas duas tabelas: <em>“em qual linha está a sua pergunta?”</em>. Peça que três
+            ou quatro estudantes respondam para a turma, citando a linha.</p>
             <p>Na leitura crítica 2, <strong>antes</strong> de mostrar a segunda linha da
             tabela: <em>“o p da comparação crua é 0,863. O que vocês concluem sobre a
             bandeira?”</em>. Quase todos dirão que bandeira não importa. Mostre então o modelo
@@ -166,16 +166,16 @@ SECOES = [
               <li><strong>Coluna numérica lida como texto</strong> (vírgula decimal): ajuste
               você mesmo o CSV, ou indique uma variável já numérica;</li>
               <li><strong>EVENTO que não é 0/1</strong>: troque por <code>""</code> e o relatório
-              fica com o modelo linear — não se inventa evento para usar a logística;</li>
+              fica com o modelo linear. Não se inventa evento para usar a logística;</li>
               <li><strong>A base não chegou a funcionar</strong>: o estudante mantém
               <code>ARQUIVO = "exemplo"</code>, escreve o relatório sobre um extrato dos dados
               da disciplina e <strong>declara a limitação no método</strong>. Um relatório
               honesto sobre dados parciais vale mais que uma análise forçada.</li>
             </ol>
-            """, "alerta"),
+            """, "falar"),
             ("O registro de IA", """
             <p>Lembrar, sem dramatizar: a IA é permitida na AV3, e a disciplina a incentiva para
-            adaptar a análise à base do projeto. O que se exige é o registro — o pedido, a
+            adaptar a análise à base do projeto. O que se exige é o registro: o pedido, a
             checagem e o que mudou. A checagem mínima de uma encomenda são os três passos
             fixos: o número bate, os grupos somam o total, o gráfico é o pedido.</p>
             """, "falar"),
@@ -222,10 +222,10 @@ SECOES = [
             <p>Com mais de 25 estudantes, reduza para <strong>3 minutos e meio com 30 segundos
             de pergunta</strong> e anuncie antes do sorteio. O que nunca se corta é o
             <strong>bloco 4, o limite</strong>: é ele que a disciplina inteira treinou.</p>
-            """, "alerta"),
+            """, "falar"),
             ("Erros que vão aparecer", """
             <ol>
-              <li><strong>Ler o slide em voz alta.</strong> Interrompa com gentileza na primeira
+              <li><strong>Ler o slide palavra por palavra.</strong> Interrompa com gentileza na primeira
               vez: “diga o achado sem olhar a tela”;</li>
               <li><strong>Mostrar a tabela de cinco colunas inteira.</strong> No slide vai um
               número; a tabela fica no relatório;</li>
@@ -251,7 +251,7 @@ SECOES = [
             ("O balanço que se anuncia", """
             <p>Fechar dizendo o que o Módulo IV entregou: o estudante <strong>lê um modelo em
             cinco colunas</strong> e escreve a frase que um gestor entende, dizendo o que ela
-            não autoriza. É a última peça do percurso — descrever, sortear, inferir e
+            não autoriza. É a última peça do percurso: descrever, sortear, inferir e
             modelar.</p>
             """, "falar"),
             ("Tarefa para o próximo encontro", """
@@ -259,7 +259,7 @@ SECOES = [
               <li>Estudar para a <strong>prova final</strong>: a tabela pergunta → estatística →
               frase desta aula e as fichas de revisão de cada bloco de estatística;</li>
               <li>Reexecutar os notebooks dos encontros 5 e 9 (AV1 e AV2): a Parte B da prova
-              funciona do mesmo jeito — decidir, executar, conferir e escrever;</li>
+              funciona do mesmo jeito: decidir, executar, conferir e escrever;</li>
               <li>Rever o fluxograma de escolha do teste e a leitura da razão de chances: são
               duas questões da Parte A.</li>
             </ol>
