@@ -410,6 +410,48 @@ Contas usadas: `3.01` (receita) e `3.11` (lucro líquido), filtrando `ORDEM_EXER
 **Contingência:** `cvm_dre_2024.csv` (451 companhias com receita, lucro, margem e setor,
 deduplicado por CD_CVM).
 
+### 3.9 Base de People Analytics (estudo de caso, não é uma das oito fontes)
+
+**Esta base não é uma fonte da disciplina.** Não entra no mapa da seção 2, não tem API, não é
+dado público brasileiro e não serve ao plano amostral do Módulo II. Ela está registrada aqui
+porque **mora em `dados/`** e, por isso, precisa ter origem declarada como qualquer outro arquivo
+do repositório. É a base de um estudo de caso de People Analytics, usado como exemplo de
+aplicação de regressão logística a dado organizacional.
+
+| Verificação | Resultado |
+|---|---|
+| Arquivo | `dados/people_analytics_rh.csv`, 4,3 MB |
+| Origem imediata | Capítulo 8 do curso *Business Analytics 2.0* (Data Science Academy), onde o estudo de caso é feito em R |
+| Origem primária | *IBM HR Analytics Employee Attrition & Performance*, base sintética criada por cientistas de dados da IBM para ensino, com **1.470** funcionários. O arquivo distribuído pelo curso é uma **versão ampliada** dela |
+| Separador / codificação | `,` com os campos de texto entre aspas duplas / ASCII (lê sem `encoding`; `utf-8` funciona) |
+| Decimal | ponto; todas as 21 colunas numéricas são inteiras |
+| Dimensões | 23.058 linhas × 30 colunas |
+| Unidade de análise | o funcionário |
+| Variável dependente | `Attrition`, com três níveis: `Current employee` (19.370), `Voluntary Resignation` (3.601), `Termination` (87) |
+| Valores ausentes | **nenhum**, em nenhuma das 30 colunas |
+| Nome de coluna com espaço | `Employee Source` — exige `df["Employee Source"]` e quebra fórmulas de modelo; o notebook renomeia para `EmployeeSource` |
+| Verificado em | **11/11/2026** |
+
+**Dois defeitos de qualidade, e é por eles que a base tem valor didático:**
+
+| Defeito | Tamanho | O que ensina |
+|---|---|---|
+| **Linhas inteiramente repetidas** | **14.882 de 23.058 (64,5%)**; sobram 8.176 distintas | A base não tem 23 mil funcionários: tem 8 mil perfis replicados. Duplicata entre treino e teste é vazamento, e o efeito **depende da flexibilidade do modelo** — nulo na regressão logística, acerto perfeito numa árvore sem poda |
+| **Coluna derivada apresentada como dado** | `AgeStartedWorking` é **exatamente** `Age − TotalWorkingYears`, em 100% das linhas | Colinearidade perfeita: as três não podem entrar juntas num modelo. É o mesmo tipo de achado que a `Valor de Compra` vazia da ANP (seção 3.2), e se encontra do mesmo jeito — conferindo antes de modelar |
+
+Nenhum valor ausente, todas as sete checagens de consistência interna passando e 64,5% de
+repetição são, juntos, a assinatura de **base tratada e sintetizada**. Dado real de RH não se
+comporta assim, e dizer isso no relatório é parte do método.
+
+**Licença e uso.** Base sintética de uso educacional, sem dado de pessoa real — por isso não há
+questão de LGPD no *arquivo*. A discussão de LGPD do notebook é sobre o que aconteceria num
+projeto com dado de funcionário de verdade, que é o caso para o qual o estudante está sendo
+preparado.
+
+**Onde é usada:** [notebooks/people-analytics/people_analytics_atrito.ipynb](../notebooks/people-analytics/people_analytics_atrito.ipynb).
+O notebook carrega o arquivo tentando, em ordem: caminho local, URL *raw* deste repositório e
+*upload* manual — de modo que roda no Colab sem nenhum preparo.
+
 ## 4. Fontes consultadas e não usadas, com o motivo
 
 Registrar o que não entrou é parte do material: mostra ao estudante que escolher fonte é um
