@@ -421,8 +421,7 @@ aplicação de regressão logística a dado organizacional.
 | Verificação | Resultado |
 |---|---|
 | Arquivo | `dados/people_analytics_rh.csv`, 4,3 MB |
-| Origem imediata | Capítulo 8 do curso *Business Analytics 2.0* (Data Science Academy), onde o estudo de caso é feito em R |
-| Origem primária | *IBM HR Analytics Employee Attrition & Performance*, base sintética criada por cientistas de dados da IBM para ensino, com **1.470** funcionários. O arquivo distribuído pelo curso é uma **versão ampliada** dela |
+| Origem | *IBM HR Analytics Employee Attrition & Performance*, base sintética criada por cientistas de dados da IBM para ensino, com **1.470** funcionários. O arquivo deste repositório é uma **versão ampliada** dela, que circula como material de treinamento em cursos de análise de dados |
 | Separador / codificação | `,` com os campos de texto entre aspas duplas / ASCII (lê sem `encoding`; `utf-8` funciona) |
 | Decimal | ponto; todas as 21 colunas numéricas são inteiras |
 | Dimensões | 23.058 linhas × 30 colunas |
