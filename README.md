@@ -50,6 +50,21 @@ número, e o número sai de uma célula executada e conferida.
 reúne, em um arquivo só, os itens de estatística descritiva dos encontros 1 a 4, cada um com a
 fórmula comentada, o código mínimo e a conferência. É a referência rápida para as avaliações.
 
+## Estudo de caso — People Analytics
+
+| Estudo de caso | Pergunta | Técnicas | Notebook |
+|---|---|---|---|
+| **People Analytics: atrito no ambiente de trabalho** | Quais fatores mais causam atritos no ambiente de trabalho, e o que a gestão pode fazer a respeito? | Regressão logística, árvore de decisão, avaliação fora da amostra | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/people-analytics/people_analytics_atrito.ipynb) |
+
+Aplicação completa do Módulo IV a uma base de recursos humanos com 23.058 registros e 30
+variáveis, em 106 células com explicação item a item: do conceito de People Analytics ao
+dicionário das variáveis, da limpeza e da engenharia de atributos à regressão logística com
+razões de chances, e desta à decisão de RH, com o custo da rotatividade e os limites éticos e de
+LGPD. Serve como modelo de relatório para o projeto final e como exercício de leitura crítica:
+a base tem 64,5% de linhas repetidas, e o notebook mostra o que isso faz com cada tipo de modelo.
+A pasta tem [README próprio](notebooks/people-analytics/README.md), com a estrutura das 13 partes
+e os 11 exercícios.
+
 ## Como o material funciona
 
 ### Os slides têm duas camadas
@@ -178,6 +193,7 @@ os CSVs equivalentes do diretório [`dados/`](dados/).
 ├── notebooks/
 │   ├── encontro-NN/           # notebook do encontro, pré-executado
 │   ├── modulo-I/              # o guia da estatística descritiva
+│   ├── people-analytics/      # o estudo de caso de atrito, com README próprio
 │   └── geradores/             # scripts Python que geram notebooks, condução e template
 └── dados/                     # CSVs de contingência e o FONTES.md
 ```

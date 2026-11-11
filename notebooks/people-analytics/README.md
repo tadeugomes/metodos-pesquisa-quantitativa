@@ -1,8 +1,7 @@
 # People Analytics — estudo de caso de atrito no ambiente de trabalho
 
-Versão em Python/Jupyter, detalhada item a item, do estudo de caso "Quais fatores mais causam
-atritos no ambiente de trabalho?" (Capítulo 8 de *Business Analytics 2.0*, Data Science Academy),
-originalmente escrito em R.
+Estudo de caso de People Analytics em Python/Jupyter, detalhado item a item, sobre a pergunta:
+quais fatores mais causam atritos no ambiente de trabalho?
 
 ## Arquivos
 
