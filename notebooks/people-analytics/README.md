@@ -3,13 +3,30 @@
 Estudo de caso de People Analytics em Python/Jupyter, detalhado item a item, sobre a pergunta:
 quais fatores mais causam atritos no ambiente de trabalho?
 
-O notebook tem **191 células** e percorre o caminho completo — da descrição de uma coluna à decisão
+O notebook tem **229 células** e percorre o caminho completo — da descrição de uma coluna à decisão
 de gestão — **um passo por vez**. Cada passo das Partes 7 e 8 tem sempre a mesma estrutura em quatro
 blocos: **o elemento** (qual conceito de estatística está sendo operacionalizado), **o instrumento**
 (qual gráfico ou medida serve para isso, quando usar e quando não usar), **o código** comentado, e
 **a leitura** — o que o resultado mostra, o *insight* que se extrai dele e o que ele **não** autoriza
 a dizer. O objetivo não é ensinar a programar: é mostrar como o código operacionaliza cada elemento
 da análise, e como um *insight* inicial abre o passo seguinte.
+
+## Os doze pedidos ao assistente de IA
+
+O notebook traz **doze pedidos prontos** para o estudante colar no assistente (o Gemini, no painel
+do Colab, ou outro), nos três modos de uso da disciplina. Cada pedido é impresso por uma célula, já
+com o cartão de contexto da base, o código atual a ser alterado, as exigências e — o essencial — a
+**lista do que conferir** quando a resposta voltar.
+
+| Modo | O que o estudante faz | Passos |
+|---|---|---|
+| **Encomenda** | Pede uma alteração no código e confere o que volta: cor, legenda, rótulos, marcas da média, cor codificando grupo, painéis condensados num gráfico só | 7.1, 7.9, 7.12, 7.14, 8.2, 8.15, 9.8, 10.4, 11.2 |
+| **Pergunta** | Pede a interpretação de um resultado, com o contexto colado para a IA não inventar número | 8.11, 9.4 |
+| **Leitura de um resultado errado** | Recebe uma afirmação **falsa** sobre equidade salarial e usa a IA para derrubá-la | 7.11 |
+
+A regra impressa em todos eles é a da disciplina: **a IA explica, o código calcula, e o estudante
+confere e escreve.** Nenhum número da IA entra no relatório — entra o código, que é executado e
+conferido. O passo 13.4 fecha com a tabela de registro do uso de IA, exigida pelo programa.
 
 ## Arquivos
 
