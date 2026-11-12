@@ -1,9 +1,15 @@
-# People Analytics — estudo de caso de atrito no ambiente de trabalho
+# People Analytics — estudo de caso de rotatividade voluntária
 
 Estudo de caso de People Analytics em Python/Jupyter, detalhado item a item, sobre a pergunta:
-quais fatores mais causam atritos no ambiente de trabalho?
+**por que as pessoas pedem demissão, e o que a gestão pode fazer a respeito?**
 
-O notebook tem **229 células** e percorre o caminho completo — da descrição de uma coluna à decisão
+> **Sobre o termo.** A variável desta base se chama `Attrition`, cuja tradução literal — "atrito" —
+> é falso cognato: em português, atrito é fricção, conflito entre pessoas. Em gestão de pessoas,
+> *attrition* é a **perda de pessoal**. O material usa **rotatividade** como tema, **saída
+> voluntária** para o evento modelado e **taxa de saída voluntária** para a medida. O passo 1.4 do
+> notebook trata disso, e a distinção é ela mesma material de aula.
+
+O notebook tem **237 células** e percorre o caminho completo — da descrição de uma coluna à decisão
 de gestão — **um passo por vez**. Cada passo das Partes 7 e 8 tem sempre a mesma estrutura em quatro
 blocos: **o elemento** (qual conceito de estatística está sendo operacionalizado), **o instrumento**
 (qual gráfico ou medida serve para isso, quando usar e quando não usar), **o código** comentado, e
@@ -32,15 +38,17 @@ conferido. O passo 13.4 fecha com a tabela de registro do uso de IA, exigida pel
 
 | Arquivo | O que é |
 |---|---|
-| [people_analytics_atrito.ipynb](people_analytics_atrito.ipynb) | O notebook, com todas as saídas já executadas |
+| [people_analytics_rotatividade.ipynb](people_analytics_rotatividade.ipynb) | O notebook, com todas as saídas já executadas |
 | `../../dados/people_analytics_rh.csv` | A base: 23.058 registros, 30 variáveis |
+| `relatorio_people_analytics.pdf` | **Gerado pela Parte 14**, ao executar o notebook: o relatório executivo de 6 páginas. Não é versionado — cada execução produz o seu |
+| `people_analytics_rotatividade.html` | **Gerado pela Parte 14.2**, opcional: o notebook inteiro em HTML autocontido, para imprimir em PDF. Também não é versionado |
 
 ## Como abrir
 
 **No Colab** (depois de o repositório estar publicado):
 
 ```
-https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/people-analytics/people_analytics_atrito.ipynb
+https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/people-analytics/people_analytics_rotatividade.ipynb
 ```
 
 O notebook baixa a base automaticamente do repositório. Se o download falhar, ele pede o upload do
@@ -49,7 +57,7 @@ CSV. Nada precisa ser instalado: todas as bibliotecas usadas já vêm no Colab.
 **Localmente**, a partir da raiz do repositório:
 
 ```bash
-jupyter lab notebooks/people-analytics/people_analytics_atrito.ipynb
+jupyter lab notebooks/people-analytics/people_analytics_rotatividade.ipynb
 ```
 
 Requer `pandas`, `numpy`, `matplotlib`, `seaborn`, `statsmodels` e `scikit-learn`.
@@ -71,7 +79,8 @@ Requer `pandas`, `numpy`, `matplotlib`, `seaborn`, `statsmodels` e `scikit-learn
 | 10 | Árvore de decisão, diagnóstico de vazamento e comparação de modelos |
 | 11 | Do modelo à decisão de RH: ações, custo da rotatividade, limites éticos e LGPD |
 | 12 | As catorze armadilhas do caminho, e as decisões que as evitam |
-| 13 | Síntese, 11 exercícios em três níveis, referências |
+| 13 | Síntese, 11 exercícios em três níveis, referências e registro do uso de IA |
+| 14 | **Exportar o relatório**: o notebook em PDF, a conversão por código e o relatório executivo de 6 páginas gerado por `PdfPages` |
 
 ## Observações sobre a base
 

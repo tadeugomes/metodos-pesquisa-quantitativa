@@ -447,7 +447,7 @@ questão de LGPD no *arquivo*. A discussão de LGPD do notebook é sobre o que a
 projeto com dado de funcionário de verdade, que é o caso para o qual o estudante está sendo
 preparado.
 
-**Onde é usada:** [notebooks/people-analytics/people_analytics_atrito.ipynb](../notebooks/people-analytics/people_analytics_atrito.ipynb).
+**Onde é usada:** [notebooks/people-analytics/people_analytics_rotatividade.ipynb](../notebooks/people-analytics/people_analytics_rotatividade.ipynb).
 O notebook carrega o arquivo tentando, em ordem: caminho local, URL *raw* deste repositório e
 *upload* manual — de modo que roda no Colab sem nenhum preparo.
 

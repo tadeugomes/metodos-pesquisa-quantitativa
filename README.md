@@ -54,7 +54,7 @@ fórmula comentada, o código mínimo e a conferência. É a referência rápida
 
 | Estudo de caso | Pergunta | Técnicas | Notebook |
 |---|---|---|---|
-| **People Analytics: atrito no ambiente de trabalho** | Quais fatores mais causam atritos no ambiente de trabalho, e o que a gestão pode fazer a respeito? | Regressão logística, árvore de decisão, avaliação fora da amostra | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/people-analytics/people_analytics_atrito.ipynb) |
+| **People Analytics: rotatividade voluntária** | Por que as pessoas pedem demissão, e o que a gestão pode fazer a respeito? | Regressão logística, árvore de decisão, avaliação fora da amostra | [Colab](https://colab.research.google.com/github/tadeugomes/metodos-pesquisa-quantitativa/blob/main/notebooks/people-analytics/people_analytics_rotatividade.ipynb) |
 
 Aplicação completa do Módulo IV a uma base de recursos humanos com 23.058 registros e 30
 variáveis, em 106 células com explicação item a item: do conceito de People Analytics ao
@@ -193,7 +193,7 @@ os CSVs equivalentes do diretório [`dados/`](dados/).
 ├── notebooks/
 │   ├── encontro-NN/           # notebook do encontro, pré-executado
 │   ├── modulo-I/              # o guia da estatística descritiva
-│   ├── people-analytics/      # o estudo de caso de atrito, com README próprio
+│   ├── people-analytics/      # o estudo de caso de rotatividade, com README próprio
 │   └── geradores/             # scripts Python que geram notebooks, condução e template
 └── dados/                     # CSVs de contingência e o FONTES.md
 ```

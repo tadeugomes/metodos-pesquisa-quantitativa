@@ -17,3 +17,7 @@ venv/
 # Bibliografia (material protegido por direitos autorais)
 *.pdf
 *.bak
+
+# Saidas geradas pelo notebook de People Analytics (regeneraveis pela Parte 14)
+notebooks/people-analytics/*.html
+notebooks/people-analytics/relatorio_people_analytics.pdf
